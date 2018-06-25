@@ -66,6 +66,10 @@ public class ReportWindow {
         ImageViewReport.setPreserveRatio(true);
         */
 
+        /**
+         * Start loading point
+         */
+
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ReportInterface.fxml"));
         Parent root = (Parent) fxmlLoader.load();
         Stage stage = new Stage();
