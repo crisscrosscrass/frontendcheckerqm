@@ -8,7 +8,6 @@
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/crisscrosscrass/ReportWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/crisscrosscrass/ReportWindow.java" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -67,14 +66,26 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Controller.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Controller.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="54" column="34" lean-forward="true" selection-start-line="54" selection-start-column="34" selection-end-line="54" selection-end-column="34" />
+            <state relative-caret-position="323">
+              <caret line="55" column="25" selection-start-line="55" selection-start-column="25" selection-end-line="55" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#takeroutine#0;class#Controller#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ReportWindow.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/ReportWindow.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="748">
+              <caret line="57" column="40" lean-forward="true" selection-start-line="57" selection-start-column="40" selection-end-line="57" selection-end-column="40" />
+              <folding>
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -372,7 +383,21 @@
       <option name="project" value="LOCAL" />
       <updated>1529909836902</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="test comment for workspace">
+      <created>1529912936503</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1529912936503</updated>
+    </task>
+    <task id="LOCAL-00004" summary="test comment for workspace">
+      <created>1529912947852</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1529912947852</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -391,42 +416,66 @@
     <frame x="1912" y="-8" width="1936" height="1096" extended-state="6" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.4989339" weight="0.3295099" />
-      <window_info id="DB Browser" order="3" />
-      <window_info anchor="right" id="Palette&#9;" order="7" />
-      <window_info id="Image Layers" order="7" />
       <window_info anchor="bottom" id="DB Execution Console" order="16" />
-      <window_info anchor="right" id="Capture Analysis" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50319827" side_tool="true" visible="true" weight="0.3295099" />
       <window_info anchor="right" id="Maven Projects" order="9" weight="0.32995737" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="14" sideWeight="0.4968017" visible="true" weight="0.3295099" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.47761193" weight="0.31491137" />
-      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.4904051" weight="0.3295099" />
       <window_info id="Capture Tool" order="9" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.29904053" />
       <window_info id="Project Explorer" order="4" />
       <window_info id="Job Explorer" order="8" />
       <window_info anchor="bottom" id="Console" order="12" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="5" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.4989339" weight="0.3295099" />
+      <window_info id="DB Browser" order="3" />
+      <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.49573562" weight="0.3295099" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info id="Image Layers" order="7" />
+      <window_info anchor="right" id="Capture Analysis" order="6" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="14" sideWeight="0.4968017" visible="true" weight="0.3295099" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.47761193" weight="0.31491137" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.4904051" weight="0.3295099" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.29904053" />
       <window_info anchor="right" id="Theme Preview" order="8" />
       <window_info id="Favorites" order="6" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Application Servers" order="9" />
-      <window_info anchor="bottom" id="Changes" order="10" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="right" id="JetGradle" order="4" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Problems" order="13" />
-      <window_info anchor="bottom" id="Profiler" order="15" />
+      <window_info id="UI Designer" order="5" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.47761193" weight="0.31491137" />
       <window_info anchor="right" id="Database" order="5" />
-      <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.49573562" weight="0.3295099" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49413645" weight="0.3295099" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.4904051" weight="0.3295099" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.29904053" />
+      <window_info anchor="bottom" id="Changes" order="10" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="bottom" id="Console" order="12" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.4989339" weight="0.3295099" />
+      <window_info id="DB Browser" order="3" />
+      <window_info anchor="bottom" id="Profiler" order="15" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Maven Projects" order="9" weight="0.32995737" />
+      <window_info anchor="right" id="Theme Preview" order="8" />
+      <window_info anchor="right" id="JetGradle" order="4" />
       <window_info anchor="bottom" id="Message" order="0" />
+      <window_info id="Job Explorer" order="8" />
+      <window_info anchor="right" id="Capture Analysis" order="6" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info id="Image Layers" order="7" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49413645" weight="0.3295099" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50319827" side_tool="true" visible="true" weight="0.3295099" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Problems" order="13" />
+      <window_info anchor="bottom" id="Application Servers" order="9" />
+      <window_info id="Designer" order="2" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="14" sideWeight="0.4968017" visible="true" weight="0.3295099" />
+      <window_info id="Project Explorer" order="4" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info id="Capture Tool" order="9" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="DB Execution Console" order="16" />
     </layout>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -475,14 +524,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/resources/UserInterface.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="35" selection-start-line="5" selection-start-column="35" selection-end-line="5" selection-end-column="35" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="578">
@@ -823,16 +864,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/ReportWindow.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-255">
-          <caret line="27" column="43" selection-start-line="27" selection-start-column="43" selection-end-line="27" selection-end-column="43" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/ReportWindowController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="320">
@@ -845,11 +876,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="54" column="34" lean-forward="true" selection-start-line="54" selection-start-column="34" selection-end-line="54" selection-end-column="34" />
+        <state relative-caret-position="323">
+          <caret line="55" column="25" selection-start-line="55" selection-start-column="25" selection-end-line="55" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#takeroutine#0;class#Controller#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/shelf/Default.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/ReportWindow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="748">
+          <caret line="57" column="40" lean-forward="true" selection-start-line="57" selection-start-column="40" selection-end-line="57" selection-end-column="40" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
