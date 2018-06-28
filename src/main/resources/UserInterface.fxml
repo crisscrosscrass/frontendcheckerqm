@@ -60,7 +60,8 @@
          </opaqueInsets>
       </VBox>
       <FontAwesomeIconView fill="WHITE" glyphName="USER_SECRET" layoutX="197.0" layoutY="211.0" size="50" />
-      <Pane layoutX="14.0" layoutY="236.0" prefHeight="321.0" prefWidth="430.0" style="-fx-border-color: #e83062;">
+      <HBox fx:id="outputPlace" alignment="CENTER" layoutX="-12.0" layoutY="226.0" prefHeight="31.0" prefWidth="454.0" />
+      <Pane layoutX="14.0" layoutY="258.0" prefHeight="321.0" prefWidth="430.0" style="-fx-border-color: #e83062;">
          <children>
             <HBox layoutX="7.0" layoutY="6.714286804199219" spacing="20.0">
                <children>
@@ -81,7 +82,6 @@
                         <CheckBox mnemonicParsing="false" text="# Exit Homepage via using text search" />
                         <CheckBox mnemonicParsing="false" text="# Check &quot;Price Hint&quot; link (when existing)" />
                         <CheckBox mnemonicParsing="false" text="# Check Feedback PopUp" />
-                        <Pane fx:id="outputPlace" prefHeight="31.0" prefWidth="430.0" />
                      </children>
                   </VBox>
                </children>

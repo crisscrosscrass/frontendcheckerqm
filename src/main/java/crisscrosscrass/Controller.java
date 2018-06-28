@@ -6,9 +6,11 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
+import javafx.scene.text.TextAlignment;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -32,7 +34,7 @@ public class Controller {
     @FXML ProgressBar progressIndicator;
     @FXML Text statusInfo;
     @FXML TextArea inputSearch;
-    @FXML Pane outputPlace;
+    @FXML HBox outputPlace;
 
 
 
@@ -360,6 +362,8 @@ public class Controller {
                             }
                         }
                     });
+                    link.setStyle("-fx-font: 24 arial;");
+                    link.setTextAlignment(TextAlignment.CENTER);
                     outputPlace.getChildren().addAll(link);
                     progressIndicator.setProgress(100);
                     changeButtonText();
