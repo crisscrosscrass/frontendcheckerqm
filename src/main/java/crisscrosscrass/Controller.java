@@ -6,8 +6,10 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
+
 import javafx.scene.text.Text;
 
 import javafx.scene.text.TextAlignment;
@@ -18,6 +20,8 @@ import org.openqa.selenium.interactions.Actions;
 
 import java.io.*;
 
+
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -37,6 +41,7 @@ public class Controller {
     @FXML Text statusInfo;
     @FXML TextArea inputSearch;
     @FXML HBox outputPlace;
+    @FXML ImageView preloaderCat;
 
 
 
@@ -68,6 +73,10 @@ public class Controller {
                      */
                                 Platform.runLater(() -> {
                                     statusInfo.setText("Detecting Sources...");
+                                    //DocFlavor.URL catty = Main.class.getResource("preloaderCat.gif");
+                                    URL cattyLocation = Main.class.getClassLoader().getResource("preloaderCat.gif");
+                                    Image catty = new Image(String.valueOf(cattyLocation));
+                                    preloaderCat.setImage(catty);
                                 });
 
 
@@ -304,9 +313,8 @@ public class Controller {
                                                 ExpectedConditions.presenceOfElementLocated(By.id("myDynamicElement")));
                                      */
 
-                                    for ( WebElement e : banners ) {
-                                        Thread.sleep(10);
-                                        e.click();
+                                    for ( WebElement banner : banners ) {
+                                        banner.click();
                                             /*
                                             try{
                                                 new WebDriverWait(webDriver, 0,2).until(
@@ -321,6 +329,7 @@ public class Controller {
 
                                     Platform.runLater(() -> {
                                         checkBannersLayout.setStyle("-fx-background-color: #CCFF99");
+                                        report.writeToFile("Checking Banner: ","Successful!");
                                         checkBannersLayout.setSelected(true);
                                     });
 
@@ -328,6 +337,7 @@ public class Controller {
                                 }catch (Exception noBanner){
                                     Platform.runLater(() -> {
                                         checkBannersLayout.setStyle("-fx-background-color: #FF0000");
+                                        report.writeToFile("Checking Banner: ","unable to check!");
                                         checkBannersLayout.setSelected(true);
                                     });
                                 }
@@ -336,22 +346,52 @@ public class Controller {
                      * check shop of the week
                      */
 
-                    Platform.runLater(() -> {
-                        checkShopOfTheWeek.setStyle("-fx-background-color: #eef442");
-                        statusInfo.setText("Checking Shop of the Week...");
-                    });
+                                Platform.runLater(() -> {
+                                    checkShopOfTheWeek.setStyle("-fx-background-color: #eef442");
+                                    statusInfo.setText("Checking Shop of the Week...");
+                                });
 
-                    /*WebElement element = webDriver.findElement(By.xpath("//*[@id=\"pagecontent\"]/div[7]/div/div[1]"));
-                    ((JavascriptExecutor) webDriver).executeScript("arguments[0].scrollIntoView(true);", element);
-                    */
-                    Thread.sleep(500);
+                                /*WebElement element = webDriver.findElement(By.xpath("//*[@id=\"pagecontent\"]/div[7]/div/div[1]"));
+                                ((JavascriptExecutor) webDriver).executeScript("arguments[0].scrollIntoView(true);", element);
+                                */
+                                for (int i = 0 ; i < 10 ; i++){
+                                    Thread.sleep(100);
+                                    js.executeScript("window.scrollBy(0,100)");
+                                }
 
-                    js.executeScript("window.scrollTo(0,1000)");
+                                Platform.runLater(() -> {
+                                    checkShopOfTheWeek.setStyle("-fx-background-color: #CCFF99");
+                                    checkShopOfTheWeek.setSelected(true);
+                                });
 
-                    Platform.runLater(() -> {
-                        checkShopOfTheWeek.setStyle("-fx-background-color: #CCFF99");
-                        checkShopOfTheWeek.setSelected(true);
-                    });
+
+                    /**
+                     * open Hover Main Menu and have a check on all DeepLinks Test
+                     */
+                                Platform.runLater(() -> {
+                                    checkPerfectMatch.setStyle("-fx-background-color: #eef442");
+                                    statusInfo.setText("Checking Perfect Match...");
+                                });
+
+                                try{
+
+                                    WebElement element = webDriver.findElement(By.id("header-search-input"));
+                                    element.sendKeys("Pumps");
+                                    element.submit();
+
+                                    Platform.runLater(() -> {
+                                        checkPerfectMatch.setStyle("-fx-background-color: #CCFF99");
+                                        report.writeToFile("Checking Perfect Match: ","Successful!");
+                                        checkPerfectMatch.setSelected(true);
+                                    });
+
+                                }catch (Exception noPerfectMatch){
+                                    checkPerfectMatch.setStyle("-fx-background-color: #FF0000");
+                                    report.writeToFile("Checking Perfect Match: ","unable to check!");
+                                    checkPerfectMatch.setSelected(true);
+                                }
+
+
 
 
                     /**
@@ -387,6 +427,7 @@ public class Controller {
                             }
                         }
                     });
+                    preloaderCat.setImage(null);
                     link.setStyle("-fx-font: 24 arial;");
                     link.setTextAlignment(TextAlignment.CENTER);
                     outputPlace.getChildren().addAll(link);
