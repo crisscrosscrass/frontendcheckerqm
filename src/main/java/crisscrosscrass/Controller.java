@@ -151,7 +151,7 @@ public class Controller {
 
 
                     /**
-                     * make SCREENSHOT
+                     * make SCREENSHOT 1
                      */
 
                                 try {
@@ -176,6 +176,28 @@ public class Controller {
                                     Thread.sleep(100);
                                     js.executeScript("window.scrollBy(0,100)");
                                 }
+
+
+                    /**
+                     * make SCREENSHOT 2
+                     */
+
+                                try {
+                                    String location = System.getProperty("user.dir");
+                                    location = location.replace("\\","//");
+                                    location += "//temp//";
+                                    //System.out.println(location);
+                                    File scrFile = ((TakesScreenshot)webDriver).getScreenshotAs(OutputType.FILE);
+                                    FileUtils.copyFile(scrFile, new File(location+"screenshot2.png"));
+                                    report.writeToFile("Checking Layout: ","Screenshot2 successful!");
+
+                                } catch (IOException Message) {
+                                    Message.printStackTrace();
+                                    System.out.println("Screenshot was not made");
+                                    report.writeToFile("Checking Layout: ","Screenshot2 not successful!");
+                                }
+
+
                      /**
                      * Scroll up
                      */

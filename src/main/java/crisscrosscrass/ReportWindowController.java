@@ -13,8 +13,8 @@ import java.io.IOException;
 
 public class ReportWindowController {
 
-    @FXML
-    ImageView ImageViewReport;
+    @FXML ImageView ImageViewReport;
+    @FXML ImageView ImageViewReport1;
     @FXML Text text;
 
     @FXML
@@ -28,6 +28,9 @@ public class ReportWindowController {
         Image image = new Image("file:///"+location+"screenshot1.png");
         ImageViewReport.setImage(image);
         ImageViewReport.setPreserveRatio(true);
+        Image image2 = new Image("file:///"+location+"screenshot2.png");
+        ImageViewReport1.setImage(image2);
+        ImageViewReport1.setPreserveRatio(true);
 
 
         String myText = "";
