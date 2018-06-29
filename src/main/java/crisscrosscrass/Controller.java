@@ -56,6 +56,7 @@ public class Controller {
             Task task = new Task<Object>() {
                 @Override
                 protected Void call() throws InterruptedException {
+                    resetAllFormOptions();
                     takeRoutine();
                     return null;
                 }
@@ -546,6 +547,28 @@ public class Controller {
         CopyFiles bringit = new CopyFiles();
         bringit.copyFileThere();
 
+    }
+    @FXML
+    public void resetAllFormOptions(){
+        Platform.runLater(() -> {
+            checkLogoHomepage.setStyle("-fx-background-color: #FFFFFF");
+            checkGeneralLayout.setStyle("-fx-background-color: #FFFFFF");
+            openMainMenu.setStyle("-fx-background-color: #FFFFFF");
+            checkBannersLayout.setStyle("-fx-background-color: #FFFFFF");
+            checkShopOfTheWeek.setStyle("-fx-background-color: #FFFFFF");
+            checkPerfectMatch.setStyle("-fx-background-color: #FFFFFF");
+            checkSalesPrice.setStyle("-fx-background-color: #FFFFFF");
+            checkFilter.setStyle("-fx-background-color: #FFFFFF");
+            checkLogoHomepage.setSelected(false);
+            checkGeneralLayout.setSelected(false);
+            openMainMenu.setSelected(false);
+            checkBannersLayout.setSelected(false);
+            checkShopOfTheWeek.setSelected(false);
+            checkPerfectMatch.setSelected(false);
+            checkSalesPrice.setSelected(false);
+            checkFilter.setSelected(false);
+            outputPlace.getChildren().clear();
+        });
     }
 
 
