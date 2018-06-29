@@ -366,7 +366,7 @@ public class Controller {
 
 
                     /**
-                     * open Hover Main Menu and have a check on all DeepLinks Test
+                     * go to Search Input and look for Pumps
                      */
                                 Platform.runLater(() -> {
                                     checkPerfectMatch.setStyle("-fx-background-color: #eef442");
@@ -378,6 +378,11 @@ public class Controller {
                                     WebElement element = webDriver.findElement(By.id("header-search-input"));
                                     element.sendKeys("Pumps");
                                     element.submit();
+
+                                    for (int i = 0 ; i < 10 ; i++){
+                                        Thread.sleep(100);
+                                        js.executeScript("window.scrollBy(0,100)");
+                                    }
 
                                     Platform.runLater(() -> {
                                         checkPerfectMatch.setStyle("-fx-background-color: #CCFF99");
@@ -391,7 +396,143 @@ public class Controller {
                                     checkPerfectMatch.setSelected(true);
                                 }
 
+                    /**
+                     * select Price Hint Filter
+                     */
+                                Platform.runLater(() -> {
+                                    checkSalesPrice.setStyle("-fx-background-color: #eef442");
+                                    statusInfo.setText("Checking Price Hint...");
+                                });
+                                /**
+                                 *  check sales price
+                                 */
 
+                                try {
+                                    ((ChromeDriver) webDriver).findElementByXPath("//*[@id=\"saleButtonHeader2\"]").click();
+
+                                    for (int i = 0 ; i < 10 ; i++){
+                                        Thread.sleep(100);
+                                        js.executeScript("window.scrollBy(0,100)");
+                                    }
+
+                                    Platform.runLater(() -> {
+                                        checkSalesPrice.setStyle("-fx-background-color: #CCFF99");
+                                        report.writeToFile("Checking Price Hint: ","Successful!");
+                                        checkSalesPrice.setSelected(true);
+                                    });
+                                }catch (Exception noSalesFilter){
+                                    Platform.runLater(() -> {
+                                        checkSalesPrice.setStyle("-fx-background-color: #FF0000");
+                                        report.writeToFile("Checking Price Hint: ","unable to check!");
+                                        checkSalesPrice.setSelected(true);
+                                    });
+                                }
+
+                    /**
+                     * select  Filters
+                     */
+                                Platform.runLater(() -> {
+                                    checkFilter.setStyle("-fx-background-color: #eef442");
+                                    statusInfo.setText("Checking Filters...");
+                                });
+
+                                /**
+                                 *  check color filter
+                                 */
+                                Platform.runLater(() -> {
+                                    statusInfo.setText("Checking Color...");
+                                });
+
+                                try {
+                                    ((ChromeDriver) webDriver).findElementByXPath("//*[@id=\"pagecontent\"]/div[1]/div[4]/div[14]/ul/li[1]/a").click();
+
+                                    for (int i = 0 ; i < 10 ; i++){
+                                        Thread.sleep(100);
+                                        js.executeScript("window.scrollBy(0,100)");
+                                    }
+
+                                    Platform.runLater(() -> {
+                                        report.writeToFile("Checking Filter Color: ","Successful!");
+                                    });
+                                }catch (Exception noColorFilter){
+                                    Platform.runLater(() -> {
+                                        report.writeToFile("Checking Filter Color: ","unable to check!");
+                                    });
+                                }
+                                /**
+                                 *  check brand filter
+                                 */
+                                Platform.runLater(() -> {
+                                    statusInfo.setText("Checking Brand...");
+                                });
+
+                                try {
+                                    ((ChromeDriver) webDriver).findElementByXPath("//*[@id=\"pagecontent\"]/div[1]/div[4]/div[11]/div[2]/a[1]").click();
+
+                                    for (int i = 0 ; i < 10 ; i++){
+                                        Thread.sleep(100);
+                                        js.executeScript("window.scrollBy(0,100)");
+                                    }
+
+                                    Platform.runLater(() -> {
+                                        report.writeToFile("Checking Filter Brand: ","Successful!");
+                                    });
+                                }catch (Exception noBrandFilter){
+                                    Platform.runLater(() -> {
+                                        report.writeToFile("Checking Filter Brand: ","unable to check!");
+                                    });
+                                }
+                                /**
+                                 *  check material filter
+                                 */
+                                Platform.runLater(() -> {
+                                    statusInfo.setText("Checking Material...");
+                                });
+
+                                try {
+                                    ((ChromeDriver) webDriver).findElementByCssSelector("//*[@id=\"pagecontent\"]/div[1]/div[4]/div[17]/div[1]/a[1]").click();
+
+                                    for (int i = 0 ; i < 10 ; i++){
+                                        Thread.sleep(100);
+                                        js.executeScript("window.scrollBy(0,100)");
+                                    }
+
+                                    Platform.runLater(() -> {
+                                        report.writeToFile("Checking Filter Material: ","Successful!");
+                                    });
+                                }catch (Exception noMaterialFilter){
+                                    Platform.runLater(() -> {
+                                        report.writeToFile("Checking Filter Material: ","unable to check!");
+                                    });
+                                }
+
+                                /**
+                                 *  check shop filter
+                                 */
+                                Platform.runLater(() -> {
+                                    statusInfo.setText("Checking Shop...");
+                                });
+
+                                try {
+                                    ((ChromeDriver) webDriver).findElementByXPath("//*[@id=\"pagecontent\"]/div[1]/div[4]/div[20]/div/a").click();
+
+                                    for (int i = 0 ; i < 10 ; i++){
+                                        Thread.sleep(100);
+                                        js.executeScript("window.scrollBy(0,100)");
+                                    }
+
+                                    Platform.runLater(() -> {
+                                        checkFilter.setStyle("-fx-background-color: #CCFF99");
+                                        report.writeToFile("Checking Filter Shop: ","Successful!");
+                                        checkFilter.setSelected(true);
+                                    });
+                                }catch (Exception noShopFilter){
+                                    Platform.runLater(() -> {
+                                        checkFilter.setStyle("-fx-background-color: #CCFF99");
+                                        report.writeToFile("Checking Filter Shop: ","unable to check!");
+                                        checkFilter.setSelected(true);
+                                    });
+                                }
 
 
                     /**

@@ -61,7 +61,7 @@
          </opaqueInsets>
       </VBox>
       <FontAwesomeIconView fill="WHITE" glyphName="USER_SECRET" layoutX="197.0" layoutY="211.0" size="50" />
-      <ImageView fx:id="preloaderCat" fitHeight="62.0" fitWidth="66.0" layoutX="12.0" layoutY="239.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="preloaderCat" fitHeight="62.0" fitWidth="66.0" layoutX="182.0" layoutY="239.0" pickOnBounds="true" preserveRatio="true" />
       <HBox fx:id="outputPlace" alignment="CENTER" layoutX="-12.0" layoutY="260.0" prefHeight="31.0" prefWidth="454.0" />
       <Pane layoutX="14.0" layoutY="295.0" prefHeight="321.0" prefWidth="430.0" style="-fx-border-color: #e83062;">
          <children>
