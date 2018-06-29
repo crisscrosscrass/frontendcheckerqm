@@ -72,16 +72,10 @@
                         <CheckBox fx:id="checkGeneralLayout" mnemonicParsing="false" text="# Check general layout" />
                         <CheckBox fx:id="openMainMenu" mnemonicParsing="false" text="# Open main menu and check layout / links" />
                         <CheckBox fx:id="checkBannersLayout" mnemonicParsing="false" text="# Check banners for layout" />
-                        <CheckBox fx:id="checkCategoryLinks" mnemonicParsing="false" text="# Check category links" />
                         <CheckBox fx:id="checkShopOfTheWeek" mnemonicParsing="false" text="# Check &quot;Shop of the week&quot; (Logo + Category links)" />
-                        <CheckBox mnemonicParsing="false" text="# Check &quot;Popular brands&quot; (All logos shown correctly?)" />
-                        <CheckBox mnemonicParsing="false" text="# Check newsletter teaser (in case existing)" />
-                        <CheckBox mnemonicParsing="false" text="# Check the newsletter pop up (in case existing)" />
-                        <CheckBox mnemonicParsing="false" text="# Check all (!) footer links, incl. app icon" />
-                        <CheckBox mnemonicParsing="false" text="# Use the text search and check on suggestions" />
-                        <CheckBox mnemonicParsing="false" text="# Exit Homepage via using text search" />
-                        <CheckBox mnemonicParsing="false" text="# Check &quot;Price Hint&quot; link (when existing)" />
-                        <CheckBox mnemonicParsing="false" text="# Check Feedback PopUp" />
+                        <CheckBox fx:id="checkPerfectMatch" mnemonicParsing="false" text="# perfect Match via using text search" />
+                        <CheckBox fx:id="checkSalesPrice" mnemonicParsing="false" text="# Check &quot;Price Hint&quot; link (when existing)" />
+                        <CheckBox fx:id="checkFilter" mnemonicParsing="false" text="# Check Filter Apply" />
                      </children>
                   </VBox>
                </children>

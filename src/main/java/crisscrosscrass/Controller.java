@@ -29,8 +29,10 @@ public class Controller {
     @FXML CheckBox checkGeneralLayout;
     @FXML CheckBox openMainMenu;
     @FXML CheckBox checkBannersLayout;
-    @FXML CheckBox checkCategoryLinks;
     @FXML CheckBox checkShopOfTheWeek;
+    @FXML CheckBox checkPerfectMatch;
+    @FXML CheckBox checkSalesPrice;
+    @FXML CheckBox checkFilter;
     @FXML ProgressBar progressIndicator;
     @FXML Text statusInfo;
     @FXML TextArea inputSearch;
