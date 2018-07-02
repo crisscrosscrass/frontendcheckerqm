@@ -126,8 +126,8 @@ public class Controller {
                      * Click on Logo Test
                      */
                                 Platform.runLater(() -> {
-                                checkLogoHomepage.setStyle("-fx-background-color: #eef442");
-                                statusInfo.setText("Checking Logo...");
+                                    checkLogoHomepage.setStyle("-fx-background-color: #eef442");
+                                    statusInfo.setText("Checking Logo...");
                                 });
 
 
@@ -150,9 +150,9 @@ public class Controller {
                                 }
 
 
-                      /**
-                      * Check general Layout Test
-                      */
+                    /**
+                     * Check general Layout Test
+                     */
                                 Platform.runLater(() -> {
                                     checkGeneralLayout.setStyle("-fx-background-color: #eef442");
                                     statusInfo.setText("Checking Layout...");
@@ -173,7 +173,7 @@ public class Controller {
                                     FileUtils.copyFile(scrFile, new File(location+"screenshot1.png"));
                                     report.writeToFile("Checking Layout: ","Screenshot successful!");
 
-                                 } catch (IOException Message) {
+                                } catch (IOException Message) {
                                     Message.printStackTrace();
                                     System.out.println("Screenshot was not made");
                                     report.writeToFile("Checking Layout: ","Screenshot not successful!");
@@ -208,7 +208,7 @@ public class Controller {
                                 }
 
 
-                     /**
+                    /**
                      * Scroll up
                      */
                                 for (int i = 0 ; i < 10 ; i++){
@@ -308,21 +308,21 @@ public class Controller {
 
 
                                     List<WebElement> banners = ((ChromeDriver) webDriver).findElementsByXPath("//*[@id=\"main-middle-wrap\"]/div[2]/*");
-                                    /*
-                                    new WebDriverWait(webDriver,0,1).until(
-                                                ExpectedConditions.presenceOfElementLocated(By.id("myDynamicElement")));
-                                     */
+                                                /*
+                                                new WebDriverWait(webDriver,0,1).until(
+                                                            ExpectedConditions.presenceOfElementLocated(By.id("myDynamicElement")));
+                                                 */
 
                                     for ( WebElement banner : banners ) {
                                         banner.click();
-                                            /*
-                                            try{
-                                                new WebDriverWait(webDriver, 0,2).until(
-                                                        ExpectedConditions.presenceOfElementLocated(By.id("justMyPersonalWaitingProcess")));
-                                            }catch (Exception somethingRandom){
-                                                System.out.println(somethingRandom);
-                                            }
-                                            */
+                                                        /*
+                                                        try{
+                                                            new WebDriverWait(webDriver, 0,2).until(
+                                                                    ExpectedConditions.presenceOfElementLocated(By.id("justMyPersonalWaitingProcess")));
+                                                        }catch (Exception somethingRandom){
+                                                            System.out.println(somethingRandom);
+                                                        }
+                                                        */
                                     }
 
 
@@ -351,9 +351,9 @@ public class Controller {
                                     statusInfo.setText("Checking Shop of the Week...");
                                 });
 
-                                /*WebElement element = webDriver.findElement(By.xpath("//*[@id=\"pagecontent\"]/div[7]/div/div[1]"));
-                                ((JavascriptExecutor) webDriver).executeScript("arguments[0].scrollIntoView(true);", element);
-                                */
+                                            /*WebElement element = webDriver.findElement(By.xpath("//*[@id=\"pagecontent\"]/div[7]/div/div[1]"));
+                                            ((JavascriptExecutor) webDriver).executeScript("arguments[0].scrollIntoView(true);", element);
+                                            */
                                 for (int i = 0 ; i < 10 ; i++){
                                     Thread.sleep(100);
                                     js.executeScript("window.scrollBy(0,100)");
@@ -490,7 +490,7 @@ public class Controller {
                                 });
 
                                 try {
-                                    ((ChromeDriver) webDriver).findElementByCssSelector("//*[@id=\"pagecontent\"]/div[1]/div[4]/div[17]/div[1]/a[1]").click();
+                                    ((ChromeDriver) webDriver).findElementByXPath("//*[@id=\"pagecontent\"]/div[1]/div[4]/div[17]/div[1]/a[1]").click();
 
                                     for (int i = 0 ; i < 10 ; i++){
                                         Thread.sleep(100);
@@ -528,7 +528,7 @@ public class Controller {
                                     });
                                 }catch (Exception noShopFilter){
                                     Platform.runLater(() -> {
-                                        checkFilter.setStyle("-fx-background-color: #CCFF99");
+                                        checkFilter.setStyle("-fx-background-color: #FF0000");
                                         report.writeToFile("Checking Filter Shop: ","unable to check!");
                                         checkFilter.setSelected(true);
                                     });
