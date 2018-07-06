@@ -1,6 +1,7 @@
 package crisscrosscrass;
 
 import javafx.application.Platform;
+import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -10,6 +11,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 import javafx.scene.text.TextAlignment;
@@ -42,6 +44,7 @@ public class Controller {
     @FXML TextArea inputSearch;
     @FXML HBox outputPlace;
     @FXML ImageView preloaderCat;
+    @FXML VBox CheckBoxesPlace;
 
 
 
@@ -53,9 +56,8 @@ public class Controller {
         System.out.println("Start Engine...");
 
 
-
-
         Platform.runLater(() -> {
+
             progressIndicator.setProgress(-1);
             startwebdriver.setDisable(true);
             Task task = new Task<Object>() {
@@ -122,9 +124,14 @@ public class Controller {
                                 webDriver.navigate().to(requestedWebsite);
                                 report.writeToFile("Checking Website: ",requestedWebsite);
 
+
+                    Platform.runLater(() -> {
+                        progressIndicator.setProgress(checkAllCheckBoxes());
+                    });
                     /**
                      * Click on Logo Test
                      */
+
                                 Platform.runLater(() -> {
                                     checkLogoHomepage.setStyle("-fx-background-color: #eef442");
                                     statusInfo.setText("Checking Logo...");
@@ -149,7 +156,9 @@ public class Controller {
                                     });
                                 }
 
-
+                    Platform.runLater(() -> {
+                        progressIndicator.setProgress(checkAllCheckBoxes());
+                    });
                     /**
                      * Check general Layout Test
                      */
@@ -221,7 +230,9 @@ public class Controller {
                                     checkGeneralLayout.setSelected(true);
                                 });
 
-
+                    Platform.runLater(() -> {
+                        progressIndicator.setProgress(checkAllCheckBoxes());
+                    });
                     /**
                      * open Hover Main Menu and have a check on all DeepLinks Test
                      */
@@ -293,6 +304,10 @@ public class Controller {
                                     });
                                 }
                                 Thread.sleep(1000);
+
+                    Platform.runLater(() -> {
+                        progressIndicator.setProgress(checkAllCheckBoxes());
+                    });
                     /**
                      * Check banner for layout
                      */
@@ -342,6 +357,9 @@ public class Controller {
                                     });
                                 }
 
+                    Platform.runLater(() -> {
+                        progressIndicator.setProgress(checkAllCheckBoxes());
+                    });
                     /**
                      * check shop of the week
                      */
@@ -364,7 +382,9 @@ public class Controller {
                                     checkShopOfTheWeek.setSelected(true);
                                 });
 
-
+                    Platform.runLater(() -> {
+                        progressIndicator.setProgress(checkAllCheckBoxes());
+                    });
                     /**
                      * go to Search Input and look for Pumps
                      */
@@ -395,7 +415,9 @@ public class Controller {
                                     report.writeToFile("Checking Perfect Match: ","unable to check!");
                                     checkPerfectMatch.setSelected(true);
                                 }
-
+                    Platform.runLater(() -> {
+                        progressIndicator.setProgress(checkAllCheckBoxes());
+                    });
                     /**
                      * select Price Hint Filter
                      */
@@ -428,6 +450,10 @@ public class Controller {
                                     });
                                 }
 
+
+                    Platform.runLater(() -> {
+                        progressIndicator.setProgress(checkAllCheckBoxes());
+                    });
                     /**
                      * select  Filters
                      */
@@ -490,7 +516,7 @@ public class Controller {
                                 });
 
                                 try {
-                                    ((ChromeDriver) webDriver).findElementByXPath("//*[@id=\"pagecontent\"]/div[1]/div[4]/div[17]/div[1]/a[1]").click();
+                                    ((ChromeDriver) webDriver).findElementByXPath("//*[@id=\"pagecontent\"]/div[1]/div[4]/div[20]/div[1]/a[1]").click();
 
                                     for (int i = 0 ; i < 10 ; i++){
                                         Thread.sleep(100);
@@ -730,6 +756,25 @@ public class Controller {
         bringit.copyFileThere();
 
     }
+    @FXML
+    public double checkAllCheckBoxes(){
+        double StateProgress = 0;
+
+        CheckBox[] checkboxes = CheckBoxesPlace.getChildren().toArray(new CheckBox[0]);
+        int AmountOfCheckBoxes = checkboxes.length;
+
+        for (CheckBox checkbox : checkboxes){
+
+            if (checkbox.isSelected() == true){
+                StateProgress += 1;
+
+            }
+        }
+        //System.out.println("State : " + StateProgress + "Amount of Boxes: "+AmountOfCheckBoxes);
+        StateProgress = StateProgress / AmountOfCheckBoxes;
+        return StateProgress;
+    }
+
     @FXML
     public void resetAllFormOptions(){
         Platform.runLater(() -> {

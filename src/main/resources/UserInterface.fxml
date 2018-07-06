@@ -68,7 +68,7 @@
             <HBox layoutX="7.0" layoutY="6.714286804199219" spacing="20.0">
                <children>
                   <FontAwesomeIconView fill="#e83062" glyphName="CLONE" size="40" />
-                  <VBox alignment="CENTER_LEFT">
+                  <VBox fx:id="CheckBoxesPlace" alignment="CENTER_LEFT">
                      <children>
                         <CheckBox fx:id="checkLogoHomepage" mnemonicParsing="false" text="# Click on logo to go to homepage" />
                         <CheckBox fx:id="checkGeneralLayout" mnemonicParsing="false" text="# Check general layout" />
