@@ -6,15 +6,19 @@ import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 import javafx.scene.text.TextAlignment;
+import javafx.stage.Stage;
+import javafx.stage.Window;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -45,6 +49,7 @@ public class Controller {
     @FXML HBox outputPlace;
     @FXML ImageView preloaderCat;
     @FXML VBox CheckBoxesPlace;
+    @FXML AnchorPane mainStage;
 
 
 
@@ -57,6 +62,8 @@ public class Controller {
 
 
         Platform.runLater(() -> {
+
+
 
             progressIndicator.setProgress(-1);
             startwebdriver.setDisable(true);
@@ -115,6 +122,8 @@ public class Controller {
                      * open Startpage and have a basic overview
                      */
                                 Platform.runLater(() -> {
+                                    Window window = mainStage.getScene().getWindow();
+                                    window.requestFocus();
                                     statusInfo.setText("Open Maximize Mode...");
                                 });
                                 webDriver.manage().window().maximize();
@@ -123,6 +132,8 @@ public class Controller {
                                 });
                                 webDriver.navigate().to(requestedWebsite);
                                 report.writeToFile("Checking Website: ",requestedWebsite);
+
+
 
 
                     Platform.runLater(() -> {
