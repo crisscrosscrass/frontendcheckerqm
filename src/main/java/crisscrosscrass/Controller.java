@@ -76,10 +76,7 @@ public class Controller {
                 }
 
                 private void takeRoutine() throws InterruptedException {
-                    /**
-                     * Basic Settings before Starting WebDriver
-                     * Browser, Javascript , etc.
-                     */
+                    ///  * Basic Settings before Starting WebDriver           * Browser, Javascript , etc.
                                 Platform.runLater(() -> {
                                     statusInfo.setText("Detecting Sources...");
                                     //DocFlavor.URL catty = Main.class.getResource("preloaderCat.gif");
@@ -117,10 +114,7 @@ public class Controller {
 
 
 
-                    /**
-                     *
-                     * open Startpage and have a basic overview
-                     */
+                   // open Startpage and have a basic overview
                                 Platform.runLater(() -> {
                                     Window window = mainStage.getScene().getWindow();
                                     window.requestFocus();
@@ -139,9 +133,9 @@ public class Controller {
                     Platform.runLater(() -> {
                         progressIndicator.setProgress(checkAllCheckBoxes());
                     });
-                    /**
-                     * Click on Logo Test
-                     */
+
+
+                    // Click on Logo Test
 
                                 Platform.runLater(() -> {
                                     checkLogoHomepage.setStyle("-fx-background-color: #eef442");
@@ -170,9 +164,11 @@ public class Controller {
                     Platform.runLater(() -> {
                         progressIndicator.setProgress(checkAllCheckBoxes());
                     });
-                    /**
-                     * Check general Layout Test
-                     */
+
+
+                     //Check general Layout Test
+
+
                                 Platform.runLater(() -> {
                                     checkGeneralLayout.setStyle("-fx-background-color: #eef442");
                                     statusInfo.setText("Checking Layout...");
@@ -180,9 +176,7 @@ public class Controller {
                                 Thread.sleep(100);
 
 
-                    /**
-                     * make SCREENSHOT 1
-                     */
+                    // make SCREENSHOT 1
 
                                 try {
                                     String location = System.getProperty("user.dir");
@@ -199,18 +193,16 @@ public class Controller {
                                     report.writeToFile("Checking Layout: ","Screenshot not successful!");
                                 }
 
-                    /**
-                     * Scroll down
-                     */
+                    // Scroll down
+
+
                                 for (int i = 0 ; i < 10 ; i++){
                                     Thread.sleep(100);
                                     js.executeScript("window.scrollBy(0,100)");
                                 }
 
 
-                    /**
-                     * make SCREENSHOT 2
-                     */
+                    // make SCREENSHOT 2
 
                                 try {
                                     String location = System.getProperty("user.dir");
@@ -228,9 +220,9 @@ public class Controller {
                                 }
 
 
-                    /**
-                     * Scroll up
-                     */
+                    // Scroll up
+
+
                                 for (int i = 0 ; i < 10 ; i++){
                                     Thread.sleep(100);
                                     js.executeScript("window.scrollBy(0,-100)");
@@ -244,9 +236,11 @@ public class Controller {
                     Platform.runLater(() -> {
                         progressIndicator.setProgress(checkAllCheckBoxes());
                     });
-                    /**
-                     * open Hover Main Menu and have a check on all DeepLinks Test
-                     */
+
+
+                    // open Hover Main Menu and have a check on all DeepLinks Test
+
+
                                 Platform.runLater(() -> {
                                     openMainMenu.setStyle("-fx-background-color: #eef442");
                                     statusInfo.setText("Checking Menu...");
@@ -319,9 +313,8 @@ public class Controller {
                     Platform.runLater(() -> {
                         progressIndicator.setProgress(checkAllCheckBoxes());
                     });
-                    /**
-                     * Check banner for layout
-                     */
+
+                    // Check banner for layout
 
                                 Platform.runLater(() -> {
                                     checkBannersLayout.setStyle("-fx-background-color: #eef442");
@@ -371,9 +364,9 @@ public class Controller {
                     Platform.runLater(() -> {
                         progressIndicator.setProgress(checkAllCheckBoxes());
                     });
-                    /**
-                     * check shop of the week
-                     */
+
+
+                    // check shop of the week
 
                                 Platform.runLater(() -> {
                                     checkShopOfTheWeek.setStyle("-fx-background-color: #eef442");
@@ -396,9 +389,11 @@ public class Controller {
                     Platform.runLater(() -> {
                         progressIndicator.setProgress(checkAllCheckBoxes());
                     });
-                    /**
-                     * go to Search Input and look for Pumps
-                     */
+
+
+                    // go to Search Input and look for Pumps
+
+
                                 Platform.runLater(() -> {
                                     checkPerfectMatch.setStyle("-fx-background-color: #eef442");
                                     statusInfo.setText("Checking Perfect Match...");
@@ -429,16 +424,18 @@ public class Controller {
                     Platform.runLater(() -> {
                         progressIndicator.setProgress(checkAllCheckBoxes());
                     });
-                    /**
-                     * select Price Hint Filter
-                     */
+
+
+                    // select Price Hint Filter
+
+
                                 Platform.runLater(() -> {
                                     checkSalesPrice.setStyle("-fx-background-color: #eef442");
                                     statusInfo.setText("Checking Price Hint...");
                                 });
-                                /**
-                                 *  check sales price
-                                 */
+
+
+                                //check sales price
 
                                 try {
                                     ((ChromeDriver) webDriver).findElementByXPath("//*[@id=\"saleButtonHeader2\"]").click();
@@ -465,17 +462,19 @@ public class Controller {
                     Platform.runLater(() -> {
                         progressIndicator.setProgress(checkAllCheckBoxes());
                     });
-                    /**
-                     * select  Filters
-                     */
+
+
+                    // select  Filters
+
+
                                 Platform.runLater(() -> {
                                     checkFilter.setStyle("-fx-background-color: #eef442");
                                     statusInfo.setText("Checking Filters...");
                                 });
 
-                                /**
-                                 *  check color filter
-                                 */
+                                //  check color filter
+
+
                                 Platform.runLater(() -> {
                                     statusInfo.setText("Checking Color...");
                                 });
@@ -496,9 +495,11 @@ public class Controller {
                                         report.writeToFile("Checking Filter Color: ","unable to check!");
                                     });
                                 }
-                                /**
-                                 *  check brand filter
-                                 */
+
+
+                                // check brand filter
+
+
                                 Platform.runLater(() -> {
                                     statusInfo.setText("Checking Brand...");
                                 });
@@ -519,9 +520,11 @@ public class Controller {
                                         report.writeToFile("Checking Filter Brand: ","unable to check!");
                                     });
                                 }
-                                /**
-                                 *  check material filter
-                                 */
+
+
+                                // check material filter
+
+
                                 Platform.runLater(() -> {
                                     statusInfo.setText("Checking Material...");
                                 });
@@ -543,9 +546,9 @@ public class Controller {
                                     });
                                 }
 
-                                /**
-                                 *  check shop filter
-                                 */
+                                // check shop filter
+
+
                                 Platform.runLater(() -> {
                                     statusInfo.setText("Checking Shop...");
                                 });
@@ -572,9 +575,7 @@ public class Controller {
                                 }
 
 
-                    /**
-                     * close webdriver and clear tasklist
-                     */
+                    // close webdriver and clear tasklist
 
                                 webDriver.close();
 
