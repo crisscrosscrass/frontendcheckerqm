@@ -6,8 +6,9 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="added geckodriver">
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="changes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller.java" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -68,23 +69,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Controller.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Controller.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
-              <caret line="180" lean-forward="true" selection-start-line="180" selection-end-line="180" />
+            <state relative-caret-position="172">
+              <caret line="704" column="9" selection-start-line="704" selection-start-column="9" selection-end-line="704" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="workspace.xml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="38" lean-forward="true" selection-start-line="7" selection-start-column="38" selection-end-line="7" selection-end-column="38" />
             </state>
           </provider>
         </entry>
@@ -151,8 +143,8 @@
         <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/ReportWindow.java" />
         <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/TestCases/SalesButtonCheck.java" />
         <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/TestCases/FilterButtonCheck.java" />
-        <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller.java" />
         <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/backupCode" />
+        <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller.java" />
       </list>
     </option>
   </component>
@@ -594,7 +586,14 @@
       <option name="project" value="LOCAL" />
       <updated>1531738001263</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="changes">
+      <created>1531738590329</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1531738590329</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -611,11 +610,10 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="DB Execution Console" order="16" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50586355" side_tool="true" visible="true" weight="0.32861805" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5074627" side_tool="true" visible="true" weight="0.32861805" />
       <window_info anchor="right" id="Maven Projects" order="9" weight="0.32995737" />
       <window_info id="Capture Tool" order="9" />
       <window_info id="Designer" order="2" />
@@ -626,16 +624,16 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="5" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.4978678" weight="0.32861805" />
+      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49733475" weight="0.32861805" />
       <window_info id="DB Browser" order="3" />
-      <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.49307036" weight="0.32861805" />
+      <window_info active="true" anchor="bottom" id="Messages" order="11" sideWeight="0.49253732" visible="true" weight="0.32861805" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info id="Image Layers" order="7" />
       <window_info anchor="right" id="Capture Analysis" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="14" sideWeight="0.49413645" visible="true" weight="0.32861805" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.478145" weight="0.31447226" />
+      <window_info anchor="bottom" id="Version Control" order="14" sideWeight="0.49413645" weight="0.32861805" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.47761193" weight="0.31447226" />
       <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.48880598" weight="0.32861805" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.36673775" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.36673775" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49413645" weight="0.3295099" />
       <window_info anchor="right" id="Theme Preview" order="8" />
       <window_info id="Favorites" order="6" side_tool="true" />
@@ -698,7 +696,8 @@
     <MESSAGE value="add some more filters and outsource task to extra classes" />
     <MESSAGE value="add some more xpath values" />
     <MESSAGE value="added geckodriver" />
-    <option name="LAST_COMMIT_MESSAGE" value="added geckodriver" />
+    <MESSAGE value="changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="changes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1046,20 +1045,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller.java">
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="180" lean-forward="true" selection-start-line="180" selection-end-line="180" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="272">
+          <caret line="16" column="35" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="38" lean-forward="true" selection-start-line="7" selection-start-column="38" selection-end-line="7" selection-end-column="38" />
+        <state relative-caret-position="172">
+          <caret line="704" column="9" selection-start-line="704" selection-start-column="9" selection-end-line="704" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

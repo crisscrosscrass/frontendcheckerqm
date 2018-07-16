@@ -49,7 +49,7 @@ public class Controller {
     @FXML VBox CheckBoxesPlace;
     @FXML AnchorPane mainStage;
 
-    static boolean answer = false;
+    private static boolean answer = false;
 
 
 
@@ -97,9 +97,7 @@ public class Controller {
                                     copyFiles();
                                 }
 
-                                Platform.runLater(() -> {
-                                    statusInfo.setText("Starting Engine...");
-                                });
+                                Platform.runLater(() -> statusInfo.setText("Starting Engine..."));
 
 
 
@@ -124,18 +122,14 @@ public class Controller {
                                     statusInfo.setText("Open Maximize Mode...");
                                 });
                                 webDriver.manage().window().maximize();
-                                Platform.runLater(() -> {
-                                    statusInfo.setText("Go to requested Website...");
-                                });
+                                Platform.runLater(() -> statusInfo.setText("Go to requested Website..."));
                                 webDriver.navigate().to(requestedWebsite);
                                 report.writeToFile("Checking Website: ",requestedWebsite);
 
 
 
 
-                    Platform.runLater(() -> {
-                        progressIndicator.setProgress(checkAllCheckBoxes());
-                    });
+                    Platform.runLater(() -> progressIndicator.setProgress(checkAllCheckBoxes()));
 
 
                     // Click on Logo Test
@@ -164,9 +158,7 @@ public class Controller {
                                     });
                                 }
 
-                    Platform.runLater(() -> {
-                        progressIndicator.setProgress(checkAllCheckBoxes());
-                    });
+                    Platform.runLater(() -> progressIndicator.setProgress(checkAllCheckBoxes()));
 
 
                      //Check general Layout Test
@@ -236,9 +228,7 @@ public class Controller {
                                     checkGeneralLayout.setSelected(true);
                                 });
 
-                    Platform.runLater(() -> {
-                        progressIndicator.setProgress(checkAllCheckBoxes());
-                    });
+                    Platform.runLater(() -> progressIndicator.setProgress(checkAllCheckBoxes()));
 
 
                     // open Hover Main Menu and have a check on all DeepLinks Test
@@ -313,9 +303,7 @@ public class Controller {
                                 }
                                 Thread.sleep(1000);
 
-                    Platform.runLater(() -> {
-                        progressIndicator.setProgress(checkAllCheckBoxes());
-                    });
+                    Platform.runLater(() -> progressIndicator.setProgress(checkAllCheckBoxes()));
 
                     // Check banner for layout
 
@@ -364,9 +352,7 @@ public class Controller {
                                     });
                                 }
 
-                    Platform.runLater(() -> {
-                        progressIndicator.setProgress(checkAllCheckBoxes());
-                    });
+                    Platform.runLater(() -> progressIndicator.setProgress(checkAllCheckBoxes()));
 
 
                     // check shop of the week
@@ -389,9 +375,7 @@ public class Controller {
                                     checkShopOfTheWeek.setSelected(true);
                                 });
 
-                    Platform.runLater(() -> {
-                        progressIndicator.setProgress(checkAllCheckBoxes());
-                    });
+                    Platform.runLater(() -> progressIndicator.setProgress(checkAllCheckBoxes()));
 
 
                     // go to Search Input and look for Pumps
@@ -412,6 +396,7 @@ public class Controller {
                                         Thread.sleep(100);
                                         js.executeScript("window.scrollBy(0,100)");
                                     }
+                                    System.out.println(webDriver.getCurrentUrl());
 
                                     Platform.runLater(() -> {
                                         checkPerfectMatch.setStyle("-fx-background-color: #CCFF99");
@@ -424,9 +409,7 @@ public class Controller {
                                     report.writeToFile("Checking Perfect Match: ","unable to check!");
                                     checkPerfectMatch.setSelected(true);
                                 }
-                    Platform.runLater(() -> {
-                        progressIndicator.setProgress(checkAllCheckBoxes());
-                    });
+                    Platform.runLater(() -> progressIndicator.setProgress(checkAllCheckBoxes()));
 
 
                     // select Price Hint Filter
@@ -441,7 +424,7 @@ public class Controller {
                                 //check sales price
                                 answer = FilterButtonCheck.pressFilterButton(webDriver,js,"//*[@id='saleButtonHeader2']");
 
-                                if (answer == true){
+                                if (answer){
                                     Platform.runLater(() -> {
                                         checkSalesPrice.setStyle("-fx-background-color: #CCFF99");
                                         report.writeToFile("Checking Price Hint: ","Successful!");
@@ -457,9 +440,7 @@ public class Controller {
 
 
 
-                    Platform.runLater(() -> {
-                        progressIndicator.setProgress(checkAllCheckBoxes());
-                    });
+                    Platform.runLater(() -> progressIndicator.setProgress(checkAllCheckBoxes()));
 
 
                     // select  Filters
@@ -472,60 +453,40 @@ public class Controller {
 
                                 //  check color filter
 
-                                Platform.runLater(() -> {
-                                    statusInfo.setText("Checking Color...");
-                                });
+                                Platform.runLater(() -> statusInfo.setText("Checking Color..."));
 
                                 answer = FilterButtonCheck.pressFilterButton(webDriver,js,"//*[@id='pagecontent']/*/*[@class='sidebar']/*[@data-id='farben_block']/ul/li/a ");
-                                if (answer == true){
-                                    Platform.runLater(() -> {
-                                        report.writeToFile("Checking Filter Color: ","Successful!");
-                                    });
+                                if (answer){
+                                    Platform.runLater(() -> report.writeToFile("Checking Filter Color: ","Successful!"));
                                 }else {
-                                    Platform.runLater(() -> {
-                                        report.writeToFile("Checking Filter Color: ","unable to check!");
-                                    });
+                                    Platform.runLater(() -> report.writeToFile("Checking Filter Color: ","unable to check!"));
                                 }
 
 
                                 // check brand filter
-                                Platform.runLater(() -> {
-                                    statusInfo.setText("Checking Brand...");
-                                });
+                                Platform.runLater(() -> statusInfo.setText("Checking Brand..."));
 
                                 answer = FilterButtonCheck.pressFilterButton(webDriver,js,"//*[@id='pagecontent']/*/*[@class='sidebar']/*[@data-id='brand_box']/div/a ");
 
-                                if (answer == true){
-                                    Platform.runLater(() -> {
-                                        report.writeToFile("Checking Filter Brand: ","Successful!");
-                                    });
+                                if (answer){
+                                    Platform.runLater(() -> report.writeToFile("Checking Filter Brand: ","Successful!"));
                                 }else {
-                                    Platform.runLater(() -> {
-                                        report.writeToFile("Checking Filter Brand: ","unable to check!");
-                                    });
+                                    Platform.runLater(() -> report.writeToFile("Checking Filter Brand: ","unable to check!"));
                                 }
 
 
                                 // check material filter
-                                Platform.runLater(() -> {
-                                    statusInfo.setText("Checking Material...");
-                                });
+                                Platform.runLater(() -> statusInfo.setText("Checking Material..."));
 
                                 answer = FilterButtonCheck.pressFilterButton(webDriver,js,"//*[@id='pagecontent']/*/*[@class='sidebar']/*[@data-id='material_block']/div/a ");
-                                if (answer == true){
-                                    Platform.runLater(() -> {
-                                        report.writeToFile("Checking Filter Material: ","Successful!");
-                                    });
+                                if (answer){
+                                    Platform.runLater(() -> report.writeToFile("Checking Filter Material: ","Successful!"));
                                 }else {
-                                    Platform.runLater(() -> {
-                                        report.writeToFile("Checking Filter Material: ","unable to check!");
-                                    });
+                                    Platform.runLater(() -> report.writeToFile("Checking Filter Material: ","unable to check!"));
                                 }
 
                                 // check shop filter
-                                Platform.runLater(() -> {
-                                    statusInfo.setText("Checking Shop...");
-                                });
+                                Platform.runLater(() -> statusInfo.setText("Checking Shop..."));
 
                                 answer = FilterButtonCheck.pressFilterButton(webDriver,js,"//*[@id='pagecontent']/*/*[@class='sidebar']/*[@data-id='shop_box']/div/a");
                                 if (answer){
@@ -560,30 +521,28 @@ public class Controller {
             thread.setDaemon(true);
             thread.start();
 
-            task.setOnSucceeded(e -> {
-                Platform.runLater(() -> {
-                    Hyperlink link = new Hyperlink("Report created");
-                    link.setOnAction(new EventHandler<ActionEvent>() {
-                        @Override
-                        public void handle(ActionEvent event) {
-                            ReportWindow window = new ReportWindow();
-                            try {
-                                window.MyReportWindow();
-                            } catch (IOException e1) {
-                                e1.printStackTrace();
-                            }
+            task.setOnSucceeded(e -> Platform.runLater(() -> {
+                Hyperlink link = new Hyperlink("Report created");
+                link.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        ReportWindow window = new ReportWindow();
+                        try {
+                            window.MyReportWindow();
+                        } catch (IOException e1) {
+                            e1.printStackTrace();
                         }
-                    });
-                    preloaderCat.setImage(null);
-                    link.setStyle("-fx-font: 24 arial;");
-                    link.setTextAlignment(TextAlignment.CENTER);
-                    outputPlace.getChildren().addAll(link);
-                    progressIndicator.setProgress(100);
-                    changeButtonText();
-                    System.out.println("Process Finished");
-
+                    }
                 });
-            });
+                preloaderCat.setImage(null);
+                link.setStyle("-fx-font: 24 arial;");
+                link.setTextAlignment(TextAlignment.CENTER);
+                outputPlace.getChildren().addAll(link);
+                progressIndicator.setProgress(100);
+                changeButtonText();
+                System.out.println("Process Finished");
+
+            }));
 
 
         });
@@ -607,22 +566,11 @@ public class Controller {
             JavascriptExecutor js = (JavascriptExecutor) webDriver;
 
 
-
-
-            /**
-             *
-             * open Startpage and have a basic overview
-             */
-
-                webDriver.manage().window().maximize();
+        webDriver.manage().window().maximize();
                 webDriver.navigate().to("https://www.ladenzeile.de/");
 
 
-
-            /**
-             * open Hover Main Menu and have a check on all DeepLinks
-             */
-            Actions hover = new Actions(webDriver);
+        Actions hover = new Actions(webDriver);
 
             //WebElement Elem_to_hover = ((ChromeDriver) webDriver).findElementByCssSelector("#item0_btn");
             //Damen
@@ -691,10 +639,7 @@ public class Controller {
             //*[@id="side-menu"]/div[17]
 
 
-            /**
-             * Scroll down
-             */
-                for (int i = 0 ; i < 10 ; i++){
+        for (int i = 0 ; i < 10 ; i++){
                 Thread.sleep(100);
                 js.executeScript("window.scrollBy(0,100)");
             }
@@ -726,18 +671,18 @@ public class Controller {
 
 
     @FXML
-    public void changeButtonText(){
+    private void changeButtonText(){
         statusInfo.setText("Running complete");
         startwebdriver.setDisable(false);
     }
     @FXML
-    public void copyFiles(){
+    private void copyFiles(){
         CopyFiles bringit = new CopyFiles();
         bringit.copyFileThere();
 
     }
     @FXML
-    public double checkAllCheckBoxes(){
+    private double checkAllCheckBoxes(){
         double StateProgress = 0;
 
         CheckBox[] checkboxes = CheckBoxesPlace.getChildren().toArray(new CheckBox[0]);
@@ -745,7 +690,7 @@ public class Controller {
 
         for (CheckBox checkbox : checkboxes){
 
-            if (checkbox.isSelected() == true){
+            if (checkbox.isSelected()){
                 StateProgress += 1;
 
             }
@@ -756,7 +701,7 @@ public class Controller {
     }
 
     @FXML
-    public void resetAllFormOptions(){
+    private void resetAllFormOptions(){
         Platform.runLater(() -> {
             checkLogoHomepage.setStyle("-fx-background-color: #FFFFFF");
             checkGeneralLayout.setStyle("-fx-background-color: #FFFFFF");
