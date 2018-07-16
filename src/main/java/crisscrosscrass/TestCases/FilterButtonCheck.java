@@ -1,19 +1,19 @@
 package crisscrosscrass.TestCases;
 
-
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 
-public class SalesButtonCheck {
+public class FilterButtonCheck {
 
     static boolean answer = false;
 
 
-    public static boolean pressSalesButtonFilter(WebDriver webDriver, JavascriptExecutor js){
+    public static boolean pressFilterButton(WebDriver webDriver, JavascriptExecutor js, String xpathString){
 
         try{
-            ((ChromeDriver) webDriver).findElementByXPath("//*[@id=\"saleButtonHeader2\"]").click();
+
+            webDriver.findElement(By.xpath(xpathString)).click();
 
             for (int i = 0 ; i < 10 ; i++){
                 Thread.sleep(100);
@@ -29,4 +29,5 @@ public class SalesButtonCheck {
 
         return answer;
     }
+
 }

@@ -1,13 +1,11 @@
 package crisscrosscrass;
 
-import crisscrosscrass.TestCases.SalesButtonCheck;
+import crisscrosscrass.TestCases.FilterButtonCheck;
 import javafx.application.Platform;
-import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -18,7 +16,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 import javafx.scene.text.TextAlignment;
-import javafx.stage.Stage;
 import javafx.stage.Window;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
@@ -52,6 +49,8 @@ public class Controller {
     @FXML VBox CheckBoxesPlace;
     @FXML AnchorPane mainStage;
 
+    static boolean answer = false;
+
 
 
 
@@ -77,7 +76,8 @@ public class Controller {
                 }
 
                 private void takeRoutine() throws InterruptedException {
-                    ///  * Basic Settings before Starting WebDriver           * Browser, Javascript , etc.
+                    // * Basic Settings before Starting WebDriver
+                    // * Browser, Javascript , etc.
                                 Platform.runLater(() -> {
                                     statusInfo.setText("Detecting Sources...");
                                     //DocFlavor.URL catty = Main.class.getResource("preloaderCat.gif");
@@ -437,7 +437,7 @@ public class Controller {
 
 
                                 //check sales price
-                                boolean answer = SalesButtonCheck.pressSalesButtonFilter(webDriver,js);
+                                answer = FilterButtonCheck.pressFilterButton(webDriver,js,"//*[@id='saleButtonHeader2']");
 
                                 if (answer == true){
                                     Platform.runLater(() -> {
@@ -470,23 +470,16 @@ public class Controller {
 
                                 //  check color filter
 
-
                                 Platform.runLater(() -> {
                                     statusInfo.setText("Checking Color...");
                                 });
 
-                                try {
-                                    ((ChromeDriver) webDriver).findElementByXPath("//*[@id='pagecontent']/*/*[@class='sidebar']/*[@data-id='farben_block']/ul/li/a").click();
-
-                                    for (int i = 0 ; i < 10 ; i++){
-                                        Thread.sleep(100);
-                                        js.executeScript("window.scrollBy(0,100)");
-                                    }
-
+                                answer = FilterButtonCheck.pressFilterButton(webDriver,js,"//*[@id='pagecontent']/*/*[@class='sidebar']/*[@data-id='farben_block']/ul/li/a ");
+                                if (answer == true){
                                     Platform.runLater(() -> {
                                         report.writeToFile("Checking Filter Color: ","Successful!");
                                     });
-                                }catch (Exception noColorFilter){
+                                }else {
                                     Platform.runLater(() -> {
                                         report.writeToFile("Checking Filter Color: ","unable to check!");
                                     });
@@ -494,24 +487,17 @@ public class Controller {
 
 
                                 // check brand filter
-
-
                                 Platform.runLater(() -> {
                                     statusInfo.setText("Checking Brand...");
                                 });
 
-                                try {
-                                    ((ChromeDriver) webDriver).findElementByXPath("//*[@id='pagecontent']/*/*[@class='sidebar']/*[@data-id='brand_box']/div[2]/a").click();
+                                answer = FilterButtonCheck.pressFilterButton(webDriver,js,"//*[@id='pagecontent']/*/*[@class='sidebar']/*[@data-id='brand_box']/div[2]/a ");
 
-                                    for (int i = 0 ; i < 10 ; i++){
-                                        Thread.sleep(100);
-                                        js.executeScript("window.scrollBy(0,100)");
-                                    }
-
+                                if (answer == true){
                                     Platform.runLater(() -> {
                                         report.writeToFile("Checking Filter Brand: ","Successful!");
                                     });
-                                }catch (Exception noBrandFilter){
+                                }else {
                                     Platform.runLater(() -> {
                                         report.writeToFile("Checking Filter Brand: ","unable to check!");
                                     });
@@ -519,50 +505,34 @@ public class Controller {
 
 
                                 // check material filter
-
-
                                 Platform.runLater(() -> {
                                     statusInfo.setText("Checking Material...");
                                 });
 
-                                try {
-                                    ((ChromeDriver) webDriver).findElementByXPath("//*[@id=\"pagecontent\"]/div[1]/div[4]/div[20]/div[1]/a[1]").click();
-
-                                    for (int i = 0 ; i < 10 ; i++){
-                                        Thread.sleep(100);
-                                        js.executeScript("window.scrollBy(0,100)");
-                                    }
-
+                                answer = FilterButtonCheck.pressFilterButton(webDriver,js,"//*[@id='pagecontent']/*/*[@class='sidebar']/*[@data-id='material_block']/div/a ");
+                                if (answer == true){
                                     Platform.runLater(() -> {
                                         report.writeToFile("Checking Filter Material: ","Successful!");
                                     });
-                                }catch (Exception noMaterialFilter){
+                                }else {
                                     Platform.runLater(() -> {
                                         report.writeToFile("Checking Filter Material: ","unable to check!");
                                     });
                                 }
 
                                 // check shop filter
-
-
                                 Platform.runLater(() -> {
                                     statusInfo.setText("Checking Shop...");
                                 });
 
-                                try {
-                                    ((ChromeDriver) webDriver).findElementByXPath("//*[@id=\"pagecontent\"]/div[1]/div[4]/div[20]/div/a").click();
-
-                                    for (int i = 0 ; i < 10 ; i++){
-                                        Thread.sleep(100);
-                                        js.executeScript("window.scrollBy(0,100)");
-                                    }
-
+                                answer = FilterButtonCheck.pressFilterButton(webDriver,js,"//*[@id='pagecontent']/*/*[@class='sidebar']/*[@data-id='shop_box']/div/a");
+                                if (answer){
                                     Platform.runLater(() -> {
                                         checkFilter.setStyle("-fx-background-color: #CCFF99");
                                         report.writeToFile("Checking Filter Shop: ","Successful!");
                                         checkFilter.setSelected(true);
                                     });
-                                }catch (Exception noShopFilter){
+                                }else {
                                     Platform.runLater(() -> {
                                         checkFilter.setStyle("-fx-background-color: #FF0000");
                                         report.writeToFile("Checking Filter Shop: ","unable to check!");
