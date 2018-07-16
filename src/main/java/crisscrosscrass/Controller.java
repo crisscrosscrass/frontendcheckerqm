@@ -1,5 +1,6 @@
 package crisscrosscrass;
 
+import crisscrosscrass.TestCases.SalesButtonCheck;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
@@ -436,27 +437,22 @@ public class Controller {
 
 
                                 //check sales price
+                                boolean answer = SalesButtonCheck.pressSalesButtonFilter(webDriver,js);
 
-                                try {
-                                    ((ChromeDriver) webDriver).findElementByXPath("//*[@id=\"saleButtonHeader2\"]").click();
-
-                                    for (int i = 0 ; i < 10 ; i++){
-                                        Thread.sleep(100);
-                                        js.executeScript("window.scrollBy(0,100)");
-                                    }
-
+                                if (answer == true){
                                     Platform.runLater(() -> {
                                         checkSalesPrice.setStyle("-fx-background-color: #CCFF99");
                                         report.writeToFile("Checking Price Hint: ","Successful!");
                                         checkSalesPrice.setSelected(true);
                                     });
-                                }catch (Exception noSalesFilter){
+                                }else{
                                     Platform.runLater(() -> {
                                         checkSalesPrice.setStyle("-fx-background-color: #FF0000");
                                         report.writeToFile("Checking Price Hint: ","unable to check!");
                                         checkSalesPrice.setSelected(true);
                                     });
                                 }
+
 
 
                     Platform.runLater(() -> {
@@ -480,7 +476,7 @@ public class Controller {
                                 });
 
                                 try {
-                                    ((ChromeDriver) webDriver).findElementByXPath("//*[@id=\"pagecontent\"]/div[1]/div[4]/div[14]/ul/li[1]/a").click();
+                                    ((ChromeDriver) webDriver).findElementByXPath("//*[@id='pagecontent']/*/*[@class='sidebar']/*[@data-id='farben_block']/ul/li/a").click();
 
                                     for (int i = 0 ; i < 10 ; i++){
                                         Thread.sleep(100);
@@ -505,7 +501,7 @@ public class Controller {
                                 });
 
                                 try {
-                                    ((ChromeDriver) webDriver).findElementByXPath("//*[@id=\"pagecontent\"]/div[1]/div[4]/div[11]/div[2]/a[1]").click();
+                                    ((ChromeDriver) webDriver).findElementByXPath("//*[@id='pagecontent']/*/*[@class='sidebar']/*[@data-id='brand_box']/div[2]/a").click();
 
                                     for (int i = 0 ; i < 10 ; i++){
                                         Thread.sleep(100);
