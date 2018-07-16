@@ -312,30 +312,28 @@ public class Controller {
                                     statusInfo.setText("Checking Banners...");
                                 });
 
+                                List<WebElement> infos = ((ChromeDriver) webDriver).findElementsByXPath("//*[@class='categories-wrapper']/a");
+                                int counterInfo = 1;
+                                for (WebElement info : infos){
+                                    hover.moveToElement(info).perform();
+                                    System.out.println();
+                                    report.writeToFile("BannerLink " + counterInfo + " :\n",info.getAttribute("href")+"\r");
+                                    counterInfo++;
+                                }
 
+                                Platform.runLater(() -> {
+                                    checkBannersLayout.setStyle("-fx-background-color: #CCFF99");
+                                    report.writeToFile("Checking Banner: ","Successful!");
+                                    checkBannersLayout.setSelected(true);
+                                });
 
+                                /**
                                 try {
-
-
-                                    List<WebElement> banners = ((ChromeDriver) webDriver).findElementsByXPath("//*[@id=\"main-middle-wrap\"]/div[2]/*");
-                                                /*
-                                                new WebDriverWait(webDriver,0,1).until(
-                                                            ExpectedConditions.presenceOfElementLocated(By.id("myDynamicElement")));
-                                                 */
+                                    List<WebElement> banners = ((ChromeDriver) webDriver).findElementsByXPath("//*[@class='categories-wrapper']/a");
 
                                     for ( WebElement banner : banners ) {
-                                        banner.click();
-                                                        /*
-                                                        try{
-                                                            new WebDriverWait(webDriver, 0,2).until(
-                                                                    ExpectedConditions.presenceOfElementLocated(By.id("justMyPersonalWaitingProcess")));
-                                                        }catch (Exception somethingRandom){
-                                                            System.out.println(somethingRandom);
-                                                        }
-                                                        */
+                                        System.out.println(banner);
                                     }
-
-
 
                                     Platform.runLater(() -> {
                                         checkBannersLayout.setStyle("-fx-background-color: #CCFF99");
@@ -351,6 +349,7 @@ public class Controller {
                                         checkBannersLayout.setSelected(true);
                                     });
                                 }
+                                 */
 
                     Platform.runLater(() -> progressIndicator.setProgress(checkAllCheckBoxes()));
 
@@ -386,29 +385,23 @@ public class Controller {
                                     statusInfo.setText("Checking Perfect Match...");
                                 });
 
-                                try{
-
                                     WebElement element = webDriver.findElement(By.id("header-search-input"));
-                                    element.sendKeys("Pumps");
+                                    element.sendKeys("pumps");
                                     element.submit();
 
-                                    for (int i = 0 ; i < 10 ; i++){
-                                        Thread.sleep(100);
-                                        js.executeScript("window.scrollBy(0,100)");
-                                    }
-                                    System.out.println(webDriver.getCurrentUrl());
-
-                                    Platform.runLater(() -> {
-                                        checkPerfectMatch.setStyle("-fx-background-color: #CCFF99");
-                                        report.writeToFile("Checking Perfect Match: ","Successful!");
+                                    if (webDriver.getCurrentUrl().contains("?q=")){
+                                        checkPerfectMatch.setStyle("-fx-background-color: #FF0000");
+                                        report.writeToFile("Checking Perfect Match: ","unable to check!");
                                         checkPerfectMatch.setSelected(true);
-                                    });
+                                    }else {
+                                        Platform.runLater(() -> {
+                                            checkPerfectMatch.setStyle("-fx-background-color: #CCFF99");
+                                            report.writeToFile("Checking Perfect Match: ","Successful!");
+                                            checkPerfectMatch.setSelected(true);
+                                        });
+                                    }
 
-                                }catch (Exception noPerfectMatch){
-                                    checkPerfectMatch.setStyle("-fx-background-color: #FF0000");
-                                    report.writeToFile("Checking Perfect Match: ","unable to check!");
-                                    checkPerfectMatch.setSelected(true);
-                                }
+
                     Platform.runLater(() -> progressIndicator.setProgress(checkAllCheckBoxes()));
 
 
@@ -550,124 +543,7 @@ public class Controller {
     }
 
 
-    @FXML
-    public void takeroutine() throws InterruptedException {
-        /*
-         * Basic Settings before Starting WebDriver
-         * Browser, Javascript , etc.
-         */
 
-            //if you didn't update the Path system variable to add the full directory path to the executable as above mentioned then doing this directly through code
-
-
-            System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
-            //System.setProperty("firefox.driver", "\\C:\\ProgramComparePower Files (x86)\\Mozilla Firefox\\firefox.exe");
-            WebDriver webDriver = new ChromeDriver();
-            JavascriptExecutor js = (JavascriptExecutor) webDriver;
-
-
-        webDriver.manage().window().maximize();
-                webDriver.navigate().to("https://www.ladenzeile.de/");
-
-
-        Actions hover = new Actions(webDriver);
-
-            //WebElement Elem_to_hover = ((ChromeDriver) webDriver).findElementByCssSelector("#item0_btn");
-            //Damen
-            WebElement Elem_to_hover = ((ChromeDriver) webDriver).findElementByXPath("//*[@id=\"item0_btn\"]");
-                hover.moveToElement(Elem_to_hover).perform();
-                Thread.sleep(100);
-
-            //Herren
-            Elem_to_hover = ((ChromeDriver) webDriver).findElementByXPath("//*[@id=\"item1_btn\"]");
-                hover.moveToElement(Elem_to_hover).perform();
-                Thread.sleep(100);
-
-            String oldTab = webDriver.getWindowHandle();
-            String selectLinkOpeninNewTab = Keys.chord(Keys.CONTROL,Keys.RETURN);
-                ((ChromeDriver) webDriver).findElementByXPath("//*[@id=\"item1_tab\"]/div[1]/div/a[1]").sendKeys(selectLinkOpeninNewTab);
-
-            //Get the current window handle
-            String windowHandle = webDriver.getWindowHandle();
-
-            //Get the list of window handles
-            ArrayList tabs = new ArrayList(webDriver.getWindowHandles());
-                System.out.println(tabs.size());
-            //Use the list of window handles to switch between windows
-                Thread.sleep(100);
-                webDriver.switchTo().window((String) tabs.get(1));
-                for (int i = 0 ; i < 10 ; i++){
-                Thread.sleep(100);
-                js.executeScript("window.scrollBy(0,100)");
-            }
-                Thread.sleep(1000);
-                webDriver.close();
-                webDriver.switchTo().window((String) tabs.get(0));
-                Thread.sleep(1000);
-
-
-            //Kinder & Babys
-            Elem_to_hover = ((ChromeDriver) webDriver).findElementByXPath("//*[@id=\"item2_btn\"]");
-                hover.moveToElement(Elem_to_hover).perform();
-                Thread.sleep(1000);
-
-            //Taschen
-            Elem_to_hover = ((ChromeDriver) webDriver).findElementByXPath("//*[@id=\"item3_btn\"]");
-                hover.moveToElement(Elem_to_hover).perform();
-                Thread.sleep(1000);
-
-            //Möbel
-            Elem_to_hover = ((ChromeDriver) webDriver).findElementByXPath("//*[@id=\"item4_btn\"]");
-                hover.moveToElement(Elem_to_hover).perform();
-                Thread.sleep(3000);
-
-            //Banner Number CLick 1+2
-                ((ChromeDriver) webDriver).findElementByXPath("//*[@id=\"main-middle-wrap\"]/div[2]/a[1]").click();
-                Thread.sleep(100);
-                ((ChromeDriver) webDriver).findElementByXPath("//*[@id=\"main-middle-wrap\"]/div[2]/a[2]").click();
-                Thread.sleep(100);
-
-            //Quicklinks hover check
-                for (int i = 1 ; i <= 17; i++){
-                Elem_to_hover = ((ChromeDriver) webDriver).findElementByXPath("//*[@id=\"side-menu\"]/div["+i+"]");
-                hover.moveToElement(Elem_to_hover).perform();
-                Thread.sleep(100);
-            }
-
-
-            //*[@id="side-menu"]/div[2]
-            //*[@id="side-menu"]/div[17]
-
-
-        for (int i = 0 ; i < 10 ; i++){
-                Thread.sleep(100);
-                js.executeScript("window.scrollBy(0,100)");
-            }
-
-
-
-
-
-            //Assert.assertTrue("title should be start different",webDriver.getTitle().startsWith("Selenium Simplified"));
-            //webDriver.findElement(By.id("submit1")).click();
-                webDriver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
-
-
-
-            WebElement element = webDriver.findElement(By.id("header-search-input"));
-                element.sendKeys("Pumps");
-                element.submit();
-            //webDriver.findElement(By.id("header-search-input")).sendKeys(Keys.ENTER);
-                Thread.sleep(1000);
-
-                for (int i = 0 ; i < 30 ; i++){
-                Thread.sleep(100);
-                js.executeScript("window.scrollBy(0,100)");
-            }
-
-
-        webDriver.close();
-    }
 
 
     @FXML
