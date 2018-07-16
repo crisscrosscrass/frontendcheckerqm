@@ -1,0 +1,16 @@
+function getElementByXpath(path) {
+return document.evaluate(path, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+}
+
+console.log( getElementByXpath("//*[@id='pagecontent']/*/*[@class='sidebar']/*[@data-id='brand_box'] ") );
+
+console.log( getElementByXpath("//*[@id='pagecontent']/*/*[@class='sidebar']/*[@data-id='brand_box']/div/a ") );
+
+
+console.log( getElementByXpath("//*[@id='pagecontent']/*/*[@class='sidebar']/*[@data-id='farben_block']/ul/li/a ") );
+
+
+console.log( getElementByXpath("//*[@id='pagecontent']/*/*[@class='sidebar']/*[@data-id='material_block']/div/a ") );
+
+
+console.log( getElementByXpath("//*[@id='pagecontent']/*/*[@class='sidebar']/*[@data-id='shop_box']/div/a ") );

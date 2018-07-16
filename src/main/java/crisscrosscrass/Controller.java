@@ -55,6 +55,8 @@ public class Controller {
 
 
 
+
+
     @FXML
     public void startRealAction() {
 
@@ -491,7 +493,7 @@ public class Controller {
                                     statusInfo.setText("Checking Brand...");
                                 });
 
-                                answer = FilterButtonCheck.pressFilterButton(webDriver,js,"//*[@id='pagecontent']/*/*[@class='sidebar']/*[@data-id='brand_box']/div[2]/a ");
+                                answer = FilterButtonCheck.pressFilterButton(webDriver,js,"//*[@id='pagecontent']/*/*[@class='sidebar']/*[@data-id='brand_box']/div/a ");
 
                                 if (answer == true){
                                     Platform.runLater(() -> {
