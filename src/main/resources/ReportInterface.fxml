@@ -70,8 +70,8 @@
                   </VBox>
                   <VBox prefHeight="388.0" prefWidth="730.0">
                      <children>
-                        <ImageView fx:id="ImageViewReport" fitWidth="600.0" pickOnBounds="true" preserveRatio="true" />
-                        <ImageView fx:id="ImageViewReport1" fitWidth="600.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="ImageViewReport" fitWidth="400.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="ImageViewReport1" fitWidth="400.0" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </VBox>
                </children>

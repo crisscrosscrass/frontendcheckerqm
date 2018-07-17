@@ -1,6 +1,7 @@
 package crisscrosscrass;
 
 
+import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
@@ -21,7 +22,7 @@ public class ReportWindowController {
     @FXML ImageView ImageViewReport1;
     @FXML Text text;
 
-    TranslateTransition transition = new TranslateTransition();
+
 
 
 
@@ -36,16 +37,37 @@ public class ReportWindowController {
         Task task = new Task<Object>() {
             @Override
             protected Void call() throws InterruptedException {
-                transition.setDuration(Duration.seconds(3));
-                transition.setToX(500);
-                transition.setAutoReverse(true);
+                TranslateTransition transition = new TranslateTransition();
+                FadeTransition fadeTransition = new FadeTransition();
+
+                ImageViewReport.setOpacity(100);
+
+                transition.setDuration(Duration.millis(1));
+                fadeTransition.setDuration(Duration.millis(1));
+                transition.setNode(ImageViewReport);
+                fadeTransition.setNode(ImageViewReport);
+
+
+                transition.setToX(+200);
+                fadeTransition.setFromValue(1.0);
+                fadeTransition.setToValue(0.0);
+                fadeTransition.play();
+                transition.play();
                 transition.setOnFinished(event -> {
                     System.out.println("some random code will happen here...");
-
+                    transition.setDuration(Duration.seconds(2));
+                    fadeTransition.setDuration(Duration.seconds(2));
+                    transition.setToX(0);
+                    fadeTransition.setFromValue(0.0);
+                    fadeTransition.setToValue(1.0);
+                    fadeTransition.play();
+                    transition.play();
+                    transition.setOnFinished(finisher -> {
+                        System.out.println("finally done...");
+                        transition.stop();
+                        fadeTransition.stop();
+                    });
                 });
-                transition.setNode(ImageViewReport);
-                transition.setCycleCount(2);
-                transition.play();
                 return null;
             }
         };
@@ -65,6 +87,7 @@ public class ReportWindowController {
         Image image = new Image("file:///"+location+"screenshot1.png");
         ImageViewReport.setImage(image);
         ImageViewReport.setPreserveRatio(true);
+        ImageViewReport.setOpacity(0);
         ImageViewReport.setOnMouseClicked( event -> {
             ViewImageWindow.display(image);
         });
