@@ -7,10 +7,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/crisscrosscrass/ViewImageWindow.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/crisscrosscrass/ScreenshotViaWebDriver.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/crisscrosscrass/TestCases/FilterButtonCheckViaJavaScript.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/firstTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Report.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Report.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/crisscrosscrass/ReportWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/crisscrosscrass/ReportWindowController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/crisscrosscrass/TestCases/FilterButtonCheck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/crisscrosscrass/TestCases/FilterButtonCheck.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/ReportInterface.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ReportInterface.fxml" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
@@ -26,6 +30,10 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="ChangesViewManager" show_ignored="true" />
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/FrontEndCheck$All_in_FrontEndCheck__2_.ic" NAME="All in FrontEndCheck (2) Coverage Results" MODIFIED="1531923591026" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/FrontEndCheck$firstTest.ic" NAME="firstTest Coverage Results" MODIFIED="1531835069884" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+  </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
@@ -67,61 +75,20 @@
     <ui_properties converted="true" />
     <breakpoint_rules converted="true" />
   </component>
+  <component name="ExportTestResults" outputFolder="$PROJECT_DIR$" userTempatePath="" />
   <component name="FavoritesManager">
     <favorites_list name="JavaFxApplication" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Controller.java" pinned="false" current-in-tab="false">
+    <leaf>
+      <file leaf-file-name="Controller.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="84">
-              <caret line="513" column="23" selection-start-line="513" selection-start-column="23" selection-end-line="513" selection-end-column="23" />
+            <state relative-caret-position="210">
+              <caret line="143" lean-forward="true" selection-start-line="143" selection-end-line="143" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ReportWindow.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/ReportWindow.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="310">
-              <caret line="26" column="8" selection-start-line="26" selection-start-column="8" selection-end-line="28" selection-end-column="35" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ViewImageWindow.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/ViewImageWindow.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ReportWindowController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/ReportWindowController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="956">
-              <caret line="63" column="31" selection-start-line="63" selection-start-column="31" selection-end-line="63" selection-end-column="31" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="backupCode" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/backupCode">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="15" selection-start-line="15" selection-end-line="15" selection-end-column="111" />
             </state>
           </provider>
         </entry>
@@ -148,10 +115,14 @@
       <find>progressIndicator</find>
       <find>brand</find>
       <find>for</find>
-      <find>Banner</find>
       <find>sales</find>
       <find>Sales</find>
       <find>perfect</find>
+      <find>banner</find>
+      <find>Screen</find>
+      <find>&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;</find>
+      <find>Banner</find>
+      <find>ImageGallery</find>
     </findStrings>
   </component>
   <component name="FindManager">
@@ -173,16 +144,21 @@
         <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/createReportFile.java" />
         <option value="$PROJECT_DIR$/src/main/resources/UserInterface.fxml" />
         <option value="$PROJECT_DIR$/src/main/resources/Main.css" />
-        <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/Report.java" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/TestCases/SalesButtonCheck.java" />
-        <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/TestCases/FilterButtonCheck.java" />
         <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/backupCode" />
-        <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller.java" />
         <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/ReportWindow.java" />
-        <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/ReportWindowController.java" />
         <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/ViewImageWindow.java" />
+        <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/Report.java" />
+        <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/MakeScreenShot.java" />
+        <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/ScreenshotViaWebDriver.java" />
+        <option value="$PROJECT_DIR$/src/test/java/WhenSearchingForDrupalUsingGoogleTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/TestCases/FilterButtonCheckViaJavaScript.java" />
+        <option value="$PROJECT_DIR$/src/test/java/firstTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/ReportWindowController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/TestCases/FilterButtonCheck.java" />
+        <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller.java" />
       </list>
     </option>
   </component>
@@ -228,10 +204,10 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-49" />
-    <option name="y" value="121" />
-    <option name="width" value="1936" />
-    <option name="height" value="1097" />
+    <option name="x" value="2" />
+    <option name="y" value="2" />
+    <option name="width" value="1918" />
+    <option name="height" value="1038" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectReloadState">
@@ -242,20 +218,15 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="AndroidView" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="FrontEndCheck" type="b2602c69:ProjectViewProjectNode" />
               <item name="FrontEndCheck" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="FrontEndCheck" type="b2602c69:ProjectViewProjectNode" />
-              <item name="FrontEndCheck" type="462c0819:PsiDirectoryNode" />
-              <item name=".idea" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="FrontEndCheck" type="b2602c69:ProjectViewProjectNode" />
@@ -296,6 +267,14 @@
               <item name="FrontEndCheck" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="META-INF" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FrontEndCheck" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FrontEndCheck" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -307,7 +286,19 @@
             <path>
               <item name="FrontEndCheck" type="b2602c69:ProjectViewProjectNode" />
               <item name="FrontEndCheck" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FrontEndCheck" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FrontEndCheck" type="462c0819:PsiDirectoryNode" />
               <item name="target" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FrontEndCheck" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FrontEndCheck" type="462c0819:PsiDirectoryNode" />
+              <item name="temp" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -334,7 +325,7 @@
     <property name="project.structure.side.proportion" value="0.45057473" />
     <property name="recentsLimit" value="5" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.tabs" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -360,7 +351,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Main">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
     </configuration>
@@ -380,6 +371,74 @@
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
     </configuration>
+    <configuration name="All in FrontEndCheck (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="FrontEndCheck" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="package" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <patterns />
+    </configuration>
+    <configuration name="All in FrontEndCheck (2)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="FrontEndCheck" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="package" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <patterns />
+    </configuration>
+    <configuration name="All in FrontEndCheck (3)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="FrontEndCheck" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="package" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <patterns />
+    </configuration>
+    <configuration name="All in FrontEndCheck" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
+      <module name="FrontEndCheck" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <patterns />
+    </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
@@ -387,6 +446,40 @@
       <option name="MAIN_CLASS_NAME" />
       <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <patterns />
+    </configuration>
+    <configuration name="firstTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="FrontEndCheck" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="firstTest" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <patterns />
+    </configuration>
+    <configuration name="firstTest.FirstTestCase" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="FrontEndCheck" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="firstTest" />
+      <option name="METHOD_NAME" value="FirstTestCase" />
+      <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -436,6 +529,24 @@
       <Host>localhost</Host>
       <Port>5050</Port>
     </configuration>
+    <list>
+      <item itemvalue="Application.Main" />
+      <item itemvalue="JUnit.All in FrontEndCheck" />
+      <item itemvalue="JUnit.firstTest" />
+      <item itemvalue="JUnit.All in FrontEndCheck (1)" />
+      <item itemvalue="JUnit.firstTest.FirstTestCase" />
+      <item itemvalue="JUnit.All in FrontEndCheck (2)" />
+      <item itemvalue="JUnit.All in FrontEndCheck (3)" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.firstTest" />
+        <item itemvalue="JUnit.All in FrontEndCheck (3)" />
+        <item itemvalue="JUnit.All in FrontEndCheck (2)" />
+        <item itemvalue="JUnit.firstTest.FirstTestCase" />
+        <item itemvalue="JUnit.All in FrontEndCheck (1)" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration>C:\Users\ceckardt\AppData\Roaming\Subversion</configuration>
@@ -638,8 +749,54 @@
       <option name="project" value="LOCAL" />
       <updated>1531738923098</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="added image view in new window">
+      <created>1531751010374</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1531751010374</updated>
+    </task>
+    <task id="LOCAL-00029" summary="added some changes and added transparent effect">
+      <created>1531824356127</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1531824356128</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
+  </component>
+  <component name="TestHistory">
+    <history-entry file="firstTest_FirstTestCase - 2018.07.18 at 16h 19m 43s.xml">
+      <configuration name="firstTest.FirstTestCase" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="All_in_FrontEndCheck_(2) - 2018.07.18 at 16h 20m 05s.xml">
+      <configuration name="All in FrontEndCheck (2)" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="All_in_FrontEndCheck_(3) - 2018.07.18 at 16h 23m 48s.xml">
+      <configuration name="All in FrontEndCheck (3)" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="firstTest - 2018.07.18 at 16h 24m 44s.xml">
+      <configuration name="firstTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="firstTest - 2018.07.18 at 16h 25m 14s.xml">
+      <configuration name="firstTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="firstTest - 2018.07.18 at 16h 26m 18s.xml">
+      <configuration name="firstTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="firstTest - 2018.07.18 at 16h 27m 11s.xml">
+      <configuration name="firstTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="firstTest - 2018.07.18 at 16h 29m 48s.xml">
+      <configuration name="firstTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="firstTest - 2018.07.18 at 16h 30m 32s.xml">
+      <configuration name="firstTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="firstTest - 2018.07.18 at 16h 31m 16s.xml">
+      <configuration name="firstTest" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
     <option name="totallyTimeSpent" value="1302000" />
@@ -659,7 +816,7 @@
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="DB Execution Console" order="16" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5245203" side_tool="true" visible="true" weight="0.31447226" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5314499" side_tool="true" visible="true" weight="0.31991294" />
       <window_info anchor="right" id="Maven Projects" order="9" weight="0.32995737" />
       <window_info id="Capture Tool" order="9" />
       <window_info id="Designer" order="2" />
@@ -669,17 +826,17 @@
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="5" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49946696" weight="0.39934713" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49733475" weight="0.32861805" />
       <window_info id="DB Browser" order="3" />
-      <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.49253732" weight="0.32861805" />
+      <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.48933902" weight="0.32861805" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info id="Image Layers" order="7" />
       <window_info anchor="right" id="Capture Analysis" order="6" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.47547975" visible="true" weight="0.31447226" />
       <window_info anchor="bottom" id="Version Control" order="14" sideWeight="0.49413645" weight="0.32861805" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.46855012" visible="true" weight="0.31991294" />
       <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.48880598" weight="0.32861805" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.3795309" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.17590618" />
       <window_info anchor="right" id="Theme Preview" order="8" />
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Application Servers" order="9" />
@@ -691,9 +848,10 @@
       <window_info anchor="bottom" id="Problems" order="13" />
       <window_info anchor="bottom" id="Profiler" order="15" />
       <window_info anchor="right" id="Database" order="5" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49413645" weight="0.3295099" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4936034" weight="0.32861805" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="right" id="Coverage" order="10" side_tool="true" weight="0.28624734" />
     </layout>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -743,11 +901,13 @@
     <MESSAGE value="add some more xpath values" />
     <MESSAGE value="added geckodriver" />
     <MESSAGE value="changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="changes" />
+    <MESSAGE value="added image view in new window" />
+    <MESSAGE value="added some changes and added transparent effect" />
+    <option name="LAST_COMMIT_MESSAGE" value="added some changes and added transparent effect" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="3" />
+      <option name="time" value="4" />
     </breakpoint-manager>
   </component>
   <component name="antWorkspaceConfiguration">
@@ -755,88 +915,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="15" column="28" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="11" column="37" selection-start-line="11" selection-start-column="37" selection-end-line="11" selection-end-column="37" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/UserInterface.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="35" selection-start-line="5" selection-start-column="35" selection-end-line="5" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="28" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/UserInterface.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="19" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="32" lean-forward="true" selection-start-line="32" selection-end-line="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="28" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/UserInterface.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="19" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="32" column="27" selection-start-line="32" selection-start-column="27" selection-end-line="32" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="28" lean-forward="true" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/UserInterface.fxml">
       <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
@@ -954,16 +1032,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/temp/screenshot1.png" />
     <entry file="file://$PROJECT_DIR$/FrontEndCheck.iml">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="235">
-          <caret line="52" column="42" lean-forward="true" selection-start-line="52" selection-start-column="42" selection-end-line="52" selection-end-column="42" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/createReportFile.java" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/jre/lib/rt.jar!/sun/reflect/NativeMethodAccessorImpl.class">
@@ -980,16 +1050,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/temp/report.txt" />
     <entry file="file://$PROJECT_DIR$/.idea/shelf/Default.xml">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="7" selection-start-line="4" selection-start-column="7" selection-end-line="4" selection-end-column="7" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/ReportInterface.fxml">
       <provider editor-type-id="JavaFX-Scene-Builder" />
@@ -999,17 +1061,55 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/preloaderCat.gif">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Main.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/CopyFiles.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+        <state relative-caret-position="157">
+          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/VisualMeta.png">
+    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/TestCases/SalesButtonCheck.java" />
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="35" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/seleniumhq/selenium/selenium-api/3.11.0/selenium-api-3.11.0.jar!/org/openqa/selenium/TakesScreenshot.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="106">
+          <caret line="46" column="43" selection-start-line="46" selection-start-column="43" selection-end-line="46" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/backupCode">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="24" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/MakeScreenShot.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Screenshot.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/ViewImageWindow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="159">
+          <caret line="13" column="30" lean-forward="true" selection-start-line="13" selection-start-column="30" selection-end-line="13" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/preloaderCat.gif">
       <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/UserInterface.fxml">
@@ -1020,52 +1120,80 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Report.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/VisualMeta.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/WhenSearchingForDrupalUsingGoogleTest.java" />
+    <entry file="file://$PROJECT_DIR$/Test Results - firstTest.html" />
+    <entry file="file://$PROJECT_DIR$/Test Results - firstTest.htm" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/ScreenshotViaWebDriver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="34" lean-forward="true" selection-start-line="12" selection-start-column="34" selection-end-line="12" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/TestCases/FilterButtonCheckViaJavaScript.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="32" lean-forward="true" selection-start-line="32" selection-end-line="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/temp/screenshot1.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="7" selection-start-line="4" selection-start-column="7" selection-end-line="4" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/temp/screenshot2.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/temp/report.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="18" lean-forward="true" selection-start-column="18" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/firstTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
-          <caret line="14" column="9" lean-forward="true" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/CopyFiles.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="157">
-          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
+          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/TestCases/SalesButtonCheck.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/TestCases/FilterButtonCheck.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Report.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="146">
-          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="68">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/ReportWindow.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="35" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/backupCode">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" selection-start-line="15" selection-end-line="15" selection-end-column="111" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="513" column="23" selection-start-line="513" selection-start-column="23" selection-end-line="513" selection-end-column="23" />
+        <state relative-caret-position="244">
+          <caret line="20" selection-start-line="20" selection-end-line="20" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1074,28 +1202,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/ReportWindowController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="956">
-          <caret line="63" column="31" selection-start-line="63" selection-start-column="31" selection-end-line="63" selection-end-column="31" />
+        <state relative-caret-position="372">
+          <caret line="84" column="33" lean-forward="true" selection-start-line="84" selection-start-column="33" selection-end-line="84" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/ReportWindow.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/TestCases/FilterButtonCheck.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
-          <caret line="26" column="8" selection-start-line="26" selection-start-column="8" selection-end-line="28" selection-end-column="35" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="255">
+          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/ViewImageWindow.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
+        <state relative-caret-position="210">
+          <caret line="143" lean-forward="true" selection-start-line="143" selection-end-line="143" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

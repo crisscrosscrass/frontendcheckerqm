@@ -5,7 +5,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class FilterButtonCheck {
+public class FilterButtonCheckViaJavaScript {
 
     static boolean answer = false;
 
@@ -14,22 +14,19 @@ public class FilterButtonCheck {
     public static boolean pressFilterButton(WebDriver webDriver, JavascriptExecutor js, String xpathString){
 
         try{
-
-            webDriver.findElement(By.xpath(xpathString)).click();
-
-            for (int i = 0 ; i < 1 ; i++){
+            WebElement elementTestClick = webDriver.findElement(By.xpath(xpathString));
+            js.executeScript("arguments[0].click();", elementTestClick);
+            for (int i = 0 ; i < 10 ; i++){
                 Thread.sleep(100);
                 js.executeScript("window.scrollBy(0,100)");
             }
             answer = true;
 
-        }catch (Exception ButtonFilterNotFound){
-            System.out.println("Couldn't find clickable button");
+        }catch (Exception testclickscript){
+            System.out.println("Javascript Click could find element");
 
             answer = false;
-
         }
-
 
         return answer;
     }

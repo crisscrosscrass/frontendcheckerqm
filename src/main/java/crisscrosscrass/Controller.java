@@ -1,6 +1,7 @@
 package crisscrosscrass;
 
 import crisscrosscrass.TestCases.FilterButtonCheck;
+import crisscrosscrass.TestCases.FilterButtonCheckViaJavaScript;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
@@ -66,6 +67,7 @@ public class Controller {
     AnchorPane mainStage;
 
     private static boolean answer = false;
+    private static String xpathPattern = "";
 
 
     @FXML
@@ -113,10 +115,6 @@ public class Controller {
                     System.setProperty("webdriver.chrome.driver", "temp//chromedriver.exe");
                     WebDriver webDriver = new ChromeDriver();
 
-                    //if you didn't update the Path system variable to add the full directory path to the executable as above mentioned then doing this directly through code
-                    //System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
-                    //System.setProperty("firefox.driver", "\\C:\\ProgramComparePower Files (x86)\\Mozilla Firefox\\firefox.exe");
-                    //WebDriver webDriver = new ChromeDriver();
                     JavascriptExecutor js = (JavascriptExecutor) webDriver;
                     Report report = new Report();
                     report.clearWrittenReport();
@@ -128,6 +126,7 @@ public class Controller {
                         window.requestFocus();
                         statusInfo.setText("Open Maximize Mode...");
                     });
+
                     webDriver.manage().window().maximize();
                     Platform.runLater(() -> statusInfo.setText("Go to requested Website..."));
                     webDriver.navigate().to(requestedWebsite);
@@ -138,7 +137,6 @@ public class Controller {
 
 
                     // Click on Logo Test
-
                     Platform.runLater(() -> {
                         checkLogoHomepage.setStyle("-fx-background-color: #eef442");
                         statusInfo.setText("Checking Logo...");
@@ -167,8 +165,6 @@ public class Controller {
 
 
                     //Check general Layout Test
-
-
                     Platform.runLater(() -> {
                         checkGeneralLayout.setStyle("-fx-background-color: #eef442");
                         statusInfo.setText("Checking Layout...");
@@ -176,56 +172,57 @@ public class Controller {
                     Thread.sleep(100);
 
 
-                    // make SCREENSHOT 1
 
-                    try {
-                        String location = System.getProperty("user.dir");
-                        location = location.replace("\\", "//");
-                        location += "//temp//";
-                        //System.out.println(location);
-                        File scrFile = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.FILE);
-                        FileUtils.copyFile(scrFile, new File(location + "screenshot1.png"));
+                    // make SCREENSHOT 1 | parameter "webdriver" + "name";
+                    answer = ScreenshotViaWebDriver.printScreen(webDriver,"screenshot1.png");
+                    if (answer){
                         report.writeToFile("Checking Layout: ", "Screenshot successful!");
-
-                    } catch (IOException Message) {
-                        Message.printStackTrace();
-                        System.out.println("Screenshot was not made");
+                    }else {
                         report.writeToFile("Checking Layout: ", "Screenshot not successful!");
                     }
 
+
                     // Scroll down
-
-
-                    for (int i = 0; i < 10; i++) {
+                    for (int i = 0; i < 5; i++) {
                         Thread.sleep(100);
                         js.executeScript("window.scrollBy(0,100)");
                     }
 
 
                     // make SCREENSHOT 2
-
-                    try {
-                        String location = System.getProperty("user.dir");
-                        location = location.replace("\\", "//");
-                        location += "//temp//";
-                        //System.out.println(location);
-                        File scrFile = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.FILE);
-                        FileUtils.copyFile(scrFile, new File(location + "screenshot2.png"));
-                        report.writeToFile("Checking Layout: ", "Screenshot2 successful!");
-
-                    } catch (IOException Message) {
-                        Message.printStackTrace();
-                        System.out.println("Screenshot was not made");
-                        report.writeToFile("Checking Layout: ", "Screenshot2 not successful!");
+                    answer = ScreenshotViaWebDriver.printScreen(webDriver,"screenshot2.png");
+                    if (answer){
+                        report.writeToFile("Checking Layout: ", "Screenshot successful!");
+                    }else {
+                        report.writeToFile("Checking Layout: ", "Screenshot not successful!");
                     }
 
-
-                    // Scroll up
-
-
-                    for (int i = 0; i < 10; i++) {
+                    // Scroll down
+                    for (int i = 0; i < 5; i++) {
                         Thread.sleep(100);
-                        js.executeScript("window.scrollBy(0,-100)");
+                        js.executeScript("window.scrollBy(0,100)");
+                    }
+
+                    // make SCREENSHOT 3
+                    answer = ScreenshotViaWebDriver.printScreen(webDriver,"screenshot3.png");
+                    if (answer){
+                        report.writeToFile("Checking Layout: ", "Screenshot successful!");
+                    }else {
+                        report.writeToFile("Checking Layout: ", "Screenshot not successful!");
+                    }
+
+                    // Scroll down
+                    for (int i = 0; i < 5; i++) {
+                        Thread.sleep(100);
+                        js.executeScript("window.scrollBy(0,100)");
+                    }
+
+                    // make SCREENSHOT 4
+                    answer = ScreenshotViaWebDriver.printScreen(webDriver,"screenshot4.png");
+                    if (answer){
+                        report.writeToFile("Checking Layout: ", "Screenshot successful!");
+                    }else {
+                        report.writeToFile("Checking Layout: ", "Screenshot not successful!");
                     }
 
                     Platform.runLater(() -> {
@@ -237,61 +234,22 @@ public class Controller {
 
 
                     // open Hover Main Menu and have a check on all DeepLinks Test
-
-
                     Platform.runLater(() -> {
                         openMainMenu.setStyle("-fx-background-color: #eef442");
                         statusInfo.setText("Checking Menu...");
                     });
 
-
                     Actions hover = new Actions(webDriver);
 
-                    //WebElement Elem_to_hover = ((ChromeDriver) webDriver).findElementByCssSelector("#item0_btn");
-                    //Damen
                     try {
-                        WebElement Elem_to_hover = ((ChromeDriver) webDriver).findElementByXPath("//*[@id=\"item0_btn\"]");
-                        hover.moveToElement(Elem_to_hover).perform();
-                        webDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-
-                        //Herren
-                        Elem_to_hover = ((ChromeDriver) webDriver).findElementByXPath("//*[@id=\"item1_btn\"]");
-                        hover.moveToElement(Elem_to_hover).perform();
-                        Thread.sleep(100);
-
-                        //Kinder&Babys
-                        Elem_to_hover = ((ChromeDriver) webDriver).findElementByXPath("//*[@id=\"item2_btn\"]");
-                        hover.moveToElement(Elem_to_hover).perform();
-                        Thread.sleep(100);
-
-                        //Taschen
-                        Elem_to_hover = ((ChromeDriver) webDriver).findElementByXPath("//*[@id=\"item3_btn\"]");
-                        hover.moveToElement(Elem_to_hover).perform();
-                        Thread.sleep(100);
-
-                        //Möbel
-                        Elem_to_hover = ((ChromeDriver) webDriver).findElementByXPath("//*[@id=\"item4_btn\"]");
-                        hover.moveToElement(Elem_to_hover).perform();
-                        Thread.sleep(100);
-
-                        //Wohnen
-                        Elem_to_hover = ((ChromeDriver) webDriver).findElementByXPath("//*[@id=\"item5_btn\"]");
-                        hover.moveToElement(Elem_to_hover).perform();
-                        Thread.sleep(100);
-
-                        //Garten
-                        Elem_to_hover = ((ChromeDriver) webDriver).findElementByXPath("//*[@id=\"item6_btn\"]");
-                        hover.moveToElement(Elem_to_hover).perform();
-                        Thread.sleep(100);
-
-                        //Weitere Kategorien
-                        Elem_to_hover = ((ChromeDriver) webDriver).findElementByXPath("//*[@id=\"item7_btn\"]");
-                        hover.moveToElement(Elem_to_hover).perform();
-                        Thread.sleep(100);
-
-                        //Inspiration
-                        Elem_to_hover = ((ChromeDriver) webDriver).findElementByXPath("//*[@id=\"item8_btn\"]");
-                        hover.moveToElement(Elem_to_hover).perform();
+                        List<WebElement> MainMenu = ((ChromeDriver) webDriver).findElementsByXPath("//*[@id='mainmenu-items']/div/*/*/a ");
+                        int counterInfo = 1;
+                        for (WebElement MainMenuItem : MainMenu) {
+                            hover.moveToElement(MainMenuItem).perform();
+                            //System.out.println("MainMenuLink: "+ MainMenuItem.getText() + " " + counterInfo + MainMenuItem.getAttribute("href"));
+                            report.writeToFile("MainMenuLink: "+ counterInfo + " " + MainMenuItem.getText(), MainMenuItem.getAttribute("href"));
+                            counterInfo++;
+                        }
                         Thread.sleep(100);
 
                         Platform.runLater(() -> {
@@ -318,12 +276,12 @@ public class Controller {
                     });
 
                     List<WebElement> infos = ((ChromeDriver) webDriver).findElementsByXPath("//*[@class='categories-wrapper']/a");
-                    int counterInfo = 1;
+                    int MainMenuCounter = 1;
                     for (WebElement info : infos) {
                         hover.moveToElement(info).perform();
                         System.out.println();
-                        report.writeToFile("BannerLink " + counterInfo + " :\n", info.getAttribute("href") + "\r");
-                        counterInfo++;
+                        report.writeToFile("BannerLink " + MainMenuCounter, info.getAttribute("href"));
+                        MainMenuCounter++;
                     }
 
                     Platform.runLater(() -> {
@@ -332,29 +290,7 @@ public class Controller {
                         checkBannersLayout.setSelected(true);
                     });
 
-                    /**
-                     try {
-                     List<WebElement> banners = ((ChromeDriver) webDriver).findElementsByXPath("//*[@class='categories-wrapper']/a");
 
-                     for ( WebElement banner : banners ) {
-                     System.out.println(banner);
-                     }
-
-                     Platform.runLater(() -> {
-                     checkBannersLayout.setStyle("-fx-background-color: #CCFF99");
-                     report.writeToFile("Checking Banner: ","Successful!");
-                     checkBannersLayout.setSelected(true);
-                     });
-
-
-                     }catch (Exception noBanner){
-                     Platform.runLater(() -> {
-                     checkBannersLayout.setStyle("-fx-background-color: #FF0000");
-                     report.writeToFile("Checking Banner: ","unable to check!");
-                     checkBannersLayout.setSelected(true);
-                     });
-                     }
-                     */
 
                     Platform.runLater(() -> progressIndicator.setProgress(checkAllCheckBoxes()));
 
@@ -435,57 +371,98 @@ public class Controller {
                             checkSalesPrice.setSelected(true);
                         });
                     }
+                    // make SCREENSHOT
+                    answer = ScreenshotViaWebDriver.printScreen(webDriver,"screenshot5.png");
+                    if (answer){
+                        report.writeToFile("Checking Layout: ", "Screenshot successful!");
+                    }else {
+                        report.writeToFile("Checking Layout: ", "Screenshot not successful!");
+                    }
 
 
                     Platform.runLater(() -> progressIndicator.setProgress(checkAllCheckBoxes()));
 
 
+
                     // select  Filters
-
-
                     Platform.runLater(() -> {
                         checkFilter.setStyle("-fx-background-color: #eef442");
                         statusInfo.setText("Checking Filters...");
                     });
 
+
                     //  check color filter
-
                     Platform.runLater(() -> statusInfo.setText("Checking Color..."));
-
-                    answer = FilterButtonCheck.pressFilterButton(webDriver, js, "//*[@id='pagecontent']/*/*[@class='sidebar']/*[@data-id='farben_block']/ul/li/a ");
+                    xpathPattern = "//*[@id='pagecontent']/*/*[@class='sidebar']/*[@data-id='farben_block']/ul/li/a ";
+                    answer = FilterButtonCheck.pressFilterButton(webDriver, js, xpathPattern);
                     if (answer) {
                         Platform.runLater(() -> report.writeToFile("Checking Filter Color: ", "Successful!"));
                     } else {
-                        Platform.runLater(() -> report.writeToFile("Checking Filter Color: ", "unable to check!"));
+                        Platform.runLater(() -> {
+                            report.writeToFile("Checking Filter Color: ", "unable to check!");
+                            report.writeToFile("Checking via JavaScript: ", "\b");
+                        });
+                        answer = FilterButtonCheckViaJavaScript.pressFilterButton(webDriver, js, xpathPattern);
+                        if (answer){
+                            Platform.runLater(() -> report.writeToFile("Checking Filter Color via JS: ", "Successful!"));
+                        }else{
+                            Platform.runLater(() -> report.writeToFile("Checking Filter Color via JS: ", "unable to check!"));
+                        }
                     }
+                    // make SCREENSHOT
+                    answer = ScreenshotViaWebDriver.printScreen(webDriver,"screenshot6.png");
+                    if (answer){
+                        report.writeToFile("Checking Layout: ", "Screenshot successful!");
+                    }else {
+                        report.writeToFile("Checking Layout: ", "Screenshot not successful!");
+                    }
+
 
 
                     // check brand filter
                     Platform.runLater(() -> statusInfo.setText("Checking Brand..."));
-
-                    answer = FilterButtonCheck.pressFilterButton(webDriver, js, "//*[@id='pagecontent']/*/*[@class='sidebar']/*[@data-id='brand_box']/div/a ");
-
+                    xpathPattern = "//*[@id='pagecontent']/*/*[@class='sidebar']/*[@data-id='brand_box']/div/a ";
+                    answer = FilterButtonCheck.pressFilterButton(webDriver, js, xpathPattern);
                     if (answer) {
                         Platform.runLater(() -> report.writeToFile("Checking Filter Brand: ", "Successful!"));
                     } else {
-                        Platform.runLater(() -> report.writeToFile("Checking Filter Brand: ", "unable to check!"));
+                        Platform.runLater(() -> {
+                            report.writeToFile("Checking Filter Brand: ", "unable to check!");
+                            report.writeToFile("Checking via JavaScript: ", "\b");
+                        });
+
+                        answer = FilterButtonCheckViaJavaScript.pressFilterButton(webDriver, js, xpathPattern);
+                        if (answer){
+                            Platform.runLater(() -> report.writeToFile("Checking Filter Brand via JS: ", "Successful!"));
+                        }else{
+                            Platform.runLater(() -> report.writeToFile("Checking Filter Brand via JS: ", "unable to check!"));
+                        }
+                    }
+
+                    // make SCREENSHOT
+                    answer = ScreenshotViaWebDriver.printScreen(webDriver,"screenshot7.png");
+                    if (answer){
+                        report.writeToFile("Checking Layout: ", "Screenshot successful!");
+                    }else {
+                        report.writeToFile("Checking Layout: ", "Screenshot not successful!");
                     }
 
 
                     // check material filter
                     Platform.runLater(() -> statusInfo.setText("Checking Material..."));
-
-                    answer = FilterButtonCheck.pressFilterButton(webDriver, js, "//*[@id='pagecontent']/*/*[@class='sidebar']/*[@data-id='material_block']/div/a ");
+                    xpathPattern = "//*[@id='pagecontent']/*/*[@class='sidebar']/*[@data-id='material_block']/div/a ";
+                    answer = FilterButtonCheck.pressFilterButton(webDriver, js, xpathPattern);
                     if (answer) {
                         Platform.runLater(() -> report.writeToFile("Checking Filter Material: ", "Successful!"));
                     } else {
                         Platform.runLater(() -> report.writeToFile("Checking Filter Material: ", "unable to check!"));
                     }
 
+
                     // check shop filter
                     Platform.runLater(() -> statusInfo.setText("Checking Shop..."));
-
-                    answer = FilterButtonCheck.pressFilterButton(webDriver, js, "//*[@id='pagecontent']/*/*[@class='sidebar']/*[@data-id='shop_box']/div/a");
+                    xpathPattern = "//*[@id='pagecontent']/*/*[@class='sidebar']/*[@data-id='shop_box']/div/a";
+                    answer = FilterButtonCheck.pressFilterButton(webDriver, js, xpathPattern);
                     if (answer) {
                         Platform.runLater(() -> {
                             checkFilter.setStyle("-fx-background-color: #CCFF99");
@@ -499,6 +476,7 @@ public class Controller {
                             checkFilter.setSelected(true);
                         });
                     }
+
 
 
                     // close webdriver and clear tasklist

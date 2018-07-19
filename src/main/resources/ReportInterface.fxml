@@ -4,15 +4,16 @@
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="598.0" prefWidth="1271.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="crisscrosscrass.ReportWindowController">
+<AnchorPane prefHeight="697.0" prefWidth="1271.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="crisscrosscrass.ReportWindowController">
     <stylesheets>
         <URL value="@Main.css" />
     </stylesheets>
@@ -55,25 +56,35 @@
             <FontAwesomeIconView fill="#e83062" glyphName="FILE" size="60" />
          </children>
       </HBox>
-      <HBox alignment="CENTER" layoutX="1.0" layoutY="190.0" prefHeight="408.0" prefWidth="1217.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-1.0">
+      <HBox alignment="CENTER" layoutX="1.0" layoutY="190.0" prefHeight="474.0" prefWidth="1271.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-1.0">
          <children>
-            <HBox alignment="CENTER" prefHeight="388.0" prefWidth="1165.0">
+            <HBox alignment="CENTER" prefHeight="432.0" prefWidth="1165.0">
                <children>
-                  <VBox alignment="CENTER" prefHeight="388.0" prefWidth="436.0" spacing="20.0" style="-fx-border-color: #e83062;">
+                  <VBox alignment="CENTER" prefHeight="441.0" prefWidth="436.0" spacing="20.0" style="-fx-border-color: #e83062;">
                      <children>
-                        <Text fx:id="text" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="398.13671875">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Text>
+                        <ScrollPane prefHeight="443.0" prefWidth="434.0">
+                           <content>
+                              <Text fx:id="text" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="398.13671875">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Text>
+                           </content>
+                        </ScrollPane>
                      </children>
                   </VBox>
-                  <VBox prefHeight="388.0" prefWidth="730.0">
+                  <AnchorPane prefHeight="454.0" prefWidth="730.0">
                      <children>
-                        <ImageView fx:id="ImageViewReport" fitWidth="400.0" pickOnBounds="true" preserveRatio="true" />
-                        <ImageView fx:id="ImageViewReport1" fitWidth="400.0" pickOnBounds="true" preserveRatio="true" />
+                        <ScrollPane prefHeight="454.0" prefWidth="730.0">
+                           <content>
+                              <FlowPane fx:id="ImageGallery" prefHeight="451.0" prefWidth="725.0" />
+                           </content>
+                        </ScrollPane>
                      </children>
-                  </VBox>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </AnchorPane>
                </children>
             </HBox>
          </children>

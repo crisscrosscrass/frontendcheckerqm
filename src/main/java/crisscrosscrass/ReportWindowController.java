@@ -7,30 +7,26 @@ import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 
 
 public class ReportWindowController {
 
-    @FXML ImageView ImageViewReport;
-    @FXML ImageView ImageViewReport1;
     @FXML Text text;
-
-
-
+    @FXML FlowPane ImageGallery;
 
 
     @FXML
     public void initialize() {
         System.out.println("Controller launched!");
         runReport();
-        SlideShow();
+        //SlideShow();
     }
 
     private void SlideShow(){
@@ -40,12 +36,12 @@ public class ReportWindowController {
                 TranslateTransition transition = new TranslateTransition();
                 FadeTransition fadeTransition = new FadeTransition();
 
-                ImageViewReport.setOpacity(100);
+                //ImageViewReport.setOpacity(100);
 
                 transition.setDuration(Duration.millis(1));
                 fadeTransition.setDuration(Duration.millis(1));
-                transition.setNode(ImageViewReport);
-                fadeTransition.setNode(ImageViewReport);
+                //transition.setNode(ImageViewReport);
+               // fadeTransition.setNode(ImageViewReport);
 
 
                 transition.setToX(+200);
@@ -81,23 +77,31 @@ public class ReportWindowController {
     private void runReport() {
 
 
+        //dsplay all images located in temp
         String location = System.getProperty("user.dir");
         location = location.replace("\\","//");
         location += "//temp//";
-        Image image = new Image("file:///"+location+"screenshot1.png");
-        ImageViewReport.setImage(image);
-        ImageViewReport.setPreserveRatio(true);
-        ImageViewReport.setOpacity(0);
-        ImageViewReport.setOnMouseClicked( event -> {
-            ViewImageWindow.display(image);
-        });
-        Image image2 = new Image("file:///"+location+"screenshot2.png");
-        ImageViewReport1.setImage(image2);
-        ImageViewReport1.setPreserveRatio(true);
-        ImageViewReport1.setOnMouseClicked( event -> {
-            ViewImageWindow.display(image2);
-        });
+        ImageGallery.setHgap(10);
+        ImageGallery.setHgap(10);
 
+        File folder = new File(location);
+        File [] pngFiles = folder.listFiles(file -> file.isFile() && file.getName().toLowerCase().endsWith(".png"));
+        for (File screenshot : pngFiles){
+            String ImageSRC = screenshot.toString().replace("\\","//");
+            Image imageDisplay = new Image("file:///"+ImageSRC);
+            ImageView myOwnImageView = new ImageView(imageDisplay);
+            myOwnImageView.setPreserveRatio(true);
+            myOwnImageView.setFitWidth(200);
+            myOwnImageView.setOnMouseClicked( event -> ViewImageWindow.display(imageDisplay));
+            ImageGallery.getChildren().add(myOwnImageView);
+        }
+
+
+
+
+
+
+        // reading and displaying report
 
         String myText = "";
 

@@ -15,7 +15,7 @@ public class Report {
         }
         try {
             BufferedWriter buffW = new BufferedWriter(new FileWriter(reportFile,true));
-            buffW.write(ReportTitle+ReportMessage+"\n");
+            buffW.write(ReportTitle+"\n"+ReportMessage+"\r");
             buffW.close();
             //System.out.println("Written into file");
         } catch (IOException e) {
