@@ -28,7 +28,7 @@
       <Circle fill="#e53063" layoutX="216.0" layoutY="175.0" radius="51.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
       <VBox alignment="TOP_CENTER" layoutX="359.0" layoutY="17.0" prefHeight="167.0" prefWidth="252.0" spacing="20.0" AnchorPane.leftAnchor="90.0" AnchorPane.topAnchor="25.0">
          <children>
-            <TextArea fx:id="inputSearch" prefHeight="16.0" prefWidth="296.0" text="https://www.ladenzeile.de/" wrapText="true">
+            <TextArea fx:id="inputSearch" prefHeight="10.0" prefWidth="296.0" text="https://www.ladenzeile.de/">
                <font>
                   <Font name="Verdana" size="15.0" />
                </font>
