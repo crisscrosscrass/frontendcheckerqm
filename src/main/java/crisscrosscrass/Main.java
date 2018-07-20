@@ -13,12 +13,13 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("/UserInterface.fxml"));
+        //Parent parent = FXMLLoader.load(getClass().getResource("/UserInterface.fxml"));
+        Parent parent = FXMLLoader.load(getClass().getResource("/UserInterface.fxml"));
         primaryStage.setTitle("Frontend Check");
         URL LogoLocation = Main.class.getClassLoader().getResource("VisualMeta.png");
         Image Logo = new Image(String.valueOf(LogoLocation));
         primaryStage.getIcons().add(Logo);
-        primaryStage.setScene(new Scene(root));
+        primaryStage.setScene(new Scene(parent));
         primaryStage.show();
     }
 
