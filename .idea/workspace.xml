@@ -7,15 +7,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/crisscrosscrass/ScreenshotViaWebDriver.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/crisscrosscrass/TestCases/FilterButtonCheckViaJavaScript.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/firstTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Report.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Report.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/crisscrosscrass/ReportWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/crisscrosscrass/ReportWindowController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/crisscrosscrass/TestCases/FilterButtonCheck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/crisscrosscrass/TestCases/FilterButtonCheck.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ReportInterface.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ReportInterface.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/UserInterface.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/UserInterface.fxml" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -81,14 +75,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Controller.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller.java">
+      <file leaf-file-name="FilterButtonCheck.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/TestCases/FilterButtonCheck.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="143" lean-forward="true" selection-start-line="143" selection-end-line="143" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="238">
+              <caret line="17" column="65" selection-start-line="17" selection-start-column="65" selection-end-line="17" selection-end-column="65" />
             </state>
           </provider>
         </entry>
@@ -140,12 +131,9 @@
         <option value="$PROJECT_DIR$/src/crisscrosscrass/Controller.java" />
         <option value="$PROJECT_DIR$/src/main/java/META-INF/MANIFEST.MF" />
         <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/CopyFiles.java" />
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/createReportFile.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/UserInterface.fxml" />
         <option value="$PROJECT_DIR$/src/main/resources/Main.css" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/TestCases/SalesButtonCheck.java" />
         <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/backupCode" />
         <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/ReportWindow.java" />
@@ -155,10 +143,13 @@
         <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/ScreenshotViaWebDriver.java" />
         <option value="$PROJECT_DIR$/src/test/java/WhenSearchingForDrupalUsingGoogleTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/TestCases/FilterButtonCheckViaJavaScript.java" />
-        <option value="$PROJECT_DIR$/src/test/java/firstTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/ReportWindowController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/TestCases/FilterButtonCheck.java" />
         <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller.java" />
+        <option value="$PROJECT_DIR$/src/test/java/firstTest.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/Main.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/UserInterface.fxml" />
+        <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/TestCases/FilterButtonCheck.java" />
       </list>
     </option>
   </component>
@@ -218,9 +209,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
       <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -261,14 +252,6 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="TestCases" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="FrontEndCheck" type="b2602c69:ProjectViewProjectNode" />
-              <item name="FrontEndCheck" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="META-INF" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="FrontEndCheck" type="b2602c69:ProjectViewProjectNode" />
@@ -320,7 +303,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="dynamic.classpath" value="false" />
     <property name="last_opened_file_path" value="$USER_HOME$/AppData/Local/Programs/Git/bin/git.exe" />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.45057473" />
     <property name="recentsLimit" value="5" />
@@ -763,7 +746,28 @@
       <option name="project" value="LOCAL" />
       <updated>1531824356128</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="added some changes and add dynamic images adding">
+      <created>1531983911050</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1531983911050</updated>
+    </task>
+    <task id="LOCAL-00031" summary="added some changes and add dynamic images adding">
+      <created>1532010388428</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1532010388428</updated>
+    </task>
+    <task id="LOCAL-00032" summary="added some changes and add dynamic images adding">
+      <created>1532070307415</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1532070307415</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -816,7 +820,7 @@
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="DB Execution Console" order="16" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5314499" side_tool="true" visible="true" weight="0.31991294" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.53411514" side_tool="true" visible="true" weight="0.31991294" />
       <window_info anchor="right" id="Maven Projects" order="9" weight="0.32995737" />
       <window_info id="Capture Tool" order="9" />
       <window_info id="Designer" order="2" />
@@ -827,16 +831,16 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="5" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49946696" weight="0.39934713" />
-      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49733475" weight="0.32861805" />
+      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.4968017" weight="0.32861805" />
       <window_info id="DB Browser" order="3" />
       <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.48933902" weight="0.32861805" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info id="Image Layers" order="7" />
       <window_info anchor="right" id="Capture Analysis" order="6" />
       <window_info anchor="bottom" id="Version Control" order="14" sideWeight="0.49413645" weight="0.32861805" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.46855012" visible="true" weight="0.31991294" />
-      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.48880598" weight="0.32861805" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.17590618" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.46588486" visible="true" weight="0.31991294" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.48827294" weight="0.32861805" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.18230277" />
       <window_info anchor="right" id="Theme Preview" order="8" />
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Application Servers" order="9" />
@@ -848,7 +852,7 @@
       <window_info anchor="bottom" id="Problems" order="13" />
       <window_info anchor="bottom" id="Profiler" order="15" />
       <window_info anchor="right" id="Database" order="5" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4936034" weight="0.32861805" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49253732" weight="0.32861805" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="right" id="Coverage" order="10" side_tool="true" weight="0.28624734" />
@@ -903,11 +907,12 @@
     <MESSAGE value="changes" />
     <MESSAGE value="added image view in new window" />
     <MESSAGE value="added some changes and added transparent effect" />
-    <option name="LAST_COMMIT_MESSAGE" value="added some changes and added transparent effect" />
+    <MESSAGE value="added some changes and add dynamic images adding" />
+    <option name="LAST_COMMIT_MESSAGE" value="added some changes and add dynamic images adding" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="4" />
+      <option name="time" value="5" />
     </breakpoint-manager>
   </component>
   <component name="antWorkspaceConfiguration">
@@ -915,24 +920,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/resources/UserInterface.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="19" lean-forward="true" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -941,12 +928,12 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/UserInterface.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="11" selection-start-line="11" selection-end-line="11" />
         </state>
       </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -973,12 +960,12 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/UserInterface.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
         </state>
       </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -998,12 +985,12 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/UserInterface.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="7" column="11" lean-forward="true" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
         </state>
       </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -1054,19 +1041,12 @@
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/ReportInterface.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="8" column="35" lean-forward="true" selection-start-line="8" selection-start-column="35" selection-end-line="8" selection-end-column="35" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/CopyFiles.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="157">
-          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
-        </state>
-      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/TestCases/SalesButtonCheck.java" />
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
@@ -1083,13 +1063,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="106">
-          <caret line="46" column="43" selection-start-line="46" selection-start-column="43" selection-end-line="46" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/backupCode">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -1103,22 +1076,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="159">
           <caret line="13" column="30" lean-forward="true" selection-start-line="13" selection-start-column="30" selection-end-line="13" selection-end-column="30" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/preloaderCat.gif">
       <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/UserInterface.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="47" column="24" lean-forward="true" selection-start-line="47" selection-start-column="24" selection-end-line="47" selection-end-column="24" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/VisualMeta.png">
       <provider selected="true" editor-type-id="images" />
@@ -1130,16 +1092,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="12" column="34" lean-forward="true" selection-start-line="12" selection-start-column="34" selection-end-line="12" selection-end-column="34" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
         </state>
       </provider>
     </entry>
@@ -1147,15 +1099,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="465">
           <caret line="32" lean-forward="true" selection-start-line="32" selection-end-line="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/temp/screenshot1.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/temp/screenshot1.png" />
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -1163,26 +1110,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/temp/screenshot2.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/temp/report.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="18" lean-forward="true" selection-start-column="18" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/firstTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/temp/screenshot2.png" />
+    <entry file="file://$PROJECT_DIR$/temp/report.txt" />
     <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Report.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -1194,9 +1123,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="244">
           <caret line="20" selection-start-line="20" selection-end-line="20" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1210,20 +1136,76 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/TestCases/FilterButtonCheck.java">
+    <entry file="file://$PROJECT_DIR$/src/test/java/firstTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+        <state relative-caret-position="-11">
+          <caret line="15" column="28" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/CopyFiles.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="143" lean-forward="true" selection-start-line="143" selection-end-line="143" />
+        <state relative-caret-position="-3717">
+          <caret line="181" column="21" lean-forward="true" selection-start-line="181" selection-start-column="21" selection-end-line="181" selection-end-column="21" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/javafx-src.zip!/javafx/fxml/FXMLLoader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1819">
+          <caret line="2600" selection-start-line="2600" selection-end-line="2600" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/src.zip!/java/lang/Thread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="763" column="28" lean-forward="true" selection-start-line="763" selection-start-column="28" selection-end-line="763" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="38" lean-forward="true" selection-start-line="16" selection-start-column="38" selection-end-line="16" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="61" lean-forward="true" selection-start-line="19" selection-start-column="61" selection-end-line="19" selection-end-column="61" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/UserInterface.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="337">
+          <caret line="68" column="40" selection-start-line="68" selection-start-column="40" selection-end-line="68" selection-end-column="40" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/TestCases/FilterButtonCheck.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="17" column="65" selection-start-line="17" selection-start-column="65" selection-end-line="17" selection-end-column="65" />
         </state>
       </provider>
     </entry>
