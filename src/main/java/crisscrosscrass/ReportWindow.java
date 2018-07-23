@@ -18,7 +18,7 @@ public class ReportWindow {
 
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ReportInterface.fxml"));
-        Parent root = (Parent) fxmlLoader.load();
+        Parent root = fxmlLoader.load();
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
         //stage.initStyle(StageStyle.UNDECORATED);

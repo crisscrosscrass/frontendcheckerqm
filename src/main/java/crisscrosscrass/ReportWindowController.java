@@ -21,6 +21,8 @@ public class ReportWindowController {
     @FXML Text text;
     @FXML FlowPane ImageGallery;
 
+    int extraDuration = 0;
+
 
     @FXML
     public void initialize() {
@@ -29,55 +31,13 @@ public class ReportWindowController {
         //SlideShow();
     }
 
-    private void SlideShow(){
-        Task task = new Task<Object>() {
-            @Override
-            protected Void call() throws InterruptedException {
-                TranslateTransition transition = new TranslateTransition();
-                FadeTransition fadeTransition = new FadeTransition();
 
-                //ImageViewReport.setOpacity(100);
-
-                transition.setDuration(Duration.millis(1));
-                fadeTransition.setDuration(Duration.millis(1));
-                //transition.setNode(ImageViewReport);
-               // fadeTransition.setNode(ImageViewReport);
-
-
-                transition.setToX(+200);
-                fadeTransition.setFromValue(1.0);
-                fadeTransition.setToValue(0.0);
-                fadeTransition.play();
-                transition.play();
-                transition.setOnFinished(event -> {
-                    System.out.println("some random code will happen here...");
-                    transition.setDuration(Duration.seconds(2));
-                    fadeTransition.setDuration(Duration.seconds(2));
-                    transition.setToX(0);
-                    fadeTransition.setFromValue(0.0);
-                    fadeTransition.setToValue(1.0);
-                    fadeTransition.play();
-                    transition.play();
-                    transition.setOnFinished(finisher -> {
-                        System.out.println("finally done...");
-                        transition.stop();
-                        fadeTransition.stop();
-                    });
-                });
-                return null;
-            }
-        };
-
-
-        Thread thread = new Thread(task);
-        thread.setDaemon(true);
-        thread.start();
-    }
 
     private void runReport() {
 
 
         //dsplay all images located in temp
+        AnimationObject wowEffect = new AnimationObject();
         String location = System.getProperty("user.dir");
         location = location.replace("\\","//");
         location += "//temp//";
@@ -94,6 +54,8 @@ public class ReportWindowController {
             myOwnImageView.setFitWidth(200);
             myOwnImageView.setOnMouseClicked( event -> ViewImageWindow.display(imageDisplay));
             ImageGallery.getChildren().add(myOwnImageView);
+            wowEffect.SlideShow(myOwnImageView,extraDuration);
+            extraDuration++;
         }
 
 
