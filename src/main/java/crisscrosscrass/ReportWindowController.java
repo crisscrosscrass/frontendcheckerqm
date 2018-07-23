@@ -50,6 +50,7 @@ public class ReportWindowController {
             String ImageSRC = screenshot.toString().replace("\\","//");
             Image imageDisplay = new Image("file:///"+ImageSRC);
             ImageView myOwnImageView = new ImageView(imageDisplay);
+            myOwnImageView.setOpacity(0);
             myOwnImageView.setPreserveRatio(true);
             myOwnImageView.setFitWidth(200);
             myOwnImageView.setOnMouseClicked( event -> ViewImageWindow.display(imageDisplay));
