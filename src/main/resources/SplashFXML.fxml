@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.StackPane?>
+
+
+<StackPane fx:id="rootPane" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="crisscrosscrass.SplashFXMLController">
+   <children>
+      <ImageView fx:id="ImageSplash" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@VisualMeta_White.png" />
+         </image>
+      </ImageView>
+   </children>
+</StackPane>
