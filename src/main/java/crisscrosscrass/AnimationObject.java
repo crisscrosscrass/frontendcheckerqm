@@ -82,7 +82,7 @@ public class AnimationObject {
                         @Override
                         protected Void call() throws Exception {
                             try {
-                                Thread.sleep(500+(extraDuration*200));
+                                Thread.sleep(100+(extraDuration*200));
                             } catch (InterruptedException e) {
                             }
                             return null;
@@ -95,7 +95,7 @@ public class AnimationObject {
                         fadeTransition.play();
                         transition.play();
                         transition.setOnFinished(event2 -> {
-                            System.out.println("some random code will happen here...");
+                            //System.out.println("some random code will happen here...");
                             transition.setDuration(Duration.seconds(1));
                             fadeTransition.setDuration(Duration.seconds(1));
                             transition.setToX(0);
@@ -104,15 +104,13 @@ public class AnimationObject {
                             fadeTransition.play();
                             transition.play();
                             transition.setOnFinished(finisher -> {
-                                System.out.println("finally done...");
+                                //System.out.println("finally done...");
                                 transition.stop();
                                 fadeTransition.stop();
                             });
                         });
                     });
                     new Thread(sleeper).start();
-
-
                     return null;
                 }
             };

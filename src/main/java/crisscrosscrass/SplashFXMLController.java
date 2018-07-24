@@ -38,7 +38,7 @@ public class SplashFXMLController implements Initializable {
             try {
                 AnimationObject wowEffect = new AnimationObject();
                 wowEffect.SlideShow(rootPane,0);
-                Thread.sleep(3000);
+                Thread.sleep(2000);
 
                 Platform.runLater(new Runnable() {
                     @Override
