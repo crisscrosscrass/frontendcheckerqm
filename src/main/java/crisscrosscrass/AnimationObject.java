@@ -26,7 +26,7 @@ public class AnimationObject {
                     @Override
                     protected Void call() throws Exception {
                         try {
-                            Thread.sleep(1000+(extraDuration*200));
+                            Thread.sleep(100+(extraDuration*200));
                         } catch (InterruptedException e) {
                         }
                         return null;
@@ -65,6 +65,49 @@ public class AnimationObject {
         Thread thread = new Thread(task);
         thread.setDaemon(true);
         thread.start();
+    }
+
+    public void fadeOut(StackPane rootPane, int extraDuration){
+        Task task = new Task<Void>() {
+            @Override
+            protected Void call() throws InterruptedException {
+                FadeTransition fadeTransition = new FadeTransition();
+                TranslateTransition transition = new TranslateTransition();
+                fadeTransition.setDuration(Duration.millis(2000));
+                transition.setDuration(Duration.millis(500));
+                transition.setNode(rootPane);
+                fadeTransition.setNode(rootPane);
+                Task<Void> sleeper = new Task<Void>() {
+                    @Override
+                    protected Void call() throws Exception {
+                        try {
+                            Thread.sleep(100+(extraDuration*200));
+                        } catch (InterruptedException e) {
+                        }
+                        return null;
+                    }
+                };
+                sleeper.setOnSucceeded(event -> {
+                    transition.setToY(+200);
+                    fadeTransition.setFromValue(1);
+                    fadeTransition.setToValue(0);
+                    fadeTransition.play();
+                    transition.play();
+                    fadeTransition.setOnFinished(event2 -> {
+                        //System.out.println("some random code will happen here...");
+                        fadeTransition.stop();
+                        rootPane.getScene().getWindow().hide();
+                    });
+                });
+                new Thread(sleeper).start();
+                return null;
+            }
+        };
+
+        Thread thread = new Thread(task);
+        thread.setDaemon(true);
+        thread.start();
+
     }
 
     public void SlideShow(StackPane rootPane, int extraDuration){
@@ -120,4 +163,6 @@ public class AnimationObject {
             thread.setDaemon(true);
             thread.start();
         }
+
+
     }

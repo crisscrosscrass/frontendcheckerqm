@@ -40,6 +40,7 @@ public class SplashFXMLController implements Initializable {
                 wowEffect.SlideShow(rootPane,0);
                 Thread.sleep(2000);
 
+
                 Platform.runLater(new Runnable() {
                     @Override
                     public void run() {
@@ -56,8 +57,10 @@ public class SplashFXMLController implements Initializable {
                         primaryStage.getIcons().add(Logo);
                         primaryStage.setScene(new Scene(parent));
                         primaryStage.show();
+                        Platform.runLater(() ->{
+                        //wowEffect.fadeOut(rootPane,0);
                         rootPane.getScene().getWindow().hide();
-
+                        });
                     }
                 });
 
