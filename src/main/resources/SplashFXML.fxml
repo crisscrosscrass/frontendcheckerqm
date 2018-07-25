@@ -9,7 +9,7 @@
    <children>
       <ImageView fx:id="ImageSplash" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@VisualMeta_White.png" />
+            <Image url="@VisualMeta_White_Mirror.png" />
          </image>
       </ImageView>
    </children>
