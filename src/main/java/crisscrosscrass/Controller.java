@@ -254,6 +254,20 @@ public class Controller {
                         }
                         Thread.sleep(100);
 
+                        //checking Sub Main Menu Links
+                        Platform.runLater(() -> {
+                            statusInfo.setText("Checking SubMenu...");
+                        });
+
+                        List<WebElement> MainSubMenu = ((ChromeDriver) webDriver).findElementsByXPath("//*[contains(@class, 'tab-outer')]/div/div/div/a ");
+                        int counterSubMenu = 1;
+                        for (WebElement ItemSubMenu : MainSubMenu) {
+                            //System.out.println("MainSubLink: "+ ItemSubMenu.getAttribute("textContent") + " " + ItemSubMenu.getAttribute("href"));
+                            report.writeToFile("MainSubLink: "+ counterSubMenu + " " + ItemSubMenu.getAttribute("textContent"), ItemSubMenu.getAttribute("href"));
+                            counterSubMenu++;
+                        }
+
+
                         Platform.runLater(() -> {
                             openMainMenu.setStyle("-fx-background-color: #CCFF99");
                             openMainMenu.setSelected(true);
@@ -269,6 +283,9 @@ public class Controller {
                     Thread.sleep(1000);
 
                     Platform.runLater(() -> progressIndicator.setProgress(checkAllCheckBoxes()));
+
+
+
 
                     // Check banner for layout
 
