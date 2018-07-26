@@ -21,7 +21,7 @@ public class ReportWindowController {
     @FXML Text text;
     @FXML FlowPane ImageGallery;
 
-    int extraDuration = 0;
+    int extraDuration = 1;
 
 
     @FXML

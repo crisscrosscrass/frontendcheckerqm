@@ -8,8 +8,11 @@
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/crisscrosscrass/AnimationObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/crisscrosscrass/AnimationObject.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/back.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/crisscrosscrass/ReportWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/crisscrosscrass/ReportWindowController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/ReportInterface.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ReportInterface.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/UserInterface.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/UserInterface.fxml" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -75,11 +78,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Controller.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller.java">
+      <file leaf-file-name="ReportWindowController.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/ReportWindowController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="79" lean-forward="true" selection-start-line="79" selection-end-line="79" />
+            <state relative-caret-position="187">
+              <caret line="23" column="26" lean-forward="true" selection-start-line="23" selection-start-column="26" selection-end-line="23" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -146,7 +149,6 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/test/java/firstTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/ReportWindow.java" />
-        <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/ReportWindowController.java" />
         <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/TaskBasedSplash.java" />
         <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/test.java" />
         <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/MainBackUp.java" />
@@ -159,6 +161,7 @@
         <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/SplashFXMLController.java" />
         <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/AnimationObject.java" />
         <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller.java" />
+        <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/ReportWindowController.java" />
       </list>
     </option>
   </component>
@@ -212,6 +215,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="AndroidView" />
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -264,9 +270,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView" />
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -762,7 +765,14 @@
       <option name="project" value="LOCAL" />
       <updated>1532520514843</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="added sub links check">
+      <created>1532599082943</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1532599082943</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -815,7 +825,7 @@
     <layout>
       <window_info anchor="right" id="Palette" order="4" />
       <window_info anchor="bottom" id="DB Execution Console" order="16" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5090618" side_tool="true" visible="true" weight="0.31991294" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5490405" side_tool="true" visible="true" weight="0.31991294" />
       <window_info anchor="right" id="Maven Projects" order="1" weight="0.32995737" />
       <window_info id="Capture Tool" order="9" />
       <window_info id="Designer" order="2" />
@@ -833,10 +843,9 @@
       <window_info id="Image Layers" order="7" />
       <window_info anchor="right" id="Capture Analysis" order="7" />
       <window_info anchor="bottom" id="Version Control" order="14" sideWeight="0.49413645" weight="0.32861805" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4520256" weight="0.31991294" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.45095947" visible="true" weight="0.31991294" />
       <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.48773986" weight="0.32861805" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.20788912" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49093816" weight="0.32861805" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.21215352" />
       <window_info anchor="right" id="Theme Preview" order="9" />
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Application Servers" order="9" />
@@ -848,6 +857,7 @@
       <window_info anchor="bottom" id="Problems" order="13" />
       <window_info anchor="bottom" id="Profiler" order="15" />
       <window_info anchor="right" id="Database" order="6" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49093816" weight="0.32861805" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="right" id="Coverage" order="10" side_tool="true" weight="0.28624734" />
@@ -884,7 +894,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
-    <MESSAGE value="test comment" />
     <MESSAGE value="test comment for workspace" />
     <MESSAGE value="added test comment" />
     <MESSAGE value="next work comment" />
@@ -909,7 +918,8 @@
     <MESSAGE value="added SplashController" />
     <MESSAGE value="added Splash Animation and Logo" />
     <MESSAGE value="added fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="added fixes" />
+    <MESSAGE value="added sub links check" />
+    <option name="LAST_COMMIT_MESSAGE" value="added sub links check" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -951,12 +961,12 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/UserInterface.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="337">
           <caret line="68" column="40" selection-start-line="68" selection-start-column="40" selection-end-line="68" selection-end-column="40" />
         </state>
       </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/TestCases/FilterButtonCheck.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -1011,12 +1021,12 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/ReportInterface.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="16" column="17" lean-forward="true" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
         </state>
       </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
@@ -1047,15 +1057,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sexy-pu-fauxB.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sexy2.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sexy-pu-fauxE.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/sexy-pu-fauxB.png" />
+    <entry file="file://$PROJECT_DIR$/sexy2.png" />
+    <entry file="file://$PROJECT_DIR$/sexy-pu-fauxE.png" />
     <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/FadeApp.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -1071,12 +1075,12 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/SplashFXML.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="16" selection-start-line="16" selection-end-line="16" />
         </state>
       </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/VisualMeta_White.png">
       <provider selected="true" editor-type-id="images" />
@@ -1084,12 +1088,8 @@
     <entry file="file://$PROJECT_DIR$/src/main/resources/VisualMeta_White_Mirror.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/image.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sexy1.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/image.png" />
+    <entry file="file://$PROJECT_DIR$/sexy1.png" />
     <entry file="file://$PROJECT_DIR$/temp/report.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
@@ -1100,20 +1100,11 @@
     <entry file="file://$PROJECT_DIR$/src/main/resources/image.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/back.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/back.jpg" />
     <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/SplashFXMLController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="227">
           <caret line="51" column="22" selection-start-line="51" selection-start-column="22" selection-end-line="51" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/ReportWindowController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="52" column="37" selection-start-line="52" selection-start-column="27" selection-end-line="52" selection-end-column="37" />
         </state>
       </provider>
     </entry>
@@ -1124,13 +1115,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/AnimationObject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1615">
-          <caret line="20" column="59" selection-start-line="20" selection-start-column="59" selection-end-line="20" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/CopyFiles.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="346">
@@ -1138,10 +1122,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/AnimationObject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="601">
+          <caret line="145" column="59" lean-forward="true" selection-start-line="145" selection-start-column="59" selection-end-line="145" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="79" lean-forward="true" selection-start-line="79" selection-end-line="79" />
+        <state relative-caret-position="17">
+          <caret line="271" selection-start-line="271" selection-end-line="271" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/ReportWindowController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="23" column="26" lean-forward="true" selection-start-line="23" selection-start-column="26" selection-end-line="23" selection-end-column="26" />
         </state>
       </provider>
     </entry>

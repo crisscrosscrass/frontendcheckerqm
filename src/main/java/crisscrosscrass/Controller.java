@@ -263,7 +263,10 @@ public class Controller {
                         int counterSubMenu = 1;
                         for (WebElement ItemSubMenu : MainSubMenu) {
                             //System.out.println("MainSubLink: "+ ItemSubMenu.getAttribute("textContent") + " " + ItemSubMenu.getAttribute("href"));
-                            report.writeToFile("MainSubLink: "+ counterSubMenu + " " + ItemSubMenu.getAttribute("textContent"), ItemSubMenu.getAttribute("href"));
+                            report.writeToFile("MainMenuSubLink: "+ counterSubMenu + " " + ItemSubMenu.getAttribute("textContent"), ItemSubMenu.getAttribute("href"));
+                            Platform.runLater(() -> {
+                                statusInfo.setText(ItemSubMenu.getAttribute("href"));
+                            });
                             counterSubMenu++;
                         }
 

@@ -60,11 +60,11 @@
          <children>
             <HBox alignment="CENTER" prefHeight="432.0" prefWidth="1165.0">
                <children>
-                  <VBox alignment="CENTER" prefHeight="441.0" prefWidth="436.0" spacing="20.0" style="-fx-border-color: #e83062;">
+                  <AnchorPane>
                      <children>
-                        <ScrollPane prefHeight="443.0" prefWidth="434.0">
+                        <ScrollPane layoutX="8.0" prefHeight="443.0" prefWidth="730.0">
                            <content>
-                              <Text fx:id="text" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="398.13671875">
+                              <Text fx:id="text" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="700.13671875">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -72,7 +72,7 @@
                            </content>
                         </ScrollPane>
                      </children>
-                  </VBox>
+                  </AnchorPane>
                   <AnchorPane prefHeight="454.0" prefWidth="730.0">
                      <children>
                         <ScrollPane prefHeight="454.0" prefWidth="730.0">

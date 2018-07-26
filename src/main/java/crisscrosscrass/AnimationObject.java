@@ -33,7 +33,7 @@ public class AnimationObject {
                     }
                 };
                 sleeper.setOnSucceeded(event -> {
-                    transition.setToX(+200);
+                    transition.setToY(+200);
                     fadeTransition.setFromValue(0);
                     fadeTransition.setToValue(0.0);
                     fadeTransition.play();
@@ -42,7 +42,7 @@ public class AnimationObject {
                         System.out.println("some random code will happen here...");
                         transition.setDuration(Duration.seconds(1));
                         fadeTransition.setDuration(Duration.seconds(1));
-                        transition.setToX(0);
+                        transition.setToY(0);
                         fadeTransition.setFromValue(0.0);
                         fadeTransition.setToValue(1.0);
                         fadeTransition.play();
@@ -132,7 +132,7 @@ public class AnimationObject {
                         }
                     };
                     sleeper.setOnSucceeded(event -> {
-                        transition.setToX(+200);
+                        transition.setToY(+200);
                         fadeTransition.setFromValue(0);
                         fadeTransition.setToValue(0.0);
                         fadeTransition.play();
@@ -141,7 +141,7 @@ public class AnimationObject {
                             //System.out.println("some random code will happen here...");
                             transition.setDuration(Duration.seconds(1));
                             fadeTransition.setDuration(Duration.seconds(1));
-                            transition.setToX(0);
+                            transition.setToY(0);
                             fadeTransition.setFromValue(0.0);
                             fadeTransition.setToValue(1.0);
                             fadeTransition.play();

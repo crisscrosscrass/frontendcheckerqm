@@ -19,82 +19,99 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="mainStage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="631.0" prefWidth="463.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="crisscrosscrass.Controller">
+<AnchorPane fx:id="mainStage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="685.0" prefWidth="556.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="crisscrosscrass.Controller">
     <stylesheets>
         <URL value="@Main.css" />
     </stylesheets>
    <children>
-      <Pane prefHeight="200.0" style="-fx-background-color: #e83062;" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="-1.0" />
-      <Circle fill="#e53063" layoutX="216.0" layoutY="175.0" radius="51.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-      <VBox alignment="TOP_CENTER" layoutX="359.0" layoutY="17.0" prefHeight="167.0" prefWidth="252.0" spacing="20.0" AnchorPane.leftAnchor="90.0" AnchorPane.topAnchor="25.0">
+      <Pane prefHeight="242.0" prefWidth="558.0" style="-fx-background-color: #e83062;" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="-1.0" />
+      <VBox layoutX="17.0" layoutY="25.0">
          <children>
-            <TextArea fx:id="inputSearch" prefHeight="10.0" prefWidth="296.0" text="https://www.ladenzeile.de/">
-               <font>
-                  <Font name="Verdana" size="15.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="DEFAULT" />
-               </cursor>
-            </TextArea>
-            <ProgressBar fx:id="progressIndicator" prefHeight="18.0" prefWidth="296.0" progress="0.0">
-               <VBox.margin>
-                  <Insets top="-11.0" />
-               </VBox.margin>
-            </ProgressBar>
-            <Button fx:id="startwebdriver" mnemonicParsing="false" onAction="#startRealAction" prefHeight="39.0" prefWidth="200.0" style="-fx-background-color: #289ea2; -fx-border-color: black; -fx-background-radius: 20; -fx-border-radius: 20;" text="StartFrontendCheckTest" textFill="WHITE">
-               <font>
-                  <Font name="Arial Black" size="12.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="OPEN_HAND" />
-               </cursor>
-               <VBox.margin>
-                  <Insets top="-10.0" />
-               </VBox.margin>
-            </Button>
-            <Text fx:id="statusInfo" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="" textAlignment="CENTER" wrappingWidth="250.99998442702235">
-               <VBox.margin>
-                  <Insets top="-20.0" />
-               </VBox.margin>
-            </Text>
-         </children>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-      </VBox>
-      <FontAwesomeIconView glyphName="USER_SECRET" layoutX="197.0" layoutY="211.0" size="50">
-         <fill>
-            <LinearGradient endX="1.0" endY="1.0" startX="1.0">
-               <stops>
-                  <Stop color="WHITE" />
-                  <Stop color="WHITE" offset="0.3524904214559387" />
-                  <Stop color="#ffffff00" offset="0.7279693486590038" />
-                  <Stop color="#ffffff00" offset="1.0" />
-               </stops>
-            </LinearGradient>
-         </fill></FontAwesomeIconView>
-      <ImageView fx:id="preloaderCat" fitHeight="62.0" fitWidth="66.0" layoutX="182.0" layoutY="239.0" pickOnBounds="true" preserveRatio="true" />
-      <HBox fx:id="outputPlace" alignment="CENTER" layoutX="-12.0" layoutY="260.0" prefHeight="31.0" prefWidth="454.0" />
-      <Pane layoutX="14.0" layoutY="295.0" prefHeight="321.0" prefWidth="430.0" style="-fx-border-color: #e83062;">
-         <children>
-            <HBox layoutX="7.0" layoutY="6.714286804199219" spacing="20.0">
+            <VBox alignment="TOP_CENTER" prefHeight="250.0" prefWidth="520.0">
                <children>
-                  <FontAwesomeIconView fill="#e83062" glyphName="CLONE" size="40" />
-                  <VBox fx:id="CheckBoxesPlace" alignment="CENTER_LEFT">
-                     <children>
-                        <CheckBox fx:id="checkLogoHomepage" mnemonicParsing="false" text="# Click on logo to go to homepage" />
-                        <CheckBox fx:id="checkGeneralLayout" mnemonicParsing="false" text="# Check general layout" />
-                        <CheckBox fx:id="openMainMenu" mnemonicParsing="false" text="# Open main menu and check layout / links" />
-                        <CheckBox fx:id="checkBannersLayout" mnemonicParsing="false" text="# Check banners for layout" />
-                        <CheckBox fx:id="checkShopOfTheWeek" mnemonicParsing="false" text="# Check &quot;Shop of the week&quot; (Logo + Category links)" />
-                        <CheckBox fx:id="checkPerfectMatch" mnemonicParsing="false" text="# perfect Match via using text search" />
-                        <CheckBox fx:id="checkSalesPrice" mnemonicParsing="false" text="# Check &quot;Price Hint&quot; link (when existing)" />
-                        <CheckBox fx:id="checkFilter" mnemonicParsing="false" text="# Check Filter Apply" />
-                     </children>
-                  </VBox>
+                  <TextArea fx:id="inputSearch" cacheShape="false" centerShape="false" focusTraversable="false" prefHeight="10.0" prefWidth="296.0" scaleShape="false" style="-fx-border-color: black;" text="https://www.ladenzeile.de/">
+                     <font>
+                        <Font name="Verdana" size="15.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                  </TextArea>
+                  <ProgressBar fx:id="progressIndicator" prefHeight="18.0" prefWidth="521.0" progress="0.0">
+                     <VBox.margin>
+                        <Insets bottom="10.0" top="10.0" />
+                     </VBox.margin>
+                  </ProgressBar>
+                  <Button fx:id="startwebdriver" minHeight="40.0" mnemonicParsing="false" onAction="#startRealAction" prefHeight="39.0" prefWidth="200.0" style="-fx-background-color: #289ea2; -fx-border-color: black; -fx-background-radius: 20; -fx-border-radius: 20;" text="StartFrontendCheckTest" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Black" size="12.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="OPEN_HAND" />
+                     </cursor>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Button>
+                  <Text fx:id="statusInfo" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="" textAlignment="CENTER" wrappingWidth="429.99998442702235">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Text>
+                  <Circle depthTest="DISABLE" disable="true" fill="#e83062" radius="50.0" stroke="#e83062" strokeType="INSIDE" strokeWidth="0.0">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Circle>
+                  <FontAwesomeIconView glyphName="USER_SECRET" size="50" translateY="-65.0">
+                     <fill>
+                        <LinearGradient endX="1.0" endY="1.0" startX="1.0">
+                           <stops>
+                              <Stop color="WHITE" />
+                              <Stop color="WHITE" offset="0.3524904214559387" />
+                              <Stop color="#ffffff00" offset="0.7279693486590038" />
+                              <Stop color="#ffffff00" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </fill>
+                  </FontAwesomeIconView>
+                  <ImageView fx:id="preloaderCat" fitHeight="62.0" fitWidth="66.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" translateY="-60.0">
+                     <VBox.margin>
+                        <Insets bottom="-78.0" top="20.0" />
+                     </VBox.margin>
+                  </ImageView>
                </children>
-            </HBox>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </VBox>
+            <VBox prefHeight="352.0" prefWidth="520.0">
+               <children>
+                  <HBox fx:id="outputPlace" alignment="CENTER" prefHeight="31.0" prefWidth="454.0" />
+                  <Pane prefHeight="321.0" prefWidth="430.0" style="-fx-border-color: #e83062;">
+                     <children>
+                        <HBox layoutX="7.0" layoutY="6.714286804199219" spacing="20.0">
+                           <children>
+                              <FontAwesomeIconView fill="#e83062" glyphName="CLONE" size="40" />
+                              <VBox fx:id="CheckBoxesPlace" alignment="CENTER_LEFT">
+                                 <children>
+                                    <CheckBox fx:id="checkLogoHomepage" mnemonicParsing="false" text="# Click on logo to go to homepage" />
+                                    <CheckBox fx:id="checkGeneralLayout" mnemonicParsing="false" text="# Check general layout" />
+                                    <CheckBox fx:id="openMainMenu" mnemonicParsing="false" text="# Open main menu and check layout / links" />
+                                    <CheckBox fx:id="checkBannersLayout" mnemonicParsing="false" text="# Check banners for layout" />
+                                    <CheckBox fx:id="checkShopOfTheWeek" mnemonicParsing="false" text="# Check &quot;Shop of the week&quot; (Logo + Category links)" />
+                                    <CheckBox fx:id="checkPerfectMatch" mnemonicParsing="false" text="# perfect Match via using text search" />
+                                    <CheckBox fx:id="checkSalesPrice" mnemonicParsing="false" text="# Check &quot;Price Hint&quot; link (when existing)" />
+                                    <CheckBox fx:id="checkFilter" mnemonicParsing="false" text="# Check Filter Apply" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                     </children>
+                  </Pane>
+               </children>
+            </VBox>
          </children>
-      </Pane>
+      </VBox>
    </children>
 </AnchorPane>
