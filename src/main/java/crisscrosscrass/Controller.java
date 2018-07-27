@@ -140,6 +140,7 @@ public class Controller {
                     Platform.runLater(() -> {
                         checkLogoHomepage.setStyle("-fx-background-color: #eef442");
                         statusInfo.setText("Checking Logo...");
+
                     });
 
 
@@ -162,6 +163,7 @@ public class Controller {
                     }
 
                     Platform.runLater(() -> progressIndicator.setProgress(checkAllCheckBoxes()));
+                    report.writeToFile("=================================", "");
 
 
                     //Check general Layout Test
@@ -233,6 +235,9 @@ public class Controller {
                     });
 
                     Platform.runLater(() -> progressIndicator.setProgress(checkAllCheckBoxes()));
+                    report.writeToFile("=================================", "");
+
+
 
 
                     // open Hover Main Menu and have a check on all DeepLinks Test
@@ -242,6 +247,7 @@ public class Controller {
                     });
 
                     Actions hover = new Actions(webDriver);
+
 
                     try {
                         List<WebElement> MainMenu = ((ChromeDriver) webDriver).findElementsByXPath("//*[@id='mainmenu-items']/div/*/*/a ");
@@ -270,6 +276,25 @@ public class Controller {
                             counterSubMenu++;
                         }
 
+                        report.writeToFile("=================================", "");
+
+
+
+                        Platform.runLater(() -> {
+                            statusInfo.setText("Test SubMenu Links in new Tab...");
+                        });
+                        //test Open New Tab
+                        WebdriverTab newtab = new WebdriverTab();
+                        for (int i = 0 ; i <= 2 ; i++){
+                            answer = newtab.open(webDriver,MainSubMenu.get(i).getAttribute("href"),MainSubMenu.get(i).getAttribute("textContent"));
+                            if (answer){
+                                report.writeToFile("TEST MainMenuSubLink: Successful | ", "found " + MainSubMenu.get(i).getAttribute("textContent") + " Keyword in URL : "+ MainSubMenu.get(i).getAttribute("href"));
+                            }else {
+                                report.writeToFile("TEST MainMenuSubLink: unable to check! |", "couldn't found " + MainSubMenu.get(i).getAttribute("textContent") + " Keyword in URL : "+ MainSubMenu.get(i).getAttribute("href"));
+                            }
+                        }
+
+
 
                         Platform.runLater(() -> {
                             openMainMenu.setStyle("-fx-background-color: #CCFF99");
@@ -286,6 +311,9 @@ public class Controller {
                     Thread.sleep(1000);
 
                     Platform.runLater(() -> progressIndicator.setProgress(checkAllCheckBoxes()));
+                    report.writeToFile("=================================", "");
+
+
 
 
 
@@ -338,6 +366,7 @@ public class Controller {
                     });
 
                     Platform.runLater(() -> progressIndicator.setProgress(checkAllCheckBoxes()));
+                    report.writeToFile("=================================", "");
 
 
                     // go to Search Input and look for Pumps
@@ -366,6 +395,7 @@ public class Controller {
 
 
                     Platform.runLater(() -> progressIndicator.setProgress(checkAllCheckBoxes()));
+                    report.writeToFile("=================================", "");
 
 
                     // select Price Hint Filter
@@ -403,6 +433,7 @@ public class Controller {
 
 
                     Platform.runLater(() -> progressIndicator.setProgress(checkAllCheckBoxes()));
+                    report.writeToFile("=================================", "");
 
 
 
