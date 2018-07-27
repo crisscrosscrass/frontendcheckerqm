@@ -382,15 +382,17 @@ public class Controller {
                     element.submit();
 
                     if (webDriver.getCurrentUrl().contains("?q=")) {
+                        Platform.runLater(() -> {
                         checkPerfectMatch.setStyle("-fx-background-color: #FF0000");
-                        report.writeToFile("Checking Perfect Match: ", "unable to check!");
                         checkPerfectMatch.setSelected(true);
+                        });
+                        report.writeToFile("Checking Perfect Match: ", "unable to check!");
                     } else {
                         Platform.runLater(() -> {
                             checkPerfectMatch.setStyle("-fx-background-color: #CCFF99");
-                            report.writeToFile("Checking Perfect Match: ", "Successful!");
                             checkPerfectMatch.setSelected(true);
                         });
+                        report.writeToFile("Checking Perfect Match: ", "Successful!");
                     }
 
 
