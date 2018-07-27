@@ -13,12 +13,12 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="697.0" prefWidth="1271.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="crisscrosscrass.ReportWindowController">
+<AnchorPane prefHeight="697.0" prefWidth="1508.0" style="-fx-background-color: #e83062;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="crisscrosscrass.ReportWindowController">
     <stylesheets>
         <URL value="@Main.css" />
     </stylesheets>
    <children>
-      <HBox alignment="CENTER" layoutY="-4.0" style="-fx-background-color: #e83062;" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="-4.0">
+      <HBox alignment="CENTER" layoutY="-4.0" prefWidth="1338.0" style="-fx-background-color: #e83062;" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="-4.0">
          <children>
             <HBox alignment="CENTER" prefHeight="150.0">
                <children>
@@ -58,9 +58,9 @@
       </HBox>
       <HBox alignment="CENTER" layoutX="1.0" layoutY="190.0" prefHeight="474.0" prefWidth="1271.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-1.0">
          <children>
-            <HBox alignment="CENTER" prefHeight="432.0" prefWidth="1165.0">
+            <HBox alignment="CENTER" prefHeight="454.0" prefWidth="1331.0">
                <children>
-                  <AnchorPane>
+                  <AnchorPane prefWidth="673.0">
                      <children>
                         <ScrollPane layoutX="8.0" prefHeight="443.0" prefWidth="730.0">
                            <content>
@@ -75,9 +75,9 @@
                   </AnchorPane>
                   <AnchorPane prefHeight="454.0" prefWidth="730.0">
                      <children>
-                        <ScrollPane prefHeight="454.0" prefWidth="730.0">
+                        <ScrollPane prefHeight="443.0" prefWidth="730.0">
                            <content>
-                              <FlowPane fx:id="ImageGallery" prefHeight="451.0" prefWidth="725.0" />
+                              <FlowPane fx:id="ImageGallery" prefHeight="442.0" prefWidth="725.0" />
                            </content>
                         </ScrollPane>
                      </children>

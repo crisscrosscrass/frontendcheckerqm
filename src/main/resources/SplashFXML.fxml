@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.effect.Bloom?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.StackPane?>
-
 
 <StackPane fx:id="rootPane" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="crisscrosscrass.SplashFXMLController">
    <children>
@@ -11,6 +13,18 @@
          <image>
             <Image url="@VisualMeta_White.png" />
          </image>
+         <effect>
+            <DropShadow offsetX="10.0" offsetY="10.0" spread="0.1" />
+         </effect>
       </ImageView>
    </children>
+   <opaqueInsets>
+      <Insets left="10.0" right="10.0" />
+   </opaqueInsets>
+   <effect>
+      <Bloom threshold="0.8" />
+   </effect>
+   <padding>
+      <Insets left="10.0" right="10.0" />
+   </padding>
 </StackPane>
