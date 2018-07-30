@@ -17,10 +17,7 @@ public class FilterButtonCheck {
 
             webDriver.findElement(By.xpath(xpathString)).click();
 
-            for (int i = 0 ; i < 10 ; i++){
-                Thread.sleep(100);
-                js.executeScript("window.scrollBy(0,100)");
-            }
+
             answer = true;
 
         }catch (Exception ButtonFilterNotFound){

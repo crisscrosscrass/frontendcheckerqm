@@ -56,6 +56,8 @@ public class Controller {
     @FXML
     Text statusInfo;
     @FXML
+    TextField inputPerfectMatch;
+    @FXML
     TextArea inputSearch;
     @FXML
     HBox outputPlace;
@@ -134,7 +136,7 @@ public class Controller {
 
 
                     Platform.runLater(() -> progressIndicator.setProgress(checkAllCheckBoxes()));
-
+                    report.writeToFile("=================================", "");
 
                     // Click on Logo Test
                     Platform.runLater(() -> {
@@ -150,16 +152,16 @@ public class Controller {
                         Platform.runLater(() -> {
                             checkLogoHomepage.setStyle("-fx-background-color: #CCFF99");
                             checkLogoHomepage.setSelected(true);
-                            report.writeToFile("Checking Logo: ", "Successful!");
                         });
+                        report.writeToFile("Checking Logo: ", "Successful!");
 
                     } catch (Exception Message) {
                         Platform.runLater(() -> {
                             statusInfo.setText("no Logo...");
                             checkLogoHomepage.setStyle("-fx-background-color: #FF0000");
                             checkLogoHomepage.setSelected(true);
-                            report.writeToFile("Checking Logo: ", "unable to check!");
                         });
+                        report.writeToFile("Checking Logo: ", "unable to check!");
                     }
 
                     Platform.runLater(() -> progressIndicator.setProgress(checkAllCheckBoxes()));
@@ -278,19 +280,19 @@ public class Controller {
 
                         report.writeToFile("=================================", "");
 
-
-
+                        int randomPicker = 0;
                         Platform.runLater(() -> {
-                            statusInfo.setText("Test SubMenu Links in new Tab...");
+                            statusInfo.setText("Test 10 SubMenu Links in new Tab...");
                         });
                         //test Open New Tab
                         WebdriverTab newtab = new WebdriverTab();
-                        for (int i = 0 ; i <= 2 ; i++){
-                            answer = newtab.open(webDriver,MainSubMenu.get(i).getAttribute("href"),MainSubMenu.get(i).getAttribute("textContent"));
+                        for (int i = 0 ; i < 2 ; i++){
+                            randomPicker = 0 + (int)(Math.random() * ((MainSubMenu.size() - 0) + 1));
+                            answer = newtab.open(webDriver,MainSubMenu.get(randomPicker).getAttribute("href"),MainSubMenu.get(randomPicker).getAttribute("textContent"));
                             if (answer){
-                                report.writeToFile("TEST MainMenuSubLink: Successful | ", "found " + MainSubMenu.get(i).getAttribute("textContent") + " Keyword in URL : "+ MainSubMenu.get(i).getAttribute("href"));
+                                report.writeToFile("TEST MainMenuSubLink "+randomPicker+": Successful | ", "found " + MainSubMenu.get(randomPicker).getAttribute("textContent") + " Keyword in URL : "+ MainSubMenu.get(randomPicker).getAttribute("href"));
                             }else {
-                                report.writeToFile("TEST MainMenuSubLink: unable to check! |", "couldn't found " + MainSubMenu.get(i).getAttribute("textContent") + " Keyword in URL : "+ MainSubMenu.get(i).getAttribute("href"));
+                                report.writeToFile("TEST MainMenuSubLink "+randomPicker+": unable to check! |", "couldn't found " + MainSubMenu.get(randomPicker).getAttribute("textContent") + " Keyword in URL : "+ MainSubMenu.get(randomPicker).getAttribute("href"));
                             }
                         }
 
@@ -299,14 +301,14 @@ public class Controller {
                         Platform.runLater(() -> {
                             openMainMenu.setStyle("-fx-background-color: #CCFF99");
                             openMainMenu.setSelected(true);
-                            report.writeToFile("Checking Menu: ", "Successful!");
                         });
+                        report.writeToFile("Checking Menu: ", "Complete!");
                     } catch (Exception noHover) {
                         Platform.runLater(() -> {
                             openMainMenu.setStyle("-fx-background-color: #FF0000");
                             openMainMenu.setSelected(true);
-                            report.writeToFile("Checking Menu: ", "unable to check!");
                         });
+                        report.writeToFile("Checking Menu: ", "unable to complete!");
                     }
                     Thread.sleep(1000);
 
@@ -336,10 +338,9 @@ public class Controller {
 
                     Platform.runLater(() -> {
                         checkBannersLayout.setStyle("-fx-background-color: #CCFF99");
-                        report.writeToFile("Checking Banner: ", "Successful!");
                         checkBannersLayout.setSelected(true);
                     });
-
+                    report.writeToFile("Checking Banner: ", "Successful!");
 
 
                     Platform.runLater(() -> progressIndicator.setProgress(checkAllCheckBoxes()));
@@ -376,9 +377,9 @@ public class Controller {
                         checkPerfectMatch.setStyle("-fx-background-color: #eef442");
                         statusInfo.setText("Checking Perfect Match...");
                     });
-
+                    System.out.println(inputPerfectMatch.getText());
                     WebElement element = webDriver.findElement(By.id("header-search-input"));
-                    element.sendKeys("pumps");
+                    element.sendKeys(inputPerfectMatch.getText());
                     element.submit();
 
                     if (webDriver.getCurrentUrl().contains("?q=")) {
@@ -415,22 +416,22 @@ public class Controller {
                     if (answer) {
                         Platform.runLater(() -> {
                             checkSalesPrice.setStyle("-fx-background-color: #CCFF99");
-                            report.writeToFile("Checking Price Hint: ", "Successful!");
                             checkSalesPrice.setSelected(true);
                         });
+                        report.writeToFile("Checking Price Hint: ", "Successful!");
                     } else {
                         Platform.runLater(() -> {
                             checkSalesPrice.setStyle("-fx-background-color: #FF0000");
-                            report.writeToFile("Checking Price Hint: ", "unable to check!");
                             checkSalesPrice.setSelected(true);
                         });
+                        report.writeToFile("Checking Price Hint: ", "unable to check!");
                     }
                     // make SCREENSHOT
                     answer = ScreenshotViaWebDriver.printScreen(webDriver,"screenshot5.png");
                     if (answer){
-                        report.writeToFile("Checking Layout: ", "Screenshot successful!");
+                        report.writeToFile("Checking Layout Salesprice: ", "Screenshot successful!");
                     }else {
-                        report.writeToFile("Checking Layout: ", "Screenshot not successful!");
+                        report.writeToFile("Checking Layout Salesprice: ", "Screenshot not successful!");
                     }
 
 
@@ -451,25 +452,24 @@ public class Controller {
                     xpathPattern = "//*[@id='pagecontent']/*/*[@class='sidebar']/*[@data-id='farben_block']/ul/li/a ";
                     answer = FilterButtonCheck.pressFilterButton(webDriver, js, xpathPattern);
                     if (answer) {
-                        Platform.runLater(() -> report.writeToFile("Checking Filter Color: ", "Successful!"));
+                        report.writeToFile("Checking Filter Color: ", "Successful!");
                     } else {
-                        Platform.runLater(() -> {
-                            report.writeToFile("Checking Filter Color: ", "unable to check!");
-                            report.writeToFile("Checking via JavaScript: ", "\b");
-                        });
+                        report.writeToFile("Checking Filter Color: ", "unable to check!");
+                        report.writeToFile("Checking via JavaScript: ", "\b");
                         answer = FilterButtonCheckViaJavaScript.pressFilterButton(webDriver, js, xpathPattern);
+
                         if (answer){
-                            Platform.runLater(() -> report.writeToFile("Checking Filter Color via JS: ", "Successful!"));
+                            report.writeToFile("Checking Filter Color via JS: ", "Successful!");
                         }else{
-                            Platform.runLater(() -> report.writeToFile("Checking Filter Color via JS: ", "unable to check!"));
+                            report.writeToFile("Checking Filter Color via JS: ", "unable to check!");
                         }
                     }
                     // make SCREENSHOT
                     answer = ScreenshotViaWebDriver.printScreen(webDriver,"screenshot6.png");
                     if (answer){
-                        report.writeToFile("Checking Layout: ", "Screenshot successful!");
+                        report.writeToFile("Checking Layout Color: ", "Screenshot successful!");
                     }else {
-                        report.writeToFile("Checking Layout: ", "Screenshot not successful!");
+                        report.writeToFile("Checking Layout Color: ", "Screenshot not successful!");
                     }
 
 
@@ -479,27 +479,24 @@ public class Controller {
                     xpathPattern = "//*[@id='pagecontent']/*/*[@class='sidebar']/*[@data-id='brand_box']/div/a ";
                     answer = FilterButtonCheck.pressFilterButton(webDriver, js, xpathPattern);
                     if (answer) {
-                        Platform.runLater(() -> report.writeToFile("Checking Filter Brand: ", "Successful!"));
+                        report.writeToFile("Checking Filter Brand: ", "Successful!");
                     } else {
-                        Platform.runLater(() -> {
-                            report.writeToFile("Checking Filter Brand: ", "unable to check!");
-                            report.writeToFile("Checking via JavaScript: ", "\b");
-                        });
-
+                        report.writeToFile("Checking Filter Brand: ", "unable to check!");
+                        report.writeToFile("Checking via JavaScript: ", "\b");
                         answer = FilterButtonCheckViaJavaScript.pressFilterButton(webDriver, js, xpathPattern);
                         if (answer){
-                            Platform.runLater(() -> report.writeToFile("Checking Filter Brand via JS: ", "Successful!"));
+                            report.writeToFile("Checking Filter Brand via JS: ", "Successful!");
                         }else{
-                            Platform.runLater(() -> report.writeToFile("Checking Filter Brand via JS: ", "unable to check!"));
+                            report.writeToFile("Checking Filter Brand via JS: ", "unable to check!");
                         }
                     }
 
                     // make SCREENSHOT
                     answer = ScreenshotViaWebDriver.printScreen(webDriver,"screenshot7.png");
                     if (answer){
-                        report.writeToFile("Checking Layout: ", "Screenshot successful!");
+                        report.writeToFile("Checking Layout Brand: ", "Screenshot successful!");
                     }else {
-                        report.writeToFile("Checking Layout: ", "Screenshot not successful!");
+                        report.writeToFile("Checking Layout Brand: ", "Screenshot not successful!");
                     }
 
 
@@ -508,11 +505,10 @@ public class Controller {
                     xpathPattern = "//*[@id='pagecontent']/*/*[@class='sidebar']/*[@data-id='material_block']/div/a ";
                     answer = FilterButtonCheck.pressFilterButton(webDriver, js, xpathPattern);
                     if (answer) {
-                        Platform.runLater(() -> report.writeToFile("Checking Filter Material: ", "Successful!"));
+                        report.writeToFile("Checking Filter Material: ", "Successful!");
                     } else {
-                        Platform.runLater(() -> report.writeToFile("Checking Filter Material: ", "unable to check!"));
+                        report.writeToFile("Checking Filter Material: ", "unable to check!");
                     }
-
 
                     // check shop filter
                     Platform.runLater(() -> statusInfo.setText("Checking Shop..."));
@@ -521,21 +517,20 @@ public class Controller {
                     if (answer) {
                         Platform.runLater(() -> {
                             checkFilter.setStyle("-fx-background-color: #CCFF99");
-                            report.writeToFile("Checking Filter Shop: ", "Successful!");
                             checkFilter.setSelected(true);
                         });
+                        report.writeToFile("Checking Filter Shop: ", "Successful!");
                     } else {
                         Platform.runLater(() -> {
                             checkFilter.setStyle("-fx-background-color: #FF0000");
-                            report.writeToFile("Checking Filter Shop: ", "unable to check!");
                             checkFilter.setSelected(true);
                         });
+                        report.writeToFile("Checking Filter Shop: ", "unable to check!");
                     }
 
 
 
                     // close webdriver and clear tasklist
-
                     webDriver.close();
 
                     try {
