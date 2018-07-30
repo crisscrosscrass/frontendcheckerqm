@@ -10,7 +10,9 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.io.*;
 import java.net.URL;
+import java.util.Properties;
 
 import static javafx.application.Application.launch;
 
@@ -31,6 +33,7 @@ public class Main extends Application {
     }
 
     public static void main(String[] args){
+
         launch(args);
     }
 

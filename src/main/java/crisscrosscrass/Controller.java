@@ -18,7 +18,6 @@ import javafx.scene.text.Text;
 
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Window;
-import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
@@ -29,6 +28,7 @@ import java.io.*;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 public class Controller {
@@ -58,7 +58,7 @@ public class Controller {
     @FXML
     TextField inputPerfectMatch;
     @FXML
-    TextArea inputSearch;
+    TextField inputSearch;
     @FXML
     HBox outputPlace;
     @FXML
@@ -92,6 +92,17 @@ public class Controller {
                 }
 
                 private void takeRoutine() throws InterruptedException {
+                    String resourceName = "filter.properties";
+                    ClassLoader loader = Thread.currentThread().getContextClassLoader();
+                    Properties Homepage = new Properties();
+                    try(InputStream resourceStream = loader.getResourceAsStream(resourceName)) {
+                        Homepage.load(resourceStream);
+                    }catch (Exception nope){
+                        nope.getStackTrace();
+                    }
+                    //System.out.println(props.getProperty("page.main.links"));
+
+
                     // * Basic Settings before Starting WebDriver
                     // * Browser, Javascript , etc.
                     Platform.runLater(() -> {
@@ -112,6 +123,8 @@ public class Controller {
                     }
 
                     Platform.runLater(() -> statusInfo.setText("Starting Engine..."));
+
+
 
 
                     System.setProperty("webdriver.chrome.driver", "temp//chromedriver.exe");
@@ -142,12 +155,11 @@ public class Controller {
                     Platform.runLater(() -> {
                         checkLogoHomepage.setStyle("-fx-background-color: #eef442");
                         statusInfo.setText("Checking Logo...");
-
                     });
 
 
                     try {
-                        ((ChromeDriver) webDriver).findElementByXPath("//*[@id=\"logo\"]/img").click();
+                        ((ChromeDriver) webDriver).findElementByXPath(Homepage.getProperty("page.main.logo")).click();
 
                         Platform.runLater(() -> {
                             checkLogoHomepage.setStyle("-fx-background-color: #CCFF99");
@@ -251,8 +263,9 @@ public class Controller {
                     Actions hover = new Actions(webDriver);
 
 
+
                     try {
-                        List<WebElement> MainMenu = ((ChromeDriver) webDriver).findElementsByXPath("//*[@id='mainmenu-items']/div/*/*/a ");
+                        List<WebElement> MainMenu = ((ChromeDriver) webDriver).findElementsByXPath(Homepage.getProperty("page.main.links"));
                         int counterInfo = 1;
                         for (WebElement MainMenuItem : MainMenu) {
                             hover.moveToElement(MainMenuItem).perform();
@@ -267,7 +280,7 @@ public class Controller {
                             statusInfo.setText("Checking SubMenu...");
                         });
 
-                        List<WebElement> MainSubMenu = ((ChromeDriver) webDriver).findElementsByXPath("//*[contains(@class, 'tab-outer')]/div/div/div/a ");
+                        List<WebElement> MainSubMenu = ((ChromeDriver) webDriver).findElementsByXPath(Homepage.getProperty("page.submain.links"));
                         int counterSubMenu = 1;
                         for (WebElement ItemSubMenu : MainSubMenu) {
                             //System.out.println("MainSubLink: "+ ItemSubMenu.getAttribute("textContent") + " " + ItemSubMenu.getAttribute("href"));
@@ -290,9 +303,9 @@ public class Controller {
                             randomPicker = 0 + (int)(Math.random() * ((MainSubMenu.size() - 0) + 1));
                             answer = newtab.open(webDriver,MainSubMenu.get(randomPicker).getAttribute("href"),MainSubMenu.get(randomPicker).getAttribute("textContent"));
                             if (answer){
-                                report.writeToFile("TEST MainMenuSubLink "+randomPicker+": Successful | ", "found " + MainSubMenu.get(randomPicker).getAttribute("textContent") + " Keyword in URL : "+ MainSubMenu.get(randomPicker).getAttribute("href"));
+                                report.writeToFile("TEST MainMenuSubLink "+randomPicker+": Successful | ", "found \"" + MainSubMenu.get(randomPicker).getAttribute("textContent") + "\" Keyword at URL : "+ MainSubMenu.get(randomPicker).getAttribute("href"));
                             }else {
-                                report.writeToFile("TEST MainMenuSubLink "+randomPicker+": unable to check! |", "couldn't found " + MainSubMenu.get(randomPicker).getAttribute("textContent") + " Keyword in URL : "+ MainSubMenu.get(randomPicker).getAttribute("href"));
+                                report.writeToFile("TEST MainMenuSubLink "+randomPicker+": unable to check! |", "couldn't found \"" + MainSubMenu.get(randomPicker).getAttribute("textContent") + "\" Keyword in URL : "+ MainSubMenu.get(randomPicker).getAttribute("href"));
                             }
                         }
 
@@ -323,7 +336,7 @@ public class Controller {
                         statusInfo.setText("Checking Banners...");
                     });
 
-                    List<WebElement> infos = ((ChromeDriver) webDriver).findElementsByXPath("//*[@class='categories-wrapper']/a");
+                    List<WebElement> infos = ((ChromeDriver) webDriver).findElementsByXPath(Homepage.getProperty("page.main.banner"));
                     int MainMenuCounter = 1;
                     for (WebElement info : infos) {
                         hover.moveToElement(info).perform();
@@ -374,7 +387,7 @@ public class Controller {
                         statusInfo.setText("Checking Perfect Match...");
                     });
                     System.out.println(inputPerfectMatch.getText());
-                    WebElement element = webDriver.findElement(By.id("header-search-input"));
+                    WebElement element = webDriver.findElement(By.id(Homepage.getProperty("page.search.bar")));
                     element.sendKeys(inputPerfectMatch.getText());
                     element.submit();
 
@@ -407,7 +420,7 @@ public class Controller {
 
 
                     //check sales price
-                    answer = FilterButtonCheck.pressFilterButton(webDriver, js, "//*[@id='saleButtonHeader2']");
+                    answer = FilterButtonCheck.pressFilterButton(webDriver, js, Homepage.getProperty("page.filter.salesprice"));
 
                     if (answer) {
                         Platform.runLater(() -> {
@@ -445,7 +458,7 @@ public class Controller {
 
                     //  check color filter
                     Platform.runLater(() -> statusInfo.setText("Checking Color..."));
-                    xpathPattern = "//*[@id='pagecontent']/*/*[@class='sidebar']/*[@data-id='farben_block']/ul/li/a ";
+                    xpathPattern = Homepage.getProperty("page.filter.color");
                     answer = FilterButtonCheck.pressFilterButton(webDriver, js, xpathPattern);
                     if (answer) {
                         report.writeToFile("Checking Filter Color: ", "Successful!");
@@ -472,7 +485,7 @@ public class Controller {
 
                     // check brand filter
                     Platform.runLater(() -> statusInfo.setText("Checking Brand..."));
-                    xpathPattern = "//*[@id='pagecontent']/*/*[@class='sidebar']/*[@data-id='brand_box']/div/a ";
+                    xpathPattern = Homepage.getProperty("page.filter.brand");
                     answer = FilterButtonCheck.pressFilterButton(webDriver, js, xpathPattern);
                     if (answer) {
                         report.writeToFile("Checking Filter Brand: ", "Successful!");
@@ -498,7 +511,7 @@ public class Controller {
 
                     // check material filter
                     Platform.runLater(() -> statusInfo.setText("Checking Material..."));
-                    xpathPattern = "//*[@id='pagecontent']/*/*[@class='sidebar']/*[@data-id='material_block']/div/a ";
+                    xpathPattern = Homepage.getProperty("page.filter.material");
                     answer = FilterButtonCheck.pressFilterButton(webDriver, js, xpathPattern);
                     if (answer) {
                         report.writeToFile("Checking Filter Material: ", "Successful!");
@@ -508,7 +521,7 @@ public class Controller {
 
                     // check shop filter
                     Platform.runLater(() -> statusInfo.setText("Checking Shop..."));
-                    xpathPattern = "//*[@id='pagecontent']/*/*[@class='sidebar']/*[@data-id='shop_box']/div/a";
+                    xpathPattern = Homepage.getProperty("page.filter.shop");
                     answer = FilterButtonCheck.pressFilterButton(webDriver, js, xpathPattern);
                     if (answer) {
                         Platform.runLater(() -> {
