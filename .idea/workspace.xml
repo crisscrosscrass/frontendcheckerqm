@@ -7,12 +7,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/filter.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/crisscrosscrass/SplashFXMLController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/crisscrosscrass/SplashFXMLController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/UserInterface.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/UserInterface.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/filter.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/configs/page.properties" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -81,8 +78,8 @@
       <file leaf-file-name="Controller.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-115">
-              <caret line="385" column="80" selection-start-line="385" selection-start-column="80" selection-end-line="385" selection-end-column="80" />
+            <state relative-caret-position="204">
+              <caret line="84" column="41" lean-forward="true" selection-start-line="84" selection-start-column="41" selection-end-line="84" selection-end-column="41" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -129,6 +126,7 @@
       <find>Class</find>
       <find>//</find>
       <find>perfec</find>
+      <find>size()</find>
     </findStrings>
   </component>
   <component name="FindManager">
@@ -238,8 +236,8 @@
     </navigator>
     <panes>
       <pane id="AndroidView" />
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -288,6 +286,19 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="FrontEndCheck" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FrontEndCheck" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="configs" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FrontEndCheck" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FrontEndCheck" type="462c0819:PsiDirectoryNode" />
+              <item name="target" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -316,16 +327,17 @@
     <property name="settings.editor.selected.configurable" value="editor.preferences.tabs" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\ceckardt\IdeaProjects\FrontEndCheck\src\main\resources" />
-      <recent name="C:\Users\ceckardt\IdeaProjects\FrontEndCheck" />
-      <recent name="C:\Users\ceckardt\IdeaProjects\FrontEndCheck\src\main" />
-      <recent name="C:\Users\ceckardt\IdeaProjects\FrontEndCheck\src\main\resources\drivers" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\ceckardt\IdeaProjects\FrontEndCheck\temp" />
       <recent name="C:\Users\ceckardt\IdeaProjects\FrontEndCheck\src\main\resources" />
       <recent name="C:\Users\ceckardt\IdeaProjects\FrontEndCheck" />
+      <recent name="C:\Users\ceckardt\IdeaProjects\FrontEndCheck\src\main\resources\drivers" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\ceckardt\IdeaProjects\FrontEndCheck\src\main\resources\configs" />
+      <recent name="C:\Users\ceckardt\IdeaProjects\FrontEndCheck\src\main\resources" />
+      <recent name="C:\Users\ceckardt\IdeaProjects\FrontEndCheck" />
+      <recent name="C:\Users\ceckardt\IdeaProjects\FrontEndCheck\src\main" />
       <recent name="C:\Users\ceckardt\IdeaProjects\FrontEndCheck\src\main\resources\drivers" />
     </key>
   </component>
@@ -341,7 +353,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Maven.FrontendCheckerFX">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
     </configuration>
@@ -492,13 +504,6 @@
       <option name="presentableId" value="Default" />
       <updated>1359379246138</updated>
       <workItem from="1359379250712" duration="1302000" />
-    </task>
-    <task id="LOCAL-00002" summary="test comment">
-      <created>1529909836902</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1529909836902</updated>
     </task>
     <task id="LOCAL-00003" summary="test comment for workspace">
       <created>1529912936503</created>
@@ -836,7 +841,14 @@
       <option name="project" value="LOCAL" />
       <updated>1532942388317</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="added new input field and properties file">
+      <created>1532955262646</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1532955262647</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -888,30 +900,29 @@
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="4" />
+      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.4968017" weight="0.32861805" />
+      <window_info id="DB Browser" order="3" />
+      <window_info anchor="right" id="Palette&#9;" order="8" />
+      <window_info id="Image Layers" order="7" />
       <window_info anchor="bottom" id="DB Execution Console" order="16" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.554371" side_tool="true" visible="true" weight="0.31991294" />
+      <window_info anchor="right" id="Capture Analysis" order="7" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5554371" side_tool="true" visible="true" weight="0.31991294" />
       <window_info anchor="right" id="Maven Projects" order="1" weight="0.32995737" />
+      <window_info anchor="bottom" id="Version Control" order="14" sideWeight="0.49413645" weight="0.32861805" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4445629" visible="true" weight="0.31991294" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.48773986" weight="0.32861805" />
       <window_info id="Capture Tool" order="9" />
       <window_info id="Designer" order="2" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.23987207" />
       <window_info id="Project Explorer" order="4" />
       <window_info id="Job Explorer" order="8" />
       <window_info anchor="bottom" id="Console" order="12" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
       <window_info id="UI Designer" order="5" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4989339" weight="0.39934713" />
-      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.4968017" weight="0.32861805" />
-      <window_info id="DB Browser" order="3" />
-      <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.48294243" weight="0.32861805" />
-      <window_info anchor="right" id="Palette&#9;" order="8" />
-      <window_info id="Image Layers" order="7" />
-      <window_info anchor="right" id="Capture Analysis" order="7" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.445629" visible="true" weight="0.31991294" />
-      <window_info anchor="bottom" id="Version Control" order="14" sideWeight="0.49413645" weight="0.32861805" />
-      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.48773986" weight="0.32861805" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.23454158" />
       <window_info anchor="right" id="Theme Preview" order="9" />
       <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4989339" weight="0.39934713" />
       <window_info anchor="bottom" id="Application Servers" order="9" />
       <window_info anchor="bottom" id="Changes" order="10" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -921,6 +932,7 @@
       <window_info anchor="bottom" id="Problems" order="13" />
       <window_info anchor="bottom" id="Profiler" order="15" />
       <window_info anchor="right" id="Database" order="6" />
+      <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.48294243" weight="0.32861805" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49093816" weight="0.32861805" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -958,7 +970,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
-    <MESSAGE value="added catty loader" />
     <MESSAGE value="add more filter tests and icon" />
     <MESSAGE value="add filter tests" />
     <MESSAGE value="add some more" />
@@ -983,7 +994,8 @@
     <MESSAGE value="fixed slides" />
     <MESSAGE value="added user input" />
     <MESSAGE value="added some fixed" />
-    <option name="LAST_COMMIT_MESSAGE" value="added some fixed" />
+    <MESSAGE value="added new input field and properties file" />
+    <option name="LAST_COMMIT_MESSAGE" value="added new input field and properties file" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -999,14 +1011,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="480">
           <caret line="763" column="28" lean-forward="true" selection-start-line="763" selection-start-column="28" selection-end-line="763" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/UserInterface.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="337">
-          <caret line="68" column="40" selection-start-line="68" selection-start-column="40" selection-end-line="68" selection-end-column="40" />
         </state>
       </provider>
     </entry>
@@ -1047,12 +1051,12 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/ReportInterface.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="16" column="17" lean-forward="true" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
         </state>
       </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
@@ -1082,12 +1086,12 @@
       <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/SplashFXML.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
           <caret line="21" column="41" lean-forward="true" selection-start-line="21" selection-start-column="41" selection-end-line="21" selection-end-column="41" />
         </state>
       </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/ReportWindow.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -1175,9 +1179,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config.properties">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/config.properties" />
     <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
@@ -1185,17 +1187,25 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/filter.properties">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/UserInterface.fxml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="8" selection-start-line="5" selection-start-column="8" selection-end-line="5" selection-end-column="8" />
+        <state relative-caret-position="561">
+          <caret line="42" column="45" selection-start-line="42" selection-start-column="45" selection-end-line="42" selection-end-column="45" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/configs/page.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="37" selection-start-line="9" selection-start-column="37" selection-end-line="9" selection-end-column="37" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-115">
-          <caret line="385" column="80" selection-start-line="385" selection-start-column="80" selection-end-line="385" selection-end-column="80" />
+        <state relative-caret-position="204">
+          <caret line="84" column="41" lean-forward="true" selection-start-line="84" selection-start-column="41" selection-end-line="84" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

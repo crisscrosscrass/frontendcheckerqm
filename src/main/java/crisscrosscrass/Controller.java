@@ -26,10 +26,8 @@ import java.io.*;
 
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
-import java.util.concurrent.TimeUnit;
 
 public class Controller {
 
@@ -83,6 +81,8 @@ public class Controller {
 
             progressIndicator.setProgress(-1);
             startwebdriver.setDisable(true);
+            inputPerfectMatch.setDisable(true);
+            inputSearch.setDisable(true);
             Task task = new Task<Object>() {
                 @Override
                 protected Void call() throws InterruptedException {
@@ -92,7 +92,7 @@ public class Controller {
                 }
 
                 private void takeRoutine() throws InterruptedException {
-                    String resourceName = "filter.properties";
+                    String resourceName = "configs/page.properties";
                     ClassLoader loader = Thread.currentThread().getContextClassLoader();
                     Properties Homepage = new Properties();
                     try(InputStream resourceStream = loader.getResourceAsStream(resourceName)) {
@@ -300,7 +300,7 @@ public class Controller {
                         //test Open New Tab
                         WebdriverTab newtab = new WebdriverTab();
                         for (int i = 0 ; i < 2 ; i++){
-                            randomPicker = 0 + (int)(Math.random() * ((MainSubMenu.size() - 0) + 1));
+                            randomPicker = 0 + (int)(Math.random() * (((MainSubMenu.size()-1) - 0) + 1));
                             answer = newtab.open(webDriver,MainSubMenu.get(randomPicker).getAttribute("href"),MainSubMenu.get(randomPicker).getAttribute("textContent"));
                             if (answer){
                                 report.writeToFile("TEST MainMenuSubLink "+randomPicker+": Successful | ", "found \"" + MainSubMenu.get(randomPicker).getAttribute("textContent") + "\" Keyword at URL : "+ MainSubMenu.get(randomPicker).getAttribute("href"));
@@ -379,14 +379,14 @@ public class Controller {
                     report.writeToFile("=================================", "");
 
 
-                    // go to Search Input and look for Pumps
+                    // go to Search Input and look for PerfectMatch
 
 
                     Platform.runLater(() -> {
                         checkPerfectMatch.setStyle("-fx-background-color: #eef442");
                         statusInfo.setText("Checking Perfect Match...");
                     });
-                    System.out.println(inputPerfectMatch.getText());
+
                     WebElement element = webDriver.findElement(By.id(Homepage.getProperty("page.search.bar")));
                     element.sendKeys(inputPerfectMatch.getText());
                     element.submit();
@@ -589,6 +589,8 @@ public class Controller {
     private void changeButtonText() {
         statusInfo.setText("Running complete");
         startwebdriver.setDisable(false);
+        inputPerfectMatch.setDisable(false);
+        inputSearch.setDisable(false);
     }
 
     @FXML
