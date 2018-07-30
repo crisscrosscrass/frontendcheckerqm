@@ -317,11 +317,7 @@ public class Controller {
 
 
 
-
-
-
                     // Check banner for layout
-
                     Platform.runLater(() -> {
                         checkBannersLayout.setStyle("-fx-background-color: #eef442");
                         statusInfo.setText("Checking Banners...");
@@ -529,7 +525,6 @@ public class Controller {
                     }
 
 
-
                     // close webdriver and clear tasklist
                     webDriver.close();
 
@@ -538,7 +533,10 @@ public class Controller {
                     } catch (IOException io) {
                         System.out.println(io.getMessage());
                     }
+
                 }
+
+
             };
 
             Thread thread = new Thread(task);
