@@ -12,6 +12,7 @@ public class FilterButtonCheck {
 
     public static boolean pressFilterButton(WebDriver webDriver, JavascriptExecutor js, String xpathString){
 
+
         try{
 
             webDriver.findElement(By.xpath(xpathString)).click();

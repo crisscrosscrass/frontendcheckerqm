@@ -18,7 +18,7 @@ public class ReportWindow {
     public void MyReportWindow() throws IOException {
 
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ReportInterface.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/FXML/ReportInterface.fxml"));
         Parent root = fxmlLoader.load();
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
@@ -30,7 +30,6 @@ public class ReportWindow {
         stage.getIcons().add(Logo);
         stage.setScene(new Scene(root));
         stage.show();
-
 
     }
 

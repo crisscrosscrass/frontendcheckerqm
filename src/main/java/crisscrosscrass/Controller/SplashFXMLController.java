@@ -49,7 +49,7 @@ public class SplashFXMLController implements Initializable {
                         Stage primaryStage = new Stage();
                         Parent parent = null;
                         try {
-                            parent = FXMLLoader.load(getClass().getResource("/UserInterface.fxml"));
+                            parent = FXMLLoader.load(getClass().getResource("/FXML/UserInterface.fxml"));
                         } catch (IOException e) {
                             e.printStackTrace();
                         }

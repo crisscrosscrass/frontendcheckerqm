@@ -559,16 +559,13 @@ public class Controller {
             thread.start();
 
             task.setOnSucceeded(e -> Platform.runLater(() -> {
-                Hyperlink link = new Hyperlink("Report created");
-                link.setOnAction(new EventHandler<ActionEvent>() {
-                    @Override
-                    public void handle(ActionEvent event) {
-                        ReportWindow window = new ReportWindow();
-                        try {
-                            window.MyReportWindow();
-                        } catch (IOException e1) {
-                            e1.printStackTrace();
-                        }
+                Hyperlink link = new Hyperlink("create Report");
+                link.setOnAction(event -> {
+                    ReportWindow window = new ReportWindow();
+                    try {
+                        window.MyReportWindow();
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
                     }
                 });
                 preloaderCat.setImage(null);
