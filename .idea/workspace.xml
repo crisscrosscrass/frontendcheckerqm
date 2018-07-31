@@ -6,12 +6,10 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="fixed some design">
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="fixed some bugs during tab use">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Tasks/WebdriverTab.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Tasks/WebdriverTab.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/FXML/UserInterface.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/FXML/UserInterface.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Style/Main.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Style/Main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/chromedriver.exe" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/chromedriver.exe" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -75,10 +73,11 @@
     <session id="1533947557">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="1" />
+          <entry key="project.closed" value="2" />
           <entry key="project.open.time.18" value="1" />
           <entry key="project.open.time.2" value="1" />
-          <entry key="project.opened" value="2" />
+          <entry key="project.open.time.23" value="1" />
+          <entry key="project.opened" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -87,8 +86,8 @@
           <entry key="css" value="4" />
           <entry key="fxml" value="1" />
           <entry key="gif" value="1" />
-          <entry key="java" value="26" />
-          <entry key="png" value="7" />
+          <entry key="java" value="27" />
+          <entry key="png" value="10" />
           <entry key="properties" value="1" />
           <entry key="txt" value="2" />
         </counts>
@@ -97,8 +96,8 @@
         <counts>
           <entry key="CLASS" value="1" />
           <entry key="CSS" value="4" />
-          <entry key="Image" value="8" />
-          <entry key="JAVA" value="26" />
+          <entry key="Image" value="11" />
+          <entry key="JAVA" value="27" />
           <entry key="PLAIN_TEXT" value="2" />
           <entry key="Properties" value="1" />
           <entry key="XML" value="1" />
@@ -108,15 +107,15 @@
         <counts>
           <entry key="css" value="41" />
           <entry key="fxml" value="5" />
-          <entry key="java" value="179" />
-          <entry key="txt" value="20" />
+          <entry key="java" value="208" />
+          <entry key="txt" value="39" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="41" />
-          <entry key="JAVA" value="179" />
-          <entry key="PLAIN_TEXT" value="20" />
+          <entry key="JAVA" value="208" />
+          <entry key="PLAIN_TEXT" value="39" />
           <entry key="XML" value="5" />
         </counts>
       </usages-collector>
@@ -130,8 +129,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="303">
-              <caret line="265" column="47" selection-start-line="265" selection-start-column="47" selection-end-line="265" selection-end-column="47" />
+            <state relative-caret-position="813">
+              <caret line="283" column="47" lean-forward="true" selection-start-line="283" selection-start-column="47" selection-end-line="283" selection-end-column="47" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -294,9 +293,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
       <pane id="Scope" />
-      <pane id="PackagesPane" />
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -359,31 +357,7 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="configs" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="FrontEndCheck" type="b2602c69:ProjectViewProjectNode" />
-              <item name="FrontEndCheck" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="FXML" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="FrontEndCheck" type="b2602c69:ProjectViewProjectNode" />
-              <item name="FrontEndCheck" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="Images" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="FrontEndCheck" type="b2602c69:ProjectViewProjectNode" />
-              <item name="FrontEndCheck" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="Style" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="FrontEndCheck" type="b2602c69:ProjectViewProjectNode" />
@@ -394,6 +368,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -419,18 +394,18 @@
     <property name="settings.editor.selected.configurable" value="editor.preferences.tabs" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\ceckardt\IdeaProjects\FrontEndCheck\src\main\resources" />
+      <recent name="C:\Users\ceckardt\IdeaProjects\FrontEndCheck\src\main\resources\Style" />
+      <recent name="C:\Users\ceckardt\IdeaProjects\FrontEndCheck\src\main\resources\Images" />
+      <recent name="C:\Users\ceckardt\IdeaProjects\FrontEndCheck\src\main\resources\FXML" />
+      <recent name="C:\Users\ceckardt\IdeaProjects\FrontEndCheck\src\main\resources\configs" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\ceckardt\IdeaProjects\FrontEndCheck\temp" />
       <recent name="C:\Users\ceckardt\IdeaProjects\FrontEndCheck\src\main\resources" />
       <recent name="C:\Users\ceckardt\IdeaProjects\FrontEndCheck" />
       <recent name="C:\Users\ceckardt\IdeaProjects\FrontEndCheck\src\main\resources\drivers" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\ceckardt\IdeaProjects\FrontEndCheck\src\main\resources\Style" />
-      <recent name="C:\Users\ceckardt\IdeaProjects\FrontEndCheck\src\main\resources\Images" />
-      <recent name="C:\Users\ceckardt\IdeaProjects\FrontEndCheck\src\main\resources\FXML" />
-      <recent name="C:\Users\ceckardt\IdeaProjects\FrontEndCheck\src\main\resources\configs" />
-      <recent name="C:\Users\ceckardt\IdeaProjects\FrontEndCheck\src\main\resources" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -592,13 +567,6 @@
       <option name="presentableId" value="Default" />
       <updated>1359379246138</updated>
       <workItem from="1359379250712" duration="1302000" />
-    </task>
-    <task id="LOCAL-00007" summary="added comment again">
-      <created>1529928804708</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1529928804708</updated>
     </task>
     <task id="LOCAL-00008" summary="added comment again">
       <created>1529928890504</created>
@@ -936,7 +904,14 @@
       <option name="project" value="LOCAL" />
       <updated>1533036907625</updated>
     </task>
-    <option name="localTasksCounter" value="56" />
+    <task id="LOCAL-00056" summary="fixed some bugs during tab use">
+      <created>1533039738630</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1533039738631</updated>
+    </task>
+    <option name="localTasksCounter" value="57" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -987,7 +962,7 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.24786781" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.25053304" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="DB Browser" order="3" />
@@ -999,12 +974,12 @@
       <window_info id="Capture Tool" order="9" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49093816" weight="0.32861805" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.44296375" visible="true" weight="0.31960997" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4424307" visible="true" weight="0.31960997" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4989339" weight="0.39934713" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.4968017" weight="0.32861805" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5570362" side_tool="true" visible="true" weight="0.31960997" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5575693" side_tool="true" visible="true" weight="0.31960997" />
       <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.48773986" weight="0.32861805" />
       <window_info anchor="bottom" id="Application Servers" order="9" />
       <window_info anchor="bottom" id="Changes" order="10" />
@@ -1058,7 +1033,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
-    <MESSAGE value="add some more filters and outsource task to extra classes" />
     <MESSAGE value="add some more xpath values" />
     <MESSAGE value="added geckodriver" />
     <MESSAGE value="changes" />
@@ -1083,7 +1057,8 @@
     <MESSAGE value="added some fixed to controller and properties" />
     <MESSAGE value="some structual changes" />
     <MESSAGE value="fixed some design" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed some design" />
+    <MESSAGE value="fixed some bugs during tab use" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed some bugs during tab use" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
@@ -1229,12 +1204,6 @@
     <entry file="file://$PROJECT_DIR$/src/main/resources/Images/preloaderCat.gif">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/Images/VisualMeta.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/Images/VisualMeta_White.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/Images/VisualMeta_White_Mirror.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -1271,9 +1240,6 @@
           <caret line="21" column="48" selection-start-line="21" selection-start-column="48" selection-end-line="21" selection-end-column="48" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/Images/image.png">
-      <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/Style/Main.css">
       <provider selected="true" editor-type-id="text-editor">
@@ -1317,10 +1283,19 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/Images/image.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/Images/VisualMeta.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/Images/VisualMeta_White.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="303">
-          <caret line="265" column="47" selection-start-line="265" selection-start-column="47" selection-end-line="265" selection-end-column="47" />
+        <state relative-caret-position="813">
+          <caret line="283" column="47" lean-forward="true" selection-start-line="283" selection-start-column="47" selection-end-line="283" selection-end-column="47" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

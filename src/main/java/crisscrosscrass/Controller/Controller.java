@@ -284,6 +284,7 @@ public class Controller {
                         int counterSubMenu = 1;
                         for (WebElement ItemSubMenu : MainSubMenu) {
                             //System.out.println("MainSubLink: "+ ItemSubMenu.getAttribute("textContent") + " " + ItemSubMenu.getAttribute("href"));
+                            Platform.runLater(() -> statusInfo.setText(ItemSubMenu.getAttribute("href")));
                             report.writeToFile("MainMenuSubLink: "+ counterSubMenu + " " + ItemSubMenu.getAttribute("textContent"), ItemSubMenu.getAttribute("href"));
                             counterSubMenu++;
                         }
@@ -570,12 +571,15 @@ public class Controller {
 
 
                     // close webdriver and clear tasklist
-                    webDriver.close();
+                    webDriver.quit();
+                    //webDriver.close();
 
                     try {
                         Runtime.getRuntime().exec("TASKKILL /F /IM chromedriver.exe");
+                        Runtime.getRuntime().exec("taskkill /im chromedriver.exe /f");
+
                     } catch (IOException io) {
-                        System.out.println(io.getMessage());
+                        io.printStackTrace();
                     }
 
                 }
