@@ -31,3 +31,17 @@ l0.003,0.004L14.596,2.055z";}
 .tab-pane .tab-header-area .tab-header-background {
     -fx-background-color: white;
 }
+
+.tab{
+    -fx-background-color:   -fx-background;
+    -fx-background: pink ;
+}
+
+.tab:hover{
+    -fx-background: black;
+    -fx-text-fill: white;
+}
+
+.tab:selected{
+    -fx-background:    #e83062;
+}

@@ -14,6 +14,7 @@ public class WebdriverTab {
 
     public boolean open(WebDriver webDriver, String baseUrl, String checkKeyword ){
         answer = false;
+        //String winHandleBefore = webDriver.getWindowHandle();
 
         ((JavascriptExecutor)webDriver).executeScript("window.open()");
         ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
@@ -29,8 +30,9 @@ public class WebdriverTab {
             System.out.println("Error here : "+noSupport);
         }
         finally {
-            webDriver.close();
+            webDriver.switchTo().window(tabs.get(1)).close();
             webDriver.switchTo().window(tabs.get(0)); // switch back to main screen
+            //webDriver.switchTo().window(winHandleBefore);
         }
 
         return answer;

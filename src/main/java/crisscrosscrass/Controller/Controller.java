@@ -262,8 +262,8 @@ public class Controller {
 
                     Actions hover = new Actions(webDriver);
 
-
-
+                    //String winHandleBefore = webDriver.getWindowHandle();
+                    //webDriver.switchTo().window(winHandleBefore);
                     try {
                         List<WebElement> MainMenu = ((ChromeDriver) webDriver).findElementsByXPath(Homepage.getProperty("page.main.links"));
                         int counterInfo = 1;
@@ -312,6 +312,7 @@ public class Controller {
                         });
                         report.writeToFile("Checking Menu: ", "Complete!");
                     } catch (Exception noHover) {
+                        noHover.printStackTrace();
                         Platform.runLater(() -> {
                             openMainMenu.setStyle("-fx-background-color: #FF0000");
                             openMainMenu.setSelected(true);
@@ -331,20 +332,30 @@ public class Controller {
                         statusInfo.setText("Checking Banners...");
                     });
 
-                    List<WebElement> infos = ((ChromeDriver) webDriver).findElementsByXPath(Homepage.getProperty("page.main.banner"));
-                    int MainMenuCounter = 1;
-                    for (WebElement info : infos) {
-                        hover.moveToElement(info).perform();
-                        System.out.println();
-                        report.writeToFile("BannerLink " + MainMenuCounter, info.getAttribute("href"));
-                        MainMenuCounter++;
+                    try{
+                        List<WebElement> infos = ((ChromeDriver) webDriver).findElementsByXPath(Homepage.getProperty("page.main.banner"));
+                        int MainMenuCounter = 1;
+                        for (WebElement info : infos) {
+                            hover.moveToElement(info).perform();
+                            System.out.println();
+                            report.writeToFile("BannerLink " + MainMenuCounter, info.getAttribute("href"));
+                            MainMenuCounter++;
+                        }
+
+                        Platform.runLater(() -> {
+                            checkBannersLayout.setStyle("-fx-background-color: #CCFF99");
+                            checkBannersLayout.setSelected(true);
+                        });
+                        report.writeToFile("Checking Banner: ", "Successful!");
+                    }catch (Exception noBanner){
+                        noBanner.printStackTrace();
+                        Platform.runLater(() -> {
+                            checkBannersLayout.setStyle("-fx-background-color: #FF0000");
+                            checkBannersLayout.setSelected(true);
+                        });
+                        report.writeToFile("Checking Banner: ", "unable to complete!!");
                     }
 
-                    Platform.runLater(() -> {
-                        checkBannersLayout.setStyle("-fx-background-color: #CCFF99");
-                        checkBannersLayout.setSelected(true);
-                    });
-                    report.writeToFile("Checking Banner: ", "Successful!");
 
 
                     Platform.runLater(() -> progressIndicator.setProgress(checkAllCheckBoxes()));
@@ -357,47 +368,54 @@ public class Controller {
                         statusInfo.setText("Checking Shop of the Week...");
                     });
 
-                                            /*WebElement element = webDriver.findElement(By.xpath("//*[@id=\"pagecontent\"]/div[7]/div/div[1]"));
-                                            ((JavascriptExecutor) webDriver).executeScript("arguments[0].scrollIntoView(true);", element);
-                                            */
-                    for (int i = 0; i < 10; i++) {
-                        Thread.sleep(100);
-                        js.executeScript("window.scrollBy(0,100)");
+                    try {
+                        for (int i = 0; i < 10; i++) {
+                            Thread.sleep(100);
+                            js.executeScript("window.scrollBy(0,100)");
+                        }
+
+                        Platform.runLater(() -> {
+                            checkShopOfTheWeek.setStyle("-fx-background-color: #CCFF99");
+                            checkShopOfTheWeek.setSelected(true);
+                        });
+                    }catch (Exception noShop){
+                        noShop.printStackTrace();
+                        Platform.runLater(() -> {
+                            checkShopOfTheWeek.setStyle("-fx-background-color: #FF0000");
+                            checkShopOfTheWeek.setSelected(true);
+                        });
                     }
 
-                    Platform.runLater(() -> {
-                        checkShopOfTheWeek.setStyle("-fx-background-color: #CCFF99");
-                        checkShopOfTheWeek.setSelected(true);
-                    });
 
                     Platform.runLater(() -> progressIndicator.setProgress(checkAllCheckBoxes()));
                     report.writeToFile("=================================", "");
 
 
                     // go to Search Input and look for PerfectMatch
-
-
                     Platform.runLater(() -> {
                         checkPerfectMatch.setStyle("-fx-background-color: #eef442");
                         statusInfo.setText("Checking Perfect Match...");
                     });
+                    try{
+                        WebElement element = webDriver.findElement(By.id(Homepage.getProperty("page.search.bar")));
+                        element.sendKeys(inputPerfectMatch.getText());
+                        element.submit();
 
-                    WebElement element = webDriver.findElement(By.id(Homepage.getProperty("page.search.bar")));
-                    element.sendKeys(inputPerfectMatch.getText());
-                    element.submit();
-
-                    if (webDriver.getCurrentUrl().contains("?q=")) {
-                        Platform.runLater(() -> {
-                        checkPerfectMatch.setStyle("-fx-background-color: #FF0000");
-                        checkPerfectMatch.setSelected(true);
-                        });
-                        report.writeToFile("Checking Perfect Match: ", "unable to check!");
-                    } else {
-                        Platform.runLater(() -> {
-                            checkPerfectMatch.setStyle("-fx-background-color: #CCFF99");
-                            checkPerfectMatch.setSelected(true);
-                        });
-                        report.writeToFile("Checking Perfect Match: ", "Successful!");
+                        if (webDriver.getCurrentUrl().contains("?q=")) {
+                            Platform.runLater(() -> {
+                                checkPerfectMatch.setStyle("-fx-background-color: #FF0000");
+                                checkPerfectMatch.setSelected(true);
+                            });
+                            report.writeToFile("Checking Perfect Match: ", "unable to check!");
+                        } else {
+                            Platform.runLater(() -> {
+                                checkPerfectMatch.setStyle("-fx-background-color: #CCFF99");
+                                checkPerfectMatch.setSelected(true);
+                            });
+                            report.writeToFile("Checking Perfect Match: ", "Successful!");
+                        }
+                    }catch (Exception noPerfectMatch){
+                        noPerfectMatch.printStackTrace();
                     }
 
 
