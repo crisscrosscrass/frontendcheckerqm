@@ -23,7 +23,7 @@ public class ViewImageWindow {
             window.close();
         });
         Scene scene = new Scene(root);
-        URL LogoLocation = Main.class.getClassLoader().getResource("VisualMeta.png");
+        URL LogoLocation = Main.class.getClassLoader().getResource("Images/VisualMeta.png");
         Image Logo = new Image(String.valueOf(LogoLocation));
         window.getIcons().add(Logo);
         window.setScene(scene);

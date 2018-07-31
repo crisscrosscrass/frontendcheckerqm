@@ -27,3 +27,7 @@ l0.003,0.004L14.596,2.055z";}
     -fx-translate-x: 5px;
     -fx-translate-y: -5px;
 }
+
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-background-color: white;
+}

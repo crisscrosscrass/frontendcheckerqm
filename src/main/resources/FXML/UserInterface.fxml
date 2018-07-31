@@ -7,6 +7,8 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -19,9 +21,10 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="mainStage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="735.0" prefWidth="556.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="crisscrosscrass.Controller.Controller">
+<AnchorPane fx:id="mainStage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="735.0" prefWidth="572.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="crisscrosscrass.Controller.Controller">
     <stylesheets>
         <URL value="@../Main.css" />
+      <URL value="@../Style/Main.css" />
     </stylesheets>
    <children>
       <Pane layoutX="-10.0" layoutY="-10.0" prefHeight="288.0" prefWidth="569.0" style="-fx-background-color: #e83062;" AnchorPane.leftAnchor="-10.0" AnchorPane.rightAnchor="-3.0" AnchorPane.topAnchor="-10.0" />
@@ -29,7 +32,7 @@
          <children>
             <VBox alignment="TOP_CENTER" prefHeight="250.0" prefWidth="520.0">
                <children>
-                  <TextField fx:id="inputSearch" alignment="CENTER" text="https://www.ladenzeile.de/">
+                  <TextField fx:id="inputSearch" alignment="CENTER" focusTraversable="false" text="https://www.ladenzeile.de/">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -37,7 +40,7 @@
                   <HBox alignment="CENTER" spacing="20.0">
                      <children>
                         <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Perfect Match Test :" />
-                        <TextField fx:id="inputPerfectMatch" alignment="CENTER" text="pumps" />
+                        <TextField fx:id="inputPerfectMatch" alignment="CENTER" focusTraversable="false" text="pumps" />
                      </children>
                      <padding>
                         <Insets top="20.0" />
@@ -94,32 +97,55 @@
                   <Insets left="20.0" right="20.0" />
                </padding>
             </VBox>
-            <VBox prefHeight="352.0" prefWidth="520.0">
-               <children>
-                  <HBox fx:id="outputPlace" alignment="CENTER" prefHeight="31.0" prefWidth="454.0" />
-                  <Pane prefHeight="321.0" prefWidth="430.0" style="-fx-border-color: #e83062;">
-                     <children>
-                        <HBox layoutX="7.0" layoutY="6.714286804199219" spacing="20.0">
+            <TabPane side="RIGHT">
+               <tabs>
+                  <Tab closable="false" text="Homepage">
+                     <content>
+                        <VBox prefHeight="352.0" prefWidth="520.0">
                            <children>
-                              <FontAwesomeIconView fill="#e83062" glyphName="CLONE" size="40" />
-                              <VBox fx:id="CheckBoxesPlace" alignment="CENTER_LEFT">
+                              <HBox fx:id="outputPlace" alignment="CENTER" prefHeight="31.0" prefWidth="454.0" />
+                              <Pane prefHeight="321.0" prefWidth="430.0" style="-fx-border-color: #e83062;">
                                  <children>
-                                    <CheckBox fx:id="checkLogoHomepage" mnemonicParsing="false" text="# Click on logo to go to homepage" />
-                                    <CheckBox fx:id="checkGeneralLayout" mnemonicParsing="false" text="# Check general layout" />
-                                    <CheckBox fx:id="openMainMenu" mnemonicParsing="false" text="# Open main menu and check layout / links" />
-                                    <CheckBox fx:id="checkBannersLayout" mnemonicParsing="false" text="# Check banners for layout" />
-                                    <CheckBox fx:id="checkShopOfTheWeek" mnemonicParsing="false" text="# Check &quot;Shop of the week&quot; (Logo + Category links)" />
-                                    <CheckBox fx:id="checkPerfectMatch" mnemonicParsing="false" text="# perfect Match via using text search" />
-                                    <CheckBox fx:id="checkSalesPrice" mnemonicParsing="false" text="# Check &quot;Price Hint&quot; link (when existing)" />
-                                    <CheckBox fx:id="checkFilter" mnemonicParsing="false" text="# Check Filter Apply" />
+                                    <HBox layoutX="7.0" layoutY="6.714286804199219" spacing="20.0">
+                                       <children>
+                                          <FontAwesomeIconView fill="#e83062" glyphName="CLONE" size="40" />
+                                          <VBox fx:id="CheckBoxesPlace" alignment="CENTER_LEFT">
+                                             <children>
+                                                <CheckBox fx:id="checkLogoHomepage" mnemonicParsing="false" text="# Click on logo to go to homepage" />
+                                                <CheckBox fx:id="checkGeneralLayout" mnemonicParsing="false" text="# Check general layout" />
+                                                <CheckBox fx:id="openMainMenu" mnemonicParsing="false" text="# Open main menu and check layout / links" />
+                                                <CheckBox fx:id="checkBannersLayout" mnemonicParsing="false" text="# Check banners for layout" />
+                                                <CheckBox fx:id="checkShopOfTheWeek" mnemonicParsing="false" text="# Check &quot;Shop of the week&quot; (Logo + Category links)" />
+                                                <CheckBox fx:id="checkPerfectMatch" mnemonicParsing="false" text="# perfect Match via using text search" />
+                                                <CheckBox fx:id="checkSalesPrice" mnemonicParsing="false" text="# Check &quot;Price Hint&quot; link (when existing)" />
+                                                <CheckBox fx:id="checkFilter" mnemonicParsing="false" text="# Check Filter Apply" />
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
                                  </children>
-                              </VBox>
+                              </Pane>
                            </children>
-                        </HBox>
-                     </children>
-                  </Pane>
-               </children>
-            </VBox>
+                        </VBox>
+                     </content>
+                  </Tab>
+                  <Tab closable="false" disable="true" text="Grid Page">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                    </content>
+                  </Tab>
+                  <Tab closable="false" disable="true" text="Grid Page with Window">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                     </content>
+                  </Tab>
+                  <Tab closable="false" text="Brand">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                     </content>
+                  </Tab>
+               </tabs>
+            </TabPane>
          </children>
       </VBox>
    </children>

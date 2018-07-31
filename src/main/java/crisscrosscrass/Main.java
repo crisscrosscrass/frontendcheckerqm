@@ -20,7 +20,7 @@ public class Main extends Application {
         //Parent parent = FXMLLoader.load(getClass().getResource("/UserInterface.fxml"));
         Parent parent = FXMLLoader.load(getClass().getResource("/FXML/SplashFXML.fxml"));
         primaryStage.setTitle("Frontend Check");
-        URL LogoLocation = Main.class.getClassLoader().getResource("VisualMeta.png");
+        URL LogoLocation = Main.class.getClassLoader().getResource("Images/VisualMeta.png");
         Image Logo = new Image(String.valueOf(LogoLocation));
         primaryStage.getIcons().add(Logo);
         primaryStage.setAlwaysOnTop(true);

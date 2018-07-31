@@ -54,7 +54,7 @@ public class SplashFXMLController implements Initializable {
                             e.printStackTrace();
                         }
                         primaryStage.setTitle("Frontend Check");
-                        URL LogoLocation = Main.class.getClassLoader().getResource("VisualMeta.png");
+                        URL LogoLocation = Main.class.getClassLoader().getResource("Images/VisualMeta.png");
                         Image Logo = new Image(String.valueOf(LogoLocation));
                         primaryStage.getIcons().add(Logo);
                         primaryStage.setScene(new Scene(parent));

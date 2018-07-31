@@ -25,7 +25,7 @@ public class ReportWindow {
         //stage.initStyle(StageStyle.UNDECORATED);
 
         stage.setTitle("Report Window");
-        URL LogoLocation = Main.class.getClassLoader().getResource("VisualMeta.png");
+        URL LogoLocation = Main.class.getClassLoader().getResource("Images/VisualMeta.png");
         Image Logo = new Image(String.valueOf(LogoLocation));
         stage.getIcons().add(Logo);
         stage.setScene(new Scene(root));

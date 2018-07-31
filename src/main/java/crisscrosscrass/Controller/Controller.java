@@ -4,8 +4,6 @@ import crisscrosscrass.*;
 import crisscrosscrass.Tasks.*;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -110,7 +108,7 @@ public class Controller {
                     Platform.runLater(() -> {
                         statusInfo.setText("Detecting Sources...");
                         //DocFlavor.URL catty = Main.class.getResource("preloaderCat.gif");
-                        URL cattyLocation = Main.class.getClassLoader().getResource("preloaderCat.gif");
+                        URL cattyLocation = Main.class.getClassLoader().getResource("Images/preloaderCat.gif");
                         Image catty = new Image(String.valueOf(cattyLocation));
                         preloaderCat.setImage(catty);
                     });
@@ -287,9 +285,6 @@ public class Controller {
                         for (WebElement ItemSubMenu : MainSubMenu) {
                             //System.out.println("MainSubLink: "+ ItemSubMenu.getAttribute("textContent") + " " + ItemSubMenu.getAttribute("href"));
                             report.writeToFile("MainMenuSubLink: "+ counterSubMenu + " " + ItemSubMenu.getAttribute("textContent"), ItemSubMenu.getAttribute("href"));
-                            Platform.runLater(() -> {
-                                statusInfo.setText(ItemSubMenu.getAttribute("href"));
-                            });
                             counterSubMenu++;
                         }
 
@@ -310,8 +305,6 @@ public class Controller {
                                 report.writeToFile("TEST MainMenuSubLink "+randomPicker+": unable to check! |", "couldn't found \"" + MainSubMenu.get(randomPicker).getAttribute("textContent") + "\" Keyword in URL : "+ MainSubMenu.get(randomPicker).getAttribute("href"));
                             }
                         }
-
-
 
                         Platform.runLater(() -> {
                             openMainMenu.setStyle("-fx-background-color: #CCFF99");
@@ -519,6 +512,13 @@ public class Controller {
                         report.writeToFile("Checking Filter Material: ", "Successful!");
                     } else {
                         report.writeToFile("Checking Filter Material: ", "unable to check!");
+                        report.writeToFile("Checking via JavaScript: ", "\b");
+                        answer = FilterButtonCheckViaJavaScript.pressFilterButton(webDriver, js, xpathPattern);
+                        if (answer){
+                            report.writeToFile("Checking Filter Material via JS: ", "Successful!");
+                        }else{
+                            report.writeToFile("Checking Filter Material via JS: ", "unable to check!");
+                        }
                     }
 
                     // check shop filter
@@ -532,11 +532,22 @@ public class Controller {
                         });
                         report.writeToFile("Checking Filter Shop: ", "Successful!");
                     } else {
-                        Platform.runLater(() -> {
-                            checkFilter.setStyle("-fx-background-color: #FF0000");
-                            checkFilter.setSelected(true);
-                        });
                         report.writeToFile("Checking Filter Shop: ", "unable to check!");
+                        report.writeToFile("Checking via JavaScript: ", "\b");
+                        answer = FilterButtonCheckViaJavaScript.pressFilterButton(webDriver, js, xpathPattern);
+                        if (answer){
+                            report.writeToFile("Checking Filter Shop via JS: ", "Successful!");
+                            Platform.runLater(() -> {
+                                checkFilter.setStyle("-fx-background-color: #CCFF99");
+                                checkFilter.setSelected(true);
+                            });
+                        }else{
+                            report.writeToFile("Checking Filter Shop via JS: ", "unable to check!");
+                            Platform.runLater(() -> {
+                                checkFilter.setStyle("-fx-background-color: #FF0000");
+                                checkFilter.setSelected(true);
+                            });
+                        }
                     }
 
 

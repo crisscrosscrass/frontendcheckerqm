@@ -6,16 +6,23 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="some structual changes">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Style/Tab.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/SplashFXMLController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/SplashFXMLController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Tasks/FilterButtonCheck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Tasks/FilterButtonCheck.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Tasks/ReportWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Tasks/ReportWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ReportInterface.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/FXML/ReportInterface.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/SplashFXML.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/FXML/SplashFXML.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/UserInterface.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/FXML/UserInterface.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Tasks/ViewImageWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Tasks/ViewImageWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/FXML/ReportInterface.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/FXML/ReportInterface.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/FXML/SplashFXML.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/FXML/SplashFXML.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/FXML/UserInterface.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/FXML/UserInterface.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Main.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Style/Main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/VisualMeta.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Images/VisualMeta.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/VisualMeta_White.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Images/VisualMeta_White.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/VisualMeta_White_Mirror.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Images/VisualMeta_White_Mirror.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/image.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Images/image.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/preloaderCat.gif" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Images/preloaderCat.gif" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -85,22 +92,35 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="java" value="4" />
+          <entry key="css" value="3" />
+          <entry key="fxml" value="1" />
+          <entry key="gif" value="1" />
+          <entry key="java" value="11" />
+          <entry key="png" value="6" />
+          <entry key="txt" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JAVA" value="4" />
+          <entry key="CSS" value="3" />
+          <entry key="Image" value="7" />
+          <entry key="JAVA" value="11" />
+          <entry key="PLAIN_TEXT" value="1" />
+          <entry key="XML" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="17" />
+          <entry key="css" value="7" />
+          <entry key="fxml" value="5" />
+          <entry key="java" value="29" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="17" />
+          <entry key="CSS" value="7" />
+          <entry key="JAVA" value="29" />
+          <entry key="XML" value="5" />
         </counts>
       </usages-collector>
     </session>
@@ -113,8 +133,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="43">
-              <caret line="112" column="48" selection-start-line="112" selection-start-column="48" selection-end-line="112" selection-end-column="48" />
+            <state relative-caret-position="531">
+              <caret line="331" column="23" lean-forward="true" selection-start-line="331" selection-start-column="23" selection-end-line="331" selection-end-column="23" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -151,7 +171,6 @@
       <find>&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;</find>
       <find>ImageGallery</find>
       <find>Checking Bann</find>
-      <find>Banner</find>
       <find>Tab</find>
       <find>Checking Lay</find>
       <find>inputPerfectMatch</find>
@@ -162,6 +181,7 @@
       <find>//</find>
       <find>perfec</find>
       <find>size()</find>
+      <find>Banner</find>
     </findStrings>
   </component>
   <component name="FindManager">
@@ -213,6 +233,9 @@
         <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/Tasks/ReportWindow.java" />
         <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/Tasks/FilterButtonCheck.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/FXML/SplashFXML.fxml" />
+        <option value="$PROJECT_DIR$/src/main/resources/Style/Tab.css" />
+        <option value="$PROJECT_DIR$/src/main/resources/Style/Main.css" />
         <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/Controller.java" />
       </list>
     </option>
@@ -340,6 +363,27 @@
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="configs" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="FrontEndCheck" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FrontEndCheck" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="FXML" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FrontEndCheck" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FrontEndCheck" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="Style" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FrontEndCheck" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FrontEndCheck" type="462c0819:PsiDirectoryNode" />
+              <item name="temp" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -358,6 +402,7 @@
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1533036859106" />
     <property name="dynamic.classpath" value="false" />
     <property name="last_opened_file_path" value="$USER_HOME$/AppData/Local/Programs/Git/bin/git.exe" />
     <property name="project.structure.last.edited" value="Project" />
@@ -368,18 +413,18 @@
     <property name="settings.editor.selected.configurable" value="editor.preferences.tabs" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\ceckardt\IdeaProjects\FrontEndCheck\src\main\resources\FXML" />
-      <recent name="C:\Users\ceckardt\IdeaProjects\FrontEndCheck\src\main\resources\configs" />
-      <recent name="C:\Users\ceckardt\IdeaProjects\FrontEndCheck\src\main\resources" />
-      <recent name="C:\Users\ceckardt\IdeaProjects\FrontEndCheck" />
-      <recent name="C:\Users\ceckardt\IdeaProjects\FrontEndCheck\src\main" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\ceckardt\IdeaProjects\FrontEndCheck\temp" />
       <recent name="C:\Users\ceckardt\IdeaProjects\FrontEndCheck\src\main\resources" />
       <recent name="C:\Users\ceckardt\IdeaProjects\FrontEndCheck" />
       <recent name="C:\Users\ceckardt\IdeaProjects\FrontEndCheck\src\main\resources\drivers" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\ceckardt\IdeaProjects\FrontEndCheck\src\main\resources\Style" />
+      <recent name="C:\Users\ceckardt\IdeaProjects\FrontEndCheck\src\main\resources\Images" />
+      <recent name="C:\Users\ceckardt\IdeaProjects\FrontEndCheck\src\main\resources\FXML" />
+      <recent name="C:\Users\ceckardt\IdeaProjects\FrontEndCheck\src\main\resources\configs" />
+      <recent name="C:\Users\ceckardt\IdeaProjects\FrontEndCheck\src\main\resources" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -541,13 +586,6 @@
       <option name="presentableId" value="Default" />
       <updated>1359379246138</updated>
       <workItem from="1359379250712" duration="1302000" />
-    </task>
-    <task id="LOCAL-00005" summary="added test comment">
-      <created>1529928494808</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1529928494808</updated>
     </task>
     <task id="LOCAL-00006" summary="added test comment">
       <created>1529928709614</created>
@@ -885,7 +923,14 @@
       <option name="project" value="LOCAL" />
       <updated>1533017937169</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="some structual changes">
+      <created>1533031129231</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1533031129232</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -936,7 +981,7 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.24520256" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.24520256" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="DB Browser" order="3" />
@@ -948,12 +993,12 @@
       <window_info id="Capture Tool" order="9" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49093816" weight="0.32861805" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.44402984" weight="0.31991294" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4434968" visible="true" weight="0.31960997" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4989339" weight="0.39934713" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.4968017" weight="0.32861805" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.55597013" side_tool="true" visible="true" weight="0.31960997" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5565032" side_tool="true" visible="true" weight="0.31960997" />
       <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.48773986" weight="0.32861805" />
       <window_info anchor="bottom" id="Application Servers" order="9" />
       <window_info anchor="bottom" id="Changes" order="10" />
@@ -1039,21 +1084,8 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/temp/screenshot5.png" />
-    <entry file="file://$PROJECT_DIR$/temp/screenshot3.png" />
-    <entry file="file://$PROJECT_DIR$/temp/screenshot7.png" />
-    <entry file="file://$PROJECT_DIR$/src/test/java/firstTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="7" column="37" selection-start-line="7" selection-start-column="37" selection-end-line="7" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/temp/sexy-pu-fauxB.png" />
     <entry file="file://$PROJECT_DIR$/temp/sexy-pu-fauxE.png" />
-    <entry file="file://$PROJECT_DIR$/src/main/resources/preloaderCat.gif">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/TaskBasedSplash.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/test.java" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/javafx-src.zip!/javafx/concurrent/Worker.java">
@@ -1089,32 +1121,12 @@
     <entry file="file://$PROJECT_DIR$/sexy-pu-fauxE.png" />
     <entry file="file://$PROJECT_DIR$/image.png" />
     <entry file="file://$PROJECT_DIR$/sexy1.png" />
-    <entry file="file://$PROJECT_DIR$/temp/report.txt" />
     <entry file="file://$PROJECT_DIR$/src/main/resources/back.jpg" />
-    <entry file="file://$PROJECT_DIR$/src/main/resources/VisualMeta.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/VisualMeta_White_Mirror.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/VisualMeta_White.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/config.properties" />
     <entry file="file://$PROJECT_DIR$/src/main/resources/configs/page.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="9" column="37" selection-start-line="9" selection-start-column="37" selection-end-line="9" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/image.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/ReportWindowController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
         </state>
       </provider>
     </entry>
@@ -1129,13 +1141,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="459">
           <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Tasks/CopyFiles.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
         </state>
       </provider>
     </entry>
@@ -1175,14 +1180,6 @@
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/FXML/SplashFXML.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="41" lean-forward="true" selection-start-line="21" selection-start-column="41" selection-end-line="21" selection-end-column="41" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Tasks/ViewImageWindow.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -1208,13 +1205,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="24" column="42" selection-start-line="24" selection-start-column="42" selection-end-line="24" selection-end-column="42" />
         </state>
       </provider>
     </entry>
@@ -1244,10 +1234,79 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/FXML/SplashFXML.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="16" lean-forward="true" selection-start-line="12" selection-start-column="16" selection-end-line="12" selection-end-column="16" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/Images/image.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/Images/preloaderCat.gif">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/Images/VisualMeta.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/Images/VisualMeta_White.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/Images/VisualMeta_White_Mirror.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Tasks/CopyFiles.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/ReportWindowController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/Style/Tab.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="2" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/Style/Main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="27" lean-forward="true" selection-start-line="18" selection-start-column="27" selection-end-line="18" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/temp/report.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-9770" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/temp/screenshot7.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/temp/screenshot6.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="21" column="48" selection-start-line="21" selection-start-column="48" selection-end-line="21" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="43">
-          <caret line="112" column="48" selection-start-line="112" selection-start-column="48" selection-end-line="112" selection-end-column="48" />
+        <state relative-caret-position="531">
+          <caret line="331" column="23" lean-forward="true" selection-start-line="331" selection-start-column="23" selection-end-line="331" selection-end-column="23" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

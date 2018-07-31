@@ -11,7 +11,7 @@
    <children>
       <ImageView fx:id="ImageSplash" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../VisualMeta_White.png" />
+            <Image url="@../Images/VisualMeta_White.png" />
          </image>
          <effect>
             <DropShadow offsetX="10.0" offsetY="10.0" spread="0.1" />
