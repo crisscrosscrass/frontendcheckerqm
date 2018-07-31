@@ -1,5 +1,7 @@
-package crisscrosscrass;
+package crisscrosscrass.Controller;
 
+import crisscrosscrass.Tasks.AnimationObject;
+import crisscrosscrass.Main;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,7 +15,6 @@ import javafx.stage.Stage;
 
 import java.io.*;
 import java.net.URL;
-import java.util.Properties;
 import java.util.ResourceBundle;
 
 public class SplashFXMLController implements Initializable {

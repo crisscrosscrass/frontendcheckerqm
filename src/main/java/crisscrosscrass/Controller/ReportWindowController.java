@@ -1,17 +1,13 @@
-package crisscrosscrass;
+package crisscrosscrass.Controller;
 
 
-import javafx.animation.FadeTransition;
-import javafx.animation.TranslateTransition;
-import javafx.concurrent.Task;
+import crisscrosscrass.Tasks.AnimationObject;
+import crisscrosscrass.Tasks.ViewImageWindow;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import javafx.util.Duration;
 
 import java.io.*;
 

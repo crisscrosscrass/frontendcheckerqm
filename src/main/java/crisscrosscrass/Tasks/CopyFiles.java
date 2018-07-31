@@ -1,5 +1,6 @@
-package crisscrosscrass;
+package crisscrosscrass.Tasks;
 
+import crisscrosscrass.Main;
 import org.apache.commons.io.FileUtils;
 
 import java.io.*;

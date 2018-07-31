@@ -1,4 +1,4 @@
-package crisscrosscrass;
+package crisscrosscrass.Tasks;
 
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;

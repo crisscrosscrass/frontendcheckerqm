@@ -1,5 +1,6 @@
-package crisscrosscrass;
+package crisscrosscrass.Tasks;
 
+import crisscrosscrass.Main;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;

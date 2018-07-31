@@ -1,4 +1,4 @@
-package crisscrosscrass.TestCases;
+package crisscrosscrass.Tasks;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;

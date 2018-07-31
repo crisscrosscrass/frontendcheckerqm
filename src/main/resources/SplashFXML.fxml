@@ -7,7 +7,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.StackPane?>
 
-<StackPane fx:id="rootPane" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="crisscrosscrass.SplashFXMLController">
+<StackPane fx:id="rootPane" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="crisscrosscrass.Controller.SplashFXMLController">
    <children>
       <ImageView fx:id="ImageSplash" pickOnBounds="true" preserveRatio="true">
          <image>

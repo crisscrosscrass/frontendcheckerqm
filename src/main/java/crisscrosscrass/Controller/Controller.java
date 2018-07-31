@@ -1,7 +1,7 @@
-package crisscrosscrass;
+package crisscrosscrass.Controller;
 
-import crisscrosscrass.TestCases.FilterButtonCheck;
-import crisscrosscrass.TestCases.FilterButtonCheckViaJavaScript;
+import crisscrosscrass.*;
+import crisscrosscrass.Tasks.*;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
@@ -92,6 +92,8 @@ public class Controller {
                 }
 
                 private void takeRoutine() throws InterruptedException {
+
+                    // * Load Properties File
                     String resourceName = "configs/page.properties";
                     ClassLoader loader = Thread.currentThread().getContextClassLoader();
                     Properties Homepage = new Properties();
@@ -100,7 +102,7 @@ public class Controller {
                     }catch (Exception nope){
                         nope.getStackTrace();
                     }
-                    //System.out.println(props.getProperty("page.main.links"));
+
 
 
                     // * Basic Settings before Starting WebDriver

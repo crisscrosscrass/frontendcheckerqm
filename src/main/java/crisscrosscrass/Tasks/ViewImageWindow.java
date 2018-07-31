@@ -1,5 +1,6 @@
-package crisscrosscrass;
+package crisscrosscrass.Tasks;
 
+import crisscrosscrass.Main;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
