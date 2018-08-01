@@ -57,9 +57,6 @@ public class ReportWindowController {
 
 
 
-
-
-
         // reading and displaying report
 
         String myText = "";

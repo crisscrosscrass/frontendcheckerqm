@@ -10,7 +10,6 @@ public class FilterButtonCheckViaJavaScript {
     static boolean answer = false;
 
 
-
     public static boolean pressFilterButton(WebDriver webDriver, JavascriptExecutor js, String xpathString){
 
         try{

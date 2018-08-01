@@ -1,5 +1,7 @@
 package crisscrosscrass.Tasks;
 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -29,5 +31,18 @@ public class ScreenshotViaWebDriver {
                 answer = false;
             }
             return answer;
+    }
+
+    public static void clearWrittenScreenshots(){
+        String location = System.getProperty("user.dir");
+        location = location.replace("\\","//");
+        location += "//temp//";
+
+        File folder = new File(location);
+        File [] pngFiles = folder.listFiles(file -> file.isFile() && file.getName().toLowerCase().endsWith(".png"));
+        for (File screenshot : pngFiles){
+            screenshot.delete();
+        }
+
     }
 }

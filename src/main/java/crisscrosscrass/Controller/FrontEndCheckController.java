@@ -18,6 +18,7 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Window;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
 
 import java.io.*;
@@ -132,11 +133,14 @@ public class FrontEndCheckController {
 
 
                     System.setProperty("webdriver.chrome.driver", "temp//chromedriver.exe");
-                    WebDriver webDriver = new ChromeDriver();
+                    ChromeOptions option = new ChromeOptions();
+                    option.addArguments("disable-infobars");
+                    WebDriver webDriver = new ChromeDriver(option);
 
                     JavascriptExecutor js = (JavascriptExecutor) webDriver;
                     Report report = new Report();
                     report.clearWrittenReport();
+                    ScreenshotViaWebDriver.clearWrittenScreenshots();
 
 
                     // open Startpage and have a basic overview
