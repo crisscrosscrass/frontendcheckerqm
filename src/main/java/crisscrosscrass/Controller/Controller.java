@@ -63,6 +63,10 @@ public class Controller {
     VBox CheckBoxesPlace;
     @FXML
     AnchorPane mainStage;
+    @FXML
+    TabPane tabPane;
+    @FXML
+    Tab brandTab;
 
     private static boolean answer = false;
     private static String xpathPattern = "";
@@ -572,6 +576,8 @@ public class Controller {
 
                     // close webdriver and clear tasklist
                     webDriver.quit();
+                    SingleSelectionModel<Tab> selectionModel = tabPane.getSelectionModel();
+                    selectionModel.select(brandTab);
                     //webDriver.close();
 
                     try {
