@@ -576,8 +576,7 @@ public class Controller {
 
                     // close webdriver and clear tasklist
                     webDriver.quit();
-                    SingleSelectionModel<Tab> selectionModel = tabPane.getSelectionModel();
-                    selectionModel.select(brandTab);
+                    tabPane.getSelectionModel().select(brandTab);
                     //webDriver.close();
 
                     try {

@@ -13,10 +13,11 @@ import java.net.URL;
 
 public class ViewImageWindow {
 
-    public static void display(Image image){
+    public static void display(Image image, String name){
         Stage window = new Stage();
         window.initModality(Modality.APPLICATION_MODAL);
         AnchorPane root = new AnchorPane();
+        window.setTitle(name);
         ImageView ImagePlace = new ImageView(image);
         root.getChildren().add(ImagePlace);
         ImagePlace.setOnMouseClicked(event -> {
@@ -30,4 +31,7 @@ public class ViewImageWindow {
         window.showAndWait();
         return;
     }
+
+
+
 }

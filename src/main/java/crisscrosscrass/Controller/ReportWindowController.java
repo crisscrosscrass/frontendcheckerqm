@@ -49,7 +49,7 @@ public class ReportWindowController {
             myOwnImageView.setOpacity(0);
             myOwnImageView.setPreserveRatio(true);
             myOwnImageView.setFitWidth(200);
-            myOwnImageView.setOnMouseClicked( event -> ViewImageWindow.display(imageDisplay));
+            myOwnImageView.setOnMouseClicked( event -> ViewImageWindow.display(imageDisplay, screenshot.getName()));
             ImageGallery.getChildren().add(myOwnImageView);
             wowEffect.SlideShow(myOwnImageView,extraDuration);
             extraDuration++;
