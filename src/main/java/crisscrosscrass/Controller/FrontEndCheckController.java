@@ -135,6 +135,7 @@ public class FrontEndCheckController {
                     System.setProperty("webdriver.chrome.driver", "temp//chromedriver.exe");
                     ChromeOptions option = new ChromeOptions();
                     option.addArguments("disable-infobars");
+                    option.addArguments("start-maximized");
                     WebDriver webDriver = new ChromeDriver(option);
 
                     JavascriptExecutor js = (JavascriptExecutor) webDriver;
@@ -152,7 +153,13 @@ public class FrontEndCheckController {
 
                     webDriver.manage().window().maximize();
                     Platform.runLater(() -> statusInfo.setText("Go to requested Website..."));
+
+                    long start = System.currentTimeMillis();
                     webDriver.navigate().to(requestedWebsite);
+                    long finish = System.currentTimeMillis();
+                    long totalTime = finish - start;
+                    System.out.println("Total Time for page load - "+totalTime);
+
                     report.writeToFile("Checking Website: ", requestedWebsite);
 
 

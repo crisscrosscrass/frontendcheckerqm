@@ -6,14 +6,9 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="added some scroll down">
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="added deleted images and add TabScreenShots">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/FrontEndCheckController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/FrontEndCheckController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/ReportWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/ReportWindowController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Tasks/FilterButtonCheckViaJavaScript.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Tasks/FilterButtonCheckViaJavaScript.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Tasks/ScreenshotViaWebDriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Tasks/ScreenshotViaWebDriver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Tasks/WebdriverTab.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Tasks/WebdriverTab.java" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -92,8 +87,8 @@
           <entry key="css" value="4" />
           <entry key="fxml" value="1" />
           <entry key="gif" value="1" />
-          <entry key="java" value="102" />
-          <entry key="png" value="19" />
+          <entry key="java" value="105" />
+          <entry key="png" value="24" />
           <entry key="properties" value="1" />
           <entry key="txt" value="2" />
         </counts>
@@ -102,8 +97,8 @@
         <counts>
           <entry key="CLASS" value="1" />
           <entry key="CSS" value="4" />
-          <entry key="Image" value="20" />
-          <entry key="JAVA" value="102" />
+          <entry key="Image" value="25" />
+          <entry key="JAVA" value="105" />
           <entry key="PLAIN_TEXT" value="2" />
           <entry key="Properties" value="1" />
           <entry key="XML" value="1" />
@@ -114,15 +109,15 @@
           <entry key="css" value="41" />
           <entry key="dummy" value="14" />
           <entry key="fxml" value="5" />
-          <entry key="java" value="796" />
-          <entry key="txt" value="155" />
+          <entry key="java" value="800" />
+          <entry key="txt" value="195" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="41" />
-          <entry key="JAVA" value="796" />
-          <entry key="PLAIN_TEXT" value="169" />
+          <entry key="JAVA" value="800" />
+          <entry key="PLAIN_TEXT" value="209" />
           <entry key="XML" value="5" />
         </counts>
       </usages-collector>
@@ -136,8 +131,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/FrontEndCheckController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="680">
-              <caret line="129" column="86" lean-forward="true" selection-start-line="129" selection-start-column="86" selection-end-line="129" selection-end-column="86" />
+            <state relative-caret-position="289">
+              <caret line="157" column="62" selection-start-line="157" selection-start-column="62" selection-end-line="157" selection-end-column="62" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -400,7 +395,7 @@
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1533126085470" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1533126899804" />
     <property name="dynamic.classpath" value="false" />
     <property name="last_opened_file_path" value="$USER_HOME$/AppData/Local/Programs/Git/bin/git.exe" />
     <property name="project.structure.last.edited" value="Project" />
@@ -584,13 +579,6 @@
       <option name="presentableId" value="Default" />
       <updated>1359379246138</updated>
       <workItem from="1359379250712" duration="1302000" />
-    </task>
-    <task id="LOCAL-00012" summary="changed report and responsive design">
-      <created>1530259100654</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1530259100654</updated>
     </task>
     <task id="LOCAL-00013" summary="added 2.Screenshot">
       <created>1530260004075</created>
@@ -928,7 +916,14 @@
       <option name="project" value="LOCAL" />
       <updated>1533120391582</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="added deleted images and add TabScreenShots">
+      <created>1533126111231</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1533126111232</updated>
+    </task>
+    <option name="localTasksCounter" value="62" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -979,7 +974,7 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.26119402" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.26066098" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="DB Browser" order="3" />
@@ -1050,7 +1045,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
-    <MESSAGE value="added some changes and added transparent effect" />
     <MESSAGE value="added some changes and add dynamic images adding" />
     <MESSAGE value="added some changes" />
     <MESSAGE value="animation added" />
@@ -1075,15 +1069,14 @@
     <MESSAGE value="added tab switch" />
     <MESSAGE value="added image name for Screenshot View" />
     <MESSAGE value="added some scroll down" />
-    <option name="LAST_COMMIT_MESSAGE" value="added some scroll down" />
+    <MESSAGE value="added deleted images and add TabScreenShots" />
+    <option name="LAST_COMMIT_MESSAGE" value="added deleted images and add TabScreenShots" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/temp/screenshot2.png" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/MainBackUp.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/MyApplication.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/SplashScreenLoader.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/META-INF/MANIFEST.MF">
@@ -1168,9 +1161,6 @@
           <caret selection-end-line="2" selection-end-column="1" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/temp/screenshot7.png">
-      <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/temp/screenshot6.png">
       <provider selected="true" editor-type-id="images" />
@@ -1317,15 +1307,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="29" column="5" lean-forward="true" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
+        <state relative-caret-position="221">
+          <caret line="24" column="42" lean-forward="true" selection-start-line="24" selection-start-column="42" selection-end-line="24" selection-end-column="42" />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/temp/ScreenshotTabHousse.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/temp/ScreenshotTabGilet.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/temp/screenshot7.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/FrontEndCheckController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="680">
-          <caret line="129" column="86" lean-forward="true" selection-start-line="129" selection-start-column="86" selection-end-line="129" selection-end-column="86" />
+        <state relative-caret-position="289">
+          <caret line="157" column="62" selection-start-line="157" selection-start-column="62" selection-end-line="157" selection-end-column="62" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
