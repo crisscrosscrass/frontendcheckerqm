@@ -27,7 +27,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.Properties;
 
-public class Controller {
+public class FrontEndCheckController {
 
     @FXML
     Button startwebdriver;
@@ -573,11 +573,17 @@ public class Controller {
                         }
                     }
 
-
+                    for (int i = 0 ; i < 10 ; i++){
+                        Thread.sleep(100);
+                        js.executeScript("window.scrollBy(0,100)");
+                    }
                     // close webdriver and clear tasklist
                     webDriver.quit();
-                    tabPane.getSelectionModel().select(brandTab);
                     //webDriver.close();
+
+
+                    // not used now but got to know
+                    // tabPane.getSelectionModel().select(brandTab);
 
                     try {
                         Runtime.getRuntime().exec("TASKKILL /F /IM chromedriver.exe");

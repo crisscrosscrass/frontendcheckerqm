@@ -22,7 +22,7 @@ public class ReportWindowController {
 
     @FXML
     public void initialize() {
-        System.out.println("Controller launched!");
+        System.out.println("FrontEndCheckController launched!");
         runReport();
         //SlideShow();
     }
