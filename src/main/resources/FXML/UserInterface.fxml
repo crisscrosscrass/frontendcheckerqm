@@ -20,7 +20,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="mainStage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="767.0" prefWidth="572.0" style="-fx-background-color: white;" stylesheets="@../Style/Main.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="crisscrosscrass.Controller.FrontEndCheckController">
+<AnchorPane fx:id="mainStage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="818.0" prefWidth="572.0" style="-fx-background-color: white;" stylesheets="@../Style/Main.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="crisscrosscrass.Controller.FrontEndCheckController">
    <children>
       <Pane layoutX="-10.0" layoutY="-10.0" prefHeight="288.0" prefWidth="569.0" style="-fx-background-color: #e83062;" AnchorPane.leftAnchor="-10.0" AnchorPane.rightAnchor="-3.0" AnchorPane.topAnchor="-10.0" />
       <VBox layoutX="17.0" layoutY="25.0">
@@ -136,7 +136,11 @@
                   </Tab>
                   <Tab fx:id="brandTab" closable="false" text="Brand">
                      <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                        <VBox prefHeight="200.0" prefWidth="100.0" />
+                     </content>
+                     <content>
+                        <AnchorPane />
+                        <fx:include source="GraphInterface.fxml" />
                      </content>
                   </Tab>
                </tabs>
