@@ -312,13 +312,13 @@ public class FrontEndCheckController {
                         });
                         //test Open New Tab
                         WebdriverTab newtab = new WebdriverTab();
-                        for (int i = 0 ; i < 2 ; i++){
-                            randomPicker = 0 + (int)(Math.random() * (((MainSubMenu.size()-1) - 0) + 1));
-                            answer = newtab.open(webDriver,MainSubMenu.get(randomPicker).getAttribute("href"),MainSubMenu.get(randomPicker).getAttribute("textContent"));
+                        for (int i = 0 ; i < 5 ; i++){
+                            //randomPicker = 0 + (int)(Math.random() * (((MainSubMenu.size()-1) - 0) + 1));
+                            answer = newtab.open(webDriver,MainSubMenu.get(i).getAttribute("href"),MainSubMenu.get(i).getAttribute("textContent"));
                             if (answer){
-                                report.writeToFile("TEST MainMenuSubLink "+randomPicker+": Successful | ", "found \"" + MainSubMenu.get(randomPicker).getAttribute("textContent") + "\" Keyword at URL : "+ MainSubMenu.get(randomPicker).getAttribute("href"));
+                                report.writeToFile("TEST MainMenuSubLink "+i+": Successful | ", "found \"" + MainSubMenu.get(i).getAttribute("textContent") + "\" Keyword at URL : "+ MainSubMenu.get(i).getAttribute("href"));
                             }else {
-                                report.writeToFile("TEST MainMenuSubLink "+randomPicker+": unable to check! |", "couldn't found \"" + MainSubMenu.get(randomPicker).getAttribute("textContent") + "\" Keyword in URL : "+ MainSubMenu.get(randomPicker).getAttribute("href"));
+                                report.writeToFile("TEST MainMenuSubLink "+i+": unable to check! |", "couldn't found \"" + MainSubMenu.get(i).getAttribute("textContent") + "\" Keyword in URL : "+ MainSubMenu.get(i).getAttribute("href"));
                             }
                         }
 
