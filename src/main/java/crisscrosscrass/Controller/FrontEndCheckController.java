@@ -37,6 +37,8 @@ public class FrontEndCheckController {
     @FXML
     JFXCheckBox checkCategoryLinksLeftSideMenu;
     @FXML
+    JFXCheckBox checkLogoFromShopOfTheWeek;
+    @FXML
     CheckBox checkLogoHomepage;
     @FXML
     CheckBox checkGeneralLayout;
@@ -183,7 +185,8 @@ public class FrontEndCheckController {
                                 isAvailable = webDriver.findElementByXPath(xpathPattern) != null;
                                 List<WebElement> CategoryLinksLeftSideMenu = webDriver.findElementsByXPath(xpathPattern);
                                 WebdriverTab newtab = new WebdriverTab();
-                                for (int i = 0 ; i < CategoryLinksLeftSideMenu.size() ; i++){
+                                //TODO use CategoryLinksLeftSideMenu.size() instead of 1
+                                for (int i = 0 ; i < 1 ; i++){
                                     webDriver.switchTo().window(tabs.get(0));
                                     isSuccessful = newtab.open(webDriver,CategoryLinksLeftSideMenu.get(i).getAttribute("href"),CategoryLinksLeftSideMenu.get(i).getAttribute("textContent").trim());
                                     if (isSuccessful){
@@ -220,6 +223,67 @@ public class FrontEndCheckController {
 
 
 
+                    // Check on Logo Shop of the Week
+                    Platform.runLater(() -> {
+                        checkLogoFromShopOfTheWeek.setStyle("-fx-background-color: #eef442");
+                        statusInfo.setText("Checking Logo Shop of the Week...");
+                    });
+                    xpathPattern = Homepage.getProperty("page.main.shop.promo.link");
+                    try{
+                        ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
+                        webDriver.switchTo().window(tabs.get(0));
+                        try {
+                            isAvailable = webDriver.findElementByXPath(xpathPattern) != null;
+                            String ShopOfTheWeekImage = webDriver.findElementByXPath("//*[@class='hp-shop-promo']/a/img").getAttribute("src");
+                            webDriver.findElementByXPath(xpathPattern).click();
+                            try{
+                                String ShopOfTheWeekGridImage = webDriver.findElementByXPath("//*[contains(@class, 'content-header-wrap')]/div/div/div/a/img").getAttribute("src");
+                                if (ShopOfTheWeekImage.contains(ShopOfTheWeekGridImage)){
+                                    Platform.runLater(() -> {
+                                        checkLogoFromShopOfTheWeek.setStyle("-fx-background-color: #CCFF99");
+                                        checkLogoFromShopOfTheWeek.setSelected(true);
+                                    });
+                                    report.writeToFile("Checking Logo Shop of the Week: ", "Successful!");
+                                }else{
+                                    Platform.runLater(() -> {
+                                        checkLogoFromShopOfTheWeek.setStyle("-fx-background-color: #FF0000");
+                                        checkLogoFromShopOfTheWeek.setSelected(true);
+                                    });
+                                    report.writeToFile("Checking Logo Shop of the Week: ", "Not the same image url!");
+                                }
+
+                            }catch (Exception noLogoFoundOnGrid){
+                                report.writeToFile("Checking Logo Shop of the Week: ", "unable to check! No Logo found on GridPage!");
+                                isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"ShopLogoGridPage.png");
+                                if (isSuccessful){
+                                    report.writeToFile("Checking Logo Shop Screenshot: ", "Screenshot successful!");
+                                }else {
+                                    report.writeToFile("Checking Logo Shop Screenshot: ", "Screenshot not successful!");
+                                }
+                                noLogoFoundOnGrid.printStackTrace();
+                            }
+
+
+                        }catch (Exception noShopLogoFound){
+                            Platform.runLater(() -> {
+                                checkLogoFromShopOfTheWeek.setStyle("-fx-background-color: #FF0000");
+                                checkLogoFromShopOfTheWeek.setSelected(true);
+                            });
+                            report.writeToFile("Checking Logo Shop of the Week: ", "unable to check! No Elements found!");
+                            noShopLogoFound.printStackTrace();
+                        }
+                    }catch (Exception noShopPromo){
+                        Platform.runLater(() -> {
+                        checkLogoFromShopOfTheWeek.setStyle("-fx-background-color: #FF0000");
+                        checkLogoFromShopOfTheWeek.setSelected(true);
+                        });
+                        report.writeToFile("Checking Logo Shop of the Week: ", "unable to check! Browser not responding");
+                    }
+
+
+
+                    Platform.runLater(() -> progressIndicator.setProgress(checkAllCheckBoxes()));
+                    report.writeToFile("=================================", "");
 
 
                     // Click on Logo Test
@@ -227,12 +291,12 @@ public class FrontEndCheckController {
                         checkLogoHomepage.setStyle("-fx-background-color: #eef442");
                         statusInfo.setText("Checking Logo...");
                     });
-
+                    xpathPattern = Homepage.getProperty("page.main.logo");
 
                     try {
                         ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
                         webDriver.switchTo().window(tabs.get(0));
-                        webDriver.findElementByXPath(Homepage.getProperty("page.main.logo")).click();
+                        webDriver.findElementByXPath(xpathPattern).click();
 
                         Platform.runLater(() -> {
                             checkLogoHomepage.setStyle("-fx-background-color: #CCFF99");
@@ -776,6 +840,7 @@ public class FrontEndCheckController {
     private void resetAllFormOptions() {
         Platform.runLater(() -> {
             checkCategoryLinksLeftSideMenu.setStyle("-fx-background-color: #FFFFFF");
+            checkLogoFromShopOfTheWeek.setStyle("-fx-background-color: #FFFFFF");
             checkLogoHomepage.setStyle("-fx-background-color: #FFFFFF");
             checkGeneralLayout.setStyle("-fx-background-color: #FFFFFF");
             openMainMenu.setStyle("-fx-background-color: #FFFFFF");
@@ -785,6 +850,7 @@ public class FrontEndCheckController {
             checkSalesPrice.setStyle("-fx-background-color: #FFFFFF");
             checkFilter.setStyle("-fx-background-color: #FFFFFF");
             checkCategoryLinksLeftSideMenu.setSelected(false);
+            checkLogoFromShopOfTheWeek.setSelected(false);
             checkLogoHomepage.setSelected(false);
             checkGeneralLayout.setSelected(false);
             openMainMenu.setSelected(false);

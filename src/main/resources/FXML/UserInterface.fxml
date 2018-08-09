@@ -108,6 +108,7 @@
                                           <VBox fx:id="CheckBoxesPlace" alignment="CENTER_LEFT">
                                              <children>
                                                 <JFXCheckBox fx:id="checkCategoryLinksLeftSideMenu" text="Category Links- Left Side Menu" />
+                                                <JFXCheckBox fx:id="checkLogoFromShopOfTheWeek" text="Logo from Shop of the Week" />
                                                 <CheckBox fx:id="checkLogoHomepage" mnemonicParsing="false" text="# Click on logo to go to homepage" />
                                                 <CheckBox fx:id="checkGeneralLayout" mnemonicParsing="false" text="# Check general layout" />
                                                 <CheckBox fx:id="openMainMenu" mnemonicParsing="false" text="# Open main menu and check layout / links" />

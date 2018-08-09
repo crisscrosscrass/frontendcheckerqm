@@ -25,7 +25,7 @@ public class WebdriverTab {
         webDriver.switchTo().window(tabs.get(1)); //switches to new tab
         webDriver.get(baseUrl);
         try{
-            if ( webDriver.getTitle().contains(checkKeyword) | webDriver.findElement(By.xpath("//*[@id='headline']/h1")).getText().contains(checkKeyword) ) {
+            if ( webDriver.getTitle().contains(checkKeyword) | webDriver.findElement(By.xpath("//*[@id='headline']/h1")).getText().contains(checkKeyword) | webDriver.getCurrentUrl().contains(checkKeyword) ) {
                 answer = true;
             }else{
                 answer = false;
@@ -35,12 +35,14 @@ public class WebdriverTab {
         }
         finally {
 
+            /*
             screenShot = ScreenshotViaWebDriver.printScreen(webDriver,"ScreenshotTab"+checkKeyword.trim()+".png");
             if (screenShot){
                 System.out.println("Screenshot tab yes");
             }else {
                 System.out.println("Screenshot tab no");
             }
+            */
 
             webDriver.switchTo().window(tabs.get(1)).close();
             webDriver.switchTo().window(tabs.get(0)); // switch back to main screen
