@@ -45,6 +45,7 @@
     <orderEntry type="library" name="Maven: org.openjfx:javafx-graphics:win:11-ea+19" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-base:11-ea+19" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-base:win:11-ea+19" level="project" />
+    <orderEntry type="library" name="Maven: com.jfoenix:jfoenix:8.0.4" level="project" />
     <orderEntry type="library" name="Maven: de.jensd:fontawesomefx:8.9" level="project" />
   </component>
 </module>

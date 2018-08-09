@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXCheckBox?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
@@ -93,7 +94,7 @@
                   <Insets left="20.0" right="20.0" />
                </padding>
             </VBox>
-            <TabPane fx:id="tabPane" side="RIGHT">
+            <TabPane fx:id="tabPane">
                <tabs>
                   <Tab closable="false" text="Homepage">
                      <content>
@@ -106,7 +107,7 @@
                                           <FontAwesomeIconView fill="#e83062" glyphName="CLONE" size="40" />
                                           <VBox fx:id="CheckBoxesPlace" alignment="CENTER_LEFT">
                                              <children>
-                                                <CheckBox fx:id="checkCategoryLinksLeftSideMenu" mnemonicParsing="false" text="Category Links- Left Side Menu" />
+                                                <JFXCheckBox fx:id="checkCategoryLinksLeftSideMenu" text="Category Links- Left Side Menu" />
                                                 <CheckBox fx:id="checkLogoHomepage" mnemonicParsing="false" text="# Click on logo to go to homepage" />
                                                 <CheckBox fx:id="checkGeneralLayout" mnemonicParsing="false" text="# Check general layout" />
                                                 <CheckBox fx:id="openMainMenu" mnemonicParsing="false" text="# Open main menu and check layout / links" />

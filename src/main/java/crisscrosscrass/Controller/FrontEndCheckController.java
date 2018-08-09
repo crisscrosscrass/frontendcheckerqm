@@ -1,5 +1,6 @@
 package crisscrosscrass.Controller;
 
+import com.jfoenix.controls.JFXCheckBox;
 import crisscrosscrass.*;
 import crisscrosscrass.Tasks.*;
 import javafx.application.Platform;
@@ -25,6 +26,7 @@ import java.io.*;
 
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
@@ -33,7 +35,7 @@ public class FrontEndCheckController {
     @FXML
     Button startwebdriver;
     @FXML
-    CheckBox checkCategoryLinksLeftSideMenu;
+    JFXCheckBox checkCategoryLinksLeftSideMenu;
     @FXML
     CheckBox checkLogoHomepage;
     @FXML
@@ -72,6 +74,7 @@ public class FrontEndCheckController {
     Tab brandTab;
 
     private static boolean isSuccessful = false;
+    private static boolean isAvailable = false;
     private static String xpathPattern = "";
 
 
@@ -129,15 +132,13 @@ public class FrontEndCheckController {
                     Platform.runLater(() -> statusInfo.setText("Starting Engine..."));
 
 
-
-
                     System.setProperty("webdriver.chrome.driver", "temp//chromedriver.exe");
                     ChromeOptions option = new ChromeOptions();
                     option.addArguments("disable-infobars");
                     option.addArguments("start-maximized");
-                    WebDriver webDriver = new ChromeDriver(option);
+                    ChromeDriver webDriver = new ChromeDriver(option);
 
-                    JavascriptExecutor js = (JavascriptExecutor) webDriver;
+                    JavascriptExecutor js = webDriver;
                     Report report = new Report();
                     report.clearWrittenReport();
                     ScreenshotViaWebDriver.clearWrittenScreenshots();
@@ -164,43 +165,60 @@ public class FrontEndCheckController {
 
                     Platform.runLater(() -> progressIndicator.setProgress(checkAllCheckBoxes()));
                     report.writeToFile("=================================", "");
+
+
+
+
+
                     // Check on Category Links- Left Side Menu
                     Platform.runLater(() -> {
                         checkCategoryLinksLeftSideMenu.setStyle("-fx-background-color: #eef442");
                         statusInfo.setText("Checking Category Links...");
                     });
+                    xpathPattern = Homepage.getProperty("page.main.category.links.left");
                     try {
-                        List<WebElement> CategoryLinksLeftSideMenu = ((ChromeDriver) webDriver).findElementsByXPath(Homepage.getProperty("page.main.category.links.left"));
-
-
-                        WebdriverTab newtab = new WebdriverTab();
-                        for (int i = 0 ; i < CategoryLinksLeftSideMenu.size() ; i++){
-                            //randomPicker = 0 + (int)(Math.random() * (((MainSubMenu.size()-1) - 0) + 1));
-                            isSuccessful = newtab.open(webDriver,CategoryLinksLeftSideMenu.get(i).getAttribute("href"),CategoryLinksLeftSideMenu.get(i).getAttribute("textContent").trim());
-                            if (isSuccessful){
-                                report.writeToFile("TEST CategoryLinksLeftSideMenu "+i+": Successful | ", "found \"" + CategoryLinksLeftSideMenu.get(i).getAttribute("textContent").trim() + "\" Keyword at URL : "+ CategoryLinksLeftSideMenu.get(i).getAttribute("href"));
-                            }else {
-                                report.writeToFile("TEST CategoryLinksLeftSideMenu "+i+": unable to check! |", "couldn't found \"" + CategoryLinksLeftSideMenu.get(i).getAttribute("textContent").trim() + "\" Keyword in URL : "+ CategoryLinksLeftSideMenu.get(i).getAttribute("href"));
+                        ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
+                        webDriver.switchTo().window(tabs.get(0));
+                            try {
+                                isAvailable = webDriver.findElementByXPath(xpathPattern) != null;
+                                List<WebElement> CategoryLinksLeftSideMenu = webDriver.findElementsByXPath(xpathPattern);
+                                WebdriverTab newtab = new WebdriverTab();
+                                for (int i = 0 ; i < CategoryLinksLeftSideMenu.size() ; i++){
+                                    webDriver.switchTo().window(tabs.get(0));
+                                    isSuccessful = newtab.open(webDriver,CategoryLinksLeftSideMenu.get(i).getAttribute("href"),CategoryLinksLeftSideMenu.get(i).getAttribute("textContent").trim());
+                                    if (isSuccessful){
+                                        report.writeToFile("TEST CategoryLinksLeftSideMenu "+i+": Successful | ", "found \"" + CategoryLinksLeftSideMenu.get(i).getAttribute("textContent").trim() + "\" Keyword at URL : "+ CategoryLinksLeftSideMenu.get(i).getAttribute("href"));
+                                    }else {
+                                        report.writeToFile("TEST CategoryLinksLeftSideMenu "+i+": unable to check! |", "couldn't found \"" + CategoryLinksLeftSideMenu.get(i).getAttribute("textContent").trim() + "\" Keyword in URL : "+ CategoryLinksLeftSideMenu.get(i).getAttribute("href"));
+                                    }
+                                }
+                                Platform.runLater(() -> {
+                                    checkCategoryLinksLeftSideMenu.setStyle("-fx-background-color: #CCFF99");
+                                    checkCategoryLinksLeftSideMenu.setSelected(true);
+                                });
+                                report.writeToFile("Checking Category Links: ", "Complete!");
+                            }catch (Exception noLeftSideMenu){
+                                Platform.runLater(() -> {
+                                    checkCategoryLinksLeftSideMenu.setStyle("-fx-background-color: #FF0000");
+                                    checkCategoryLinksLeftSideMenu.setSelected(true);
+                                });
+                                report.writeToFile("Checking Category Links: ", "unable to check! No Links found!");
+                                noLeftSideMenu.printStackTrace();
                             }
-                        }
-
-
-                        Platform.runLater(() -> {
-                            checkCategoryLinksLeftSideMenu.setStyle("-fx-background-color: #CCFF99");
-                            checkCategoryLinksLeftSideMenu.setSelected(true);
-                        });
-                        report.writeToFile("Checking Category Links: ", "Successful!");
                     }catch (Exception noCategoryLinksLeftSideMenu){
                         Platform.runLater(() -> {
                             checkCategoryLinksLeftSideMenu.setStyle("-fx-background-color: #FF0000");
                             checkCategoryLinksLeftSideMenu.setSelected(true);
                         });
-                        report.writeToFile("Checking Category Links: ", "unable to check!");
+                        report.writeToFile("Checking Category Links: ", "unable to check! Browser not responding");
                     }
 
 
                     Platform.runLater(() -> progressIndicator.setProgress(checkAllCheckBoxes()));
                     report.writeToFile("=================================", "");
+
+
+
 
 
 
@@ -212,7 +230,9 @@ public class FrontEndCheckController {
 
 
                     try {
-                        ((ChromeDriver) webDriver).findElementByXPath(Homepage.getProperty("page.main.logo")).click();
+                        ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
+                        webDriver.switchTo().window(tabs.get(0));
+                        webDriver.findElementByXPath(Homepage.getProperty("page.main.logo")).click();
 
                         Platform.runLater(() -> {
                             checkLogoHomepage.setStyle("-fx-background-color: #CCFF99");
@@ -226,7 +246,7 @@ public class FrontEndCheckController {
                             checkLogoHomepage.setStyle("-fx-background-color: #FF0000");
                             checkLogoHomepage.setSelected(true);
                         });
-                        report.writeToFile("Checking Logo: ", "unable to check!");
+                        report.writeToFile("Checking Logo: ", "unable to check! Browser not responding");
                     }
 
                     Platform.runLater(() -> progressIndicator.setProgress(checkAllCheckBoxes()));
@@ -240,66 +260,71 @@ public class FrontEndCheckController {
                     });
                     Thread.sleep(100);
 
+                    try {
+                        // make SCREENSHOT 1 | parameter "webdriver" + "name";
+                        isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"screenshot1.png");
+                        if (isSuccessful){
+                            report.writeToFile("Checking Layout: ", "Screenshot successful!");
+                        }else {
+                            report.writeToFile("Checking Layout: ", "Screenshot not successful!");
+                        }
 
 
+                        // Scroll down
+                        for (int i = 0; i < 5; i++) {
+                            Thread.sleep(100);
+                            js.executeScript("window.scrollBy(0,100)");
+                        }
 
 
-                    // make SCREENSHOT 1 | parameter "webdriver" + "name";
-                    isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"screenshot1.png");
-                    if (isSuccessful){
-                        report.writeToFile("Checking Layout: ", "Screenshot successful!");
-                    }else {
-                        report.writeToFile("Checking Layout: ", "Screenshot not successful!");
+                        // make SCREENSHOT 2
+                        isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"screenshot2.png");
+                        if (isSuccessful){
+                            report.writeToFile("Checking Layout: ", "Screenshot successful!");
+                        }else {
+                            report.writeToFile("Checking Layout: ", "Screenshot not successful!");
+                        }
+
+                        // Scroll down
+                        for (int i = 0; i < 5; i++) {
+                            Thread.sleep(100);
+                            js.executeScript("window.scrollBy(0,100)");
+                        }
+
+                        // make SCREENSHOT 3
+                        isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"screenshot3.png");
+                        if (isSuccessful){
+                            report.writeToFile("Checking Layout: ", "Screenshot successful!");
+                        }else {
+                            report.writeToFile("Checking Layout: ", "Screenshot not successful!");
+                        }
+
+                        // Scroll down
+                        for (int i = 0; i < 5; i++) {
+                            Thread.sleep(100);
+                            js.executeScript("window.scrollBy(0,100)");
+                        }
+
+                        // make SCREENSHOT 4
+                        isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"screenshot4.png");
+                        if (isSuccessful){
+                            report.writeToFile("Checking Layout: ", "Screenshot successful!");
+                        }else {
+                            report.writeToFile("Checking Layout: ", "Screenshot not successful!");
+                        }
+
+                        Platform.runLater(() -> {
+                            checkGeneralLayout.setStyle("-fx-background-color: #CCFF99");
+                            checkGeneralLayout.setSelected(true);
+                        });
+                    }catch (Exception noLayoutTest){
+                        Platform.runLater(() -> {
+                            checkGeneralLayout.setStyle("-fx-background-color: #FF0000");
+                            checkGeneralLayout.setSelected(true);
+                        });
+                        report.writeToFile("Checking Layout: ", "unable to check! Browser not responding");
                     }
 
-
-                    // Scroll down
-                    for (int i = 0; i < 5; i++) {
-                        Thread.sleep(100);
-                        js.executeScript("window.scrollBy(0,100)");
-                    }
-
-
-                    // make SCREENSHOT 2
-                    isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"screenshot2.png");
-                    if (isSuccessful){
-                        report.writeToFile("Checking Layout: ", "Screenshot successful!");
-                    }else {
-                        report.writeToFile("Checking Layout: ", "Screenshot not successful!");
-                    }
-
-                    // Scroll down
-                    for (int i = 0; i < 5; i++) {
-                        Thread.sleep(100);
-                        js.executeScript("window.scrollBy(0,100)");
-                    }
-
-                    // make SCREENSHOT 3
-                    isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"screenshot3.png");
-                    if (isSuccessful){
-                        report.writeToFile("Checking Layout: ", "Screenshot successful!");
-                    }else {
-                        report.writeToFile("Checking Layout: ", "Screenshot not successful!");
-                    }
-
-                    // Scroll down
-                    for (int i = 0; i < 5; i++) {
-                        Thread.sleep(100);
-                        js.executeScript("window.scrollBy(0,100)");
-                    }
-
-                    // make SCREENSHOT 4
-                    isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"screenshot4.png");
-                    if (isSuccessful){
-                        report.writeToFile("Checking Layout: ", "Screenshot successful!");
-                    }else {
-                        report.writeToFile("Checking Layout: ", "Screenshot not successful!");
-                    }
-
-                    Platform.runLater(() -> {
-                        checkGeneralLayout.setStyle("-fx-background-color: #CCFF99");
-                        checkGeneralLayout.setSelected(true);
-                    });
 
                     Platform.runLater(() -> progressIndicator.setProgress(checkAllCheckBoxes()));
                     report.writeToFile("=================================", "");
@@ -318,7 +343,7 @@ public class FrontEndCheckController {
                     //String winHandleBefore = webDriver.getWindowHandle();
                     //webDriver.switchTo().window(winHandleBefore);
                     try {
-                        List<WebElement> MainMenu = ((ChromeDriver) webDriver).findElementsByXPath(Homepage.getProperty("page.main.links"));
+                        List<WebElement> MainMenu = webDriver.findElementsByXPath(Homepage.getProperty("page.main.links"));
                         int counterInfo = 1;
                         for (WebElement MainMenuItem : MainMenu) {
                             hover.moveToElement(MainMenuItem).perform();
@@ -331,7 +356,7 @@ public class FrontEndCheckController {
                         //checking Sub Main Menu Links
                         Platform.runLater(() -> statusInfo.setText("Checking SubMenu..."));
 
-                        List<WebElement> MainSubMenu = ((ChromeDriver) webDriver).findElementsByXPath(Homepage.getProperty("page.submain.links"));
+                        List<WebElement> MainSubMenu = webDriver.findElementsByXPath(Homepage.getProperty("page.submain.links"));
                         int counterSubMenu = 1;
                         for (WebElement ItemSubMenu : MainSubMenu) {
                             //System.out.println("MainSubLink: "+ ItemSubMenu.getAttribute("textContent") + " " + ItemSubMenu.getAttribute("href"));
@@ -369,7 +394,7 @@ public class FrontEndCheckController {
                             openMainMenu.setStyle("-fx-background-color: #FF0000");
                             openMainMenu.setSelected(true);
                         });
-                        report.writeToFile("Checking Menu: ", "unable to complete!");
+                        report.writeToFile("Checking Menu: ", "unable to complete! Browser not responding");
                     }
                     Thread.sleep(1000);
 
@@ -385,7 +410,7 @@ public class FrontEndCheckController {
                     });
 
                     try{
-                        List<WebElement> infos = ((ChromeDriver) webDriver).findElementsByXPath(Homepage.getProperty("page.main.banner"));
+                        List<WebElement> infos = webDriver.findElementsByXPath(Homepage.getProperty("page.main.banner"));
                         int MainMenuCounter = 1;
                         for (WebElement info : infos) {
                             hover.moveToElement(info).perform();
@@ -404,7 +429,7 @@ public class FrontEndCheckController {
                             checkBannersLayout.setStyle("-fx-background-color: #FF0000");
                             checkBannersLayout.setSelected(true);
                         });
-                        report.writeToFile("Checking Banner: ", "unable to complete!!");
+                        report.writeToFile("Checking Banner: ", "unable to complete! Browser not responding");
                     }
 
 
@@ -466,6 +491,11 @@ public class FrontEndCheckController {
                             report.writeToFile("Checking Perfect Match: ", "Successful!");
                         }
                     }catch (Exception noPerfectMatch){
+                        Platform.runLater(() -> {
+                            checkPerfectMatch.setStyle("-fx-background-color: #FF0000");
+                            checkPerfectMatch.setSelected(true);
+                        });
+                        report.writeToFile("Checking Perfect Match: ", "unable to complete! Browser not responding");
                         noPerfectMatch.printStackTrace();
                     }
 
@@ -644,17 +674,13 @@ public class FrontEndCheckController {
                             }
                         }
                     }catch (Exception noShopFilter){
-                        report.writeToFile("Checking Filter Shop: ", "unable to check! Browser not responding");
+                        report.writeToFile("Checking Filter: ", "unable to check! Browser not responding");
                         noShopFilter.printStackTrace();
                     }
 
 
 
                     // close webdriver and clear tasklist
-                    for (int i = 0 ; i < 10 ; i++){
-                        Thread.sleep(100);
-                        js.executeScript("window.scrollBy(0,100)");
-                    }
                     Platform.runLater(() -> statusInfo.setText("Closing Browser..."));
                     try {
                         webDriver.close();
