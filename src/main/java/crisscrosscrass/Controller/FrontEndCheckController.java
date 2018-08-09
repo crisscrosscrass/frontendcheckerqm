@@ -120,9 +120,6 @@ public class FrontEndCheckController {
                         preloaderCat.setImage(catty);
                     });
 
-
-                    String requestedWebsite = inputSearch.getText();
-
                     File webdriverFile = new File("temp//chromedriver.exe");
                     if (!webdriverFile.exists()) {
                         System.out.println("Webdriver not exist");
@@ -157,12 +154,12 @@ public class FrontEndCheckController {
                     Platform.runLater(() -> statusInfo.setText("Go to requested Website..."));
 
                     long start = System.currentTimeMillis();
-                    webDriver.navigate().to(requestedWebsite);
+                    webDriver.navigate().to(inputSearch.getText().trim());
                     long finish = System.currentTimeMillis();
                     long totalTime = finish - start;
                     System.out.println("Total Time for page load - "+totalTime);
 
-                    report.writeToFile("Checking Website: ", requestedWebsite);
+                    report.writeToFile("Checking Website: ", inputSearch.getText().trim());
 
 
                     Platform.runLater(() -> progressIndicator.setProgress(checkAllCheckBoxes()));
@@ -488,28 +485,37 @@ public class FrontEndCheckController {
                     });
 
 
-                    //check sales price
-                    isSuccessfull = FilterButtonCheck.pressFilterButton(webDriver, js, Homepage.getProperty("page.filter.salesprice"));
+                    try{
+                        //check sales price
+                        isSuccessfull = FilterButtonCheck.pressFilterButton(webDriver, js, Homepage.getProperty("page.filter.salesprice"));
 
-                    if (isSuccessfull) {
-                        Platform.runLater(() -> {
-                            checkSalesPrice.setStyle("-fx-background-color: #CCFF99");
-                            checkSalesPrice.setSelected(true);
-                        });
-                        report.writeToFile("Checking Price Hint: ", "Successful!");
-                    } else {
+                        if (isSuccessfull) {
+                            Platform.runLater(() -> {
+                                checkSalesPrice.setStyle("-fx-background-color: #CCFF99");
+                                checkSalesPrice.setSelected(true);
+                            });
+                            report.writeToFile("Checking Price Hint: ", "Successful!");
+                        } else {
+                            Platform.runLater(() -> {
+                                checkSalesPrice.setStyle("-fx-background-color: #FF0000");
+                                checkSalesPrice.setSelected(true);
+                            });
+                            report.writeToFile("Checking Price Hint: ", "unable to check!");
+                        }
+                        // make SCREENSHOT
+                        isSuccessfull = ScreenshotViaWebDriver.printScreen(webDriver,"screenshot5.png");
+                        if (isSuccessfull){
+                            report.writeToFile("Checking Layout Salesprice: ", "Screenshot successful!");
+                        }else {
+                            report.writeToFile("Checking Layout Salesprice: ", "Screenshot not successful!");
+                        }
+                    }catch (Exception noSalesFilter){
                         Platform.runLater(() -> {
                             checkSalesPrice.setStyle("-fx-background-color: #FF0000");
                             checkSalesPrice.setSelected(true);
                         });
                         report.writeToFile("Checking Price Hint: ", "unable to check!");
-                    }
-                    // make SCREENSHOT
-                    isSuccessfull = ScreenshotViaWebDriver.printScreen(webDriver,"screenshot5.png");
-                    if (isSuccessfull){
-                        report.writeToFile("Checking Layout Salesprice: ", "Screenshot successful!");
-                    }else {
-                        report.writeToFile("Checking Layout Salesprice: ", "Screenshot not successful!");
+                        noSalesFilter.printStackTrace();
                     }
 
 
@@ -528,6 +534,8 @@ public class FrontEndCheckController {
                     //  check color filter
                     Platform.runLater(() -> statusInfo.setText("Checking Color..."));
                     xpathPattern = Homepage.getProperty("page.filter.color");
+
+
                     isSuccessfull = FilterButtonCheck.pressFilterButton(webDriver, js, xpathPattern);
                     if (isSuccessfull) {
                         report.writeToFile("Checking Filter Color: ", "Successful!");
@@ -716,6 +724,7 @@ public class FrontEndCheckController {
     @FXML
     private void resetAllFormOptions() {
         Platform.runLater(() -> {
+            checkCategoryLinksLeftSideMenu.setStyle("-fx-background-color: #FFFFFF");
             checkLogoHomepage.setStyle("-fx-background-color: #FFFFFF");
             checkGeneralLayout.setStyle("-fx-background-color: #FFFFFF");
             openMainMenu.setStyle("-fx-background-color: #FFFFFF");
@@ -724,6 +733,7 @@ public class FrontEndCheckController {
             checkPerfectMatch.setStyle("-fx-background-color: #FFFFFF");
             checkSalesPrice.setStyle("-fx-background-color: #FFFFFF");
             checkFilter.setStyle("-fx-background-color: #FFFFFF");
+            checkCategoryLinksLeftSideMenu.setSelected(false);
             checkLogoHomepage.setSelected(false);
             checkGeneralLayout.setSelected(false);
             openMainMenu.setSelected(false);

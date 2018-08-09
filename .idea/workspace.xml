@@ -6,11 +6,10 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="added some changes in for loop">
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="added new check requirement">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/image2.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/FrontEndCheckController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/FrontEndCheckController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/FXML/UserInterface.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/FXML/UserInterface.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/configs/page.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/configs/page.properties" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -92,10 +91,11 @@
         <counts>
           <entry key="class" value="1" />
           <entry key="css" value="4" />
-          <entry key="fxml" value="31" />
+          <entry key="fxml" value="32" />
           <entry key="gif" value="1" />
-          <entry key="java" value="149" />
-          <entry key="png" value="46" />
+          <entry key="java" value="153" />
+          <entry key="jpg" value="1" />
+          <entry key="png" value="49" />
           <entry key="properties" value="6" />
           <entry key="txt" value="4" />
           <entry key="xml" value="2" />
@@ -105,11 +105,11 @@
         <counts>
           <entry key="CLASS" value="1" />
           <entry key="CSS" value="4" />
-          <entry key="Image" value="47" />
-          <entry key="JAVA" value="149" />
+          <entry key="Image" value="51" />
+          <entry key="JAVA" value="153" />
           <entry key="PLAIN_TEXT" value="4" />
           <entry key="Properties" value="6" />
-          <entry key="XML" value="33" />
+          <entry key="XML" value="34" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -117,16 +117,16 @@
           <entry key="css" value="41" />
           <entry key="dummy" value="14" />
           <entry key="fxml" value="15" />
-          <entry key="java" value="1136" />
+          <entry key="java" value="1197" />
           <entry key="properties" value="37" />
-          <entry key="txt" value="278" />
+          <entry key="txt" value="302" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="41" />
-          <entry key="JAVA" value="1136" />
-          <entry key="PLAIN_TEXT" value="292" />
+          <entry key="JAVA" value="1197" />
+          <entry key="PLAIN_TEXT" value="316" />
           <entry key="Properties" value="37" />
           <entry key="XML" value="15" />
         </counts>
@@ -141,8 +141,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/FrontEndCheckController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="64">
-              <caret line="175" column="171" selection-start-line="175" selection-start-column="171" selection-end-line="175" selection-end-column="171" />
+            <state relative-caret-position="205">
+              <caret line="517" column="56" lean-forward="true" selection-start-line="517" selection-start-column="56" selection-end-line="517" selection-end-column="56" />
             </state>
           </provider>
         </entry>
@@ -436,7 +436,7 @@
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1533739249565" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1533801492269" />
     <property name="dynamic.classpath" value="false" />
     <property name="full.screen.before.presentation.mode" value="false" />
     <property name="last_opened_file_path" value="$USER_HOME$/AppData/Local/Programs/Git/bin/git.exe" />
@@ -448,18 +448,19 @@
     <property name="settings.editor.selected.configurable" value="editor.preferences.tabs" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\ceckardt\IdeaProjects\FrontEndCheck\src\main\resources\Images" />
+      <recent name="C:\Users\ceckardt\IdeaProjects\FrontEndCheck\temp" />
+      <recent name="C:\Users\ceckardt\IdeaProjects\FrontEndCheck\src\main\resources" />
+      <recent name="C:\Users\ceckardt\IdeaProjects\FrontEndCheck" />
+      <recent name="C:\Users\ceckardt\IdeaProjects\FrontEndCheck\src\main\resources\drivers" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\ceckardt\IdeaProjects\FrontEndCheck\src\main\resources" />
       <recent name="C:\Users\ceckardt\IdeaProjects\FrontEndCheck\src\main\resources\Style" />
       <recent name="C:\Users\ceckardt\IdeaProjects\FrontEndCheck\src\main\resources\Images" />
       <recent name="C:\Users\ceckardt\IdeaProjects\FrontEndCheck\src\main\resources\FXML" />
       <recent name="C:\Users\ceckardt\IdeaProjects\FrontEndCheck\src\main\resources\configs" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\ceckardt\IdeaProjects\FrontEndCheck\temp" />
-      <recent name="C:\Users\ceckardt\IdeaProjects\FrontEndCheck\src\main\resources" />
-      <recent name="C:\Users\ceckardt\IdeaProjects\FrontEndCheck" />
-      <recent name="C:\Users\ceckardt\IdeaProjects\FrontEndCheck\src\main\resources\drivers" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -620,13 +621,6 @@
       <option name="presentableId" value="Default" />
       <updated>1359379246138</updated>
       <workItem from="1359379250712" duration="1302000" />
-    </task>
-    <task id="LOCAL-00016" summary="add filter tests">
-      <created>1530268762938</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1530268762938</updated>
     </task>
     <task id="LOCAL-00017" summary="add more filter tests and icon">
       <created>1530528004036</created>
@@ -964,7 +958,14 @@
       <option name="project" value="LOCAL" />
       <updated>1533720792006</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL-00065" summary="added new check requirement">
+      <created>1533797128314</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1533797128315</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1128,7 +1129,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
-    <MESSAGE value="animation fixed" />
     <MESSAGE value="added SplashController" />
     <MESSAGE value="added Splash Animation and Logo" />
     <MESSAGE value="added fixes" />
@@ -1153,14 +1153,14 @@
     <MESSAGE value="added starting maximized" />
     <MESSAGE value="added some changes and testet injection" />
     <MESSAGE value="added some changes in for loop" />
-    <option name="LAST_COMMIT_MESSAGE" value="added some changes in for loop" />
+    <MESSAGE value="added new check requirement" />
+    <option name="LAST_COMMIT_MESSAGE" value="added new check requirement" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/image.png" />
     <entry file="file://$PROJECT_DIR$/sexy1.png" />
     <entry file="file://$PROJECT_DIR$/src/main/resources/back.jpg" />
     <entry file="file://$PROJECT_DIR$/config.properties" />
@@ -1336,14 +1336,6 @@
     <entry file="file://$PROJECT_DIR$/temp/ScreenshotTabMode.png" />
     <entry file="file://$PROJECT_DIR$/temp/ScreenshotTabPantalon.png" />
     <entry file="file://$PROJECT_DIR$/temp/ScreenshotTabSous-vêtement.png" />
-    <entry file="file://$PROJECT_DIR$/src/main/resources/FXML/UserInterface.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="254" selection-start-line="22" selection-start-column="254" selection-end-line="22" selection-end-column="254" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/FXML/ReportInterface.fxml">
       <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
@@ -1368,9 +1360,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/Images/image.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/configs/page.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -1392,10 +1381,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/Images/image.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/Images/image2.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/FXML/UserInterface.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="254" selection-start-line="22" selection-start-column="254" selection-end-line="22" selection-end-column="254" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/FrontEndCheckController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="64">
-          <caret line="175" column="171" selection-start-line="175" selection-start-column="171" selection-end-line="175" selection-end-column="171" />
+        <state relative-caret-position="205">
+          <caret line="517" column="56" lean-forward="true" selection-start-line="517" selection-start-column="56" selection-end-line="517" selection-end-column="56" />
         </state>
       </provider>
     </entry>
