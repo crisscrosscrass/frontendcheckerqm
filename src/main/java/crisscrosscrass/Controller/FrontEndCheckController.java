@@ -170,7 +170,7 @@ public class FrontEndCheckController {
 
 
 
-                    // Check on Category Links- Left Side Menu
+                    // Check on Category Links - Left Side Menu
                     Platform.runLater(() -> {
                         checkCategoryLinksLeftSideMenu.setStyle("-fx-background-color: #eef442");
                         statusInfo.setText("Checking Category Links...");
