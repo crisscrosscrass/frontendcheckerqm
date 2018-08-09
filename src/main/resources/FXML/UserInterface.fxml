@@ -20,7 +20,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="mainStage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="818.0" prefWidth="572.0" style="-fx-background-color: white;" stylesheets="@../Style/Main.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="crisscrosscrass.Controller.FrontEndCheckController">
+<AnchorPane fx:id="mainStage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="818.0" prefWidth="572.0" style="-fx-background-color: white;" stylesheets="@../Style/Main.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="crisscrosscrass.Controller.FrontEndCheckController">
    <children>
       <Pane layoutX="-10.0" layoutY="-10.0" prefHeight="288.0" prefWidth="569.0" style="-fx-background-color: #e83062;" AnchorPane.leftAnchor="-10.0" AnchorPane.rightAnchor="-3.0" AnchorPane.topAnchor="-10.0" />
       <VBox layoutX="17.0" layoutY="25.0">
@@ -106,6 +106,7 @@
                                           <FontAwesomeIconView fill="#e83062" glyphName="CLONE" size="40" />
                                           <VBox fx:id="CheckBoxesPlace" alignment="CENTER_LEFT">
                                              <children>
+                                                <CheckBox fx:id="checkCategoryLinksLeftSideMenu" mnemonicParsing="false" text="Category Links- Left Side Menu" />
                                                 <CheckBox fx:id="checkLogoHomepage" mnemonicParsing="false" text="# Click on logo to go to homepage" />
                                                 <CheckBox fx:id="checkGeneralLayout" mnemonicParsing="false" text="# Check general layout" />
                                                 <CheckBox fx:id="openMainMenu" mnemonicParsing="false" text="# Open main menu and check layout / links" />
