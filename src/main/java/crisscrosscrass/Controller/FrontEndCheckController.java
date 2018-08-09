@@ -71,7 +71,7 @@ public class FrontEndCheckController {
     @FXML
     Tab brandTab;
 
-    private static boolean isSuccessfull = false;
+    private static boolean isSuccessful = false;
     private static String xpathPattern = "";
 
 
@@ -176,8 +176,8 @@ public class FrontEndCheckController {
                         WebdriverTab newtab = new WebdriverTab();
                         for (int i = 0 ; i < CategoryLinksLeftSideMenu.size() ; i++){
                             //randomPicker = 0 + (int)(Math.random() * (((MainSubMenu.size()-1) - 0) + 1));
-                            isSuccessfull = newtab.open(webDriver,CategoryLinksLeftSideMenu.get(i).getAttribute("href"),CategoryLinksLeftSideMenu.get(i).getAttribute("textContent").trim());
-                            if (isSuccessfull){
+                            isSuccessful = newtab.open(webDriver,CategoryLinksLeftSideMenu.get(i).getAttribute("href"),CategoryLinksLeftSideMenu.get(i).getAttribute("textContent").trim());
+                            if (isSuccessful){
                                 report.writeToFile("TEST CategoryLinksLeftSideMenu "+i+": Successful | ", "found \"" + CategoryLinksLeftSideMenu.get(i).getAttribute("textContent").trim() + "\" Keyword at URL : "+ CategoryLinksLeftSideMenu.get(i).getAttribute("href"));
                             }else {
                                 report.writeToFile("TEST CategoryLinksLeftSideMenu "+i+": unable to check! |", "couldn't found \"" + CategoryLinksLeftSideMenu.get(i).getAttribute("textContent").trim() + "\" Keyword in URL : "+ CategoryLinksLeftSideMenu.get(i).getAttribute("href"));
@@ -245,8 +245,8 @@ public class FrontEndCheckController {
 
 
                     // make SCREENSHOT 1 | parameter "webdriver" + "name";
-                    isSuccessfull = ScreenshotViaWebDriver.printScreen(webDriver,"screenshot1.png");
-                    if (isSuccessfull){
+                    isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"screenshot1.png");
+                    if (isSuccessful){
                         report.writeToFile("Checking Layout: ", "Screenshot successful!");
                     }else {
                         report.writeToFile("Checking Layout: ", "Screenshot not successful!");
@@ -261,8 +261,8 @@ public class FrontEndCheckController {
 
 
                     // make SCREENSHOT 2
-                    isSuccessfull = ScreenshotViaWebDriver.printScreen(webDriver,"screenshot2.png");
-                    if (isSuccessfull){
+                    isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"screenshot2.png");
+                    if (isSuccessful){
                         report.writeToFile("Checking Layout: ", "Screenshot successful!");
                     }else {
                         report.writeToFile("Checking Layout: ", "Screenshot not successful!");
@@ -275,8 +275,8 @@ public class FrontEndCheckController {
                     }
 
                     // make SCREENSHOT 3
-                    isSuccessfull = ScreenshotViaWebDriver.printScreen(webDriver,"screenshot3.png");
-                    if (isSuccessfull){
+                    isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"screenshot3.png");
+                    if (isSuccessful){
                         report.writeToFile("Checking Layout: ", "Screenshot successful!");
                     }else {
                         report.writeToFile("Checking Layout: ", "Screenshot not successful!");
@@ -289,8 +289,8 @@ public class FrontEndCheckController {
                     }
 
                     // make SCREENSHOT 4
-                    isSuccessfull = ScreenshotViaWebDriver.printScreen(webDriver,"screenshot4.png");
-                    if (isSuccessfull){
+                    isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"screenshot4.png");
+                    if (isSuccessful){
                         report.writeToFile("Checking Layout: ", "Screenshot successful!");
                     }else {
                         report.writeToFile("Checking Layout: ", "Screenshot not successful!");
@@ -329,9 +329,7 @@ public class FrontEndCheckController {
                         Thread.sleep(100);
 
                         //checking Sub Main Menu Links
-                        Platform.runLater(() -> {
-                            statusInfo.setText("Checking SubMenu...");
-                        });
+                        Platform.runLater(() -> statusInfo.setText("Checking SubMenu..."));
 
                         List<WebElement> MainSubMenu = ((ChromeDriver) webDriver).findElementsByXPath(Homepage.getProperty("page.submain.links"));
                         int counterSubMenu = 1;
@@ -344,7 +342,7 @@ public class FrontEndCheckController {
 
                         report.writeToFile("=================================", "");
 
-                        int randomPicker = 0;
+                        //int randomPicker = 0;
                         Platform.runLater(() -> {
                             statusInfo.setText("Test 10 SubMenu Links in new Tab...");
                         });
@@ -352,8 +350,8 @@ public class FrontEndCheckController {
                         WebdriverTab newtab = new WebdriverTab();
                         for (int i = 0 ; i < 2 ; i++){
                             //randomPicker = 0 + (int)(Math.random() * (((MainSubMenu.size()-1) - 0) + 1));
-                            isSuccessfull = newtab.open(webDriver,MainSubMenu.get(i).getAttribute("href"),MainSubMenu.get(i).getAttribute("textContent"));
-                            if (isSuccessfull){
+                            isSuccessful = newtab.open(webDriver,MainSubMenu.get(i).getAttribute("href"),MainSubMenu.get(i).getAttribute("textContent"));
+                            if (isSuccessful){
                                 report.writeToFile("TEST MainMenuSubLink "+i+": Successful | ", "found \"" + MainSubMenu.get(i).getAttribute("textContent") + "\" Keyword at URL : "+ MainSubMenu.get(i).getAttribute("href"));
                             }else {
                                 report.writeToFile("TEST MainMenuSubLink "+i+": unable to check! |", "couldn't found \"" + MainSubMenu.get(i).getAttribute("textContent") + "\" Keyword in URL : "+ MainSubMenu.get(i).getAttribute("href"));
@@ -484,12 +482,11 @@ public class FrontEndCheckController {
                         statusInfo.setText("Checking Price Hint...");
                     });
 
-
+                    xpathPattern = Homepage.getProperty("page.filter.salesprice");
                     try{
                         //check sales price
-                        isSuccessfull = FilterButtonCheck.pressFilterButton(webDriver, js, Homepage.getProperty("page.filter.salesprice"));
-
-                        if (isSuccessfull) {
+                        isSuccessful = FilterButtonCheck.pressFilterButton(webDriver, js, xpathPattern);
+                        if (isSuccessful) {
                             Platform.runLater(() -> {
                                 checkSalesPrice.setStyle("-fx-background-color: #CCFF99");
                                 checkSalesPrice.setSelected(true);
@@ -503,8 +500,8 @@ public class FrontEndCheckController {
                             report.writeToFile("Checking Price Hint: ", "unable to check!");
                         }
                         // make SCREENSHOT
-                        isSuccessfull = ScreenshotViaWebDriver.printScreen(webDriver,"screenshot5.png");
-                        if (isSuccessfull){
+                        isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"screenshot5.png");
+                        if (isSuccessful){
                             report.writeToFile("Checking Layout Salesprice: ", "Screenshot successful!");
                         }else {
                             report.writeToFile("Checking Layout Salesprice: ", "Screenshot not successful!");
@@ -514,7 +511,7 @@ public class FrontEndCheckController {
                             checkSalesPrice.setStyle("-fx-background-color: #FF0000");
                             checkSalesPrice.setSelected(true);
                         });
-                        report.writeToFile("Checking Price Hint: ", "unable to check!");
+                        report.writeToFile("Checking Price Hint: ", "unable to check! Browser not responding");
                         noSalesFilter.printStackTrace();
                     }
 
@@ -534,28 +531,31 @@ public class FrontEndCheckController {
                     //  check color filter
                     Platform.runLater(() -> statusInfo.setText("Checking Color..."));
                     xpathPattern = Homepage.getProperty("page.filter.color");
+                    try {
+                        isSuccessful = FilterButtonCheck.pressFilterButton(webDriver, js, xpathPattern);
+                        if (isSuccessful) {
+                            report.writeToFile("Checking Filter Color: ", "Successful!");
+                        } else {
+                            report.writeToFile("Checking Filter Color: ", "unable to check!");
+                            report.writeToFile("Checking via JavaScript: ", "\b");
+                            isSuccessful = FilterButtonCheckViaJavaScript.pressFilterButton(webDriver, js, xpathPattern);
 
-
-                    isSuccessfull = FilterButtonCheck.pressFilterButton(webDriver, js, xpathPattern);
-                    if (isSuccessfull) {
-                        report.writeToFile("Checking Filter Color: ", "Successful!");
-                    } else {
-                        report.writeToFile("Checking Filter Color: ", "unable to check!");
-                        report.writeToFile("Checking via JavaScript: ", "\b");
-                        isSuccessfull = FilterButtonCheckViaJavaScript.pressFilterButton(webDriver, js, xpathPattern);
-
-                        if (isSuccessfull){
-                            report.writeToFile("Checking Filter Color via JS: ", "Successful!");
-                        }else{
-                            report.writeToFile("Checking Filter Color via JS: ", "unable to check!");
+                            if (isSuccessful){
+                                report.writeToFile("Checking Filter Color via JS: ", "Successful!");
+                            }else{
+                                report.writeToFile("Checking Filter Color via JS: ", "unable to check!");
+                            }
                         }
-                    }
-                    // make SCREENSHOT
-                    isSuccessfull = ScreenshotViaWebDriver.printScreen(webDriver,"screenshot6.png");
-                    if (isSuccessfull){
-                        report.writeToFile("Checking Layout Color: ", "Screenshot successful!");
-                    }else {
-                        report.writeToFile("Checking Layout Color: ", "Screenshot not successful!");
+                        // make SCREENSHOT
+                        isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"screenshot6.png");
+                        if (isSuccessful){
+                            report.writeToFile("Checking Layout Color: ", "Screenshot successful!");
+                        }else {
+                            report.writeToFile("Checking Layout Color: ", "Screenshot not successful!");
+                        }
+                    }catch (Exception noColorFilter){
+                        report.writeToFile("Checking Filter Color: ", "unable to check! Browser not responding");
+                        noColorFilter.printStackTrace();
                     }
 
 
@@ -563,84 +563,109 @@ public class FrontEndCheckController {
                     // check brand filter
                     Platform.runLater(() -> statusInfo.setText("Checking Brand..."));
                     xpathPattern = Homepage.getProperty("page.filter.brand");
-                    isSuccessfull = FilterButtonCheck.pressFilterButton(webDriver, js, xpathPattern);
-                    if (isSuccessfull) {
-                        report.writeToFile("Checking Filter Brand: ", "Successful!");
-                    } else {
-                        report.writeToFile("Checking Filter Brand: ", "unable to check!");
-                        report.writeToFile("Checking via JavaScript: ", "\b");
-                        isSuccessfull = FilterButtonCheckViaJavaScript.pressFilterButton(webDriver, js, xpathPattern);
-                        if (isSuccessfull){
-                            report.writeToFile("Checking Filter Brand via JS: ", "Successful!");
-                        }else{
-                            report.writeToFile("Checking Filter Brand via JS: ", "unable to check!");
+                    try {
+                        isSuccessful = FilterButtonCheck.pressFilterButton(webDriver, js, xpathPattern);
+                        if (isSuccessful) {
+                            report.writeToFile("Checking Filter Brand: ", "Successful!");
+                        } else {
+                            report.writeToFile("Checking Filter Brand: ", "unable to check!");
+                            report.writeToFile("Checking via JavaScript: ", "\b");
+                            isSuccessful = FilterButtonCheckViaJavaScript.pressFilterButton(webDriver, js, xpathPattern);
+                            if (isSuccessful){
+                                report.writeToFile("Checking Filter Brand via JS: ", "Successful!");
+                            }else{
+                                report.writeToFile("Checking Filter Brand via JS: ", "unable to check!");
+                            }
                         }
+
+                        // make SCREENSHOT
+                        isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"screenshot7.png");
+                        if (isSuccessful){
+                            report.writeToFile("Checking Layout Brand: ", "Screenshot successful!");
+                        }else {
+                            report.writeToFile("Checking Layout Brand: ", "Screenshot not successful!");
+                        }
+                    }catch (Exception noBrandFilter){
+                        report.writeToFile("Checking Filter Brand: ", "unable to check! Browser not responding");
+                        noBrandFilter.printStackTrace();
                     }
 
-                    // make SCREENSHOT
-                    isSuccessfull = ScreenshotViaWebDriver.printScreen(webDriver,"screenshot7.png");
-                    if (isSuccessfull){
-                        report.writeToFile("Checking Layout Brand: ", "Screenshot successful!");
-                    }else {
-                        report.writeToFile("Checking Layout Brand: ", "Screenshot not successful!");
-                    }
 
 
                     // check material filter
                     Platform.runLater(() -> statusInfo.setText("Checking Material..."));
                     xpathPattern = Homepage.getProperty("page.filter.material");
-                    isSuccessfull = FilterButtonCheck.pressFilterButton(webDriver, js, xpathPattern);
-                    if (isSuccessfull) {
-                        report.writeToFile("Checking Filter Material: ", "Successful!");
-                    } else {
-                        report.writeToFile("Checking Filter Material: ", "unable to check!");
-                        report.writeToFile("Checking via JavaScript: ", "\b");
-                        isSuccessfull = FilterButtonCheckViaJavaScript.pressFilterButton(webDriver, js, xpathPattern);
-                        if (isSuccessfull){
-                            report.writeToFile("Checking Filter Material via JS: ", "Successful!");
-                        }else{
-                            report.writeToFile("Checking Filter Material via JS: ", "unable to check!");
+                    try{
+                        isSuccessful = FilterButtonCheck.pressFilterButton(webDriver, js, xpathPattern);
+                        if (isSuccessful) {
+                            report.writeToFile("Checking Filter Material: ", "Successful!");
+                        } else {
+                            report.writeToFile("Checking Filter Material: ", "unable to check!");
+                            report.writeToFile("Checking via JavaScript: ", "\b");
+                            isSuccessful = FilterButtonCheckViaJavaScript.pressFilterButton(webDriver, js, xpathPattern);
+                            if (isSuccessful){
+                                report.writeToFile("Checking Filter Material via JS: ", "Successful!");
+                            }else{
+                                report.writeToFile("Checking Filter Material via JS: ", "unable to check!");
+                            }
                         }
+                    }catch (Exception noMaterialFilter){
+                        report.writeToFile("Checking Filter Material via JS: ", "unable to check! Browser not responding");
                     }
+
 
                     // check shop filter
                     Platform.runLater(() -> statusInfo.setText("Checking Shop..."));
                     xpathPattern = Homepage.getProperty("page.filter.shop");
-                    isSuccessfull = FilterButtonCheck.pressFilterButton(webDriver, js, xpathPattern);
-                    if (isSuccessfull) {
-                        Platform.runLater(() -> {
-                            checkFilter.setStyle("-fx-background-color: #CCFF99");
-                            checkFilter.setSelected(true);
-                        });
-                        report.writeToFile("Checking Filter Shop: ", "Successful!");
-                    } else {
-                        report.writeToFile("Checking Filter Shop: ", "unable to check!");
-                        report.writeToFile("Checking via JavaScript: ", "\b");
-                        isSuccessfull = FilterButtonCheckViaJavaScript.pressFilterButton(webDriver, js, xpathPattern);
-                        if (isSuccessfull){
-                            report.writeToFile("Checking Filter Shop via JS: ", "Successful!");
+                    try {
+                        isSuccessful = FilterButtonCheck.pressFilterButton(webDriver, js, xpathPattern);
+                        if (isSuccessful) {
                             Platform.runLater(() -> {
                                 checkFilter.setStyle("-fx-background-color: #CCFF99");
                                 checkFilter.setSelected(true);
                             });
-                        }else{
-                            report.writeToFile("Checking Filter Shop via JS: ", "unable to check!");
-                            Platform.runLater(() -> {
-                                checkFilter.setStyle("-fx-background-color: #FF0000");
-                                checkFilter.setSelected(true);
-                            });
+                            report.writeToFile("Checking Filter Shop: ", "Successful!");
+                        } else {
+                            report.writeToFile("Checking Filter Shop: ", "unable to check!");
+                            report.writeToFile("Checking via JavaScript: ", "\b");
+                            isSuccessful = FilterButtonCheckViaJavaScript.pressFilterButton(webDriver, js, xpathPattern);
+                            if (isSuccessful){
+                                report.writeToFile("Checking Filter Shop via JS: ", "Successful!");
+                                Platform.runLater(() -> {
+                                    checkFilter.setStyle("-fx-background-color: #CCFF99");
+                                    checkFilter.setSelected(true);
+                                });
+                            }else{
+                                report.writeToFile("Checking Filter Shop via JS: ", "unable to check!");
+                                Platform.runLater(() -> {
+                                    checkFilter.setStyle("-fx-background-color: #FF0000");
+                                    checkFilter.setSelected(true);
+                                });
+                            }
                         }
+                    }catch (Exception noShopFilter){
+                        report.writeToFile("Checking Filter Shop: ", "unable to check! Browser not responding");
+                        noShopFilter.printStackTrace();
                     }
 
+
+
+                    // close webdriver and clear tasklist
                     for (int i = 0 ; i < 10 ; i++){
                         Thread.sleep(100);
                         js.executeScript("window.scrollBy(0,100)");
                     }
-                    // close webdriver and clear tasklist
-
-                    webDriver.close();
-                    webDriver.quit();
-
+                    Platform.runLater(() -> statusInfo.setText("Closing Browser..."));
+                    try {
+                        webDriver.close();
+                    }catch (Exception driverClosing){
+                        driverClosing.printStackTrace();
+                    }
+                    try {
+                        webDriver.quit();
+                    }catch (Exception driverQuit){
+                        driverQuit.printStackTrace();
+                    }
                     // not used now but got to know
                     // tabPane.getSelectionModel().select(brandTab);
 
@@ -662,7 +687,7 @@ public class FrontEndCheckController {
             thread.start();
 
             task.setOnSucceeded(e -> Platform.runLater(() -> {
-                Hyperlink link = new Hyperlink("create Report");
+                Hyperlink link = new Hyperlink("open Report");
                 link.setOnAction(event -> {
                     ReportWindow window = new ReportWindow();
                     try {
