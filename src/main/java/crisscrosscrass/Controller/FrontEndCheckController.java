@@ -45,6 +45,8 @@ public class FrontEndCheckController {
     @FXML
     JFXCheckBox checkNewsletterPopUp;
     @FXML
+    JFXCheckBox checkNewsletterPopUpFunctionality;
+    @FXML
     CheckBox checkLogoHomepage;
     @FXML
     CheckBox checkGeneralLayout;
@@ -443,22 +445,94 @@ public class FrontEndCheckController {
                                 checkNewsletterPopUp.setStyle("-fx-background-color: #FF0000");
                                 checkNewsletterPopUp.setSelected(true);
                             });
-                            report.writeToFile("Checking Newsletter PopUp: ", "Couldn't find Newsletter Element!");
+                            report.writeToFile("Checking Newsletter PopUp: ", "Couldn't find Newsletter Icon Element!");
                             noNewsletterIconFound.printStackTrace();
                         }
-
 
                     }catch (Exception noNewsLetterIcon){
                         Platform.runLater(() -> {
                             checkNewsletterPopUp.setStyle("-fx-background-color: #FF0000");
                             checkNewsletterPopUp.setSelected(true);
                         });
-                        report.writeToFile("Checking Newsletter Icon Functionality: ", "unable to check! Browser not responding");
+                        report.writeToFile("Checking Newsletter Pop Functionality: ", "unable to check! Browser not responding");
                         noNewsLetterIcon.printStackTrace();
                     }
 
                     Platform.runLater(() -> progressIndicator.setProgress(checkAllCheckBoxes()));
                     report.writeToFile("=================================", "");
+
+
+
+
+
+                    // Newsletter PopUp Functionality
+                    Platform.runLater(() -> {
+                        checkNewsletterPopUpFunctionality.setStyle("-fx-background-color: #eef442");
+                        statusInfo.setText("Checking Newsletter PopUp Functionality...");
+                    });
+                    xpathPattern = Homepage.getProperty("page.main.newsletter.icon");
+                    try {
+                        ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
+                        webDriver.switchTo().window(tabs.get(0));
+                        try {
+                            isAvailable = webDriver.findElementByXPath(xpathPattern) != null;
+                            webDriver.findElementByXPath(xpathPattern).click();
+                            try{
+                                WebElement element = webDriver.findElementByXPath("//*[@id=\"subscribing-wrapper\"]/div[1]/form/div[1]/input");
+                                element.sendKeys(inputEmailAdress.getText());
+                                element.submit();
+                                if (webDriver.getCurrentUrl().contains("newsletter.html")) {
+                                    Platform.runLater(() -> {
+                                        checkNewsletterPopUpFunctionality.setStyle("-fx-background-color: #CCFF99");
+                                        checkNewsletterPopUpFunctionality.setSelected(true);
+                                    });
+                                    report.writeToFile("Checking Newsletter PopUp Functionality: ", "Successful!");
+                                } else {
+                                    Platform.runLater(() -> {
+                                        checkNewsletterPopUpFunctionality.setStyle("-fx-background-color: #FF0000");
+                                        checkNewsletterPopUpFunctionality.setSelected(true);
+                                    });
+                                    report.writeToFile("Checking Newsletter PopUp Functionality: ", "Not working!");
+                                }
+                                webDriver.navigate().to(inputSearch.getText().trim());
+                            }catch (Exception noEmailCouldBeEntered){
+                                Platform.runLater(() -> {
+                                    checkNewsletterPopUpFunctionality.setStyle("-fx-background-color: #FF0000");
+                                    checkNewsletterPopUpFunctionality.setSelected(true);
+                                });
+                                report.writeToFile("Checking Newsletter PopUp Functionality: ", "Email Adress couldn't be entered!");
+                                isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"PopUpNewsLetter.png");
+                                if (isSuccessful){
+                                    report.writeToFile("Checking Logo Shop Screenshot: ", "Screenshot successful!");
+                                }else {
+                                    report.writeToFile("Checking Logo Shop Screenshot: ", "Screenshot not successful!");
+                                }
+                                webDriver.navigate().to(inputSearch.getText().trim());
+                                noEmailCouldBeEntered.printStackTrace();
+                            }
+                        }catch (Exception noNewsletterIconFound){
+                            Platform.runLater(() -> {
+                                checkNewsletterPopUpFunctionality.setStyle("-fx-background-color: #FF0000");
+                                checkNewsletterPopUpFunctionality.setSelected(true);
+                            });
+                            report.writeToFile("Checking Newsletter PopUp Functionality: ", "Couldn't find Newsletter Icon Element!");
+                            noNewsletterIconFound.printStackTrace();
+                        }
+
+                    }catch (Exception noNewsLetterIcon){
+                        Platform.runLater(() -> {
+                            checkNewsletterPopUpFunctionality.setStyle("-fx-background-color: #FF0000");
+                            checkNewsletterPopUpFunctionality.setSelected(true);
+                        });
+                        report.writeToFile("Checking Newsletter Pop Functionality: ", "unable to check! Browser not responding");
+                        noNewsLetterIcon.printStackTrace();
+                    }
+
+                    Platform.runLater(() -> progressIndicator.setProgress(checkAllCheckBoxes()));
+                    report.writeToFile("=================================", "");
+
+
+
 
 
 
@@ -1023,6 +1097,8 @@ public class FrontEndCheckController {
             checkLogoFromShopOfTheWeek.setStyle("-fx-background-color: #FFFFFF");
             checkCategoryLinksFromShopOfTheWeek.setStyle("-fx-background-color: #FFFFFF");
             checkNewsletterBannerFunctionality.setStyle("-fx-background-color: #FFFFFF");
+            checkNewsletterPopUp.setStyle("-fx-background-color: #FFFFFF");
+            checkNewsletterPopUpFunctionality.setStyle("-fx-background-color: #FFFFFF");
             checkLogoHomepage.setStyle("-fx-background-color: #FFFFFF");
             checkGeneralLayout.setStyle("-fx-background-color: #FFFFFF");
             openMainMenu.setStyle("-fx-background-color: #FFFFFF");
@@ -1035,6 +1111,8 @@ public class FrontEndCheckController {
             checkLogoFromShopOfTheWeek.setSelected(false);
             checkCategoryLinksFromShopOfTheWeek.setSelected(false);
             checkNewsletterBannerFunctionality.setSelected(false);
+            checkNewsletterPopUp.setSelected(false);
+            checkNewsletterPopUpFunctionality.setSelected(false);
             checkLogoHomepage.setSelected(false);
             checkGeneralLayout.setSelected(false);
             openMainMenu.setSelected(false);

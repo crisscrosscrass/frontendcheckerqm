@@ -23,12 +23,12 @@
 
 <AnchorPane fx:id="mainStage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="818.0" prefWidth="572.0" style="-fx-background-color: white;" stylesheets="@../Style/Main.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="crisscrosscrass.Controller.FrontEndCheckController">
    <children>
-      <Pane layoutX="-10.0" layoutY="-10.0" prefHeight="288.0" prefWidth="569.0" style="-fx-background-color: #e83062;" AnchorPane.leftAnchor="-10.0" AnchorPane.rightAnchor="-3.0" AnchorPane.topAnchor="-10.0" />
+      <Pane layoutX="-10.0" layoutY="-10.0" prefHeight="327.0" prefWidth="585.0" style="-fx-background-color: #e83062;" AnchorPane.leftAnchor="-10.0" AnchorPane.rightAnchor="-3.0" AnchorPane.topAnchor="-10.0" />
       <VBox layoutX="17.0" layoutY="25.0">
          <children>
-            <VBox alignment="TOP_CENTER" prefHeight="382.0" prefWidth="549.0">
+            <VBox alignment="TOP_CENTER" prefHeight="438.0" prefWidth="549.0">
                <children>
-                  <TextField fx:id="inputSearch" alignment="CENTER" focusTraversable="false" text="https://www.ladenzeile.de/">
+                  <TextField fx:id="inputSearch" alignment="CENTER" text="https://www.ladenzeile.de/">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -45,7 +45,7 @@
                   <HBox alignment="CENTER" spacing="20.0">
                      <children>
                         <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Email Adress Test:" />
-                        <TextField fx:id="inputEmailAdress" text="tester@testermail.com" />
+                        <TextField fx:id="inputEmailAdress" focusTraversable="false" text="tester@testermail.com" />
                      </children>
                      <padding>
                         <Insets top="20.0" />
@@ -121,6 +121,7 @@
                                                 <JFXCheckBox fx:id="checkCategoryLinksFromShopOfTheWeek" text="Category Links from Shop of the Week" />
                                                 <JFXCheckBox fx:id="checkNewsletterBannerFunctionality" text="Newsletter Banner Functionality" />
                                                 <JFXCheckBox fx:id="checkNewsletterPopUp" text="Newsletter PopUp" />
+                                                <JFXCheckBox fx:id="checkNewsletterPopUpFunctionality" layoutX="10.0" layoutY="82.0" text="Newsletter PopUp Functionality" />
                                                 <CheckBox fx:id="checkLogoHomepage" mnemonicParsing="false" text="# Click on logo to go to homepage" />
                                                 <CheckBox fx:id="checkGeneralLayout" mnemonicParsing="false" text="# Check general layout" />
                                                 <CheckBox fx:id="openMainMenu" mnemonicParsing="false" text="# Open main menu and check layout / links" />
