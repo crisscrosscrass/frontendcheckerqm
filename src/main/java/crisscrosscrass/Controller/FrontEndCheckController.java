@@ -251,6 +251,9 @@ public class FrontEndCheckController {
                         webDriver.switchTo().window(tabs.get(0));
                         try {
                             isAvailable = webDriver.findElementByXPath(xpathPattern1) != null;
+                            Point hoverItem = webDriver.findElement(By.xpath(xpathPattern1)).getLocation();
+                            ((JavascriptExecutor)webDriver).executeScript("return window.title;");
+                            ((JavascriptExecutor)webDriver).executeScript("window.scrollBy(0,"+(hoverItem.getY())+");");
                             String ShopOfTheWeekImage = webDriver.findElementByXPath(xpathPatternImage1).getAttribute("src");
                             webDriver.findElementByXPath(xpathPattern1).click();
                             try{
