@@ -52,4 +52,41 @@ public class WebdriverTab {
         return answer;
     }
 
+    public boolean open(WebDriver webDriver, String baseUrl, String checkKeyword, String checkPreviousImageUrl, String imageXPathGrid ){
+
+        answer = false;
+        screenShot = false;
+        //String winHandleBefore = webDriver.getWindowHandle();
+
+        ((JavascriptExecutor)webDriver).executeScript("window.open()");
+        ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
+        webDriver.switchTo().window(tabs.get(1)); //switches to new tab
+        webDriver.get(baseUrl);
+        try{
+            String ShopOfTheWeekGridImage = webDriver.findElement(By.xpath(imageXPathGrid)).getAttribute("src");
+
+            if ( webDriver.getTitle().contains(checkKeyword) | webDriver.findElement(By.xpath("//*[@id='headline']/h1")).getText().contains(checkKeyword) ) {
+                System.out.println("Keyword found");
+                if (checkPreviousImageUrl.contains(ShopOfTheWeekGridImage)){
+                    System.out.println("Image url also found!");
+                    answer = true;
+                }else {
+                    answer = false;
+                }
+            }else{
+                answer = false;
+            }
+        }catch (Exception noSupport){
+            System.out.println("Error here : "+noSupport);
+        }
+        finally {
+
+            webDriver.switchTo().window(tabs.get(1)).close();
+            webDriver.switchTo().window(tabs.get(0)); // switch back to main screen
+            //webDriver.switchTo().window(winHandleBefore);
+        }
+
+        return answer;
+    }
+
 }

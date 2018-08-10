@@ -39,6 +39,10 @@ public class FrontEndCheckController {
     @FXML
     JFXCheckBox checkLogoFromShopOfTheWeek;
     @FXML
+    JFXCheckBox checkCategoryLinksFromShopOfTheWeek;
+    @FXML
+    JFXCheckBox checkNewsletterBannerFunctionality;
+    @FXML
     CheckBox checkLogoHomepage;
     @FXML
     CheckBox checkGeneralLayout;
@@ -63,6 +67,8 @@ public class FrontEndCheckController {
     @FXML
     TextField inputSearch;
     @FXML
+    TextField inputEmailAdress;
+    @FXML
     HBox outputPlace;
     @FXML
     ImageView preloaderCat;
@@ -78,6 +84,8 @@ public class FrontEndCheckController {
     private static boolean isSuccessful = false;
     private static boolean isAvailable = false;
     private static String xpathPattern = "";
+    private static String xpathPatternImage1 = "";
+    private static String xpathPatternImage2 = "";
 
 
     @FXML
@@ -185,7 +193,7 @@ public class FrontEndCheckController {
                                 isAvailable = webDriver.findElementByXPath(xpathPattern) != null;
                                 List<WebElement> CategoryLinksLeftSideMenu = webDriver.findElementsByXPath(xpathPattern);
                                 WebdriverTab newtab = new WebdriverTab();
-                                //TODO use CategoryLinksLeftSideMenu.size() instead of 1
+                                //TODO use CategoryLinksLeftSideMenu.size() instead of 1 for Loop!
                                 for (int i = 0 ; i < 1 ; i++){
                                     webDriver.switchTo().window(tabs.get(0));
                                     isSuccessful = newtab.open(webDriver,CategoryLinksLeftSideMenu.get(i).getAttribute("href"),CategoryLinksLeftSideMenu.get(i).getAttribute("textContent").trim());
@@ -216,7 +224,6 @@ public class FrontEndCheckController {
                         report.writeToFile("Checking Category Links: ", "unable to check! Browser not responding");
                     }
 
-
                     Platform.runLater(() -> progressIndicator.setProgress(checkAllCheckBoxes()));
                     report.writeToFile("=================================", "");
 
@@ -229,15 +236,17 @@ public class FrontEndCheckController {
                         statusInfo.setText("Checking Logo Shop of the Week...");
                     });
                     xpathPattern = Homepage.getProperty("page.main.shop.promo.link");
+                    xpathPatternImage1 = Homepage.getProperty("page.main.shop.promo.image");
+                    xpathPatternImage2 = Homepage.getProperty("page.grid.shop.image");
                     try{
                         ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
                         webDriver.switchTo().window(tabs.get(0));
                         try {
                             isAvailable = webDriver.findElementByXPath(xpathPattern) != null;
-                            String ShopOfTheWeekImage = webDriver.findElementByXPath("//*[@class='hp-shop-promo']/a/img").getAttribute("src");
+                            String ShopOfTheWeekImage = webDriver.findElementByXPath(xpathPatternImage1).getAttribute("src");
                             webDriver.findElementByXPath(xpathPattern).click();
                             try{
-                                String ShopOfTheWeekGridImage = webDriver.findElementByXPath("//*[contains(@class, 'content-header-wrap')]/div/div/div/a/img").getAttribute("src");
+                                String ShopOfTheWeekGridImage = webDriver.findElementByXPath(xpathPatternImage2).getAttribute("src");
                                 if (ShopOfTheWeekImage.contains(ShopOfTheWeekGridImage)){
                                     Platform.runLater(() -> {
                                         checkLogoFromShopOfTheWeek.setStyle("-fx-background-color: #CCFF99");
@@ -250,7 +259,14 @@ public class FrontEndCheckController {
                                         checkLogoFromShopOfTheWeek.setSelected(true);
                                     });
                                     report.writeToFile("Checking Logo Shop of the Week: ", "Not the same image url!");
+                                    isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"ShopLogoGridPage.png");
+                                    if (isSuccessful){
+                                        report.writeToFile("Checking Logo Shop Screenshot: ", "Screenshot successful!");
+                                    }else {
+                                        report.writeToFile("Checking Logo Shop Screenshot: ", "Screenshot not successful!");
+                                    }
                                 }
+                                webDriver.navigate().to(inputSearch.getText().trim());
 
                             }catch (Exception noLogoFoundOnGrid){
                                 report.writeToFile("Checking Logo Shop of the Week: ", "unable to check! No Logo found on GridPage!");
@@ -278,12 +294,129 @@ public class FrontEndCheckController {
                         checkLogoFromShopOfTheWeek.setSelected(true);
                         });
                         report.writeToFile("Checking Logo Shop of the Week: ", "unable to check! Browser not responding");
+                        noShopPromo.printStackTrace();
                     }
-
-
 
                     Platform.runLater(() -> progressIndicator.setProgress(checkAllCheckBoxes()));
                     report.writeToFile("=================================", "");
+
+
+
+
+
+                    // Category Links from Shop of the Week
+                    Platform.runLater(() -> {
+                        checkCategoryLinksFromShopOfTheWeek.setStyle("-fx-background-color: #eef442");
+                        statusInfo.setText("Checking Category Links from Shop of the Week ...");
+                    });
+                    xpathPattern = Homepage.getProperty("page.main.shop.promo.category");
+                    xpathPatternImage1 = Homepage.getProperty("page.main.shop.promo.image");
+                    xpathPatternImage2 = Homepage.getProperty("page.grid.shop.image");
+                    try {
+                        ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
+                        webDriver.switchTo().window(tabs.get(0));
+                        try{
+                            isAvailable = webDriver.findElementByXPath(xpathPattern) != null;
+                            String ShopOfTheWeekImage = webDriver.findElementByXPath(xpathPatternImage1).getAttribute("src");
+                            List<WebElement> shopCategoryLinks = webDriver.findElementsByXPath(xpathPattern);
+                            List<WebElement> shopCategoryNames = webDriver.findElementsByXPath("//*[@id='pagecontent']/*/*[@class='hp-shop-promo']/*[contains(@class, 'hp-shop-promo-categorylink')]/div/a/div/div[1]");
+                            WebdriverTab newtab = new WebdriverTab();
+                            //TODO use shopCategoryLinks.size() instead of 1 for Loop!
+                            for (int i = 0 ; i < 1 ; i++){
+                                webDriver.switchTo().window(tabs.get(0));
+                                isSuccessful = newtab.open(webDriver,shopCategoryLinks.get(i).getAttribute("href"),shopCategoryNames.get(i).getAttribute("textContent").trim(),ShopOfTheWeekImage,xpathPatternImage2);
+                                if (isSuccessful){
+                                    report.writeToFile("TEST ShopCategoryLinks "+i+": Successful | ", "found \"" + shopCategoryNames.get(i).getAttribute("textContent").trim() + "\" Keyword at URL : "+ shopCategoryLinks.get(i).getAttribute("href") + " and same Image is available");
+                                }else {
+                                    report.writeToFile("TEST ShopCategoryLinks "+i+": unable to check! |", "couldn't found \"" + shopCategoryNames.get(i).getAttribute("textContent").trim() + "\" Keyword in URL : "+ shopCategoryLinks.get(i).getAttribute("href") + " or Image is not available");
+                                }
+                            }
+                            webDriver.navigate().to(inputSearch.getText().trim());
+                            Platform.runLater(() -> {
+                                checkCategoryLinksFromShopOfTheWeek.setStyle("-fx-background-color: #CCFF99");
+                                checkCategoryLinksFromShopOfTheWeek.setSelected(true);
+                            });
+                            report.writeToFile("Checking Category Links: ", "Complete!");
+
+                        }catch (Exception noShopLogoFound){
+                            Platform.runLater(() -> {
+                                checkCategoryLinksFromShopOfTheWeek.setStyle("-fx-background-color: #FF0000");
+                                checkCategoryLinksFromShopOfTheWeek.setSelected(true);
+                            });
+                            report.writeToFile("Checking Category Links from Shop of the Week: ", "unable to check! No Elements found!");
+                            noShopLogoFound.printStackTrace();
+                        }
+                    }catch (Exception noShopPromo){
+                        Platform.runLater(() -> {
+                            checkCategoryLinksFromShopOfTheWeek.setStyle("-fx-background-color: #FF0000");
+                            checkCategoryLinksFromShopOfTheWeek.setSelected(true);
+                        });
+                        report.writeToFile("Checking Category Links from Shop of the Week: ", "unable to check! Browser not responding");
+                        noShopPromo.printStackTrace();
+                    }
+
+                    Platform.runLater(() -> progressIndicator.setProgress(checkAllCheckBoxes()));
+                    report.writeToFile("=================================", "");
+
+
+
+
+
+                    // Category Links from Shop of the Week
+                    Platform.runLater(() -> {
+                        checkNewsletterBannerFunctionality.setStyle("-fx-background-color: #eef442");
+                        statusInfo.setText("Checking Newsletter Banner Functionality...");
+                    });
+                    xpathPattern = Homepage.getProperty("page.main.newsletter.input");
+                    try {
+                        ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
+                        webDriver.switchTo().window(tabs.get(0));
+                        try{
+                            /*
+                            Point hoverItem = webDriver.findElement(By.xpath("//*[@id='newsletter']")).getLocation();
+                            ((JavascriptExecutor)webDriver).executeScript("return window.title;");
+                            ((JavascriptExecutor)webDriver).executeScript("window.scrollBy(0,"+(hoverItem.getY())+");");
+                            */
+
+                            WebElement element = webDriver.findElementByXPath(xpathPattern);
+                            element.sendKeys(inputEmailAdress.getText());
+                            element.submit();
+
+                            if (webDriver.getCurrentUrl().contains("newsletter.html")) {
+                                Platform.runLater(() -> {
+                                    checkNewsletterBannerFunctionality.setStyle("-fx-background-color: #CCFF99");
+                                    checkNewsletterBannerFunctionality.setSelected(true);
+                                });
+                                report.writeToFile("Checking Newsletter Banner Functionality: ", "Successful!");
+                            } else {
+                                Platform.runLater(() -> {
+                                    checkNewsletterBannerFunctionality.setStyle("-fx-background-color: #FF0000");
+                                    checkNewsletterBannerFunctionality.setSelected(true);
+                                });
+                                report.writeToFile("Checking Newsletter Banner Functionality: ", "Not working!");
+                            }
+                            webDriver.navigate().to(inputSearch.getText().trim());
+
+                        }catch (Exception noScrollingToElement){
+                            report.writeToFile("Checking Newsletter Banner Functionality: ", "Couldn't find Newsletter Element!");
+                            noScrollingToElement.printStackTrace();
+                        }
+
+                    }catch (Exception noShopPromo){
+                        Platform.runLater(() -> {
+                            checkNewsletterBannerFunctionality.setStyle("-fx-background-color: #FF0000");
+                            checkNewsletterBannerFunctionality.setSelected(true);
+                        });
+                        report.writeToFile("Checking Newsletter Banner Functionality: ", "unable to check! Browser not responding");
+                        noShopPromo.printStackTrace();
+                    }
+
+                    Platform.runLater(() -> progressIndicator.setProgress(checkAllCheckBoxes()));
+                    report.writeToFile("=================================", "");
+
+
+
+
 
 
                     // Click on Logo Test
@@ -421,6 +554,8 @@ public class FrontEndCheckController {
                         Platform.runLater(() -> statusInfo.setText("Checking SubMenu..."));
 
                         List<WebElement> MainSubMenu = webDriver.findElementsByXPath(Homepage.getProperty("page.submain.links"));
+
+                        /*//TODO remove this again
                         int counterSubMenu = 1;
                         for (WebElement ItemSubMenu : MainSubMenu) {
                             //System.out.println("MainSubLink: "+ ItemSubMenu.getAttribute("textContent") + " " + ItemSubMenu.getAttribute("href"));
@@ -428,6 +563,7 @@ public class FrontEndCheckController {
                             report.writeToFile("MainMenuSubLink: "+ counterSubMenu + " " + ItemSubMenu.getAttribute("textContent"), ItemSubMenu.getAttribute("href"));
                             counterSubMenu++;
                         }
+                        */
 
                         report.writeToFile("=================================", "");
 
