@@ -43,6 +43,8 @@ public class FrontEndCheckController {
     @FXML
     JFXCheckBox checkNewsletterBannerFunctionality;
     @FXML
+    JFXCheckBox checkNewsletterPopUp;
+    @FXML
     CheckBox checkLogoHomepage;
     @FXML
     CheckBox checkGeneralLayout;
@@ -101,6 +103,7 @@ public class FrontEndCheckController {
             startwebdriver.setDisable(true);
             inputPerfectMatch.setDisable(true);
             inputSearch.setDisable(true);
+            inputEmailAdress.setDisable(true);
             Task task = new Task<Object>() {
                 @Override
                 protected Void call() throws InterruptedException {
@@ -362,7 +365,7 @@ public class FrontEndCheckController {
 
 
 
-                    // Category Links from Shop of the Week
+                    // Newsletter Banner Functionality
                     Platform.runLater(() -> {
                         checkNewsletterBannerFunctionality.setStyle("-fx-background-color: #eef442");
                         statusInfo.setText("Checking Newsletter Banner Functionality...");
@@ -402,13 +405,13 @@ public class FrontEndCheckController {
                             noScrollingToElement.printStackTrace();
                         }
 
-                    }catch (Exception noShopPromo){
+                    }catch (Exception noNewsLetterPromo){
                         Platform.runLater(() -> {
                             checkNewsletterBannerFunctionality.setStyle("-fx-background-color: #FF0000");
                             checkNewsletterBannerFunctionality.setSelected(true);
                         });
                         report.writeToFile("Checking Newsletter Banner Functionality: ", "unable to check! Browser not responding");
-                        noShopPromo.printStackTrace();
+                        noNewsLetterPromo.printStackTrace();
                     }
 
                     Platform.runLater(() -> progressIndicator.setProgress(checkAllCheckBoxes()));
@@ -416,6 +419,46 @@ public class FrontEndCheckController {
 
 
 
+
+                    // Newsletter PopUp
+                    Platform.runLater(() -> {
+                        checkNewsletterPopUp.setStyle("-fx-background-color: #eef442");
+                        statusInfo.setText("Checking Newsletter PopUp...");
+                    });
+                    xpathPattern = Homepage.getProperty("page.main.newsletter.icon");
+                    try {
+                        ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
+                        webDriver.switchTo().window(tabs.get(0));
+                        try {
+                            isAvailable = webDriver.findElementByXPath(xpathPattern) != null;
+                            webDriver.findElementByXPath(xpathPattern).click();
+                            webDriver.findElementByXPath("//*[@id=\"inactivity_popup\"]/div[1]").click();
+                            Platform.runLater(() -> {
+                                checkNewsletterPopUp.setStyle("-fx-background-color: #CCFF99");
+                                checkNewsletterPopUp.setSelected(true);
+                            });
+                            report.writeToFile("Checking Newsletter PopUp: ", "Successful!");
+                        }catch (Exception noNewsletterIconFound){
+                            Platform.runLater(() -> {
+                                checkNewsletterPopUp.setStyle("-fx-background-color: #FF0000");
+                                checkNewsletterPopUp.setSelected(true);
+                            });
+                            report.writeToFile("Checking Newsletter PopUp: ", "Couldn't find Newsletter Element!");
+                            noNewsletterIconFound.printStackTrace();
+                        }
+
+
+                    }catch (Exception noNewsLetterIcon){
+                        Platform.runLater(() -> {
+                            checkNewsletterPopUp.setStyle("-fx-background-color: #FF0000");
+                            checkNewsletterPopUp.setSelected(true);
+                        });
+                        report.writeToFile("Checking Newsletter Icon Functionality: ", "unable to check! Browser not responding");
+                        noNewsLetterIcon.printStackTrace();
+                    }
+
+                    Platform.runLater(() -> progressIndicator.setProgress(checkAllCheckBoxes()));
+                    report.writeToFile("=================================", "");
 
 
 
@@ -944,6 +987,7 @@ public class FrontEndCheckController {
         startwebdriver.setDisable(false);
         inputPerfectMatch.setDisable(false);
         inputSearch.setDisable(false);
+        inputEmailAdress.setDisable(false);
     }
 
     @FXML
@@ -977,6 +1021,8 @@ public class FrontEndCheckController {
         Platform.runLater(() -> {
             checkCategoryLinksLeftSideMenu.setStyle("-fx-background-color: #FFFFFF");
             checkLogoFromShopOfTheWeek.setStyle("-fx-background-color: #FFFFFF");
+            checkCategoryLinksFromShopOfTheWeek.setStyle("-fx-background-color: #FFFFFF");
+            checkNewsletterBannerFunctionality.setStyle("-fx-background-color: #FFFFFF");
             checkLogoHomepage.setStyle("-fx-background-color: #FFFFFF");
             checkGeneralLayout.setStyle("-fx-background-color: #FFFFFF");
             openMainMenu.setStyle("-fx-background-color: #FFFFFF");
@@ -987,6 +1033,8 @@ public class FrontEndCheckController {
             checkFilter.setStyle("-fx-background-color: #FFFFFF");
             checkCategoryLinksLeftSideMenu.setSelected(false);
             checkLogoFromShopOfTheWeek.setSelected(false);
+            checkCategoryLinksFromShopOfTheWeek.setSelected(false);
+            checkNewsletterBannerFunctionality.setSelected(false);
             checkLogoHomepage.setSelected(false);
             checkGeneralLayout.setSelected(false);
             openMainMenu.setSelected(false);
