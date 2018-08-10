@@ -122,6 +122,7 @@
                                                 <JFXCheckBox fx:id="checkNewsletterBannerFunctionality" text="Newsletter Banner Functionality" />
                                                 <JFXCheckBox fx:id="checkNewsletterPopUp" text="Newsletter PopUp" />
                                                 <JFXCheckBox fx:id="checkNewsletterPopUpFunctionality" layoutX="10.0" layoutY="82.0" text="Newsletter PopUp Functionality" />
+                                                <JFXCheckBox fx:id="checkFooterLinks" text="Footer Links" />
                                                 <CheckBox fx:id="checkLogoHomepage" mnemonicParsing="false" text="# Click on logo to go to homepage" />
                                                 <CheckBox fx:id="checkGeneralLayout" mnemonicParsing="false" text="# Check general layout" />
                                                 <CheckBox fx:id="openMainMenu" mnemonicParsing="false" text="# Open main menu and check layout / links" />

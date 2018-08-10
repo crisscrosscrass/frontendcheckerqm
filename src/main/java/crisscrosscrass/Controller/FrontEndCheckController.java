@@ -47,6 +47,8 @@ public class FrontEndCheckController {
     @FXML
     JFXCheckBox checkNewsletterPopUpFunctionality;
     @FXML
+    JFXCheckBox checkFooterLinks;
+    @FXML
     CheckBox checkLogoHomepage;
     @FXML
     CheckBox checkGeneralLayout;
@@ -87,7 +89,8 @@ public class FrontEndCheckController {
 
     private static boolean isSuccessful = false;
     private static boolean isAvailable = false;
-    private static String xpathPattern = "";
+    private static String xpathPattern1 = "";
+    private static String xpathPattern2 = "";
     private static String xpathPatternImage1 = "";
     private static String xpathPatternImage2 = "";
 
@@ -190,13 +193,13 @@ public class FrontEndCheckController {
                         checkCategoryLinksLeftSideMenu.setStyle("-fx-background-color: #eef442");
                         statusInfo.setText("Checking Category Links...");
                     });
-                    xpathPattern = Homepage.getProperty("page.main.category.links.left");
+                    xpathPattern1 = Homepage.getProperty("page.main.category.links.left");
                     try {
                         ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
                         webDriver.switchTo().window(tabs.get(0));
                             try {
-                                isAvailable = webDriver.findElementByXPath(xpathPattern) != null;
-                                List<WebElement> CategoryLinksLeftSideMenu = webDriver.findElementsByXPath(xpathPattern);
+                                isAvailable = webDriver.findElementByXPath(xpathPattern1) != null;
+                                List<WebElement> CategoryLinksLeftSideMenu = webDriver.findElementsByXPath(xpathPattern1);
                                 WebdriverTab newtab = new WebdriverTab();
                                 //TODO use CategoryLinksLeftSideMenu.size() instead of 1 for Loop!
                                 for (int i = 0 ; i < 1 ; i++){
@@ -240,16 +243,16 @@ public class FrontEndCheckController {
                         checkLogoFromShopOfTheWeek.setStyle("-fx-background-color: #eef442");
                         statusInfo.setText("Checking Logo Shop of the Week...");
                     });
-                    xpathPattern = Homepage.getProperty("page.main.shop.promo.link");
+                    xpathPattern1 = Homepage.getProperty("page.main.shop.promo.link");
                     xpathPatternImage1 = Homepage.getProperty("page.main.shop.promo.image");
                     xpathPatternImage2 = Homepage.getProperty("page.grid.shop.image");
                     try{
                         ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
                         webDriver.switchTo().window(tabs.get(0));
                         try {
-                            isAvailable = webDriver.findElementByXPath(xpathPattern) != null;
+                            isAvailable = webDriver.findElementByXPath(xpathPattern1) != null;
                             String ShopOfTheWeekImage = webDriver.findElementByXPath(xpathPatternImage1).getAttribute("src");
-                            webDriver.findElementByXPath(xpathPattern).click();
+                            webDriver.findElementByXPath(xpathPattern1).click();
                             try{
                                 String ShopOfTheWeekGridImage = webDriver.findElementByXPath(xpathPatternImage2).getAttribute("src");
                                 if (ShopOfTheWeekImage.contains(ShopOfTheWeekGridImage)){
@@ -314,16 +317,16 @@ public class FrontEndCheckController {
                         checkCategoryLinksFromShopOfTheWeek.setStyle("-fx-background-color: #eef442");
                         statusInfo.setText("Checking Category Links from Shop of the Week ...");
                     });
-                    xpathPattern = Homepage.getProperty("page.main.shop.promo.category");
+                    xpathPattern1 = Homepage.getProperty("page.main.shop.promo.category");
                     xpathPatternImage1 = Homepage.getProperty("page.main.shop.promo.image");
                     xpathPatternImage2 = Homepage.getProperty("page.grid.shop.image");
                     try {
                         ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
                         webDriver.switchTo().window(tabs.get(0));
                         try{
-                            isAvailable = webDriver.findElementByXPath(xpathPattern) != null;
+                            isAvailable = webDriver.findElementByXPath(xpathPattern1) != null;
                             String ShopOfTheWeekImage = webDriver.findElementByXPath(xpathPatternImage1).getAttribute("src");
-                            List<WebElement> shopCategoryLinks = webDriver.findElementsByXPath(xpathPattern);
+                            List<WebElement> shopCategoryLinks = webDriver.findElementsByXPath(xpathPattern1);
                             List<WebElement> shopCategoryNames = webDriver.findElementsByXPath("//*[@id='pagecontent']/*/*[@class='hp-shop-promo']/*[contains(@class, 'hp-shop-promo-categorylink')]/div/a/div/div[1]");
                             WebdriverTab newtab = new WebdriverTab();
                             //TODO use shopCategoryLinks.size() instead of 1 for Loop!
@@ -372,7 +375,7 @@ public class FrontEndCheckController {
                         checkNewsletterBannerFunctionality.setStyle("-fx-background-color: #eef442");
                         statusInfo.setText("Checking Newsletter Banner Functionality...");
                     });
-                    xpathPattern = Homepage.getProperty("page.main.newsletter.input");
+                    xpathPattern1 = Homepage.getProperty("page.main.newsletter.input");
                     try {
                         ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
                         webDriver.switchTo().window(tabs.get(0));
@@ -383,10 +386,9 @@ public class FrontEndCheckController {
                             ((JavascriptExecutor)webDriver).executeScript("window.scrollBy(0,"+(hoverItem.getY())+");");
                             */
 
-                            WebElement element = webDriver.findElementByXPath(xpathPattern);
+                            WebElement element = webDriver.findElementByXPath(xpathPattern1);
                             element.sendKeys(inputEmailAdress.getText());
                             element.submit();
-
                             if (webDriver.getCurrentUrl().contains("newsletter.html")) {
                                 Platform.runLater(() -> {
                                     checkNewsletterBannerFunctionality.setStyle("-fx-background-color: #CCFF99");
@@ -427,13 +429,13 @@ public class FrontEndCheckController {
                         checkNewsletterPopUp.setStyle("-fx-background-color: #eef442");
                         statusInfo.setText("Checking Newsletter PopUp...");
                     });
-                    xpathPattern = Homepage.getProperty("page.main.newsletter.icon");
+                    xpathPattern1 = Homepage.getProperty("page.main.newsletter.icon");
                     try {
                         ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
                         webDriver.switchTo().window(tabs.get(0));
                         try {
-                            isAvailable = webDriver.findElementByXPath(xpathPattern) != null;
-                            webDriver.findElementByXPath(xpathPattern).click();
+                            isAvailable = webDriver.findElementByXPath(xpathPattern1) != null;
+                            webDriver.findElementByXPath(xpathPattern1).click();
                             webDriver.findElementByXPath("//*[@id=\"inactivity_popup\"]/div[1]").click();
                             Platform.runLater(() -> {
                                 checkNewsletterPopUp.setStyle("-fx-background-color: #CCFF99");
@@ -470,14 +472,20 @@ public class FrontEndCheckController {
                         checkNewsletterPopUpFunctionality.setStyle("-fx-background-color: #eef442");
                         statusInfo.setText("Checking Newsletter PopUp Functionality...");
                     });
-                    xpathPattern = Homepage.getProperty("page.main.newsletter.icon");
+                    xpathPattern1 = Homepage.getProperty("page.main.newsletter.icon");
                     try {
                         ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
                         webDriver.switchTo().window(tabs.get(0));
                         try {
-                            isAvailable = webDriver.findElementByXPath(xpathPattern) != null;
-                            webDriver.findElementByXPath(xpathPattern).click();
+                            isAvailable = webDriver.findElementByXPath(xpathPattern1) != null;
+                            webDriver.findElementByXPath(xpathPattern1).click();
                             try{
+                                // Scroll down
+                                for (int i = 0; i < 5; i++) {
+                                    Thread.sleep(100);
+                                    js.executeScript("window.scrollBy(0,100)");
+                                }
+
                                 WebElement element = webDriver.findElementByXPath("//*[@id=\"subscribing-wrapper\"]/div[1]/form/div[1]/input");
                                 element.sendKeys(inputEmailAdress.getText());
                                 element.submit();
@@ -535,18 +543,70 @@ public class FrontEndCheckController {
 
 
 
+                    // Footer Links
+                    Platform.runLater(() -> {
+                        checkFooterLinks.setStyle("-fx-background-color: #eef442");
+                        statusInfo.setText("Checking Footer Links & Categories...");
+                    });
+                    xpathPattern1 = Homepage.getProperty("page.main.footer.links");
+                    xpathPattern2 = Homepage.getProperty("page.main.footer.categories");
+                    try {
+                        ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
+                        webDriver.switchTo().window(tabs.get(0));
+                        try {
+                            isAvailable = webDriver.findElementByXPath(xpathPattern1) != null;
+                            Point hoverItem = webDriver.findElement(By.xpath(xpathPattern1)).getLocation();
+                            ((JavascriptExecutor)webDriver).executeScript("return window.title;");
+                            ((JavascriptExecutor)webDriver).executeScript("window.scrollBy(0,"+(hoverItem.getY())+");");
+                            //Todo build check for Footer Links!
+                            List<WebElement> footerFooterLinks = webDriver.findElementsByXPath(xpathPattern1);
+                            for (WebElement footerLink : footerFooterLinks){
+                                System.out.println(footerLink.getAttribute("href") + " | "+footerLink.getText().trim());
+                            }
+                            List<WebElement> footerCategoryLinks = webDriver.findElementsByXPath(xpathPattern2);
+                            for (WebElement categorieLink : footerCategoryLinks){
+                                System.out.println(categorieLink.getAttribute("href") + " | "+categorieLink.getText().trim());
+                            }
+                            Platform.runLater(() -> {
+                                checkFooterLinks.setStyle("-fx-background-color: #CCFF99");
+                                checkFooterLinks.setSelected(true);
+                            });
+                            report.writeToFile("Checking Footer Links & Categories: ", "Successful!");
+
+                        }catch (Exception noFooterFound){
+                            Platform.runLater(() -> {
+                                checkFooterLinks.setStyle("-fx-background-color: #FF0000");
+                                checkFooterLinks.setSelected(true);
+                            });
+                            report.writeToFile("Checking Footer Links & Categories: ", "Couldn't find Footer Element!");
+                            noFooterFound.printStackTrace();
+                        }
+
+                    }catch (Exception noFooter){
+                        Platform.runLater(() -> {
+                            checkFooterLinks.setStyle("-fx-background-color: #FF0000");
+                            checkFooterLinks.setSelected(true);
+                        });
+                        report.writeToFile("Checking Footer Links & Categories: ", "unable to check! Browser not responding");
+                        noFooter.printStackTrace();
+                    }
+
+                    Platform.runLater(() -> progressIndicator.setProgress(checkAllCheckBoxes()));
+                    report.writeToFile("=================================", "");
+
+
 
                     // Click on Logo Test
                     Platform.runLater(() -> {
                         checkLogoHomepage.setStyle("-fx-background-color: #eef442");
                         statusInfo.setText("Checking Logo...");
                     });
-                    xpathPattern = Homepage.getProperty("page.main.logo");
+                    xpathPattern1 = Homepage.getProperty("page.main.logo");
 
                     try {
                         ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
                         webDriver.switchTo().window(tabs.get(0));
-                        webDriver.findElementByXPath(xpathPattern).click();
+                        webDriver.findElementByXPath(xpathPattern1).click();
 
                         Platform.runLater(() -> {
                             checkLogoHomepage.setStyle("-fx-background-color: #CCFF99");
@@ -829,10 +889,10 @@ public class FrontEndCheckController {
                         statusInfo.setText("Checking Price Hint...");
                     });
 
-                    xpathPattern = Homepage.getProperty("page.filter.salesprice");
+                    xpathPattern1 = Homepage.getProperty("page.filter.salesprice");
                     try{
                         //check sales price
-                        isSuccessful = FilterButtonCheck.pressFilterButton(webDriver, js, xpathPattern);
+                        isSuccessful = FilterButtonCheck.pressFilterButton(webDriver, js, xpathPattern1);
                         if (isSuccessful) {
                             Platform.runLater(() -> {
                                 checkSalesPrice.setStyle("-fx-background-color: #CCFF99");
@@ -877,15 +937,15 @@ public class FrontEndCheckController {
 
                     //  check color filter
                     Platform.runLater(() -> statusInfo.setText("Checking Color..."));
-                    xpathPattern = Homepage.getProperty("page.filter.color");
+                    xpathPattern1 = Homepage.getProperty("page.filter.color");
                     try {
-                        isSuccessful = FilterButtonCheck.pressFilterButton(webDriver, js, xpathPattern);
+                        isSuccessful = FilterButtonCheck.pressFilterButton(webDriver, js, xpathPattern1);
                         if (isSuccessful) {
                             report.writeToFile("Checking Filter Color: ", "Successful!");
                         } else {
                             report.writeToFile("Checking Filter Color: ", "unable to check!");
                             report.writeToFile("Checking via JavaScript: ", "\b");
-                            isSuccessful = FilterButtonCheckViaJavaScript.pressFilterButton(webDriver, js, xpathPattern);
+                            isSuccessful = FilterButtonCheckViaJavaScript.pressFilterButton(webDriver, js, xpathPattern1);
 
                             if (isSuccessful){
                                 report.writeToFile("Checking Filter Color via JS: ", "Successful!");
@@ -909,15 +969,15 @@ public class FrontEndCheckController {
 
                     // check brand filter
                     Platform.runLater(() -> statusInfo.setText("Checking Brand..."));
-                    xpathPattern = Homepage.getProperty("page.filter.brand");
+                    xpathPattern1 = Homepage.getProperty("page.filter.brand");
                     try {
-                        isSuccessful = FilterButtonCheck.pressFilterButton(webDriver, js, xpathPattern);
+                        isSuccessful = FilterButtonCheck.pressFilterButton(webDriver, js, xpathPattern1);
                         if (isSuccessful) {
                             report.writeToFile("Checking Filter Brand: ", "Successful!");
                         } else {
                             report.writeToFile("Checking Filter Brand: ", "unable to check!");
                             report.writeToFile("Checking via JavaScript: ", "\b");
-                            isSuccessful = FilterButtonCheckViaJavaScript.pressFilterButton(webDriver, js, xpathPattern);
+                            isSuccessful = FilterButtonCheckViaJavaScript.pressFilterButton(webDriver, js, xpathPattern1);
                             if (isSuccessful){
                                 report.writeToFile("Checking Filter Brand via JS: ", "Successful!");
                             }else{
@@ -941,15 +1001,15 @@ public class FrontEndCheckController {
 
                     // check material filter
                     Platform.runLater(() -> statusInfo.setText("Checking Material..."));
-                    xpathPattern = Homepage.getProperty("page.filter.material");
+                    xpathPattern1 = Homepage.getProperty("page.filter.material");
                     try{
-                        isSuccessful = FilterButtonCheck.pressFilterButton(webDriver, js, xpathPattern);
+                        isSuccessful = FilterButtonCheck.pressFilterButton(webDriver, js, xpathPattern1);
                         if (isSuccessful) {
                             report.writeToFile("Checking Filter Material: ", "Successful!");
                         } else {
                             report.writeToFile("Checking Filter Material: ", "unable to check!");
                             report.writeToFile("Checking via JavaScript: ", "\b");
-                            isSuccessful = FilterButtonCheckViaJavaScript.pressFilterButton(webDriver, js, xpathPattern);
+                            isSuccessful = FilterButtonCheckViaJavaScript.pressFilterButton(webDriver, js, xpathPattern1);
                             if (isSuccessful){
                                 report.writeToFile("Checking Filter Material via JS: ", "Successful!");
                             }else{
@@ -963,9 +1023,9 @@ public class FrontEndCheckController {
 
                     // check shop filter
                     Platform.runLater(() -> statusInfo.setText("Checking Shop..."));
-                    xpathPattern = Homepage.getProperty("page.filter.shop");
+                    xpathPattern1 = Homepage.getProperty("page.filter.shop");
                     try {
-                        isSuccessful = FilterButtonCheck.pressFilterButton(webDriver, js, xpathPattern);
+                        isSuccessful = FilterButtonCheck.pressFilterButton(webDriver, js, xpathPattern1);
                         if (isSuccessful) {
                             Platform.runLater(() -> {
                                 checkFilter.setStyle("-fx-background-color: #CCFF99");
@@ -975,7 +1035,7 @@ public class FrontEndCheckController {
                         } else {
                             report.writeToFile("Checking Filter Shop: ", "unable to check!");
                             report.writeToFile("Checking via JavaScript: ", "\b");
-                            isSuccessful = FilterButtonCheckViaJavaScript.pressFilterButton(webDriver, js, xpathPattern);
+                            isSuccessful = FilterButtonCheckViaJavaScript.pressFilterButton(webDriver, js, xpathPattern1);
                             if (isSuccessful){
                                 report.writeToFile("Checking Filter Shop via JS: ", "Successful!");
                                 Platform.runLater(() -> {
@@ -1099,6 +1159,7 @@ public class FrontEndCheckController {
             checkNewsletterBannerFunctionality.setStyle("-fx-background-color: #FFFFFF");
             checkNewsletterPopUp.setStyle("-fx-background-color: #FFFFFF");
             checkNewsletterPopUpFunctionality.setStyle("-fx-background-color: #FFFFFF");
+            checkFooterLinks.setStyle("-fx-background-color: #FFFFFF");
             checkLogoHomepage.setStyle("-fx-background-color: #FFFFFF");
             checkGeneralLayout.setStyle("-fx-background-color: #FFFFFF");
             openMainMenu.setStyle("-fx-background-color: #FFFFFF");
@@ -1113,6 +1174,7 @@ public class FrontEndCheckController {
             checkNewsletterBannerFunctionality.setSelected(false);
             checkNewsletterPopUp.setSelected(false);
             checkNewsletterPopUpFunctionality.setSelected(false);
+            checkFooterLinks.setSelected(false);
             checkLogoHomepage.setSelected(false);
             checkGeneralLayout.setSelected(false);
             openMainMenu.setSelected(false);
