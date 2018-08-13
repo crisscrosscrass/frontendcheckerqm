@@ -51,6 +51,42 @@ public class WebdriverTab {
 
         return answer;
     }
+    public boolean openCheckURLTitleH1H2(WebDriver webDriver, String baseUrl, String checkKeyword ){
+
+        answer = false;
+        screenShot = false;
+
+        ((JavascriptExecutor)webDriver).executeScript("window.open()");
+        ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
+        webDriver.switchTo().window(tabs.get(1)); //switches to new tab
+        webDriver.get(baseUrl);
+
+        //check which elements are avaible
+        //pagetitle and URL will always be available
+        boolean checkH1Element = webDriver.findElements( By.id("//*[@id='headline']/h1") ).size() != 0;
+        boolean checkH2Element = webDriver.findElements( By.id("//*[@id='headline']/h2") ).size() != 0;
+
+        try{
+            if ( webDriver.getTitle().contains(checkKeyword) | webDriver.getCurrentUrl().contains(checkKeyword) ) {
+                answer = true;
+            }else{
+                answer = false;
+            }
+        }catch (Exception noSupport){
+            System.out.println("Error here : "+noSupport);
+        }
+
+
+        finally {
+
+            webDriver.switchTo().window(tabs.get(1)).close();
+            webDriver.switchTo().window(tabs.get(0));
+        }
+
+        return answer;
+    }
+
+
 
     public boolean open(WebDriver webDriver, String baseUrl, String checkKeyword, String checkPreviousImageUrl, String imageXPathGrid ){
 
