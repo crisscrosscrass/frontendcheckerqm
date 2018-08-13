@@ -21,6 +21,8 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.*;
 
@@ -49,6 +51,8 @@ public class FrontEndCheckController {
     @FXML
     JFXCheckBox checkFooterLinks;
     @FXML
+    JFXCheckBox checkTextSearchAndSuggestions;
+    @FXML
     CheckBox checkLogoHomepage;
     @FXML
     CheckBox checkGeneralLayout;
@@ -74,6 +78,8 @@ public class FrontEndCheckController {
     TextField inputSearch;
     @FXML
     TextField inputEmailAdress;
+    @FXML
+    TextField inputTextSearchAndSuggestions;
     @FXML
     HBox outputPlace;
     @FXML
@@ -620,7 +626,8 @@ public class FrontEndCheckController {
                             WebdriverTab newtab = new WebdriverTab();
                             //check all footerLinks
                             List<WebElement> footerFooterLinks = webDriver.findElementsByXPath(xpathPattern1);
-                            for (int i = 0 ; i < footerFooterLinks.size() ; i++){
+                            //TODO set footerFooterLinks.size()
+                            for (int i = 0 ; i < 1 ; i++){
                                 webDriver.switchTo().window(tabs.get(0));
                                 if (footerFooterLinks.get(i).getAttribute("href").contains("newsletter")){
                                     isSuccessful = newtab.openCheckURLTitleH1H2(webDriver,footerFooterLinks.get(i).getAttribute("href"),"newsletter");
@@ -640,7 +647,8 @@ public class FrontEndCheckController {
                             }
                             List<WebElement> footerCategoryLinks = webDriver.findElementsByXPath(xpathPattern2);
                             //check all footerCategoryLinks
-                            for (int i = 0 ; i < footerCategoryLinks.size() ; i++){
+                            //TODO set footerCategoryLinks.size()
+                            for (int i = 0 ; i < 1 ; i++){
                                 webDriver.switchTo().window(tabs.get(0));
                                 isSuccessful = newtab.openCheckURLTitleH1H2(webDriver,footerCategoryLinks.get(i).getAttribute("href"),footerCategoryLinks.get(i).getText().trim());
                                 if (isSuccessful){
@@ -675,6 +683,67 @@ public class FrontEndCheckController {
 
                     Platform.runLater(() -> progressIndicator.setProgress(checkAllCheckBoxes()));
                     report.writeToFile("=================================", "");
+
+
+
+                    // Text Search & Suggestions in InputSearch
+                    Platform.runLater(() -> {
+                        checkTextSearchAndSuggestions.setStyle("-fx-background-color: #eef442");
+                        statusInfo.setText("Checking Text Search and Suggestions in InputSearch ...");
+                    });
+                    xpathPattern1 = Homepage.getProperty("page.main.footer.links");
+                    try {
+                        ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
+                        webDriver.switchTo().window(tabs.get(0));
+                        try{
+                            String[] searchAliases = inputTextSearchAndSuggestions.getText().split("\\|");
+                            WebElement element = webDriver.findElement(By.id(Homepage.getProperty("page.search.bar")));
+                            try{
+                                for (int i = 0; i < searchAliases.length ; i++){
+                                    System.out.println(searchAliases[i].trim());
+                                    element.sendKeys(searchAliases[i].trim());
+                                    WebDriverWait wait = new WebDriverWait(webDriver, 5);
+                                    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@class, 'main-search-suggestions')]/li/a/div/*[contains(@class, 'srTitle')]")));
+                                    List<WebElement> searchAliasesTitles = webDriver.findElementsByXPath("//*[contains(@class, 'main-search-suggestions')]/li/a/div/*[contains(@class, 'srTitle')]");
+                                    List<WebElement> searchAliasesType = webDriver.findElementsByXPath("//*[contains(@class, 'main-search-suggestions')]/li/a/div/*[contains(@class, 'srTitle')]");
+                                    System.out.println("Lucene Results: ");
+                                    for (int j = 0 ; j < searchAliasesTitles.size() ; j++){
+                                        System.out.println(searchAliasesTitles.get(j).getText() + searchAliasesType.get(j).getText());
+                                    }
+                                }
+                                Platform.runLater(() -> {
+                                    checkTextSearchAndSuggestions.setStyle("-fx-background-color: #CCFF99");
+                                    checkTextSearchAndSuggestions.setSelected(true);
+                                });
+                                report.writeToFile("Checking Text Search and Suggestions: ", "Complete!");
+                            }catch (Exception noSearchElements){
+                                Platform.runLater(() -> {
+                                    checkTextSearchAndSuggestions.setStyle("-fx-background-color: #FF0000");
+                                    checkTextSearchAndSuggestions.setSelected(true);
+                                });
+                                report.writeToFile("Checking Text Search and Suggestions: ", "unable to get Suggestions!");
+                                noSearchElements.printStackTrace();
+                            }
+                        }catch (Exception noSearchBarInput){
+                            Platform.runLater(() -> {
+                                checkTextSearchAndSuggestions.setStyle("-fx-background-color: #FF0000");
+                                checkTextSearchAndSuggestions.setSelected(true);
+                            });
+                            report.writeToFile("Checking Text Search and Suggestions: ", "unable to enter Search Input");
+                            noSearchBarInput.printStackTrace();
+                        }
+                    }catch (Exception noInput){
+                        Platform.runLater(() -> {
+                            checkTextSearchAndSuggestions.setStyle("-fx-background-color: #FF0000");
+                            checkTextSearchAndSuggestions.setSelected(true);
+                        });
+                        report.writeToFile("Checking Text Search and Suggestions: ", "unable to check! Browser not responding");
+                        noInput.printStackTrace();
+                    }
+
+                    Platform.runLater(() -> progressIndicator.setProgress(checkAllCheckBoxes()));
+                    report.writeToFile("=================================", "");
+
 
 
 
@@ -1242,6 +1311,7 @@ public class FrontEndCheckController {
             checkNewsletterPopUp.setStyle("-fx-background-color: #FFFFFF");
             checkNewsletterPopUpFunctionality.setStyle("-fx-background-color: #FFFFFF");
             checkFooterLinks.setStyle("-fx-background-color: #FFFFFF");
+            checkTextSearchAndSuggestions.setStyle("-fx-background-color: #FFFFFF");
             checkLogoHomepage.setStyle("-fx-background-color: #FFFFFF");
             checkGeneralLayout.setStyle("-fx-background-color: #FFFFFF");
             openMainMenu.setStyle("-fx-background-color: #FFFFFF");
@@ -1250,6 +1320,7 @@ public class FrontEndCheckController {
             checkPerfectMatch.setStyle("-fx-background-color: #FFFFFF");
             checkSalesPrice.setStyle("-fx-background-color: #FFFFFF");
             checkFilter.setStyle("-fx-background-color: #FFFFFF");
+
             checkCategoryLinksLeftSideMenu.setSelected(false);
             checkLogoFromShopOfTheWeek.setSelected(false);
             checkCategoryLinksFromShopOfTheWeek.setSelected(false);
@@ -1257,6 +1328,7 @@ public class FrontEndCheckController {
             checkNewsletterPopUp.setSelected(false);
             checkNewsletterPopUpFunctionality.setSelected(false);
             checkFooterLinks.setSelected(false);
+            checkTextSearchAndSuggestions.setSelected(false);
             checkLogoHomepage.setSelected(false);
             checkGeneralLayout.setSelected(false);
             openMainMenu.setSelected(false);
