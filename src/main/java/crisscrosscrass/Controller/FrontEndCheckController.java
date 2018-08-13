@@ -115,6 +115,7 @@ public class FrontEndCheckController {
             inputPerfectMatch.setDisable(true);
             inputSearch.setDisable(true);
             inputEmailAdress.setDisable(true);
+            inputTextSearchAndSuggestions.setDisable(true);
             Task task = new Task<Object>() {
                 @Override
                 protected Void call() throws InterruptedException {
@@ -695,21 +696,38 @@ public class FrontEndCheckController {
                     try {
                         ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
                         webDriver.switchTo().window(tabs.get(0));
+                        WebDriverWait wait = new WebDriverWait(webDriver, 5);
                         try{
                             String[] searchAliases = inputTextSearchAndSuggestions.getText().split("\\|");
-                            WebElement element = webDriver.findElement(By.id(Homepage.getProperty("page.search.bar")));
                             try{
                                 for (int i = 0; i < searchAliases.length ; i++){
-                                    System.out.println(searchAliases[i].trim());
-                                    element.sendKeys(searchAliases[i].trim());
-                                    WebDriverWait wait = new WebDriverWait(webDriver, 5);
+                                    WebElement element = webDriver.findElement(By.id(Homepage.getProperty("page.search.bar")));
+                                    webDriver.switchTo().window(tabs.get(0));
+                                    element.sendKeys(searchAliases[i].trim()); // Enter searchAliases without pressing ENTER
                                     wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@class, 'main-search-suggestions')]/li/a/div/*[contains(@class, 'srTitle')]")));
                                     List<WebElement> searchAliasesTitles = webDriver.findElementsByXPath("//*[contains(@class, 'main-search-suggestions')]/li/a/div/*[contains(@class, 'srTitle')]");
-                                    List<WebElement> searchAliasesType = webDriver.findElementsByXPath("//*[contains(@class, 'main-search-suggestions')]/li/a/div/*[contains(@class, 'srTitle')]");
-                                    System.out.println("Lucene Results: ");
+                                    List<WebElement> searchAliasesType = webDriver.findElementsByXPath("//*[contains(@class, 'main-search-suggestions')]/li/a/div/*[contains(@class, 'srType')]");
+                                    report.writeToFile("Checking Text Search and Suggestions for ", searchAliases[i].trim()+": ");
+                                    report.writeToFile("Lucene Results :", "");
                                     for (int j = 0 ; j < searchAliasesTitles.size() ; j++){
-                                        System.out.println(searchAliasesTitles.get(j).getText() + searchAliasesType.get(j).getText());
+                                        //System.out.println(searchAliasesTitles.get(j).getText() + "  | " + searchAliasesType.get(j).getText());
+                                        report.writeToFile(searchAliasesTitles.get(j).getText()+"" + searchAliasesType.get(j).getText(), "");
                                     }
+                                    element.submit();
+                                    if(webDriver.findElements(By.xpath("//*[@id='headline']/h1")).size() > 0){
+                                        if ( webDriver.getTitle().contains(searchAliases[i].trim()) | webDriver.getCurrentUrl().contains(searchAliases[i].trim()) | webDriver.findElementByXPath("//*[@id='headline']/h1").getText().contains(searchAliases[i].trim()) ){
+                                            report.writeToFile("Test Title/URL/H1 Keyword: ", "Successful!");
+                                        }else{
+                                            report.writeToFile("Test Title/URL/H1 Keyword: ", "unable to find Keyword at " + webDriver.getCurrentUrl() + " !");
+                                        }
+                                    }else {
+                                        if ( webDriver.getTitle().contains(searchAliases[i].trim()) | webDriver.getCurrentUrl().contains(searchAliases[i].trim()) ){
+                                            report.writeToFile("Test Title/URL Keyword: ", "Successful!");
+                                        }else{
+                                            report.writeToFile("Test Title/URL Keyword: ", "unable to find Keyword at " + webDriver.getCurrentUrl() + " !");
+                                        }
+                                    }
+                                    webDriver.navigate().to(inputSearch.getText().trim());
                                 }
                                 Platform.runLater(() -> {
                                     checkTextSearchAndSuggestions.setStyle("-fx-background-color: #CCFF99");
@@ -1273,6 +1291,7 @@ public class FrontEndCheckController {
         inputPerfectMatch.setDisable(false);
         inputSearch.setDisable(false);
         inputEmailAdress.setDisable(false);
+        inputTextSearchAndSuggestions.setDisable(false);
     }
 
     @FXML
