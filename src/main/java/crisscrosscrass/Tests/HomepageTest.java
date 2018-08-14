@@ -208,4 +208,72 @@ public class HomepageTest {
 
         report.writeToFile("=================================", "");
     }
+    public void checkingNewsletterBanner(ChromeDriver webDriver, Report report, JFXCheckBox checkNewsletterBannerFunctionality, Text statusInfo, TextField inputSearch, TextField inputEmailAdress,String xpathPattern1,String xpathPatternImage1,String xpathPatternImage2, Properties Homepage, boolean isSuccessful, boolean isAvailable){
+        // Newsletter Banner Functionality
+        Platform.runLater(() -> {
+            checkNewsletterBannerFunctionality.setStyle("-fx-background-color: #eef442");
+            statusInfo.setText("Checking Newsletter Banner Functionality...");
+        });
+        xpathPattern1 = Homepage.getProperty("page.main.newsletter.input");
+        try {
+            ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
+            webDriver.switchTo().window(tabs.get(0));
+            try{
+                            /*
+                            Point hoverItem = webDriver.findElement(By.xpath("//*[@id='newsletter']")).getLocation();
+                            ((JavascriptExecutor)webDriver).executeScript("return window.title;");
+                            ((JavascriptExecutor)webDriver).executeScript("window.scrollBy(0,"+(hoverItem.getY())+");");
+                            */
+
+                WebElement element = webDriver.findElementByXPath(xpathPattern1);
+                element.sendKeys(inputEmailAdress.getText());
+                element.submit();
+                isAvailable = webDriver.findElementByXPath("//*[@id=\"confirmation-wrapper\"]") != null;
+                try{
+                    if (webDriver.getCurrentUrl().contains("newsletter.html")) {
+                        Platform.runLater(() -> {
+                            checkNewsletterBannerFunctionality.setStyle("-fx-background-color: #CCFF99");
+                            checkNewsletterBannerFunctionality.setSelected(true);
+                        });
+                        report.writeToFile("Checking Newsletter Banner Functionality: ", "Successful!");
+                    } else {
+                        Platform.runLater(() -> {
+                            checkNewsletterBannerFunctionality.setStyle("-fx-background-color: #FF0000");
+                            checkNewsletterBannerFunctionality.setSelected(true);
+                        });
+                        report.writeToFile("Checking Newsletter Banner Functionality: ", "Not working!");
+                    }
+                    webDriver.navigate().to(inputSearch.getText().trim());
+                }catch (Exception noConfirmationWrapper){
+                    Platform.runLater(() -> {
+                        checkNewsletterBannerFunctionality.setStyle("-fx-background-color: #FF0000");
+                        checkNewsletterBannerFunctionality.setSelected(true);
+                    });
+                    isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"NewsLetterBannerSignInPage.png");
+                    if (isSuccessful){
+                        report.writeToFile("Checking Logo Shop Screenshot: ", "Screenshot successful!");
+                    }else {
+                        report.writeToFile("Checking Logo Shop Screenshot: ", "Screenshot not successful!");
+                    }
+                    report.writeToFile("Checking Newsletter Banner Functionality: ", "ConfirmationPage is missing!");
+                    webDriver.navigate().to(inputSearch.getText().trim());
+                }
+
+
+            }catch (Exception noScrollingToElement){
+                report.writeToFile("Checking Newsletter Banner Functionality: ", "Couldn't find Newsletter Element!");
+                noScrollingToElement.printStackTrace();
+            }
+
+        }catch (Exception noNewsLetterPromo){
+            Platform.runLater(() -> {
+                checkNewsletterBannerFunctionality.setStyle("-fx-background-color: #FF0000");
+                checkNewsletterBannerFunctionality.setSelected(true);
+            });
+            report.writeToFile("Checking Newsletter Banner Functionality: ", "unable to check! Browser not responding");
+            noNewsLetterPromo.printStackTrace();
+        }
+
+        report.writeToFile("=================================", "");
+    }
 }
