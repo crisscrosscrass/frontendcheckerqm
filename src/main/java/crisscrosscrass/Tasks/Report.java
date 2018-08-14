@@ -22,6 +22,21 @@ public class Report {
             e.printStackTrace();
         }
     }
+    public void writeToFile(String ReportMessage){
+        File reportFile = new File("temp//report.txt");
+        if(!reportFile.exists()) {
+            System.out.println("reportFile not exist");
+            createReportFile();
+        }
+        try {
+            BufferedWriter buffW = new BufferedWriter(new FileWriter(reportFile,true));
+            buffW.write(ReportMessage+"\r");
+            buffW.close();
+            //System.out.println("Written into file");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     private void createReportFile() {
         String location = System.getProperty("user.dir");
