@@ -11,13 +11,11 @@ import javafx.stage.StageStyle;
 
 import java.net.URL;
 
-import static javafx.application.Application.launch;
-
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        //Parent parent = FXMLLoader.load(getClass().getResource("/UserInterface.fxml"));
+        //Parent parent = FXMLLoader.load(getClass().getResource("/FXML/UserInterface.fxml"));
         Parent parent = FXMLLoader.load(getClass().getResource("/FXML/SplashFXML.fxml"));
         primaryStage.setTitle("FrontendCheck");
         URL LogoLocation = Main.class.getClassLoader().getResource("Images/VisualMeta.png");

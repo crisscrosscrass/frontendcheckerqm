@@ -3,6 +3,7 @@ package crisscrosscrass.Controller;
 import com.jfoenix.controls.JFXCheckBox;
 import crisscrosscrass.*;
 import crisscrosscrass.Tasks.*;
+import crisscrosscrass.Tests.HomepageTest;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
@@ -20,7 +21,6 @@ import javafx.stage.Window;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -56,6 +56,7 @@ public class FrontEndCheckController {
     JFXCheckBox checkFeedbackPopUp;
     @FXML
     JFXCheckBox checkPrivacyPopUp;
+    /**
     @FXML
     CheckBox checkLogoHomepage;
     @FXML
@@ -72,12 +73,13 @@ public class FrontEndCheckController {
     CheckBox checkSalesPrice;
     @FXML
     CheckBox checkFilter;
+     @FXML
+     TextField inputPerfectMatch;
+     */
     @FXML
     ProgressBar progressIndicator;
     @FXML
     Text statusInfo;
-    @FXML
-    TextField inputPerfectMatch;
     @FXML
     TextField inputSearch;
     @FXML
@@ -97,6 +99,7 @@ public class FrontEndCheckController {
     @FXML
     Tab brandTab;
 
+
     private static boolean isSuccessful = false;
     private static boolean isAvailable = false;
     private static String xpathPattern1 = "";
@@ -104,6 +107,12 @@ public class FrontEndCheckController {
     private static String xpathPatternImage1 = "";
     private static String xpathPatternImage2 = "";
 
+
+    @FXML
+    public void initialize() {
+        System.out.println("FrontendCheckController launched!");
+        //homePageController.init(this);
+    }
 
     @FXML
     public void startRealAction() {
@@ -116,7 +125,6 @@ public class FrontEndCheckController {
 
             progressIndicator.setProgress(-1);
             startwebdriver.setDisable(true);
-            inputPerfectMatch.setDisable(true);
             inputSearch.setDisable(true);
             inputEmailAdress.setDisable(true);
             inputTextSearchAndSuggestions.setDisable(true);
@@ -124,11 +132,11 @@ public class FrontEndCheckController {
                 @Override
                 protected Void call() throws InterruptedException {
                     resetAllFormOptions();
-                    takeRoutine();
+                    startEngine();
                     return null;
                 }
 
-                private void takeRoutine() throws InterruptedException {
+                private void startEngine() throws InterruptedException {
 
                     // * Load Properties File
                     String resourceName = "configs/page.properties";
@@ -183,6 +191,9 @@ public class FrontEndCheckController {
                     webDriver.manage().window().maximize();
                     Platform.runLater(() -> statusInfo.setText("Go to requested Website..."));
 
+
+
+
                     long start = System.currentTimeMillis();
                     webDriver.navigate().to(inputSearch.getText().trim());
                     long finish = System.currentTimeMillis();
@@ -191,209 +202,15 @@ public class FrontEndCheckController {
 
                     report.writeToFile("Checking Website: ", inputSearch.getText().trim());
 
-
                     Platform.runLater(() -> progressIndicator.setProgress(checkAllCheckBoxes()));
                     report.writeToFile("=================================", "");
-
-
-
-
-
-                    // Check on Category Links - Left Side Menu
-                    Platform.runLater(() -> {
-                        checkCategoryLinksLeftSideMenu.setStyle("-fx-background-color: #eef442");
-                        statusInfo.setText("Checking Category Links...");
-                    });
-                    xpathPattern1 = Homepage.getProperty("page.main.category.links.left");
-                    try {
-                        ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
-                        webDriver.switchTo().window(tabs.get(0));
-                            try {
-                                if(webDriver.findElements(By.xpath(xpathPattern1)).size() > 0){
-                                    //call reporting function and say the element was found
-                                    System.out.println("Found element!");
-                                    System.out.println(webDriver.findElements(By.xpath(xpathPattern1)).get(0));
-                                }else{
-                                    //call reporting function and say the element was Not found
-                                    //then continue so I can implement my own code if it isn't found
-                                    System.out.println("No Element found!");
-                                }
-                                isAvailable = webDriver.findElementByXPath(xpathPattern1) != null;
-                                List<WebElement> CategoryLinksLeftSideMenu = webDriver.findElementsByXPath(xpathPattern1);
-                                WebdriverTab newtab = new WebdriverTab();
-                                //TODO use CategoryLinksLeftSideMenu.size() instead of 1 for Loop!
-                                for (int i = 0 ; i < 1 ; i++){
-                                    webDriver.switchTo().window(tabs.get(0));
-                                    isSuccessful = newtab.open(webDriver,CategoryLinksLeftSideMenu.get(i).getAttribute("href"),CategoryLinksLeftSideMenu.get(i).getAttribute("textContent").trim());
-                                    if (isSuccessful){
-                                        report.writeToFile("TEST CategoryLinksLeftSideMenu "+i+": Successful | ", "found \"" + CategoryLinksLeftSideMenu.get(i).getAttribute("textContent").trim() + "\" Keyword at URL : "+ CategoryLinksLeftSideMenu.get(i).getAttribute("href"));
-                                    }else {
-                                        report.writeToFile("TEST CategoryLinksLeftSideMenu "+i+": unable to check! |", "couldn't found \"" + CategoryLinksLeftSideMenu.get(i).getAttribute("textContent").trim() + "\" Keyword in URL : "+ CategoryLinksLeftSideMenu.get(i).getAttribute("href"));
-                                    }
-                                }
-                                Platform.runLater(() -> {
-                                    checkCategoryLinksLeftSideMenu.setStyle("-fx-background-color: #CCFF99");
-                                    checkCategoryLinksLeftSideMenu.setSelected(true);
-                                });
-                                report.writeToFile("Checking Category Links: ", "Complete!");
-                            }catch (Exception noLeftSideMenu){
-                                Platform.runLater(() -> {
-                                    checkCategoryLinksLeftSideMenu.setStyle("-fx-background-color: #FF0000");
-                                    checkCategoryLinksLeftSideMenu.setSelected(true);
-                                });
-                                report.writeToFile("Checking Category Links: ", "unable to check! No Links found!");
-                                noLeftSideMenu.printStackTrace();
-                            }
-                    }catch (Exception noCategoryLinksLeftSideMenu){
-                        Platform.runLater(() -> {
-                            checkCategoryLinksLeftSideMenu.setStyle("-fx-background-color: #FF0000");
-                            checkCategoryLinksLeftSideMenu.setSelected(true);
-                        });
-                        webDriver.navigate().to(inputSearch.getText().trim());
-                        report.writeToFile("Checking Category Links: ", "unable to check! Browser not responding");
-                    }
-
+                    HomepageTest homepageTest = new HomepageTest();
+                    homepageTest.checkingCategories(webDriver,report,checkCategoryLinksLeftSideMenu,statusInfo,inputSearch,xpathPattern1,Homepage,isSuccessful,isAvailable);
                     Platform.runLater(() -> progressIndicator.setProgress(checkAllCheckBoxes()));
-                    report.writeToFile("=================================", "");
-
-
-
-
-                    // Check on Logo Shop of the Week
-                    Platform.runLater(() -> {
-                        checkLogoFromShopOfTheWeek.setStyle("-fx-background-color: #eef442");
-                        statusInfo.setText("Checking Logo Shop of the Week...");
-                    });
-                    xpathPattern1 = Homepage.getProperty("page.main.shop.promo.link");
-                    xpathPatternImage1 = Homepage.getProperty("page.main.shop.promo.image");
-                    xpathPatternImage2 = Homepage.getProperty("page.grid.shop.image");
-                    try{
-                        ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
-                        webDriver.switchTo().window(tabs.get(0));
-                        try {
-                            isAvailable = webDriver.findElementByXPath(xpathPattern1) != null;
-                            Point hoverItem = webDriver.findElement(By.xpath(xpathPattern1)).getLocation();
-                            ((JavascriptExecutor)webDriver).executeScript("return window.title;");
-                            ((JavascriptExecutor)webDriver).executeScript("window.scrollBy(0,"+(hoverItem.getY())+");");
-                            String ShopOfTheWeekImage = webDriver.findElementByXPath(xpathPatternImage1).getAttribute("src");
-                            webDriver.findElementByXPath(xpathPattern1).click();
-                            try{
-                                String ShopOfTheWeekGridImage = webDriver.findElementByXPath(xpathPatternImage2).getAttribute("src");
-                                if (ShopOfTheWeekImage.contains(ShopOfTheWeekGridImage)){
-                                    Platform.runLater(() -> {
-                                        checkLogoFromShopOfTheWeek.setStyle("-fx-background-color: #CCFF99");
-                                        checkLogoFromShopOfTheWeek.setSelected(true);
-                                    });
-                                    report.writeToFile("Checking Logo Shop of the Week: ", "Successful!");
-                                }else{
-                                    Platform.runLater(() -> {
-                                        checkLogoFromShopOfTheWeek.setStyle("-fx-background-color: #FF0000");
-                                        checkLogoFromShopOfTheWeek.setSelected(true);
-                                    });
-                                    report.writeToFile("Checking Logo Shop of the Week: ", "Not the same image url!");
-                                    isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"ShopLogoGridPage.png");
-                                    if (isSuccessful){
-                                        report.writeToFile("Checking Logo Shop Screenshot: ", "Screenshot successful!");
-                                    }else {
-                                        report.writeToFile("Checking Logo Shop Screenshot: ", "Screenshot not successful!");
-                                    }
-                                }
-                                webDriver.navigate().to(inputSearch.getText().trim());
-
-                            }catch (Exception noLogoFoundOnGrid){
-                                report.writeToFile("Checking Logo Shop of the Week: ", "unable to check! No Logo found on GridPage!");
-                                isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"ShopLogoGridPage.png");
-                                if (isSuccessful){
-                                    report.writeToFile("Checking Logo Shop Screenshot: ", "Screenshot successful!");
-                                }else {
-                                    report.writeToFile("Checking Logo Shop Screenshot: ", "Screenshot not successful!");
-                                }
-                                webDriver.navigate().to(inputSearch.getText().trim());
-                                noLogoFoundOnGrid.printStackTrace();
-                            }
-
-
-                        }catch (Exception noShopLogoFound){
-                            Platform.runLater(() -> {
-                                checkLogoFromShopOfTheWeek.setStyle("-fx-background-color: #FF0000");
-                                checkLogoFromShopOfTheWeek.setSelected(true);
-                            });
-                            webDriver.navigate().to(inputSearch.getText().trim());
-                            report.writeToFile("Checking Logo Shop of the Week: ", "unable to check! No Elements found!");
-                            noShopLogoFound.printStackTrace();
-                        }
-                    }catch (Exception noShopPromo){
-                        Platform.runLater(() -> {
-                        checkLogoFromShopOfTheWeek.setStyle("-fx-background-color: #FF0000");
-                        checkLogoFromShopOfTheWeek.setSelected(true);
-                        });
-                        report.writeToFile("Checking Logo Shop of the Week: ", "unable to check! Browser not responding");
-                        noShopPromo.printStackTrace();
-                    }
-
+                    homepageTest.checkingShopOfTheWeek(webDriver,report,checkLogoFromShopOfTheWeek,statusInfo,inputSearch,xpathPattern1,xpathPatternImage1,xpathPatternImage2,Homepage,isSuccessful,isAvailable);
                     Platform.runLater(() -> progressIndicator.setProgress(checkAllCheckBoxes()));
-                    report.writeToFile("=================================", "");
-
-
-
-
-
-                    // Category Links from Shop of the Week
-                    Platform.runLater(() -> {
-                        checkCategoryLinksFromShopOfTheWeek.setStyle("-fx-background-color: #eef442");
-                        statusInfo.setText("Checking Category Links from Shop of the Week ...");
-                    });
-                    xpathPattern1 = Homepage.getProperty("page.main.shop.promo.category");
-                    xpathPatternImage1 = Homepage.getProperty("page.main.shop.promo.image");
-                    xpathPatternImage2 = Homepage.getProperty("page.grid.shop.image");
-                    try {
-                        ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
-                        webDriver.switchTo().window(tabs.get(0));
-                        try{
-                            isAvailable = webDriver.findElementByXPath(xpathPattern1) != null;
-                            String ShopOfTheWeekImage = webDriver.findElementByXPath(xpathPatternImage1).getAttribute("src");
-                            List<WebElement> shopCategoryLinks = webDriver.findElementsByXPath(xpathPattern1);
-                            List<WebElement> shopCategoryNames = webDriver.findElementsByXPath("//*[@id='pagecontent']/*/*[@class='hp-shop-promo']/*[contains(@class, 'hp-shop-promo-categorylink')]/div/a/div/div[1]");
-                            WebdriverTab newtab = new WebdriverTab();
-                            //TODO use shopCategoryLinks.size() instead of 1 for Loop!
-                            for (int i = 0 ; i < 1 ; i++){
-                                webDriver.switchTo().window(tabs.get(0));
-                                isSuccessful = newtab.open(webDriver,shopCategoryLinks.get(i).getAttribute("href"),shopCategoryNames.get(i).getAttribute("textContent").trim(),ShopOfTheWeekImage,xpathPatternImage2);
-                                if (isSuccessful){
-                                    report.writeToFile("TEST ShopCategoryLinks "+i+": Successful | ", "found \"" + shopCategoryNames.get(i).getAttribute("textContent").trim() + "\" Keyword at URL : "+ shopCategoryLinks.get(i).getAttribute("href") + " and same Image is available");
-                                }else {
-                                    report.writeToFile("TEST ShopCategoryLinks "+i+": unable to check! |", "couldn't found \"" + shopCategoryNames.get(i).getAttribute("textContent").trim() + "\" Keyword in URL : "+ shopCategoryLinks.get(i).getAttribute("href") + " or Image is not available");
-                                }
-                            }
-                            webDriver.navigate().to(inputSearch.getText().trim());
-                            Platform.runLater(() -> {
-                                checkCategoryLinksFromShopOfTheWeek.setStyle("-fx-background-color: #CCFF99");
-                                checkCategoryLinksFromShopOfTheWeek.setSelected(true);
-                            });
-                            report.writeToFile("Checking Category Links: ", "Complete!");
-
-                        }catch (Exception noShopLogoFound){
-                            Platform.runLater(() -> {
-                                checkCategoryLinksFromShopOfTheWeek.setStyle("-fx-background-color: #FF0000");
-                                checkCategoryLinksFromShopOfTheWeek.setSelected(true);
-                            });
-                            webDriver.navigate().to(inputSearch.getText().trim());
-                            report.writeToFile("Checking Category Links from Shop of the Week: ", "unable to check! No Elements found!");
-                            noShopLogoFound.printStackTrace();
-                        }
-                    }catch (Exception noShopPromo){
-                        Platform.runLater(() -> {
-                            checkCategoryLinksFromShopOfTheWeek.setStyle("-fx-background-color: #FF0000");
-                            checkCategoryLinksFromShopOfTheWeek.setSelected(true);
-                        });
-                        report.writeToFile("Checking Category Links from Shop of the Week: ", "unable to check! Browser not responding");
-                        noShopPromo.printStackTrace();
-                    }
-
+                    homepageTest.checkingShopOfTheWeekCategories(webDriver,report,checkCategoryLinksFromShopOfTheWeek,statusInfo,inputSearch,xpathPattern1,xpathPatternImage1,xpathPatternImage2,Homepage,isSuccessful,isAvailable);
                     Platform.runLater(() -> progressIndicator.setProgress(checkAllCheckBoxes()));
-                    report.writeToFile("=================================", "");
-
-
 
 
 
@@ -480,8 +297,10 @@ public class FrontEndCheckController {
                         try {
                             isAvailable = webDriver.findElementByXPath(xpathPattern1) != null;
                             webDriver.findElementByXPath(xpathPattern1).click();
+                            WebDriverWait wait = new WebDriverWait(webDriver, 10);
                             try{
-                                webDriver.findElementByXPath("//*[@id=\"inactivity_popup\"]/div[1]").click();
+                                wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='inactivity_popup']/div[1]")));
+                                webDriver.findElementByXPath("//*[@id='inactivity_popup']/div[1]").click();
                                 Platform.runLater(() -> {
                                     checkNewsletterPopUp.setStyle("-fx-background-color: #CCFF99");
                                     checkNewsletterPopUp.setSelected(true);
@@ -493,6 +312,12 @@ public class FrontEndCheckController {
                                     checkNewsletterPopUp.setSelected(true);
                                 });
                                 report.writeToFile("Checking Newsletter PopUp: ", "Couldn't close Newsletter Element!");
+                                isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"NewsLetterPopUpError.png");
+                                if (isSuccessful){
+                                    report.writeToFile("Checking Logo Shop Screenshot: ", "Screenshot successful!");
+                                }else {
+                                    report.writeToFile("Checking Logo Shop Screenshot: ", "Screenshot not successful!");
+                                }
                                 webDriver.navigate().to(inputSearch.getText().trim());
                                 noNewsletterIconCloseFound.printStackTrace();
                             }
@@ -698,7 +523,7 @@ public class FrontEndCheckController {
                     // Text Search & Suggestions in InputSearch
                     Platform.runLater(() -> {
                         checkTextSearchAndSuggestions.setStyle("-fx-background-color: #eef442");
-                        statusInfo.setText("Checking Text Search and Suggestions in InputSearch ...");
+                        statusInfo.setText("Checking Text Search and Suggestions in InputSearch...");
                     });
                     xpathPattern1 = "//*[@id=\"header-search-input\"]";
                     try {
@@ -781,10 +606,10 @@ public class FrontEndCheckController {
                     // Feedback PopUp
                     Platform.runLater(() -> {
                         checkFeedbackPopUp.setStyle("-fx-background-color: #eef442");
-                        statusInfo.setText("Checking Feedback PopUp ...");
+                        statusInfo.setText("Checking Feedback PopUp...");
                     });
-                    xpathPattern1 = "//*[@id='feedback-btn']/div";
-                    xpathPattern2 = "//*[@id='vm-dialog']/div[1]";
+                    xpathPattern1 = Homepage.getProperty("page.main.feedback.icon");
+                    xpathPattern2 = Homepage.getProperty("page.main.feedback.close");
                     try {
                         ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
                         webDriver.switchTo().window(tabs.get(0));
@@ -811,7 +636,7 @@ public class FrontEndCheckController {
                                 webDriver.navigate().to(inputSearch.getText().trim());
                             }
 
-                        }catch (Exception noFeedBackButton){
+                        }catch (Exception noFeedBackButtonFound){
                             Platform.runLater(() -> {
                                 checkFeedbackPopUp.setStyle("-fx-background-color: #FF0000");
                                 checkFeedbackPopUp.setSelected(true);
@@ -834,6 +659,53 @@ public class FrontEndCheckController {
 
 
 
+                    // Privacy PopUp
+                    Platform.runLater(() -> {
+                        checkPrivacyPopUp.setStyle("-fx-background-color: #eef442");
+                        statusInfo.setText("Checking Privacy PopUp...");
+                    });
+                    xpathPattern1 = Homepage.getProperty("page.main.privacy.popup");
+                    try {
+                        ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
+                        webDriver.switchTo().window(tabs.get(0));
+                        webDriver.navigate().to(inputSearch.getText().trim());
+                        WebDriverWait wait = new WebDriverWait(webDriver, 10);
+                        try{
+                            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpathPattern1)));
+                            isAvailable = webDriver.findElementByXPath(xpathPattern1) != null;
+                            webDriver.findElementByXPath(xpathPattern1).click();
+                            System.out.println(webDriver.getCurrentUrl());
+                            ArrayList<String> tabsPrivacy = new ArrayList<>(webDriver.getWindowHandles());
+                            webDriver.switchTo().window(tabsPrivacy.get(1)).close();
+                            webDriver.switchTo().window(tabsPrivacy.get(0));
+                            Platform.runLater(() -> {
+                                checkPrivacyPopUp.setStyle("-fx-background-color: #CCFF99");
+                                checkPrivacyPopUp.setSelected(true);
+                            });
+                            report.writeToFile("Checking Privacy PopUp: ", "Complete!");
+
+                            webDriver.navigate().to(inputSearch.getText().trim());
+                        }catch (Exception noPrivacyBoxFound){
+                            Platform.runLater(() -> {
+                                checkPrivacyPopUp.setStyle("-fx-background-color: #FF0000");
+                                checkPrivacyPopUp.setSelected(true);
+                            });
+                            report.writeToFile("Checking Privacy PopUp: ", "unable to find Privacy PopUp");
+                            noPrivacyBoxFound.printStackTrace();
+                        }
+                    }catch (Exception noPrivacyBox){
+                        Platform.runLater(() -> {
+                            checkPrivacyPopUp.setStyle("-fx-background-color: #FF0000");
+                            checkPrivacyPopUp.setSelected(true);
+                        });
+                        report.writeToFile("Checking Privacy PopUp: ", "unable to check! Browser not responding");
+                        noPrivacyBox.printStackTrace();
+                    }
+                    Platform.runLater(() -> progressIndicator.setProgress(checkAllCheckBoxes()));
+                    report.writeToFile("=================================", "");
+
+
+                    /**
 
                     // Click on Logo Test
                     Platform.runLater(() -> {
@@ -971,7 +843,7 @@ public class FrontEndCheckController {
 
                         List<WebElement> MainSubMenu = webDriver.findElementsByXPath(Homepage.getProperty("page.submain.links"));
 
-                        /*//TODO remove this again
+                        //TODO remove this again
                         int counterSubMenu = 1;
                         for (WebElement ItemSubMenu : MainSubMenu) {
                             //System.out.println("MainSubLink: "+ ItemSubMenu.getAttribute("textContent") + " " + ItemSubMenu.getAttribute("href"));
@@ -979,7 +851,7 @@ public class FrontEndCheckController {
                             report.writeToFile("MainMenuSubLink: "+ counterSubMenu + " " + ItemSubMenu.getAttribute("textContent"), ItemSubMenu.getAttribute("href"));
                             counterSubMenu++;
                         }
-                        */
+
 
                         report.writeToFile("=================================", "");
 
@@ -1294,8 +1166,7 @@ public class FrontEndCheckController {
                         noShopFilter.printStackTrace();
                     }
 
-
-
+                     */
                     // close webdriver and clear tasklist
                     Platform.runLater(() -> statusInfo.setText("Closing Browser..."));
                     try {
@@ -1319,7 +1190,9 @@ public class FrontEndCheckController {
                         io.printStackTrace();
                     }
 
+
                 }
+
 
 
             };
@@ -1358,7 +1231,6 @@ public class FrontEndCheckController {
     private void changeButtonText() {
         statusInfo.setText("Running complete");
         startwebdriver.setDisable(false);
-        inputPerfectMatch.setDisable(false);
         inputSearch.setDisable(false);
         inputEmailAdress.setDisable(false);
         inputTextSearchAndSuggestions.setDisable(false);
@@ -1375,10 +1247,10 @@ public class FrontEndCheckController {
     private double checkAllCheckBoxes() {
         double StateProgress = 0;
 
-        CheckBox[] checkboxes = CheckBoxesPlace.getChildren().toArray(new CheckBox[0]);
+        JFXCheckBox[] checkboxes = CheckBoxesPlace.getChildren().toArray(new JFXCheckBox[0]);
         int AmountOfCheckBoxes = checkboxes.length;
 
-        for (CheckBox checkbox : checkboxes) {
+        for (JFXCheckBox checkbox : checkboxes) {
 
             if (checkbox.isSelected()) {
                 StateProgress += 1;
@@ -1403,6 +1275,7 @@ public class FrontEndCheckController {
             checkTextSearchAndSuggestions.setStyle("-fx-background-color: #FFFFFF");
             checkFeedbackPopUp.setStyle("-fx-background-color: #FFFFFF");
             checkPrivacyPopUp.setStyle("-fx-background-color: #FFFFFF");
+            /**
             checkLogoHomepage.setStyle("-fx-background-color: #FFFFFF");
             checkGeneralLayout.setStyle("-fx-background-color: #FFFFFF");
             openMainMenu.setStyle("-fx-background-color: #FFFFFF");
@@ -1411,6 +1284,7 @@ public class FrontEndCheckController {
             checkPerfectMatch.setStyle("-fx-background-color: #FFFFFF");
             checkSalesPrice.setStyle("-fx-background-color: #FFFFFF");
             checkFilter.setStyle("-fx-background-color: #FFFFFF");
+             **/
 
             checkCategoryLinksLeftSideMenu.setSelected(false);
             checkLogoFromShopOfTheWeek.setSelected(false);
@@ -1422,6 +1296,7 @@ public class FrontEndCheckController {
             checkTextSearchAndSuggestions.setSelected(false);
             checkFeedbackPopUp.setSelected(false);
             checkPrivacyPopUp.setSelected(false);
+            /**
             checkLogoHomepage.setSelected(false);
             checkGeneralLayout.setSelected(false);
             openMainMenu.setSelected(false);
@@ -1430,6 +1305,7 @@ public class FrontEndCheckController {
             checkPerfectMatch.setSelected(false);
             checkSalesPrice.setSelected(false);
             checkFilter.setSelected(false);
+             */
             outputPlace.getChildren().clear();
         });
     }

@@ -27,9 +27,6 @@ public class SplashFXMLController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-
-
         rootPane.setOpacity(0);
         new SplashScreen().start();
     }
@@ -47,9 +44,10 @@ public class SplashFXMLController implements Initializable {
                     @Override
                     public void run() {
                         Stage primaryStage = new Stage();
-                        Parent parent = null;
+                        FXMLLoader loader = new FXMLLoader(ClassLoader.getSystemResource("/FXML/UserInterface.fxml"));
+                        Parent root = null;
                         try {
-                            parent = FXMLLoader.load(getClass().getResource("/FXML/UserInterface.fxml"));
+                            root = FXMLLoader.load(getClass().getResource("/FXML/UserInterface.fxml"));
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -57,11 +55,10 @@ public class SplashFXMLController implements Initializable {
                         URL LogoLocation = Main.class.getClassLoader().getResource("Images/VisualMeta.png");
                         Image Logo = new Image(String.valueOf(LogoLocation));
                         primaryStage.getIcons().add(Logo);
-                        primaryStage.setScene(new Scene(parent));
+                        primaryStage.setScene(new Scene(root));
                         primaryStage.show();
                         Platform.runLater(() ->{
-                        //wowEffect.fadeOut(rootPane,0);
-                        rootPane.getScene().getWindow().hide();
+                            rootPane.getScene().getWindow().hide();
                         });
                     }
                 });
