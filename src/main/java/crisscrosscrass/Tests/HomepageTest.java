@@ -499,4 +499,183 @@ public class HomepageTest {
         }
         report.writeToFile("=================================", "");
     }
+
+    public void checkingSearchAndSuggestions(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox checkTextSearchAndSuggestions, TextField inputTextSearchAndSuggestions, Text statusInfo, TextField inputSearch, TextField inputEmailAdress,String xpathPattern1,String xpathPattern2, Properties Homepage, boolean isSuccessful, boolean isAvailable){
+
+        // Text Search & Suggestions in InputSearch
+        Platform.runLater(() -> {
+            checkTextSearchAndSuggestions.setStyle("-fx-background-color: #eef442");
+            statusInfo.setText("Checking Text Search and Suggestions in InputSearch...");
+        });
+        xpathPattern1 = "//*[@id=\"header-search-input\"]";
+        try {
+            ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
+            webDriver.switchTo().window(tabs.get(0));
+            WebDriverWait wait = new WebDriverWait(webDriver, 10);
+            try{
+                if (inputTextSearchAndSuggestions.getText().length() > 1){
+                    String[] searchAliases = inputTextSearchAndSuggestions.getText().split("\\|");
+                    try{
+                        for (int i = 0; i < searchAliases.length ; i++){
+                            webDriver.switchTo().window(tabs.get(0));
+                            WebElement element = webDriver.findElement(By.id(Homepage.getProperty("page.search.bar")));
+                            element.sendKeys(searchAliases[i].trim()); // Enter searchAliases without pressing ENTER
+                            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@class, 'main-search-suggestions')]/li/a/div/*[contains(@class, 'srTitle')]")));
+                            List<WebElement> searchAliasesTitles = webDriver.findElementsByXPath("//*[contains(@class, 'main-search-suggestions')]/li/a/div/*[contains(@class, 'srTitle')]");
+                            List<WebElement> searchAliasesType = webDriver.findElementsByXPath("//*[contains(@class, 'main-search-suggestions')]/li/a/div/*[contains(@class, 'srType')]");
+                            report.writeToFile("Checking Text Search and Suggestions for \""+ searchAliases[i].trim()+"\"");
+                            report.writeToFile("Lucene Results :");
+                            for (int j = 0 ; j < searchAliasesTitles.size() ; j++){
+                                //System.out.println(searchAliasesTitles.get(j).getText() + "  | " + searchAliasesType.get(j).getText());
+                                report.writeToFile(searchAliasesTitles.get(j).getText()+" | "+searchAliasesType.get(j).getText() );
+                            }
+                            report.writeToFile("");
+                            element.submit();
+
+                            if ( webDriver.getTitle().contains(searchAliases[i].trim()) | webDriver.getCurrentUrl().contains(searchAliases[i].trim()) ){
+                                report.writeToFile("Test Title/URL Keyword \"" + searchAliases[i].trim() + "\" : ", "Successful!");
+                            }else{
+                                report.writeToFile("Test Title/URL Keyword \"" + searchAliases[i].trim() + "\" : ", "unable to find Keyword at " + webDriver.getCurrentUrl() + " !");
+                            }
+                            report.writeToFile("");
+
+                            webDriver.navigate().to(inputSearch.getText().trim());
+                        }
+                        Platform.runLater(() -> {
+                            checkTextSearchAndSuggestions.setStyle("-fx-background-color: #CCFF99");
+                            checkTextSearchAndSuggestions.setSelected(true);
+                        });
+                        report.writeToFile("Checking Text Search and Suggestions: ", "Complete!");
+                        webDriver.navigate().to(inputSearch.getText().trim());
+                    }catch (Exception noSearchElements){
+                        Platform.runLater(() -> {
+                            checkTextSearchAndSuggestions.setStyle("-fx-background-color: #FF0000");
+                            checkTextSearchAndSuggestions.setSelected(true);
+                        });
+                        report.writeToFile("Checking Text Search and Suggestions: ", "unable to get Suggestions!");
+                        noSearchElements.printStackTrace();
+                    }
+                }else{
+                    Platform.runLater(() -> {
+                        checkTextSearchAndSuggestions.setStyle("-fx-background-color: #FF0000");
+                        checkTextSearchAndSuggestions.setSelected(true);
+                    });
+                    report.writeToFile("Checking Text Search and Suggestions: ", "no Informations in Inputfield provided!");
+                }
+
+            }catch (Exception noSearchBarInput){
+                Platform.runLater(() -> {
+                    checkTextSearchAndSuggestions.setStyle("-fx-background-color: #FF0000");
+                    checkTextSearchAndSuggestions.setSelected(true);
+                });
+                report.writeToFile("Checking Text Search and Suggestions: ", "unable to enter Search Input");
+                noSearchBarInput.printStackTrace();
+            }
+        }catch (Exception noInput){
+            Platform.runLater(() -> {
+                checkTextSearchAndSuggestions.setStyle("-fx-background-color: #FF0000");
+                checkTextSearchAndSuggestions.setSelected(true);
+            });
+            report.writeToFile("Checking Text Search and Suggestions: ", "unable to check! Browser not responding");
+            noInput.printStackTrace();
+        }
+        report.writeToFile("=================================", "");
+    }
+    public void checkingFeedbackPopUp(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox checkFeedbackPopUp, TextField inputTextSearchAndSuggestions, Text statusInfo, TextField inputSearch, TextField inputEmailAdress,String xpathPattern1,String xpathPattern2, Properties Homepage, boolean isSuccessful, boolean isAvailable){
+        // Feedback PopUp
+        Platform.runLater(() -> {
+            checkFeedbackPopUp.setStyle("-fx-background-color: #eef442");
+            statusInfo.setText("Checking Feedback PopUp...");
+        });
+        xpathPattern1 = Homepage.getProperty("page.main.feedback.icon");
+        xpathPattern2 = Homepage.getProperty("page.main.feedback.close");
+        try {
+            ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
+            webDriver.switchTo().window(tabs.get(0));
+            WebDriverWait wait = new WebDriverWait(webDriver, 10);
+            try{
+                isAvailable = webDriver.findElementByXPath(xpathPattern1) != null;
+                webDriver.findElementByXPath(xpathPattern1).click();
+                try{
+                    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpathPattern2)));
+                    webDriver.findElementByXPath(xpathPattern2).click();
+                    Platform.runLater(() -> {
+                        checkFeedbackPopUp.setStyle("-fx-background-color: #CCFF99");
+                        checkFeedbackPopUp.setSelected(true);
+                    });
+                    report.writeToFile("Checking Feedback PopUp: ", "Complete!");
+                    webDriver.navigate().to(inputSearch.getText().trim());
+
+                }catch (Exception noClosingFeedBackButton){
+                    Platform.runLater(() -> {
+                        checkFeedbackPopUp.setStyle("-fx-background-color: #FF0000");
+                        checkFeedbackPopUp.setSelected(true);
+                    });
+                    report.writeToFile("Checking Feedback PopUp: ", "couldn't close PopUp!");
+                    webDriver.navigate().to(inputSearch.getText().trim());
+                }
+
+            }catch (Exception noFeedBackButtonFound){
+                Platform.runLater(() -> {
+                    checkFeedbackPopUp.setStyle("-fx-background-color: #FF0000");
+                    checkFeedbackPopUp.setSelected(true);
+                });
+                report.writeToFile("Checking Feedback PopUp: ", "unable to check! Couldn't find Feedback Button");
+                webDriver.navigate().to(inputSearch.getText().trim());
+            }
+        }catch (Exception noFeedBack){
+            Platform.runLater(() -> {
+                checkFeedbackPopUp.setStyle("-fx-background-color: #FF0000");
+                checkFeedbackPopUp.setSelected(true);
+            });
+            report.writeToFile("Checking Feedback PopUp: ", "unable to check! Browser not responding");
+            noFeedBack.printStackTrace();
+        }
+        report.writeToFile("=================================", "");
+    }
+
+    public void checkingPrivacyPopUp(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox checkPrivacyPopUp, TextField inputTextSearchAndSuggestions, Text statusInfo, TextField inputSearch, TextField inputEmailAdress, String xpathPattern1, String xpathPattern2, Properties Homepage, boolean isSuccessful, boolean isAvailable) {
+        // Privacy PopUp
+        Platform.runLater(() -> {
+            checkPrivacyPopUp.setStyle("-fx-background-color: #eef442");
+            statusInfo.setText("Checking Privacy PopUp...");
+        });
+        xpathPattern1 = Homepage.getProperty("page.main.privacy.popup");
+        try {
+            ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
+            webDriver.switchTo().window(tabs.get(0));
+            webDriver.navigate().to(inputSearch.getText().trim());
+            WebDriverWait wait = new WebDriverWait(webDriver, 10);
+            try{
+                wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpathPattern1)));
+                isAvailable = webDriver.findElementByXPath(xpathPattern1) != null;
+                webDriver.findElementByXPath(xpathPattern1).click();
+                ArrayList<String> tabsPrivacy = new ArrayList<>(webDriver.getWindowHandles());
+                webDriver.switchTo().window(tabsPrivacy.get(1)).close();
+                webDriver.switchTo().window(tabsPrivacy.get(0));
+                Platform.runLater(() -> {
+                    checkPrivacyPopUp.setStyle("-fx-background-color: #CCFF99");
+                    checkPrivacyPopUp.setSelected(true);
+                });
+                report.writeToFile("Checking Privacy PopUp: ", "Complete!");
+
+                webDriver.navigate().to(inputSearch.getText().trim());
+            }catch (Exception noPrivacyBoxFound){
+                Platform.runLater(() -> {
+                    checkPrivacyPopUp.setStyle("-fx-background-color: #FF0000");
+                    checkPrivacyPopUp.setSelected(true);
+                });
+                report.writeToFile("Checking Privacy PopUp: ", "unable to find Privacy PopUp");
+                noPrivacyBoxFound.printStackTrace();
+            }
+        }catch (Exception noPrivacyBox){
+            Platform.runLater(() -> {
+                checkPrivacyPopUp.setStyle("-fx-background-color: #FF0000");
+                checkPrivacyPopUp.setSelected(true);
+            });
+            report.writeToFile("Checking Privacy PopUp: ", "unable to check! Browser not responding");
+            noPrivacyBox.printStackTrace();
+        }
+        report.writeToFile("=================================", "");
+    }
 }
