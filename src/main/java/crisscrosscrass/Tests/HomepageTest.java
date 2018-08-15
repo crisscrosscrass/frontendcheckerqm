@@ -10,6 +10,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -274,6 +276,227 @@ public class HomepageTest {
             noNewsLetterPromo.printStackTrace();
         }
 
+        report.writeToFile("=================================", "");
+    }
+    public void checkingNewsletterPopUp(ChromeDriver webDriver, Report report, JFXCheckBox checkNewsletterPopUp, Text statusInfo, TextField inputSearch, TextField inputEmailAdress,String xpathPattern1,String xpathPatternImage1,String xpathPatternImage2, Properties Homepage, boolean isSuccessful, boolean isAvailable){
+        // Newsletter PopUp
+        Platform.runLater(() -> {
+            checkNewsletterPopUp.setStyle("-fx-background-color: #eef442");
+            statusInfo.setText("Checking Newsletter PopUp...");
+        });
+        xpathPattern1 = Homepage.getProperty("page.main.newsletter.icon");
+        try {
+            ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
+            webDriver.switchTo().window(tabs.get(0));
+            try {
+                isAvailable = webDriver.findElementByXPath(xpathPattern1) != null;
+                webDriver.findElementByXPath(xpathPattern1).click();
+                WebDriverWait wait = new WebDriverWait(webDriver, 10);
+                try{
+                    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='inactivity_popup']/div[1]")));
+                    webDriver.findElementByXPath("//*[@id='inactivity_popup']/div[1]").click();
+                    Platform.runLater(() -> {
+                        checkNewsletterPopUp.setStyle("-fx-background-color: #CCFF99");
+                        checkNewsletterPopUp.setSelected(true);
+                    });
+                    report.writeToFile("Checking Newsletter PopUp: ", "Successful!");
+                }catch (Exception noNewsletterIconCloseFound){
+                    Platform.runLater(() -> {
+                        checkNewsletterPopUp.setStyle("-fx-background-color: #FF0000");
+                        checkNewsletterPopUp.setSelected(true);
+                    });
+                    report.writeToFile("Checking Newsletter PopUp: ", "Couldn't close Newsletter Element!");
+                    isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"NewsLetterPopUpError.png");
+                    if (isSuccessful){
+                        report.writeToFile("Checking Logo Shop Screenshot: ", "Screenshot successful!");
+                    }else {
+                        report.writeToFile("Checking Logo Shop Screenshot: ", "Screenshot not successful!");
+                    }
+                    webDriver.navigate().to(inputSearch.getText().trim());
+                    noNewsletterIconCloseFound.printStackTrace();
+                }
+            }catch (Exception noNewsletterIconFound){
+                Platform.runLater(() -> {
+                    checkNewsletterPopUp.setStyle("-fx-background-color: #FF0000");
+                    checkNewsletterPopUp.setSelected(true);
+                });
+                report.writeToFile("Checking Newsletter PopUp: ", "Couldn't find Newsletter Icon Element!");
+                noNewsletterIconFound.printStackTrace();
+            }
+
+        }catch (Exception noNewsLetterIcon){
+            Platform.runLater(() -> {
+                checkNewsletterPopUp.setStyle("-fx-background-color: #FF0000");
+                checkNewsletterPopUp.setSelected(true);
+            });
+            report.writeToFile("Checking Newsletter Pop Functionality: ", "unable to check! Browser not responding");
+            noNewsLetterIcon.printStackTrace();
+        }
+        report.writeToFile("=================================", "");
+    }
+    public void checkingNewsletterPopUpFunctionality(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox checkNewsletterPopUpFunctionality, Text statusInfo, TextField inputSearch, TextField inputEmailAdress,String xpathPattern1,String xpathPatternImage1,String xpathPatternImage2, Properties Homepage, boolean isSuccessful, boolean isAvailable){
+        // Newsletter PopUp Functionality
+        Platform.runLater(() -> {
+            checkNewsletterPopUpFunctionality.setStyle("-fx-background-color: #eef442");
+            statusInfo.setText("Checking Newsletter PopUp Functionality...");
+        });
+        xpathPattern1 = Homepage.getProperty("page.main.newsletter.icon");
+        try {
+            ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
+            webDriver.switchTo().window(tabs.get(0));
+            try {
+                isAvailable = webDriver.findElementByXPath(xpathPattern1) != null;
+                webDriver.findElementByXPath(xpathPattern1).click();
+                try{
+                    // Scroll down
+                    for (int i = 0; i < 5; i++) {
+                        Thread.sleep(100);
+                        js.executeScript("window.scrollBy(0,100)");
+                    }
+
+                    WebElement element = webDriver.findElementByXPath("//*[@id=\"subscribing-wrapper\"]/div[1]/form/div[1]/input");
+                    element.sendKeys(inputEmailAdress.getText());
+                    element.submit();
+                    try{
+                        isAvailable = webDriver.findElementByXPath("//*[@id=\"confirmation-wrapper\"]") != null;
+                        if (webDriver.getCurrentUrl().contains("newsletter.html") ) {
+                            Platform.runLater(() -> {
+                                checkNewsletterPopUpFunctionality.setStyle("-fx-background-color: #CCFF99");
+                                checkNewsletterPopUpFunctionality.setSelected(true);
+                            });
+                            report.writeToFile("Checking Newsletter PopUp Functionality: ", "Successful!");
+                        } else {
+                            Platform.runLater(() -> {
+                                checkNewsletterPopUpFunctionality.setStyle("-fx-background-color: #FF0000");
+                                checkNewsletterPopUpFunctionality.setSelected(true);
+                            });
+                            report.writeToFile("Checking Newsletter PopUp Functionality: ", "Not working!");
+                        }
+                        webDriver.navigate().to(inputSearch.getText().trim());
+                    }catch (Exception noConfirmationWrapper){
+                        Platform.runLater(() -> {
+                            checkNewsletterPopUpFunctionality.setStyle("-fx-background-color: #FF0000");
+                            checkNewsletterPopUpFunctionality.setSelected(true);
+                        });
+                        isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"NewsLetterSignInPage.png");
+                        if (isSuccessful){
+                            report.writeToFile("Checking Logo Shop Screenshot: ", "Screenshot successful!");
+                        }else {
+                            report.writeToFile("Checking Logo Shop Screenshot: ", "Screenshot not successful!");
+                        }
+                        report.writeToFile("Checking Newsletter PopUp Functionality: ", "ConfirmationPage is missing!");
+                        webDriver.navigate().to(inputSearch.getText().trim());
+                    }
+                }catch (Exception noEmailCouldBeEntered){
+                    Platform.runLater(() -> {
+                        checkNewsletterPopUpFunctionality.setStyle("-fx-background-color: #FF0000");
+                        checkNewsletterPopUpFunctionality.setSelected(true);
+                    });
+                    report.writeToFile("Checking Newsletter PopUp Functionality: ", "Email Adress couldn't be entered!");
+                    isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"PopUpNewsLetter.png");
+                    if (isSuccessful){
+                        report.writeToFile("Checking Logo Shop Screenshot: ", "Screenshot successful!");
+                    }else {
+                        report.writeToFile("Checking Logo Shop Screenshot: ", "Screenshot not successful!");
+                    }
+                    webDriver.navigate().to(inputSearch.getText().trim());
+                    noEmailCouldBeEntered.printStackTrace();
+                }
+            }catch (Exception noNewsletterIconFound){
+                Platform.runLater(() -> {
+                    checkNewsletterPopUpFunctionality.setStyle("-fx-background-color: #FF0000");
+                    checkNewsletterPopUpFunctionality.setSelected(true);
+                });
+                report.writeToFile("Checking Newsletter PopUp Functionality: ", "Couldn't find Newsletter Icon Element!");
+                noNewsletterIconFound.printStackTrace();
+            }
+
+        }catch (Exception noNewsLetterIcon){
+            Platform.runLater(() -> {
+                checkNewsletterPopUpFunctionality.setStyle("-fx-background-color: #FF0000");
+                checkNewsletterPopUpFunctionality.setSelected(true);
+            });
+            report.writeToFile("Checking Newsletter Pop Functionality: ", "unable to check! Browser not responding");
+            noNewsLetterIcon.printStackTrace();
+        }
+
+        report.writeToFile("=================================", "");
+    }
+
+    public void checkingFooterLinks(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox checkFooterLinks, Text statusInfo, TextField inputSearch, TextField inputEmailAdress,String xpathPattern1,String xpathPattern2, Properties Homepage, boolean isSuccessful, boolean isAvailable){
+        // Footer Links
+        Platform.runLater(() -> {
+            checkFooterLinks.setStyle("-fx-background-color: #eef442");
+            statusInfo.setText("Checking Footer Links & Categories...");
+        });
+        xpathPattern1 = Homepage.getProperty("page.main.footer.links");
+        xpathPattern2 = Homepage.getProperty("page.main.footer.categories");
+        try {
+            ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
+            webDriver.switchTo().window(tabs.get(0));
+            try {
+                isAvailable = webDriver.findElementByXPath(xpathPattern1) != null;
+                Point hoverItem = webDriver.findElement(By.xpath(xpathPattern1)).getLocation();
+                ((JavascriptExecutor)webDriver).executeScript("return window.title;");
+                ((JavascriptExecutor)webDriver).executeScript("window.scrollBy(0,"+(hoverItem.getY())+");");
+                WebdriverTab newtab = new WebdriverTab();
+                //check all footerLinks
+                List<WebElement> footerFooterLinks = webDriver.findElementsByXPath(xpathPattern1);
+                //TODO set footerFooterLinks.size()
+                for (int i = 0 ; i < 1 ; i++){
+                    webDriver.switchTo().window(tabs.get(0));
+                    if (footerFooterLinks.get(i).getAttribute("href").contains("newsletter")){
+                        isSuccessful = newtab.openCheckURLTitleH1H2(webDriver,footerFooterLinks.get(i).getAttribute("href"),"newsletter");
+                        if (isSuccessful){
+                            report.writeToFile("TEST FooterLinks "+i+": Successful | ", "found \"" + "Newsletter" + "\" Keyword at URL : "+ footerFooterLinks.get(i).getAttribute("href") );
+                        }else {
+                            report.writeToFile("TEST FooterLinks "+i+": unable to check! |", "couldn't found \"" + "Newsletter" + "\" Keyword in URL : "+ footerFooterLinks.get(i).getAttribute("href") );
+                        }
+                    }else {
+                        isSuccessful = newtab.openCheckURLTitleH1H2(webDriver,footerFooterLinks.get(i).getAttribute("href"),footerFooterLinks.get(i).getText().trim());
+                        if (isSuccessful){
+                            report.writeToFile("TEST FooterLinks "+i+": Successful | ", "found \"" + footerFooterLinks.get(i).getText().trim() + "\" Keyword at URL : "+ footerFooterLinks.get(i).getAttribute("href") );
+                        }else {
+                            report.writeToFile("TEST FooterLinks "+i+": unable to check! |", "couldn't found \"" + footerFooterLinks.get(i).getText().trim() + "\" Keyword in URL : "+ footerFooterLinks.get(i).getAttribute("href") );
+                        }
+                    }
+                }
+                List<WebElement> footerCategoryLinks = webDriver.findElementsByXPath(xpathPattern2);
+                //check all footerCategoryLinks
+                //TODO set footerCategoryLinks.size()
+                for (int i = 0 ; i < 1 ; i++){
+                    webDriver.switchTo().window(tabs.get(0));
+                    isSuccessful = newtab.openCheckURLTitleH1H2(webDriver,footerCategoryLinks.get(i).getAttribute("href"),footerCategoryLinks.get(i).getText().trim());
+                    if (isSuccessful){
+                        report.writeToFile("TEST FooterCategoryLinks "+i+": Successful | ", "found \"" + footerCategoryLinks.get(i).getText().trim() + "\" Keyword at URL : "+ footerCategoryLinks.get(i).getAttribute("href") );
+                    }else {
+                        report.writeToFile("TEST FooterCategoryLinks "+i+": unable to check! |", "couldn't found \"" + footerCategoryLinks.get(i).getText().trim() + "\" Keyword in URL : "+ footerCategoryLinks.get(i).getAttribute("href") );
+                    }
+                }
+                Platform.runLater(() -> {
+                    checkFooterLinks.setStyle("-fx-background-color: #CCFF99");
+                    checkFooterLinks.setSelected(true);
+                });
+                report.writeToFile("Checking Footer Links & Categories: ", "Complete!");
+                webDriver.navigate().to(inputSearch.getText().trim());
+
+            }catch (Exception noFooterFound){
+                Platform.runLater(() -> {
+                    checkFooterLinks.setStyle("-fx-background-color: #FF0000");
+                    checkFooterLinks.setSelected(true);
+                });
+                report.writeToFile("Checking Footer Links & Categories: ", "Couldn't find Footer Element!");
+                noFooterFound.printStackTrace();
+            }
+
+        }catch (Exception noFooter){
+            Platform.runLater(() -> {
+                checkFooterLinks.setStyle("-fx-background-color: #FF0000");
+                checkFooterLinks.setSelected(true);
+            });
+            report.writeToFile("Checking Footer Links & Categories: ", "unable to check! Browser not responding");
+            noFooter.printStackTrace();
+        }
         report.writeToFile("=================================", "");
     }
 }
