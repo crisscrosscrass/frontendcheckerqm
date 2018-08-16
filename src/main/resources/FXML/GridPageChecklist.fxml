@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <JFXCheckBox fx:id="checkSortingValuesOnGridPageLowToHigh" text="Sorting values on Grid Page- Lowest to Highest" />
+      <JFXCheckBox text="Sorting values on Grid Page- Highest to Lowest" />
+      <JFXCheckBox text="Sorting value on Grid Page- Sale" />
+      <JFXCheckBox text="Sorting value on Grid Page- New items" />
+      <JFXCheckBox text="Sorting values on Grid Page- Discounted Price" />
+      <JFXCheckBox text="Switch from Small to Large Images" />
+      <JFXCheckBox text="Paging- Foward" />
+      <JFXCheckBox text="Paging- Back" />
+      <JFXCheckBox text="120-300 Products View" />
+      <JFXCheckBox text="Deeper Style" />
+      <JFXCheckBox text="Style Box- Open/Close" />
+      <JFXCheckBox text="Filters- Apply" />
+      <JFXCheckBox text="Filters- Remove from Filter Box" />
+      <JFXCheckBox text="Filters- Remove from Sidebar" />
+      <JFXCheckBox text="Filters- Remove All" />
+      <JFXCheckBox text="Search Box in Brand Filter" />
+      <JFXCheckBox text="Search Box in Shop Filter" />
+   </children>
+</VBox>

@@ -3,10 +3,12 @@ package crisscrosscrass.Controller;
 import com.jfoenix.controls.JFXCheckBox;
 import crisscrosscrass.*;
 import crisscrosscrass.Tasks.*;
+import crisscrosscrass.Tests.GridPageTest;
 import crisscrosscrass.Tests.HomepageTest;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -21,8 +23,6 @@ import javafx.stage.Window;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.*;
 
@@ -58,6 +58,25 @@ public class FrontEndCheckController {
     JFXCheckBox checkPrivacyPopUp;
 
     @FXML
+    JFXCheckBox settingHomepage;
+    @FXML
+    JFXCheckBox settingGridPage;
+    @FXML
+    JFXCheckBox settingGridPageWithWindows;
+    @FXML
+    JFXCheckBox settingGridPageFillIns;
+    @FXML
+    JFXCheckBox settingBrandPage;
+    @FXML
+    JFXCheckBox settingLucenePage;
+    @FXML
+    JFXCheckBox settingLucenePageWithDeletions;
+    @FXML
+    JFXCheckBox settingDetailPage;
+    @FXML
+    JFXCheckBox settingImageGrouping;
+
+    @FXML
     ProgressBar progressIndicator;
     @FXML
     Text statusInfo;
@@ -77,8 +96,26 @@ public class FrontEndCheckController {
     AnchorPane mainStage;
     @FXML
     TabPane tabPane;
+
     @FXML
-    Tab brandTab;
+    Tab tabHomepage;
+    @FXML
+    Tab tabGridPage;
+    @FXML
+    Tab tabGridPageWithWindows;
+    @FXML
+    Tab tabGridPageFillIns;
+    @FXML
+    Tab tabBrandPage;
+    @FXML
+    Tab tabLucenePage;
+    @FXML
+    Tab tabLucenePageWithDeletions;
+    @FXML
+    Tab tabDetailPage;
+    @FXML
+    Tab tabImageGrouping;
+
 
 
     private static boolean isSuccessful = false;
@@ -92,7 +129,78 @@ public class FrontEndCheckController {
     @FXML
     public void initialize() {
         System.out.println("FrontendCheckController launched!");
-        //homePageController.init(this);
+
+        //gridPageCheckController.init(this);
+
+
+        settingHomepage.setOnAction(event -> {
+            updateCheckerTabs();
+        });
+        settingGridPage.setOnAction(event -> {
+            updateCheckerTabs();
+        });
+
+        settingGridPageWithWindows.setOnAction(event -> {
+            updateCheckerTabs();
+        });
+
+        settingGridPageFillIns.setOnAction(event -> {
+            updateCheckerTabs();
+        });
+
+        settingBrandPage.setOnAction(event -> {
+            updateCheckerTabs();
+        });
+
+        settingLucenePage.setOnAction(event -> {
+            updateCheckerTabs();
+        });
+
+        settingLucenePageWithDeletions.setOnAction(event -> {
+            updateCheckerTabs();
+        });
+
+        settingDetailPage.setOnAction(event -> {
+            updateCheckerTabs();
+        });
+
+        settingImageGrouping.setOnAction(event -> {
+            updateCheckerTabs();
+        });
+
+
+
+        updateCheckerTabs();
+    }
+
+    public void updateCheckerTabs(){
+        if (settingHomepage.isSelected())
+            tabHomepage.setDisable(false);
+        else tabHomepage.setDisable(true);
+        if (settingGridPage.isSelected())
+            tabGridPage.setDisable(false);
+        else tabGridPage.setDisable(true);
+        if (settingGridPageWithWindows.isSelected())
+            tabGridPageWithWindows.setDisable(false);
+        else tabGridPageWithWindows.setDisable(true);
+        if (settingGridPageFillIns.isSelected())
+            tabGridPageFillIns.setDisable(false);
+        else tabGridPageFillIns.setDisable(true);
+        if (settingBrandPage.isSelected())
+            tabBrandPage.setDisable(false);
+        else tabBrandPage.setDisable(true);
+        if (settingLucenePage.isSelected())
+            tabLucenePage.setDisable(false);
+        else tabLucenePage.setDisable(true);
+        if (settingLucenePageWithDeletions.isSelected())
+            tabLucenePageWithDeletions.setDisable(false);
+        else tabLucenePageWithDeletions.setDisable(true);
+        if (settingDetailPage.isSelected())
+            tabDetailPage.setDisable(false);
+        else tabDetailPage.setDisable(true);
+        if (settingImageGrouping.isSelected())
+            tabImageGrouping.setDisable(false);
+        else tabImageGrouping.setDisable(true);
     }
 
     @FXML
@@ -173,8 +281,6 @@ public class FrontEndCheckController {
                     Platform.runLater(() -> statusInfo.setText("Go to requested Website..."));
 
 
-
-
                     long start = System.currentTimeMillis();
                     webDriver.navigate().to(inputSearch.getText().trim());
                     long finish = System.currentTimeMillis();
@@ -183,19 +289,25 @@ public class FrontEndCheckController {
                     report.writeToFile("Checking Website: ", inputSearch.getText().trim());
                     Platform.runLater(() -> progressIndicator.setProgress(checkAllCheckBoxes()));
                     report.writeToFile("=================================", "");
+                    if (!tabHomepage.isDisable()){
+                        tabPane.getSelectionModel().select(tabHomepage);
+                        HomepageTest homepageTest = new HomepageTest();
+                        homepageTest.checkingCategories(webDriver,report,checkCategoryLinksLeftSideMenu,statusInfo,inputSearch,xpathPattern1,Homepage,isSuccessful,isAvailable);
+                        homepageTest.checkingShopOfTheWeek(webDriver,report,checkLogoFromShopOfTheWeek,statusInfo,inputSearch,xpathPattern1,xpathPatternImage1,xpathPatternImage2,Homepage,isSuccessful,isAvailable);
+                        homepageTest.checkingShopOfTheWeekCategories(webDriver,report,checkCategoryLinksFromShopOfTheWeek,statusInfo,inputSearch,xpathPattern1,xpathPatternImage1,xpathPatternImage2,Homepage,isSuccessful,isAvailable);
+                        homepageTest.checkingNewsletterBanner(webDriver,report,checkNewsletterBannerFunctionality,statusInfo,inputSearch,inputEmailAdress,xpathPattern1,xpathPatternImage1,xpathPatternImage2,Homepage,isSuccessful,isAvailable);
+                        homepageTest.checkingNewsletterPopUp(webDriver,report,checkNewsletterPopUp,statusInfo,inputSearch,inputEmailAdress,xpathPattern1,xpathPatternImage1,xpathPatternImage2,Homepage,isSuccessful,isAvailable);
+                        homepageTest.checkingNewsletterPopUpFunctionality(webDriver,report,js,checkNewsletterPopUpFunctionality,statusInfo,inputSearch,inputEmailAdress,xpathPattern1,xpathPatternImage1,xpathPatternImage2,Homepage,isSuccessful,isAvailable);
+                        homepageTest.checkingFooterLinks(webDriver,report,js,checkFooterLinks,statusInfo,inputSearch,inputEmailAdress,xpathPattern1,xpathPattern2,Homepage,isSuccessful,isAvailable);
+                        homepageTest.checkingSearchAndSuggestions(webDriver,report,js,checkTextSearchAndSuggestions,inputTextSearchAndSuggestions,statusInfo,inputSearch,inputEmailAdress,xpathPattern1,xpathPattern2,Homepage,isSuccessful,isAvailable);
+                        homepageTest.checkingFeedbackPopUp(webDriver,report,js,checkFeedbackPopUp,inputTextSearchAndSuggestions,statusInfo,inputSearch,inputEmailAdress,xpathPattern1,xpathPattern2,Homepage,isSuccessful,isAvailable);
+                        homepageTest.checkingPrivacyPopUp(webDriver,report,js,checkPrivacyPopUp,inputTextSearchAndSuggestions,statusInfo,inputSearch,inputEmailAdress,xpathPattern1,xpathPattern2,Homepage,isSuccessful,isAvailable);
+                        Platform.runLater(() -> progressIndicator.setProgress(checkAllCheckBoxes()));
+                    }
 
-                    HomepageTest homepageTest = new HomepageTest();
-                    homepageTest.checkingCategories(webDriver,report,checkCategoryLinksLeftSideMenu,statusInfo,inputSearch,xpathPattern1,Homepage,isSuccessful,isAvailable);
-                    homepageTest.checkingShopOfTheWeek(webDriver,report,checkLogoFromShopOfTheWeek,statusInfo,inputSearch,xpathPattern1,xpathPatternImage1,xpathPatternImage2,Homepage,isSuccessful,isAvailable);
-                    homepageTest.checkingShopOfTheWeekCategories(webDriver,report,checkCategoryLinksFromShopOfTheWeek,statusInfo,inputSearch,xpathPattern1,xpathPatternImage1,xpathPatternImage2,Homepage,isSuccessful,isAvailable);
-                    homepageTest.checkingNewsletterBanner(webDriver,report,checkNewsletterBannerFunctionality,statusInfo,inputSearch,inputEmailAdress,xpathPattern1,xpathPatternImage1,xpathPatternImage2,Homepage,isSuccessful,isAvailable);
-                    homepageTest.checkingNewsletterPopUp(webDriver,report,checkNewsletterPopUp,statusInfo,inputSearch,inputEmailAdress,xpathPattern1,xpathPatternImage1,xpathPatternImage2,Homepage,isSuccessful,isAvailable);
-                    homepageTest.checkingNewsletterPopUpFunctionality(webDriver,report,js,checkNewsletterPopUpFunctionality,statusInfo,inputSearch,inputEmailAdress,xpathPattern1,xpathPatternImage1,xpathPatternImage2,Homepage,isSuccessful,isAvailable);
-                    homepageTest.checkingFooterLinks(webDriver,report,js,checkFooterLinks,statusInfo,inputSearch,inputEmailAdress,xpathPattern1,xpathPattern2,Homepage,isSuccessful,isAvailable);
-                    homepageTest.checkingSearchAndSuggestions(webDriver,report,js,checkTextSearchAndSuggestions,inputTextSearchAndSuggestions,statusInfo,inputSearch,inputEmailAdress,xpathPattern1,xpathPattern2,Homepage,isSuccessful,isAvailable);
-                    homepageTest.checkingFeedbackPopUp(webDriver,report,js,checkFeedbackPopUp,inputTextSearchAndSuggestions,statusInfo,inputSearch,inputEmailAdress,xpathPattern1,xpathPattern2,Homepage,isSuccessful,isAvailable);
-                    homepageTest.checkingPrivacyPopUp(webDriver,report,js,checkPrivacyPopUp,inputTextSearchAndSuggestions,statusInfo,inputSearch,inputEmailAdress,xpathPattern1,xpathPattern2,Homepage,isSuccessful,isAvailable);
-                    Platform.runLater(() -> progressIndicator.setProgress(checkAllCheckBoxes()));
+
+
+
 
 
                     /**

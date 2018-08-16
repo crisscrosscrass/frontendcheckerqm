@@ -24,8 +24,8 @@
 
 <AnchorPane fx:id="mainStage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="854.0" prefWidth="936.0" style="-fx-background-color: white;" stylesheets="@../Style/Main.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="crisscrosscrass.Controller.FrontEndCheckController">
    <children>
-      <Pane layoutX="-10.0" layoutY="-10.0" prefHeight="450.0" prefWidth="783.0" style="-fx-background-color: #e83062;" AnchorPane.leftAnchor="-10.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="-10.0" />
-      <VBox alignment="TOP_CENTER" prefHeight="542.0" prefWidth="549.0">
+      <Pane layoutX="-10.0" layoutY="-10.0" prefHeight="450.0" prefWidth="549.0" style="-fx-background-color: #e83062;" AnchorPane.leftAnchor="-10.0" AnchorPane.rightAnchor="397.0" AnchorPane.topAnchor="-10.0" />
+      <VBox alignment="TOP_CENTER" prefHeight="425.0" prefWidth="549.0">
          <children>
             <TextField fx:id="inputSearch" alignment="CENTER" text="https://www.ladenzeile.de/">
                <font>
@@ -99,102 +99,94 @@
             <Insets left="20.0" right="20.0" top="20.0" />
          </padding>
       </VBox>
-      <VBox alignment="CENTER" layoutX="549.0" layoutY="446.0" prefHeight="112.0" prefWidth="367.0">
+      <VBox alignment="CENTER" layoutX="539.0" prefHeight="112.0" prefWidth="367.0" style="-fx-background-color: white;">
          <children>
-            <ImageView fx:id="preloaderCat" fitHeight="62.0" fitWidth="66.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" translateY="-30.0" />
+            <Accordion focusTraversable="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="206.0" prefWidth="160.0">
+               <panes>
+                <TitledPane animated="false" prefHeight="206.0" prefWidth="3.0" text="Setting">
+                     <content>
+                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0">
+                           <children>
+                              <JFXCheckBox fx:id="settingHomepage" text="Homepage" />
+                              <JFXCheckBox fx:id="settingGridPage" layoutX="20.0" layoutY="20.0" selected="true" text="Grid Page" />
+                              <JFXCheckBox fx:id="settingGridPageWithWindows" layoutX="20.0" layoutY="43.0" text="Grid Page Window" />
+                              <JFXCheckBox fx:id="settingGridPageFillIns" layoutX="20.0" layoutY="66.0" text="Grid Page Fill-ins" />
+                              <JFXCheckBox fx:id="settingBrandPage" layoutX="20.0" layoutY="89.0" text="Brand Page" />
+                              <JFXCheckBox fx:id="settingLucenePage" layoutX="20.0" layoutY="112.0" text="Lucene Page" />
+                              <JFXCheckBox fx:id="settingLucenePageWithDeletions" layoutX="20.0" layoutY="135.0" text="Lucene Page with Deletions" />
+                              <JFXCheckBox fx:id="settingDetailPage" layoutX="20.0" layoutY="158.0" text="Detail Page" />
+                              <JFXCheckBox fx:id="settingImageGrouping" layoutX="20.0" layoutY="181.0" text="Image Grouping" />
+                           </children>
+                        </VBox>
+                     </content>
+                </TitledPane>
+               </panes>
+            </Accordion>
+            <ImageView fx:id="preloaderCat" fitHeight="62.0" fitWidth="66.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
             <HBox fx:id="outputPlace" alignment="CENTER" />
          </children>
       </VBox>
-      <TabPane fx:id="tabPane" layoutX="10.0" layoutY="572.0" prefHeight="294.0" prefWidth="906.0">
+      <TabPane fx:id="tabPane" layoutX="10.0" layoutY="445.0" prefHeight="404.0" prefWidth="886.0">
          <tabs>
-            <Tab closable="false" text="Homepage">
+            <Tab fx:id="tabHomepage" closable="false" text="Homepage">
                <content>
-                  <VBox prefHeight="352.0" prefWidth="520.0">
-                     <children>
-                        <Pane prefHeight="244.0" prefWidth="549.0" style="-fx-border-color: #e83062;">
+                        <VBox fx:id="CheckBoxesPlace" prefHeight="216.0" prefWidth="394.0">
                            <children>
-                              <VBox fx:id="CheckBoxesPlace" alignment="CENTER_LEFT" prefHeight="216.0" prefWidth="394.0">
-                                 <children>
-                                    <JFXCheckBox fx:id="checkCategoryLinksLeftSideMenu" text="Category Links- Left Side Menu" />
-                                    <JFXCheckBox fx:id="checkLogoFromShopOfTheWeek" text="Logo from Shop of the Week" />
-                                    <JFXCheckBox fx:id="checkCategoryLinksFromShopOfTheWeek" text="Category Links from Shop of the Week" />
-                                    <JFXCheckBox fx:id="checkNewsletterBannerFunctionality" text="Newsletter Banner Functionality" />
-                                    <JFXCheckBox fx:id="checkNewsletterPopUp" text="Newsletter PopUp" />
-                                    <JFXCheckBox fx:id="checkNewsletterPopUpFunctionality" layoutX="10.0" layoutY="82.0" text="Newsletter PopUp Functionality" />
-                                    <JFXCheckBox fx:id="checkFooterLinks" text="Footer Links" />
-                                    <JFXCheckBox fx:id="checkTextSearchAndSuggestions" text="Text Search &amp; Suggestions" />
-                                    <JFXCheckBox fx:id="checkFeedbackPopUp" text="Feedback PopUp" />
-                                    <JFXCheckBox fx:id="checkPrivacyPopUp" text="Privacy PopUp" />
-                                 </children>
-                              </VBox>
+                              <JFXCheckBox fx:id="checkCategoryLinksLeftSideMenu" text="Category Links- Left Side Menu" />
+                              <JFXCheckBox fx:id="checkLogoFromShopOfTheWeek" text="Logo from Shop of the Week" />
+                              <JFXCheckBox fx:id="checkCategoryLinksFromShopOfTheWeek" text="Category Links from Shop of the Week" />
+                              <JFXCheckBox fx:id="checkNewsletterBannerFunctionality" text="Newsletter Banner Functionality" />
+                              <JFXCheckBox fx:id="checkNewsletterPopUp" text="Newsletter PopUp" />
+                              <JFXCheckBox fx:id="checkNewsletterPopUpFunctionality" layoutX="10.0" layoutY="82.0" text="Newsletter PopUp Functionality" />
+                              <JFXCheckBox fx:id="checkFooterLinks" text="Footer Links" />
+                              <JFXCheckBox fx:id="checkTextSearchAndSuggestions" text="Text Search &amp; Suggestions" />
+                              <JFXCheckBox fx:id="checkFeedbackPopUp" text="Feedback PopUp" />
+                              <JFXCheckBox fx:id="checkPrivacyPopUp" text="Privacy PopUp" />
                            </children>
-                        </Pane>
-                     </children>
-                  </VBox>
+                        </VBox>
                </content>
             </Tab>
-            <Tab closable="false" text="Grid Page">
+            <Tab fx:id="tabGridPage" closable="false" text="Grid Page">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                </content>
             </Tab>
-            <Tab closable="false" disable="true" text="Grid Page with Window">
+            <Tab fx:id="tabGridPageWithWindows" closable="false" disable="true" text="Grid Page with Windows">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                </content>
             </Tab>
-            <Tab fx:id="brandTab" closable="false" disable="true" text="Grid Page Fill-ins">
+            <Tab fx:id="tabGridPageFillIns" closable="false" disable="true" text="Grid Page Fill-ins">
                <content>
                   <VBox prefHeight="200.0" prefWidth="100.0" />
                </content>
             </Tab>
-            <Tab closable="false" disable="true" text="Brand Page">
+            <Tab fx:id="tabBrandPage" closable="false" disable="true" text="Brand Page">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                </content>
             </Tab>
-            <Tab closable="false" disable="true" text="Lucene Page">
+            <Tab fx:id="tabLucenePage" closable="false" disable="true" text="Lucene Page">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                </content>
             </Tab>
-            <Tab closable="false" disable="true" text="Lucene Page with Deletions">
+            <Tab fx:id="tabLucenePageWithDeletions" closable="false" disable="true" text="Lucene Page with Deletions">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                </content>
             </Tab>
-            <Tab closable="false" disable="true" text="Detail Page">
+            <Tab fx:id="tabDetailPage" closable="false" disable="true" text="Detail Page">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                </content>
             </Tab>
-            <Tab closable="false" disable="true" text="Image Grouping">
+            <Tab fx:id="tabImageGrouping" closable="false" disable="true" text="Image Grouping">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                </content>
             </Tab>
          </tabs>
       </TabPane>
-      <Accordion focusTraversable="false" layoutX="549.0" layoutY="10.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="206.0" prefWidth="160.0">
-         <panes>
-          <TitledPane animated="false" prefHeight="206.0" prefWidth="3.0" text="Setting">
-               <content>
-                  <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0">
-                     <children>
-                        <JFXCheckBox selected="true" text="Homepage" />
-                        <JFXCheckBox layoutX="20.0" layoutY="20.0" text="Grid Page" />
-                        <JFXCheckBox layoutX="20.0" layoutY="43.0" text="Grid Page Window" />
-                        <JFXCheckBox layoutX="20.0" layoutY="66.0" text="Grid Page Fill-ins" />
-                        <JFXCheckBox layoutX="20.0" layoutY="89.0" text="Brand Page" />
-                        <JFXCheckBox layoutX="20.0" layoutY="112.0" text="Lucene Page" />
-                        <JFXCheckBox layoutX="20.0" layoutY="135.0" text="Lucene Page with Deletions" />
-                        <JFXCheckBox layoutX="20.0" layoutY="158.0" text="Detail Page" />
-                        <JFXCheckBox layoutX="20.0" layoutY="181.0" text="Image Grouping" />
-                     </children>
-                  </VBox>
-               </content>
-          </TitledPane>
-         </panes>
-      </Accordion>
    </children>
 </AnchorPane>
