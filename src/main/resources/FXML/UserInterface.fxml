@@ -24,8 +24,8 @@
 
 <AnchorPane fx:id="mainStage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="854.0" prefWidth="936.0" style="-fx-background-color: white;" stylesheets="@../Style/Main.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="crisscrosscrass.Controller.FrontEndCheckController">
    <children>
-      <Pane layoutX="-10.0" layoutY="-10.0" prefHeight="450.0" prefWidth="549.0" style="-fx-background-color: #e83062;" AnchorPane.leftAnchor="-10.0" AnchorPane.rightAnchor="397.0" AnchorPane.topAnchor="-10.0" />
-      <VBox alignment="TOP_CENTER" prefHeight="425.0" prefWidth="549.0">
+      <Pane layoutX="-10.0" layoutY="-10.0" prefHeight="480.0" prefWidth="549.0" style="-fx-background-color: #e83062;" AnchorPane.leftAnchor="-10.0" AnchorPane.rightAnchor="397.0" AnchorPane.topAnchor="-10.0" />
+      <VBox alignment="TOP_CENTER" prefHeight="500.0" prefWidth="549.0">
          <children>
             <TextField fx:id="inputSearch" alignment="CENTER" text="https://www.ladenzeile.de/">
                <font>
@@ -49,6 +49,15 @@
                <VBox.margin>
                   <Insets bottom="10.0" top="10.0" />
                </VBox.margin>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </VBox>
+            <VBox layoutX="30.0" layoutY="129.0" prefHeight="100.0" prefWidth="509.0" spacing="20.0" style="-fx-border-color: white; -fx-border-radius: 5;">
+               <children>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="GridPageURL" />
+                  <TextField fx:id="inputGridPageURL" focusTraversable="false" text="https://www.ladenzeile.de/mode/damen/" />
+               </children>
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
@@ -126,7 +135,7 @@
             <HBox fx:id="outputPlace" alignment="CENTER" />
          </children>
       </VBox>
-      <TabPane fx:id="tabPane" layoutX="10.0" layoutY="445.0" prefHeight="404.0" prefWidth="886.0">
+      <TabPane fx:id="tabPane" layoutX="14.0" layoutY="533.0" prefHeight="309.0" prefWidth="886.0">
          <tabs>
             <Tab fx:id="tabHomepage" closable="false" text="Homepage">
                <content>
@@ -146,19 +155,19 @@
                         </VBox>
                </content>
             </Tab>
-            <Tab fx:id="tabGridPage" closable="false" text="Grid Page">
+            <Tab fx:id="tabGridPage" closable="false" disable="true" text="Grid Page">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  <fx:include fx:id="gridPageNoWindows" source="GridPageNoWindows.fxml" />
                </content>
             </Tab>
             <Tab fx:id="tabGridPageWithWindows" closable="false" disable="true" text="Grid Page with Windows">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  <fx:include fx:id="gridPageWithWindows" source="GridPageWithWindows.fxml" />
                </content>
             </Tab>
             <Tab fx:id="tabGridPageFillIns" closable="false" disable="true" text="Grid Page Fill-ins">
                <content>
-                  <VBox prefHeight="200.0" prefWidth="100.0" />
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                </content>
             </Tab>
             <Tab fx:id="tabBrandPage" closable="false" disable="true" text="Brand Page">

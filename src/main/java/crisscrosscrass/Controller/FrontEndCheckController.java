@@ -8,7 +8,6 @@ import crisscrosscrass.Tests.HomepageTest;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -34,6 +33,8 @@ import java.util.Properties;
 
 public class FrontEndCheckController {
 
+
+    // Basic Settings
     @FXML
     Button startwebdriver;
     @FXML
@@ -57,6 +58,7 @@ public class FrontEndCheckController {
     @FXML
     JFXCheckBox checkPrivacyPopUp;
 
+    // Tab Settings
     @FXML
     JFXCheckBox settingHomepage;
     @FXML
@@ -76,6 +78,7 @@ public class FrontEndCheckController {
     @FXML
     JFXCheckBox settingImageGrouping;
 
+    //Main Menu Settings
     @FXML
     ProgressBar progressIndicator;
     @FXML
@@ -87,6 +90,8 @@ public class FrontEndCheckController {
     @FXML
     TextField inputTextSearchAndSuggestions;
     @FXML
+    TextField inputGridPageURL;
+    @FXML
     HBox outputPlace;
     @FXML
     ImageView preloaderCat;
@@ -97,6 +102,7 @@ public class FrontEndCheckController {
     @FXML
     TabPane tabPane;
 
+    //tab Settings
     @FXML
     Tab tabHomepage;
     @FXML
@@ -115,6 +121,10 @@ public class FrontEndCheckController {
     Tab tabDetailPage;
     @FXML
     Tab tabImageGrouping;
+
+    //Controller Settings
+    @FXML GridPageWithWindowsController gridPageWithWindowsController;
+    @FXML GridPageNoWindowsController gridPageNoWindowsController;
 
 
 
@@ -306,6 +316,11 @@ public class FrontEndCheckController {
                     }
 
 
+                    if (!tabGridPage.isDisable()){
+                        tabPane.getSelectionModel().select(tabGridPage);
+                        GridPageTest gridPageTest = new GridPageTest();
+                        gridPageTest.checkingSorting(webDriver,report,js,gridPageNoWindowsController.sortingValues,inputGridPageURL,statusInfo,inputSearch,inputEmailAdress,xpathPattern1,xpathPattern2,Homepage,isSuccessful,isAvailable);
+                    }
 
 
 

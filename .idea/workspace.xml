@@ -7,10 +7,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="some structural changes part2">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/FXML/GridPageChecklist.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/GridPageNoWindowsController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/GridPageWithWindowsController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/FXML/GridPageNoWindows.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/FXML/GridPageWithWindows.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/FrontEndCheckController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/FrontEndCheckController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Tests/GridPageTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Tests/GridPageTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Tests/HomepageTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Tests/HomepageTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/FXML/GridPageChecklist.fxml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/FXML/UserInterface.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/FXML/UserInterface.fxml" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
@@ -99,13 +104,13 @@
           <entry key="backupCode" value="2" />
           <entry key="class" value="4" />
           <entry key="css" value="9" />
-          <entry key="fxml" value="114" />
+          <entry key="fxml" value="199" />
           <entry key="gif" value="2" />
-          <entry key="java" value="594" />
+          <entry key="java" value="722" />
           <entry key="jpg" value="11" />
           <entry key="png" value="81" />
-          <entry key="properties" value="53" />
-          <entry key="txt" value="11" />
+          <entry key="properties" value="54" />
+          <entry key="txt" value="12" />
           <entry key="xml" value="3" />
         </counts>
       </usages-collector>
@@ -114,18 +119,18 @@
           <entry key="CLASS" value="4" />
           <entry key="CSS" value="9" />
           <entry key="Image" value="94" />
-          <entry key="JAVA" value="594" />
-          <entry key="PLAIN_TEXT" value="13" />
-          <entry key="Properties" value="53" />
-          <entry key="XML" value="117" />
+          <entry key="JAVA" value="722" />
+          <entry key="PLAIN_TEXT" value="14" />
+          <entry key="Properties" value="54" />
+          <entry key="XML" value="202" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="css" value="44" />
-          <entry key="dummy" value="14" />
-          <entry key="fxml" value="187" />
-          <entry key="java" value="9762" />
+          <entry key="dummy" value="24" />
+          <entry key="fxml" value="344" />
+          <entry key="java" value="11690" />
           <entry key="properties" value="320" />
           <entry key="regexp" value="5" />
           <entry key="txt" value="498" />
@@ -135,11 +140,11 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="44" />
-          <entry key="JAVA" value="9762" />
-          <entry key="PLAIN_TEXT" value="512" />
+          <entry key="JAVA" value="11690" />
+          <entry key="PLAIN_TEXT" value="522" />
           <entry key="Properties" value="320" />
           <entry key="RegExp" value="5" />
-          <entry key="XML" value="188" />
+          <entry key="XML" value="345" />
         </counts>
       </usages-collector>
     </session>
@@ -150,11 +155,13 @@
   <component name="FileEditorManager">
     <leaf>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/FXML/UserInterface.fxml">
-          <provider editor-type-id="JavaFX-Scene-Builder" />
+        <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Tests/GridPageTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="117">
-              <caret line="143" column="92" lean-forward="true" selection-start-line="143" selection-start-column="92" selection-end-line="143" selection-end-column="92" />
+            <state relative-caret-position="99">
+              <caret line="43" column="21" lean-forward="true" selection-start-line="43" selection-start-column="21" selection-end-line="43" selection-end-column="21" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -171,9 +178,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>banner</find>
-      <find>Screen</find>
-      <find>&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;</find>
       <find>ImageGallery</find>
       <find>Checking Bann</find>
       <find>Tab</find>
@@ -201,6 +205,9 @@
       <find>Element f</find>
       <find>id</find>
       <find>tabB</find>
+      <find>GridPage</find>
+      <find>Found</find>
+      <find>Lascana</find>
     </findStrings>
   </component>
   <component name="FindManager">
@@ -215,14 +222,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/ViewImageWindow.java" />
-        <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/ScreenshotViaWebDriver.java" />
-        <option value="$PROJECT_DIR$/src/test/java/firstTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/ReportWindow.java" />
-        <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/TaskBasedSplash.java" />
-        <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/test.java" />
-        <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/MainBackUp.java" />
-        <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/MyApplication.java" />
         <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/FadeApp.java" />
         <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/SplashScreenLoader.java" />
         <option value="$PROJECT_DIR$/src/main/java/META-INF/MANIFEST.MF" />
@@ -259,13 +258,21 @@
         <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/Main.java" />
         <option value="$PROJECT_DIR$/src/main/resources/FXML/HomepageCheckInterface.fxml" />
         <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/HomePageController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/Tests/HomepageTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/Tests/GridPageTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/GridPageCheckController.java" />
         <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/SplashFXMLController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/FrontEndCheckController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/Tests/HomepageTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/GridPageController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/GridPageWithWindowsController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/FXML/GridPageChecklist.fxml" />
+        <option value="$PROJECT_DIR$/src/main/resources/FXML/GridPage.fxml" />
+        <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/GridPageWithoutWindows.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/FXML/GridPageWithoutWindows.fxml" />
+        <option value="$PROJECT_DIR$/src/main/resources/FXML/GridPageWithWindows.fxml" />
         <option value="$PROJECT_DIR$/src/main/resources/FXML/UserInterface.fxml" />
+        <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/GridPageNoWindowsController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/FXML/GridPageNoWindows.fxml" />
+        <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/FrontEndCheckController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/Tests/GridPageTest.java" />
       </list>
     </option>
   </component>
@@ -456,7 +463,7 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://C:/Users/ceckardt/IdeaProjects/FrontEndCheck/src/main/resources/FXML/UserInterface.fxml" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1534398712394" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1534430609734" />
     <property name="dynamic.classpath" value="false" />
     <property name="full.screen.before.presentation.mode" value="false" />
     <property name="last.edited.regexp" value="pumps | bl&#10;" />
@@ -642,13 +649,6 @@
       <option name="presentableId" value="Default" />
       <updated>1359379246138</updated>
       <workItem from="1359379250712" duration="1302000" />
-    </task>
-    <task id="LOCAL-00036" summary="animation added">
-      <created>1532354137463</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1532354137463</updated>
     </task>
     <task id="LOCAL-00037" summary="animation fixed">
       <created>1532355326277</created>
@@ -986,7 +986,14 @@
       <option name="project" value="LOCAL" />
       <updated>1534330743994</updated>
     </task>
-    <option name="localTasksCounter" value="85" />
+    <task id="LOCAL-00085" summary="some structural changes part2">
+      <created>1534398726732</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1534398726733</updated>
+    </task>
+    <option name="localTasksCounter" value="86" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1182,14 +1189,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/temp/screenshot1.png" />
-    <entry file="file://$PROJECT_DIR$/temp/screenshot2.png" />
-    <entry file="file://$PROJECT_DIR$/temp/screenshot4.png" />
-    <entry file="file://$PROJECT_DIR$/temp/screenshot6.png" />
-    <entry file="file://$PROJECT_DIR$/temp/screenshot7.png" />
-    <entry file="file://$PROJECT_DIR$/temp/ScreenshotTabGilet.png" />
-    <entry file="file://$PROJECT_DIR$/temp/ScreenshotTabManteau.png" />
-    <entry file="file://$PROJECT_DIR$/temp/ScreenshotTabPantalon.png" />
     <entry file="file://$PROJECT_DIR$/temp/ScreenshotTabSous-vêtement.png" />
     <entry file="file://$PROJECT_DIR$/temp/ScreenshotTabBeauté.png" />
     <entry file="file://$PROJECT_DIR$/temp/ScreenshotTabChaussures.png" />
@@ -1233,13 +1232,6 @@
     <entry file="file://$PROJECT_DIR$/src/main/resources/Images/VisualMeta_White_Mirror.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Tasks/WebdriverTab.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-226">
-          <caret line="71" column="13" selection-start-line="69" selection-start-column="12" selection-end-line="71" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/backupCode">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -1254,36 +1246,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/temp/report.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="287">
-          <caret line="62" column="17" selection-start-line="62" selection-start-column="17" selection-end-line="62" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/Images/image2.jpg">
       <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/FXML/ReportInterface.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="152" selection-start-line="15" selection-start-column="152" selection-end-line="15" selection-end-column="152" />
-        </state>
-      </provider>
     </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/javafx-src.zip!/javafx/fxml/FXMLLoader.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="209">
           <caret line="2600" selection-start-line="2600" selection-end-line="2600" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/FXML/SplashFXML.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="157" selection-start-line="9" selection-start-column="137" selection-end-line="9" selection-end-column="157" />
         </state>
       </provider>
     </entry>
@@ -1317,59 +1286,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/FXML/GraphInterface.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/GraphController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="7" column="5" lean-forward="true" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/configs/page.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="45" selection-start-line="10" selection-start-column="45" selection-end-line="10" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Tests/HomepageTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="57" column="90" selection-start-line="57" selection-start-column="84" selection-end-line="57" selection-end-column="90" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/ReportWindowController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="20" selection-start-line="20" selection-end-line="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/SplashFXMLController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="287">
-          <caret line="44" column="39" lean-forward="true" selection-start-line="44" selection-start-column="39" selection-end-line="44" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Tests/GridPageTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="37" lean-forward="true" selection-start-line="37" selection-end-line="37" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1385,26 +1305,180 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/FrontEndCheckController.java">
+    <entry file="file://$PROJECT_DIR$/temp/report.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="422">
-          <caret line="118" lean-forward="true" selection-start-line="118" selection-end-line="118" />
+        <state relative-caret-position="372">
+          <caret line="62" column="17" selection-start-line="62" selection-start-column="17" selection-end-line="62" selection-end-column="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/FXML/GridPageChecklist.fxml">
       <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="43" lean-forward="true" selection-start-line="13" selection-start-column="43" selection-end-line="13" selection-end-column="43" />
+        <state relative-caret-position="170">
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/FXML/GridPage.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/GridPageController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="54" selection-start-line="8" selection-start-column="54" selection-end-line="8" selection-end-column="54" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/SplashFXMLController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="196">
+          <caret line="41" lean-forward="true" selection-start-line="41" selection-end-line="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/FXML/GridPageWithoutWindows.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="28" selection-start-line="7" selection-start-column="28" selection-end-line="7" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/GridPageWithoutWindows.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="28" lean-forward="true" selection-start-line="7" selection-start-column="28" selection-end-line="7" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/FXML/GraphInterface.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/FXML/ReportInterface.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-917">
+          <caret line="15" column="152" selection-start-line="15" selection-start-column="152" selection-end-line="15" selection-end-column="152" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/FXML/SplashFXML.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="17" lean-forward="true" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/FXML/GridPageWithWindows.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="116" selection-start-line="5" selection-start-column="116" selection-end-line="5" selection-end-column="116" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/FXML/UserInterface.fxml">
       <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="117">
-          <caret line="143" column="92" lean-forward="true" selection-start-line="143" selection-start-column="92" selection-end-line="143" selection-end-column="92" />
+        <state relative-caret-position="833">
+          <caret line="91" column="22" lean-forward="true" selection-start-line="91" selection-start-column="22" selection-end-line="91" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/GridPageWithWindowsController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="32" lean-forward="true" selection-start-line="8" selection-start-column="32" selection-end-line="8" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/configs/page.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="105" lean-forward="true" selection-start-line="15" selection-start-column="105" selection-end-line="15" selection-end-column="105" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/GridPageNoWindowsController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="25" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/FXML/GridPageNoWindows.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="41" lean-forward="true" selection-start-line="10" selection-start-column="41" selection-end-line="10" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/GraphController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="7" column="5" lean-forward="true" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Tasks/WebdriverTab.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="71" column="13" selection-start-line="69" selection-start-column="12" selection-end-line="71" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/FrontEndCheckController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="774">
+          <caret line="321" column="131" selection-start-line="321" selection-start-column="115" selection-end-line="321" selection-end-column="131" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Tests/HomepageTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="398" column="27" lean-forward="true" selection-start-line="398" selection-start-column="27" selection-end-line="398" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Tests/GridPageTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="99">
+          <caret line="43" column="21" lean-forward="true" selection-start-line="43" selection-start-column="21" selection-end-line="43" selection-end-column="21" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

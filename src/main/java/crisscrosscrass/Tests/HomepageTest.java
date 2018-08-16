@@ -524,7 +524,7 @@ public class HomepageTest {
                             List<WebElement> searchAliasesTitles = webDriver.findElementsByXPath("//*[contains(@class, 'main-search-suggestions')]/li/a/div/*[contains(@class, 'srTitle')]");
                             List<WebElement> searchAliasesType = webDriver.findElementsByXPath("//*[contains(@class, 'main-search-suggestions')]/li/a/div/*[contains(@class, 'srType')]");
                             report.writeToFile("Checking Text Search and Suggestions for \""+ searchAliases[i].trim()+"\"");
-                            report.writeToFile("Lucene Results :");
+                            report.writeToFile("Suggestions :");
                             for (int j = 0 ; j < searchAliasesTitles.size() ; j++){
                                 //System.out.println(searchAliasesTitles.get(j).getText() + "  | " + searchAliasesType.get(j).getText());
                                 report.writeToFile(searchAliasesTitles.get(j).getText()+" | "+searchAliasesType.get(j).getText() );
