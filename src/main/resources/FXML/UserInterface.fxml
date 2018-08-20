@@ -86,7 +86,7 @@
                   <Insets />
                </VBox.margin>
             </Circle>
-            <FontAwesomeIconView />
+            <FontAwesomeIconView fill="WHITE" glyphName="USER_SECRET" size="35" translateY="-35.0" />
 
          </children>
          <opaqueInsets>
