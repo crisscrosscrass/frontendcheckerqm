@@ -47,9 +47,10 @@ public class GridPageTest {
                     });
 
                     try{
-                        List<WebElement> SalesElements = webDriver.findElementsByXPath("//*[contains(@class, 'gridProducts')]/div/div/a/div[contains(@class, 'price')]");
-                        double checkStartingPriceFirstItem = Double.parseDouble(SalesElements.get(0).getText().replaceAll("(^\\s?\\€?)|(\\-\\s*\\€?\\d*\\,?\\.?.*)|(\\€?\\*\\s*\\d*\\,?\\.?)$|(\\€?\\*\\s\\d*.*$)|(\\s?\\€?$)","").trim().replaceAll("\\.","").replaceAll(",","."));
-                        report.writeToFile("Detected : "+ SalesElements.size() + " items on this Page!");
+                        List<WebElement> ItemsGridPage = webDriver.findElementsByXPath("//*[contains(@class, 'gridProducts')]/div/div/a/div[contains(@class, 'price')]");
+                        double checkStartingPriceFirstItem = Double.parseDouble(ItemsGridPage.get(0).getText().replaceAll("(^\\s?\\€?)|(\\-\\s*\\€?\\d*\\,?\\.?.*)|(\\€?\\*\\s*\\d*\\,?\\.?)$|(\\€?\\*\\s\\d*.*$)|(\\s?\\€?$)","").trim().replaceAll("\\.","").replaceAll(",","."));
+                        report.writeToFile("Detected : "+ ItemsGridPage.size() + " items on this Page!");
+                        report.writeToFile("");
 
                         //DropDownButtonSorting
                         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(@class, 'sort-btn btn-dropdown-wrap')]")));
@@ -62,11 +63,11 @@ public class GridPageTest {
 
                         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@class, 'gridProducts')]/div/div/a/div[contains(@class, 'price')]")));
                         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(@class, 'gridProducts')]/div/div/a/div[contains(@class, 'price')]")));
-                        List<WebElement> SalesElementsLowToHigh = webDriver.findElementsByXPath("//*[contains(@class, 'gridProducts')]/div/div/a/div[contains(@class, 'price')]");
+                        List<WebElement> ItemsGridPageSortingLowToHigh = webDriver.findElementsByXPath("//*[contains(@class, 'gridProducts')]/div/div/a/div[contains(@class, 'price')]");
 
-                        double checkPriceLowToHighFirstItem = Double.parseDouble(SalesElementsLowToHigh.get(0).getText().replaceAll("(^\\s?\\€?)|(\\-\\s*\\€?\\d*\\,?\\.?.*)|(\\€?\\*\\s*\\d*\\,?\\.?)$|(\\€?\\*\\s\\d*.*$)|(\\s?\\€?$)","").trim().replaceAll("\\.","").replaceAll(",","."));
-                        double checkPriceLowToHighLastItem = Double.parseDouble(SalesElementsLowToHigh.get(SalesElementsLowToHigh.size()-1).getText().replaceAll("(^\\s?\\€?)|(\\-\\s*\\€?\\d*\\,?\\.?.*)|(\\€?\\*\\s*\\d*\\,?\\.?)$|(\\€?\\*\\s\\d*.*$)|(\\s?\\€?$)","").trim().replaceAll("\\.","").replaceAll(",","."));
-                        if (checkPriceLowToHighFirstItem < checkStartingPriceFirstItem){
+                        double checkPriceLowToHighFirstItem = Double.parseDouble(ItemsGridPageSortingLowToHigh.get(0).getText().replaceAll("(^\\s?\\€?)|(\\-\\s*\\€?\\d*\\,?\\.?.*)|(\\€?\\*\\s*\\d*\\,?\\.?)$|(\\€?\\*\\s\\d*.*$)|(\\s?\\€?$)","").trim().replaceAll("\\.","").replaceAll(",","."));
+                        double checkPriceLowToHighLastItem = Double.parseDouble(ItemsGridPageSortingLowToHigh.get(ItemsGridPageSortingLowToHigh.size()-1).getText().replaceAll("(^\\s?\\€?)|(\\-\\s*\\€?\\d*\\,?\\.?.*)|(\\€?\\*\\s*\\d*\\,?\\.?)$|(\\€?\\*\\s\\d*.*$)|(\\s?\\€?$)","").trim().replaceAll("\\.","").replaceAll(",","."));
+                        if (checkPriceLowToHighFirstItem < checkStartingPriceFirstItem && webDriver.getCurrentUrl().contains("sort=price_asc")){
                             report.writeToFile("Successful changed Sorting from Lowest to Highest Price!", "");
                         }
                         if (checkPriceLowToHighFirstItem < checkPriceLowToHighLastItem){
@@ -74,14 +75,12 @@ public class GridPageTest {
                         }else {
                             report.writeToFile("Checking  Grid Page Price Lowest to Highest: ", "Not Successful! First Item Price("+checkPriceLowToHighFirstItem+") is NOT lower than last Item Price("+checkPriceLowToHighLastItem+") !");
                         }
-
-
+                        report.writeToFile("");
 
 
                         Platform.runLater(() -> {
                             statusInfo.setText("Checking Sorting Values from High to Low...");
                         });
-                        //checking HighToLow
 
                         //DropDownButtonSorting
                         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(@class, 'sort-btn btn-dropdown-wrap')]")));
@@ -95,10 +94,10 @@ public class GridPageTest {
 
                         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@class, 'gridProducts')]/div/div/a/div[contains(@class, 'price')]")));
                         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(@class, 'gridProducts')]/div/div/a/div[contains(@class, 'price')]")));
-                        List<WebElement> SalesElementsHighToLow = webDriver.findElementsByXPath("//*[contains(@class, 'gridProducts')]/div/div/a/div[contains(@class, 'price')]");
-                        double checkPriceHighToLowFirstItem = Double.parseDouble(SalesElementsHighToLow.get(0).getText().replaceAll("(^\\s?\\€?)|(\\-\\s*\\€?\\d*\\,?\\.?.*)|(\\€?\\*\\s*\\d*\\,?\\.?)$|(\\€?\\*\\s\\d*.*$)|(\\s?\\€?$)","").trim().replaceAll("\\.","").replaceAll(",","."));
-                        double checkPriceHighToLowLastItem = Double.parseDouble(SalesElementsHighToLow.get(SalesElementsHighToLow.size()-1).getText().replaceAll("(^\\s?\\€?)|(\\-\\s*\\€?\\d*\\,?\\.?.*)|(\\€?\\*\\s*\\d*\\,?\\.?)$|(\\€?\\*\\s\\d*.*$)|(\\s?\\€?$)","").trim().replaceAll("\\.","").replaceAll(",","."));
-                        if (checkPriceHighToLowFirstItem > checkStartingPriceFirstItem){
+                        List<WebElement> ItemsGridPageSortingHighToLow = webDriver.findElementsByXPath("//*[contains(@class, 'gridProducts')]/div/div/a/div[contains(@class, 'price')]");
+                        double checkPriceHighToLowFirstItem = Double.parseDouble(ItemsGridPageSortingHighToLow.get(0).getText().replaceAll("(^\\s?\\€?)|(\\-\\s*\\€?\\d*\\,?\\.?.*)|(\\€?\\*\\s*\\d*\\,?\\.?)$|(\\€?\\*\\s\\d*.*$)|(\\s?\\€?$)","").trim().replaceAll("\\.","").replaceAll(",","."));
+                        double checkPriceHighToLowLastItem = Double.parseDouble(ItemsGridPageSortingHighToLow.get(ItemsGridPageSortingHighToLow.size()-1).getText().replaceAll("(^\\s?\\€?)|(\\-\\s*\\€?\\d*\\,?\\.?.*)|(\\€?\\*\\s*\\d*\\,?\\.?)$|(\\€?\\*\\s\\d*.*$)|(\\s?\\€?$)","").trim().replaceAll("\\.","").replaceAll(",","."));
+                        if (checkPriceHighToLowFirstItem > checkStartingPriceFirstItem && webDriver.getCurrentUrl().contains("sort=price_desc")){
                             report.writeToFile("Successful changed Sorting from Highest to Lowest Price!", "");
                         }
                         if (checkPriceHighToLowFirstItem > checkPriceHighToLowLastItem){
@@ -106,7 +105,61 @@ public class GridPageTest {
                         }else {
                             report.writeToFile("Checking  Grid Page Price Highest to Lowest: ", "Not Successful! First Item Price("+checkPriceHighToLowFirstItem+") is NOT higher than last Item Price("+checkPriceHighToLowLastItem+") !");
                         }
+                        report.writeToFile("");
 
+                        Platform.runLater(() -> {
+                            statusInfo.setText("Checking Sorting Values Sales Price...");
+                        });
+                        //DropDownButtonSorting
+                        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(@class, 'sort-btn btn-dropdown-wrap')]")));
+                        webDriver.findElement(By.xpath("//*[contains(@class, 'sort-btn btn-dropdown-wrap')]")).click();
+
+                        //DropDownButtonSorting
+                        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(@class, 'sort-btn btn-dropdown-wrap')]/div/div/a")));
+                        DropDownListActions = webDriver.findElementsByXPath("//*[contains(@class, 'sort-btn btn-dropdown-wrap')]/div/div/a");
+                        DropDownListActions.get(3).click();
+                        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[contains(@class, 'sort-btn btn-dropdown-wrap')]/div/div/a")));
+
+                        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@class, 'gridProducts')]/div/div/a/div[contains(@class, 'price')]")));
+                        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(@class, 'gridProducts')]/div/div/a/div[contains(@class, 'price')]")));
+                        List<WebElement> ItemsGridPageSortingSale = webDriver.findElementsByXPath("//*[contains(@class, 'gridProducts')]/div/div/a/div/span[contains(@class, 'new sale')]");
+                        double checkPriceItemsGridPageSortingSale = Double.parseDouble(ItemsGridPageSortingSale.get(0).getText().replaceAll("(^\\s?\\€?)|(\\-\\s*\\€?\\d*\\,?\\.?.*)|(\\€?\\*\\s*\\d*\\,?\\.?)$|(\\€?\\*\\s\\d*.*$)|(\\s?\\€?$)","").trim().replaceAll("\\.","").replaceAll(",","."));
+                        if (checkPriceItemsGridPageSortingSale != checkStartingPriceFirstItem && webDriver.getCurrentUrl().contains("sort=reduced_price_desc")){
+                            report.writeToFile("Successful changed Sorting to Sales!", "");
+                        }
+                        if (ItemsGridPageSortingSale.size() != 0){
+                            report.writeToFile("Checking  Grid Page Sales Price: ", "Successful! Item contains Sales Price");
+                        }else {
+                            report.writeToFile("Checking  Grid Page Sales Price: ", "Not Successful! Couldn't find a item with Sales Price");
+                        }
+                        report.writeToFile("");
+
+
+                        Platform.runLater(() -> {
+                            statusInfo.setText("Checking Sorting Values New Items...");
+                        });
+                        //DropDownButtonSorting
+                        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(@class, 'sort-btn btn-dropdown-wrap')]")));
+                        webDriver.findElement(By.xpath("//*[contains(@class, 'sort-btn btn-dropdown-wrap')]")).click();
+
+                        //DropDownButtonSorting
+                        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(@class, 'sort-btn btn-dropdown-wrap')]/div/div/a")));
+                        DropDownListActions = webDriver.findElementsByXPath("//*[contains(@class, 'sort-btn btn-dropdown-wrap')]/div/div/a");
+                        DropDownListActions.get(4).click();
+                        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[contains(@class, 'sort-btn btn-dropdown-wrap')]/div/div/a")));
+
+                        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@class, 'gridProducts')]/div/div/a/div[contains(@class, 'price')]")));
+                        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(@class, 'gridProducts')]/div/div/a/div[contains(@class, 'price')]")));
+                        List<WebElement> ItemsGridPageSortingNewItems = webDriver.findElementsByXPath("//*[contains(@class, 'gridProducts')]/div/div/a/div[contains(@class, 'price')]");
+                        double checkPriceNewItemsFirstItem = Double.parseDouble(ItemsGridPageSortingNewItems.get(0).getText().replaceAll("(^\\s?\\€?)|(\\-\\s*\\€?\\d*\\,?\\.?.*)|(\\€?\\*\\s*\\d*\\,?\\.?)$|(\\€?\\*\\s\\d*.*$)|(\\s?\\€?$)","").trim().replaceAll("\\.","").replaceAll(",","."));
+                        if (webDriver.getCurrentUrl().contains("sort=date_desc")){
+                            report.writeToFile("Successful changed Sorting to New Items!", "");
+                        }
+                        if (checkPriceNewItemsFirstItem != checkStartingPriceFirstItem){
+                            report.writeToFile("Checking  Grid Page New Items: ", "Successful! First Item contains different Price Informations than previous Item");
+                        }else {
+                            report.writeToFile("Checking  Grid Page New Items: ", "Not Successful! First Item contains Price Informations from previous Item");
+                        }
 
 
                         Platform.runLater(() -> {
