@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -305,6 +306,9 @@ public class GridPageTest {
                                 switchFromSmallToLarge.setSelected(true);
                             });
                         }
+                        webDriver.findElementByXPath("//*[contains(@class, 'grid-item-size-btns')]/a ").click();
+                        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@class, 'gridProducts')]/div/div/a/div[contains(@class, 'price')]")));
+                        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(@class, 'gridProducts')]/div/div/a/div[contains(@class, 'price')]")));
                         report.writeToFile("");
                     }catch (Exception noLargeImageButton){
                         report.writeToFile("Checking  GridPage Switch Small to Large Images: ", "Not Successful! Couldn't find Large Image Button");
@@ -456,6 +460,114 @@ public class GridPageTest {
             });
             webDriver.navigate().to(inputSearch.getText().trim());
             report.writeToFile("Checking GridPage Paging Forward/Backward: ", "unable to check! Browser not responding");
+            noCategoryLinksLeftSideMenu.printStackTrace();
+        }
+
+        report.writeToFile("=================================", "");
+    }
+
+    public void checkingProductView300(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox productView300, TextField inputGridPageURL, Text statusInfo, TextField inputSearch, TextField inputEmailAdress, String xpathPattern1, String xpathPattern2, Properties Homepage, boolean isSuccessful, boolean isAvailable){
+        Platform.runLater(() -> {
+            productView300.setStyle("-fx-background-color: #eef442");
+            statusInfo.setText("Checking GridPage Product View 300...");
+        });
+        xpathPattern1 = "//*[contains(@class, 'window-box')]";
+        try {
+            ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
+            webDriver.switchTo().window(tabs.get(0));
+            try {
+                webDriver.navigate().to(inputGridPageURL.getText().trim());
+                WebDriverWait wait = new WebDriverWait(webDriver, 10);
+
+                try{
+                    if(webDriver.findElements(By.xpath(xpathPattern1)).size() > 0){
+                        report.writeToFile("provided GridPageURL "+inputGridPageURL.getText(), " included Windows! Adjusted GridPage to make test happen!");
+                        webDriver.findElementByXPath("//*[contains(@class, 'paging right')]/a ").click();
+                        //wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(@class, 'gridProducts')]/div")));
+                        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@class, 'gridProducts')]/div")));
+                    }else {
+                        System.out.println("No Window Element!");
+                    }
+                    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(@class, 'items-per-page-entries')]/a")));
+                    try {
+                        Point hoverItem = webDriver.findElement(By.xpath("//*[contains(@class, 'items-per-page-entries')]/a")).getLocation();
+                        ((JavascriptExecutor)webDriver).executeScript("return window.title;");
+                        ((JavascriptExecutor)webDriver).executeScript("window.scrollBy(0,"+(hoverItem.getY())+");");
+                        // Scroll up
+                        for (int i = 0; i < 5; i++) {
+                            Thread.sleep(100);
+                            js.executeScript("window.scrollBy(0,-100)");
+                        }
+
+
+                        webDriver.findElementByXPath("//*[contains(@class, 'items-per-page-entries')]/a ").click();
+
+                        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@class, 'gridProducts')]/div/div/a/div[contains(@class, 'price')]")));
+                        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(@class, 'gridProducts')]/div/div/a/div[contains(@class, 'price')]")));
+                        List<WebElement> ItemsGridPageProductView300 = webDriver.findElementsByXPath("//*[contains(@class, 'gridProducts')]/div/div/a/div[contains(@class, 'price')]");
+                        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(@class, 'items-per-page-entries')]/a")));
+
+                        if (webDriver.getCurrentUrl().contains("ipp=300") && ItemsGridPageProductView300.size() == 300){
+                            report.writeToFile("Checking  GridPage Product View 300: ", "Successful! Found pattern in URL and counted 300 Items!");
+                            Platform.runLater(() -> {
+                                productView300.setStyle("-fx-background-color: #CCFF99");
+                                productView300.setSelected(true);
+                            });
+                        }else {
+                            report.writeToFile("Checking  GridPage Product View 300: ", "Not Successful! Url not changed or couldn't load 300 Items");
+                            isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"GridPageErrorPagingBackward.png");
+                            if (isSuccessful){
+                                report.writeToFile("GridPage Error Screenshot: ", "Screenshot successful!");
+                            }else {
+                                report.writeToFile("GridPage Error Screenshot: ", "Screenshot not successful!");
+                            }
+                            Platform.runLater(() -> {
+                                productView300.setStyle("-fx-background-color: #FF0000");
+                                productView300.setSelected(true);
+                            });
+                        }
+
+
+                    }catch (Exception noLargeImageButton){
+                        report.writeToFile("Checking  GridPage Paging Forward/Backward: ", "Not Successful! Couldn't find 300 Items View Button");
+                        Platform.runLater(() -> {
+                            productView300.setStyle("-fx-background-color: #FF0000");
+                            productView300.setSelected(true);
+                        });
+                    }
+
+                }catch (Exception gridPageIssue){
+                    Platform.runLater(() -> {
+                        productView300.setStyle("-fx-background-color: #FF0000");
+                        productView300.setSelected(true);
+                    });
+                    isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"GridPageErrorSorting.png");
+                    if (isSuccessful){
+                        report.writeToFile("GridPage Error Screenshot: ", "Screenshot successful!");
+                    }else {
+                        report.writeToFile("GridPage Error Screenshot: ", "Screenshot not successful!");
+                    }
+                    webDriver.navigate().to(inputSearch.getText().trim());
+                    report.writeToFile("Checking GridPage GridPage Product View 300: ", "Sorting on this Page doesn't seems to be working or very slow");
+                    gridPageIssue.printStackTrace();
+                }
+            }catch (Exception noMainMenuLinkFound){
+                Platform.runLater(() -> {
+                    productView300.setStyle("-fx-background-color: #FF0000");
+                    productView300.setSelected(true);
+                });
+                webDriver.navigate().to(inputSearch.getText().trim());
+                report.writeToFile("Checking GridPage GridPage Product View 300: ", "Couldn't navigate to requested Site!");
+                noMainMenuLinkFound.printStackTrace();
+            }
+
+        }catch (Exception noCategoryLinksLeftSideMenu){
+            Platform.runLater(() -> {
+                productView300.setStyle("-fx-background-color: #FF0000");
+                productView300.setSelected(true);
+            });
+            webDriver.navigate().to(inputSearch.getText().trim());
+            report.writeToFile("Checking GridPage GridPage Product View 300: ", "unable to check! Browser not responding");
             noCategoryLinksLeftSideMenu.printStackTrace();
         }
 

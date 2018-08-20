@@ -3,12 +3,12 @@
 <?import com.jfoenix.controls.JFXCheckBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="200.0" prefWidth="100.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="crisscrosscrass.Controller.GridPageNoWindowsController">
+<VBox prefHeight="200.0" prefWidth="100.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="crisscrosscrass.Controller.GridPageNoWindowsController">
    <children>
       <JFXCheckBox fx:id="sortingValues" text="Sorting values on Grid Page" />
       <JFXCheckBox fx:id="switchFromSmallToLarge" text="Switch from Small to Large Images" />
       <JFXCheckBox fx:id="pagingForwardBackward" text="Paging- Foward / Backward" />
-      <JFXCheckBox text="120-300 Products View" />
+      <JFXCheckBox fx:id="productView300" text="120-300 Products View" />
       <JFXCheckBox text="Deeper Style" />
       <JFXCheckBox text="Style Box- Open/Close" />
       <JFXCheckBox text="Filters- Apply" />

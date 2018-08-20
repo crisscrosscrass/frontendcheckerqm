@@ -13,4 +13,7 @@ public class GridPageNoWindowsController {
 
     @FXML
     JFXCheckBox pagingForwardBackward;
+
+    @FXML
+    JFXCheckBox productView300;
 }

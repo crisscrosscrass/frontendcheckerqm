@@ -1,4 +1,34 @@
+.titled-pane .title {
+    -fx-alignment: center-left;
+    -fx-font-family: "Open Sans";
+    -fx-cursor: "hand";
+    -fx-focus-color: #555555;
+    -fx-font-size: 12pt;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-background-color: #e83062;
+}
 
+.titled-pane:expanded {
+    -fx-text-fill: white;
+}
+
+.titled-pane:expanded > .title {
+    -fx-base: #555555;
+    -fx-text-fill: white;
+}
+
+.titled-pane:hover > .title {
+    -fx-base: #555555;
+}
+
+.titled-pane:hover {
+    -fx-text-fill: white;
+}
+
+.titled-pane .arrow {
+    -fx-opacity: 1;
+}
 
 .tab-pane .tab-header-area .tab-header-background {
     -fx-background-color: white;
