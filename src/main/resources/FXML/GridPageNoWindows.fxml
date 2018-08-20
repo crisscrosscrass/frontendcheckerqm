@@ -7,8 +7,7 @@
    <children>
       <JFXCheckBox fx:id="sortingValues" text="Sorting values on Grid Page" />
       <JFXCheckBox fx:id="switchFromSmallToLarge" text="Switch from Small to Large Images" />
-      <JFXCheckBox text="Paging- Foward" />
-      <JFXCheckBox text="Paging- Back" />
+      <JFXCheckBox fx:id="pagingForwardBackward" text="Paging- Foward / Backward" />
       <JFXCheckBox text="120-300 Products View" />
       <JFXCheckBox text="Deeper Style" />
       <JFXCheckBox text="Style Box- Open/Close" />

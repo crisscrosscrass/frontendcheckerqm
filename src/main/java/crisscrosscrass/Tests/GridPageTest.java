@@ -351,4 +351,114 @@ public class GridPageTest {
 
         report.writeToFile("=================================", "");
     }
+
+
+    public void checkingPagingForwardBackward(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox pagingForwardBackward, TextField inputGridPageURL, Text statusInfo, TextField inputSearch, TextField inputEmailAdress, String xpathPattern1, String xpathPattern2, Properties Homepage, boolean isSuccessful, boolean isAvailable){
+        Platform.runLater(() -> {
+            pagingForwardBackward.setStyle("-fx-background-color: #eef442");
+            statusInfo.setText("Checking GridPage Paging Forward / Backward...");
+        });
+        xpathPattern1 = "//*[contains(@class, 'window-box')]";
+        try {
+            ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
+            webDriver.switchTo().window(tabs.get(0));
+            try {
+                webDriver.navigate().to(inputGridPageURL.getText().trim());
+                WebDriverWait wait = new WebDriverWait(webDriver, 10);
+
+                try{
+                    if(webDriver.findElements(By.xpath(xpathPattern1)).size() > 0){
+                        report.writeToFile("provided GridPageURL "+inputGridPageURL.getText(), " included Windows! Adjusted GridPage to make test happen!");
+                        webDriver.findElementByXPath("//*[contains(@class, 'paging right')]/a ").click();
+                        //wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(@class, 'gridProducts')]/div")));
+                        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@class, 'gridProducts')]/div")));
+                    }else {
+                        System.out.println("No Window Element!");
+                    }
+                    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(@class, 'grid-item-size-btns')]/a")));
+                    try {
+                        webDriver.findElementByXPath("//*[contains(@class, 'pageNumbers left')]/a[1] ").click();
+                        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@class, 'gridProducts')]/div/div/a/div[contains(@class, 'price')]")));
+                        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(@class, 'gridProducts')]/div/div/a/div[contains(@class, 'price')]")));
+
+                        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(@class, 'Click-Navigated-Previous_Page_Button')]")));
+
+
+                        if (webDriver.getCurrentUrl().contains("2")){
+                            report.writeToFile("Checking  GridPage Paging Forward: ", "Successful! Found pattern in URL and Previous Page Button appeared!");
+                        }else {
+                            report.writeToFile("Checking  GridPage Paging Forward: ", "Not Successful! User is not redirected");
+                            isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"GridPageErrorPagingForward.png");
+                            if (isSuccessful){
+                                report.writeToFile("GridPage Error Screenshot: ", "Screenshot successful!");
+                            }else {
+                                report.writeToFile("GridPage Error Screenshot: ", "Screenshot not successful!");
+                            }
+                        }
+                        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(@class, 'Click-Navigated-Previous_Page_Button')]")));
+                        webDriver.findElementByXPath("//*[contains(@class, 'Click-Navigated-Previous_Page_Button')] ").click();
+                        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[contains(@class, 'Click-Navigated-Previous_Page_Button')] ")));
+                        if (webDriver.getCurrentUrl().contains("1")){
+                            report.writeToFile("Checking  GridPage Paging Backward: ", "Successful! Found pattern in URL and Previous Page Button disappeared!");
+                        }else {
+                            report.writeToFile("Checking  GridPage Paging Backward: ", "Not Successful! User is not redirected");
+                            isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"GridPageErrorPagingBackward.png");
+                            if (isSuccessful){
+                                report.writeToFile("GridPage Error Screenshot: ", "Screenshot successful!");
+                            }else {
+                                report.writeToFile("GridPage Error Screenshot: ", "Screenshot not successful!");
+                            }
+                        }
+
+                        Platform.runLater(() -> {
+                            pagingForwardBackward.setStyle("-fx-background-color: #CCFF99");
+                            pagingForwardBackward.setSelected(true);
+                        });
+
+
+                    }catch (Exception noLargeImageButton){
+                        report.writeToFile("Checking  GridPage Paging Forward/Backward: ", "Not Successful! Couldn't find Page 2 Button");
+                        Platform.runLater(() -> {
+                            pagingForwardBackward.setStyle("-fx-background-color: #FF0000");
+                            pagingForwardBackward.setSelected(true);
+                        });
+                    }
+
+                }catch (Exception gridPageIssue){
+                    Platform.runLater(() -> {
+                        pagingForwardBackward.setStyle("-fx-background-color: #FF0000");
+                        pagingForwardBackward.setSelected(true);
+                    });
+                    isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"GridPageErrorSorting.png");
+                    if (isSuccessful){
+                        report.writeToFile("GridPage Error Screenshot: ", "Screenshot successful!");
+                    }else {
+                        report.writeToFile("GridPage Error Screenshot: ", "Screenshot not successful!");
+                    }
+                    webDriver.navigate().to(inputSearch.getText().trim());
+                    report.writeToFile("Checking GridPage Paging Forward/Backward: ", "Sorting on this Page doesn't seems to be working or very slow");
+                    gridPageIssue.printStackTrace();
+                }
+            }catch (Exception noMainMenuLinkFound){
+                Platform.runLater(() -> {
+                    pagingForwardBackward.setStyle("-fx-background-color: #FF0000");
+                    pagingForwardBackward.setSelected(true);
+                });
+                webDriver.navigate().to(inputSearch.getText().trim());
+                report.writeToFile("Checking GridPage Paging Forward/Backward: ", "Couldn't navigate to requested Site!");
+                noMainMenuLinkFound.printStackTrace();
+            }
+
+        }catch (Exception noCategoryLinksLeftSideMenu){
+            Platform.runLater(() -> {
+                pagingForwardBackward.setStyle("-fx-background-color: #FF0000");
+                pagingForwardBackward.setSelected(true);
+            });
+            webDriver.navigate().to(inputSearch.getText().trim());
+            report.writeToFile("Checking GridPage Paging Forward/Backward: ", "unable to check! Browser not responding");
+            noCategoryLinksLeftSideMenu.printStackTrace();
+        }
+
+        report.writeToFile("=================================", "");
+    }
 }

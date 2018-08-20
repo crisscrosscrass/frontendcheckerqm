@@ -10,4 +10,7 @@ public class GridPageNoWindowsController {
 
     @FXML
     JFXCheckBox switchFromSmallToLarge;
+
+    @FXML
+    JFXCheckBox pagingForwardBackward;
 }
