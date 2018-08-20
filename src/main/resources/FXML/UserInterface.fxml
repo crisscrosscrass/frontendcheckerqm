@@ -16,13 +16,11 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.paint.LinearGradient?>
-<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="mainStage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="854.0" prefWidth="936.0" style="-fx-background-color: white;" stylesheets="@../Style/Main.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="crisscrosscrass.Controller.FrontEndCheckController">
+<AnchorPane fx:id="mainStage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="854.0" prefWidth="936.0" style="-fx-background-color: white;" stylesheets="@../Style/Main.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="crisscrosscrass.Controller.FrontEndCheckController">
    <children>
       <Pane layoutX="-10.0" layoutY="-10.0" prefHeight="480.0" prefWidth="549.0" style="-fx-background-color: #e83062;" AnchorPane.leftAnchor="-10.0" AnchorPane.rightAnchor="397.0" AnchorPane.topAnchor="-10.0" />
       <VBox alignment="TOP_CENTER" prefHeight="500.0" prefWidth="549.0">
@@ -83,23 +81,13 @@
                   <Insets />
                </VBox.margin>
             </Text>
-            <Circle depthTest="DISABLE" disable="true" fill="#e83062" radius="50.0" stroke="#e83062" strokeType="INSIDE" strokeWidth="0.0">
+            <Circle depthTest="DISABLE" disable="true" fill="#e83062" radius="50.0" stroke="#e83062" strokeType="INSIDE" strokeWidth="0.0" translateY="25.0">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
             </Circle>
-            <FontAwesomeIconView glyphName="USER_SECRET" size="50" translateX="4.0" translateY="-65.0">
-               <fill>
-                  <LinearGradient endX="1.0" endY="1.0" startX="1.0">
-                     <stops>
-                        <Stop color="WHITE" />
-                        <Stop color="WHITE" offset="0.3524904214559387" />
-                        <Stop color="#ffffff00" offset="0.7279693486590038" />
-                        <Stop color="#ffffff00" offset="1.0" />
-                     </stops>
-                  </LinearGradient>
-               </fill>
-            </FontAwesomeIconView>
+            <FontAwesomeIconView />
+
          </children>
          <opaqueInsets>
             <Insets />

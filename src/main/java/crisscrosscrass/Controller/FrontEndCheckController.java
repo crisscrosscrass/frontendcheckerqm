@@ -323,8 +323,6 @@ public class FrontEndCheckController {
                     }
 
 
-
-
                     /**
 
                     // Click on Logo Test
