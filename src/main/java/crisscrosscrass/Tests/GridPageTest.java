@@ -249,7 +249,7 @@ public class GridPageTest {
                     sortingValuesOnGridPageHighToLow.setSelected(true);
                 });
                 webDriver.navigate().to(inputSearch.getText().trim());
-                report.writeToFile("Checking GridPage Sorting Values: ", "Couldn't find a Link from Main Menu!");
+                report.writeToFile("Checking GridPage Sorting Values: ", "Couldn't navigate to requested Site!");
                 noMainMenuLinkFound.printStackTrace();
             }
         }catch (Exception noCategoryLinksLeftSideMenu){
@@ -259,6 +259,93 @@ public class GridPageTest {
             });
             webDriver.navigate().to(inputSearch.getText().trim());
             report.writeToFile("Checking GridPage Sorting Values: ", "unable to check! Browser not responding");
+            noCategoryLinksLeftSideMenu.printStackTrace();
+        }
+
+        report.writeToFile("=================================", "");
+    }
+
+    public void checkingSwitchFromSmallToLargeImages(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox switchFromSmallToLarge, TextField inputGridPageURL, Text statusInfo, TextField inputSearch, TextField inputEmailAdress, String xpathPattern1, String xpathPattern2, Properties Homepage, boolean isSuccessful, boolean isAvailable){
+        Platform.runLater(() -> {
+            switchFromSmallToLarge.setStyle("-fx-background-color: #eef442");
+            statusInfo.setText("Checking GridPage Switch Small to Large Images...");
+        });
+        xpathPattern1 = "//*[contains(@class, 'window-box')]";
+        try {
+            ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
+            webDriver.switchTo().window(tabs.get(0));
+            try {
+                webDriver.navigate().to(inputGridPageURL.getText().trim());
+                WebDriverWait wait = new WebDriverWait(webDriver, 10);
+
+                try{
+                    if(webDriver.findElements(By.xpath(xpathPattern1)).size() > 0){
+                        report.writeToFile("provided GridPageURL "+inputGridPageURL.getText(), " included Windows! Adjusted GridPage to make test happen!");
+                        webDriver.findElementByXPath("//*[contains(@class, 'paging right')]/a ").click();
+                        //wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(@class, 'gridProducts')]/div")));
+                        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@class, 'gridProducts')]/div")));
+                    }else {
+                        System.out.println("No Window Element!");
+                    }
+                    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(@class, 'grid-item-size-btns')]/a")));
+                    try {
+                        webDriver.findElementByXPath("//*[contains(@class, 'grid-item-size-btns')]/a ").click();
+                        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@class, 'gridProducts')]/div/div/a/div[contains(@class, 'price')]")));
+                        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(@class, 'gridProducts')]/div/div/a/div[contains(@class, 'price')]")));
+                        if (webDriver.getCurrentUrl().contains("itemSize=detail")){
+                            report.writeToFile("Checking GridPage Switch Small to Large Images: ", "Successful! Found pattern in URL");
+                            Platform.runLater(() -> {
+                                switchFromSmallToLarge.setStyle("-fx-background-color: #CCFF99");
+                                switchFromSmallToLarge.setSelected(true);
+                            });
+                        }else {
+                            report.writeToFile("Checking  GridPage Switch Small to Large Images: ", "Not Successful! Couldn't find pattern in URL");
+                            Platform.runLater(() -> {
+                                switchFromSmallToLarge.setStyle("-fx-background-color: #FF0000");
+                                switchFromSmallToLarge.setSelected(true);
+                            });
+                        }
+                        report.writeToFile("");
+                    }catch (Exception noLargeImageButton){
+                        report.writeToFile("Checking  GridPage Switch Small to Large Images: ", "Not Successful! Couldn't find Large Image Button");
+                        Platform.runLater(() -> {
+                            switchFromSmallToLarge.setStyle("-fx-background-color: #FF0000");
+                            switchFromSmallToLarge.setSelected(true);
+                        });
+                    }
+
+                }catch (Exception gridPageIssue){
+                    Platform.runLater(() -> {
+                        switchFromSmallToLarge.setStyle("-fx-background-color: #FF0000");
+                        switchFromSmallToLarge.setSelected(true);
+                    });
+                    isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"GridPageErrorSorting.png");
+                    if (isSuccessful){
+                        report.writeToFile("GridPage Error Screenshot: ", "Screenshot successful!");
+                    }else {
+                        report.writeToFile("GridPage Error Screenshot: ", "Screenshot not successful!");
+                    }
+                    webDriver.navigate().to(inputSearch.getText().trim());
+                    report.writeToFile("Checking GridPage Switch Small to Large Images: ", "Sorting on this Page doesn't seems to be working or very slow");
+                    gridPageIssue.printStackTrace();
+                }
+            }catch (Exception noMainMenuLinkFound){
+                Platform.runLater(() -> {
+                    switchFromSmallToLarge.setStyle("-fx-background-color: #FF0000");
+                    switchFromSmallToLarge.setSelected(true);
+                });
+                webDriver.navigate().to(inputSearch.getText().trim());
+                report.writeToFile("Checking GridPage Switch Small to Large Images: ", "Couldn't navigate to requested Site!");
+                noMainMenuLinkFound.printStackTrace();
+            }
+
+        }catch (Exception noCategoryLinksLeftSideMenu){
+            Platform.runLater(() -> {
+                switchFromSmallToLarge.setStyle("-fx-background-color: #FF0000");
+                switchFromSmallToLarge.setSelected(true);
+            });
+            webDriver.navigate().to(inputSearch.getText().trim());
+            report.writeToFile("Checking GridPage Switch Small to Large Images: ", "unable to check! Browser not responding");
             noCategoryLinksLeftSideMenu.printStackTrace();
         }
 

@@ -7,4 +7,7 @@ public class GridPageNoWindowsController {
 
     @FXML
     JFXCheckBox sortingValues;
+
+    @FXML
+    JFXCheckBox switchFromSmallToLarge;
 }
