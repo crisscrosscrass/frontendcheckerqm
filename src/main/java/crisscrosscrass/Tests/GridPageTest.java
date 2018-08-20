@@ -78,6 +78,10 @@ public class GridPageTest {
                         report.writeToFile("");
 
 
+
+
+
+
                         Platform.runLater(() -> {
                             statusInfo.setText("Checking Sorting Values from High to Low...");
                         });
@@ -107,6 +111,11 @@ public class GridPageTest {
                         }
                         report.writeToFile("");
 
+
+
+
+
+
                         Platform.runLater(() -> {
                             statusInfo.setText("Checking Sorting Values Sales Price...");
                         });
@@ -135,6 +144,10 @@ public class GridPageTest {
                         report.writeToFile("");
 
 
+
+
+
+
                         Platform.runLater(() -> {
                             statusInfo.setText("Checking Sorting Values New Items...");
                         });
@@ -160,6 +173,43 @@ public class GridPageTest {
                         }else {
                             report.writeToFile("Checking  Grid Page New Items: ", "Not Successful! First Item contains Price Informations from previous Item");
                         }
+                        report.writeToFile("");
+
+
+
+
+
+                        Platform.runLater(() -> {
+                            statusInfo.setText("Checking Sorting Values Discount Items...");
+                        });
+
+                        //Discount Button
+                        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.filter.salesprice"))));
+                        System.out.println("TestText for Discount + "+webDriver.findElement(By.xpath(Homepage.getProperty("page.filter.salesprice"))).getText());
+                        webDriver.findElement(By.xpath(Homepage.getProperty("page.filter.salesprice"))).click();
+
+                        if(webDriver.findElements(By.xpath(xpathPattern1)).size() > 0){
+                            report.writeToFile("provided GridPageURL "+inputGridPageURL.getText(), " included Windows! Adjusted GridPage to make test happen!");
+                            webDriver.findElementByXPath("//*[contains(@class, 'paging right')]/a ").click();
+                            //wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(@class, 'gridProducts')]/div")));
+                            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@class, 'gridProducts')]/div")));
+                        }else {
+                            System.out.println("No Window Element!");
+                        }
+
+                        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@class, 'gridProducts')]/div/div/a/div[contains(@class, 'price')]")));
+                        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(@class, 'gridProducts')]/div/div/a/div[contains(@class, 'price')]")));
+                        List<WebElement> ItemsGridPageSortingDiscount = webDriver.findElementsByXPath("//*[contains(@class, 'gridProducts')]/div/div/a/div/span[contains(@class, 'discount')]");
+                        if (ItemsGridPageSortingDiscount.size() > 0){
+                            report.writeToFile("Checking  Grid Page Discount Label: ", "Successful! Found in Total + " +ItemsGridPageSortingDiscount.size()+" Discount Labels");
+                        }else {
+                            report.writeToFile("Checking  Grid Page Discount Label: ", "Not Successful! Couldn't find discount labels");
+                        }
+                        report.writeToFile("");
+
+
+
+
 
 
                         Platform.runLater(() -> {
