@@ -1,6 +1,7 @@
 package crisscrosscrass.Tests;
 
 import com.jfoenix.controls.JFXCheckBox;
+import crisscrosscrass.Controller.FrontEndCheckController;
 import crisscrosscrass.Tasks.Report;
 import crisscrosscrass.Tasks.ScreenshotViaWebDriver;
 import javafx.application.Platform;
@@ -775,10 +776,10 @@ public class GridPageTest {
 
         report.writeToFile("=================================", "");
     }
-    public void checkingFilterApply(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox filtersApply, TextField inputGridPageURL, Text statusInfo, TextField inputSearch, TextField inputEmailAdress, String xpathPattern1, String xpathPattern2, Properties Homepage, boolean isSuccessful, boolean isAvailable){
+    public void checkingFilterApply(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox filtersApply, TextField inputGridPageURL, Text statusInfo, TextField inputSearch, Properties Homepage, boolean isSuccessful, boolean isAvailable, JFXCheckBox checkingSalesPriceFilter, JFXCheckBox checkingGenderFilter){
         Platform.runLater(() -> {
             filtersApply.setStyle("-fx-background-color: #eef442");
-            statusInfo.setText("Checking GridPage Style Box Open/Close");
+            statusInfo.setText("Checking GridPage Filter Apply");
         });
         try {
             ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
@@ -794,7 +795,68 @@ public class GridPageTest {
                     }else {
                         System.out.println("No Window Element!");
                     }
-                    final int MAX_FILTERS = 3;
+                    int MAX_FILTERS_TO_APPLY = 3;
+
+
+
+                    if (checkingSalesPriceFilter.isSelected() &&  MAX_FILTERS_TO_APPLY >= 1 ){
+                        Platform.runLater(() -> checkingSalesPriceFilter.setStyle("-fx-background-color: #eef442"));
+                        try {
+                            if(webDriver.findElements(By.xpath(Homepage.getProperty("page.sidebar.salesprice"))).size() > 0){
+                                final String urlLocationBefore = webDriver.getCurrentUrl();
+                                Point hoverItem = webDriver.findElement(By.xpath(Homepage.getProperty("page.sidebar.salesprice"))).getLocation();
+                                ((JavascriptExecutor)webDriver).executeScript("return window.title;");
+                                ((JavascriptExecutor)webDriver).executeScript("window.scrollBy(0,"+(hoverItem.getY())+");");
+
+                                webDriver.findElementByXPath(Homepage.getProperty("page.sidebar.salesprice")).click();
+                                if (urlLocationBefore != webDriver.getCurrentUrl()){
+                                    Platform.runLater(() -> checkingSalesPriceFilter.setStyle("-fx-background-color: #CCFF99"));
+                                    report.writeToFile("Apply Sales Price: ", "Successful!");
+                                    --MAX_FILTERS_TO_APPLY;
+                                }else {
+                                    Platform.runLater(() -> checkingSalesPriceFilter.setStyle("-fx-background-color: #FF0000"));
+                                    report.writeToFile("Apply Sales Price: ", "unable to apply! Clicked Button but Frontend doesn't response!");
+                                }
+                            }else {
+
+                                report.writeToFile("Apply Sales Price: ", "unable to check! Couldn't find SalesPrice Filter");
+                            }
+                        }catch (Exception salesFilterSelectedError){
+                            report.writeToFile("Apply Sales Price: ", "Something goes wrong, couldn't apply Filter!");
+                        }
+                    }
+
+                    if (checkingGenderFilter.isSelected() &&  MAX_FILTERS_TO_APPLY >= 1 ){
+                        Platform.runLater(() -> checkingGenderFilter.setStyle("-fx-background-color: #eef442"));
+                        try {
+                            if(webDriver.findElements(By.xpath(Homepage.getProperty("page.filter.gender"))).size() > 0){
+                                final String urlLocationBefore = webDriver.getCurrentUrl();
+                                Point hoverItem = webDriver.findElement(By.xpath(Homepage.getProperty("page.filter.gender"))).getLocation();
+                                ((JavascriptExecutor)webDriver).executeScript("return window.title;");
+                                ((JavascriptExecutor)webDriver).executeScript("window.scrollBy(0,"+(hoverItem.getY())+");");
+
+                                webDriver.findElementByXPath(Homepage.getProperty("page.filter.gender")).click();
+                                if (urlLocationBefore != webDriver.getCurrentUrl()){
+                                    Platform.runLater(() -> checkingGenderFilter.setStyle("-fx-background-color: #CCFF99"));
+                                    report.writeToFile("Apply Gender Filter: ", "Successful!");
+                                    --MAX_FILTERS_TO_APPLY;
+                                }else {
+                                    Platform.runLater(() -> checkingGenderFilter.setStyle("-fx-background-color: #FF0000"));
+                                    report.writeToFile("Apply Gender Filter: ", "unable to apply! Clicked Button but Frontend doesn't response!");
+                                }
+                            }else {
+
+                                report.writeToFile("Apply Gender Filter: ", "unable to check! Couldn't find SalesPrice Filter");
+                            }
+                        }catch (Exception salesFilterSelectedError){
+                            report.writeToFile("Apply Gender Filter: ", "Something goes wrong, couldn't apply Filter!");
+                        }
+                    }
+
+
+
+                    System.out.println("Filters left : "+MAX_FILTERS_TO_APPLY);
+
 
 
 
@@ -813,7 +875,7 @@ public class GridPageTest {
                         report.writeToFile("GridPage Error Screenshot: ", "Screenshot not successful!");
                     }
                     webDriver.navigate().to(inputSearch.getText().trim());
-                    report.writeToFile("Checking GridPage Style Box Open/Close: ", "Sorting on this Page doesn't seems to be working or very slow");
+                    report.writeToFile("Checking GridPage Checking GridPage Filter Apply: ", "Sorting on this Page doesn't seems to be working or very slow");
                     gridPageIssue.printStackTrace();
                 }
             }catch (Exception noMainMenuLinkFound){
@@ -822,7 +884,7 @@ public class GridPageTest {
                     filtersApply.setSelected(true);
                 });
                 webDriver.navigate().to(inputSearch.getText().trim());
-                report.writeToFile("Checking GridPage Style Box Open/Close: ", "Couldn't navigate to requested Site!");
+                report.writeToFile("Checking GridPage Checking GridPage Filter Apply: ", "Couldn't navigate to requested Site!");
                 noMainMenuLinkFound.printStackTrace();
             }
         }catch (Exception noCategoryLinksLeftSideMenu){
@@ -831,7 +893,7 @@ public class GridPageTest {
                 filtersApply.setSelected(true);
             });
             webDriver.navigate().to(inputSearch.getText().trim());
-            report.writeToFile("Checking GridPage Style Box Open/Close: ", "unable to check! Browser not responding");
+            report.writeToFile("Checking GridPage Checking GridPage Filter Apply: ", "unable to check! Browser not responding");
             noCategoryLinksLeftSideMenu.printStackTrace();
         }
 

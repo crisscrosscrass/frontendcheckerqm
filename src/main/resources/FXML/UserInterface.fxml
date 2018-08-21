@@ -54,7 +54,7 @@
             <VBox alignment="CENTER" layoutX="30.0" layoutY="129.0" prefHeight="100.0" prefWidth="509.0" spacing="20.0" style="-fx-border-color: white; -fx-border-radius: 5;">
                <children>
                   <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="GridPageURLwihtoutWindows" />
-                  <TextField fx:id="inputGridPageURL" focusTraversable="false" text="https://www.ladenzeile.de/mode/damen/" />
+                  <TextField fx:id="inputGridPageURL" focusTraversable="false" text="https://www.ladenzeile.de/mode/" />
                   <AnchorPane prefHeight="154.0" prefWidth="495.0">
                      <children>
                         <Accordion prefHeight="155.0" prefWidth="495.0">

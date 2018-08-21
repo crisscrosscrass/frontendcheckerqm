@@ -27,8 +27,6 @@ import java.io.*;
 
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Properties;
 
 public class FrontEndCheckController {
@@ -57,6 +55,22 @@ public class FrontEndCheckController {
     JFXCheckBox checkFeedbackPopUp;
     @FXML
     JFXCheckBox checkPrivacyPopUp;
+
+    //Filter Settings
+    @FXML
+    public JFXCheckBox checkingSalesPriceFilter;
+
+    @FXML
+    public JFXCheckBox checkingGenderFilter;
+
+    @FXML
+    public JFXCheckBox checkingColorFilter;
+
+    @FXML
+    public JFXCheckBox checkingBrandFilter;
+
+    @FXML
+    public JFXCheckBox checkingMerchandiseFilter;
 
     // Tab Settings
     @FXML
@@ -325,7 +339,7 @@ public class FrontEndCheckController {
                         //gridPageTest.checkingProductView300(webDriver,report,js,gridPageNoWindowsController.productView300,inputGridPageURL,statusInfo,inputSearch,inputEmailAdress,xpathPattern1,xpathPattern2,Homepage,isSuccessful,isAvailable);
                         //gridPageTest.checkingDeeperStyle(webDriver,report,js,gridPageNoWindowsController.deeperStyle,inputGridPageURL,statusInfo,inputSearch,inputEmailAdress,xpathPattern1,xpathPattern2,Homepage,isSuccessful,isAvailable);
                         //gridPageTest.checkingStyleBoxOpenClose(webDriver,report,js,gridPageNoWindowsController.styleBoxOpenClose,inputGridPageURL,statusInfo,inputSearch,inputEmailAdress,xpathPattern1,xpathPattern2,Homepage,isSuccessful,isAvailable);
-                        gridPageTest.checkingFilterApply(webDriver,report,js,gridPageNoWindowsController.filtersApply,inputGridPageURL,statusInfo,inputSearch,inputEmailAdress,xpathPattern1,xpathPattern2,Homepage,isSuccessful,isAvailable);
+                        gridPageTest.checkingFilterApply(webDriver,report,js,gridPageNoWindowsController.filtersApply,inputGridPageURL,statusInfo,inputSearch,Homepage,isSuccessful,isAvailable,checkingSalesPriceFilter,checkingGenderFilter);
                     }
 
 
@@ -913,6 +927,5 @@ public class FrontEndCheckController {
             outputPlace.getChildren().clear();
         });
     }
-
 
 }
