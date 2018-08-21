@@ -22,4 +22,7 @@ public class GridPageNoWindowsController {
 
     @FXML
     JFXCheckBox styleBoxOpenClose;
+
+    @FXML
+    JFXCheckBox filtersApply;
 }

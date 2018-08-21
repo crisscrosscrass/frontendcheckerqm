@@ -480,12 +480,10 @@ public class GridPageTest {
                 WebDriverWait wait = new WebDriverWait(webDriver, 10);
 
                 try{
-                    if(webDriver.findElements(By.xpath(xpathPattern1)).size() > 0){
+                    if(webDriver.findElements(By.xpath(Homepage.getProperty("page.grid.windows"))).size() > 0){
                         report.writeToFile("provided GridPageURL "+inputGridPageURL.getText(), " included Windows! Adjusted GridPage to make test happen!");
-                        webDriver.findElementByXPath("//*[contains(@class, 'paging right')]/a ").click();
-                        //wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(@class, 'gridProducts')]/div")));
-                        //wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@class, 'gridProducts')]/div")));
-                        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[contains(@class, 'paging right')]/a  ")));
+                        webDriver.findElementByXPath(Homepage.getProperty("page.grid.windows.continue")).click();
+                        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Homepage.getProperty("page.grid.windows.continue"))));
 
                     }else {
                         System.out.println("No Window Element!");
@@ -503,7 +501,7 @@ public class GridPageTest {
 
 
                         webDriver.findElementByXPath("//*[contains(@class, 'items-per-page-entries')]/a ").click();
-
+                        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Homepage.getProperty("page.grid.loader"))));
                         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@class, 'gridProducts')]/div/div/a/div[contains(@class, 'price')]")));
                         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(@class, 'gridProducts')]/div/div/a/div[contains(@class, 'price')]")));
                         List<WebElement> ItemsGridPageProductView300 = webDriver.findElementsByXPath("//*[contains(@class, 'gridProducts')]/div/div/a/div[contains(@class, 'price')]");
@@ -590,10 +588,10 @@ public class GridPageTest {
                 webDriver.navigate().to(inputGridPageURL.getText().trim());
                 WebDriverWait wait = new WebDriverWait(webDriver, 10);
                 try{
-                    if(webDriver.findElements(By.xpath("//*[contains(@class, 'window-box')]")).size() > 0){
+                    if(webDriver.findElements(By.xpath(Homepage.getProperty("page.grid.windows"))).size() > 0){
                         report.writeToFile("provided GridPageURL "+inputGridPageURL.getText(), " included Windows! Adjusted GridPage to make test happen!");
-                        webDriver.findElementByXPath("//*[contains(@class, 'paging right')]/a ").click();
-                        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[contains(@class, 'paging right')]/a  ")));
+                        webDriver.findElementByXPath(Homepage.getProperty("page.grid.windows.continue")).click();
+                        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Homepage.getProperty("page.grid.windows.continue"))));
                     }else {
                         System.out.println("No Window Element!");
                     }
@@ -680,10 +678,10 @@ public class GridPageTest {
                 webDriver.navigate().to(inputGridPageURL.getText().trim());
                 WebDriverWait wait = new WebDriverWait(webDriver, 10);
                 try{
-                    if(webDriver.findElements(By.xpath("//*[contains(@class, 'window-box')]")).size() > 0){
+                    if(webDriver.findElements(By.xpath(Homepage.getProperty("page.grid.windows"))).size() > 0){
                         report.writeToFile("provided GridPageURL "+inputGridPageURL.getText(), " included Windows! Adjusted GridPage to make test happen!");
-                        webDriver.findElementByXPath("//*[contains(@class, 'paging right')]/a ").click();
-                        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[contains(@class, 'paging right')]/a  ")));
+                        webDriver.findElementByXPath(Homepage.getProperty("page.grid.windows.continue")).click();
+                        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Homepage.getProperty("page.grid.windows.continue"))));
                     }else {
                         System.out.println("No Window Element!");
                     }
@@ -746,7 +744,7 @@ public class GridPageTest {
                         styleBoxOpenClose.setStyle("-fx-background-color: #FF0000");
                         styleBoxOpenClose.setSelected(true);
                     });
-                    isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"GridPageErrorDeeperStyle.png");
+                    isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"GridPageErrorStyleBoxOpenClose.png");
                     if (isSuccessful){
                         report.writeToFile("GridPage Error Screenshot: ", "Screenshot successful!");
                     }else {
@@ -769,6 +767,68 @@ public class GridPageTest {
             Platform.runLater(() -> {
                 styleBoxOpenClose.setStyle("-fx-background-color: #FF0000");
                 styleBoxOpenClose.setSelected(true);
+            });
+            webDriver.navigate().to(inputSearch.getText().trim());
+            report.writeToFile("Checking GridPage Style Box Open/Close: ", "unable to check! Browser not responding");
+            noCategoryLinksLeftSideMenu.printStackTrace();
+        }
+
+        report.writeToFile("=================================", "");
+    }
+    public void checkingFilterApply(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox filtersApply, TextField inputGridPageURL, Text statusInfo, TextField inputSearch, TextField inputEmailAdress, String xpathPattern1, String xpathPattern2, Properties Homepage, boolean isSuccessful, boolean isAvailable){
+        Platform.runLater(() -> {
+            filtersApply.setStyle("-fx-background-color: #eef442");
+            statusInfo.setText("Checking GridPage Style Box Open/Close");
+        });
+        try {
+            ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
+            webDriver.switchTo().window(tabs.get(0));
+            try {
+                webDriver.navigate().to(inputGridPageURL.getText().trim());
+                WebDriverWait wait = new WebDriverWait(webDriver, 10);
+                try{
+                    if(webDriver.findElements(By.xpath(Homepage.getProperty("page.grid.windows"))).size() > 0){
+                        report.writeToFile("provided GridPageURL "+inputGridPageURL.getText(), " included Windows! Adjusted GridPage to make test happen!");
+                        webDriver.findElementByXPath(Homepage.getProperty("page.grid.windows.continue")).click();
+                        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Homepage.getProperty("page.grid.windows.continue"))));
+                    }else {
+                        System.out.println("No Window Element!");
+                    }
+                    final int MAX_FILTERS = 3;
+
+
+
+
+
+
+                }catch (Exception gridPageIssue){
+                    Platform.runLater(() -> {
+                        filtersApply.setStyle("-fx-background-color: #FF0000");
+                        filtersApply.setSelected(true);
+                    });
+                    isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"GridPageErrorFiltersApply.png");
+                    if (isSuccessful){
+                        report.writeToFile("GridPage Error Screenshot: ", "Screenshot successful!");
+                    }else {
+                        report.writeToFile("GridPage Error Screenshot: ", "Screenshot not successful!");
+                    }
+                    webDriver.navigate().to(inputSearch.getText().trim());
+                    report.writeToFile("Checking GridPage Style Box Open/Close: ", "Sorting on this Page doesn't seems to be working or very slow");
+                    gridPageIssue.printStackTrace();
+                }
+            }catch (Exception noMainMenuLinkFound){
+                Platform.runLater(() -> {
+                    filtersApply.setStyle("-fx-background-color: #FF0000");
+                    filtersApply.setSelected(true);
+                });
+                webDriver.navigate().to(inputSearch.getText().trim());
+                report.writeToFile("Checking GridPage Style Box Open/Close: ", "Couldn't navigate to requested Site!");
+                noMainMenuLinkFound.printStackTrace();
+            }
+        }catch (Exception noCategoryLinksLeftSideMenu){
+            Platform.runLater(() -> {
+                filtersApply.setStyle("-fx-background-color: #FF0000");
+                filtersApply.setSelected(true);
             });
             webDriver.navigate().to(inputSearch.getText().trim());
             report.writeToFile("Checking GridPage Style Box Open/Close: ", "unable to check! Browser not responding");

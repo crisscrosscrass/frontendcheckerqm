@@ -11,10 +11,7 @@
       <JFXCheckBox fx:id="productView300" text="120-300 Products View" />
       <JFXCheckBox fx:id="deeperStyle" text="Deeper Style" />
       <JFXCheckBox fx:id="styleBoxOpenClose" text="Style Box- Open/Close" />
-      <JFXCheckBox text="Filters- Apply" />
-      <JFXCheckBox text="Filters- Remove from Filter Box" />
-      <JFXCheckBox text="Filters- Remove from Sidebar" />
-      <JFXCheckBox text="Filters- Remove All" />
+      <JFXCheckBox fx:id="filtersApply" text="Filters- Apply" />
       <JFXCheckBox text="Search Box in Brand Filter" />
       <JFXCheckBox text="Search Box in Shop Filter" />
    </children>
