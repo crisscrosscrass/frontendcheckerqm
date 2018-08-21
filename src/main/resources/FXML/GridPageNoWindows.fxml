@@ -10,7 +10,7 @@
       <JFXCheckBox fx:id="pagingForwardBackward" text="Paging- Foward / Backward" />
       <JFXCheckBox fx:id="productView300" text="120-300 Products View" />
       <JFXCheckBox fx:id="deeperStyle" text="Deeper Style" />
-      <JFXCheckBox text="Style Box- Open/Close" />
+      <JFXCheckBox fx:id="styleBoxOpenClose" text="Style Box- Open/Close" />
       <JFXCheckBox text="Filters- Apply" />
       <JFXCheckBox text="Filters- Remove from Filter Box" />
       <JFXCheckBox text="Filters- Remove from Sidebar" />

@@ -496,9 +496,9 @@ public class GridPageTest {
                         ((JavascriptExecutor)webDriver).executeScript("return window.title;");
                         ((JavascriptExecutor)webDriver).executeScript("window.scrollBy(0,"+(hoverItem.getY())+");");
                         // Scroll up
-                        for (int i = 0; i < 5; i++) {
+                        for (int i = 0; i < 1; i++) {
                             Thread.sleep(100);
-                            js.executeScript("window.scrollBy(0,-100)");
+                            js.executeScript("window.scrollBy(0,-500)");
                         }
 
 
@@ -582,7 +582,7 @@ public class GridPageTest {
             deeperStyle.setStyle("-fx-background-color: #eef442");
             statusInfo.setText("Checking GridPage Deeper Style...");
         });
-        xpathPattern1 = "//*[contains(@data-id, 'style_block')]/ul/li/a ";
+        xpathPattern1 = "//*[contains(@data-id, 'style_block')]/ul/li/a[1] ";
         try {
             ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
             webDriver.switchTo().window(tabs.get(0));
@@ -661,6 +661,117 @@ public class GridPageTest {
             });
             webDriver.navigate().to(inputSearch.getText().trim());
             report.writeToFile("Checking GridPage Deeper Style: ", "unable to check! Browser not responding");
+            noCategoryLinksLeftSideMenu.printStackTrace();
+        }
+
+        report.writeToFile("=================================", "");
+    }
+
+    public void checkingStyleBoxOpenClose(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox styleBoxOpenClose, TextField inputGridPageURL, Text statusInfo, TextField inputSearch, TextField inputEmailAdress, String xpathPattern1, String xpathPattern2, Properties Homepage, boolean isSuccessful, boolean isAvailable){
+        Platform.runLater(() -> {
+            styleBoxOpenClose.setStyle("-fx-background-color: #eef442");
+            statusInfo.setText("Checking GridPage Style Box Open/Close");
+        });
+        xpathPattern1 = "//*[contains(@data-id, 'style_block')]/ul/li/a ";
+        try {
+            ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
+            webDriver.switchTo().window(tabs.get(0));
+            try {
+                webDriver.navigate().to(inputGridPageURL.getText().trim());
+                WebDriverWait wait = new WebDriverWait(webDriver, 10);
+                try{
+                    if(webDriver.findElements(By.xpath("//*[contains(@class, 'window-box')]")).size() > 0){
+                        report.writeToFile("provided GridPageURL "+inputGridPageURL.getText(), " included Windows! Adjusted GridPage to make test happen!");
+                        webDriver.findElementByXPath("//*[contains(@class, 'paging right')]/a ").click();
+                        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[contains(@class, 'paging right')]/a  ")));
+                    }else {
+                        System.out.println("No Window Element!");
+                    }
+                    try {
+                        Point hoverItem = webDriver.findElement(By.xpath("//*[contains(@data-id, 'style_block')]/*[contains(@class, 'btn btn-grey toggle-categories hidden nct nct-Click-Selected-More_Categories_Button ncts-Bottom_More_Options')]")).getLocation();
+                        ((JavascriptExecutor)webDriver).executeScript("return window.title;");
+                        ((JavascriptExecutor)webDriver).executeScript("window.scrollBy(0,"+(hoverItem.getY())+");");
+                        // Scroll up
+                        for (int i = 0; i < 1; i++) {
+                            Thread.sleep(100);
+                            js.executeScript("window.scrollBy(0,-400)");
+                        }
+                        webDriver.findElementByXPath("//*[contains(@data-id, 'style_block')]/*[contains(@class, 'btn btn-grey toggle-categories hidden nct nct-Click-Selected-More_Categories_Button ncts-Bottom_More_Options')] ").click();
+                        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[contains(@data-id, 'style_block')]/*[contains(@class, 'btn btn-grey toggle-categories hidden nct nct-Click-Selected-More_Categories_Button ncts-Bottom_More_Options')]")));
+                        isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"GridPageStyleBoxOpenClose1.png");
+                        if (isSuccessful){
+                            report.writeToFile("GridPage See More: ", "Screenshot successful!");
+                        }else {
+                            report.writeToFile("GridPage See More: ", "Screenshot not successful!");
+                        }
+                        webDriver.findElementByXPath("//*[contains(@data-id, 'style_block')]/*[contains(@class, 'middle-toggle-categories nct nct-Click-Selected-More_Categories_Button')]  ").click();
+                        for (int i = 0; i < 5; i++) {
+                            Thread.sleep(100);
+                            js.executeScript("window.scrollBy(0,100)");
+                        }
+                        for (int i = 0; i < 5; i++) {
+                            Thread.sleep(100);
+                            js.executeScript("window.scrollBy(0,-100)");
+                        }
+                        isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"GridPageStyleBoxOpenClose2.png");
+                        if (isSuccessful){
+                            report.writeToFile("GridPage See Less: ", "Screenshot successful!");
+                        }else {
+                            report.writeToFile("GridPage See Less: ", "Screenshot not successful!");
+                        }
+
+                        Platform.runLater(() -> {
+                            styleBoxOpenClose.setStyle("-fx-background-color: #CCFF99");
+                            styleBoxOpenClose.setSelected(true);
+                        });
+                        report.writeToFile("Checking GridPage Style Box Open/Close: ", "Successful! Style Box- Open/Close working as expected");
+
+                    }catch (Exception noStyleBoxOpenCloseFound){
+                        Platform.runLater(() -> {
+                            styleBoxOpenClose.setStyle("-fx-background-color: #FF0000");
+                            styleBoxOpenClose.setSelected(true);
+                        });
+                        isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"GridPageErrorStyleBoxOpenClose.png");
+                        if (isSuccessful){
+                            report.writeToFile("GridPage Error Screenshot: ", "Screenshot successful!");
+                        }else {
+                            report.writeToFile("GridPage Error Screenshot: ", "Screenshot not successful!");
+                        }
+                        report.writeToFile("Checking GridPage Style Box Open/Close: ", "Couldn't find any Show-More Button");
+                    }
+
+
+                }catch (Exception gridPageIssue){
+                    Platform.runLater(() -> {
+                        styleBoxOpenClose.setStyle("-fx-background-color: #FF0000");
+                        styleBoxOpenClose.setSelected(true);
+                    });
+                    isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"GridPageErrorDeeperStyle.png");
+                    if (isSuccessful){
+                        report.writeToFile("GridPage Error Screenshot: ", "Screenshot successful!");
+                    }else {
+                        report.writeToFile("GridPage Error Screenshot: ", "Screenshot not successful!");
+                    }
+                    webDriver.navigate().to(inputSearch.getText().trim());
+                    report.writeToFile("Checking GridPage Style Box Open/Close: ", "Sorting on this Page doesn't seems to be working or very slow");
+                    gridPageIssue.printStackTrace();
+                }
+            }catch (Exception noMainMenuLinkFound){
+                Platform.runLater(() -> {
+                    styleBoxOpenClose.setStyle("-fx-background-color: #FF0000");
+                    styleBoxOpenClose.setSelected(true);
+                });
+                webDriver.navigate().to(inputSearch.getText().trim());
+                report.writeToFile("Checking GridPage Style Box Open/Close: ", "Couldn't navigate to requested Site!");
+                noMainMenuLinkFound.printStackTrace();
+            }
+        }catch (Exception noCategoryLinksLeftSideMenu){
+            Platform.runLater(() -> {
+                styleBoxOpenClose.setStyle("-fx-background-color: #FF0000");
+                styleBoxOpenClose.setSelected(true);
+            });
+            webDriver.navigate().to(inputSearch.getText().trim());
+            report.writeToFile("Checking GridPage Style Box Open/Close: ", "unable to check! Browser not responding");
             noCategoryLinksLeftSideMenu.printStackTrace();
         }
 

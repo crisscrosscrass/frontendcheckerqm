@@ -19,4 +19,7 @@ public class GridPageNoWindowsController {
 
     @FXML
     JFXCheckBox deeperStyle;
+
+    @FXML
+    JFXCheckBox styleBoxOpenClose;
 }
