@@ -16,4 +16,7 @@ public class GridPageNoWindowsController {
 
     @FXML
     JFXCheckBox productView300;
+
+    @FXML
+    JFXCheckBox deeperStyle;
 }

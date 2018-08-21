@@ -186,7 +186,6 @@ public class GridPageTest {
 
                         //Discount Button
                         wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.filter.salesprice"))));
-                        System.out.println("TestText for Discount + "+webDriver.findElement(By.xpath(Homepage.getProperty("page.filter.salesprice"))).getText());
                         webDriver.findElement(By.xpath(Homepage.getProperty("page.filter.salesprice"))).click();
 
                         if(webDriver.findElements(By.xpath(xpathPattern1)).size() > 0){
@@ -375,7 +374,8 @@ public class GridPageTest {
                         report.writeToFile("provided GridPageURL "+inputGridPageURL.getText(), " included Windows! Adjusted GridPage to make test happen!");
                         webDriver.findElementByXPath("//*[contains(@class, 'paging right')]/a ").click();
                         //wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(@class, 'gridProducts')]/div")));
-                        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@class, 'gridProducts')]/div")));
+                        //wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@class, 'gridProducts')]/div")));
+                        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[contains(@class, 'paging right')]/a  ")));
                     }else {
                         System.out.println("No Window Element!");
                     }
@@ -484,7 +484,9 @@ public class GridPageTest {
                         report.writeToFile("provided GridPageURL "+inputGridPageURL.getText(), " included Windows! Adjusted GridPage to make test happen!");
                         webDriver.findElementByXPath("//*[contains(@class, 'paging right')]/a ").click();
                         //wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(@class, 'gridProducts')]/div")));
-                        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@class, 'gridProducts')]/div")));
+                        //wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@class, 'gridProducts')]/div")));
+                        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[contains(@class, 'paging right')]/a  ")));
+
                     }else {
                         System.out.println("No Window Element!");
                     }
@@ -514,7 +516,7 @@ public class GridPageTest {
                                 productView300.setSelected(true);
                             });
                         }else {
-                            report.writeToFile("Checking  GridPage Product View 300: ", "Not Successful! Url not changed or couldn't load 300 Items");
+                            report.writeToFile("Checking  GridPage Product View 300: ", "Not Successful, loaded "+ItemsGridPageProductView300.size()+" items and Url not changed");
                             isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"GridPageErrorPagingBackward.png");
                             if (isSuccessful){
                                 report.writeToFile("GridPage Error Screenshot: ", "Screenshot successful!");
@@ -526,6 +528,7 @@ public class GridPageTest {
                                 productView300.setSelected(true);
                             });
                         }
+
 
 
                     }catch (Exception noLargeImageButton){
@@ -568,6 +571,96 @@ public class GridPageTest {
             });
             webDriver.navigate().to(inputSearch.getText().trim());
             report.writeToFile("Checking GridPage GridPage Product View 300: ", "unable to check! Browser not responding");
+            noCategoryLinksLeftSideMenu.printStackTrace();
+        }
+
+        report.writeToFile("=================================", "");
+    }
+
+    public void checkingDeeperStyle(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox deeperStyle, TextField inputGridPageURL, Text statusInfo, TextField inputSearch, TextField inputEmailAdress, String xpathPattern1, String xpathPattern2, Properties Homepage, boolean isSuccessful, boolean isAvailable){
+        Platform.runLater(() -> {
+            deeperStyle.setStyle("-fx-background-color: #eef442");
+            statusInfo.setText("Checking GridPage Deeper Style...");
+        });
+        xpathPattern1 = "//*[contains(@data-id, 'style_block')]/ul/li/a ";
+        try {
+            ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
+            webDriver.switchTo().window(tabs.get(0));
+            try {
+                webDriver.navigate().to(inputGridPageURL.getText().trim());
+                WebDriverWait wait = new WebDriverWait(webDriver, 10);
+                try{
+                    if(webDriver.findElements(By.xpath("//*[contains(@class, 'window-box')]")).size() > 0){
+                        report.writeToFile("provided GridPageURL "+inputGridPageURL.getText(), " included Windows! Adjusted GridPage to make test happen!");
+                        webDriver.findElementByXPath("//*[contains(@class, 'paging right')]/a ").click();
+                        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[contains(@class, 'paging right')]/a  ")));
+                    }else {
+                        System.out.println("No Window Element!");
+                    }
+
+
+                    try{
+                        final String tagNameDeeperStyle = webDriver.findElementByXPath(xpathPattern1).getText();
+                        webDriver.findElementByXPath(xpathPattern1).click();
+                        if (webDriver.getCurrentUrl().contains(tagNameDeeperStyle.toLowerCase())){
+                            report.writeToFile("Checking  GridPage Deeper Style: ", "Successful! Clicked on first tag and redirected to a functioning page!");
+                            Platform.runLater(() -> {
+                                deeperStyle.setStyle("-fx-background-color: #CCFF99");
+                                deeperStyle.setSelected(true);
+                            });
+                        }else{
+                            report.writeToFile("Checking  GridPage Deeper Style: ", "Not Successful! Couldn't find Keyword "+ tagNameDeeperStyle +"in redirected URL "+webDriver.getCurrentUrl()+"!");
+                            Platform.runLater(() -> {
+                                deeperStyle.setStyle("-fx-background-color: #FF0000");
+                                deeperStyle.setSelected(true);
+                            });
+                        }
+
+                    }catch (Exception noStyleTagFound){
+                        Platform.runLater(() -> {
+                            deeperStyle.setStyle("-fx-background-color: #FF0000");
+                            deeperStyle.setSelected(true);
+                        });
+                        isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"GridPageErrorDeeperStyle.png");
+                        if (isSuccessful){
+                            report.writeToFile("GridPage Error Screenshot: ", "Screenshot successful!");
+                        }else {
+                            report.writeToFile("GridPage Error Screenshot: ", "Screenshot not successful!");
+                        }
+                    }
+
+
+                }catch (Exception gridPageIssue){
+                    Platform.runLater(() -> {
+                        deeperStyle.setStyle("-fx-background-color: #FF0000");
+                        deeperStyle.setSelected(true);
+                    });
+                    isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"GridPageErrorDeeperStyle.png");
+                    if (isSuccessful){
+                        report.writeToFile("GridPage Error Screenshot: ", "Screenshot successful!");
+                    }else {
+                        report.writeToFile("GridPage Error Screenshot: ", "Screenshot not successful!");
+                    }
+                    webDriver.navigate().to(inputSearch.getText().trim());
+                    report.writeToFile("Checking GridPage Deeper Style: ", "Sorting on this Page doesn't seems to be working or very slow");
+                    gridPageIssue.printStackTrace();
+                }
+            }catch (Exception noMainMenuLinkFound){
+                Platform.runLater(() -> {
+                    deeperStyle.setStyle("-fx-background-color: #FF0000");
+                    deeperStyle.setSelected(true);
+                });
+                webDriver.navigate().to(inputSearch.getText().trim());
+                report.writeToFile("Checking GridPage Deeper Style: ", "Couldn't navigate to requested Site!");
+                noMainMenuLinkFound.printStackTrace();
+            }
+            }catch (Exception noCategoryLinksLeftSideMenu){
+            Platform.runLater(() -> {
+                deeperStyle.setStyle("-fx-background-color: #FF0000");
+                deeperStyle.setSelected(true);
+            });
+            webDriver.navigate().to(inputSearch.getText().trim());
+            report.writeToFile("Checking GridPage Deeper Style: ", "unable to check! Browser not responding");
             noCategoryLinksLeftSideMenu.printStackTrace();
         }
 

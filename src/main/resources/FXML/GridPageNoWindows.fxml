@@ -9,7 +9,7 @@
       <JFXCheckBox fx:id="switchFromSmallToLarge" text="Switch from Small to Large Images" />
       <JFXCheckBox fx:id="pagingForwardBackward" text="Paging- Foward / Backward" />
       <JFXCheckBox fx:id="productView300" text="120-300 Products View" />
-      <JFXCheckBox text="Deeper Style" />
+      <JFXCheckBox fx:id="deeperStyle" text="Deeper Style" />
       <JFXCheckBox text="Style Box- Open/Close" />
       <JFXCheckBox text="Filters- Apply" />
       <JFXCheckBox text="Filters- Remove from Filter Box" />
