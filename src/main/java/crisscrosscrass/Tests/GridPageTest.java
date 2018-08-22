@@ -1,7 +1,6 @@
 package crisscrosscrass.Tests;
 
 import com.jfoenix.controls.JFXCheckBox;
-import crisscrosscrass.Controller.FrontEndCheckController;
 import crisscrosscrass.Tasks.Report;
 import crisscrosscrass.Tasks.ScreenshotViaWebDriver;
 import javafx.application.Platform;
@@ -13,9 +12,9 @@ import org.openqa.selenium.Point;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -836,7 +835,7 @@ public class GridPageTest {
 
                     if (checkingGenderFilter.isSelected() &&  MAX_FILTERS_TO_APPLY >= 1 ){
                         final String reportInfoCurrentFilter = "Apply Gender Filter: ";
-                        final String xPathFilterApply = Homepage.getProperty("page.filter.gender");
+                        final String xPathFilterApply = Homepage.getProperty("page.sidebar.gender");
                         final JFXCheckBox checkBoxToApplyChanges = checkingGenderFilter;
 
                         Platform.runLater(() -> checkBoxToApplyChanges.setStyle("-fx-background-color: #eef442"));
@@ -871,7 +870,7 @@ public class GridPageTest {
 
                     if (checkingColorFilter.isSelected() &&  MAX_FILTERS_TO_APPLY >= 1 ){
                         final String reportInfoCurrentFilter = "Apply Color Filter: ";
-                        final String xPathFilterApply = Homepage.getProperty("page.filter.color");
+                        final String xPathFilterApply = Homepage.getProperty("page.sidebar.color");
                         final JFXCheckBox checkBoxToApplyChanges = checkingColorFilter;
 
                         Platform.runLater(() -> checkBoxToApplyChanges.setStyle("-fx-background-color: #eef442"));
@@ -901,7 +900,7 @@ public class GridPageTest {
 
                     if (checkingBrandFilter.isSelected() &&  MAX_FILTERS_TO_APPLY >= 1 ){
                         final String reportInfoCurrentFilter = "Apply Brand Filter: ";
-                        final String xPathFilterApply = Homepage.getProperty("page.filter.brand");
+                        final String xPathFilterApply = Homepage.getProperty("page.sidebar.brand");
                         final JFXCheckBox checkBoxToApplyChanges = checkingBrandFilter;
 
                         Platform.runLater(() -> checkBoxToApplyChanges.setStyle("-fx-background-color: #eef442"));
@@ -935,7 +934,7 @@ public class GridPageTest {
                     }
                     if (checkingMerchandiseFilter.isSelected() &&  MAX_FILTERS_TO_APPLY >= 1 ){
                         final String reportInfoCurrentFilter = "Apply Merchandise Filter: ";
-                        final String xPathFilterApply = Homepage.getProperty("page.filter.merchandise");
+                        final String xPathFilterApply = Homepage.getProperty("page.sidebar.merchandise");
                         final JFXCheckBox checkBoxToApplyChanges = checkingMerchandiseFilter;
 
                         Platform.runLater(() -> checkBoxToApplyChanges.setStyle("-fx-background-color: #eef442"));
@@ -969,13 +968,181 @@ public class GridPageTest {
                     }
 
 
+                    if (MAX_FILTERS_TO_APPLY == 0){
+                        report.writeToFile("Checking GridPage Filter Apply", "Complete!");
+                    }
+                    report.writeToFile("");
 
 
-                    System.out.println("Filters left : "+MAX_FILTERS_TO_APPLY);
 
 
 
+                    Platform.runLater(() -> {
+                        statusInfo.setText("Checking Filters - Remove from Filter Box...");
+                    });
+                    List<WebElement> MySelectedFilters = webDriver.findElementsByXPath(Homepage.getProperty("page.sidebar.myfilters"));
+                    String xPathMyFirstSelected = "";
+                    String textFilterForTestCaseRemove = MySelectedFilters.get(0).getText().trim().toLowerCase();
+                    if(webDriver.findElementByXPath(Homepage.getProperty("page.sidebar.salesprice")).getText().trim().toLowerCase().matches(MySelectedFilters.get(0).getText().trim().toLowerCase())
+                            &&webDriver.findElementByXPath(Homepage.getProperty("page.sidebar.salesprice")).getText().trim().toLowerCase().length() == MySelectedFilters.get(0).getText().trim().toLowerCase().length() ) {
+                        xPathMyFirstSelected = Homepage.getProperty("page.sidebar.salesprice");
+                    }
+                    if(webDriver.findElementByXPath(Homepage.getProperty("page.sidebar.gender")).getText().trim().toLowerCase().matches(MySelectedFilters.get(0).getText().trim().toLowerCase())
+                            &&webDriver.findElementByXPath(Homepage.getProperty("page.sidebar.gender")).getText().trim().toLowerCase().length() == MySelectedFilters.get(0).getText().trim().toLowerCase().length() ) {
+                        xPathMyFirstSelected = Homepage.getProperty("page.sidebar.gender");
+                    }
+                    if(webDriver.findElementByXPath(Homepage.getProperty("page.sidebar.brand")).getText().trim().toLowerCase().matches(MySelectedFilters.get(0).getText().trim().toLowerCase())
+                            &&webDriver.findElementByXPath(Homepage.getProperty("page.sidebar.brand")).getText().trim().toLowerCase().length() == MySelectedFilters.get(0).getText().trim().toLowerCase().length() ) {
+                        xPathMyFirstSelected = Homepage.getProperty("page.sidebar.brand");
+                    }
+                    if(webDriver.findElementByXPath(Homepage.getProperty("page.sidebar.merchandise")).getText().trim().toLowerCase().matches(MySelectedFilters.get(0).getText().trim().toLowerCase())
+                            &&webDriver.findElementByXPath(Homepage.getProperty("page.sidebar.merchandise")).getText().trim().toLowerCase().length() == MySelectedFilters.get(0).getText().trim().toLowerCase().length() ) {
+                        xPathMyFirstSelected = Homepage.getProperty("page.sidebar.merchandise");
+                    }
 
+
+                    if (xPathMyFirstSelected.length() == 0){
+                        System.out.println("Couldn't detect first applied filter");
+                        xPathMyFirstSelected = Homepage.getProperty("page.sidebar.color");
+                    }
+
+                    try {
+                        final String reportInfoCurrentFilter = "First selected Filter \""+textFilterForTestCaseRemove+"\" from FilterBox(top): ";
+                        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.sidebar.myfilters"))));
+                        webDriver.findElementByXPath(Homepage.getProperty("page.sidebar.myfilters")).click();
+                        if(webDriver.findElements(By.xpath(xPathMyFirstSelected)).size() > 0){
+                            final String urlLocationBefore = webDriver.getCurrentUrl();
+                            Point hoverItem = webDriver.findElement(By.xpath(xPathMyFirstSelected)).getLocation();
+                            ((JavascriptExecutor)webDriver).executeScript("return window.title;");
+                            ((JavascriptExecutor)webDriver).executeScript("window.scrollBy(0,"+(hoverItem.getY())+");");
+                            if (!webDriver.getCurrentUrl().contains(textFilterForTestCaseRemove)){
+                                webDriver.findElementByXPath(xPathMyFirstSelected).click();
+                                if (urlLocationBefore != webDriver.getCurrentUrl()){
+                                    report.writeToFile(reportInfoCurrentFilter, "removed successfully!");
+                                }else {
+                                    report.writeToFile(reportInfoCurrentFilter, "unable to remove! Clicked Button but Frontend doesn't response!");
+                                }
+                            }else {
+                                report.writeToFile(reportInfoCurrentFilter, "unable to remove Filter!");
+                            }
+                        }else {
+                            report.writeToFile(reportInfoCurrentFilter, "unable to check! Couldn't find Filter");
+                        }
+                        report.writeToFile("Checking GridPage Filter Remove from Filter Box", "Complete!");
+                        report.writeToFile("");
+
+
+                        try{
+                            Platform.runLater(() -> {
+                                statusInfo.setText("Checking Filters - Remove from Sidebar...");
+                            });
+
+                            System.out.println("Detect all filters from Sidebar");
+                            wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xPathMyFirstSelected)));
+                            MySelectedFilters = webDriver.findElementsByXPath(Homepage.getProperty("page.sidebar.myfilters"));
+                            List<WebElement> GridPadeAppliedFilters = webDriver.findElementsByXPath(Homepage.getProperty("page.sidebar.allfilters"));
+                            xPathMyFirstSelected = "";
+                            for (WebElement MySelectedFilter : MySelectedFilters){
+                                if (MySelectedFilter.getText().trim().toLowerCase().matches(GridPadeAppliedFilters.get(0).getText().trim().toLowerCase())
+                                && webDriver.findElementByXPath(Homepage.getProperty("page.sidebar.salesprice")).getText().trim().toLowerCase().matches(MySelectedFilter.getText().trim().toLowerCase()) ){
+                                    xPathMyFirstSelected = Homepage.getProperty("page.sidebar.salesprice");
+                                }
+                                if (MySelectedFilter.getText().trim().toLowerCase().matches(GridPadeAppliedFilters.get(0).getText().trim().toLowerCase())
+                                        && webDriver.findElementByXPath(Homepage.getProperty("page.sidebar.gender")).getText().trim().toLowerCase().matches(MySelectedFilter.getText().trim().toLowerCase()) ){
+                                    xPathMyFirstSelected = Homepage.getProperty("page.sidebar.gender");
+                                }
+                                if (MySelectedFilter.getText().trim().toLowerCase().matches(GridPadeAppliedFilters.get(0).getText().trim().toLowerCase())
+                                        && webDriver.findElementByXPath(Homepage.getProperty("page.sidebar.brand")).getText().trim().toLowerCase().matches(MySelectedFilter.getText().trim().toLowerCase()) ){
+                                    xPathMyFirstSelected = Homepage.getProperty("page.sidebar.brand");
+                                }
+                                if (MySelectedFilter.getText().trim().toLowerCase().matches(GridPadeAppliedFilters.get(0).getText().trim().toLowerCase())
+                                        && webDriver.findElementByXPath(Homepage.getProperty("page.sidebar.merchandise")).getText().trim().toLowerCase().matches(MySelectedFilter.getText().trim().toLowerCase()) ){
+                                    System.out.println("Merchandise Detected");
+                                    xPathMyFirstSelected = Homepage.getProperty("page.sidebar.merchandsie");
+                                }
+                            }
+                            if (xPathMyFirstSelected.length() == 0){
+                                System.out.println("Couldn't detect first applied filter");
+                                xPathMyFirstSelected = Homepage.getProperty("page.sidebar.color");
+
+                            }
+
+
+                            final String urlLocationBefore = webDriver.getCurrentUrl();
+                            final String textFilterForTestCaseRemoveFromSidebar = GridPadeAppliedFilters.get(0).getText().trim().toLowerCase();
+                            final String reportInfoCurrentFilterFromSidebar = "First applied Filter \""+textFilterForTestCaseRemoveFromSidebar+"\" from Sidebar: ";
+
+                            Point hoverItem = GridPadeAppliedFilters.get(0).getLocation();
+                            ((JavascriptExecutor)webDriver).executeScript("return window.title;");
+                            ((JavascriptExecutor)webDriver).executeScript("window.scrollBy(0,"+(hoverItem.getY())+");");
+                            if (webDriver.getCurrentUrl().contains(textFilterForTestCaseRemoveFromSidebar)){
+                                GridPadeAppliedFilters.get(0).click();
+                                if (urlLocationBefore != webDriver.getCurrentUrl()){
+                                    webDriver.findElementByXPath(xPathMyFirstSelected).click();
+                                    report.writeToFile(reportInfoCurrentFilterFromSidebar, "removed successfully!");
+                                }else {
+                                    report.writeToFile(reportInfoCurrentFilterFromSidebar, "unable to remove! Clicked Button but Frontend doesn't response!");
+                                }
+                            }else {
+                                report.writeToFile(reportInfoCurrentFilterFromSidebar, "unable to remove Filter!");
+                            }
+                            report.writeToFile("Checking GridPage Filter Remove from Sidebar", "Complete!");
+                            report.writeToFile("");
+
+
+                            Platform.runLater(() -> {
+                                statusInfo.setText("Checking Filters - Remove All from Sidebar...");
+                            });
+                            try{
+                                final String LocationUrlBefore = webDriver.getCurrentUrl();
+                                Point hoverItemResetAll = webDriver.findElement(By.xpath(Homepage.getProperty("page.sidebar.allfilters.reset"))).getLocation();
+                                ((JavascriptExecutor)webDriver).executeScript("return window.title;");
+                                ((JavascriptExecutor)webDriver).executeScript("window.scrollBy(0,"+(hoverItemResetAll.getY())+");");
+                                webDriver.findElement(By.xpath(Homepage.getProperty("page.sidebar.allfilters.reset"))).click();
+                                if (LocationUrlBefore != webDriver.getCurrentUrl() ){
+                                    report.writeToFile("Checking GridPage Remove All Filter from Sidebar: ", "Complete!");
+                                }else {
+                                    report.writeToFile("Checking GridPage Remove All Filter from Sidebar: ", "Not Successful! Couldn't remove all Filters via RemoveAllButton!");
+                                }
+
+                                Platform.runLater(() -> {
+                                    filtersApply.setStyle("-fx-background-color: #CCFF99");
+                                    filtersApply.setSelected(true);
+                                });
+
+                            }catch (Exception noResetAllFilters){
+                                report.writeToFile("Checking GridPage Remove All Filter from Sidebar: ", "Not Successful! Couldn't find remove all Button!");
+                                Platform.runLater(() -> {
+                                    filtersApply.setStyle("-fx-background-color: #FF0000");
+                                    filtersApply.setSelected(true);
+                                });
+                                noResetAllFilters.printStackTrace();
+                            }
+
+
+                        }catch (Exception noAddedPreviousFilter){
+                            report.writeToFile("Checking GridPage Filter Remove from Filter Box", "unable to add previous filter!");
+                            Platform.runLater(() -> {
+                                filtersApply.setStyle("-fx-background-color: #FF0000");
+                                filtersApply.setSelected(true);
+                            });
+                            noAddedPreviousFilter.printStackTrace();
+                        }
+
+                    }catch (Exception notRemoveFirstAppliedFilter){
+                        Platform.runLater(() -> {
+                            filtersApply.setStyle("-fx-background-color: #FF0000");
+                            filtersApply.setSelected(true);
+                        });
+                        isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"GridPageErrorFiltersRemoveFromFilterBox.png");
+                        if (isSuccessful){
+                            report.writeToFile("GridPage Error Screenshot: ", "Screenshot successful!");
+                        }else {
+                            report.writeToFile("GridPage Error Screenshot: ", "Screenshot not successful!");
+                        }
+                        webDriver.navigate().to(inputSearch.getText().trim());
+                        report.writeToFile("Checking GridPage Remove from Filter Box", "Something goes wrong, couldn't remove Filter!");
+                    }
 
 
 
