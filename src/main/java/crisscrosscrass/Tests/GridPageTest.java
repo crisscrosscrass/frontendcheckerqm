@@ -776,7 +776,7 @@ public class GridPageTest {
 
         report.writeToFile("=================================", "");
     }
-    public void checkingFilterApply(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox filtersApply, TextField inputGridPageURL, Text statusInfo, TextField inputSearch, Properties Homepage, boolean isSuccessful, boolean isAvailable, JFXCheckBox checkingSalesPriceFilter, JFXCheckBox checkingGenderFilter){
+    public void checkingFilterApply(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox filtersApply, TextField inputGridPageURL, Text statusInfo, TextField inputSearch, Properties Homepage, boolean isSuccessful, boolean isAvailable, JFXCheckBox checkingSalesPriceFilter, JFXCheckBox checkingGenderFilter, JFXCheckBox checkingColorFilter, JFXCheckBox checkingBrandFilter, JFXCheckBox checkingMerchandiseFilter){
         Platform.runLater(() -> {
             filtersApply.setStyle("-fx-background-color: #eef442");
             statusInfo.setText("Checking GridPage Filter Apply");
@@ -800,58 +800,174 @@ public class GridPageTest {
 
 
                     if (checkingSalesPriceFilter.isSelected() &&  MAX_FILTERS_TO_APPLY >= 1 ){
-                        Platform.runLater(() -> checkingSalesPriceFilter.setStyle("-fx-background-color: #eef442"));
+                        final String reportInfoCurrentFilter = "Apply Sales Price: ";
+                        final String xPathFilterApply = Homepage.getProperty("page.sidebar.salesprice");
+                        final JFXCheckBox checkBoxToApplyChanges = checkingSalesPriceFilter;
+
+                        Platform.runLater(() -> checkBoxToApplyChanges.setStyle("-fx-background-color: #eef442"));
                         try {
-                            if(webDriver.findElements(By.xpath(Homepage.getProperty("page.sidebar.salesprice"))).size() > 0){
+                            if(webDriver.findElements(By.xpath(xPathFilterApply)).size() > 0){
                                 final String urlLocationBefore = webDriver.getCurrentUrl();
-                                Point hoverItem = webDriver.findElement(By.xpath(Homepage.getProperty("page.sidebar.salesprice"))).getLocation();
+                                Point hoverItem = webDriver.findElement(By.xpath(xPathFilterApply)).getLocation();
                                 ((JavascriptExecutor)webDriver).executeScript("return window.title;");
                                 ((JavascriptExecutor)webDriver).executeScript("window.scrollBy(0,"+(hoverItem.getY())+");");
-
-                                webDriver.findElementByXPath(Homepage.getProperty("page.sidebar.salesprice")).click();
-                                if (urlLocationBefore != webDriver.getCurrentUrl()){
-                                    Platform.runLater(() -> checkingSalesPriceFilter.setStyle("-fx-background-color: #CCFF99"));
-                                    report.writeToFile("Apply Sales Price: ", "Successful!");
-                                    --MAX_FILTERS_TO_APPLY;
+                                if (!webDriver.getCurrentUrl().contains(webDriver.findElementByXPath(xPathFilterApply).getText().toLowerCase())){
+                                    webDriver.findElementByXPath(xPathFilterApply).click();
+                                    if (urlLocationBefore != webDriver.getCurrentUrl()){
+                                        Platform.runLater(() -> checkBoxToApplyChanges.setStyle("-fx-background-color: #CCFF99"));
+                                        report.writeToFile(reportInfoCurrentFilter, "Successful!");
+                                        --MAX_FILTERS_TO_APPLY;
+                                    }else {
+                                        Platform.runLater(() -> checkBoxToApplyChanges.setStyle("-fx-background-color: #FF0000"));
+                                        report.writeToFile(reportInfoCurrentFilter, "unable to apply! Clicked Button but Frontend doesn't response!");
+                                    }
                                 }else {
-                                    Platform.runLater(() -> checkingSalesPriceFilter.setStyle("-fx-background-color: #FF0000"));
-                                    report.writeToFile("Apply Sales Price: ", "unable to apply! Clicked Button but Frontend doesn't response!");
+                                    Platform.runLater(() -> checkBoxToApplyChanges.setStyle("-fx-background-color: #CCFF99"));
+                                    report.writeToFile(reportInfoCurrentFilter, "Successful! (Filter was already selected!)");
+                                    --MAX_FILTERS_TO_APPLY;
                                 }
                             }else {
-
-                                report.writeToFile("Apply Sales Price: ", "unable to check! Couldn't find SalesPrice Filter");
+                                report.writeToFile(reportInfoCurrentFilter, "unable to check! Couldn't find Filter");
                             }
-                        }catch (Exception salesFilterSelectedError){
-                            report.writeToFile("Apply Sales Price: ", "Something goes wrong, couldn't apply Filter!");
+                        }catch (Exception FilterSelectedError){
+                            report.writeToFile(reportInfoCurrentFilter, "Something goes wrong, couldn't apply Filter!");
                         }
                     }
 
                     if (checkingGenderFilter.isSelected() &&  MAX_FILTERS_TO_APPLY >= 1 ){
-                        Platform.runLater(() -> checkingGenderFilter.setStyle("-fx-background-color: #eef442"));
+                        final String reportInfoCurrentFilter = "Apply Gender Filter: ";
+                        final String xPathFilterApply = Homepage.getProperty("page.filter.gender");
+                        final JFXCheckBox checkBoxToApplyChanges = checkingGenderFilter;
+
+                        Platform.runLater(() -> checkBoxToApplyChanges.setStyle("-fx-background-color: #eef442"));
                         try {
-                            if(webDriver.findElements(By.xpath(Homepage.getProperty("page.filter.gender"))).size() > 0){
+                            if(webDriver.findElements(By.xpath(xPathFilterApply)).size() > 0){
                                 final String urlLocationBefore = webDriver.getCurrentUrl();
-                                Point hoverItem = webDriver.findElement(By.xpath(Homepage.getProperty("page.filter.gender"))).getLocation();
+                                Point hoverItem = webDriver.findElement(By.xpath(xPathFilterApply)).getLocation();
                                 ((JavascriptExecutor)webDriver).executeScript("return window.title;");
                                 ((JavascriptExecutor)webDriver).executeScript("window.scrollBy(0,"+(hoverItem.getY())+");");
-
-                                webDriver.findElementByXPath(Homepage.getProperty("page.filter.gender")).click();
-                                if (urlLocationBefore != webDriver.getCurrentUrl()){
-                                    Platform.runLater(() -> checkingGenderFilter.setStyle("-fx-background-color: #CCFF99"));
-                                    report.writeToFile("Apply Gender Filter: ", "Successful!");
-                                    --MAX_FILTERS_TO_APPLY;
+                                if (!webDriver.getCurrentUrl().contains(webDriver.findElementByXPath(xPathFilterApply).getText().toLowerCase())){
+                                    webDriver.findElementByXPath(xPathFilterApply).click();
+                                    if (urlLocationBefore != webDriver.getCurrentUrl()){
+                                        Platform.runLater(() -> checkBoxToApplyChanges.setStyle("-fx-background-color: #CCFF99"));
+                                        report.writeToFile(reportInfoCurrentFilter, "Successful!");
+                                        --MAX_FILTERS_TO_APPLY;
+                                    }else {
+                                        Platform.runLater(() -> checkBoxToApplyChanges.setStyle("-fx-background-color: #FF0000"));
+                                        report.writeToFile(reportInfoCurrentFilter, "unable to apply! Clicked Button but Frontend doesn't response!");
+                                    }
                                 }else {
-                                    Platform.runLater(() -> checkingGenderFilter.setStyle("-fx-background-color: #FF0000"));
-                                    report.writeToFile("Apply Gender Filter: ", "unable to apply! Clicked Button but Frontend doesn't response!");
+                                    Platform.runLater(() -> checkBoxToApplyChanges.setStyle("-fx-background-color: #CCFF99"));
+                                    report.writeToFile(reportInfoCurrentFilter, "Successful! (Filter was already selected!)");
+                                    --MAX_FILTERS_TO_APPLY;
                                 }
                             }else {
-
-                                report.writeToFile("Apply Gender Filter: ", "unable to check! Couldn't find SalesPrice Filter");
+                                report.writeToFile(reportInfoCurrentFilter, "unable to check! Couldn't find Filter");
                             }
-                        }catch (Exception salesFilterSelectedError){
-                            report.writeToFile("Apply Gender Filter: ", "Something goes wrong, couldn't apply Filter!");
+                        }catch (Exception FilterSelectedError){
+                            report.writeToFile(reportInfoCurrentFilter, "Something goes wrong, couldn't apply Filter!");
                         }
                     }
+
+                    if (checkingColorFilter.isSelected() &&  MAX_FILTERS_TO_APPLY >= 1 ){
+                        final String reportInfoCurrentFilter = "Apply Color Filter: ";
+                        final String xPathFilterApply = Homepage.getProperty("page.filter.color");
+                        final JFXCheckBox checkBoxToApplyChanges = checkingColorFilter;
+
+                        Platform.runLater(() -> checkBoxToApplyChanges.setStyle("-fx-background-color: #eef442"));
+                        try {
+                            System.out.println(webDriver.findElementByXPath(xPathFilterApply).getText());
+                            if(webDriver.findElements(By.xpath(xPathFilterApply)).size() > 0){
+                                final String urlLocationBefore = webDriver.getCurrentUrl();
+                                Point hoverItem = webDriver.findElement(By.xpath(xPathFilterApply)).getLocation();
+                                ((JavascriptExecutor)webDriver).executeScript("return window.title;");
+                                ((JavascriptExecutor)webDriver).executeScript("window.scrollBy(0,"+(hoverItem.getY())+");");
+                                webDriver.findElementByXPath(xPathFilterApply).click();
+                                if (urlLocationBefore != webDriver.getCurrentUrl()){
+                                    Platform.runLater(() -> checkBoxToApplyChanges.setStyle("-fx-background-color: #CCFF99"));
+                                    report.writeToFile(reportInfoCurrentFilter, "Successful!");
+                                    --MAX_FILTERS_TO_APPLY;
+                                }else {
+                                    Platform.runLater(() -> checkBoxToApplyChanges.setStyle("-fx-background-color: #FF0000"));
+                                    report.writeToFile(reportInfoCurrentFilter, "unable to apply! Clicked Button but Frontend doesn't response!");
+                                }
+                            }else {
+                                report.writeToFile(reportInfoCurrentFilter, "unable to check! Couldn't find Filter");
+                            }
+                        }catch (Exception FilterSelectedError){
+                            report.writeToFile(reportInfoCurrentFilter, "Something goes wrong, couldn't apply Filter!");
+                        }
+                    }
+
+                    if (checkingBrandFilter.isSelected() &&  MAX_FILTERS_TO_APPLY >= 1 ){
+                        final String reportInfoCurrentFilter = "Apply Brand Filter: ";
+                        final String xPathFilterApply = Homepage.getProperty("page.filter.brand");
+                        final JFXCheckBox checkBoxToApplyChanges = checkingBrandFilter;
+
+                        Platform.runLater(() -> checkBoxToApplyChanges.setStyle("-fx-background-color: #eef442"));
+                        try {
+                            if(webDriver.findElements(By.xpath(xPathFilterApply)).size() > 0){
+                                final String urlLocationBefore = webDriver.getCurrentUrl();
+                                Point hoverItem = webDriver.findElement(By.xpath(xPathFilterApply)).getLocation();
+                                ((JavascriptExecutor)webDriver).executeScript("return window.title;");
+                                ((JavascriptExecutor)webDriver).executeScript("window.scrollBy(0,"+(hoverItem.getY())+");");
+                                if (!webDriver.getCurrentUrl().contains(webDriver.findElementByXPath(xPathFilterApply).getText().toLowerCase())){
+                                    webDriver.findElementByXPath(xPathFilterApply).click();
+                                    if (urlLocationBefore != webDriver.getCurrentUrl()){
+                                        Platform.runLater(() -> checkBoxToApplyChanges.setStyle("-fx-background-color: #CCFF99"));
+                                        report.writeToFile(reportInfoCurrentFilter, "Successful!");
+                                        --MAX_FILTERS_TO_APPLY;
+                                    }else {
+                                        Platform.runLater(() -> checkBoxToApplyChanges.setStyle("-fx-background-color: #FF0000"));
+                                        report.writeToFile(reportInfoCurrentFilter, "unable to apply! Clicked Button but Frontend doesn't response!");
+                                    }
+                                }else {
+                                    Platform.runLater(() -> checkBoxToApplyChanges.setStyle("-fx-background-color: #CCFF99"));
+                                    report.writeToFile(reportInfoCurrentFilter, "Successful! (Filter was already selected!)");
+                                    --MAX_FILTERS_TO_APPLY;
+                                }
+                            }else {
+                                report.writeToFile(reportInfoCurrentFilter, "unable to check! Couldn't find Filter");
+                            }
+                        }catch (Exception FilterSelectedError){
+                            report.writeToFile(reportInfoCurrentFilter, "Something goes wrong, couldn't apply Filter!");
+                        }
+                    }
+                    if (checkingMerchandiseFilter.isSelected() &&  MAX_FILTERS_TO_APPLY >= 1 ){
+                        final String reportInfoCurrentFilter = "Apply Merchandise Filter: ";
+                        final String xPathFilterApply = Homepage.getProperty("page.filter.merchandise");
+                        final JFXCheckBox checkBoxToApplyChanges = checkingMerchandiseFilter;
+
+                        Platform.runLater(() -> checkBoxToApplyChanges.setStyle("-fx-background-color: #eef442"));
+                        try {
+                            if(webDriver.findElements(By.xpath(xPathFilterApply)).size() > 0){
+                                final String urlLocationBefore = webDriver.getCurrentUrl();
+                                Point hoverItem = webDriver.findElement(By.xpath(xPathFilterApply)).getLocation();
+                                ((JavascriptExecutor)webDriver).executeScript("return window.title;");
+                                ((JavascriptExecutor)webDriver).executeScript("window.scrollBy(0,"+(hoverItem.getY())+");");
+                                if (!webDriver.getCurrentUrl().contains(webDriver.findElementByXPath(xPathFilterApply).getText().toLowerCase())){
+                                    webDriver.findElementByXPath(xPathFilterApply).click();
+                                    if (urlLocationBefore != webDriver.getCurrentUrl()){
+                                        Platform.runLater(() -> checkBoxToApplyChanges.setStyle("-fx-background-color: #CCFF99"));
+                                        report.writeToFile(reportInfoCurrentFilter, "Successful!");
+                                        --MAX_FILTERS_TO_APPLY;
+                                    }else {
+                                        Platform.runLater(() -> checkBoxToApplyChanges.setStyle("-fx-background-color: #FF0000"));
+                                        report.writeToFile(reportInfoCurrentFilter, "unable to apply! Clicked Button but Frontend doesn't response!");
+                                    }
+                                }else {
+                                    Platform.runLater(() -> checkBoxToApplyChanges.setStyle("-fx-background-color: #CCFF99"));
+                                    report.writeToFile(reportInfoCurrentFilter, "Successful! (Filter was already selected!)");
+                                    --MAX_FILTERS_TO_APPLY;
+                                }
+                            }else {
+                                report.writeToFile(reportInfoCurrentFilter, "unable to check! Couldn't find Filter");
+                            }
+                        }catch (Exception FilterSelectedError){
+                            report.writeToFile(reportInfoCurrentFilter, "Something goes wrong, couldn't apply Filter!");
+                        }
+                    }
+
 
 
 
