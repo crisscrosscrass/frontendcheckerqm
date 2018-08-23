@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="crisscrosscrass.Controller.GridPageWithFillInsController">
+    <children>
+        <JFXCheckBox fx:id="ShowAllFillInPage" text="Show all Fill in Page" />
+    </children>
+</AnchorPane>

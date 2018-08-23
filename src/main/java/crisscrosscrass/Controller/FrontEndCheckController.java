@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXCheckBox;
 import crisscrosscrass.*;
 import crisscrosscrass.Tasks.*;
 import crisscrosscrass.Tests.GridPageTest;
+import crisscrosscrass.Tests.GridPageTestWithFillIns;
 import crisscrosscrass.Tests.GridPageTestWithWindows;
 import crisscrosscrass.Tests.HomepageTest;
 import javafx.application.Platform;
@@ -111,6 +112,8 @@ public class FrontEndCheckController {
     @FXML
     TextField inputGridPageURLWithWindows;
     @FXML
+    TextField inputGridPageURLWithFillIns;
+    @FXML
     HBox outputPlace;
     @FXML
     ImageView preloaderCat;
@@ -144,6 +147,7 @@ public class FrontEndCheckController {
     //Controller Settings
     @FXML GridPageWithWindowsController gridPageWithWindowsController;
     @FXML GridPageNoWindowsController gridPageNoWindowsController;
+    @FXML GridPageWithFillInsController gridPageWithFillInsController;
 
 
 
@@ -158,10 +162,6 @@ public class FrontEndCheckController {
     @FXML
     public void initialize() {
         System.out.println("FrontendCheckController launched!");
-
-        //gridPageCheckController.init(this);
-
-
         settingHomepage.setOnAction(event -> {
             updateCheckerTabs();
         });
@@ -336,21 +336,27 @@ public class FrontEndCheckController {
                     if (!tabGridPage.isDisable()){
                         tabPane.getSelectionModel().select(tabGridPage);
                         GridPageTest gridPageTest = new GridPageTest();
-                        //gridPageTest.checkingSorting(webDriver,report,js,gridPageNoWindowsController.sortingValues,inputGridPageURL,statusInfo,inputSearch,inputEmailAdress,xpathPattern1,xpathPattern2,Homepage,isSuccessful,isAvailable);
+                        gridPageTest.checkingSorting(webDriver,report,js,gridPageNoWindowsController.sortingValues,inputGridPageURL,statusInfo,inputSearch,inputEmailAdress,xpathPattern1,xpathPattern2,Homepage,isSuccessful,isAvailable);
                         //TODO investigate why SmallToLargeImages test failed sometimes...?
-                        //gridPageTest.checkingSwitchFromSmallToLargeImages(webDriver,report,js,gridPageNoWindowsController.switchFromSmallToLarge,inputGridPageURL,statusInfo,inputSearch,inputEmailAdress,xpathPattern1,xpathPattern2,Homepage,isSuccessful,isAvailable);
-                        //gridPageTest.checkingPagingForwardBackward(webDriver,report,js,gridPageNoWindowsController.pagingForwardBackward,inputGridPageURL,statusInfo,inputSearch,inputEmailAdress,xpathPattern1,xpathPattern2,Homepage,isSuccessful,isAvailable);
-                        //gridPageTest.checkingProductView300(webDriver,report,js,gridPageNoWindowsController.productView300,inputGridPageURL,statusInfo,inputSearch,inputEmailAdress,xpathPattern1,xpathPattern2,Homepage,isSuccessful,isAvailable);
-                        //gridPageTest.checkingDeeperStyle(webDriver,report,js,gridPageNoWindowsController.deeperStyle,inputGridPageURL,statusInfo,inputSearch,inputEmailAdress,xpathPattern1,xpathPattern2,Homepage,isSuccessful,isAvailable);
-                        //gridPageTest.checkingStyleBoxOpenClose(webDriver,report,js,gridPageNoWindowsController.styleBoxOpenClose,inputGridPageURL,statusInfo,inputSearch,inputEmailAdress,xpathPattern1,xpathPattern2,Homepage,isSuccessful,isAvailable);
-                        //gridPageTest.checkingFilterApply(webDriver,report,js,gridPageNoWindowsController.filtersApply,inputGridPageURL,statusInfo,inputSearch,Homepage,isSuccessful,isAvailable,checkingSalesPriceFilter,checkingGenderFilter,checkingColorFilter,checkingBrandFilter,checkingMerchandiseFilter);
-                        //gridPageTest.checkingSearchBoxInBrandFilter(webDriver,report,js,gridPageNoWindowsController.searchBoxInBrandFilter,inputGridPageURL,inputGridPageKeyword,statusInfo,inputSearch,inputEmailAdress,xpathPattern1,xpathPattern2,Homepage,isSuccessful,isAvailable);
+                        gridPageTest.checkingSwitchFromSmallToLargeImages(webDriver,report,js,gridPageNoWindowsController.switchFromSmallToLarge,inputGridPageURL,statusInfo,inputSearch,inputEmailAdress,xpathPattern1,xpathPattern2,Homepage,isSuccessful,isAvailable);
+                        gridPageTest.checkingPagingForwardBackward(webDriver,report,js,gridPageNoWindowsController.pagingForwardBackward,inputGridPageURL,statusInfo,inputSearch,inputEmailAdress,xpathPattern1,xpathPattern2,Homepage,isSuccessful,isAvailable);
+                        gridPageTest.checkingProductView300(webDriver,report,js,gridPageNoWindowsController.productView300,inputGridPageURL,statusInfo,inputSearch,inputEmailAdress,xpathPattern1,xpathPattern2,Homepage,isSuccessful,isAvailable);
+                        gridPageTest.checkingDeeperStyle(webDriver,report,js,gridPageNoWindowsController.deeperStyle,inputGridPageURL,statusInfo,inputSearch,inputEmailAdress,xpathPattern1,xpathPattern2,Homepage,isSuccessful,isAvailable);
+                        gridPageTest.checkingStyleBoxOpenClose(webDriver,report,js,gridPageNoWindowsController.styleBoxOpenClose,inputGridPageURL,statusInfo,inputSearch,inputEmailAdress,xpathPattern1,xpathPattern2,Homepage,isSuccessful,isAvailable);
+                        gridPageTest.checkingFilterApply(webDriver,report,js,gridPageNoWindowsController.filtersApply,inputGridPageURL,statusInfo,inputSearch,Homepage,isSuccessful,isAvailable,checkingSalesPriceFilter,checkingGenderFilter,checkingColorFilter,checkingBrandFilter,checkingMerchandiseFilter);
+                        gridPageTest.checkingSearchBoxInBrandFilter(webDriver,report,js,gridPageNoWindowsController.searchBoxInBrandFilter,inputGridPageURL,inputGridPageKeyword,statusInfo,inputSearch,inputEmailAdress,xpathPattern1,xpathPattern2,Homepage,isSuccessful,isAvailable);
                         gridPageTest.checkingSearchBoxInShopFilter(webDriver,report,js,gridPageNoWindowsController.searchBoxInShopFilter,inputGridPageURL,inputGridPageKeyword,statusInfo,inputSearch,inputEmailAdress,xpathPattern1,xpathPattern2,Homepage,isSuccessful,isAvailable);
                     }
                     if (!tabGridPageWithWindows.isDisable()){
                         tabPane.getSelectionModel().select(tabGridPageWithWindows);
                         GridPageTestWithWindows gridPageTestWithWindows = new GridPageTestWithWindows();
                         gridPageTestWithWindows.pagingWithWindowsForward(webDriver,report,js,gridPageWithWindowsController.PagingWithWindowsForward,inputGridPageURLWithWindows,statusInfo,inputSearch,inputEmailAdress,xpathPattern1,xpathPattern2,Homepage,isSuccessful,isAvailable);
+                    }
+
+                    if (!tabGridPageFillIns.isDisable()){
+                        tabPane.getSelectionModel().select(tabGridPageFillIns);
+                        GridPageTestWithFillIns gridPageTestWithFillIns = new GridPageTestWithFillIns();
+                        gridPageTestWithFillIns.ShowAllFillInPage(webDriver,report,js,gridPageWithFillInsController.ShowAllFillInPage,inputGridPageURLWithFillIns,statusInfo,inputSearch,inputEmailAdress,xpathPattern1,xpathPattern2,Homepage,isSuccessful,isAvailable);
                     }
 
 

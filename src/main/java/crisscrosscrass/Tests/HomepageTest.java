@@ -521,6 +521,7 @@ public class HomepageTest {
                             WebElement element = webDriver.findElement(By.id(Homepage.getProperty("page.search.bar")));
                             element.sendKeys(searchAliases[i].trim()); // Enter searchAliases without pressing ENTER
                             wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@class, 'main-search-suggestions')]/li/a/div/*[contains(@class, 'srTitle')]")));
+                            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@class, 'main-search-suggestions')]/li/a/div/*[contains(@class, 'srType')]")));
                             List<WebElement> searchAliasesTitles = webDriver.findElementsByXPath("//*[contains(@class, 'main-search-suggestions')]/li/a/div/*[contains(@class, 'srTitle')]");
                             List<WebElement> searchAliasesType = webDriver.findElementsByXPath("//*[contains(@class, 'main-search-suggestions')]/li/a/div/*[contains(@class, 'srType')]");
                             report.writeToFile("Checking Text Search and Suggestions for \""+ searchAliases[i].trim()+"\"");

@@ -67,7 +67,7 @@ public class GridPageTestWithWindows {
                         report.writeToFile("GridPage Error Screenshot: ", "Screenshot not successful!");
                     }
                     webDriver.navigate().to(inputSearch.getText().trim());
-                    report.writeToFile("Checking GridPage with Windows Paging Forward: ", "Could find any Windows");
+                    report.writeToFile("Checking GridPage with Windows Paging Forward: ", "Couldn't find any Windows");
                     gridPageIssue.printStackTrace();
                 }
             }catch (Exception noRequestedSiteFound){
