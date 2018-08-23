@@ -1001,27 +1001,37 @@ public class GridPageTest {
                     List<WebElement> MySelectedFilters = webDriver.findElementsByXPath(Homepage.getProperty("page.sidebar.myfilters"));
                     String xPathMyFirstSelected = "";
                     String textFilterForTestCaseRemove = MySelectedFilters.get(0).getText().trim().toLowerCase();
-                    if(webDriver.findElementByXPath(Homepage.getProperty("page.sidebar.salesprice")).getText().trim().toLowerCase().matches(MySelectedFilters.get(0).getText().trim().toLowerCase())
-                            &&webDriver.findElementByXPath(Homepage.getProperty("page.sidebar.salesprice")).getText().trim().toLowerCase().length() == MySelectedFilters.get(0).getText().trim().toLowerCase().length() ) {
-                        xPathMyFirstSelected = Homepage.getProperty("page.sidebar.salesprice");
+                    if(webDriver.findElements(By.xpath(Homepage.getProperty("page.sidebar.gender"))).size() > 0){
+                        if(webDriver.findElementByXPath(Homepage.getProperty("page.sidebar.salesprice")).getText().trim().toLowerCase().matches(MySelectedFilters.get(0).getText().trim().toLowerCase())
+                                &&webDriver.findElementByXPath(Homepage.getProperty("page.sidebar.salesprice")).getText().trim().toLowerCase().length() == MySelectedFilters.get(0).getText().trim().toLowerCase().length() ) {
+                            xPathMyFirstSelected = Homepage.getProperty("page.sidebar.salesprice");
+                        }
                     }
-                    if(webDriver.findElementByXPath(Homepage.getProperty("page.sidebar.gender")).getText().trim().toLowerCase().matches(MySelectedFilters.get(0).getText().trim().toLowerCase())
-                            &&webDriver.findElementByXPath(Homepage.getProperty("page.sidebar.gender")).getText().trim().toLowerCase().length() == MySelectedFilters.get(0).getText().trim().toLowerCase().length() ) {
-                        xPathMyFirstSelected = Homepage.getProperty("page.sidebar.gender");
+                    if(webDriver.findElements(By.xpath(Homepage.getProperty("page.sidebar.gender"))).size() > 0){
+                        if(webDriver.findElementByXPath(Homepage.getProperty("page.sidebar.gender")).getText().trim().toLowerCase().matches(MySelectedFilters.get(0).getText().trim().toLowerCase())
+                                &&webDriver.findElementByXPath(Homepage.getProperty("page.sidebar.gender")).getText().trim().toLowerCase().length() == MySelectedFilters.get(0).getText().trim().toLowerCase().length() ) {
+                            xPathMyFirstSelected = Homepage.getProperty("page.sidebar.gender");
+                        }
                     }
-                    if(webDriver.findElementByXPath(Homepage.getProperty("page.sidebar.brand")).getText().trim().toLowerCase().matches(MySelectedFilters.get(0).getText().trim().toLowerCase())
+                    if(webDriver.findElements(By.xpath(Homepage.getProperty("page.sidebar.brand"))).size() > 0){
+                        if(webDriver.findElementByXPath(Homepage.getProperty("page.sidebar.brand")).getText().trim().toLowerCase().matches(MySelectedFilters.get(0).getText().trim().toLowerCase())
                             &&webDriver.findElementByXPath(Homepage.getProperty("page.sidebar.brand")).getText().trim().toLowerCase().length() == MySelectedFilters.get(0).getText().trim().toLowerCase().length() ) {
                         xPathMyFirstSelected = Homepage.getProperty("page.sidebar.brand");
+                        }
                     }
-                    if(webDriver.findElementByXPath(Homepage.getProperty("page.sidebar.merchandise")).getText().trim().toLowerCase().matches(MySelectedFilters.get(0).getText().trim().toLowerCase())
-                            &&webDriver.findElementByXPath(Homepage.getProperty("page.sidebar.merchandise")).getText().trim().toLowerCase().length() == MySelectedFilters.get(0).getText().trim().toLowerCase().length() ) {
-                        xPathMyFirstSelected = Homepage.getProperty("page.sidebar.merchandise");
+                    if(webDriver.findElements(By.xpath(Homepage.getProperty("page.sidebar.merchandise"))).size() > 0){
+                        if(webDriver.findElementByXPath(Homepage.getProperty("page.sidebar.merchandise")).getText().trim().toLowerCase().matches(MySelectedFilters.get(0).getText().trim().toLowerCase())
+                                &&webDriver.findElementByXPath(Homepage.getProperty("page.sidebar.merchandise")).getText().trim().toLowerCase().length() == MySelectedFilters.get(0).getText().trim().toLowerCase().length() ) {
+                            xPathMyFirstSelected = Homepage.getProperty("page.sidebar.merchandise");
+                        }
+                    }
+                    if(webDriver.findElements(By.xpath(Homepage.getProperty("page.sidebar.color"))).size() > 0){
+                        if (xPathMyFirstSelected.length() == 0){
+                            System.out.println("Couldn't detect first applied filter");
+                            xPathMyFirstSelected = Homepage.getProperty("page.sidebar.color");
+                        }
                     }
 
-                    if (xPathMyFirstSelected.length() == 0){
-                        System.out.println("Couldn't detect first applied filter");
-                        xPathMyFirstSelected = Homepage.getProperty("page.sidebar.color");
-                    }
 
 
 
@@ -1063,22 +1073,30 @@ public class GridPageTest {
                             List<WebElement> GridPadeAppliedFilters = webDriver.findElementsByXPath(Homepage.getProperty("page.sidebar.allfilters"));
                             xPathMyFirstSelected = "";
                             for (WebElement MySelectedFilter : MySelectedFilters){
-                                if (MySelectedFilter.getText().trim().toLowerCase().matches(GridPadeAppliedFilters.get(0).getText().trim().toLowerCase())
-                                && webDriver.findElementByXPath(Homepage.getProperty("page.sidebar.salesprice")).getText().trim().toLowerCase().matches(MySelectedFilter.getText().trim().toLowerCase()) ){
-                                    xPathMyFirstSelected = Homepage.getProperty("page.sidebar.salesprice");
+                                if(webDriver.findElements(By.xpath(Homepage.getProperty("page.sidebar.salesprice"))).size() > 0){
+                                    if (MySelectedFilter.getText().trim().toLowerCase().matches(GridPadeAppliedFilters.get(0).getText().trim().toLowerCase())
+                                            && webDriver.findElementByXPath(Homepage.getProperty("page.sidebar.salesprice")).getText().trim().toLowerCase().matches(MySelectedFilter.getText().trim().toLowerCase()) ){
+                                        xPathMyFirstSelected = Homepage.getProperty("page.sidebar.salesprice");
+                                    }
                                 }
-                                if (MySelectedFilter.getText().trim().toLowerCase().matches(GridPadeAppliedFilters.get(0).getText().trim().toLowerCase())
-                                        && webDriver.findElementByXPath(Homepage.getProperty("page.sidebar.gender")).getText().trim().toLowerCase().matches(MySelectedFilter.getText().trim().toLowerCase()) ){
-                                    xPathMyFirstSelected = Homepage.getProperty("page.sidebar.gender");
+                                if(webDriver.findElements(By.xpath(Homepage.getProperty("page.sidebar.gender"))).size() > 0){
+                                    if (MySelectedFilter.getText().trim().toLowerCase().matches(GridPadeAppliedFilters.get(0).getText().trim().toLowerCase())
+                                            && webDriver.findElementByXPath(Homepage.getProperty("page.sidebar.gender")).getText().trim().toLowerCase().matches(MySelectedFilter.getText().trim().toLowerCase()) ){
+                                        xPathMyFirstSelected = Homepage.getProperty("page.sidebar.gender");
+                                    }
                                 }
-                                if (MySelectedFilter.getText().trim().toLowerCase().matches(GridPadeAppliedFilters.get(0).getText().trim().toLowerCase())
-                                        && webDriver.findElementByXPath(Homepage.getProperty("page.sidebar.brand")).getText().trim().toLowerCase().matches(MySelectedFilter.getText().trim().toLowerCase()) ){
-                                    xPathMyFirstSelected = Homepage.getProperty("page.sidebar.brand");
+                                if(webDriver.findElements(By.xpath(Homepage.getProperty("page.sidebar.brand"))).size() > 0){
+                                    if (MySelectedFilter.getText().trim().toLowerCase().matches(GridPadeAppliedFilters.get(0).getText().trim().toLowerCase())
+                                            && webDriver.findElementByXPath(Homepage.getProperty("page.sidebar.brand")).getText().trim().toLowerCase().matches(MySelectedFilter.getText().trim().toLowerCase()) ){
+                                        xPathMyFirstSelected = Homepage.getProperty("page.sidebar.brand");
+                                    }
                                 }
-                                if (MySelectedFilter.getText().trim().toLowerCase().matches(GridPadeAppliedFilters.get(0).getText().trim().toLowerCase())
-                                        && webDriver.findElementByXPath(Homepage.getProperty("page.sidebar.merchandise")).getText().trim().toLowerCase().matches(MySelectedFilter.getText().trim().toLowerCase()) ){
-                                    System.out.println("Merchandise Detected");
-                                    xPathMyFirstSelected = Homepage.getProperty("page.sidebar.merchandsie");
+                                if(webDriver.findElements(By.xpath(Homepage.getProperty("page.sidebar.merchandise"))).size() > 0){
+                                    if (MySelectedFilter.getText().trim().toLowerCase().matches(GridPadeAppliedFilters.get(0).getText().trim().toLowerCase())
+                                            && webDriver.findElementByXPath(Homepage.getProperty("page.sidebar.merchandise")).getText().trim().toLowerCase().matches(MySelectedFilter.getText().trim().toLowerCase()) ){
+                                        System.out.println("Merchandise Detected");
+                                        xPathMyFirstSelected = Homepage.getProperty("page.sidebar.merchandsie");
+                                    }
                                 }
                             }
                             if (xPathMyFirstSelected.length() == 0){
