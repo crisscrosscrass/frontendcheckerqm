@@ -6,5 +6,5 @@ import javafx.fxml.FXML;
 public class GridPageWithWindowsController {
 
     @FXML
-    JFXCheckBox testJFXCheckbox;
+    JFXCheckBox PagingWithWindowsForward;
 }

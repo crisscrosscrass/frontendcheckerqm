@@ -1283,7 +1283,7 @@ public class GridPageTest {
                         }else {
                             report.writeToFile("GridPage Error Screenshot: ", "Screenshot not successful!");
                         }
-                        report.writeToFile("Checking GridPage Search Box in Brand Filter: ", "Couldn't find any Brand Box to enter Keyword");
+                        report.writeToFile("Checking GridPage Search Box in Brand Filter: ", "Couldn't find any Suggestion Box to enter Keyword");
                         noStyleBoxOpenCloseFound.printStackTrace();
                     }
                 }catch (Exception gridPageIssue){
@@ -1380,7 +1380,7 @@ public class GridPageTest {
                         }else {
                             report.writeToFile("GridPage Error Screenshot: ", "Screenshot not successful!");
                         }
-                        report.writeToFile("Checking GridPage Search Box in Shop Filter: ", "Couldn't find any Brand Box to enter Keyword");
+                        report.writeToFile("Checking GridPage Search Box in Shop Filter: ", "Couldn't find any Suggestion Box to enter Keyword");
                         noStyleBoxOpenCloseFound.printStackTrace();
                     }
                 }catch (Exception gridPageIssue){
