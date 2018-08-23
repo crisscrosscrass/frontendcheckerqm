@@ -833,6 +833,10 @@ public class GridPageTest {
                         }
                     }
 
+
+
+
+
                     if (checkingGenderFilter.isSelected() &&  MAX_FILTERS_TO_APPLY >= 1 ){
                         final String reportInfoCurrentFilter = "Apply Gender Filter: ";
                         final String xPathFilterApply = Homepage.getProperty("page.sidebar.gender");
@@ -868,6 +872,11 @@ public class GridPageTest {
                         }
                     }
 
+
+
+
+
+
                     if (checkingColorFilter.isSelected() &&  MAX_FILTERS_TO_APPLY >= 1 ){
                         final String reportInfoCurrentFilter = "Apply Color Filter: ";
                         final String xPathFilterApply = Homepage.getProperty("page.sidebar.color");
@@ -897,6 +906,11 @@ public class GridPageTest {
                             report.writeToFile(reportInfoCurrentFilter, "Something goes wrong, couldn't apply Filter!");
                         }
                     }
+
+
+
+
+
 
                     if (checkingBrandFilter.isSelected() &&  MAX_FILTERS_TO_APPLY >= 1 ){
                         final String reportInfoCurrentFilter = "Apply Brand Filter: ";
@@ -932,6 +946,10 @@ public class GridPageTest {
                             report.writeToFile(reportInfoCurrentFilter, "Something goes wrong, couldn't apply Filter!");
                         }
                     }
+
+
+
+
                     if (checkingMerchandiseFilter.isSelected() &&  MAX_FILTERS_TO_APPLY >= 1 ){
                         final String reportInfoCurrentFilter = "Apply Merchandise Filter: ";
                         final String xPathFilterApply = Homepage.getProperty("page.sidebar.merchandise");
@@ -1000,11 +1018,13 @@ public class GridPageTest {
                         xPathMyFirstSelected = Homepage.getProperty("page.sidebar.merchandise");
                     }
 
-
                     if (xPathMyFirstSelected.length() == 0){
                         System.out.println("Couldn't detect first applied filter");
                         xPathMyFirstSelected = Homepage.getProperty("page.sidebar.color");
                     }
+
+
+
 
                     try {
                         final String reportInfoCurrentFilter = "First selected Filter \""+textFilterForTestCaseRemove+"\" from FilterBox(top): ";
@@ -1181,5 +1201,205 @@ public class GridPageTest {
         }
 
         report.writeToFile("=================================", "");
+    }
+
+    public void checkingSearchBoxInBrandFilter(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox searchBoxInBrandFilter, TextField inputGridPageURL, TextField inputGridPageKeyword,Text statusInfo, TextField inputSearch, TextField inputEmailAdress, String xpathPattern1, String xpathPattern2, Properties Homepage, boolean isSuccessful, boolean isAvailable){
+        Platform.runLater(() -> {
+            searchBoxInBrandFilter.setStyle("-fx-background-color: #eef442");
+            statusInfo.setText("Checking GridPage Search Box in Brand Filter...");
+        });
+
+
+        try {
+            ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
+            webDriver.switchTo().window(tabs.get(0));
+            try {
+                webDriver.navigate().to(inputGridPageURL.getText().trim());
+                WebDriverWait wait = new WebDriverWait(webDriver, 10);
+                try{
+                    if(webDriver.findElements(By.xpath(Homepage.getProperty("page.grid.windows"))).size() > 0){
+                        report.writeToFile("provided GridPageURL "+inputGridPageURL.getText(), " included Windows! Adjusted GridPage to make test happen!");
+                        webDriver.findElementByXPath(Homepage.getProperty("page.grid.windows.continue")).click();
+                        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Homepage.getProperty("page.grid.windows.continue"))));
+                    }else {
+                        System.out.println("No Window Element!");
+                    }
+                    try {
+                        Point hoverItem = webDriver.findElement(By.xpath(Homepage.getProperty("page.sidebar.brand.input"))).getLocation();
+                        ((JavascriptExecutor)webDriver).executeScript("return window.title;");
+                        ((JavascriptExecutor)webDriver).executeScript("window.scrollBy(0,"+(hoverItem.getY())+");");
+                        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.sidebar.brand.input"))));
+                        WebElement element = webDriver.findElement(By.xpath(Homepage.getProperty("page.sidebar.brand.input")));
+                        element.sendKeys(inputGridPageKeyword.getText().trim()); // Enter searchAliases without pressing ENTER
+                        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.sidebar.brand.suggestions"))));
+                        final String urlLocationBefore = webDriver.getCurrentUrl();
+                        webDriver.findElement(By.xpath(Homepage.getProperty("page.sidebar.brand.suggestions"))).click();
+                        if (urlLocationBefore != webDriver.getCurrentUrl() && webDriver.getCurrentUrl().contains(inputGridPageKeyword.getText().trim().toLowerCase())){
+                            Platform.runLater(() -> {
+                                searchBoxInBrandFilter.setStyle("-fx-background-color: #CCFF99");
+                                searchBoxInBrandFilter.setSelected(true);
+                            });
+                            report.writeToFile("Checking GridPage Search Box in Brand Filter: ", "Successful! Redirected to a functioning page containing \""+inputGridPageKeyword.getText().trim().toLowerCase()+"\" in the URL");
+                        }else{
+                            Platform.runLater(() -> {
+                                searchBoxInBrandFilter.setStyle("-fx-background-color: #FF0000");
+                                searchBoxInBrandFilter.setSelected(true);
+                            });
+                            report.writeToFile("Checking GridPage Search Box in Brand Filter: ", "Not successful! ");
+                            isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"GridPageErrorSearchInBrandFilter.png");
+                            if (isSuccessful){
+                                report.writeToFile("GridPage Error Screenshot: ", "Screenshot successful!");
+                            }else {
+                                report.writeToFile("GridPage Error Screenshot: ", "Screenshot not successful!");
+                            }
+                        }
+
+                    }catch (Exception noStyleBoxOpenCloseFound){
+                        Platform.runLater(() -> {
+                            searchBoxInBrandFilter.setStyle("-fx-background-color: #FF0000");
+                            searchBoxInBrandFilter.setSelected(true);
+                        });
+                        isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"GridPageErrorSearchInBrandFilter.png");
+                        if (isSuccessful){
+                            report.writeToFile("GridPage Error Screenshot: ", "Screenshot successful!");
+                        }else {
+                            report.writeToFile("GridPage Error Screenshot: ", "Screenshot not successful!");
+                        }
+                        report.writeToFile("Checking GridPage Search Box in Brand Filter: ", "Couldn't find any Brand Box to enter Keyword");
+                        noStyleBoxOpenCloseFound.printStackTrace();
+                    }
+                }catch (Exception gridPageIssue){
+                    Platform.runLater(() -> {
+                        searchBoxInBrandFilter.setStyle("-fx-background-color: #FF0000");
+                        searchBoxInBrandFilter.setSelected(true);
+                    });
+                    isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"GridPageErrorSearchInBrandFilter.png");
+                    if (isSuccessful){
+                        report.writeToFile("GridPage Error Screenshot: ", "Screenshot successful!");
+                    }else {
+                        report.writeToFile("GridPage Error Screenshot: ", "Screenshot not successful!");
+                    }
+                    webDriver.navigate().to(inputSearch.getText().trim());
+                    report.writeToFile("Checking GridPage Search Box in Brand Filter: ", "Sorting on this Page doesn't seems to be working or very slow");
+                    gridPageIssue.printStackTrace();
+                }
+            }catch (Exception noRequestedSiteFound){
+                Platform.runLater(() -> {
+                    searchBoxInBrandFilter.setStyle("-fx-background-color: #FF0000");
+                    searchBoxInBrandFilter.setSelected(true);
+                });
+                webDriver.navigate().to(inputSearch.getText().trim());
+                report.writeToFile("Checking GridPage Search Box in Brand Filter: ", "Couldn't navigate to requested Site!");
+                noRequestedSiteFound.printStackTrace();
+            }
+        }catch (Exception noBrowserWorking){
+            Platform.runLater(() -> {
+                searchBoxInBrandFilter.setStyle("-fx-background-color: #FF0000");
+                searchBoxInBrandFilter.setSelected(true);
+            });
+            webDriver.navigate().to(inputSearch.getText().trim());
+            report.writeToFile("Checking GridPage Search Box in Brand Filter: ", "unable to check! Browser not responding");
+            noBrowserWorking.printStackTrace();
+        }
+
+        report.writeToFile("=================================", "");
+
+    }
+
+    public void checkingSearchBoxInShopFilter(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox searchBoxInBrandFilter, TextField inputGridPageURL, TextField inputGridPageKeyword,Text statusInfo, TextField inputSearch, TextField inputEmailAdress, String xpathPattern1, String xpathPattern2, Properties Homepage, boolean isSuccessful, boolean isAvailable){
+        Platform.runLater(() -> {
+            searchBoxInBrandFilter.setStyle("-fx-background-color: #eef442");
+            statusInfo.setText("Checking GridPage Search Box in Shop Filter...");
+        });
+
+
+        try {
+            ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
+            webDriver.switchTo().window(tabs.get(0));
+            try {
+                webDriver.navigate().to(inputGridPageURL.getText().trim());
+                WebDriverWait wait = new WebDriverWait(webDriver, 10);
+                try{
+                    if(webDriver.findElements(By.xpath(Homepage.getProperty("page.grid.windows"))).size() > 0){
+                        report.writeToFile("provided GridPageURL "+inputGridPageURL.getText(), " included Windows! Adjusted GridPage to make test happen!");
+                        webDriver.findElementByXPath(Homepage.getProperty("page.grid.windows.continue")).click();
+                        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Homepage.getProperty("page.grid.windows.continue"))));
+                    }else {
+                        System.out.println("No Window Element!");
+                    }
+                    try {
+                        Point hoverItem = webDriver.findElement(By.xpath(Homepage.getProperty("page.sidebar.shop.input"))).getLocation();
+                        ((JavascriptExecutor)webDriver).executeScript("return window.title;");
+                        ((JavascriptExecutor)webDriver).executeScript("window.scrollBy(0,"+(hoverItem.getY())+");");
+                        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.sidebar.shop.input"))));
+                        WebElement element = webDriver.findElement(By.xpath(Homepage.getProperty("page.sidebar.shop.input")));
+                        element.sendKeys(inputGridPageKeyword.getText().trim()); // Enter searchAliases without pressing ENTER
+                        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.sidebar.shop.suggestions"))));
+                        final String urlLocationBefore = webDriver.getCurrentUrl();
+                        webDriver.findElement(By.xpath(Homepage.getProperty("page.sidebar.shop.suggestions"))).click();
+                        if (urlLocationBefore != webDriver.getCurrentUrl() && webDriver.getCurrentUrl().contains(inputGridPageKeyword.getText().trim().toLowerCase())){
+                            Platform.runLater(() -> {
+                                searchBoxInBrandFilter.setStyle("-fx-background-color: #CCFF99");
+                                searchBoxInBrandFilter.setSelected(true);
+                            });
+                            report.writeToFile("Checking GridPage Search Box in Shop Filter: ", "Successful! Redirected to a functioning page containing \""+inputGridPageKeyword.getText().trim().toLowerCase()+"\" in the URL");
+                        }else{
+                            Platform.runLater(() -> {
+                                searchBoxInBrandFilter.setStyle("-fx-background-color: #FF0000");
+                                searchBoxInBrandFilter.setSelected(true);
+                            });
+                            report.writeToFile("Checking GridPage Search Box in Shop Filter: ", "Not successful! URL is the same or Keyword \""+inputGridPageKeyword.getText().trim().toLowerCase()+"\" couldn't be founded in URL");
+                        }
+
+                    }catch (Exception noStyleBoxOpenCloseFound){
+                        Platform.runLater(() -> {
+                            searchBoxInBrandFilter.setStyle("-fx-background-color: #FF0000");
+                            searchBoxInBrandFilter.setSelected(true);
+                        });
+                        isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"GridPageErrorSearchInShopFilter.png");
+                        if (isSuccessful){
+                            report.writeToFile("GridPage Error Screenshot: ", "Screenshot successful!");
+                        }else {
+                            report.writeToFile("GridPage Error Screenshot: ", "Screenshot not successful!");
+                        }
+                        report.writeToFile("Checking GridPage Search Box in Shop Filter: ", "Couldn't find any Brand Box to enter Keyword");
+                        noStyleBoxOpenCloseFound.printStackTrace();
+                    }
+                }catch (Exception gridPageIssue){
+                    Platform.runLater(() -> {
+                        searchBoxInBrandFilter.setStyle("-fx-background-color: #FF0000");
+                        searchBoxInBrandFilter.setSelected(true);
+                    });
+                    isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"GridPageErrorSearchInBrandFilter.png");
+                    if (isSuccessful){
+                        report.writeToFile("GridPage Error Screenshot: ", "Screenshot successful!");
+                    }else {
+                        report.writeToFile("GridPage Error Screenshot: ", "Screenshot not successful!");
+                    }
+                    webDriver.navigate().to(inputSearch.getText().trim());
+                    report.writeToFile("Checking GridPage Search Box in Shop Filter: ", "Sorting on this Page doesn't seems to be working or very slow");
+                    gridPageIssue.printStackTrace();
+                }
+            }catch (Exception noRequestedSiteFound){
+                Platform.runLater(() -> {
+                    searchBoxInBrandFilter.setStyle("-fx-background-color: #FF0000");
+                    searchBoxInBrandFilter.setSelected(true);
+                });
+                webDriver.navigate().to(inputSearch.getText().trim());
+                report.writeToFile("Checking GridPage Search Box in Shop Filter: ", "Couldn't navigate to requested Site!");
+                noRequestedSiteFound.printStackTrace();
+            }
+        }catch (Exception noBrowserWorking){
+            Platform.runLater(() -> {
+                searchBoxInBrandFilter.setStyle("-fx-background-color: #FF0000");
+                searchBoxInBrandFilter.setSelected(true);
+            });
+            webDriver.navigate().to(inputSearch.getText().trim());
+            report.writeToFile("Checking GridPage Search Box in Shop Filter: ", "unable to check! Browser not responding");
+            noBrowserWorking.printStackTrace();
+        }
+
+        report.writeToFile("=================================", "");
+
     }
 }

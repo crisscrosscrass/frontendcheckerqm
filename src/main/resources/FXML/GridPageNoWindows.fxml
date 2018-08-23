@@ -12,7 +12,7 @@
       <JFXCheckBox fx:id="deeperStyle" text="Deeper Style" />
       <JFXCheckBox fx:id="styleBoxOpenClose" text="Style Box- Open/Close" />
       <JFXCheckBox fx:id="filtersApply" text="Filters- Apply" />
-      <JFXCheckBox text="Search Box in Brand Filter" />
-      <JFXCheckBox text="Search Box in Shop Filter" />
+      <JFXCheckBox fx:id="searchBoxInBrandFilter" text="Search Box in Brand Filter" />
+      <JFXCheckBox fx:id="searchBoxInShopFilter" text="Search Box in Shop Filter" />
    </children>
 </VBox>

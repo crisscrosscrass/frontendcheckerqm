@@ -25,4 +25,10 @@ public class GridPageNoWindowsController {
 
     @FXML
     JFXCheckBox filtersApply;
+
+    @FXML
+    JFXCheckBox searchBoxInBrandFilter;
+
+    @FXML
+    JFXCheckBox searchBoxInShopFilter;
 }

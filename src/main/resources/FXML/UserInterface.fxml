@@ -20,9 +20,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="mainStage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="878.0" prefWidth="936.0" style="-fx-background-color: white;" stylesheets="@../Style/Main.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="crisscrosscrass.Controller.FrontEndCheckController">
+<AnchorPane fx:id="mainStage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="944.0" prefWidth="936.0" style="-fx-background-color: white;" stylesheets="@../Style/Main.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="crisscrosscrass.Controller.FrontEndCheckController">
    <children>
-      <Pane layoutX="-10.0" layoutY="-10.0" prefHeight="617.0" prefWidth="549.0" style="-fx-background-color: #e83062;" AnchorPane.leftAnchor="-10.0" AnchorPane.rightAnchor="397.0" AnchorPane.topAnchor="-10.0" />
+      <Pane layoutX="-10.0" layoutY="-10.0" prefHeight="691.0" prefWidth="549.0" style="-fx-background-color: #e83062;" AnchorPane.leftAnchor="-10.0" AnchorPane.topAnchor="-10.0" />
       <VBox alignment="CENTER" layoutX="-10.0" prefHeight="691.0" prefWidth="531.0">
          <children>
             <TextField fx:id="inputSearch" alignment="CENTER" text="https://www.ladenzeile.de/">
@@ -55,6 +55,8 @@
                <children>
                   <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="GridPageURLwihtoutWindows" />
                   <TextField fx:id="inputGridPageURL" focusTraversable="false" text="https://www.ladenzeile.de/mode/" />
+                  <Text fill="WHITE" layoutX="189.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Brand/Shop Keyword" />
+                  <TextField fx:id="inputGridPageKeyword" focusTraversable="false" layoutX="21.0" layoutY="58.0" text="nike" />
                   <AnchorPane prefHeight="154.0" prefWidth="495.0">
                      <children>
                         <Accordion prefHeight="155.0" prefWidth="495.0">
@@ -81,7 +83,7 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
             </VBox>
-            <ProgressBar fx:id="progressIndicator" prefHeight="18.0" prefWidth="521.0" progress="0.0">
+            <ProgressBar fx:id="progressIndicator" minHeight="12.0" prefWidth="521.0" progress="0.0">
                <VBox.margin>
                   <Insets bottom="10.0" top="20.0" />
                </VBox.margin>
@@ -91,7 +93,13 @@
                   <Insets />
                </VBox.margin>
             </Text>
-            <Button fx:id="startwebdriver" minHeight="40.0" mnemonicParsing="false" onAction="#startRealAction" prefHeight="39.0" prefWidth="200.0" style="-fx-background-color: #289ea2; -fx-border-color: black; -fx-background-radius: 20; -fx-border-radius: 20;" text="StartFrontendCheckTest" textFill="WHITE">
+            <Circle depthTest="DISABLE" disable="true" fill="#e83062" radius="50.0" stroke="#e83062" strokeType="INSIDE" strokeWidth="0.0">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </Circle>
+            <FontAwesomeIconView fill="WHITE" glyphName="MODX" size="35" translateY="-45.0" />
+            <Button fx:id="startwebdriver" minHeight="40.0" mnemonicParsing="false" onAction="#startRealAction" prefHeight="39.0" prefWidth="200.0" style="-fx-background-color: #289ea2; -fx-border-color: black; -fx-background-radius: 20; -fx-border-radius: 20;" text="StartFrontendCheckTest" textFill="WHITE" translateY="-125.0">
                <font>
                   <Font name="Arial Black" size="12.0" />
                </font>
@@ -102,12 +110,6 @@
                   <Insets />
                </VBox.margin>
             </Button>
-            <Circle depthTest="DISABLE" disable="true" fill="#e83062" radius="50.0" stroke="#e83062" strokeType="INSIDE" strokeWidth="0.0">
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </Circle>
-            <FontAwesomeIconView fill="WHITE" glyphName="MODX" size="35" translateY="-62.0" />
 
          </children>
          <opaqueInsets>
@@ -144,7 +146,7 @@
             <HBox fx:id="outputPlace" alignment="CENTER" />
          </children>
       </VBox>
-      <TabPane fx:id="tabPane" layoutX="14.0" layoutY="660.0" prefHeight="222.0" prefWidth="886.0">
+      <TabPane fx:id="tabPane" layoutX="14.0" layoutY="720.0" prefHeight="222.0" prefWidth="886.0">
          <tabs>
             <Tab fx:id="tabHomepage" closable="false" text="Homepage">
                <content>
