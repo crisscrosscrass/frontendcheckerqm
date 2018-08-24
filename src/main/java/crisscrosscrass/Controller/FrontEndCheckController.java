@@ -3,10 +3,7 @@ package crisscrosscrass.Controller;
 import com.jfoenix.controls.JFXCheckBox;
 import crisscrosscrass.*;
 import crisscrosscrass.Tasks.*;
-import crisscrosscrass.Tests.GridPageTest;
-import crisscrosscrass.Tests.GridPageTestWithFillIns;
-import crisscrosscrass.Tests.GridPageTestWithWindows;
-import crisscrosscrass.Tests.HomepageTest;
+import crisscrosscrass.Tests.*;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
@@ -114,6 +111,8 @@ public class FrontEndCheckController {
     @FXML
     TextField inputGridPageURLWithFillIns;
     @FXML
+    TextField inputBrandPageOverview;
+    @FXML
     HBox outputPlace;
     @FXML
     ImageView preloaderCat;
@@ -148,6 +147,7 @@ public class FrontEndCheckController {
     @FXML GridPageWithWindowsController gridPageWithWindowsController;
     @FXML GridPageNoWindowsController gridPageNoWindowsController;
     @FXML GridPageWithFillInsController gridPageWithFillInsController;
+    @FXML BrandOverviewController brandOverviewController;
 
 
 
@@ -240,7 +240,6 @@ public class FrontEndCheckController {
                     }
 
 
-
                     // * Basic Settings before Starting WebDriver
                     // * Browser, Javascript , etc.
                     Platform.runLater(() -> {
@@ -258,7 +257,6 @@ public class FrontEndCheckController {
                     }
 
                     Platform.runLater(() -> statusInfo.setText("Starting Engine..."));
-
 
                     System.setProperty("webdriver.chrome.driver", "temp//chromedriver.exe");
                     ChromeOptions option = new ChromeOptions();
@@ -304,8 +302,6 @@ public class FrontEndCheckController {
                         homepageTest.checkingFeedbackPopUp(webDriver,report, checkFeedbackPopUp, statusInfo,inputSearch, Homepage);
                         homepageTest.checkingPrivacyPopUp(webDriver,report, checkPrivacyPopUp, statusInfo,inputSearch, Homepage);
                     }
-
-
                     if (!tabGridPage.isDisable()){
                         tabPane.getSelectionModel().select(tabGridPage);
                         GridPageTest gridPageTest = new GridPageTest();
@@ -329,7 +325,12 @@ public class FrontEndCheckController {
                     if (!tabGridPageFillIns.isDisable()){
                         tabPane.getSelectionModel().select(tabGridPageFillIns);
                         GridPageTestWithFillIns gridPageTestWithFillIns = new GridPageTestWithFillIns();
-                        gridPageTestWithFillIns.ShowAllFillInPage(webDriver,report,js,gridPageWithFillInsController.ShowAllFillInPage,inputGridPageURLWithFillIns,statusInfo,inputSearch,inputEmailAdress,xpathPattern1,xpathPattern2,Homepage,isSuccessful,isAvailable);
+                        gridPageTestWithFillIns.ShowAllFillInPage(webDriver,report,js,gridPageWithFillInsController.ShowAllFillInPage,inputGridPageURLWithFillIns,statusInfo,inputSearch, Homepage);
+                    }
+                    if (!tabBrandPage.isDisable()){
+                        tabPane.getSelectionModel().select(tabBrandPage);
+                        BrandPageTest brandPageTest = new BrandPageTest();
+                        brandPageTest.pagingWithWindowsForward(webDriver,report,js,brandOverviewController.brandsWithoutLogo,inputBrandPageOverview,statusInfo,inputSearch, Homepage);
                     }
 
 
