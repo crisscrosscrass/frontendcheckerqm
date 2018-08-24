@@ -7,10 +7,12 @@ import javafx.application.Platform;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 public class BrandPageTest {
@@ -29,6 +31,14 @@ public class BrandPageTest {
                 webDriver.navigate().to(inputBrandPageOverview.getText().trim());
                 WebDriverWait wait = new WebDriverWait(webDriver, 10);
                 try{
+                    boolean isAvailable = webDriver.findElementByXPath(Homepage.getProperty("brandpage.links")) != null;
+                    List<WebElement> quickMenuLetters = webDriver.findElementsByXPath(Homepage.getProperty("brandpage.links"));
+                    for (WebElement quickMenuItem : quickMenuLetters){
+                        System.out.println(quickMenuItem.getText());
+                    }
+
+
+
                     Platform.runLater(() -> {
                         brandsWithoutLogo.setStyle("-fx-background-color: #CCFF99");
                         brandsWithoutLogo.setSelected(true);
@@ -46,7 +56,7 @@ public class BrandPageTest {
                         report.writeToFile("BrandPage Error Screenshot: ", "Screenshot not successful!");
                     }
                     webDriver.navigate().to(inputSearch.getText().trim());
-                    report.writeToFile("Checking Brand Page Overview: ", "Couldn't find any Letter Elements");
+                    report.writeToFile("Checking Brand Page Overview: ", "Couldn't find any QuickMenu Elements");
                     gridPageIssue.printStackTrace();
                 }
             }catch (Exception noRequestedSiteFound){
