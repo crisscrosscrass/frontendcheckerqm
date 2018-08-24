@@ -372,7 +372,7 @@ public class FrontEndCheckController {
                             try{
                                 tabPane.getSelectionModel().select(tabLucenePage);
                                 PageLuceneWithItemsTest pageLuceneWithItemsTest = new PageLuceneWithItemsTest();
-                                pageLuceneWithItemsTest.ShowAllFillInPage(webDriver,report,js,pageLuceneWithItemsController.PageLuceneWithItemsSorting,inputGridPageURLWithFillIns,statusInfo,inputSearch, Homepage);
+                                pageLuceneWithItemsTest.checkingSorting(webDriver,report,js,pageLuceneWithItemsController.PageLuceneWithItemsSorting,inputLucenePage,statusInfo,inputSearch, Homepage);
                             }catch (Exception noLucenePageWorking){
                                 noLucenePageWorking.printStackTrace();
                             }

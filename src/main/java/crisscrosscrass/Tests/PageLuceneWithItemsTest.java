@@ -10,6 +10,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.ArrayList;
@@ -18,10 +19,10 @@ import java.util.Properties;
 
 public class PageLuceneWithItemsTest {
 
-    public void ShowAllFillInPage(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox showAllFillInPage, TextField inputGridPageURLWithFillIns, Text statusInfo, TextField inputSearch, Properties Homepage){
+    public void checkingSorting(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox PageLuceneWithItemsSorting, TextField inputLucenePage, Text statusInfo, TextField inputSearch, Properties Homepage){
         Platform.runLater(() -> {
-            showAllFillInPage.setStyle("-fx-background-color: #eef442");
-            statusInfo.setText("Checking GridPage with Fill Ins...");
+            PageLuceneWithItemsSorting.setStyle("-fx-background-color: #eef442");
+            statusInfo.setText("Checking Lucene Page with Items...");
         });
 
 
@@ -29,88 +30,197 @@ public class PageLuceneWithItemsTest {
             ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
             webDriver.switchTo().window(tabs.get(0));
             try {
-                webDriver.navigate().to(inputGridPageURLWithFillIns.getText().trim());
+                webDriver.navigate().to(inputSearch.getText().trim());
                 WebDriverWait wait = new WebDriverWait(webDriver, 10);
                 try{
-                    boolean isAvailable = webDriver.findElementByXPath(Homepage.getProperty("page.grid.fillInMore")) != null;
-                    List<WebElement> FillInsMore = webDriver.findElements(By.xpath(Homepage.getProperty("page.grid.fillInMore")));
-                    List<WebElement> FillInsAll = webDriver.findElements(By.xpath(Homepage.getProperty("page.grid.fillInAll")));
-                    ArrayList LinksMore = new ArrayList();
-                    ArrayList LinksAll = new ArrayList();
+                    boolean isAvailable = webDriver.findElementById(Homepage.getProperty("page.search.bar")) != null;
+                    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(Homepage.getProperty("page.search.bar"))));
+                    WebElement element = webDriver.findElement(By.id(Homepage.getProperty("page.search.bar")));
+                    element.sendKeys(inputLucenePage.getText().trim());
+                    element.submit();
 
-                    for (WebElement FillIns : FillInsMore){
-                        LinksMore.add(FillIns.getAttribute("href").trim().toLowerCase());
-                    }
-                    for (WebElement FillAll : FillInsAll){
-                        LinksAll.add(FillAll.getAttribute("href").trim().toLowerCase());
-                    }
+                    if (webDriver.getCurrentUrl().contains(inputLucenePage.getText().trim() ) && webDriver.getCurrentUrl().contains("?q=") ){
 
-                    for (int i = 0 ; i < FillInsAll.size(); i++){
-                        ((JavascriptExecutor)webDriver).executeScript("window.open()");
-                        tabs = new ArrayList<>(webDriver.getWindowHandles());
                         try{
-                            webDriver.switchTo().window(tabs.get(1)); //switches to new tab
-                            webDriver.get(LinksMore.get(i).toString());
-                            final String urlLocationBefore = webDriver.getCurrentUrl();
-                            ((JavascriptExecutor)webDriver).executeScript("window.open()");
-                            tabs = new ArrayList<>(webDriver.getWindowHandles());
-                            webDriver.switchTo().window(tabs.get(2)); //switches to new tab
-                            webDriver.get(LinksAll.get(i).toString());
+                            /**wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("lucenepage.sort.dropdown.button"))));
+                            webDriver.findElementByXPath(Homepage.getProperty("lucenepage.sort.dropdown.button")).click();
+                            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("lucenepage.sort.dropdown.button"))));
+                            List<WebElement> DropDownOptions = webDriver.findElementsByXPath(Homepage.getProperty("lucenepage.sort.dropdown.options"));
+                            for (WebElement DropDownItem : DropDownOptions){
+                                System.out.println(DropDownItem.getText());
+                            }*/
+                            try{
+                                Platform.runLater(() -> {
+                                    statusInfo.setText("Checking Sorting Values from Low to High...");
+                                });
 
-                            if ( urlLocationBefore.contains(webDriver.getCurrentUrl()) ){
-                                report.writeToFile("Checking Fill Ins: ", "Tested URL \""+ urlLocationBefore +"\" successfully!");
-                            }else {
-                                report.writeToFile("Checking Fill Ins: ", "Tested URL \""+ urlLocationBefore +"\" NOT successfully!");
+                                List<WebElement> ItemsGridPage = webDriver.findElementsByXPath(Homepage.getProperty("page.items.price"));
+                                double checkStartingPriceFirstItem = Double.parseDouble(ItemsGridPage.get(0).getText().replaceAll("(^\\s?\\€?)|(\\-\\s*\\€?\\d*\\,?\\.?.*)|(\\€?\\*\\s*\\d*\\,?\\.?)$|(\\€?\\*\\s\\d*.*$)|(\\s?\\€?$)","").trim().replaceAll("\\.","").replaceAll(",","."));
+                                report.writeToFile("Detected : "+ ItemsGridPage.size() + " items on this Page!");
+                                report.writeToFile("");
+
+                                wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("lucenepage.sort.dropdown.button"))));
+                                webDriver.findElement(By.xpath(Homepage.getProperty("lucenepage.sort.dropdown.button"))).click();
+
+                                wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("lucenepage.sort.dropdown.options"))));
+                                wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("lucenepage.sort.dropdown.options"))));
+                                List<WebElement> DropDownListActions = webDriver.findElementsByXPath(Homepage.getProperty("lucenepage.sort.dropdown.options"));
+                                DropDownListActions.get(1).click();
+                                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Homepage.getProperty("page.grid.loader"))));
+                                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Homepage.getProperty("page.grid.sort.dropdown.options"))));
+
+                                wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.items.price"))));
+                                wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.items.price"))));
+                                List<WebElement> ItemsGridPageSortingLowToHigh = webDriver.findElementsByXPath(Homepage.getProperty("page.items.price"));
+
+                                double checkPriceLowToHighFirstItem = Double.parseDouble(ItemsGridPageSortingLowToHigh.get(0).getText().replaceAll("(^\\s?\\€?)|(\\-\\s*\\€?\\d*\\,?\\.?.*)|(\\€?\\*\\s*\\d*\\,?\\.?)$|(\\€?\\*\\s\\d*.*$)|(\\s?\\€?$)","").trim().replaceAll("\\.","").replaceAll(",","."));
+                                double checkPriceLowToHighLastItem = Double.parseDouble(ItemsGridPageSortingLowToHigh.get(ItemsGridPageSortingLowToHigh.size()-1).getText().replaceAll("(^\\s?\\€?)|(\\-\\s*\\€?\\d*\\,?\\.?.*)|(\\€?\\*\\s*\\d*\\,?\\.?)$|(\\€?\\*\\s\\d*.*$)|(\\s?\\€?$)","").trim().replaceAll("\\.","").replaceAll(",","."));
+                                if (checkPriceLowToHighFirstItem < checkStartingPriceFirstItem && webDriver.getCurrentUrl().contains("sort=price_asc")){
+                                    report.writeToFile("Successful changed Sorting from Lowest to Highest Price!", "");
+                                }
+                                if (checkPriceLowToHighFirstItem < checkPriceLowToHighLastItem){
+                                    report.writeToFile("Checking Lucene Page with Items Price Lowest to Highest: ", "Successful! First Item Price("+checkPriceLowToHighFirstItem+") is lower than last Item Price("+checkPriceLowToHighLastItem+") !");
+                                }else {
+                                    report.writeToFile("Checking Lucene Page with Items Price Lowest to Highest: ", "Not Successful! First Item Price("+checkPriceLowToHighFirstItem+") is NOT lower than last Item Price("+checkPriceLowToHighLastItem+") !");
+                                }
+                                report.writeToFile("");
+
+
+
+
+
+                                Platform.runLater(() -> {
+                                    statusInfo.setText("Checking Sorting Values from High to Low...");
+                                });
+
+                                //DropDownButtonSorting
+                                wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("lucenepage.sort.dropdown.button"))));
+                                webDriver.findElement(By.xpath(Homepage.getProperty("lucenepage.sort.dropdown.button"))).click();
+
+                                //DropDownButtonSorting
+                                wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("lucenepage.sort.dropdown.options"))));
+                                wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("lucenepage.sort.dropdown.options"))));
+                                DropDownListActions = webDriver.findElementsByXPath(Homepage.getProperty("lucenepage.sort.dropdown.options"));
+                                DropDownListActions.get(2).click();
+                                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Homepage.getProperty("page.grid.loader"))));
+                                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Homepage.getProperty("lucenepage.sort.dropdown.options"))));
+
+                                wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.items.price"))));
+                                wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.items.price"))));
+                                List<WebElement> ItemsGridPageSortingHighToLow = webDriver.findElementsByXPath(Homepage.getProperty("page.items.price"));
+                                double checkPriceHighToLowFirstItem = Double.parseDouble(ItemsGridPageSortingHighToLow.get(0).getText().replaceAll("(^\\s?\\€?)|(\\-\\s*\\€?\\d*\\,?\\.?.*)|(\\€?\\*\\s*\\d*\\,?\\.?)$|(\\€?\\*\\s\\d*.*$)|(\\s?\\€?$)","").trim().replaceAll("\\.","").replaceAll(",","."));
+                                double checkPriceHighToLowLastItem = Double.parseDouble(ItemsGridPageSortingHighToLow.get(ItemsGridPageSortingHighToLow.size()-1).getText().replaceAll("(^\\s?\\€?)|(\\-\\s*\\€?\\d*\\,?\\.?.*)|(\\€?\\*\\s*\\d*\\,?\\.?)$|(\\€?\\*\\s\\d*.*$)|(\\s?\\€?$)","").trim().replaceAll("\\.","").replaceAll(",","."));
+                                if (checkPriceHighToLowFirstItem > checkStartingPriceFirstItem && webDriver.getCurrentUrl().contains("sort=price_desc")){
+                                    report.writeToFile("Successful changed Sorting from Highest to Lowest Price!", "");
+                                }
+                                if (checkPriceHighToLowFirstItem > checkPriceHighToLowLastItem){
+                                    report.writeToFile("Checking Lucene Page with Items Price Highest to Lowest: ", "Successful! First Item Price("+checkPriceHighToLowFirstItem+") is higher than last Item Price("+checkPriceHighToLowLastItem+") !");
+                                }else {
+                                    report.writeToFile("Checking Lucene Page with Items Price Highest to Lowest: ", "Not Successful! First Item Price("+checkPriceHighToLowFirstItem+") is NOT higher than last Item Price("+checkPriceHighToLowLastItem+") !");
+                                }
+                                report.writeToFile("");
+
+
+
+
+
+
+                                Platform.runLater(() -> {
+                                    statusInfo.setText("Checking Sorting Values Sales Price...");
+                                });
+                                //DropDownButtonSorting
+                                wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("lucenepage.sort.dropdown.button"))));
+                                webDriver.findElement(By.xpath(Homepage.getProperty("lucenepage.sort.dropdown.button"))).click();
+
+                                //DropDownButtonSorting
+                                wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("lucenepage.sort.dropdown.options"))));
+                                wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("lucenepage.sort.dropdown.options"))));
+                                DropDownListActions = webDriver.findElementsByXPath(Homepage.getProperty("lucenepage.sort.dropdown.options"));
+                                DropDownListActions.get(3).click();
+                                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Homepage.getProperty("page.grid.loader"))));
+                                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Homepage.getProperty("lucenepage.sort.dropdown.options"))));
+
+                                wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.items.price"))));
+                                wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.items.price"))));
+                                List<WebElement> ItemsGridPageSortingSale = webDriver.findElementsByXPath(Homepage.getProperty("page.items.salesprice"));
+                                double checkPriceItemsGridPageSortingSale = Double.parseDouble(ItemsGridPageSortingSale.get(0).getText().replaceAll("(^\\s?\\€?)|(\\-\\s*\\€?\\d*\\,?\\.?.*)|(\\€?\\*\\s*\\d*\\,?\\.?)$|(\\€?\\*\\s\\d*.*$)|(\\s?\\€?$)","").trim().replaceAll("\\.","").replaceAll(",","."));
+                                if (checkPriceItemsGridPageSortingSale != checkStartingPriceFirstItem && webDriver.getCurrentUrl().contains("sort=reduced_price_desc")){
+                                    report.writeToFile("Successful changed Sorting to Sales!", "");
+                                }
+                                if (ItemsGridPageSortingSale.size() != 0){
+                                    report.writeToFile("Checking Lucene Page with Items Sales Price: ", "Successful! Item contains Sales Price");
+                                }else {
+                                    report.writeToFile("Checking Lucene Page with Items Sales Price: ", "Not Successful! Couldn't find a item with Sales Price");
+                                }
+                                report.writeToFile("");
+
+
+
+
+
+                                Platform.runLater(() -> {
+                                    PageLuceneWithItemsSorting.setStyle("-fx-background-color: #CCFF99");
+                                    PageLuceneWithItemsSorting.setSelected(true);
+                                });
+                                report.writeToFile("Checking Lucene Page with Items: ", "Complete!");
+                            }catch (Exception noSortingPossible){
+                                Platform.runLater(() -> {
+                                    PageLuceneWithItemsSorting.setStyle("-fx-background-color: #FF0000");
+                                    PageLuceneWithItemsSorting.setSelected(true);
+                                });
+                                report.writeToFile("Checking Lucene Page with Items: ", "Unable to sort any Items on Lucene Page!");
+                                noSortingPossible.printStackTrace();
                             }
 
-                            webDriver.switchTo().window(tabs.get(2)).close();
-                            webDriver.switchTo().window(tabs.get(1)).close();
-                            webDriver.switchTo().window(tabs.get(0));
-                        }catch (Exception errorWhileLoop){
-                            tabs = new ArrayList<>(webDriver.getWindowHandles());
-                            webDriver.switchTo().window(tabs.get(0));
-                            webDriver.navigate().to(inputGridPageURLWithFillIns.getText().trim());
-                            errorWhileLoop.printStackTrace();
-                            break;
+                        }catch (Exception noItemsOnLucenePage){
+                            Platform.runLater(() -> {
+                                PageLuceneWithItemsSorting.setStyle("-fx-background-color: #FF0000");
+                                PageLuceneWithItemsSorting.setSelected(true);
+                            });
+                            report.writeToFile("Checking Lucene Page with Items: ", "Unable to find any Items on Lucene Page!");
+                            noItemsOnLucenePage.printStackTrace();
                         }
 
+                    }else{
+                        Platform.runLater(() -> {
+                            PageLuceneWithItemsSorting.setStyle("-fx-background-color: #FF0000");
+                            PageLuceneWithItemsSorting.setSelected(true);
+                        });
+                        report.writeToFile("Checking Lucene Page with Items: ", "Unable to Complete! Couldn't find Lucene Page");
                     }
-                    Platform.runLater(() -> {
-                        showAllFillInPage.setStyle("-fx-background-color: #CCFF99");
-                        showAllFillInPage.setSelected(true);
-                    });
-                    report.writeToFile("Checking GridPage with Fill Ins: ", "Complete!");
+
+
                 }catch (Exception gridPageIssue){
                     Platform.runLater(() -> {
-                        showAllFillInPage.setStyle("-fx-background-color: #FF0000");
-                        showAllFillInPage.setSelected(true);
+                        PageLuceneWithItemsSorting.setStyle("-fx-background-color: #FF0000");
+                        PageLuceneWithItemsSorting.setSelected(true);
                     });
                     boolean isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver, "GridPageErrorPagingWindows.png");
                     if (isSuccessful){
-                        report.writeToFile("GridPage Error Screenshot: ", "Screenshot successful!");
+                        report.writeToFile("Checking Lucene Page with Items Error Screenshot: ", "Screenshot successful!");
                     }else {
-                        report.writeToFile("GridPage Error Screenshot: ", "Screenshot not successful!");
+                        report.writeToFile("Checking Lucene Page with Items Error Screenshot: ", "Screenshot not successful!");
                     }
                     webDriver.navigate().to(inputSearch.getText().trim());
-                    report.writeToFile("Checking GridPage with Fill Ins: ", "Could find any FillIns-Boxes");
+                    report.writeToFile("Checking Lucene Page with Items: ", "Could find any Searchbar");
                     gridPageIssue.printStackTrace();
                 }
             }catch (Exception noRequestedSiteFound){
                 Platform.runLater(() -> {
-                    showAllFillInPage.setStyle("-fx-background-color: #FF0000");
-                    showAllFillInPage.setSelected(true);
+                    PageLuceneWithItemsSorting.setStyle("-fx-background-color: #FF0000");
+                    PageLuceneWithItemsSorting.setSelected(true);
                 });
                 webDriver.navigate().to(inputSearch.getText().trim());
-                report.writeToFile("Checking GridPage with Fill Ins: ", "Couldn't navigate to requested Site!");
+                report.writeToFile("Checking Lucene Page with Items: ", "Couldn't navigate to requested Site!");
                 noRequestedSiteFound.printStackTrace();
             }
         }catch (Exception noBrowserWorking){
             Platform.runLater(() -> {
-                showAllFillInPage.setStyle("-fx-background-color: #FF0000");
-                showAllFillInPage.setSelected(true);
+                PageLuceneWithItemsSorting.setStyle("-fx-background-color: #FF0000");
+                PageLuceneWithItemsSorting.setSelected(true);
             });
             webDriver.navigate().to(inputSearch.getText().trim());
-            report.writeToFile("Checking GridPage with Fill Ins: ", "unable to check! Browser not responding");
+            report.writeToFile("Checking Lucene Page with Items: ", "unable to check! Browser not responding");
             noBrowserWorking.printStackTrace();
         }
 
