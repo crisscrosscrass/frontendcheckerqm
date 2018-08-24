@@ -150,6 +150,7 @@ public class FrontEndCheckController {
     @FXML GridPageNoWindowsController gridPageNoWindowsController;
     @FXML GridPageWithFillInsController gridPageWithFillInsController;
     @FXML BrandOverviewController brandOverviewController;
+    @FXML PageLuceneWithItemsController pageLuceneWithItemsController;
 
 
 
@@ -178,33 +179,62 @@ public class FrontEndCheckController {
     }
 
     public void updateCheckerTabs(){
-        if (settingHomepage.isSelected())
+        if (settingHomepage.isSelected()){
             tabHomepage.setDisable(false);
-        else tabHomepage.setDisable(true);
-        if (settingGridPage.isSelected())
+            tabPane.getSelectionModel().select(tabHomepage);
+        }else{
+            tabHomepage.setDisable(true);
+        }
+        if (settingGridPage.isSelected()){
             tabGridPage.setDisable(false);
-        else tabGridPage.setDisable(true);
-        if (settingGridPageWithWindows.isSelected())
+            tabPane.getSelectionModel().select(tabGridPage);
+        }else{
+            tabGridPage.setDisable(true);
+        }
+        if (settingGridPageWithWindows.isSelected()){
             tabGridPageWithWindows.setDisable(false);
-        else tabGridPageWithWindows.setDisable(true);
-        if (settingGridPageFillIns.isSelected())
+            tabPane.getSelectionModel().select(tabGridPageWithWindows);
+        }else{
+            tabGridPageWithWindows.setDisable(true);
+        }
+        if (settingGridPageFillIns.isSelected()){
             tabGridPageFillIns.setDisable(false);
-        else tabGridPageFillIns.setDisable(true);
-        if (settingBrandPage.isSelected())
+            tabPane.getSelectionModel().select(tabGridPageFillIns);
+        }else{
+            tabGridPageFillIns.setDisable(true);
+        }
+        if (settingBrandPage.isSelected()){
             tabBrandPage.setDisable(false);
-        else tabBrandPage.setDisable(true);
-        if (settingLucenePage.isSelected())
+            tabPane.getSelectionModel().select(tabBrandPage);
+        }else{
+            tabBrandPage.setDisable(true);
+        }
+        if (settingLucenePage.isSelected()){
             tabLucenePage.setDisable(false);
-        else tabLucenePage.setDisable(true);
-        if (settingLucenePageWithDeletions.isSelected())
+            tabPane.getSelectionModel().select(tabLucenePage);
+        }else{
+            tabLucenePage.setDisable(true);
+        }
+        if (settingLucenePageWithDeletions.isSelected()){
             tabLucenePageWithDeletions.setDisable(false);
-        else tabLucenePageWithDeletions.setDisable(true);
-        if (settingDetailPage.isSelected())
+            tabPane.getSelectionModel().select(tabLucenePageWithDeletions);
+        }else{
+            tabLucenePageWithDeletions.setDisable(true);
+        }
+        if (settingDetailPage.isSelected()) {
             tabDetailPage.setDisable(false);
-        else tabDetailPage.setDisable(true);
-        if (settingImageGrouping.isSelected())
+            tabPane.getSelectionModel().select(tabDetailPage);
+        }
+        else {
+            tabDetailPage.setDisable(true);
+        }
+        if (settingImageGrouping.isSelected()){
             tabImageGrouping.setDisable(false);
-        else tabImageGrouping.setDisable(true);
+            tabPane.getSelectionModel().select(tabImageGrouping);
+        }
+        else{
+            tabImageGrouping.setDisable(true);
+        }
     }
 
     @FXML
@@ -266,6 +296,8 @@ public class FrontEndCheckController {
                     option.addArguments("start-maximized");
                     ChromeDriver webDriver = new ChromeDriver(option);
 
+
+                    try{
                     JavascriptExecutor js = webDriver;
                     Report report = new Report();
                     report.clearWrittenReport();
@@ -279,92 +311,120 @@ public class FrontEndCheckController {
                         statusInfo.setText("Open Maximize Mode...");
                     });
 
-                    webDriver.manage().window().maximize();
-                    Platform.runLater(() -> statusInfo.setText("Go to requested Website..."));
 
 
-                    long start = System.currentTimeMillis();
-                    webDriver.navigate().to(inputSearch.getText().trim());
-                    long finish = System.currentTimeMillis();
-                    long totalTime = finish - start;
-                    System.out.println("Total Time for page load - "+totalTime);
-                    report.writeToFile("Checking Website: ", inputSearch.getText().trim());
-                    report.writeToFile("=================================", "");
-                    if (!tabHomepage.isDisable()){
-                        tabPane.getSelectionModel().select(tabHomepage);
-                        HomepageTest homepageTest = new HomepageTest();
-                        homepageTest.checkingCategories(webDriver,report,checkCategoryLinksLeftSideMenu,statusInfo,inputSearch, Homepage);
-                        homepageTest.checkingShopOfTheWeek(webDriver,report,checkLogoFromShopOfTheWeek,statusInfo,inputSearch, Homepage);
-                        homepageTest.checkingShopOfTheWeekCategories(webDriver,report,checkCategoryLinksFromShopOfTheWeek,statusInfo,inputSearch, Homepage);
-                        homepageTest.checkingNewsletterBanner(webDriver,report,checkNewsletterBannerFunctionality,statusInfo,inputSearch,inputEmailAdress, Homepage);
-                        homepageTest.checkingNewsletterPopUp(webDriver,report,checkNewsletterPopUp,statusInfo,inputSearch, Homepage);
-                        homepageTest.checkingNewsletterPopUpFunctionality(webDriver,report,js,checkNewsletterPopUpFunctionality,statusInfo,inputSearch,inputEmailAdress, Homepage);
-                        homepageTest.checkingFooterLinks(webDriver,report, checkFooterLinks,statusInfo,inputSearch, Homepage);
-                        homepageTest.checkingSearchAndSuggestions(webDriver,report, checkTextSearchAndSuggestions,inputTextSearchAndSuggestions,statusInfo,inputSearch, Homepage);
-                        homepageTest.checkingFeedbackPopUp(webDriver,report, checkFeedbackPopUp, statusInfo,inputSearch, Homepage);
-                        homepageTest.checkingPrivacyPopUp(webDriver,report, checkPrivacyPopUp, statusInfo,inputSearch, Homepage);
-                    }
-                    if (!tabGridPage.isDisable()){
-                        tabPane.getSelectionModel().select(tabGridPage);
-                        GridPageTest gridPageTest = new GridPageTest();
-                        gridPageTest.checkingSorting(webDriver,report,js,gridPageNoWindowsController.sortingValues,inputGridPageURL,statusInfo,inputSearch,inputEmailAdress,xpathPattern1,xpathPattern2,Homepage,isSuccessful,isAvailable);
-                        //TODO investigate why SmallToLargeImages test failed sometimes...?
-                        gridPageTest.checkingSwitchFromSmallToLargeImages(webDriver,report,js,gridPageNoWindowsController.switchFromSmallToLarge,inputGridPageURL,statusInfo,inputSearch,inputEmailAdress,xpathPattern1,xpathPattern2,Homepage,isSuccessful,isAvailable);
-                        gridPageTest.checkingPagingForwardBackward(webDriver,report,js,gridPageNoWindowsController.pagingForwardBackward,inputGridPageURL,statusInfo,inputSearch,inputEmailAdress,xpathPattern1,xpathPattern2,Homepage,isSuccessful,isAvailable);
-                        gridPageTest.checkingProductView300(webDriver,report,js,gridPageNoWindowsController.productView300,inputGridPageURL,statusInfo,inputSearch,inputEmailAdress,xpathPattern1,xpathPattern2,Homepage,isSuccessful,isAvailable);
-                        gridPageTest.checkingDeeperStyle(webDriver,report,js,gridPageNoWindowsController.deeperStyle,inputGridPageURL,statusInfo,inputSearch,inputEmailAdress,xpathPattern1,xpathPattern2,Homepage,isSuccessful,isAvailable);
-                        gridPageTest.checkingStyleBoxOpenClose(webDriver,report,js,gridPageNoWindowsController.styleBoxOpenClose,inputGridPageURL,statusInfo,inputSearch,inputEmailAdress,xpathPattern1,xpathPattern2,Homepage,isSuccessful,isAvailable);
-                        gridPageTest.checkingFilterApply(webDriver,report,js,gridPageNoWindowsController.filtersApply,inputGridPageURL,statusInfo,inputSearch,Homepage,isSuccessful,isAvailable,checkingSalesPriceFilter,checkingGenderFilter,checkingColorFilter,checkingBrandFilter,checkingMerchandiseFilter);
-                        gridPageTest.checkingSearchBoxInBrandFilter(webDriver,report,js,gridPageNoWindowsController.searchBoxInBrandFilter,inputGridPageURL,inputGridPageKeyword,statusInfo,inputSearch,inputEmailAdress,xpathPattern1,xpathPattern2,Homepage,isSuccessful,isAvailable);
-                        gridPageTest.checkingSearchBoxInShopFilter(webDriver,report,js,gridPageNoWindowsController.searchBoxInShopFilter,inputGridPageURL,inputGridPageKeyword,statusInfo,inputSearch,inputEmailAdress,xpathPattern1,xpathPattern2,Homepage,isSuccessful,isAvailable);
-                    }
-                    if (!tabGridPageWithWindows.isDisable()){
-                        tabPane.getSelectionModel().select(tabGridPageWithWindows);
-                        GridPageTestWithWindows gridPageTestWithWindows = new GridPageTestWithWindows();
-                        gridPageTestWithWindows.pagingWithWindowsForward(webDriver,report,js,gridPageWithWindowsController.PagingWithWindowsForward,inputGridPageURLWithWindows,statusInfo,inputSearch,inputEmailAdress,xpathPattern1,xpathPattern2,Homepage,isSuccessful,isAvailable);
-                    }
+                        webDriver.manage().window().maximize();
+                        Platform.runLater(() -> statusInfo.setText("Go to requested Website..."));
 
-                    if (!tabGridPageFillIns.isDisable()){
-                        tabPane.getSelectionModel().select(tabGridPageFillIns);
-                        GridPageTestWithFillIns gridPageTestWithFillIns = new GridPageTestWithFillIns();
-                        gridPageTestWithFillIns.ShowAllFillInPage(webDriver,report,js,gridPageWithFillInsController.showAllFillInPage,inputGridPageURLWithFillIns,statusInfo,inputSearch, Homepage);
-                    }
-                    if (!tabBrandPage.isDisable()){
-                        tabPane.getSelectionModel().select(tabBrandPage);
-                        BrandPageTest brandPageTest = new BrandPageTest();
-                        brandPageTest.pagingWithWindowsForward(webDriver,report,js,brandOverviewController.brandsWithoutLogo,inputBrandPageOverview,statusInfo,inputSearch, Homepage);
-                    }
-                    if (!tabLucenePage.isDisable()){
-                        try{
 
-                        }catch (Exception noLucenePageWorking){
-                            noLucenePageWorking.printStackTrace();
+                        long start = System.currentTimeMillis();
+                        webDriver.navigate().to(inputSearch.getText().trim());
+                        long finish = System.currentTimeMillis();
+                        long totalTime = finish - start;
+                        System.out.println("Total Time for page load - "+totalTime);
+                        report.writeToFile("Checking Website: ", inputSearch.getText().trim());
+                        report.writeToFile("=================================", "");
+                        if (!tabHomepage.isDisable()){
+                            tabPane.getSelectionModel().select(tabHomepage);
+                            HomepageTest homepageTest = new HomepageTest();
+                            homepageTest.checkingCategories(webDriver,report,checkCategoryLinksLeftSideMenu,statusInfo,inputSearch, Homepage);
+                            homepageTest.checkingShopOfTheWeek(webDriver,report,checkLogoFromShopOfTheWeek,statusInfo,inputSearch, Homepage);
+                            homepageTest.checkingShopOfTheWeekCategories(webDriver,report,checkCategoryLinksFromShopOfTheWeek,statusInfo,inputSearch, Homepage);
+                            homepageTest.checkingNewsletterBanner(webDriver,report,checkNewsletterBannerFunctionality,statusInfo,inputSearch,inputEmailAdress, Homepage);
+                            homepageTest.checkingNewsletterPopUp(webDriver,report,checkNewsletterPopUp,statusInfo,inputSearch, Homepage);
+                            homepageTest.checkingNewsletterPopUpFunctionality(webDriver,report,js,checkNewsletterPopUpFunctionality,statusInfo,inputSearch,inputEmailAdress, Homepage);
+                            homepageTest.checkingFooterLinks(webDriver,report, checkFooterLinks,statusInfo,inputSearch, Homepage);
+                            homepageTest.checkingSearchAndSuggestions(webDriver,report, checkTextSearchAndSuggestions,inputTextSearchAndSuggestions,statusInfo,inputSearch, Homepage);
+                            homepageTest.checkingFeedbackPopUp(webDriver,report, checkFeedbackPopUp, statusInfo,inputSearch, Homepage);
+                            homepageTest.checkingPrivacyPopUp(webDriver,report, checkPrivacyPopUp, statusInfo,inputSearch, Homepage);
+                        }
+                        if (!tabGridPage.isDisable()){
+                            tabPane.getSelectionModel().select(tabGridPage);
+                            GridPageTest gridPageTest = new GridPageTest();
+                            gridPageTest.checkingSorting(webDriver,report,js,gridPageNoWindowsController.sortingValues,inputGridPageURL,statusInfo,inputSearch,inputEmailAdress,xpathPattern1,xpathPattern2,Homepage,isSuccessful,isAvailable);
+                            //TODO investigate why SmallToLargeImages test failed sometimes...?
+                            gridPageTest.checkingSwitchFromSmallToLargeImages(webDriver,report,js,gridPageNoWindowsController.switchFromSmallToLarge,inputGridPageURL,statusInfo,inputSearch,inputEmailAdress,xpathPattern1,xpathPattern2,Homepage,isSuccessful,isAvailable);
+                            gridPageTest.checkingPagingForwardBackward(webDriver,report,js,gridPageNoWindowsController.pagingForwardBackward,inputGridPageURL,statusInfo,inputSearch,inputEmailAdress,xpathPattern1,xpathPattern2,Homepage,isSuccessful,isAvailable);
+                            gridPageTest.checkingProductView300(webDriver,report,js,gridPageNoWindowsController.productView300,inputGridPageURL,statusInfo,inputSearch,inputEmailAdress,xpathPattern1,xpathPattern2,Homepage,isSuccessful,isAvailable);
+                            gridPageTest.checkingDeeperStyle(webDriver,report,js,gridPageNoWindowsController.deeperStyle,inputGridPageURL,statusInfo,inputSearch,inputEmailAdress,xpathPattern1,xpathPattern2,Homepage,isSuccessful,isAvailable);
+                            gridPageTest.checkingStyleBoxOpenClose(webDriver,report,js,gridPageNoWindowsController.styleBoxOpenClose,inputGridPageURL,statusInfo,inputSearch,inputEmailAdress,xpathPattern1,xpathPattern2,Homepage,isSuccessful,isAvailable);
+                            gridPageTest.checkingFilterApply(webDriver,report,js,gridPageNoWindowsController.filtersApply,inputGridPageURL,statusInfo,inputSearch,Homepage,isSuccessful,isAvailable,checkingSalesPriceFilter,checkingGenderFilter,checkingColorFilter,checkingBrandFilter,checkingMerchandiseFilter);
+                            gridPageTest.checkingSearchBoxInBrandFilter(webDriver,report,js,gridPageNoWindowsController.searchBoxInBrandFilter,inputGridPageURL,inputGridPageKeyword,statusInfo,inputSearch,inputEmailAdress,xpathPattern1,xpathPattern2,Homepage,isSuccessful,isAvailable);
+                            gridPageTest.checkingSearchBoxInShopFilter(webDriver,report,js,gridPageNoWindowsController.searchBoxInShopFilter,inputGridPageURL,inputGridPageKeyword,statusInfo,inputSearch,inputEmailAdress,xpathPattern1,xpathPattern2,Homepage,isSuccessful,isAvailable);
+                        }
+                        if (!tabGridPageWithWindows.isDisable()){
+                            tabPane.getSelectionModel().select(tabGridPageWithWindows);
+                            GridPageTestWithWindows gridPageTestWithWindows = new GridPageTestWithWindows();
+                            gridPageTestWithWindows.pagingWithWindowsForward(webDriver,report,js,gridPageWithWindowsController.PagingWithWindowsForward,inputGridPageURLWithWindows,statusInfo,inputSearch,inputEmailAdress,xpathPattern1,xpathPattern2,Homepage,isSuccessful,isAvailable);
                         }
 
-                    }
+                        if (!tabGridPageFillIns.isDisable()){
+                            tabPane.getSelectionModel().select(tabGridPageFillIns);
+                            GridPageTestWithFillIns gridPageTestWithFillIns = new GridPageTestWithFillIns();
+                            gridPageTestWithFillIns.ShowAllFillInPage(webDriver,report,js,gridPageWithFillInsController.showAllFillInPage,inputGridPageURLWithFillIns,statusInfo,inputSearch, Homepage);
+                        }
+                        if (!tabBrandPage.isDisable()){
+                            tabPane.getSelectionModel().select(tabBrandPage);
+                            BrandPageTest brandPageTest = new BrandPageTest();
+                            brandPageTest.pagingWithWindowsForward(webDriver,report,js,brandOverviewController.brandsWithoutLogo,inputBrandPageOverview,statusInfo,inputSearch, Homepage);
+                        }
+                        if (!tabLucenePage.isDisable()){
+                            try{
+                                tabPane.getSelectionModel().select(tabLucenePage);
+                                PageLuceneWithItemsTest pageLuceneWithItemsTest = new PageLuceneWithItemsTest();
+                                pageLuceneWithItemsTest.ShowAllFillInPage(webDriver,report,js,pageLuceneWithItemsController.PageLuceneWithItemsSorting,inputGridPageURLWithFillIns,statusInfo,inputSearch, Homepage);
+                            }catch (Exception noLucenePageWorking){
+                                noLucenePageWorking.printStackTrace();
+                            }
+
+                        }
 
 
-                    // close webdriver and clear tasklist
-                    Platform.runLater(() -> statusInfo.setText("Closing Browser..."));
-                    try {
-                        webDriver.close();
-                    }catch (Exception driverClosing){
-                        driverClosing.printStackTrace();
-                    }
-                    try {
-                        webDriver.quit();
-                    }catch (Exception driverQuit){
-                        driverQuit.printStackTrace();
-                    }
-                    // not used now but got to know
-                    // tabPane.getSelectionModel().select(brandTab);
+                        // close webdriver and clear tasklist
+                        Platform.runLater(() -> statusInfo.setText("Closing Browser..."));
+                        try {
+                            webDriver.close();
+                        }catch (Exception driverClosing){
+                            driverClosing.printStackTrace();
+                        }
+                        try {
+                            webDriver.quit();
+                        }catch (Exception driverQuit){
+                            driverQuit.printStackTrace();
+                        }
+                        // not used now but got to know
+                        // tabPane.getSelectionModel().select(brandTab);
 
-                    try {
-                        Runtime.getRuntime().exec("TASKKILL /F /IM chromedriver.exe");
-                        Runtime.getRuntime().exec("taskkill /im chromedriver.exe /f");
+                        try {
+                            Runtime.getRuntime().exec("TASKKILL /F /IM chromedriver.exe");
+                            Runtime.getRuntime().exec("taskkill /im chromedriver.exe /f");
 
-                    } catch (IOException io) {
-                        io.printStackTrace();
+                        } catch (IOException io) {
+                            io.printStackTrace();
+                        }
+                    }catch (NoSuchWindowException webDriverNoWindows){
+                        Platform.runLater(() -> statusInfo.setText("Closing Browser..."));
+                        try {
+                            webDriver.close();
+                        }catch (Exception driverClosing){
+                            driverClosing.printStackTrace();
+                        }
+                        try {
+                            webDriver.quit();
+                        }catch (Exception driverQuit){
+                            driverQuit.printStackTrace();
+                        }
+                        // not used now but got to know
+                        // tabPane.getSelectionModel().select(brandTab);
+
+                        try {
+                            Runtime.getRuntime().exec("TASKKILL /F /IM chromedriver.exe");
+                            Runtime.getRuntime().exec("taskkill /im chromedriver.exe /f");
+
+                        } catch (IOException io) {
+                            io.printStackTrace();
+                        }
+                        webDriverNoWindows.printStackTrace();
                     }
 
 
