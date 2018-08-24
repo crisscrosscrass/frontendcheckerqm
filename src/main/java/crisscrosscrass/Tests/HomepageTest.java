@@ -5,7 +5,6 @@ import crisscrosscrass.Tasks.Report;
 import crisscrosscrass.Tasks.ScreenshotViaWebDriver;
 import crisscrosscrass.Tasks.WebdriverTab;
 import javafx.application.Platform;
-import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import org.openqa.selenium.*;
@@ -19,7 +18,7 @@ import java.util.Properties;
 
 public class HomepageTest {
 
-    public void checkingCategories(ChromeDriver webDriver, Report report, JFXCheckBox checkCategoryLinksLeftSideMenu, Text statusInfo, TextField inputSearch, String xpathPattern1, Properties Homepage, boolean isSuccessful, boolean isAvailable){
+    public void checkingCategories(ChromeDriver webDriver, Report report, JFXCheckBox checkCategoryLinksLeftSideMenu, Text statusInfo, TextField inputSearch, Properties Homepage){
 
 
         // Check on Category Links - Left Side Menu
@@ -27,7 +26,7 @@ public class HomepageTest {
             checkCategoryLinksLeftSideMenu.setStyle("-fx-background-color: #eef442");
             statusInfo.setText("Checking Category Links...");
         });
-        xpathPattern1 = Homepage.getProperty("page.main.category.links.left");
+        String xpathPattern1 = Homepage.getProperty("page.main.category.links.left");
         try {
             ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
             webDriver.switchTo().window(tabs.get(0));
@@ -41,17 +40,19 @@ public class HomepageTest {
                     //then continue so I can implement my own code if it isn't found
                     System.out.println("No Element found!");
                 }
-                isAvailable = webDriver.findElementByXPath(xpathPattern1) != null;
-                List<WebElement> CategoryLinksLeftSideMenu = webDriver.findElementsByXPath(xpathPattern1);
-                WebdriverTab newtab = new WebdriverTab();
-                //TODO use CategoryLinksLeftSideMenu.size() instead of 1 for Loop!
-                for (int i = 0 ; i < 1 ; i++){
-                    webDriver.switchTo().window(tabs.get(0));
-                    isSuccessful = newtab.open(webDriver,CategoryLinksLeftSideMenu.get(i).getAttribute("href"),CategoryLinksLeftSideMenu.get(i).getAttribute("textContent").trim());
-                    if (isSuccessful){
-                        report.writeToFile("TEST CategoryLinksLeftSideMenu "+i+": Successful | ", "found \"" + CategoryLinksLeftSideMenu.get(i).getAttribute("textContent").trim() + "\" Keyword at URL : "+ CategoryLinksLeftSideMenu.get(i).getAttribute("href"));
-                    }else {
-                        report.writeToFile("TEST CategoryLinksLeftSideMenu "+i+": unable to check! |", "couldn't found \"" + CategoryLinksLeftSideMenu.get(i).getAttribute("textContent").trim() + "\" Keyword in URL : "+ CategoryLinksLeftSideMenu.get(i).getAttribute("href"));
+                boolean isAvailable = webDriver.findElementByXPath(xpathPattern1) != null;
+                if(isAvailable){
+                    List<WebElement> CategoryLinksLeftSideMenu = webDriver.findElementsByXPath(xpathPattern1);
+                    WebdriverTab newtab = new WebdriverTab();
+                    //use CategoryLinksLeftSideMenu.size() instead of 1 for Loop!
+                    for (int i = 0 ; i < CategoryLinksLeftSideMenu.size() ; i++){
+                        webDriver.switchTo().window(tabs.get(0));
+                        boolean isSuccessful = newtab.open(webDriver, CategoryLinksLeftSideMenu.get(i).getAttribute("href"), CategoryLinksLeftSideMenu.get(i).getAttribute("textContent").trim());
+                        if (isSuccessful){
+                            report.writeToFile("TEST CategoryLinksLeftSideMenu "+i+": Successful | ", "found \"" + CategoryLinksLeftSideMenu.get(i).getAttribute("textContent").trim() + "\" Keyword at URL : "+ CategoryLinksLeftSideMenu.get(i).getAttribute("href"));
+                        }else {
+                            report.writeToFile("TEST CategoryLinksLeftSideMenu "+i+": unable to check! |", "couldn't found \"" + CategoryLinksLeftSideMenu.get(i).getAttribute("textContent").trim() + "\" Keyword in URL : "+ CategoryLinksLeftSideMenu.get(i).getAttribute("href"));
+                        }
                     }
                 }
                 Platform.runLater(() -> {
@@ -79,25 +80,26 @@ public class HomepageTest {
         report.writeToFile("=================================", "");
     }
 
-    public void checkingShopOfTheWeek(ChromeDriver webDriver, Report report, JFXCheckBox checkLogoFromShopOfTheWeek, Text statusInfo, TextField inputSearch, String xpathPattern1,String xpathPatternImage1,String xpathPatternImage2, Properties Homepage, boolean isSuccessful, boolean isAvailable){
+    public void checkingShopOfTheWeek(ChromeDriver webDriver, Report report, JFXCheckBox checkLogoFromShopOfTheWeek, Text statusInfo, TextField inputSearch, Properties Homepage){
         // Check on Logo Shop of the Week
         Platform.runLater(() -> {
             checkLogoFromShopOfTheWeek.setStyle("-fx-background-color: #eef442");
             statusInfo.setText("Checking Logo Shop of the Week...");
         });
-        xpathPattern1 = Homepage.getProperty("page.main.shop.promo.link");
-        xpathPatternImage1 = Homepage.getProperty("page.main.shop.promo.image");
-        xpathPatternImage2 = Homepage.getProperty("page.grid.shop.image");
+        String xpathPattern1 = Homepage.getProperty("page.main.shop.promo.link");
+        String xpathPatternImage1 = Homepage.getProperty("page.main.shop.promo.image");
+        String xpathPatternImage2 = Homepage.getProperty("page.grid.shop.image");
         try{
             ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
             webDriver.switchTo().window(tabs.get(0));
             try {
-                isAvailable = webDriver.findElementByXPath(xpathPattern1) != null;
+                boolean isAvailable = webDriver.findElementByXPath(xpathPattern1) != null;
                 Point hoverItem = webDriver.findElement(By.xpath(xpathPattern1)).getLocation();
                 ((JavascriptExecutor)webDriver).executeScript("return window.title;");
                 ((JavascriptExecutor)webDriver).executeScript("window.scrollBy(0,"+(hoverItem.getY())+");");
                 String ShopOfTheWeekImage = webDriver.findElementByXPath(xpathPatternImage1).getAttribute("src");
                 webDriver.findElementByXPath(xpathPattern1).click();
+                boolean isSuccessful;
                 try{
                     String ShopOfTheWeekGridImage = webDriver.findElementByXPath(xpathPatternImage2).getAttribute("src");
                     if (ShopOfTheWeekImage.contains(ShopOfTheWeekGridImage)){
@@ -154,28 +156,28 @@ public class HomepageTest {
 
         report.writeToFile("=================================", "");
     }
-    public void checkingShopOfTheWeekCategories(ChromeDriver webDriver, Report report, JFXCheckBox checkCategoryLinksFromShopOfTheWeek, Text statusInfo, TextField inputSearch, String xpathPattern1,String xpathPatternImage1,String xpathPatternImage2, Properties Homepage, boolean isSuccessful, boolean isAvailable){
+    public void checkingShopOfTheWeekCategories(ChromeDriver webDriver, Report report, JFXCheckBox checkCategoryLinksFromShopOfTheWeek, Text statusInfo, TextField inputSearch, Properties Homepage){
         // Category Links from Shop of the Week
         Platform.runLater(() -> {
             checkCategoryLinksFromShopOfTheWeek.setStyle("-fx-background-color: #eef442");
             statusInfo.setText("Checking Category Links from Shop of the Week ...");
         });
-        xpathPattern1 = Homepage.getProperty("page.main.shop.promo.category");
-        xpathPatternImage1 = Homepage.getProperty("page.main.shop.promo.image");
-        xpathPatternImage2 = Homepage.getProperty("page.grid.shop.image");
+        String xpathPattern1 = Homepage.getProperty("page.main.shop.promo.category");
+        String xpathPatternImage1 = Homepage.getProperty("page.main.shop.promo.image");
+        String xpathPatternImage2 = Homepage.getProperty("page.grid.shop.image");
         try {
             ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
             webDriver.switchTo().window(tabs.get(0));
             try{
-                isAvailable = webDriver.findElementByXPath(xpathPattern1) != null;
+                boolean isAvailable = webDriver.findElementByXPath(xpathPattern1) != null;
                 String ShopOfTheWeekImage = webDriver.findElementByXPath(xpathPatternImage1).getAttribute("src");
                 List<WebElement> shopCategoryLinks = webDriver.findElementsByXPath(xpathPattern1);
                 List<WebElement> shopCategoryNames = webDriver.findElementsByXPath("//*[@id='pagecontent']/*/*[@class='hp-shop-promo']/*[contains(@class, 'hp-shop-promo-categorylink')]/div/a/div/div[1]");
                 WebdriverTab newtab = new WebdriverTab();
-                //TODO use shopCategoryLinks.size() instead of 1 for Loop!
-                for (int i = 0 ; i < 1 ; i++){
+                //use shopCategoryLinks.size() instead of 1 for Loop!
+                for (int i = 0 ; i < shopCategoryLinks.size() ; i++){
                     webDriver.switchTo().window(tabs.get(0));
-                    isSuccessful = newtab.open(webDriver,shopCategoryLinks.get(i).getAttribute("href"),shopCategoryNames.get(i).getAttribute("textContent").trim(),ShopOfTheWeekImage,xpathPatternImage2);
+                    boolean isSuccessful = newtab.open(webDriver, shopCategoryLinks.get(i).getAttribute("href"), shopCategoryNames.get(i).getAttribute("textContent").trim(), ShopOfTheWeekImage, xpathPatternImage2);
                     if (isSuccessful){
                         report.writeToFile("TEST ShopCategoryLinks "+i+": Successful | ", "found \"" + shopCategoryNames.get(i).getAttribute("textContent").trim() + "\" Keyword at URL : "+ shopCategoryLinks.get(i).getAttribute("href") + " and same Image is available");
                     }else {
@@ -210,13 +212,13 @@ public class HomepageTest {
 
         report.writeToFile("=================================", "");
     }
-    public void checkingNewsletterBanner(ChromeDriver webDriver, Report report, JFXCheckBox checkNewsletterBannerFunctionality, Text statusInfo, TextField inputSearch, TextField inputEmailAdress,String xpathPattern1,String xpathPatternImage1,String xpathPatternImage2, Properties Homepage, boolean isSuccessful, boolean isAvailable){
+    public void checkingNewsletterBanner(ChromeDriver webDriver, Report report, JFXCheckBox checkNewsletterBannerFunctionality, Text statusInfo, TextField inputSearch, TextField inputEmailAdress, Properties Homepage){
         // Newsletter Banner Functionality
         Platform.runLater(() -> {
             checkNewsletterBannerFunctionality.setStyle("-fx-background-color: #eef442");
             statusInfo.setText("Checking Newsletter Banner Functionality...");
         });
-        xpathPattern1 = Homepage.getProperty("page.main.newsletter.input");
+        String xpathPattern1 = Homepage.getProperty("page.main.newsletter.input");
         try {
             ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
             webDriver.switchTo().window(tabs.get(0));
@@ -230,7 +232,7 @@ public class HomepageTest {
                 WebElement element = webDriver.findElementByXPath(xpathPattern1);
                 element.sendKeys(inputEmailAdress.getText());
                 element.submit();
-                isAvailable = webDriver.findElementByXPath("//*[@id=\"confirmation-wrapper\"]") != null;
+                boolean isAvailable = webDriver.findElementByXPath("//*[@id=\"confirmation-wrapper\"]") != null;
                 try{
                     if (webDriver.getCurrentUrl().contains("newsletter.html")) {
                         Platform.runLater(() -> {
@@ -251,7 +253,7 @@ public class HomepageTest {
                         checkNewsletterBannerFunctionality.setStyle("-fx-background-color: #FF0000");
                         checkNewsletterBannerFunctionality.setSelected(true);
                     });
-                    isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"NewsLetterBannerSignInPage.png");
+                    boolean isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver, "NewsLetterBannerSignInPage.png");
                     if (isSuccessful){
                         report.writeToFile("Checking Logo Shop Screenshot: ", "Screenshot successful!");
                     }else {
@@ -278,18 +280,18 @@ public class HomepageTest {
 
         report.writeToFile("=================================", "");
     }
-    public void checkingNewsletterPopUp(ChromeDriver webDriver, Report report, JFXCheckBox checkNewsletterPopUp, Text statusInfo, TextField inputSearch, TextField inputEmailAdress,String xpathPattern1,String xpathPatternImage1,String xpathPatternImage2, Properties Homepage, boolean isSuccessful, boolean isAvailable){
+    public void checkingNewsletterPopUp(ChromeDriver webDriver, Report report, JFXCheckBox checkNewsletterPopUp, Text statusInfo, TextField inputSearch, Properties Homepage){
         // Newsletter PopUp
         Platform.runLater(() -> {
             checkNewsletterPopUp.setStyle("-fx-background-color: #eef442");
             statusInfo.setText("Checking Newsletter PopUp...");
         });
-        xpathPattern1 = Homepage.getProperty("page.main.newsletter.icon");
+        String xpathPattern1 = Homepage.getProperty("page.main.newsletter.icon");
         try {
             ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
             webDriver.switchTo().window(tabs.get(0));
             try {
-                isAvailable = webDriver.findElementByXPath(xpathPattern1) != null;
+                boolean isAvailable = webDriver.findElementByXPath(xpathPattern1) != null;
                 webDriver.findElementByXPath(xpathPattern1).click();
                 WebDriverWait wait = new WebDriverWait(webDriver, 10);
                 try{
@@ -306,7 +308,7 @@ public class HomepageTest {
                         checkNewsletterPopUp.setSelected(true);
                     });
                     report.writeToFile("Checking Newsletter PopUp: ", "Couldn't close Newsletter Element!");
-                    isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"NewsLetterPopUpError.png");
+                    boolean isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver, "NewsLetterPopUpError.png");
                     if (isSuccessful){
                         report.writeToFile("Checking Logo Shop Screenshot: ", "Screenshot successful!");
                     }else {
@@ -334,19 +336,20 @@ public class HomepageTest {
         }
         report.writeToFile("=================================", "");
     }
-    public void checkingNewsletterPopUpFunctionality(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox checkNewsletterPopUpFunctionality, Text statusInfo, TextField inputSearch, TextField inputEmailAdress,String xpathPattern1,String xpathPatternImage1,String xpathPatternImage2, Properties Homepage, boolean isSuccessful, boolean isAvailable){
+    public void checkingNewsletterPopUpFunctionality(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox checkNewsletterPopUpFunctionality, Text statusInfo, TextField inputSearch, TextField inputEmailAdress, Properties Homepage){
         // Newsletter PopUp Functionality
         Platform.runLater(() -> {
             checkNewsletterPopUpFunctionality.setStyle("-fx-background-color: #eef442");
             statusInfo.setText("Checking Newsletter PopUp Functionality...");
         });
-        xpathPattern1 = Homepage.getProperty("page.main.newsletter.icon");
+        String xpathPattern1 = Homepage.getProperty("page.main.newsletter.icon");
         try {
             ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
             webDriver.switchTo().window(tabs.get(0));
             try {
-                isAvailable = webDriver.findElementByXPath(xpathPattern1) != null;
+                boolean isAvailable = webDriver.findElementByXPath(xpathPattern1) != null;
                 webDriver.findElementByXPath(xpathPattern1).click();
+                boolean isSuccessful;
                 try{
                     // Scroll down
                     for (int i = 0; i < 5; i++) {
@@ -423,27 +426,28 @@ public class HomepageTest {
         report.writeToFile("=================================", "");
     }
 
-    public void checkingFooterLinks(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox checkFooterLinks, Text statusInfo, TextField inputSearch, TextField inputEmailAdress,String xpathPattern1,String xpathPattern2, Properties Homepage, boolean isSuccessful, boolean isAvailable){
+    public void checkingFooterLinks(ChromeDriver webDriver, Report report, JFXCheckBox checkFooterLinks, Text statusInfo, TextField inputSearch, Properties Homepage){
         // Footer Links
         Platform.runLater(() -> {
             checkFooterLinks.setStyle("-fx-background-color: #eef442");
             statusInfo.setText("Checking Footer Links & Categories...");
         });
-        xpathPattern1 = Homepage.getProperty("page.main.footer.links");
-        xpathPattern2 = Homepage.getProperty("page.main.footer.categories");
+        String xpathPattern1 = Homepage.getProperty("page.main.footer.links");
+        String xpathPattern2 = Homepage.getProperty("page.main.footer.categories");
         try {
             ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
             webDriver.switchTo().window(tabs.get(0));
             try {
-                isAvailable = webDriver.findElementByXPath(xpathPattern1) != null;
+                boolean isAvailable = webDriver.findElementByXPath(xpathPattern1) != null;
                 Point hoverItem = webDriver.findElement(By.xpath(xpathPattern1)).getLocation();
                 ((JavascriptExecutor)webDriver).executeScript("return window.title;");
                 ((JavascriptExecutor)webDriver).executeScript("window.scrollBy(0,"+(hoverItem.getY())+");");
                 WebdriverTab newtab = new WebdriverTab();
                 //check all footerLinks
                 List<WebElement> footerFooterLinks = webDriver.findElementsByXPath(xpathPattern1);
-                //TODO set footerFooterLinks.size()
-                for (int i = 0 ; i < 1 ; i++){
+                //set footerFooterLinks.size()
+                boolean isSuccessful;
+                for (int i = 0; i < footerFooterLinks.size() ; i++){
                     webDriver.switchTo().window(tabs.get(0));
                     if (footerFooterLinks.get(i).getAttribute("href").contains("newsletter")){
                         isSuccessful = newtab.openCheckURLTitleH1H2(webDriver,footerFooterLinks.get(i).getAttribute("href"),"newsletter");
@@ -463,8 +467,8 @@ public class HomepageTest {
                 }
                 List<WebElement> footerCategoryLinks = webDriver.findElementsByXPath(xpathPattern2);
                 //check all footerCategoryLinks
-                //TODO set footerCategoryLinks.size()
-                for (int i = 0 ; i < 1 ; i++){
+                //set footerCategoryLinks.size()
+                for (int i = 0 ; i < footerCategoryLinks.size() ; i++){
                     webDriver.switchTo().window(tabs.get(0));
                     isSuccessful = newtab.openCheckURLTitleH1H2(webDriver,footerCategoryLinks.get(i).getAttribute("href"),footerCategoryLinks.get(i).getText().trim());
                     if (isSuccessful){
@@ -500,14 +504,14 @@ public class HomepageTest {
         report.writeToFile("=================================", "");
     }
 
-    public void checkingSearchAndSuggestions(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox checkTextSearchAndSuggestions, TextField inputTextSearchAndSuggestions, Text statusInfo, TextField inputSearch, TextField inputEmailAdress,String xpathPattern1,String xpathPattern2, Properties Homepage, boolean isSuccessful, boolean isAvailable){
+    public void checkingSearchAndSuggestions(ChromeDriver webDriver, Report report, JFXCheckBox checkTextSearchAndSuggestions, TextField inputTextSearchAndSuggestions, Text statusInfo, TextField inputSearch, Properties Homepage){
 
         // Text Search & Suggestions in InputSearch
         Platform.runLater(() -> {
             checkTextSearchAndSuggestions.setStyle("-fx-background-color: #eef442");
             statusInfo.setText("Checking Text Search and Suggestions in InputSearch...");
         });
-        xpathPattern1 = "//*[@id=\"header-search-input\"]";
+        String xpathPattern1 = "//*[@id=\"header-search-input\"]";
         try {
             ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
             webDriver.switchTo().window(tabs.get(0));
@@ -582,20 +586,20 @@ public class HomepageTest {
         }
         report.writeToFile("=================================", "");
     }
-    public void checkingFeedbackPopUp(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox checkFeedbackPopUp, TextField inputTextSearchAndSuggestions, Text statusInfo, TextField inputSearch, TextField inputEmailAdress,String xpathPattern1,String xpathPattern2, Properties Homepage, boolean isSuccessful, boolean isAvailable){
+    public void checkingFeedbackPopUp(ChromeDriver webDriver, Report report, JFXCheckBox checkFeedbackPopUp, Text statusInfo, TextField inputSearch, Properties Homepage){
         // Feedback PopUp
         Platform.runLater(() -> {
             checkFeedbackPopUp.setStyle("-fx-background-color: #eef442");
             statusInfo.setText("Checking Feedback PopUp...");
         });
-        xpathPattern1 = Homepage.getProperty("page.main.feedback.icon");
-        xpathPattern2 = Homepage.getProperty("page.main.feedback.close");
+        String xpathPattern1 = Homepage.getProperty("page.main.feedback.icon");
+        String xpathPattern2 = Homepage.getProperty("page.main.feedback.close");
         try {
             ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
             webDriver.switchTo().window(tabs.get(0));
             WebDriverWait wait = new WebDriverWait(webDriver, 10);
             try{
-                isAvailable = webDriver.findElementByXPath(xpathPattern1) != null;
+                boolean isAvailable = webDriver.findElementByXPath(xpathPattern1) != null;
                 webDriver.findElementByXPath(xpathPattern1).click();
                 try{
                     wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpathPattern2)));
@@ -635,13 +639,13 @@ public class HomepageTest {
         report.writeToFile("=================================", "");
     }
 
-    public void checkingPrivacyPopUp(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox checkPrivacyPopUp, TextField inputTextSearchAndSuggestions, Text statusInfo, TextField inputSearch, TextField inputEmailAdress, String xpathPattern1, String xpathPattern2, Properties Homepage, boolean isSuccessful, boolean isAvailable) {
+    public void checkingPrivacyPopUp(ChromeDriver webDriver, Report report, JFXCheckBox checkPrivacyPopUp, Text statusInfo, TextField inputSearch, Properties Homepage) {
         // Privacy PopUp
         Platform.runLater(() -> {
             checkPrivacyPopUp.setStyle("-fx-background-color: #eef442");
             statusInfo.setText("Checking Privacy PopUp...");
         });
-        xpathPattern1 = Homepage.getProperty("page.main.privacy.popup");
+        String xpathPattern1 = Homepage.getProperty("page.main.privacy.popup");
         try {
             ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
             webDriver.switchTo().window(tabs.get(0));
@@ -649,7 +653,7 @@ public class HomepageTest {
             WebDriverWait wait = new WebDriverWait(webDriver, 10);
             try{
                 wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpathPattern1)));
-                isAvailable = webDriver.findElementByXPath(xpathPattern1) != null;
+                boolean isAvailable = webDriver.findElementByXPath(xpathPattern1) != null;
                 webDriver.findElementByXPath(xpathPattern1).click();
                 ArrayList<String> tabsPrivacy = new ArrayList<>(webDriver.getWindowHandles());
                 webDriver.switchTo().window(tabsPrivacy.get(1)).close();
