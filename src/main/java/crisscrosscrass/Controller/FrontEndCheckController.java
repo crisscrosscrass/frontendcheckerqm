@@ -113,6 +113,8 @@ public class FrontEndCheckController {
     @FXML
     TextField inputBrandPageOverview;
     @FXML
+    TextField inputLucenePage;
+    @FXML
     HBox outputPlace;
     @FXML
     ImageView preloaderCat;
@@ -325,14 +327,21 @@ public class FrontEndCheckController {
                     if (!tabGridPageFillIns.isDisable()){
                         tabPane.getSelectionModel().select(tabGridPageFillIns);
                         GridPageTestWithFillIns gridPageTestWithFillIns = new GridPageTestWithFillIns();
-                        gridPageTestWithFillIns.ShowAllFillInPage(webDriver,report,js,gridPageWithFillInsController.ShowAllFillInPage,inputGridPageURLWithFillIns,statusInfo,inputSearch, Homepage);
+                        gridPageTestWithFillIns.ShowAllFillInPage(webDriver,report,js,gridPageWithFillInsController.showAllFillInPage,inputGridPageURLWithFillIns,statusInfo,inputSearch, Homepage);
                     }
                     if (!tabBrandPage.isDisable()){
                         tabPane.getSelectionModel().select(tabBrandPage);
                         BrandPageTest brandPageTest = new BrandPageTest();
                         brandPageTest.pagingWithWindowsForward(webDriver,report,js,brandOverviewController.brandsWithoutLogo,inputBrandPageOverview,statusInfo,inputSearch, Homepage);
                     }
+                    if (!tabLucenePage.isDisable()){
+                        try{
 
+                        }catch (Exception noLucenePageWorking){
+                            noLucenePageWorking.printStackTrace();
+                        }
+
+                    }
 
 
                     // close webdriver and clear tasklist

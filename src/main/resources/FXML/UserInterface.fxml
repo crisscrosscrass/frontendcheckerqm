@@ -29,7 +29,7 @@
                   <Font size="20.0" />
                </font>
             </TextField>
-            <VBox alignment="CENTER" prefHeight="100.0" prefWidth="509.0" spacing="20.0" style="-fx-border-color: white; -fx-border-radius: 5;">
+            <VBox alignment="CENTER" prefHeight="100.0" prefWidth="509.0" spacing="5.0" style="-fx-border-color: white; -fx-border-radius: 5;">
                <children>
                   <HBox alignment="CENTER_LEFT" spacing="20.0">
                      <children>
@@ -48,13 +48,13 @@
                   <Insets />
                </VBox.margin>
                <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                  <Insets left="10.0" />
                </padding>
             </VBox>
-            <VBox alignment="CENTER_LEFT" layoutX="30.0" layoutY="129.0" prefHeight="100.0" prefWidth="509.0" spacing="20.0" style="-fx-border-color: white; -fx-border-radius: 5;">
+            <VBox alignment="CENTER_LEFT" layoutX="30.0" layoutY="129.0" spacing="5.0" style="-fx-border-color: white; -fx-border-radius: 5;">
                <children>
                   <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="GridPageURLwihtoutWindows" />
-                  <TextField fx:id="inputGridPageURL" focusTraversable="false" text="https://www.ladenzeile.de/mode/" />
+                  <TextField fx:id="inputGridPageURL" focusTraversable="false" prefHeight="25.0" text="https://www.ladenzeile.de/mode/" />
                   <Text fill="WHITE" layoutX="189.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Brand/Shop Keyword" />
                   <TextField fx:id="inputGridPageKeyword" focusTraversable="false" layoutX="21.0" layoutY="58.0" text="nike" />
                   <Accordion prefHeight="155.0" prefWidth="495.0">
@@ -76,12 +76,12 @@
                   </Accordion>
                </children>
                <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                  <Insets left="10.0" right="10.0" />
                </padding>
             </VBox>
-            <VBox alignment="CENTER_LEFT" layoutX="30.0" layoutY="223.0" prefHeight="100.0" prefWidth="509.0" spacing="20.0" style="-fx-border-color: white; -fx-border-radius: 5;">
+            <VBox alignment="CENTER_LEFT" layoutX="30.0" layoutY="223.0" spacing="5.0" style="-fx-border-color: white; -fx-border-radius: 5;">
                <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                  <Insets left="10.0" right="10.0" />
                </padding>
                <children>
                   <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="GridPageURL with Windows" />
@@ -91,22 +91,31 @@
                   <Insets />
                </VBox.margin>
             </VBox>
-            <VBox alignment="CENTER_LEFT" layoutX="30.0" layoutY="571.0" prefHeight="100.0" prefWidth="509.0" spacing="20.0" style="-fx-border-color: white; -fx-border-radius: 5;">
+            <VBox alignment="CENTER_LEFT" layoutX="30.0" layoutY="571.0" spacing="5.0" style="-fx-border-color: white; -fx-border-radius: 5;">
                <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                  <Insets left="10.0" right="10.0" />
                </padding>
                <children>
                   <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="GridPageURL with FillIns" />
                   <TextField fx:id="inputGridPageURLWithFillIns" focusTraversable="false" text="https://taschen.ladenzeile.de/kulturbeutel-kammtasche/" />
                </children>
             </VBox>
-            <VBox alignment="CENTER_LEFT" layoutX="30.0" layoutY="618.0" prefHeight="100.0" prefWidth="509.0" spacing="20.0" style="-fx-border-color: white; -fx-border-radius: 5;">
+            <VBox alignment="CENTER_LEFT" layoutX="30.0" layoutY="618.0" spacing="5.0" style="-fx-border-color: white; -fx-border-radius: 5;">
                <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                  <Insets left="10.0" right="10.0" />
                </padding>
                <children>
                   <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Brand Page (Overview)" />
                   <TextField fx:id="inputBrandPageOverview" focusTraversable="false" text="https://www.ladenzeile.de/marken.html" />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER_LEFT" layoutX="30.0" layoutY="571.0" spacing="5.0" style="-fx-border-color: white; -fx-border-radius: 5;">
+               <padding>
+                  <Insets left="10.0" right="10.0" />
+               </padding>
+               <children>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Lucene Keyword" />
+                  <TextField fx:id="inputLucenePage" focusTraversable="false" text="lalala" />
                </children>
             </VBox>
 
@@ -115,7 +124,7 @@
             <Insets />
          </opaqueInsets>
          <padding>
-            <Insets left="20.0" right="20.0" top="20.0" />
+            <Insets left="20.0" />
          </padding>
       </VBox>
       <VBox alignment="CENTER" layoutX="539.0" prefHeight="112.0" prefWidth="367.0" style="-fx-background-color: white;">
@@ -130,8 +139,8 @@
                               <JFXCheckBox fx:id="settingGridPage" layoutX="20.0" layoutY="20.0" text="Grid Page" />
                               <JFXCheckBox fx:id="settingGridPageWithWindows" layoutX="20.0" layoutY="43.0" text="Grid Page Window" />
                               <JFXCheckBox fx:id="settingGridPageFillIns" layoutX="20.0" layoutY="66.0" text="Grid Page Fill-ins" />
-                              <JFXCheckBox fx:id="settingBrandPage" layoutX="20.0" layoutY="89.0" selected="true" text="Brand Page" />
-                              <JFXCheckBox fx:id="settingLucenePage" layoutX="20.0" layoutY="112.0" text="Lucene Page" />
+                              <JFXCheckBox fx:id="settingBrandPage" layoutX="20.0" layoutY="89.0" text="Brand Page" />
+                              <JFXCheckBox fx:id="settingLucenePage" layoutX="20.0" layoutY="112.0" selected="true" text="Lucene Page" />
                               <JFXCheckBox fx:id="settingLucenePageWithDeletions" layoutX="20.0" layoutY="135.0" text="Lucene Page with Deletions" />
                               <JFXCheckBox fx:id="settingDetailPage" layoutX="20.0" layoutY="158.0" text="Detail Page" />
                               <JFXCheckBox fx:id="settingImageGrouping" layoutX="20.0" layoutY="181.0" text="Image Grouping" />
@@ -209,7 +218,7 @@
             </Tab>
             <Tab fx:id="tabLucenePage" closable="false" disable="true" text="Lucene Page">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                </content>
             </Tab>
             <Tab fx:id="tabLucenePageWithDeletions" closable="false" disable="true" text="Lucene Page with Deletions">

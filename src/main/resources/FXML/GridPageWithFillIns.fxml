@@ -5,6 +5,6 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="crisscrosscrass.Controller.GridPageWithFillInsController">
     <children>
-        <JFXCheckBox fx:id="ShowAllFillInPage" text="Show all Fill in Page" />
+        <JFXCheckBox fx:id="showAllFillInPage" text="Show all Fill in Page" />
     </children>
 </AnchorPane>

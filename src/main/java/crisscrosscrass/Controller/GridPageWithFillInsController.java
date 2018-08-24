@@ -6,5 +6,5 @@ import javafx.fxml.FXML;
 public class GridPageWithFillInsController {
 
     @FXML
-    JFXCheckBox ShowAllFillInPage;
+    JFXCheckBox showAllFillInPage;
 }
