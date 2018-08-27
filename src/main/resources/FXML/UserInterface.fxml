@@ -228,7 +228,7 @@
             </Tab>
             <Tab fx:id="tabDetailPage" closable="false" disable="true" text="Detail Page">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  <fx:include fx:id="detailPage" source="DetailPage.fxml" />
                </content>
             </Tab>
             <Tab fx:id="tabImageGrouping" closable="false" disable="true" text="Image Grouping">

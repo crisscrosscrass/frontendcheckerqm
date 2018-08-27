@@ -151,6 +151,7 @@ public class FrontEndCheckController {
     @FXML GridPageWithFillInsController gridPageWithFillInsController;
     @FXML BrandOverviewController brandOverviewController;
     @FXML PageLuceneWithItemsController pageLuceneWithItemsController;
+    @FXML DetailPageController detailPageController;
 
 
 
@@ -372,9 +373,19 @@ public class FrontEndCheckController {
                             try{
                                 tabPane.getSelectionModel().select(tabLucenePage);
                                 PageLuceneWithItemsTest pageLuceneWithItemsTest = new PageLuceneWithItemsTest();
-                                //pageLuceneWithItemsTest.checkingSorting(webDriver,report,js,pageLuceneWithItemsController.PageLuceneWithItemsSorting,inputLucenePage,statusInfo,inputSearch, Homepage);
-                                //pageLuceneWithItemsTest.checkingCollapse(webDriver,report,js,pageLuceneWithItemsController.PageLuceneWithItemsCollapse,inputLucenePage,statusInfo,inputSearch, Homepage);
+                                pageLuceneWithItemsTest.checkingSorting(webDriver,report,js,pageLuceneWithItemsController.PageLuceneWithItemsSorting,inputLucenePage,statusInfo,inputSearch, Homepage);
+                                pageLuceneWithItemsTest.checkingCollapse(webDriver,report,js,pageLuceneWithItemsController.PageLuceneWithItemsCollapse,inputLucenePage,statusInfo,inputSearch, Homepage);
                                 pageLuceneWithItemsTest.checkingMultiselect(webDriver,report,js,pageLuceneWithItemsController.PageLuceneWithItemsMultiSelect,inputLucenePage,statusInfo,inputSearch, Homepage);
+                            }catch (Exception noLucenePageWorking){
+                                noLucenePageWorking.printStackTrace();
+                            }
+
+                        }
+                        if (!tabDetailPage.isDisable()){
+                            try{
+                                tabPane.getSelectionModel().select(tabDetailPage);
+                                DetailPageTest detailPageTest = new DetailPageTest();
+                                detailPageTest.checkingMultiselect(webDriver,report,js,detailPageController.SwitchTabsInDetailPage,inputLucenePage,statusInfo,inputSearch, Homepage);
                             }catch (Exception noLucenePageWorking){
                                 noLucenePageWorking.printStackTrace();
                             }
