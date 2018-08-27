@@ -115,7 +115,7 @@
                </padding>
                <children>
                   <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Lucene Keyword" />
-                  <TextField fx:id="inputLucenePage" focusTraversable="false" text="lalala" />
+                  <TextField fx:id="inputLucenePage" focusTraversable="false" text="emaroon" />
                </children>
             </VBox>
 
