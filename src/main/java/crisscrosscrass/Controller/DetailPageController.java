@@ -7,4 +7,7 @@ public class DetailPageController {
         @FXML
         JFXCheckBox SwitchTabsInDetailPage;
 
+        @FXML
+        JFXCheckBox SimilarProductsClickOut;
+
 }

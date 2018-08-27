@@ -385,7 +385,8 @@ public class FrontEndCheckController {
                             try{
                                 tabPane.getSelectionModel().select(tabDetailPage);
                                 DetailPageTest detailPageTest = new DetailPageTest();
-                                detailPageTest.checkingMultiselect(webDriver,report,js,detailPageController.SwitchTabsInDetailPage,inputLucenePage,statusInfo,inputSearch, Homepage);
+                                //detailPageTest.SwitchTabsinDetailPage(webDriver,report,js,detailPageController.SwitchTabsInDetailPage,inputLucenePage,statusInfo,inputGridPageURL, Homepage);
+                                detailPageTest.SimilarProductClickOut(webDriver,report,js,detailPageController.SimilarProductsClickOut,inputLucenePage,statusInfo,inputGridPageURL, Homepage);
                             }catch (Exception noLucenePageWorking){
                                 noLucenePageWorking.printStackTrace();
                             }

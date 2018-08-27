@@ -3,8 +3,9 @@
 <?import com.jfoenix.controls.JFXCheckBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="crisscrosscrass.Controller.DetailPageController">
+<VBox xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="crisscrosscrass.Controller.DetailPageController">
     <children>
         <JFXCheckBox fx:id="SwitchTabsInDetailPage" text="Switch Tabs in Detail Page" />
+        <JFXCheckBox fx:id="SimilarProductsClickOut" text="Similar Products Click Out" />
     </children>
 </VBox>
