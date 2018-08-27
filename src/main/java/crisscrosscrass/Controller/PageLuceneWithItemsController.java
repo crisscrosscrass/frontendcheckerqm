@@ -7,4 +7,10 @@ public class PageLuceneWithItemsController {
 
     @FXML
     JFXCheckBox PageLuceneWithItemsSorting;
+
+    @FXML
+    JFXCheckBox PageLuceneWithItemsCollapse;
+
+    @FXML
+    JFXCheckBox PageLuceneWithItemsMultiSelect;
 }

@@ -22,7 +22,7 @@ public class PageLuceneWithItemsTest {
     public void checkingSorting(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox PageLuceneWithItemsSorting, TextField inputLucenePage, Text statusInfo, TextField inputSearch, Properties Homepage){
         Platform.runLater(() -> {
             PageLuceneWithItemsSorting.setStyle("-fx-background-color: #eef442");
-            statusInfo.setText("Checking Lucene Page with Items...");
+            statusInfo.setText("Checking Lucene Page with Items Sorting...");
         });
 
 
@@ -53,6 +53,7 @@ public class PageLuceneWithItemsTest {
                                 Platform.runLater(() -> {
                                     statusInfo.setText("Checking Sorting Values from Low to High...");
                                 });
+                                boolean isSuccessful;
 
                                 List<WebElement> ItemsGridPage = webDriver.findElementsByXPath(Homepage.getProperty("page.items.price"));
                                 double checkStartingPriceFirstItem = Double.parseDouble(ItemsGridPage.get(0).getText().replaceAll("(^\\s?\\€?)|(\\-\\s*\\€?\\d*\\,?\\.?.*)|(\\€?\\*\\s*\\d*\\,?\\.?)$|(\\€?\\*\\s\\d*.*$)|(\\s?\\€?$)","").trim().replaceAll("\\.","").replaceAll(",","."));
@@ -82,6 +83,12 @@ public class PageLuceneWithItemsTest {
                                     report.writeToFile("Checking Lucene Page with Items Price Lowest to Highest: ", "Successful! First Item Price("+checkPriceLowToHighFirstItem+") is lower than last Item Price("+checkPriceLowToHighLastItem+") !");
                                 }else {
                                     report.writeToFile("Checking Lucene Page with Items Price Lowest to Highest: ", "Not Successful! First Item Price("+checkPriceLowToHighFirstItem+") is NOT lower than last Item Price("+checkPriceLowToHighLastItem+") !");
+                                    isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver, "LucenePageWithItemLowToHigh.png");
+                                    if (isSuccessful){
+                                        report.writeToFile("Checking Lucene Page with Items Price Lowest to Highest Screenshot: ", "Screenshot successful!");
+                                    }else {
+                                        report.writeToFile("Checking Lucene Page with Items Price Lowest to Highest Screenshot: ", "Screenshot not successful!");
+                                    }
                                 }
                                 report.writeToFile("");
 
@@ -117,6 +124,12 @@ public class PageLuceneWithItemsTest {
                                     report.writeToFile("Checking Lucene Page with Items Price Highest to Lowest: ", "Successful! First Item Price("+checkPriceHighToLowFirstItem+") is higher than last Item Price("+checkPriceHighToLowLastItem+") !");
                                 }else {
                                     report.writeToFile("Checking Lucene Page with Items Price Highest to Lowest: ", "Not Successful! First Item Price("+checkPriceHighToLowFirstItem+") is NOT higher than last Item Price("+checkPriceHighToLowLastItem+") !");
+                                    isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver, "LucenePageWithItemHighToLow.png");
+                                    if (isSuccessful){
+                                        report.writeToFile("Checking Lucene Page with Items Price Highest to Lowest Screenshot: ", "Screenshot successful!");
+                                    }else {
+                                        report.writeToFile("Checking Lucene Page with Items Price Highest to Lowest Screenshot: ", "Screenshot not successful!");
+                                    }
                                 }
                                 report.writeToFile("");
 
@@ -143,17 +156,23 @@ public class PageLuceneWithItemsTest {
                                 wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.items.price"))));
                                 wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.items.price"))));
                                 List<WebElement> ItemsGridPageSortingSale = webDriver.findElementsByXPath(Homepage.getProperty("page.items.salesprice"));
-                                double checkPriceItemsGridPageSortingSale = Double.parseDouble(ItemsGridPageSortingSale.get(0).getText().replaceAll("(^\\s?\\€?)|(\\-\\s*\\€?\\d*\\,?\\.?.*)|(\\€?\\*\\s*\\d*\\,?\\.?)$|(\\€?\\*\\s\\d*.*$)|(\\s?\\€?$)","").trim().replaceAll("\\.","").replaceAll(",","."));
-                                if (checkPriceItemsGridPageSortingSale != checkStartingPriceFirstItem && webDriver.getCurrentUrl().contains("sort=reduced_price_desc")){
-                                    report.writeToFile("Successful changed Sorting to Sales!", "");
-                                }
+
                                 if (ItemsGridPageSortingSale.size() != 0){
+                                    double checkPriceItemsGridPageSortingSale = Double.parseDouble(ItemsGridPageSortingSale.get(0).getText().replaceAll("(^\\s?\\€?)|(\\-\\s*\\€?\\d*\\,?\\.?.*)|(\\€?\\*\\s*\\d*\\,?\\.?)$|(\\€?\\*\\s\\d*.*$)|(\\s?\\€?$)","").trim().replaceAll("\\.","").replaceAll(",","."));
+                                    if (checkPriceItemsGridPageSortingSale != checkStartingPriceFirstItem && webDriver.getCurrentUrl().contains("sort=reduced_price_desc")){
+                                        report.writeToFile("Successful changed Sorting to Sales!", "");
+                                    }
                                     report.writeToFile("Checking Lucene Page with Items Sales Price: ", "Successful! Item contains Sales Price");
                                 }else {
                                     report.writeToFile("Checking Lucene Page with Items Sales Price: ", "Not Successful! Couldn't find a item with Sales Price");
+                                    isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver, "LucenePageWithItemSalesPrice.png");
+                                    if (isSuccessful){
+                                        report.writeToFile("Checking Lucene Page with Items Price Sales Price Screenshot: ", "Screenshot successful!");
+                                    }else {
+                                        report.writeToFile("Checking Lucene Page with Items Price Sales Price Screenshot: ", "Screenshot not successful!");
+                                    }
                                 }
                                 report.writeToFile("");
-
 
 
 
@@ -221,6 +240,252 @@ public class PageLuceneWithItemsTest {
             });
             webDriver.navigate().to(inputSearch.getText().trim());
             report.writeToFile("Checking Lucene Page with Items: ", "unable to check! Browser not responding");
+            noBrowserWorking.printStackTrace();
+        }
+
+        report.writeToFile("=================================", "");
+
+    }
+
+    public void checkingCollapse(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox PageLuceneWithItemsCollapse, TextField inputLucenePage, Text statusInfo, TextField inputSearch, Properties Homepage){
+        Platform.runLater(() -> {
+            PageLuceneWithItemsCollapse.setStyle("-fx-background-color: #eef442");
+            statusInfo.setText("Checking Lucene Page Collapse Filters...");
+        });
+        try {
+            ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
+            webDriver.switchTo().window(tabs.get(0));
+            boolean isSuccessful = false;
+            try {
+                webDriver.navigate().to(inputSearch.getText().trim());
+                WebDriverWait wait = new WebDriverWait(webDriver, 10);
+                try{
+                    boolean isAvailable = webDriver.findElementById(Homepage.getProperty("page.search.bar")) != null;
+                    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(Homepage.getProperty("page.search.bar"))));
+                    WebElement element = webDriver.findElement(By.id(Homepage.getProperty("page.search.bar")));
+                    element.sendKeys(inputLucenePage.getText().trim());
+                    element.submit();
+
+                    if (webDriver.getCurrentUrl().contains("?q=") ){
+
+                        try{
+                            isAvailable = webDriver.findElementByXPath(Homepage.getProperty("lucenepage.sidebar.boxes")) != null;
+
+                            List<WebElement> FilterBoxes = webDriver.findElementsByXPath(Homepage.getProperty("lucenepage.sidebar.boxes"));
+
+                            if (FilterBoxes.size() != 0){
+                                for (int i = 0 ; i < FilterBoxes.size() ; i ++){
+                                    wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("lucenepage.sidebar.boxes"))));
+                                    FilterBoxes.get(i).click();
+                                    FilterBoxes = webDriver.findElementsByXPath(Homepage.getProperty("lucenepage.sidebar.boxes"));
+                                }
+
+                                isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver, "LucenePageCollapseFilters.png");
+                                if (isSuccessful){
+                                    report.writeToFile("Checking Lucene Page Collapse Filters Screenshot: ", "Screenshot successful!");
+                                }else {
+                                    report.writeToFile("Checking Lucene Page Collapse Filters Screenshot: ", "Screenshot not successful!");
+                                }
+
+                                Platform.runLater(() -> {
+                                    PageLuceneWithItemsCollapse.setStyle("-fx-background-color: #CCFF99");
+                                    PageLuceneWithItemsCollapse.setSelected(true);
+                                });
+                                report.writeToFile("Checking Lucene Page Collapse Filters: ", "Complete!");
+
+
+                            }else {
+                                Platform.runLater(() -> {
+                                    PageLuceneWithItemsCollapse.setStyle("-fx-background-color: #CCFF99");
+                                    PageLuceneWithItemsCollapse.setSelected(true);
+                                });
+                                isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver, "LucenePageCollapseFilters.png");
+                                if (isSuccessful){
+                                    report.writeToFile("Checking Lucene Page Collapse Filters Error: ", "Screenshot successful!");
+                                }else {
+                                    report.writeToFile("Checking Lucene Page Collapse Filters Error: ", "Screenshot not successful!");
+                                }
+                                report.writeToFile("Checking Lucene Page Collapse Filters: ", "Unable to complete! Couldn't detect Filter Boxes");
+                            }
+
+                        }catch (Exception noSortingPossible){
+                            Platform.runLater(() -> {
+                                PageLuceneWithItemsCollapse.setStyle("-fx-background-color: #FF0000");
+                                PageLuceneWithItemsCollapse.setSelected(true);
+                            });
+                            isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver, "LucenePageCollapseFilters.png");
+                            if (isSuccessful){
+                                report.writeToFile("Checking Lucene Page Collapse Filters Error: ", "Screenshot successful!");
+                            }else {
+                                report.writeToFile("Checking Lucene Page Collapse Filters Error: ", "Screenshot not successful!");
+                            }
+                            report.writeToFile("Checking Lucene Page Collapse Filters: ", "Unable to collapse any Filters on Lucene Page!");
+                            noSortingPossible.printStackTrace();
+                        }
+
+                    }else{
+                        Platform.runLater(() -> {
+                            PageLuceneWithItemsCollapse.setStyle("-fx-background-color: #FF0000");
+                            PageLuceneWithItemsCollapse.setSelected(true);
+                        });
+                        report.writeToFile("Checking Lucene Page Collapse Filters: ", "Unable to Complete! Couldn't find Lucene Page");
+                    }
+
+
+                }catch (Exception gridPageIssue){
+                    Platform.runLater(() -> {
+                        PageLuceneWithItemsCollapse.setStyle("-fx-background-color: #FF0000");
+                        PageLuceneWithItemsCollapse.setSelected(true);
+                    });
+                    isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver, "GridPageErrorPagingWindows.png");
+                    if (isSuccessful){
+                        report.writeToFile("Checking Lucene Page Collapse Filters Error Screenshot: ", "Screenshot successful!");
+                    }else {
+                        report.writeToFile("Checking Lucene Page Collapse Filters Error Screenshot: ", "Screenshot not successful!");
+                    }
+                    webDriver.navigate().to(inputSearch.getText().trim());
+                    report.writeToFile("Checking Lucene Page Collapse Filters: ", "Could find any Searchbar to enter Keyword for Lucene Page");
+                    gridPageIssue.printStackTrace();
+                }
+            }catch (Exception noRequestedSiteFound){
+                Platform.runLater(() -> {
+                    PageLuceneWithItemsCollapse.setStyle("-fx-background-color: #FF0000");
+                    PageLuceneWithItemsCollapse.setSelected(true);
+                });
+                webDriver.navigate().to(inputSearch.getText().trim());
+                report.writeToFile("Checking Lucene Page Collapse Filters: ", "Couldn't navigate to requested Site!");
+                noRequestedSiteFound.printStackTrace();
+            }
+        }catch (Exception noBrowserWorking){
+            Platform.runLater(() -> {
+                PageLuceneWithItemsCollapse.setStyle("-fx-background-color: #FF0000");
+                PageLuceneWithItemsCollapse.setSelected(true);
+            });
+            webDriver.navigate().to(inputSearch.getText().trim());
+            report.writeToFile("Checking Lucene Page Collapse Filters: ", "unable to check! Browser not responding");
+            noBrowserWorking.printStackTrace();
+        }
+
+        report.writeToFile("=================================", "");
+
+    }
+
+    public void checkingMultiselect(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox PageLuceneWithItemsMultiSelect, TextField inputLucenePage, Text statusInfo, TextField inputSearch, Properties Homepage){
+        Platform.runLater(() -> {
+            PageLuceneWithItemsMultiSelect.setStyle("-fx-background-color: #eef442");
+            statusInfo.setText("Checking Lucene Page Collapse Filters...");
+        });
+        try {
+            ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
+            webDriver.switchTo().window(tabs.get(0));
+            boolean isSuccessful = false;
+            try {
+                webDriver.navigate().to(inputSearch.getText().trim());
+                WebDriverWait wait = new WebDriverWait(webDriver, 10);
+                try{
+                    boolean isAvailable = webDriver.findElementById(Homepage.getProperty("page.search.bar")) != null;
+                    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(Homepage.getProperty("page.search.bar"))));
+                    WebElement element = webDriver.findElement(By.id(Homepage.getProperty("page.search.bar")));
+                    element.sendKeys(inputLucenePage.getText().trim());
+                    element.submit();
+
+                    if (webDriver.getCurrentUrl().contains("?q=") ){
+
+                        try{
+                            isAvailable = webDriver.findElementByXPath(Homepage.getProperty("lucenepage.sidebar.boxes")) != null;
+
+                            List<WebElement> FilterBoxes = webDriver.findElementsByXPath(Homepage.getProperty("lucenepage.sidebar.boxes"));
+
+                            if (FilterBoxes.size() != 0){
+                                for (int i = 0 ; i < FilterBoxes.size() ; i ++){
+                                    wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("lucenepage.sidebar.boxes"))));
+                                    FilterBoxes.get(i).click();
+                                    FilterBoxes = webDriver.findElementsByXPath(Homepage.getProperty("lucenepage.sidebar.boxes"));
+                                }
+
+                                isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver, "LucenePageCollapseFilters.png");
+                                if (isSuccessful){
+                                    report.writeToFile("Checking Lucene Page Collapse Filters Screenshot: ", "Screenshot successful!");
+                                }else {
+                                    report.writeToFile("Checking Lucene Page Collapse Filters Screenshot: ", "Screenshot not successful!");
+                                }
+
+                                Platform.runLater(() -> {
+                                    PageLuceneWithItemsMultiSelect.setStyle("-fx-background-color: #CCFF99");
+                                    PageLuceneWithItemsMultiSelect.setSelected(true);
+                                });
+                                report.writeToFile("Checking Lucene Page Collapse Filters: ", "Complete!");
+
+
+                            }else {
+                                Platform.runLater(() -> {
+                                    PageLuceneWithItemsMultiSelect.setStyle("-fx-background-color: #CCFF99");
+                                    PageLuceneWithItemsMultiSelect.setSelected(true);
+                                });
+                                isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver, "LucenePageCollapseFilters.png");
+                                if (isSuccessful){
+                                    report.writeToFile("Checking Lucene Page Collapse Filters Error: ", "Screenshot successful!");
+                                }else {
+                                    report.writeToFile("Checking Lucene Page Collapse Filters Error: ", "Screenshot not successful!");
+                                }
+                                report.writeToFile("Checking Lucene Page Collapse Filters: ", "Unable to complete! Couldn't detect Filter Boxes");
+                            }
+
+                        }catch (Exception noSortingPossible){
+                            Platform.runLater(() -> {
+                                PageLuceneWithItemsMultiSelect.setStyle("-fx-background-color: #FF0000");
+                                PageLuceneWithItemsMultiSelect.setSelected(true);
+                            });
+                            isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver, "LucenePageCollapseFilters.png");
+                            if (isSuccessful){
+                                report.writeToFile("Checking Lucene Page Collapse Filters Error: ", "Screenshot successful!");
+                            }else {
+                                report.writeToFile("Checking Lucene Page Collapse Filters Error: ", "Screenshot not successful!");
+                            }
+                            report.writeToFile("Checking Lucene Page Collapse Filters: ", "Unable to collapse any Filters on Lucene Page!");
+                            noSortingPossible.printStackTrace();
+                        }
+
+                    }else{
+                        Platform.runLater(() -> {
+                            PageLuceneWithItemsMultiSelect.setStyle("-fx-background-color: #FF0000");
+                            PageLuceneWithItemsMultiSelect.setSelected(true);
+                        });
+                        report.writeToFile("Checking Lucene Page Collapse Filters: ", "Unable to Complete! Couldn't find Lucene Page");
+                    }
+
+
+                }catch (Exception gridPageIssue){
+                    Platform.runLater(() -> {
+                        PageLuceneWithItemsMultiSelect.setStyle("-fx-background-color: #FF0000");
+                        PageLuceneWithItemsMultiSelect.setSelected(true);
+                    });
+                    isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver, "GridPageErrorPagingWindows.png");
+                    if (isSuccessful){
+                        report.writeToFile("Checking Lucene Page Collapse Filters Error Screenshot: ", "Screenshot successful!");
+                    }else {
+                        report.writeToFile("Checking Lucene Page Collapse Filters Error Screenshot: ", "Screenshot not successful!");
+                    }
+                    webDriver.navigate().to(inputSearch.getText().trim());
+                    report.writeToFile("Checking Lucene Page Collapse Filters: ", "Could find any Searchbar to enter Keyword for Lucene Page");
+                    gridPageIssue.printStackTrace();
+                }
+            }catch (Exception noRequestedSiteFound){
+                Platform.runLater(() -> {
+                    PageLuceneWithItemsMultiSelect.setStyle("-fx-background-color: #FF0000");
+                    PageLuceneWithItemsMultiSelect.setSelected(true);
+                });
+                webDriver.navigate().to(inputSearch.getText().trim());
+                report.writeToFile("Checking Lucene Page Collapse Filters: ", "Couldn't navigate to requested Site!");
+                noRequestedSiteFound.printStackTrace();
+            }
+        }catch (Exception noBrowserWorking){
+            Platform.runLater(() -> {
+                PageLuceneWithItemsMultiSelect.setStyle("-fx-background-color: #FF0000");
+                PageLuceneWithItemsMultiSelect.setSelected(true);
+            });
+            webDriver.navigate().to(inputSearch.getText().trim());
+            report.writeToFile("Checking Lucene Page Collapse Filters: ", "unable to check! Browser not responding");
             noBrowserWorking.printStackTrace();
         }
 
