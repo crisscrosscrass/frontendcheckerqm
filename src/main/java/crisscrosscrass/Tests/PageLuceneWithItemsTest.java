@@ -39,7 +39,7 @@ public class PageLuceneWithItemsTest {
                     element.sendKeys(inputLucenePage.getText().trim());
                     element.submit();
 
-                    if (webDriver.getCurrentUrl().contains(inputLucenePage.getText().trim() ) && webDriver.getCurrentUrl().contains("?q=") ){
+                    if (webDriver.getCurrentUrl().contains("?q=") ){
 
                         try{
                             /**wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("lucenepage.sort.dropdown.button"))));

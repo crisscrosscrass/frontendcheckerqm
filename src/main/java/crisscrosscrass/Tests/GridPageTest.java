@@ -293,6 +293,8 @@ public class GridPageTest {
                     wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(@class, 'grid-item-size-btns')]/a")));
                     try {
                         webDriver.findElementByXPath("//*[contains(@class, 'grid-item-size-btns')]/a ").click();
+                        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Homepage.getProperty("page.grid.loader"))));
+                        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.items.price"))));
                         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@class, 'gridProducts')]/div/div/a/div[contains(@class, 'price')]")));
                         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(@class, 'gridProducts')]/div/div/a/div[contains(@class, 'price')]")));
                         if (webDriver.getCurrentUrl().contains("itemSize=detail")){
@@ -309,6 +311,7 @@ public class GridPageTest {
                             });
                         }
                         webDriver.findElementByXPath("//*[contains(@class, 'grid-item-size-btns')]/a ").click();
+                        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Homepage.getProperty("page.grid.loader"))));
                         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@class, 'gridProducts')]/div/div/a/div[contains(@class, 'price')]")));
                         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(@class, 'gridProducts')]/div/div/a/div[contains(@class, 'price')]")));
                         report.writeToFile("");
