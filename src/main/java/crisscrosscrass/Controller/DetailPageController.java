@@ -13,4 +13,7 @@ public class DetailPageController {
         @FXML
         JFXCheckBox PagingForwardBackward;
 
+        @FXML
+        JFXCheckBox JumpToNonExistingPage;
+
 }

@@ -387,7 +387,8 @@ public class FrontEndCheckController {
                                 DetailPageTest detailPageTest = new DetailPageTest();
                                 //detailPageTest.SwitchTabsinDetailPage(webDriver,report,js,detailPageController.SwitchTabsInDetailPage,inputLucenePage,statusInfo,inputGridPageURL, Homepage);
                                 //detailPageTest.SimilarProductClickOut(webDriver,report,js,detailPageController.SimilarProductsClickOut,inputLucenePage,statusInfo,inputGridPageURL, Homepage);
-                                detailPageTest.PagingForwardBackward(webDriver,report,js,detailPageController.PagingForwardBackward,inputLucenePage,statusInfo,inputGridPageURL, Homepage);
+                                //detailPageTest.PagingForwardBackward(webDriver,report,js,detailPageController.PagingForwardBackward,inputLucenePage,statusInfo,inputGridPageURL, Homepage);
+                                detailPageTest.JumpToNonExistingPage(webDriver,report,js,detailPageController.JumpToNonExistingPage,inputLucenePage,statusInfo,inputGridPageURL, Homepage);
                             }catch (Exception noLucenePageWorking){
                                 noLucenePageWorking.printStackTrace();
                             }

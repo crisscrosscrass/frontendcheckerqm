@@ -3,7 +3,7 @@
 <?import com.jfoenix.controls.JFXCheckBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="crisscrosscrass.Controller.PageLuceneWithItemsController">
+<VBox xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="crisscrosscrass.Controller.PageLuceneWithItemsController">
     <children>
         <JFXCheckBox fx:id="PageLuceneWithItemsSorting" text="Items Sorting on Lucene Page" />
         <JFXCheckBox fx:id="PageLuceneWithItemsCollapse" text="Collapse Filters" />

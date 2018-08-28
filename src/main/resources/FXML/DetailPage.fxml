@@ -7,6 +7,7 @@
     <children>
         <JFXCheckBox fx:id="SwitchTabsInDetailPage" text="Switch Tabs in Detail Page" />
         <JFXCheckBox fx:id="SimilarProductsClickOut" text="Similar Products Click Out" />
-        <JFXCheckBox fx:id="PagingForwardBackward" text="Paging in Lucene - Foward/Backward" />
+        <JFXCheckBox fx:id="PagingForwardBackward" text="Paging in Lucene - Forward/Backward" />
+        <JFXCheckBox fx:id="JumpToNonExistingPage" text="Jump to non-existing page" />
     </children>
 </VBox>
