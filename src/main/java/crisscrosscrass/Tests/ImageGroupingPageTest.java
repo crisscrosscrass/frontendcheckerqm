@@ -200,7 +200,7 @@ public class ImageGroupingPageTest {
                             DetailPageOfOffer.setStyle("-fx-background-color: #FF0000");
                             DetailPageOfOffer.setSelected(true);
                         });
-                        isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver, "DetailPageImageGrouping.png");
+                        isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver, "DetailPageImageGroupingOffer.png");
                         if (isSuccessful){
                             report.writeToFile("Checking Image Grouping Detail Page of Offer: ", "Screenshot successful!");
                         }else {
@@ -219,7 +219,7 @@ public class ImageGroupingPageTest {
                         DetailPageOfOffer.setStyle("-fx-background-color: #FF0000");
                         DetailPageOfOffer.setSelected(true);
                     });
-                    isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver, "DetailPageImageGrouping.png");
+                    isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver, "DetailPageImageGroupingOffer.png");
                     if (isSuccessful){
                         report.writeToFile("Checking Image Grouping Detail Page of Offer: ", "Screenshot successful!");
                     }else {

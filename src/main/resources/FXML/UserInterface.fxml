@@ -135,14 +135,14 @@
                      <content>
                         <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0">
                            <children>
-                              <JFXCheckBox fx:id="settingHomepage" text="Homepage" />
-                              <JFXCheckBox fx:id="settingGridPage" layoutX="20.0" layoutY="20.0" text="Grid Page" />
-                              <JFXCheckBox fx:id="settingGridPageWithWindows" layoutX="20.0" layoutY="43.0" text="Grid Page Window" />
-                              <JFXCheckBox fx:id="settingGridPageFillIns" layoutX="20.0" layoutY="66.0" text="Grid Page Fill-ins" />
-                              <JFXCheckBox fx:id="settingBrandPage" layoutX="20.0" layoutY="89.0" text="Brand Page" />
-                              <JFXCheckBox fx:id="settingLucenePage" layoutX="20.0" layoutY="112.0" text="Lucene Page" />
+                              <JFXCheckBox fx:id="settingHomepage" selected="true" text="Homepage" />
+                              <JFXCheckBox fx:id="settingGridPage" layoutX="20.0" layoutY="20.0" selected="true" text="Grid Page" />
+                              <JFXCheckBox fx:id="settingGridPageWithWindows" layoutX="20.0" layoutY="43.0" selected="true" text="Grid Page Window" />
+                              <JFXCheckBox fx:id="settingGridPageFillIns" layoutX="20.0" layoutY="66.0" selected="true" text="Grid Page Fill-ins" />
+                              <JFXCheckBox fx:id="settingBrandPage" layoutX="20.0" layoutY="89.0" selected="true" text="Brand Page" />
+                              <JFXCheckBox fx:id="settingLucenePage" layoutX="20.0" layoutY="112.0" selected="true" text="Lucene Page" />
                               <JFXCheckBox fx:id="settingLucenePageWithDeletions" layoutX="20.0" layoutY="135.0" text="Lucene Page with Deletions" />
-                              <JFXCheckBox fx:id="settingDetailPage" layoutX="20.0" layoutY="158.0" text="Detail Page" />
+                              <JFXCheckBox fx:id="settingDetailPage" layoutX="20.0" layoutY="158.0" selected="true" text="Detail Page" />
                               <JFXCheckBox fx:id="settingImageGrouping" layoutX="20.0" layoutY="181.0" selected="true" text="Image Grouping" />
                            </children>
                         </VBox>

@@ -253,6 +253,14 @@ public class FrontEndCheckController {
             inputSearch.setDisable(true);
             inputEmailAdress.setDisable(true);
             inputTextSearchAndSuggestions.setDisable(true);
+            inputGridPageURL.setDisable(true);
+            inputGridPageKeyword.setDisable(true);
+            inputGridPageURLWithWindows.setDisable(true);
+            inputGridPageURLWithFillIns.setDisable(true);
+            inputBrandPageOverview.setDisable(true);
+            inputLucenePage.setDisable(true);
+
+
             Task task = new Task<Object>() {
                 @Override
                 protected Void call() {
@@ -499,6 +507,13 @@ public class FrontEndCheckController {
         inputSearch.setDisable(false);
         inputEmailAdress.setDisable(false);
         inputTextSearchAndSuggestions.setDisable(false);
+        inputGridPageURL.setDisable(false);
+        inputGridPageKeyword.setDisable(false);
+        inputGridPageURLWithWindows.setDisable(false);
+        inputGridPageURLWithFillIns.setDisable(false);
+        inputBrandPageOverview.setDisable(false);
+        inputLucenePage.setDisable(false);
+
     }
 
     @FXML
