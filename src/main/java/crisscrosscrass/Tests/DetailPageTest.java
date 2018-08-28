@@ -257,19 +257,57 @@ public class DetailPageTest {
                     ItemsIconSymbol.get(0).click();
                     try{
 
-                        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("detailpage.similar.products.header"))));
-                        Point hoverItem = webDriver.findElement(By.xpath(Homepage.getProperty("detailpage.similar.products.header"))).getLocation();
+                        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.pageNumbers"))));
+                        Point hoverItem = webDriver.findElement(By.xpath(Homepage.getProperty("page.pageNumbers"))).getLocation();
                         ((JavascriptExecutor)webDriver).executeScript("return window.title;");
                         ((JavascriptExecutor)webDriver).executeScript("window.scrollBy(0,"+(hoverItem.getY())+");");
                         for (int i = 0; i < 1; i++) {
                             Thread.sleep(100);
                             js.executeScript("window.scrollBy(0,-300)");
                         }
-                        Platform.runLater(() -> {
-                            SimilarProductsClickOut.setStyle("-fx-background-color: #CCFF99");
-                            SimilarProductsClickOut.setSelected(true);
-                        });
-                        report.writeToFile("Checking Detail Page Paging-Forward/Backward: ", "Complete!");
+                        webDriver.findElementByXPath(Homepage.getProperty("page.pageNumbers")).click();
+                        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Homepage.getProperty("page.grid.loader"))));
+                        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.items.price"))));
+                        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.items.price"))));
+                        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.previousPage.button"))));
+                        if (webDriver.getCurrentUrl().contains("2")){
+                            report.writeToFile("Checking Detail Page Paging-Forward:: ", "Successful! Found pattern in URL and Previous Page Button appeared!");
+                        }else {
+                            report.writeToFile("Checking Detail Page Paging-Forward:: ", "Not Successful! User is not redirected");
+                            isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"DetailPageErrorPagingForward.png");
+                            if (isSuccessful){
+                                report.writeToFile("GridPage Error Screenshot: ", "Screenshot successful!");
+                            }else {
+                                report.writeToFile("GridPage Error Screenshot: ", "Screenshot not successful!");
+                            }
+                        }
+
+                        webDriver.findElementByXPath(Homepage.getProperty("page.previousPage.button")).click();
+                        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Homepage.getProperty("page.grid.loader"))));
+                        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.items.price"))));
+                        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.items.price"))));
+                        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Homepage.getProperty("page.previousPage.button"))));
+                        if (!webDriver.getCurrentUrl().contains("-2")){
+                            report.writeToFile("Checking Detail Page Paging-Backward:: ", "Successful! Found pattern in URL and Previous Page Button disappeared!");
+                            Platform.runLater(() -> {
+                                SimilarProductsClickOut.setStyle("-fx-background-color: #CCFF99");
+                                SimilarProductsClickOut.setSelected(true);
+                            });
+                        }else {
+                            report.writeToFile("Checking Detail Page Paging-Backward:: ", "Not Successful! User is not redirected");
+                            isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"DetailPageErrorPagingBackward.png");
+                            if (isSuccessful){
+                                report.writeToFile("GridPage Error Screenshot: ", "Screenshot successful!");
+                            }else {
+                                report.writeToFile("GridPage Error Screenshot: ", "Screenshot not successful!");
+                            }
+                            Platform.runLater(() -> {
+                                SimilarProductsClickOut.setStyle("-fx-background-color: #FF0000");
+                                SimilarProductsClickOut.setSelected(true);
+                            });
+                        }
+
+                        report.writeToFile("Checking Detail Page Paging-Forward:", "Complete!");
 
 
 
@@ -280,7 +318,7 @@ public class DetailPageTest {
                             SimilarProductsClickOut.setSelected(true);
                         });
                         webDriver.navigate().to(inputGridPageURL.getText().trim());
-                        report.writeToFile("Checking Detail Page Paging-Forward/Backward: ", "Couldn't detect Tabs for Detail Page");
+                        report.writeToFile("Checking Detail Page Paging-Forward/Backward: ", "Couldn't detect Paging Forward/Backward for Detail Page");
                         noTabDetailPage.printStackTrace();
                     }
 
