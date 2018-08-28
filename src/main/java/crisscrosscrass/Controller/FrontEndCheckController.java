@@ -152,6 +152,7 @@ public class FrontEndCheckController {
     @FXML BrandOverviewController brandOverviewController;
     @FXML PageLuceneWithItemsController pageLuceneWithItemsController;
     @FXML DetailPageController detailPageController;
+    @FXML ImageGroupingController imageGroupingController;
 
 
 
@@ -389,6 +390,16 @@ public class FrontEndCheckController {
                                 //detailPageTest.SimilarProductClickOut(webDriver,report,js,detailPageController.SimilarProductsClickOut,inputLucenePage,statusInfo,inputGridPageURL, Homepage);
                                 //detailPageTest.PagingForwardBackward(webDriver,report,js,detailPageController.PagingForwardBackward,inputLucenePage,statusInfo,inputGridPageURL, Homepage);
                                 detailPageTest.JumpToNonExistingPage(webDriver,report,js,detailPageController.JumpToNonExistingPage,inputLucenePage,statusInfo,inputGridPageURL, Homepage);
+                            }catch (Exception noLucenePageWorking){
+                                noLucenePageWorking.printStackTrace();
+                            }
+
+                        }
+                        if (!tabImageGrouping.isDisable()){
+                            try{
+                                tabPane.getSelectionModel().select(tabImageGrouping);
+                                ImageGroupingPageTest imageGroupingPageTest = new ImageGroupingPageTest();
+                                imageGroupingPageTest.ImageGroupingClickOut(webDriver,report,js,imageGroupingController.ImageGroupingClickOut,inputLucenePage,statusInfo,inputGridPageURL, Homepage);
                             }catch (Exception noLucenePageWorking){
                                 noLucenePageWorking.printStackTrace();
                             }

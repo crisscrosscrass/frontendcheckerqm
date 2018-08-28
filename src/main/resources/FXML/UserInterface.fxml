@@ -142,8 +142,8 @@
                               <JFXCheckBox fx:id="settingBrandPage" layoutX="20.0" layoutY="89.0" text="Brand Page" />
                               <JFXCheckBox fx:id="settingLucenePage" layoutX="20.0" layoutY="112.0" text="Lucene Page" />
                               <JFXCheckBox fx:id="settingLucenePageWithDeletions" layoutX="20.0" layoutY="135.0" text="Lucene Page with Deletions" />
-                              <JFXCheckBox fx:id="settingDetailPage" layoutX="20.0" layoutY="158.0" selected="true" text="Detail Page" />
-                              <JFXCheckBox fx:id="settingImageGrouping" layoutX="20.0" layoutY="181.0" text="Image Grouping" />
+                              <JFXCheckBox fx:id="settingDetailPage" layoutX="20.0" layoutY="158.0" text="Detail Page" />
+                              <JFXCheckBox fx:id="settingImageGrouping" layoutX="20.0" layoutY="181.0" selected="true" text="Image Grouping" />
                            </children>
                         </VBox>
                      </content>
@@ -233,7 +233,7 @@
             </Tab>
             <Tab fx:id="tabImageGrouping" closable="false" disable="true" text="Image Grouping">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  <fx:include fx:id="imageGrouping" source="ImageGrouping.fxml" />
                </content>
             </Tab>
          </tabs>
