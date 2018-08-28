@@ -147,4 +147,109 @@ public class ImageGroupingPageTest {
 
     }
 
+    public void DetailPageOfOffer(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox DetailPageOfOffer, TextField inputLucenePage, Text statusInfo, TextField inputGridPageURL, Properties Homepage){
+        Platform.runLater(() -> {
+            DetailPageOfOffer.setStyle("-fx-background-color: #eef442");
+            statusInfo.setText("Checking Image Grouping Detail Page of Offer...");
+        });
+        try {
+            ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
+            webDriver.switchTo().window(tabs.get(0));
+            boolean isSuccessful = false;
+            try {
+                webDriver.navigate().to(inputGridPageURL.getText().trim());
+                WebDriverWait wait = new WebDriverWait(webDriver, 10);
+                try{
+                    if(webDriver.findElements(By.xpath(Homepage.getProperty("page.grid.windows"))).size() > 0){
+                        report.writeToFile("provided GridPageURL "+inputGridPageURL.getText(), " included Windows! Adjusted GridPage to make test happen!");
+                        webDriver.findElementByXPath(Homepage.getProperty("page.grid.windows.continue")).click();
+                        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Homepage.getProperty("page.grid.windows.continue"))));
+                    }else {
+                        System.out.println("No Window Element!");
+                    }
+                    wait.until(ExpectedConditions.elementToBeClickable((By.xpath(Homepage.getProperty("page.items.grouping")))));
+                    List<WebElement> ImageGroupingElements = webDriver.findElementsByXPath(Homepage.getProperty("page.items.grouping"));
+                    ImageGroupingElements.get(0).click();
+
+                    try{
+                        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("imagegrouping.page.toshop.main"))));
+                        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("imagegrouping.page.toshop.variant"))));
+                        List<WebElement> productVariantsInfoIcons = webDriver.findElementsByXPath(Homepage.getProperty("imagegrouping.page.infoicon.variant"));
+                        productVariantsInfoIcons.get(0).click();
+                        if (webDriver.getCurrentUrl().contains("detail")){
+                            report.writeToFile("Checking Image Grouping Detail Page of Offer: ", "Successful!");
+                            Platform.runLater(() -> {
+                                DetailPageOfOffer.setStyle("-fx-background-color: #CCFF99");
+                                DetailPageOfOffer.setSelected(true);
+                            });
+                        }else {
+                            report.writeToFile("Checking Image Grouping Detail Page of Offer: ", "Not successful! Unable to detect Pattern in URL");
+                            Platform.runLater(() -> {
+                                DetailPageOfOffer.setStyle("-fx-background-color: #FF0000");
+                                DetailPageOfOffer.setSelected(true);
+                            });
+                        }
+
+
+
+
+                        webDriver.navigate().to(inputGridPageURL.getText().trim());
+
+                    }catch (Exception noProduktVariants){
+                        Platform.runLater(() -> {
+                            DetailPageOfOffer.setStyle("-fx-background-color: #FF0000");
+                            DetailPageOfOffer.setSelected(true);
+                        });
+                        isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver, "DetailPageImageGrouping.png");
+                        if (isSuccessful){
+                            report.writeToFile("Checking Image Grouping Detail Page of Offer: ", "Screenshot successful!");
+                        }else {
+                            report.writeToFile("Checking Image Grouping Detail Page of Offer: ", "Screenshot not successful!");
+                        }
+                        webDriver.navigate().to(inputGridPageURL.getText().trim());
+                        report.writeToFile("Checking Image Grouping Detail Page of Offer: ", "Couldn't detect Product Variants in Image Grouping");
+                        noProduktVariants.printStackTrace();
+                    }
+
+
+
+
+                }catch (Exception gridPageIssue){
+                    Platform.runLater(() -> {
+                        DetailPageOfOffer.setStyle("-fx-background-color: #FF0000");
+                        DetailPageOfOffer.setSelected(true);
+                    });
+                    isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver, "DetailPageImageGrouping.png");
+                    if (isSuccessful){
+                        report.writeToFile("Checking Image Grouping Detail Page of Offer: ", "Screenshot successful!");
+                    }else {
+                        report.writeToFile("Checking Image Grouping Detail Page of Offer: ", "Screenshot not successful!");
+                    }
+                    webDriver.navigate().to(inputGridPageURL.getText().trim());
+                    report.writeToFile("Checking Image Grouping Detail Page of Offer: ", "Couldn't detect Image Grouping Icon for Detail Grouping Page");
+                    gridPageIssue.printStackTrace();
+                }
+            }catch (Exception noRequestedSiteFound){
+                Platform.runLater(() -> {
+                    DetailPageOfOffer.setStyle("-fx-background-color: #FF0000");
+                    DetailPageOfOffer.setSelected(true);
+                });
+                webDriver.navigate().to(inputGridPageURL.getText().trim());
+                report.writeToFile("Checking Image Grouping Detail Page of Offer: ", "Couldn't navigate to requested Site!");
+                noRequestedSiteFound.printStackTrace();
+            }
+        }catch (Exception noBrowserWorking){
+            Platform.runLater(() -> {
+                DetailPageOfOffer.setStyle("-fx-background-color: #FF0000");
+                DetailPageOfOffer.setSelected(true);
+            });
+            webDriver.navigate().to(inputGridPageURL.getText().trim());
+            report.writeToFile("Checking Image Grouping Detail Page of Offer: ", "unable to check! Browser not responding");
+            noBrowserWorking.printStackTrace();
+        }
+
+        report.writeToFile("=================================", "");
+
+    }
+
 }

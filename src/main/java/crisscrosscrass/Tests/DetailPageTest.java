@@ -165,7 +165,7 @@ public class DetailPageTest {
                             Thread.sleep(100);
                             js.executeScript("window.scrollBy(0,-100)");
                         }
-                        if (webDriver.getCurrentUrl().contains(ShopnameFromFirstItem)){
+                        if ( tabs.size() > 1 ){
                             Platform.runLater(() -> {
                                 SimilarProductsClickOut.setStyle("-fx-background-color: #CCFF99");
                                 SimilarProductsClickOut.setSelected(true);
@@ -273,9 +273,9 @@ public class DetailPageTest {
                         wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.items.price"))));
                         wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.previousPage.button"))));
                         if (webDriver.getCurrentUrl().contains("2")){
-                            report.writeToFile("Checking Detail Page Paging-Forward:: ", "Successful! Found pattern in URL and Previous Page Button appeared!");
+                            report.writeToFile("Checking Detail Page Paging-Forward: ", "Successful! Found pattern in URL and Previous Page Button appeared!");
                         }else {
-                            report.writeToFile("Checking Detail Page Paging-Forward:: ", "Not Successful! User is not redirected");
+                            report.writeToFile("Checking Detail Page Paging-Forward: ", "Not Successful! User is not redirected");
                             isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"DetailPageErrorPagingForward.png");
                             if (isSuccessful){
                                 report.writeToFile("GridPage Error Screenshot: ", "Screenshot successful!");
@@ -290,7 +290,7 @@ public class DetailPageTest {
                         wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.items.price"))));
                         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Homepage.getProperty("page.previousPage.button"))));
                         if (!webDriver.getCurrentUrl().contains("-2")){
-                            report.writeToFile("Checking Detail Page Paging-Backward:: ", "Successful! Found pattern in URL and Previous Page Button disappeared!");
+                            report.writeToFile("Checking Detail Page Paging-Backward: ", "Successful! Found pattern in URL and Previous Page Button disappeared!");
                             Platform.runLater(() -> {
                                 PagingForwardBackward.setStyle("-fx-background-color: #CCFF99");
                                 PagingForwardBackward.setSelected(true);

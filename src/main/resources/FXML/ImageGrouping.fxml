@@ -6,5 +6,6 @@
 <VBox xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="crisscrosscrass.Controller.ImageGroupingController">
     <children>
         <JFXCheckBox fx:id="ImageGroupingClickOut" text="Image Grouping Click Out" />
+        <JFXCheckBox fx:id="DetailPageOfOffer" text="Detail Page of Offer" />
     </children>
 </VBox>

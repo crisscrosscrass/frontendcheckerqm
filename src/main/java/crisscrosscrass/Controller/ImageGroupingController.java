@@ -7,4 +7,7 @@ public class ImageGroupingController {
 
     @FXML
     JFXCheckBox ImageGroupingClickOut;
+
+    @FXML
+    JFXCheckBox DetailPageOfOffer;
 }
