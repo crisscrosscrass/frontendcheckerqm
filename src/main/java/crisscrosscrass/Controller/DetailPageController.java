@@ -10,4 +10,7 @@ public class DetailPageController {
         @FXML
         JFXCheckBox SimilarProductsClickOut;
 
+        @FXML
+        JFXCheckBox PagingForwardBackward;
+
 }
