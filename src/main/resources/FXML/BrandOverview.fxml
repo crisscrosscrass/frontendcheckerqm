@@ -3,7 +3,7 @@
 <?import com.jfoenix.controls.JFXCheckBox?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/"
+<AnchorPane style="-fx-background-color: white;" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/"
             fx:controller="crisscrosscrass.Controller.BrandOverviewController">
     <JFXCheckBox fx:id="brandsWithoutLogo" text="Brands without Logo"/>
 </AnchorPane>

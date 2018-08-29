@@ -178,11 +178,11 @@
             <HBox fx:id="outputPlace" alignment="CENTER" />
          </children>
       </VBox>
-      <TabPane fx:id="tabPane" layoutX="14.0" layoutY="760.0" prefHeight="222.0" prefWidth="886.0" style="-fx-background-color: white;">
+      <TabPane fx:id="tabPane" layoutX="14.0" layoutY="760.0" prefHeight="222.0" prefWidth="886.0">
          <tabs>
             <Tab fx:id="tabHomepage" closable="false" text="Homepage">
                <content>
-                        <VBox fx:id="CheckBoxesPlace" prefHeight="216.0" prefWidth="394.0">
+                        <VBox style="-fx-background-color: white;" fx:id="CheckBoxesPlace" prefHeight="216.0" prefWidth="394.0">
                            <children>
                               <JFXCheckBox fx:id="checkCategoryLinksLeftSideMenu" text="Category Links- Left Side Menu" />
                               <JFXCheckBox fx:id="checkLogoFromShopOfTheWeek" text="Logo from Shop of the Week" />

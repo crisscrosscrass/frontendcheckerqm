@@ -3,7 +3,7 @@
 <?import com.jfoenix.controls.JFXCheckBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="crisscrosscrass.Controller.ImageGroupingController">
+<VBox style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="crisscrosscrass.Controller.ImageGroupingController">
     <children>
         <JFXCheckBox fx:id="ImageGroupingClickOut" text="Image Grouping Click Out" />
         <JFXCheckBox fx:id="DetailPageOfOffer" text="Detail Page of Offer" />

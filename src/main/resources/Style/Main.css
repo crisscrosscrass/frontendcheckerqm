@@ -36,6 +36,9 @@
 .tab-pane .tab-header-area .tab-header-background {
     -fx-background-color: white;
 }
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-background-color: transparent;
+}
 
 .tab{
     -fx-background-color:   -fx-background;
