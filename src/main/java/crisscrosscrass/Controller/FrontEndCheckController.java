@@ -620,9 +620,33 @@ public class FrontEndCheckController implements Serializable{
             outputPlace.getChildren().clear();
         });
     }
-    public void shutdown() {
-        // cleanup code here...
-        System.out.println("shutdown something...");
+
+    @FXML
+    public void selectAllSettingCheckBoxes(){
+        settingHomepage.setSelected(true);
+        settingGridPage.setSelected(true);
+        settingGridPageWithWindows.setSelected(true);
+        settingGridPageFillIns.setSelected(true);
+        settingBrandPage.setSelected(true);
+        settingLucenePage.setSelected(true);
+        settingLucenePageWithDeletions.setSelected(true);
+        settingDetailPage.setSelected(true);
+        settingImageGrouping.setSelected(true);
+        updateCheckerTabs();
+    }
+
+    @FXML
+    public void deselectAllSettingCheckBoxes(){
+        settingHomepage.setSelected(false);
+        settingGridPage.setSelected(false);
+        settingGridPageWithWindows.setSelected(false);
+        settingGridPageFillIns.setSelected(false);
+        settingBrandPage.setSelected(false);
+        settingLucenePage.setSelected(false);
+        settingLucenePageWithDeletions.setSelected(false);
+        settingDetailPage.setSelected(false);
+        settingImageGrouping.setSelected(false);
+        updateCheckerTabs();
     }
 
 
