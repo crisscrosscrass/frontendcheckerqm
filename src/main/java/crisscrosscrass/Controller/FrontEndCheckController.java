@@ -187,7 +187,7 @@ public class FrontEndCheckController implements Serializable{
         updateCheckerTabs();
 
         //check if Properties File is available if yes, load data into Input Fields
-        File configSettings = new File("temp//userSettings.properties");
+        File configSettings = new File("temp//UserSettings.properties");
         if (!configSettings.exists()) {
             copyUserSettingFiles();
         }

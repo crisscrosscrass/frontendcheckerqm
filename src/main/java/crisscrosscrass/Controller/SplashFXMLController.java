@@ -74,8 +74,44 @@ public class SplashFXMLController implements Initializable {
 
                         primaryStage.setOnCloseRequest(e -> {
                             System.out.println("Closing");
+                            File configSettings = new File("temp//UserSettings.properties");
+                            if (configSettings.exists()) {
+                                System.out.println("Config file Exist, needs to be overwritten!");
+                                System.out.println();
 
-                            System.out.println(controller.getInputSearch().getText());
+
+                                Properties properties = new Properties();
+                                properties.setProperty("inputSearch",controller.inputSearch.getText());
+                                properties.setProperty("inputEmailAdress",controller.inputEmailAdress.getText());
+                                properties.setProperty("inputTextSearchAndSuggestions",controller.inputTextSearchAndSuggestions.getText());
+                                properties.setProperty("inputGridPageURL",controller.inputGridPageURL.getText());
+                                properties.setProperty("inputGridPageKeyword",controller.inputGridPageKeyword.getText());
+                                properties.setProperty("inputGridPageURLWithWindows",controller.inputGridPageURLWithWindows.getText());
+                                properties.setProperty("inputGridPageURLWithFillIns",controller.inputGridPageURLWithFillIns.getText());
+                                properties.setProperty("inputBrandPageOverview",controller.inputBrandPageOverview.getText());
+                                properties.setProperty("inputLucenePage",controller.inputLucenePage.getText());
+
+                                String location = System.getProperty("user.dir");
+                                location = location.replace("\\","//");
+                                location += "//temp//";
+                                FileWriter writer = null;
+                                try {
+                                    writer = new FileWriter(location+"UserSettings.properties");
+                                    properties.store(writer,System.getProperty("user.name"));
+                                } catch (IOException noWritter) {
+                                    noWritter.printStackTrace();
+                                }finally {
+                                    if (writer != null){
+                                        try{
+                                            writer.close();
+                                        }catch (Exception notClosed){
+                                            notClosed.printStackTrace();
+                                        }
+                                    }
+                                }
+
+                            }
+
                             closeProgram();
                         });
 
