@@ -6,6 +6,7 @@ import crisscrosscrass.Tasks.*;
 import crisscrosscrass.Tests.*;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -28,7 +29,7 @@ import java.io.*;
 import java.net.URL;
 import java.util.Properties;
 
-public class FrontEndCheckController {
+public class FrontEndCheckController implements Serializable{
 
 
     // Basic Settings
@@ -164,9 +165,14 @@ public class FrontEndCheckController {
     private static String xpathPatternImage2 = "";
 
 
+
+
+
     @FXML
     public void initialize() {
         System.out.println("FrontendCheckController launched!");
+
+        //add Listener to Settings
         settingHomepage.setOnAction(event -> updateCheckerTabs());
         settingGridPage.setOnAction(event -> updateCheckerTabs());
         settingGridPageWithWindows.setOnAction(event -> updateCheckerTabs());
@@ -177,7 +183,13 @@ public class FrontEndCheckController {
         settingDetailPage.setOnAction(event -> updateCheckerTabs());
         settingImageGrouping.setOnAction(event -> updateCheckerTabs());
 
+        //update Tabs on Frontend
         updateCheckerTabs();
+
+        //check if Properties File is available if yes, load data into Input Fields
+
+
+
     }
 
     public void updateCheckerTabs(){
@@ -523,6 +535,10 @@ public class FrontEndCheckController {
 
     }
 
+    public TextField getInputSearch() {
+        return inputSearch;
+    }
+
     @FXML
     private double checkAllCheckBoxes() {
         double StateProgress = 0;
@@ -569,5 +585,10 @@ public class FrontEndCheckController {
             outputPlace.getChildren().clear();
         });
     }
+    public void shutdown() {
+        // cleanup code here...
+        System.out.println("shutdown something...");
+    }
+
 
 }

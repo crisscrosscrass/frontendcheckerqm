@@ -14,14 +14,12 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="mainStage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="977.0" prefWidth="973.0" style="-fx-background-color: white;" stylesheets="@../Style/Main.css" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="crisscrosscrass.Controller.FrontEndCheckController">
+<AnchorPane fx:id="mainStage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="977.0" prefWidth="973.0" style="-fx-background-color: transparent ;" stylesheets="@../Style/Main.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="crisscrosscrass.Controller.FrontEndCheckController">
    <children>
-      <Pane layoutX="-10.0" layoutY="-10.0" prefHeight="763.0" prefWidth="549.0" style="-fx-background-color: #e83062;" AnchorPane.leftAnchor="-10.0" AnchorPane.topAnchor="-10.0" />
       <VBox alignment="CENTER" layoutX="-10.0" prefHeight="691.0" prefWidth="531.0">
          <children>
             <TextField fx:id="inputSearch" alignment="CENTER" text="https://www.ladenzeile.de/">
@@ -161,7 +159,7 @@
                   <Insets />
                </VBox.margin>
             </Text>
-            <Button fx:id="startwebdriver" minHeight="40.0" mnemonicParsing="false" onAction="#startRealAction" prefHeight="39.0" prefWidth="200.0" style="-fx-background-color: #289ea2; -fx-border-color: black; -fx-background-radius: 20; -fx-border-radius: 20;" text="StartFrontendCheckTest" textFill="WHITE">
+            <Button fx:id="startwebdriver" minHeight="40.0" mnemonicParsing="false" onAction="#startRealAction" prefHeight="39.0" prefWidth="200.0" style="-fx-background-color: #70a6ff; -fx-border-color: black; -fx-background-radius: 20; -fx-border-radius: 20;" text="StartFrontendCheckTest" textFill="WHITE">
                <font>
                   <Font name="Arial Black" size="12.0" />
                </font>
@@ -176,7 +174,7 @@
             <HBox fx:id="outputPlace" alignment="CENTER" />
          </children>
       </VBox>
-      <TabPane fx:id="tabPane" layoutX="14.0" layoutY="760.0" prefHeight="222.0" prefWidth="886.0">
+      <TabPane fx:id="tabPane" layoutX="14.0" layoutY="760.0" prefHeight="222.0" prefWidth="886.0" style="-fx-background-color: white;">
          <tabs>
             <Tab fx:id="tabHomepage" closable="false" text="Homepage">
                <content>
