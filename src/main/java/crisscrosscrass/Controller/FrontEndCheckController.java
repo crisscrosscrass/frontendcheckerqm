@@ -215,10 +215,6 @@ public class FrontEndCheckController implements Serializable{
         inputBrandPageOverview.setText(userData.getProperty("inputBrandPageOverview"));
         inputLucenePage.setText(userData.getProperty("inputLucenePage"));
 
-
-
-
-
     }
 
     public void updateCheckerTabs(){

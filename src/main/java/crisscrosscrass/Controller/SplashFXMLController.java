@@ -66,7 +66,13 @@ public class SplashFXMLController implements Initializable {
                         primaryStage.initStyle(StageStyle.UNIFIED);
                         //primaryStage.initStyle(StageStyle.UNIFIED);
                         //primaryStage.initStyle(StageStyle.UTILITY);
+                        final int shadowSize = 20;
                         root.setStyle("-fx-background-color: transparent;");
+                        root.setStyle(
+                                "-fx-background-color: transparent;" +
+                                        "-fx-effect: dropshadow(gaussian, #e83062, " + shadowSize + ", 0, 0, 0);" +
+                                        "-fx-background-insets: " + shadowSize + ";"
+                        );
                         primaryStage.setScene(new Scene(root));
                         primaryStage.getScene().setFill(Color.TRANSPARENT);
 

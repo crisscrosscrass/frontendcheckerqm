@@ -6,12 +6,11 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="change some style colors to transparent">
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="added selectAll and Deselect All Button">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/FrontEndCheckController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/FrontEndCheckController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/FXML/ImageGrouping.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/FXML/ImageGrouping.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/SplashFXMLController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/SplashFXMLController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/FXML/UserInterface.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/FXML/UserInterface.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/VisualMeta_White_1040x200_transparent.png" beforeDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -107,11 +106,11 @@
         <counts>
           <entry key="backupCode" value="3" />
           <entry key="class" value="7" />
-          <entry key="css" value="20" />
+          <entry key="css" value="22" />
           <entry key="fxml" value="415" />
           <entry key="gif" value="2" />
           <entry key="iml" value="1" />
-          <entry key="java" value="1610" />
+          <entry key="java" value="1613" />
           <entry key="jpg" value="12" />
           <entry key="png" value="86" />
           <entry key="properties" value="165" />
@@ -122,10 +121,10 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CLASS" value="7" />
-          <entry key="CSS" value="20" />
+          <entry key="CSS" value="22" />
           <entry key="IDEA_MODULE" value="1" />
           <entry key="Image" value="100" />
-          <entry key="JAVA" value="1610" />
+          <entry key="JAVA" value="1613" />
           <entry key="PLAIN_TEXT" value="34" />
           <entry key="Properties" value="165" />
           <entry key="XML" value="431" />
@@ -136,18 +135,18 @@
           <entry key="css" value="187" />
           <entry key="dummy" value="24" />
           <entry key="fxml" value="1056" />
-          <entry key="java" value="29461" />
+          <entry key="java" value="29509" />
           <entry key="properties" value="1382" />
           <entry key="regexp" value="5" />
-          <entry key="txt" value="913" />
+          <entry key="txt" value="954" />
           <entry key="xml" value="100" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="187" />
-          <entry key="JAVA" value="29461" />
-          <entry key="PLAIN_TEXT" value="937" />
+          <entry key="JAVA" value="29509" />
+          <entry key="PLAIN_TEXT" value="978" />
           <entry key="Properties" value="1382" />
           <entry key="RegExp" value="5" />
           <entry key="XML" value="1156" />
@@ -161,13 +160,10 @@
   <component name="FileEditorManager">
     <leaf>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/FrontEndCheckController.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/SplashFXMLController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
-              <caret line="148" column="25" lean-forward="true" selection-start-line="148" selection-start-column="25" selection-end-line="148" selection-end-column="25" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="335">
+              <caret line="76" column="75" lean-forward="true" selection-start-line="76" selection-start-column="75" selection-end-line="76" selection-end-column="75" />
             </state>
           </provider>
         </entry>
@@ -267,7 +263,6 @@
         <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/Tasks/ConfigSettings.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/temp/UserSettings.properties" />
-        <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/SplashFXMLController.java" />
         <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/Tasks/CopyFiles.java" />
         <option value="$PROJECT_DIR$/src/main/resources/Style/Main.css" />
         <option value="$PROJECT_DIR$/src/main/resources/FXML/PageLuceneWithItems.fxml" />
@@ -279,6 +274,7 @@
         <option value="$PROJECT_DIR$/src/main/resources/FXML/ImageGrouping.fxml" />
         <option value="$PROJECT_DIR$/src/main/resources/FXML/UserInterface.fxml" />
         <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/FrontEndCheckController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/SplashFXMLController.java" />
       </list>
     </option>
   </component>
@@ -451,7 +447,7 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://C:/Users/ceckardt/IdeaProjects/FrontEndCheck/src/main/resources/FXML/UserInterface.fxml" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1535549766067" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1535550926544" />
     <property name="dynamic.classpath" value="false" />
     <property name="full.screen.before.presentation.mode" value="false" />
     <property name="last.edited.regexp" value="pumps | bl&#10;" />
@@ -621,13 +617,6 @@
       <option name="presentableId" value="Default" />
       <updated>1359379246138</updated>
       <workItem from="1359379250712" duration="1302000" />
-    </task>
-    <task id="LOCAL-00079" summary="moving code to different methods in another class">
-      <created>1534259195183</created>
-      <option name="number" value="00079" />
-      <option name="presentableId" value="LOCAL-00079" />
-      <option name="project" value="LOCAL" />
-      <updated>1534259195183</updated>
     </task>
     <task id="LOCAL-00080" summary="moving code to different methods in another class">
       <created>1534259213513</created>
@@ -965,7 +954,14 @@
       <option name="project" value="LOCAL" />
       <updated>1535539337841</updated>
     </task>
-    <option name="localTasksCounter" value="128" />
+    <task id="LOCAL-00128" summary="added selectAll and Deselect All Button">
+      <created>1535549792589</created>
+      <option name="number" value="00128" />
+      <option name="presentableId" value="LOCAL-00128" />
+      <option name="project" value="LOCAL" />
+      <updated>1535549792590</updated>
+    </task>
+    <option name="localTasksCounter" value="129" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1132,7 +1128,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
-    <MESSAGE value="added some changes and testet injection" />
     <MESSAGE value="added some changes in for loop" />
     <MESSAGE value="added new check requirement" />
     <MESSAGE value="added new Exceptions" />
@@ -1157,7 +1152,8 @@
     <MESSAGE value="adding config load User Settings" />
     <MESSAGE value="adding folder to be created if not exist" />
     <MESSAGE value="change some style colors to transparent" />
-    <option name="LAST_COMMIT_MESSAGE" value="change some style colors to transparent" />
+    <MESSAGE value="added selectAll and Deselect All Button" />
+    <option name="LAST_COMMIT_MESSAGE" value="added selectAll and Deselect All Button" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
@@ -1458,20 +1454,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/Style/Main.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="36" column="32" lean-forward="true" selection-start-line="36" selection-start-column="32" selection-end-line="36" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/SplashFXMLController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="85" column="25" selection-start-line="85" selection-start-column="25" selection-end-line="85" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/FXML/UserInterface.fxml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -1482,11 +1464,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/FrontEndCheckController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="148" column="25" lean-forward="true" selection-start-line="148" selection-start-column="25" selection-end-line="148" selection-end-column="25" />
+        <state relative-caret-position="943">
+          <caret line="205" column="29" selection-start-line="205" selection-start-column="29" selection-end-line="205" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/Style/Main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="521">
+          <caret line="53" column="23" lean-forward="true" selection-start-line="53" selection-start-column="23" selection-end-line="53" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/SplashFXMLController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="335">
+          <caret line="76" column="75" lean-forward="true" selection-start-line="76" selection-start-column="75" selection-end-line="76" selection-end-column="75" />
         </state>
       </provider>
     </entry>
