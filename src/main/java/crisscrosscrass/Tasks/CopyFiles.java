@@ -49,6 +49,14 @@ public class CopyFiles {
     }
 
     public void CopyUserSettingsThere() {
+        String location = System.getProperty("user.dir");
+        location = location.replace("\\","//");
+        location += "//temp//";
+
+        File dir = new File(location);
+        dir.mkdir();
+
+
         Properties properties = new Properties();
         properties.setProperty("inputSearch","https://www.ladenzeile.de/");
         properties.setProperty("inputEmailAdress","tester@testermail.com");
@@ -60,9 +68,7 @@ public class CopyFiles {
         properties.setProperty("inputBrandPageOverview","https://www.ladenzeile.de/marken.html");
         properties.setProperty("inputLucenePage","emaroon");
 
-        String location = System.getProperty("user.dir");
-        location = location.replace("\\","//");
-        location += "//temp//";
+
         FileWriter writer = null;
         try {
             writer = new FileWriter(location+"UserSettings.properties");

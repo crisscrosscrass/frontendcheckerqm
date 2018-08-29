@@ -127,6 +127,11 @@
       </VBox>
       <VBox alignment="CENTER" layoutX="539.0" prefHeight="112.0" prefWidth="367.0">
          <children>
+            <HBox alignment="CENTER" style="-fx-background-color: white;">
+               <children>
+                  <ImageView fx:id="preloaderCat" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </HBox>
             <Accordion focusTraversable="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="206.0" prefWidth="160.0">
                <panes>
                 <TitledPane animated="false" prefHeight="206.0" prefWidth="3.0" text="Setting">
@@ -170,7 +175,6 @@
                   <Insets />
                </VBox.margin>
             </Button>
-            <ImageView fx:id="preloaderCat" fitHeight="62.0" fitWidth="66.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
             <HBox fx:id="outputPlace" alignment="CENTER" />
          </children>
       </VBox>
