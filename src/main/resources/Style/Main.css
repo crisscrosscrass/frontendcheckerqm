@@ -1,13 +1,15 @@
-
+.titled-pane{
+    -fx-text-fill: white;
+}
 .titled-pane .title {
     -fx-alignment: center-left;
     -fx-font-family: "Open Sans";
     -fx-cursor: "hand";
-    -fx-focus-color: #555555;
+    -fx-focus-color: #999;
     -fx-font-size: 12pt;
     -fx-font-weight: bold;
     -fx-text-fill: white;
-    -fx-background-color: #e83062;
+    -fx-background-color: transparent;
 }
 
 .titled-pane:expanded {

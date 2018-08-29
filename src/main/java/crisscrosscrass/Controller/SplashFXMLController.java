@@ -64,11 +64,17 @@ public class SplashFXMLController implements Initializable {
                         Image Logo = new Image(String.valueOf(LogoLocation));
                         primaryStage.getIcons().add(Logo);
                         primaryStage.initStyle(StageStyle.UNIFIED);
-                        primaryStage.setScene(new Scene(root, Color.TRANSPARENT));
+                        //primaryStage.initStyle(StageStyle.UNIFIED);
+                        //primaryStage.initStyle(StageStyle.UTILITY);
+                        root.setStyle("-fx-background-color: transparent;");
+                        primaryStage.setScene(new Scene(root));
+                        primaryStage.getScene().setFill(Color.TRANSPARENT);
+
 
 
                         primaryStage.setOnCloseRequest(e -> {
                             System.out.println("Closing");
+
                             System.out.println(controller.getInputSearch().getText());
                             closeProgram();
                         });

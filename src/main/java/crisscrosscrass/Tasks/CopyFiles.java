@@ -5,6 +5,7 @@ import org.apache.commons.io.FileUtils;
 
 import java.io.*;
 import java.net.URL;
+import java.util.Properties;
 
 
 public class CopyFiles {
@@ -44,6 +45,41 @@ public class CopyFiles {
         }
 
        // System.out.println("Copied !");
+
+    }
+
+    public void CopyUserSettingsThere() {
+        Properties properties = new Properties();
+        properties.setProperty("inputSearch","https://www.ladenzeile.de/");
+        properties.setProperty("inputEmailAdress","tester@testermail.com");
+        properties.setProperty("inputTextSearchAndSuggestions","pumps | sneakers blue");
+        properties.setProperty("inputGridPageURL","https://www.ladenzeile.de/mode/");
+        properties.setProperty("inputGridPageKeyword","nike");
+        properties.setProperty("inputGridPageURLWithWindows","https://www.ladenzeile.de/mode/damen/");
+        properties.setProperty("inputGridPageURLWithFillIns","https://taschen.ladenzeile.de/kulturbeutel-kammtasche/");
+        properties.setProperty("inputBrandPageOverview","https://www.ladenzeile.de/marken.html");
+        properties.setProperty("inputLucenePage","emaroon");
+
+        String location = System.getProperty("user.dir");
+        location = location.replace("\\","//");
+        location += "//temp//";
+        FileWriter writer = null;
+        try {
+            writer = new FileWriter(location+"UserSettings.properties");
+            properties.store(writer,System.getProperty("user.name"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally {
+            if (writer != null){
+                try{
+                    writer.close();
+                }catch (Exception notClosed){
+                    notClosed.printStackTrace();
+                }
+            }
+        }
+
+
 
     }
 }

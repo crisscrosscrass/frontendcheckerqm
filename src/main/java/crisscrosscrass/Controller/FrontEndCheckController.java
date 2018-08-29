@@ -187,6 +187,35 @@ public class FrontEndCheckController implements Serializable{
         updateCheckerTabs();
 
         //check if Properties File is available if yes, load data into Input Fields
+        File configSettings = new File("temp//userSettings.properties");
+        if (!configSettings.exists()) {
+            copyUserSettingFiles();
+        }
+
+        String location = System.getProperty("user.dir");
+        location = location.replace("\\","//");
+        location += "//temp//";
+        Properties userData = null;
+        try{
+            FileReader reader = new FileReader(location+"UserSettings.properties");
+            userData = new Properties();
+            userData.load(reader);
+        } catch (FileNotFoundException noFileFound) {
+            noFileFound.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        inputSearch.setText(userData.getProperty("inputSearch"));
+        inputEmailAdress.setText(userData.getProperty("inputEmailAdress"));
+        inputTextSearchAndSuggestions.setText(userData.getProperty("inputTextSearchAndSuggestions"));
+        inputGridPageURL.setText(userData.getProperty("inputGridPageURL"));
+        inputGridPageKeyword.setText(userData.getProperty("inputGridPageKeyword"));
+        inputGridPageURLWithWindows.setText(userData.getProperty("inputGridPageURLWithWindows"));
+        inputGridPageURLWithFillIns.setText(userData.getProperty("inputGridPageURLWithFillIns"));
+        inputBrandPageOverview.setText(userData.getProperty("inputBrandPageOverview"));
+        inputLucenePage.setText(userData.getProperty("inputLucenePage"));
+
+
 
 
 
@@ -532,6 +561,12 @@ public class FrontEndCheckController implements Serializable{
     private void copyFiles() {
         CopyFiles bringit = new CopyFiles();
         bringit.copyFileThere();
+
+    }
+    @FXML
+    private void copyUserSettingFiles() {
+        CopyFiles bringit = new CopyFiles();
+        bringit.CopyUserSettingsThere();
 
     }
 

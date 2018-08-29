@@ -125,11 +125,11 @@
             <Insets left="20.0" />
          </padding>
       </VBox>
-      <VBox alignment="CENTER" layoutX="539.0" prefHeight="112.0" prefWidth="367.0" style="-fx-background-color: white;">
+      <VBox alignment="CENTER" layoutX="539.0" prefHeight="112.0" prefWidth="367.0">
          <children>
             <Accordion focusTraversable="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="206.0" prefWidth="160.0">
                <panes>
-                <TitledPane animated="false" prefHeight="206.0" prefWidth="3.0" style="-fx-background-color: black;" text="Setting">
+                <TitledPane animated="false" prefHeight="206.0" prefWidth="3.0" text="Setting">
                      <content>
                         <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0">
                            <children>
@@ -153,8 +153,8 @@
                   <Insets bottom="10.0" top="20.0" />
                </VBox.margin>
             </ProgressBar>
-            <FontAwesomeIconView glyphName="MODX" size="35" />
-            <Text fx:id="statusInfo" strokeType="OUTSIDE" strokeWidth="0.0" text="" textAlignment="CENTER" wrappingWidth="429.99998442702235">
+            <FontAwesomeIconView fill="WHITE" glyphName="USER_SECRET" size="35" />
+            <Text fx:id="statusInfo" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="" textAlignment="CENTER" wrappingWidth="429.99998442702235">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
