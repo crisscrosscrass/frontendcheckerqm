@@ -5,9 +5,11 @@ import crisscrosscrass.*;
 import crisscrosscrass.Tasks.*;
 import crisscrosscrass.Tests.*;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -35,26 +37,7 @@ public class FrontEndCheckController implements Serializable{
     // Basic Settings
     @FXML
     Button startwebdriver;
-    @FXML
-    JFXCheckBox checkCategoryLinksLeftSideMenu;
-    @FXML
-    JFXCheckBox checkLogoFromShopOfTheWeek;
-    @FXML
-    JFXCheckBox checkCategoryLinksFromShopOfTheWeek;
-    @FXML
-    JFXCheckBox checkNewsletterBannerFunctionality;
-    @FXML
-    JFXCheckBox checkNewsletterPopUp;
-    @FXML
-    JFXCheckBox checkNewsletterPopUpFunctionality;
-    @FXML
-    JFXCheckBox checkFooterLinks;
-    @FXML
-    JFXCheckBox checkTextSearchAndSuggestions;
-    @FXML
-    JFXCheckBox checkFeedbackPopUp;
-    @FXML
-    JFXCheckBox checkPrivacyPopUp;
+
 
     //Filter Settings
     @FXML
@@ -126,7 +109,7 @@ public class FrontEndCheckController implements Serializable{
     @FXML
     TabPane tabPane;
 
-    //tab Settings
+    //tab views
     @FXML
     Tab tabHomepage;
     @FXML
@@ -146,7 +129,15 @@ public class FrontEndCheckController implements Serializable{
     @FXML
     Tab tabImageGrouping;
 
+    //data visualisation
+    @FXML PieChart pieChartForHomepageTests;
+    @FXML PieChart pieChartForDetailPageTests;
+
+    ObservableList<PieChart.Data> pieChartDataHomepageTest = FXCollections.observableArrayList();
+    ObservableList<PieChart.Data> pieChartDataDetailPageTest = FXCollections.observableArrayList();
+
     //Controller Settings
+    @FXML FrontendHomepageController frontendHomepageController;
     @FXML GridPageWithWindowsController gridPageWithWindowsController;
     @FXML GridPageNoWindowsController gridPageNoWindowsController;
     @FXML GridPageWithFillInsController gridPageWithFillInsController;
@@ -214,6 +205,9 @@ public class FrontEndCheckController implements Serializable{
         inputGridPageURLWithFillIns.setText(userData.getProperty("inputGridPageURLWithFillIns"));
         inputBrandPageOverview.setText(userData.getProperty("inputBrandPageOverview"));
         inputLucenePage.setText(userData.getProperty("inputLucenePage"));
+
+
+
 
     }
 
@@ -373,17 +367,21 @@ public class FrontEndCheckController implements Serializable{
                         report.writeToFile("=================================", "");
                         if (!tabHomepage.isDisable()){
                             tabPane.getSelectionModel().select(tabHomepage);
+                            //setting up PieChart
+
                             HomepageTest homepageTest = new HomepageTest();
-                            homepageTest.checkingCategories(webDriver,report,checkCategoryLinksLeftSideMenu,statusInfo,inputSearch, Homepage);
-                            homepageTest.checkingShopOfTheWeek(webDriver,report,checkLogoFromShopOfTheWeek,statusInfo,inputSearch, Homepage);
-                            homepageTest.checkingShopOfTheWeekCategories(webDriver,report,checkCategoryLinksFromShopOfTheWeek,statusInfo,inputSearch, Homepage);
-                            homepageTest.checkingNewsletterBanner(webDriver,report,checkNewsletterBannerFunctionality,statusInfo,inputSearch,inputEmailAdress, Homepage);
-                            homepageTest.checkingNewsletterPopUp(webDriver,report,checkNewsletterPopUp,statusInfo,inputSearch, Homepage);
-                            homepageTest.checkingNewsletterPopUpFunctionality(webDriver,report,js,checkNewsletterPopUpFunctionality,statusInfo,inputSearch,inputEmailAdress, Homepage);
-                            homepageTest.checkingFooterLinks(webDriver,report, checkFooterLinks,statusInfo,inputSearch, Homepage);
-                            homepageTest.checkingSearchAndSuggestions(webDriver,report, checkTextSearchAndSuggestions,inputTextSearchAndSuggestions,statusInfo,inputSearch, Homepage);
-                            homepageTest.checkingFeedbackPopUp(webDriver,report, checkFeedbackPopUp, statusInfo,inputSearch, Homepage);
-                            homepageTest.checkingPrivacyPopUp(webDriver,report, checkPrivacyPopUp, statusInfo,inputSearch, Homepage);
+                            homepageTest.checkingCategories(webDriver,report,frontendHomepageController.checkCategoryLinksLeftSideMenu,statusInfo,inputSearch, Homepage);
+                            homepageTest.checkingShopOfTheWeek(webDriver,report,frontendHomepageController.checkLogoFromShopOfTheWeek,statusInfo,inputSearch, Homepage);
+                            homepageTest.checkingShopOfTheWeekCategories(webDriver,report,frontendHomepageController.checkCategoryLinksFromShopOfTheWeek,statusInfo,inputSearch, Homepage);
+                            homepageTest.checkingNewsletterBanner(webDriver,report,frontendHomepageController.checkNewsletterBannerFunctionality,statusInfo,inputSearch,inputEmailAdress, Homepage);
+                            homepageTest.checkingNewsletterPopUp(webDriver,report,frontendHomepageController.checkNewsletterPopUp,statusInfo,inputSearch, Homepage);
+                            homepageTest.checkingNewsletterPopUpFunctionality(webDriver,report,js,frontendHomepageController.checkNewsletterPopUpFunctionality,statusInfo,inputSearch,inputEmailAdress, Homepage);
+                            homepageTest.checkingFooterLinks(webDriver,report, frontendHomepageController.checkFooterLinks,statusInfo,inputSearch, Homepage);
+                            homepageTest.checkingSearchAndSuggestions(webDriver,report, frontendHomepageController.checkTextSearchAndSuggestions,inputTextSearchAndSuggestions,statusInfo,inputSearch, Homepage);
+                            homepageTest.checkingFeedbackPopUp(webDriver,report, frontendHomepageController.checkFeedbackPopUp, statusInfo,inputSearch, Homepage);
+                            homepageTest.checkingPrivacyPopUp(webDriver,report, frontendHomepageController.checkPrivacyPopUp, statusInfo,inputSearch, Homepage);
+                            updateDataViaPieChart();
+
                         }
                         if (!tabGridPage.isDisable()){
                             tabPane.getSelectionModel().select(tabGridPage);
@@ -435,8 +433,8 @@ public class FrontEndCheckController implements Serializable{
                                 detailPageTest.SimilarProductClickOut(webDriver,report,js,detailPageController.SimilarProductsClickOut,inputLucenePage,statusInfo,inputGridPageURL, Homepage);
                                 detailPageTest.PagingForwardBackward(webDriver,report,js,detailPageController.PagingForwardBackward,inputLucenePage,statusInfo,inputGridPageURL, Homepage);
                                 detailPageTest.JumpToNonExistingPage(webDriver,report,js,detailPageController.JumpToNonExistingPage,inputLucenePage,statusInfo,inputGridPageURL, Homepage);
-                            }catch (Exception noLucenePageWorking){
-                                noLucenePageWorking.printStackTrace();
+                            }catch (Exception noDetailPageWorking){
+                                noDetailPageWorking.printStackTrace();
                             }
 
                         }
@@ -566,9 +564,6 @@ public class FrontEndCheckController implements Serializable{
 
     }
 
-    public TextField getInputSearch() {
-        return inputSearch;
-    }
 
     @FXML
     private double checkAllCheckBoxes() {
@@ -592,29 +587,38 @@ public class FrontEndCheckController implements Serializable{
     @FXML
     private void resetAllFormOptions() {
         Platform.runLater(() -> {
-            checkCategoryLinksLeftSideMenu.setStyle("-fx-background-color: #FFFFFF");
-            checkLogoFromShopOfTheWeek.setStyle("-fx-background-color: #FFFFFF");
-            checkCategoryLinksFromShopOfTheWeek.setStyle("-fx-background-color: #FFFFFF");
-            checkNewsletterBannerFunctionality.setStyle("-fx-background-color: #FFFFFF");
-            checkNewsletterPopUp.setStyle("-fx-background-color: #FFFFFF");
-            checkNewsletterPopUpFunctionality.setStyle("-fx-background-color: #FFFFFF");
-            checkFooterLinks.setStyle("-fx-background-color: #FFFFFF");
-            checkTextSearchAndSuggestions.setStyle("-fx-background-color: #FFFFFF");
-            checkFeedbackPopUp.setStyle("-fx-background-color: #FFFFFF");
-            checkPrivacyPopUp.setStyle("-fx-background-color: #FFFFFF");
-
-            checkCategoryLinksLeftSideMenu.setSelected(false);
-            checkLogoFromShopOfTheWeek.setSelected(false);
-            checkCategoryLinksFromShopOfTheWeek.setSelected(false);
-            checkNewsletterBannerFunctionality.setSelected(false);
-            checkNewsletterPopUp.setSelected(false);
-            checkNewsletterPopUpFunctionality.setSelected(false);
-            checkFooterLinks.setSelected(false);
-            checkTextSearchAndSuggestions.setSelected(false);
-            checkFeedbackPopUp.setSelected(false);
-            checkPrivacyPopUp.setSelected(false);
+            frontendHomepageController.checkCategoryLinksLeftSideMenu.setStyle("-fx-background-color: #FFFFFF");
+            frontendHomepageController.checkCategoryLinksLeftSideMenu.setSelected(false);
             outputPlace.getChildren().clear();
         });
+    }
+
+    public void updateDataViaPieChart(){
+        JFXCheckBox[] checkboxes = frontendHomepageController.frontendHomePageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]);
+        int passTest = 0;
+        int failTest = 0;
+        PieChart.Data HomepagePass = new PieChart.Data("Pass", passTest);
+        PieChart.Data HomepageFail = new PieChart.Data("Fail", failTest);
+        for (JFXCheckBox checkBox : checkboxes){
+            if (checkBox.isSelected() ){
+                System.out.println(checkBox.getCheckedColor());
+            }
+        }
+
+        try{
+            Platform.runLater(() -> {
+                pieChartForHomepageTests.setData(pieChartDataHomepageTest);
+            });
+            Platform.runLater(() -> {
+                pieChartDataHomepageTest.add(HomepagePass);
+                pieChartDataHomepageTest.add(HomepageFail);
+            });
+            Platform.runLater(() -> HomepageFail.setPieValue(failTest));
+            Platform.runLater(() -> HomepagePass.setPieValue(passTest));
+
+        }catch (Exception somethingWrong){
+            somethingWrong.printStackTrace();
+        }
     }
 
     @FXML

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import com.jfoenix.controls.JFXCheckBox?>
+<VBox fx:id="frontendHomePageCheckBoxCollection" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="crisscrosscrass.Controller.FrontendHomepageController">
+    <children>
+        <JFXCheckBox fx:id="checkCategoryLinksLeftSideMenu" text="Category Links- Left Side Menu" />
+        <JFXCheckBox fx:id="checkLogoFromShopOfTheWeek" text="Logo from Shop of the Week" />
+        <JFXCheckBox fx:id="checkCategoryLinksFromShopOfTheWeek" text="Category Links from Shop of the Week" />
+        <JFXCheckBox fx:id="checkNewsletterBannerFunctionality" text="Newsletter Banner Functionality" />
+        <JFXCheckBox fx:id="checkNewsletterPopUp" text="Newsletter PopUp" />
+        <JFXCheckBox fx:id="checkNewsletterPopUpFunctionality" layoutX="10.0" layoutY="82.0" text="Newsletter PopUp Functionality" />
+        <JFXCheckBox fx:id="checkFooterLinks" text="Footer Links" />
+        <JFXCheckBox fx:id="checkTextSearchAndSuggestions" text="Text Search &amp; Suggestions" />
+        <JFXCheckBox fx:id="checkFeedbackPopUp" text="Feedback PopUp" />
+        <JFXCheckBox fx:id="checkPrivacyPopUp" text="Privacy PopUp" />
+    </children>
+</VBox>

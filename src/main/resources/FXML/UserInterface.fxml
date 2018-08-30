@@ -5,6 +5,7 @@
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ProgressBar?>
@@ -124,14 +125,14 @@
             <Insets left="20.0" />
          </padding>
       </VBox>
-      <VBox alignment="CENTER" layoutX="532.0" layoutY="4.0" prefHeight="264.0" prefWidth="430.0">
+      <VBox alignment="CENTER" layoutX="532.0" layoutY="4.0" spacing="5.0">
          <children>
             <HBox alignment="CENTER" style="-fx-background-color: white;">
                <children>
                   <ImageView fx:id="preloaderCat" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                </children>
             </HBox>
-            <Accordion focusTraversable="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="287.0" prefWidth="282.0">
+            <Accordion focusTraversable="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="19.0" prefWidth="430.0">
                <panes>
                 <TitledPane animated="false" text="Setting">
                      <content>
@@ -176,26 +177,19 @@
                </VBox.margin>
             </Button>
             <HBox fx:id="outputPlace" alignment="CENTER" />
+            <AnchorPane>
+               <children>
+                  <PieChart fx:id="pieChartForHomepageTests" legendSide="LEFT" prefHeight="150.0" prefWidth="150.0" titleSide="BOTTOM" />
+                  <PieChart fx:id="pieChartForDetailPageTests" prefHeight="150.0" prefWidth="150.0" />
+               </children>
+            </AnchorPane>
          </children>
       </VBox>
       <TabPane fx:id="tabPane" layoutX="14.0" layoutY="450.0" prefHeight="222.0" prefWidth="886.0">
          <tabs>
             <Tab fx:id="tabHomepage" closable="false" text="Homepage">
                <content>
-                        <VBox fx:id="CheckBoxesPlace" prefHeight="216.0" prefWidth="394.0" style="-fx-background-color: white;">
-                           <children>
-                              <JFXCheckBox fx:id="checkCategoryLinksLeftSideMenu" text="Category Links- Left Side Menu" />
-                              <JFXCheckBox fx:id="checkLogoFromShopOfTheWeek" text="Logo from Shop of the Week" />
-                              <JFXCheckBox fx:id="checkCategoryLinksFromShopOfTheWeek" text="Category Links from Shop of the Week" />
-                              <JFXCheckBox fx:id="checkNewsletterBannerFunctionality" text="Newsletter Banner Functionality" />
-                              <JFXCheckBox fx:id="checkNewsletterPopUp" text="Newsletter PopUp" />
-                              <JFXCheckBox fx:id="checkNewsletterPopUpFunctionality" layoutX="10.0" layoutY="82.0" text="Newsletter PopUp Functionality" />
-                              <JFXCheckBox fx:id="checkFooterLinks" text="Footer Links" />
-                              <JFXCheckBox fx:id="checkTextSearchAndSuggestions" text="Text Search &amp; Suggestions" />
-                              <JFXCheckBox fx:id="checkFeedbackPopUp" text="Feedback PopUp" />
-                              <JFXCheckBox fx:id="checkPrivacyPopUp" text="Privacy PopUp" />
-                           </children>
-                        </VBox>
+                  <fx:include fx:id="frontendHomepage" source="FrontendHomepage.fxml" />
                </content>
             </Tab>
             <Tab fx:id="tabGridPage" closable="false" disable="true" text="Grid Page">

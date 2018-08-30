@@ -63,16 +63,18 @@ public class SplashFXMLController implements Initializable {
                         URL LogoLocation = Main.class.getClassLoader().getResource("Images/VisualMeta.png");
                         Image Logo = new Image(String.valueOf(LogoLocation));
                         primaryStage.getIcons().add(Logo);
-                        primaryStage.initStyle(StageStyle.UNIFIED);
+                        primaryStage.initStyle(StageStyle.DECORATED);
                         //primaryStage.initStyle(StageStyle.UNIFIED);
-                        //primaryStage.initStyle(StageStyle.UTILITY);
                         final int shadowSize = 20;
-                        root.setStyle("-fx-background-color: transparent;");
                         root.setStyle(
                                 "-fx-background-color: transparent;" +
                                         "-fx-effect: dropshadow(gaussian, #e83062, " + shadowSize + ", 0, 0, 0);" +
                                         "-fx-background-insets: " + shadowSize + ";"
                         );
+                        //primaryStage.initStyle(StageStyle.UTILITY);
+
+                        root.setStyle("-fx-background-color: grey;");
+
                         primaryStage.setScene(new Scene(root));
                         primaryStage.getScene().setFill(Color.TRANSPARENT);
 
@@ -82,9 +84,6 @@ public class SplashFXMLController implements Initializable {
                             System.out.println("Closing");
                             File configSettings = new File("temp//UserSettings.properties");
                             if (configSettings.exists()) {
-                                System.out.println("Config file Exist, needs to be overwritten!");
-                                System.out.println();
-
 
                                 Properties properties = new Properties();
                                 properties.setProperty("inputSearch",controller.inputSearch.getText());
