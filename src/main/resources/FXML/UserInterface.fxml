@@ -132,12 +132,18 @@
                   <ImageView fx:id="preloaderCat" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                </children>
             </HBox>
-            <Accordion focusTraversable="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="19.0" prefWidth="430.0">
+            <Accordion fx:id="settingsAccordion" focusTraversable="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="19.0" prefWidth="430.0">
                <panes>
-                <TitledPane animated="false" text="Setting">
+                <TitledPane fx:id="settingTitledPane" animated="false" text="Setting">
                      <content>
                         <VBox prefHeight="252.0" prefWidth="369.0" spacing="5.0">
                            <children>
+                              <HBox alignment="CENTER">
+                                 <children>
+                                    <JFXButton alignment="CENTER" onAction="#selectAllSettingCheckBoxes" style="-fx-background-color: #0f9d58;" text="Select All" textFill="WHITE" />
+                                    <JFXButton alignment="CENTER" onAction="#deselectAllSettingCheckBoxes" style="-fx-background-color: #5a5a5a;" text="Deselect All" textFill="WHITE" />
+                                 </children>
+                              </HBox>
                               <JFXCheckBox fx:id="settingHomepage" selected="true" text="Homepage" />
                               <JFXCheckBox fx:id="settingGridPage" layoutX="20.0" layoutY="20.0" selected="true" text="Grid Page" />
                               <JFXCheckBox fx:id="settingGridPageWithWindows" layoutX="20.0" layoutY="43.0" selected="true" text="Grid Page Window" />
@@ -147,12 +153,7 @@
                               <JFXCheckBox fx:id="settingLucenePageWithDeletions" layoutX="20.0" layoutY="135.0" text="Lucene Page with Deletions" />
                               <JFXCheckBox fx:id="settingDetailPage" layoutX="20.0" layoutY="158.0" selected="true" text="Detail Page" />
                               <JFXCheckBox fx:id="settingImageGrouping" layoutX="20.0" layoutY="181.0" selected="true" text="Image Grouping" />
-                              <HBox alignment="CENTER">
-                                 <children>
-                                    <JFXButton alignment="CENTER" onAction="#selectAllSettingCheckBoxes" style="-fx-background-color: #0f9d58;" text="Select All" textFill="WHITE" />
-                                    <JFXButton alignment="CENTER" onAction="#deselectAllSettingCheckBoxes" style="-fx-background-color: #5a5a5a;" text="Deselect All" textFill="WHITE" />
-                                 </children>
-                              </HBox>
+                              <JFXCheckBox fx:id="settingFavoritePage" layoutX="20.0" layoutY="181.0" selected="true" text="Favorite Page" />
                            </children>
                         </VBox>
                      </content>
@@ -230,6 +231,11 @@
             <Tab fx:id="tabImageGrouping" closable="false" disable="true" text="Image Grouping">
                <content>
                   <fx:include fx:id="imageGrouping" source="ImageGrouping.fxml" />
+               </content>
+            </Tab>
+            <Tab fx:id="tabFavoritePage" closable="false" disable="true" text="Favorite Page">
+               <content>
+                  <fx:include fx:id="favoritePage" source="FavoritePage.fxml" />
                </content>
             </Tab>
          </tabs>
