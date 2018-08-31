@@ -163,6 +163,8 @@ public class FrontEndCheckController implements Serializable{
     public void initialize() {
         System.out.println("FrontendCheckController launched!");
 
+
+
         //add Listener to Settings
         settingHomepage.setOnAction(event -> updateCheckerTabs());
         settingGridPage.setOnAction(event -> updateCheckerTabs());
@@ -278,7 +280,6 @@ public class FrontEndCheckController implements Serializable{
 
         Platform.runLater(() -> {
 
-
             progressIndicator.setProgress(-1);
             startwebdriver.setDisable(true);
             inputSearch.setDisable(true);
@@ -386,8 +387,7 @@ public class FrontEndCheckController implements Serializable{
                         if (!tabGridPage.isDisable()){
                             tabPane.getSelectionModel().select(tabGridPage);
                             GridPageTest gridPageTest = new GridPageTest();
-                            gridPageTest.checkingSorting(webDriver,report,js,gridPageNoWindowsController.sortingValues,inputGridPageURL,statusInfo,inputSearch,inputEmailAdress,xpathPattern1,xpathPattern2,Homepage,isSuccessful,isAvailable);
-                            //TODO investigate why SmallToLargeImages test failed sometimes...? *Added loader Box, keep an eye of whats going on
+                            gridPageTest.checkingSorting(webDriver,report,js,gridPageNoWindowsController.sortingValues,inputGridPageURL,statusInfo,inputSearch, Homepage);
                             gridPageTest.checkingSwitchFromSmallToLargeImages(webDriver,report,js,gridPageNoWindowsController.switchFromSmallToLarge,inputGridPageURL,statusInfo,inputSearch,inputEmailAdress,xpathPattern1,xpathPattern2,Homepage,isSuccessful,isAvailable);
                             gridPageTest.checkingPagingForwardBackward(webDriver,report,js,gridPageNoWindowsController.pagingForwardBackward,inputGridPageURL,statusInfo,inputSearch,inputEmailAdress,xpathPattern1,xpathPattern2,Homepage,isSuccessful,isAvailable);
                             gridPageTest.checkingProductView300(webDriver,report,js,gridPageNoWindowsController.productView300,inputGridPageURL,statusInfo,inputSearch,inputEmailAdress,xpathPattern1,xpathPattern2,Homepage,isSuccessful,isAvailable);
@@ -463,8 +463,7 @@ public class FrontEndCheckController implements Serializable{
                         }catch (Exception driverQuit){
                             driverQuit.printStackTrace();
                         }
-                        // not used now but got to know
-                        // tabPane.getSelectionModel().select(brandTab);
+
 
                         try {
                             Runtime.getRuntime().exec("TASKKILL /F /IM chromedriver.exe");
@@ -485,8 +484,6 @@ public class FrontEndCheckController implements Serializable{
                         }catch (Exception driverQuit){
                             driverQuit.printStackTrace();
                         }
-                        // not used now but got to know
-                        // tabPane.getSelectionModel().select(brandTab);
 
                         try {
                             Runtime.getRuntime().exec("TASKKILL /F /IM chromedriver.exe");
@@ -597,14 +594,23 @@ public class FrontEndCheckController implements Serializable{
         JFXCheckBox[] checkboxes = frontendHomepageController.frontendHomePageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]);
         int passTest = 0;
         int failTest = 0;
-        PieChart.Data HomepagePass = new PieChart.Data("Pass", passTest);
-        PieChart.Data HomepageFail = new PieChart.Data("Fail", failTest);
+
+
         for (JFXCheckBox checkBox : checkboxes){
             if (checkBox.isSelected() ){
-                System.out.println(checkBox.getCheckedColor());
+                if (checkBox.getCheckedColor().toString().substring(2,8).equals(ChangeCheckBox.getIsSuccessful())){
+                    System.out.println("GreenCheck!");
+                    ++passTest;
+                }
+                if (checkBox.getCheckedColor().toString().substring(2,8).equals(ChangeCheckBox.getNotSuccessful())){
+                    System.out.println("Red Check!");
+                    ++failTest;
+                }
             }
         }
 
+        PieChart.Data HomepagePass = new PieChart.Data("Pass", passTest);
+        PieChart.Data HomepageFail = new PieChart.Data("Fail", failTest);
         try{
             Platform.runLater(() -> {
                 pieChartForHomepageTests.setData(pieChartDataHomepageTest);
@@ -613,8 +619,17 @@ public class FrontEndCheckController implements Serializable{
                 pieChartDataHomepageTest.add(HomepagePass);
                 pieChartDataHomepageTest.add(HomepageFail);
             });
-            Platform.runLater(() -> HomepageFail.setPieValue(failTest));
-            Platform.runLater(() -> HomepagePass.setPieValue(passTest));
+
+
+            int finalFailTest = failTest;
+            int finalPassTest = passTest;
+            Platform.runLater(() -> {
+                HomepageFail.setPieValue(finalFailTest);
+            });
+            Platform.runLater(() -> {
+                HomepagePass.setPieValue(finalPassTest);
+                pieChartForHomepageTests.setTitle("HomepageTest");
+            });
 
         }catch (Exception somethingWrong){
             somethingWrong.printStackTrace();

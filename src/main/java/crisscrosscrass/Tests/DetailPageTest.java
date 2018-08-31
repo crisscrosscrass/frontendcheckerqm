@@ -2,6 +2,7 @@ package crisscrosscrass.Tests;
 
 import com.jfoenix.controls.JFXCheckBox;
 import crisscrosscrass.Main;
+import crisscrosscrass.Tasks.ChangeCheckBox;
 import crisscrosscrass.Tasks.Report;
 import crisscrosscrass.Tasks.ScreenshotViaWebDriver;
 import javafx.application.Platform;
@@ -22,14 +23,15 @@ import java.util.Properties;
 public class DetailPageTest {
 
     public void SwitchTabsinDetailPage(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox SwitchTabsInDetailPage, TextField inputLucenePage, Text statusInfo, TextField inputGridPageURL, Properties Homepage){
+        final String infoMessage = "Checking Detail Page Tab Switch";
+        ChangeCheckBox.adjustStyle(false,"progress",SwitchTabsInDetailPage);
         Platform.runLater(() -> {
-            SwitchTabsInDetailPage.setStyle("-fx-background-color: #eef442");
-            statusInfo.setText("Checking Detail Page Tab Switch...");
+            statusInfo.setText(""+infoMessage+"...");
         });
         try {
             ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
             webDriver.switchTo().window(tabs.get(0));
-            boolean isSuccessful = false;
+            boolean isSuccessful;
             try {
                 webDriver.navigate().to(inputGridPageURL.getText().trim());
                 WebDriverWait wait = new WebDriverWait(webDriver, 10);
@@ -59,28 +61,19 @@ public class DetailPageTest {
                         //wait for new Items in Second Tab
                         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='moreProducts-style']/div[3]/div[1]/div/div")));
 
-                        Platform.runLater(() -> {
-                            SwitchTabsInDetailPage.setStyle("-fx-background-color: #CCFF99");
-                            SwitchTabsInDetailPage.setSelected(true);
-                        });
-                        report.writeToFile("Checking Detail Page Tab Switch: ", "Complete!");
+                        ChangeCheckBox.adjustStyle(true,"complete",SwitchTabsInDetailPage);
+                        report.writeToFile(infoMessage, "Complete!");
 
                     }catch (Exception noTabDetailPage){
-                        Platform.runLater(() -> {
-                            SwitchTabsInDetailPage.setStyle("-fx-background-color: #FF0000");
-                            SwitchTabsInDetailPage.setSelected(true);
-                        });
+                        ChangeCheckBox.adjustStyle(true,"nope",SwitchTabsInDetailPage);
                         webDriver.navigate().to(inputGridPageURL.getText().trim());
-                        report.writeToFile("Checking Detail Page Tab Switch: ", "Couldn't detect Tabs for Detail Page");
+                        report.writeToFile(infoMessage, "Couldn't detect Tabs for Detail Page");
                         noTabDetailPage.printStackTrace();
                     }
 
 
                 }catch (Exception gridPageIssue){
-                    Platform.runLater(() -> {
-                        SwitchTabsInDetailPage.setStyle("-fx-background-color: #FF0000");
-                        SwitchTabsInDetailPage.setSelected(true);
-                    });
+                    ChangeCheckBox.adjustStyle(true,"nope",SwitchTabsInDetailPage);
                     isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver, "DetailPage.png");
                     if (isSuccessful){
                         report.writeToFile("Checking Detail Page Tab Switch: ", "Screenshot successful!");
@@ -88,25 +81,19 @@ public class DetailPageTest {
                         report.writeToFile("Checking Detail Page Tab Switch: ", "Screenshot not successful!");
                     }
                     webDriver.navigate().to(inputGridPageURL.getText().trim());
-                    report.writeToFile("Checking Detail Page Tab Switch: ", "Couldn't detect item for Detail Page");
+                    report.writeToFile(infoMessage, "Couldn't detect item for Detail Page");
                     gridPageIssue.printStackTrace();
                 }
             }catch (Exception noRequestedSiteFound){
-                Platform.runLater(() -> {
-                    SwitchTabsInDetailPage.setStyle("-fx-background-color: #FF0000");
-                    SwitchTabsInDetailPage.setSelected(true);
-                });
+                ChangeCheckBox.adjustStyle(true,"nope",SwitchTabsInDetailPage);
                 webDriver.navigate().to(inputGridPageURL.getText().trim());
-                report.writeToFile("Checking Detail Page Tab Switch: ", "Couldn't navigate to requested Site!");
+                report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
                 noRequestedSiteFound.printStackTrace();
             }
         }catch (Exception noBrowserWorking){
-            Platform.runLater(() -> {
-                SwitchTabsInDetailPage.setStyle("-fx-background-color: #FF0000");
-                SwitchTabsInDetailPage.setSelected(true);
-            });
+            ChangeCheckBox.adjustStyle(true,"nope",SwitchTabsInDetailPage);
             webDriver.navigate().to(inputGridPageURL.getText().trim());
-            report.writeToFile("Checking Detail Page Tab Switch: ", "unable to check! Browser not responding");
+            report.writeToFile(infoMessage, "unable to check! Browser not responding");
             noBrowserWorking.printStackTrace();
         }
 
@@ -115,9 +102,10 @@ public class DetailPageTest {
     }
 
     public void SimilarProductClickOut(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox SimilarProductsClickOut, TextField inputLucenePage, Text statusInfo, TextField inputGridPageURL, Properties Homepage){
+        final String infoMessage = "Checking Detail Page Similar Product";
+        ChangeCheckBox.adjustStyle(false,"progress",SimilarProductsClickOut);
         Platform.runLater(() -> {
-            SimilarProductsClickOut.setStyle("-fx-background-color: #eef442");
-            statusInfo.setText("Checking Detail Page Similar Product...");
+            statusInfo.setText(""+infoMessage+"...");
         });
         try {
             ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
@@ -166,17 +154,11 @@ public class DetailPageTest {
                             js.executeScript("window.scrollBy(0,-100)");
                         }
                         if ( tabs.size() > 1 ){
-                            Platform.runLater(() -> {
-                                SimilarProductsClickOut.setStyle("-fx-background-color: #CCFF99");
-                                SimilarProductsClickOut.setSelected(true);
-                            });
-                            report.writeToFile("Checking Detail Page Similar Product: ", "Complete!");
+                            ChangeCheckBox.adjustStyle(true,"complete",SimilarProductsClickOut);
+                            report.writeToFile(infoMessage, "Complete!");
                         }else{
-                            Platform.runLater(() -> {
-                                SimilarProductsClickOut.setStyle("-fx-background-color: #FF0000");
-                                SimilarProductsClickOut.setSelected(true);
-                            });
-                            report.writeToFile("Checking Detail Page Similar Product: ", "Unable to complete! Shopname from GridPage is not Clickout Item");
+                            ChangeCheckBox.adjustStyle(true,"nope",SimilarProductsClickOut);
+                            report.writeToFile(infoMessage, "Unable to complete! Shopname from GridPage is not Clickout Item");
                         }
 
                         webDriver.switchTo().window(tabs.get(1)).close();
@@ -185,21 +167,15 @@ public class DetailPageTest {
 
 
                     }catch (Exception noSimilarProduct){
-                        Platform.runLater(() -> {
-                            SimilarProductsClickOut.setStyle("-fx-background-color: #FF0000");
-                            SimilarProductsClickOut.setSelected(true);
-                        });
+                        ChangeCheckBox.adjustStyle(true,"nope",SimilarProductsClickOut);
                         webDriver.navigate().to(inputGridPageURL.getText().trim());
-                        report.writeToFile("Checking Detail Page Similar Product: ", "Couldn't detect Similar Product for Detail Page");
+                        report.writeToFile(infoMessage, "Couldn't detect Similar Product for Detail Page");
                         noSimilarProduct.printStackTrace();
                     }
 
 
                 }catch (Exception gridPageIssue){
-                    Platform.runLater(() -> {
-                        SimilarProductsClickOut.setStyle("-fx-background-color: #FF0000");
-                        SimilarProductsClickOut.setSelected(true);
-                    });
+                    ChangeCheckBox.adjustStyle(true,"nope",SimilarProductsClickOut);
                     isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver, "DetailPage.png");
                     if (isSuccessful){
                         report.writeToFile("Checking Detail Page Similar Product: ", "Screenshot successful!");
@@ -207,25 +183,19 @@ public class DetailPageTest {
                         report.writeToFile("Checking Detail Page Similar Product: ", "Screenshot not successful!");
                     }
                     webDriver.navigate().to(inputGridPageURL.getText().trim());
-                    report.writeToFile("Checking Detail Page Similar Product: ", "Couldn't detect item for Detail Page");
+                    report.writeToFile(infoMessage, "Couldn't detect item for Detail Page");
                     gridPageIssue.printStackTrace();
                 }
             }catch (Exception noRequestedSiteFound){
-                Platform.runLater(() -> {
-                    SimilarProductsClickOut.setStyle("-fx-background-color: #FF0000");
-                    SimilarProductsClickOut.setSelected(true);
-                });
+                ChangeCheckBox.adjustStyle(true,"nope",SimilarProductsClickOut);
                 webDriver.navigate().to(inputGridPageURL.getText().trim());
-                report.writeToFile("Checking Detail Page Similar Product: ", "Couldn't navigate to requested Site!");
+                report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
                 noRequestedSiteFound.printStackTrace();
             }
         }catch (Exception noBrowserWorking){
-            Platform.runLater(() -> {
-                SimilarProductsClickOut.setStyle("-fx-background-color: #FF0000");
-                SimilarProductsClickOut.setSelected(true);
-            });
+            ChangeCheckBox.adjustStyle(true,"nope",SimilarProductsClickOut);
             webDriver.navigate().to(inputGridPageURL.getText().trim());
-            report.writeToFile("Checking Detail Page Similar Product: ", "unable to check! Browser not responding");
+            report.writeToFile(infoMessage, "unable to check! Browser not responding");
             noBrowserWorking.printStackTrace();
         }
 
@@ -234,9 +204,10 @@ public class DetailPageTest {
     }
 
     public void PagingForwardBackward(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox PagingForwardBackward, TextField inputLucenePage, Text statusInfo, TextField inputGridPageURL, Properties Homepage){
+        final String infoMessage = "Checking Detail Page Paging-Forward/Backward";
+        ChangeCheckBox.adjustStyle(false,"progress",PagingForwardBackward);
         Platform.runLater(() -> {
-            PagingForwardBackward.setStyle("-fx-background-color: #eef442");
-            statusInfo.setText("Checking Detail Page Paging-Forward/Backward...");
+            statusInfo.setText(""+infoMessage+"...");
         });
         try {
             ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
@@ -273,9 +244,9 @@ public class DetailPageTest {
                         wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.items.price"))));
                         wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.previousPage.button"))));
                         if (webDriver.getCurrentUrl().contains("2")){
-                            report.writeToFile("Checking Detail Page Paging-Forward: ", "Successful! Found pattern in URL and Previous Page Button appeared!");
+                            report.writeToFile(infoMessage, "Successful! Found pattern in URL and Previous Page Button appeared!");
                         }else {
-                            report.writeToFile("Checking Detail Page Paging-Forward: ", "Not Successful! User is not redirected");
+                            report.writeToFile(infoMessage, "Not Successful! User is not redirected");
                             isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"DetailPageErrorPagingForward.png");
                             if (isSuccessful){
                                 report.writeToFile("GridPage Error Screenshot: ", "Screenshot successful!");
@@ -290,46 +261,34 @@ public class DetailPageTest {
                         wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.items.price"))));
                         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Homepage.getProperty("page.previousPage.button"))));
                         if (!webDriver.getCurrentUrl().contains("-2")){
-                            report.writeToFile("Checking Detail Page Paging-Backward: ", "Successful! Found pattern in URL and Previous Page Button disappeared!");
-                            Platform.runLater(() -> {
-                                PagingForwardBackward.setStyle("-fx-background-color: #CCFF99");
-                                PagingForwardBackward.setSelected(true);
-                            });
+                            report.writeToFile(infoMessage, "Successful! Found pattern in URL and Previous Page Button disappeared!");
+                            ChangeCheckBox.adjustStyle(true,"complete",PagingForwardBackward);
                         }else {
-                            report.writeToFile("Checking Detail Page Paging-Backward:: ", "Not Successful! User is not redirected");
+                            report.writeToFile(infoMessage, "Not Successful! User is not redirected");
                             isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"DetailPageErrorPagingBackward.png");
                             if (isSuccessful){
                                 report.writeToFile("GridPage Error Screenshot: ", "Screenshot successful!");
                             }else {
                                 report.writeToFile("GridPage Error Screenshot: ", "Screenshot not successful!");
                             }
-                            Platform.runLater(() -> {
-                                PagingForwardBackward.setStyle("-fx-background-color: #FF0000");
-                                PagingForwardBackward.setSelected(true);
-                            });
+                            ChangeCheckBox.adjustStyle(true,"nope",PagingForwardBackward);
                         }
 
-                        report.writeToFile("Checking Detail Page Paging - Forward/Backward:", "Complete!");
+                        report.writeToFile(infoMessage, "Complete!");
 
 
 
 
                     }catch (Exception noTabDetailPage){
-                        Platform.runLater(() -> {
-                            PagingForwardBackward.setStyle("-fx-background-color: #FF0000");
-                            PagingForwardBackward.setSelected(true);
-                        });
+                        ChangeCheckBox.adjustStyle(true,"nope",PagingForwardBackward);
                         webDriver.navigate().to(inputGridPageURL.getText().trim());
-                        report.writeToFile("Checking Detail Page Paging-Forward/Backward: ", "Couldn't detect Paging Forward/Backward for Detail Page");
+                        report.writeToFile(infoMessage, "Couldn't detect Paging Forward/Backward for Detail Page");
                         noTabDetailPage.printStackTrace();
                     }
 
 
                 }catch (Exception gridPageIssue){
-                    Platform.runLater(() -> {
-                        PagingForwardBackward.setStyle("-fx-background-color: #FF0000");
-                        PagingForwardBackward.setSelected(true);
-                    });
+                    ChangeCheckBox.adjustStyle(true,"nope",PagingForwardBackward);
                     isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver, "DetailPage.png");
                     if (isSuccessful){
                         report.writeToFile("Checking Detail Page Paging-Forward/Backward: ", "Screenshot successful!");
@@ -337,25 +296,19 @@ public class DetailPageTest {
                         report.writeToFile("Checking Detail Page Paging-Forward/Backward: ", "Screenshot not successful!");
                     }
                     webDriver.navigate().to(inputGridPageURL.getText().trim());
-                    report.writeToFile("Checking Detail Page Paging-Forward/Backward: ", "Couldn't detect item for Detail Page");
+                    report.writeToFile(infoMessage, "Couldn't detect item for Detail Page");
                     gridPageIssue.printStackTrace();
                 }
             }catch (Exception noRequestedSiteFound){
-                Platform.runLater(() -> {
-                    PagingForwardBackward.setStyle("-fx-background-color: #FF0000");
-                    PagingForwardBackward.setSelected(true);
-                });
+                ChangeCheckBox.adjustStyle(true,"nope",PagingForwardBackward);
                 webDriver.navigate().to(inputGridPageURL.getText().trim());
-                report.writeToFile("Checking Detail Page Paging-Forward/Backward: ", "Couldn't navigate to requested Site!");
+                report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
                 noRequestedSiteFound.printStackTrace();
             }
         }catch (Exception noBrowserWorking){
-            Platform.runLater(() -> {
-                PagingForwardBackward.setStyle("-fx-background-color: #FF0000");
-                PagingForwardBackward.setSelected(true);
-            });
+            ChangeCheckBox.adjustStyle(true,"nope",PagingForwardBackward);
             webDriver.navigate().to(inputGridPageURL.getText().trim());
-            report.writeToFile("Checking Detail Page Paging-Forward/Backward: ", "unable to check! Browser not responding");
+            report.writeToFile(infoMessage, "unable to check! Browser not responding");
             noBrowserWorking.printStackTrace();
         }
 
@@ -363,10 +316,11 @@ public class DetailPageTest {
 
     }
 
-    public void JumpToNonExistingPage(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox PagingForwardBackward, TextField inputLucenePage, Text statusInfo, TextField inputGridPageURL, Properties Homepage){
+    public void JumpToNonExistingPage(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox JumpToNonExistingPage, TextField inputLucenePage, Text statusInfo, TextField inputGridPageURL, Properties Homepage){
+        final String infoMessage = "Checking Detail Page Jump to non-existing Page";
+        ChangeCheckBox.adjustStyle(false,"progress",JumpToNonExistingPage);
         Platform.runLater(() -> {
-            PagingForwardBackward.setStyle("-fx-background-color: #eef442");
-            statusInfo.setText("Checking Detail Page Jump to non-existing Page...");
+            statusInfo.setText(""+infoMessage+"...");
         });
         try {
             ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
@@ -405,61 +359,43 @@ public class DetailPageTest {
                         MainMenuLinks.get(0).click();
 
                         if (webDriver.getCurrentUrl().contains(urlCheckKeyword)){
-                            Platform.runLater(() -> {
-                                PagingForwardBackward.setStyle("-fx-background-color: #CCFF99");
-                                PagingForwardBackward.setSelected(true);
-                            });
-                            report.writeToFile("Checking Detail Page Jump to non-existing Page:", "Complete!");
+                            ChangeCheckBox.adjustStyle(true,"complete",JumpToNonExistingPage);
+                            report.writeToFile(infoMessage, "Complete!");
                         }else {
-                            Platform.runLater(() -> {
-                                PagingForwardBackward.setStyle("-fx-background-color: #FF0000");
-                                PagingForwardBackward.setSelected(true);
-                            });
-                            report.writeToFile("Checking Detail Page Jump to non-existing Page:", "Unable to complete! Couldn't detect Keyword from MainMenu in URL");
+                            ChangeCheckBox.adjustStyle(true,"nope",JumpToNonExistingPage);
+                            report.writeToFile(infoMessage, "Unable to complete! Couldn't detect Keyword from MainMenu in URL");
                         }
 
                     }catch (Exception noTabDetailPage){
-                        Platform.runLater(() -> {
-                            PagingForwardBackward.setStyle("-fx-background-color: #FF0000");
-                            PagingForwardBackward.setSelected(true);
-                        });
+                        ChangeCheckBox.adjustStyle(true,"nope",JumpToNonExistingPage);
                         webDriver.navigate().to(inputGridPageURL.getText().trim());
-                        report.writeToFile("Checking Detail Page Jump to non-existing Page: ", "Couldn't detect Paging Forward/Backward for Detail Page");
+                        report.writeToFile(infoMessage, "Couldn't detect Paging Forward/Backward for Detail Page");
                         noTabDetailPage.printStackTrace();
                     }
 
 
                 }catch (Exception gridPageIssue){
-                    Platform.runLater(() -> {
-                        PagingForwardBackward.setStyle("-fx-background-color: #FF0000");
-                        PagingForwardBackward.setSelected(true);
-                    });
+                    ChangeCheckBox.adjustStyle(true,"nope",JumpToNonExistingPage);
                     isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver, "DetailPage.png");
                     if (isSuccessful){
-                        report.writeToFile("Checking Detail Page Jump to non-existing Page: ", "Screenshot successful!");
+                        report.writeToFile(infoMessage, "Screenshot successful!");
                     }else {
-                        report.writeToFile("Checking Detail Page Jump to non-existing Page: ", "Screenshot not successful!");
+                        report.writeToFile(infoMessage, "Screenshot not successful!");
                     }
                     webDriver.navigate().to(inputGridPageURL.getText().trim());
-                    report.writeToFile("Checking Detail Page Jump to non-existing Page: ", "Couldn't detect item for Detail Page");
+                    report.writeToFile(infoMessage, "Couldn't detect item for Detail Page");
                     gridPageIssue.printStackTrace();
                 }
             }catch (Exception noRequestedSiteFound){
-                Platform.runLater(() -> {
-                    PagingForwardBackward.setStyle("-fx-background-color: #FF0000");
-                    PagingForwardBackward.setSelected(true);
-                });
+                ChangeCheckBox.adjustStyle(true,"nope",JumpToNonExistingPage);
                 webDriver.navigate().to(inputGridPageURL.getText().trim());
-                report.writeToFile("Checking Detail Page Jump to non-existing Page: ", "Couldn't navigate to requested Site!");
+                report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
                 noRequestedSiteFound.printStackTrace();
             }
         }catch (Exception noBrowserWorking){
-            Platform.runLater(() -> {
-                PagingForwardBackward.setStyle("-fx-background-color: #FF0000");
-                PagingForwardBackward.setSelected(true);
-            });
+            ChangeCheckBox.adjustStyle(true,"nope",JumpToNonExistingPage);
             webDriver.navigate().to(inputGridPageURL.getText().trim());
-            report.writeToFile("Checking Detail Page Jump to non-existing Page: ", "unable to check! Browser not responding");
+            report.writeToFile(infoMessage, "unable to check! Browser not responding");
             noBrowserWorking.printStackTrace();
         }
 

@@ -1,6 +1,7 @@
 package crisscrosscrass.Tests;
 
 import com.jfoenix.controls.JFXCheckBox;
+import crisscrosscrass.Tasks.ChangeCheckBox;
 import crisscrosscrass.Tasks.Report;
 import crisscrosscrass.Tasks.ScreenshotViaWebDriver;
 import javafx.application.Platform;
@@ -20,13 +21,12 @@ import java.util.Properties;
 
 public class GridPageTest {
 
-    public void checkingSorting(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox sortingValuesOnGridPageHighToLow, TextField inputGridPageURL, Text statusInfo, TextField inputSearch, TextField inputEmailAdress, String xpathPattern1, String xpathPattern2, Properties Homepage, boolean isSuccessful, boolean isAvailable){
-
+    public void checkingSorting(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox sortingValues, TextField inputGridPageURL, Text statusInfo, TextField inputSearch, Properties Homepage){
+        final String infoMessage = "Checking GridPage Sorting Values";
+        ChangeCheckBox.adjustStyle(false,"progress",sortingValues);
         Platform.runLater(() -> {
-            sortingValuesOnGridPageHighToLow.setStyle("-fx-background-color: #eef442");
-            statusInfo.setText("Checking GridPage Sorting Values...");
+            statusInfo.setText(""+infoMessage+"...");
         });
-        xpathPattern1 = "//*[contains(@class, 'window-box')]";
         try {
             ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
             webDriver.switchTo().window(tabs.get(0));
@@ -34,14 +34,12 @@ public class GridPageTest {
                 webDriver.navigate().to(inputGridPageURL.getText().trim());
                 WebDriverWait wait = new WebDriverWait(webDriver, 10);
                 try{
-                    if(webDriver.findElements(By.xpath(xpathPattern1)).size() > 0){
+                    if(webDriver.findElements(By.xpath(Homepage.getProperty("page.grid.windows"))).size() > 0){
                         report.writeToFile("provided GridPageURL "+inputGridPageURL.getText(), " included Windows! Adjusted GridPage to make test happen!");
-                        webDriver.findElementByXPath("//*[contains(@class, 'paging right')]/a ").click();
-                        //wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(@class, 'gridProducts')]/div")));
-                        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@class, 'gridProducts')]/div")));
-                    }else {
-                        System.out.println("No Window Element!");
+                        webDriver.findElementByXPath(Homepage.getProperty("page.grid.windows.continue")).click();
+                        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Homepage.getProperty("page.grid.windows.continue"))));
                     }
+
                     Platform.runLater(() -> {
                         statusInfo.setText("Checking Sorting Values from Low to High...");
                     });
@@ -155,18 +153,18 @@ public class GridPageTest {
                             statusInfo.setText("Checking Sorting Values New Items...");
                         });
                         //DropDownButtonSorting
-                        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(@class, 'sort-btn btn-dropdown-wrap')]")));
-                        webDriver.findElement(By.xpath("//*[contains(@class, 'sort-btn btn-dropdown-wrap')]")).click();
+                        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.grid.sort.dropdown.button"))));
+                        webDriver.findElement(By.xpath(Homepage.getProperty("page.grid.sort.dropdown.button"))).click();
 
                         //DropDownButtonSorting
-                        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(@class, 'sort-btn btn-dropdown-wrap')]/div/div/a")));
-                        DropDownListActions = webDriver.findElementsByXPath("//*[contains(@class, 'sort-btn btn-dropdown-wrap')]/div/div/a");
+                        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.grid.sort.dropdown.options"))));
+                        DropDownListActions = webDriver.findElementsByXPath(Homepage.getProperty("page.grid.sort.dropdown.options"));
                         DropDownListActions.get(4).click();
                         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Homepage.getProperty("page.grid.loader"))));
-                        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[contains(@class, 'sort-btn btn-dropdown-wrap')]/div/div/a")));
+                        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Homepage.getProperty("page.grid.sort.dropdown.options"))));
 
-                        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@class, 'gridProducts')]/div/div/a/div[contains(@class, 'price')]")));
-                        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(@class, 'gridProducts')]/div/div/a/div[contains(@class, 'price')]")));
+                        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.items.price"))));
+                        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.items.price"))));
                         List<WebElement> ItemsGridPageSortingNewItems = webDriver.findElementsByXPath("//*[contains(@class, 'gridProducts')]/div/div/a/div[contains(@class, 'price')]");
                         double checkPriceNewItemsFirstItem = Double.parseDouble(ItemsGridPageSortingNewItems.get(0).getText().replaceAll("(^\\s?\\€?)|(\\-\\s*\\€?\\d*\\,?\\.?.*)|(\\€?\\*\\s*\\d*\\,?\\.?)$|(\\€?\\*\\s\\d*.*$)|(\\s?\\€?$)","").trim().replaceAll("\\.","").replaceAll(",","."));
                         if (webDriver.getCurrentUrl().contains("sort=date_desc")){
@@ -191,18 +189,15 @@ public class GridPageTest {
                         wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.filter.salesprice"))));
                         webDriver.findElement(By.xpath(Homepage.getProperty("page.filter.salesprice"))).click();
 
-                        if(webDriver.findElements(By.xpath(xpathPattern1)).size() > 0){
+                        if(webDriver.findElements(By.xpath(Homepage.getProperty("page.grid.windows"))).size() > 0){
                             report.writeToFile("provided GridPageURL "+inputGridPageURL.getText(), " included Windows! Adjusted GridPage to make test happen!");
-                            webDriver.findElementByXPath("//*[contains(@class, 'paging right')]/a ").click();
-                            //wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(@class, 'gridProducts')]/div")));
-                            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@class, 'gridProducts')]/div")));
-                        }else {
-                            System.out.println("No Window Element!");
+                            webDriver.findElementByXPath(Homepage.getProperty("page.grid.windows.continue")).click();
+                            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Homepage.getProperty("page.grid.windows.continue"))));
                         }
 
-                        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@class, 'gridProducts')]/div/div/a/div[contains(@class, 'price')]")));
-                        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(@class, 'gridProducts')]/div/div/a/div[contains(@class, 'price')]")));
-                        List<WebElement> ItemsGridPageSortingDiscount = webDriver.findElementsByXPath("//*[contains(@class, 'gridProducts')]/div/div/a/div/span[contains(@class, 'discount')]");
+                        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.items.price"))));
+                        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.items.price"))));
+                        List<WebElement> ItemsGridPageSortingDiscount = webDriver.findElementsByXPath(Homepage.getProperty("page.items.salesprice"));
                         if (ItemsGridPageSortingDiscount.size() > 0){
                             report.writeToFile("Checking  Grid Page Discount Label: ", "Successful! Found in Total + " +ItemsGridPageSortingDiscount.size()+" Discount Labels");
                         }else {
@@ -213,55 +208,38 @@ public class GridPageTest {
 
 
 
-
-
-                        Platform.runLater(() -> {
-                            sortingValuesOnGridPageHighToLow.setStyle("-fx-background-color: #CCFF99");
-                            sortingValuesOnGridPageHighToLow.setSelected(true);
-                        });
+                        ChangeCheckBox.adjustStyle(true,"complete",sortingValues);
                         webDriver.navigate().to(inputSearch.getText().trim());
-                        report.writeToFile("Checking GridPage Sorting Values: ", "Complete!");
+                        report.writeToFile(infoMessage, "Complete!");
                     }catch (Exception gridPageIssue){
-                        Platform.runLater(() -> {
-                            sortingValuesOnGridPageHighToLow.setStyle("-fx-background-color: #FF0000");
-                            sortingValuesOnGridPageHighToLow.setSelected(true);
-                        });
-                        isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"GridPageErrorSorting.png");
+                        ChangeCheckBox.adjustStyle(true,"nope",sortingValues);
+                        boolean isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver, "GridPageErrorSorting.png");
                         if (isSuccessful){
                             report.writeToFile("GridPage Error Screenshot: ", "Screenshot successful!");
                         }else {
                             report.writeToFile("GridPage Error Screenshot: ", "Screenshot not successful!");
                         }
                         webDriver.navigate().to(inputSearch.getText().trim());
-                        report.writeToFile("Checking GridPage Sorting Values: ", "Sorting on this Page doesn't seems to be working or very slow");
+                        report.writeToFile(infoMessage, "Sorting on this Page doesn't seems to be working or very slow");
                         gridPageIssue.printStackTrace();
                     }
                 }catch (Exception windowBoxIssue){
-                    Platform.runLater(() -> {
-                        sortingValuesOnGridPageHighToLow.setStyle("-fx-background-color: #FF0000");
-                        sortingValuesOnGridPageHighToLow.setSelected(true);
-                    });
+                    ChangeCheckBox.adjustStyle(true,"nope",sortingValues);
                     webDriver.navigate().to(inputSearch.getText().trim());
-                    report.writeToFile("Checking GridPage Sorting Values: ", "Couldn't find a Button to remove WindowBoxes!");
+                    report.writeToFile(infoMessage, "Couldn't find a Button to remove WindowBoxes!");
                     windowBoxIssue.printStackTrace();
                 }
 
             }catch (Exception noMainMenuLinkFound){
-                Platform.runLater(() -> {
-                    sortingValuesOnGridPageHighToLow.setStyle("-fx-background-color: #FF0000");
-                    sortingValuesOnGridPageHighToLow.setSelected(true);
-                });
+                ChangeCheckBox.adjustStyle(true,"nope",sortingValues);
                 webDriver.navigate().to(inputSearch.getText().trim());
-                report.writeToFile("Checking GridPage Sorting Values: ", "Couldn't navigate to requested Site!");
+                report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
                 noMainMenuLinkFound.printStackTrace();
             }
         }catch (Exception noCategoryLinksLeftSideMenu){
-            Platform.runLater(() -> {
-                sortingValuesOnGridPageHighToLow.setStyle("-fx-background-color: #FF0000");
-                sortingValuesOnGridPageHighToLow.setSelected(true);
-            });
+            ChangeCheckBox.adjustStyle(true,"nope",sortingValues);
             webDriver.navigate().to(inputSearch.getText().trim());
-            report.writeToFile("Checking GridPage Sorting Values: ", "unable to check! Browser not responding");
+            report.writeToFile(infoMessage, "unable to check! Browser not responding");
             noCategoryLinksLeftSideMenu.printStackTrace();
         }
 
@@ -269,11 +247,12 @@ public class GridPageTest {
     }
 
     public void checkingSwitchFromSmallToLargeImages(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox switchFromSmallToLarge, TextField inputGridPageURL, Text statusInfo, TextField inputSearch, TextField inputEmailAdress, String xpathPattern1, String xpathPattern2, Properties Homepage, boolean isSuccessful, boolean isAvailable){
+        final String infoMessage = "Checking GridPage Switch Small to Large Images";
+        ChangeCheckBox.adjustStyle(false,"progress",switchFromSmallToLarge);
         Platform.runLater(() -> {
-            switchFromSmallToLarge.setStyle("-fx-background-color: #eef442");
-            statusInfo.setText("Checking GridPage Switch Small to Large Images...");
+            statusInfo.setText(""+infoMessage+"...");
         });
-        xpathPattern1 = "//*[contains(@class, 'window-box')]";
+
         try {
             ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
             webDriver.switchTo().window(tabs.get(0));
@@ -282,52 +261,37 @@ public class GridPageTest {
                 WebDriverWait wait = new WebDriverWait(webDriver, 10);
 
                 try{
-                    if(webDriver.findElements(By.xpath(xpathPattern1)).size() > 0){
+                    if(webDriver.findElements(By.xpath(Homepage.getProperty("page.grid.windows"))).size() > 0){
                         report.writeToFile("provided GridPageURL "+inputGridPageURL.getText(), " included Windows! Adjusted GridPage to make test happen!");
-                        webDriver.findElementByXPath("//*[contains(@class, 'paging right')]/a ").click();
-                        //wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(@class, 'gridProducts')]/div")));
-                        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@class, 'gridProducts')]/div")));
-                    }else {
-                        System.out.println("No Window Element!");
+                        webDriver.findElementByXPath(Homepage.getProperty("page.grid.windows.continue")).click();
+                        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Homepage.getProperty("page.grid.windows.continue"))));
                     }
-                    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(@class, 'grid-item-size-btns')]/a")));
+
+                    wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.grid.size"))));
                     try {
-                        webDriver.findElementByXPath("//*[contains(@class, 'grid-item-size-btns')]/a ").click();
+                        webDriver.findElementByXPath(Homepage.getProperty("page.grid.size")).click();
                         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Homepage.getProperty("page.grid.loader"))));
                         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.items.price"))));
-                        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@class, 'gridProducts')]/div/div/a/div[contains(@class, 'price')]")));
-                        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(@class, 'gridProducts')]/div/div/a/div[contains(@class, 'price')]")));
+                        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.items.price"))));
                         if (webDriver.getCurrentUrl().contains("itemSize=detail")){
-                            report.writeToFile("Checking GridPage Switch Small to Large Images: ", "Successful! Found pattern in URL");
-                            Platform.runLater(() -> {
-                                switchFromSmallToLarge.setStyle("-fx-background-color: #CCFF99");
-                                switchFromSmallToLarge.setSelected(true);
-                            });
+                            report.writeToFile(infoMessage, "Successful! Found pattern in URL");
+                            ChangeCheckBox.adjustStyle(true,"complete",switchFromSmallToLarge);
                         }else {
-                            report.writeToFile("Checking  GridPage Switch Small to Large Images: ", "Not Successful! Couldn't find pattern in URL");
-                            Platform.runLater(() -> {
-                                switchFromSmallToLarge.setStyle("-fx-background-color: #FF0000");
-                                switchFromSmallToLarge.setSelected(true);
-                            });
+                            report.writeToFile(infoMessage, "Not Successful! Couldn't find pattern in URL");
+                            ChangeCheckBox.adjustStyle(true,"nope",switchFromSmallToLarge);
                         }
-                        webDriver.findElementByXPath("//*[contains(@class, 'grid-item-size-btns')]/a ").click();
+                        webDriver.findElementByXPath(Homepage.getProperty("page.grid.size")).click();
                         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Homepage.getProperty("page.grid.loader"))));
-                        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@class, 'gridProducts')]/div/div/a/div[contains(@class, 'price')]")));
-                        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(@class, 'gridProducts')]/div/div/a/div[contains(@class, 'price')]")));
+                        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.items.price"))));
+                        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.items.price"))));
                         report.writeToFile("");
                     }catch (Exception noLargeImageButton){
-                        report.writeToFile("Checking  GridPage Switch Small to Large Images: ", "Not Successful! Couldn't find Large Image Button");
-                        Platform.runLater(() -> {
-                            switchFromSmallToLarge.setStyle("-fx-background-color: #FF0000");
-                            switchFromSmallToLarge.setSelected(true);
-                        });
+                        report.writeToFile(infoMessage, "Not Successful! Couldn't find Large Image Button");
+                        ChangeCheckBox.adjustStyle(true,"nope",switchFromSmallToLarge);
                     }
 
                 }catch (Exception gridPageIssue){
-                    Platform.runLater(() -> {
-                        switchFromSmallToLarge.setStyle("-fx-background-color: #FF0000");
-                        switchFromSmallToLarge.setSelected(true);
-                    });
+                    ChangeCheckBox.adjustStyle(true,"nope",switchFromSmallToLarge);
                     isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"GridPageErrorSorting.png");
                     if (isSuccessful){
                         report.writeToFile("GridPage Error Screenshot: ", "Screenshot successful!");
@@ -335,26 +299,20 @@ public class GridPageTest {
                         report.writeToFile("GridPage Error Screenshot: ", "Screenshot not successful!");
                     }
                     webDriver.navigate().to(inputSearch.getText().trim());
-                    report.writeToFile("Checking GridPage Switch Small to Large Images: ", "Sorting on this Page doesn't seems to be working or very slow");
+                    report.writeToFile(infoMessage, "Sorting on this Page doesn't seems to be working or very slow");
                     gridPageIssue.printStackTrace();
                 }
             }catch (Exception noMainMenuLinkFound){
-                Platform.runLater(() -> {
-                    switchFromSmallToLarge.setStyle("-fx-background-color: #FF0000");
-                    switchFromSmallToLarge.setSelected(true);
-                });
+                ChangeCheckBox.adjustStyle(true,"nope",switchFromSmallToLarge);
                 webDriver.navigate().to(inputSearch.getText().trim());
-                report.writeToFile("Checking GridPage Switch Small to Large Images: ", "Couldn't navigate to requested Site!");
+                report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
                 noMainMenuLinkFound.printStackTrace();
             }
 
         }catch (Exception noCategoryLinksLeftSideMenu){
-            Platform.runLater(() -> {
-                switchFromSmallToLarge.setStyle("-fx-background-color: #FF0000");
-                switchFromSmallToLarge.setSelected(true);
-            });
+            ChangeCheckBox.adjustStyle(true,"nope",switchFromSmallToLarge);
             webDriver.navigate().to(inputSearch.getText().trim());
-            report.writeToFile("Checking GridPage Switch Small to Large Images: ", "unable to check! Browser not responding");
+            report.writeToFile(infoMessage, "unable to check! Browser not responding");
             noCategoryLinksLeftSideMenu.printStackTrace();
         }
 
@@ -367,7 +325,7 @@ public class GridPageTest {
             pagingForwardBackward.setStyle("-fx-background-color: #eef442");
             statusInfo.setText("Checking GridPage Paging Forward / Backward...");
         });
-        xpathPattern1 = "//*[contains(@class, 'window-box')]";
+
         try {
             ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
             webDriver.switchTo().window(tabs.get(0));
@@ -376,13 +334,12 @@ public class GridPageTest {
                 WebDriverWait wait = new WebDriverWait(webDriver, 10);
 
                 try{
-                    if(webDriver.findElements(By.xpath(xpathPattern1)).size() > 0){
+                    if(webDriver.findElements(By.xpath(Homepage.getProperty("page.grid.windows"))).size() > 0){
                         report.writeToFile("provided GridPageURL "+inputGridPageURL.getText(), " included Windows! Adjusted GridPage to make test happen!");
-                        webDriver.findElementByXPath("//*[contains(@class, 'paging right')]/a ").click();
-                        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[contains(@class, 'paging right')]/a  ")));
-                    }else {
-                        System.out.println("No Window Element!");
+                        webDriver.findElementByXPath(Homepage.getProperty("page.grid.windows.continue")).click();
+                        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Homepage.getProperty("page.grid.windows.continue"))));
                     }
+
                     wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(@class, 'grid-item-size-btns')]/a")));
                     try {
                         webDriver.findElementByXPath(Homepage.getProperty("page.pageNumbers")).click();
@@ -487,10 +444,9 @@ public class GridPageTest {
                         report.writeToFile("provided GridPageURL "+inputGridPageURL.getText(), " included Windows! Adjusted GridPage to make test happen!");
                         webDriver.findElementByXPath(Homepage.getProperty("page.grid.windows.continue")).click();
                         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Homepage.getProperty("page.grid.windows.continue"))));
-
-                    }else {
-                        System.out.println("No Window Element!");
                     }
+
+
                     wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(@class, 'items-per-page-entries')]/a")));
                     try {
                         Point hoverItem = webDriver.findElement(By.xpath("//*[contains(@class, 'items-per-page-entries')]/a")).getLocation();
@@ -595,8 +551,6 @@ public class GridPageTest {
                         report.writeToFile("provided GridPageURL "+inputGridPageURL.getText(), " included Windows! Adjusted GridPage to make test happen!");
                         webDriver.findElementByXPath(Homepage.getProperty("page.grid.windows.continue")).click();
                         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Homepage.getProperty("page.grid.windows.continue"))));
-                    }else {
-                        System.out.println("No Window Element!");
                     }
 
 

@@ -46,4 +46,20 @@ public class ChangeCheckBox {
 
     }
 
+    public static String getIsInProgress() { return isInProgress.substring(1,7).toLowerCase(); }
+
+    public static String getIsSuccessful() {
+        return isSuccessful.substring(1,7).toLowerCase();
+    }
+
+    public static String getNotSuccessful() {
+        return notSuccessful.substring(1,7).toLowerCase();
+    }
+
+    public static String getIsStandard() {
+        return isStandard.substring(1,7).toLowerCase();
+    }
+
+
+
 }
