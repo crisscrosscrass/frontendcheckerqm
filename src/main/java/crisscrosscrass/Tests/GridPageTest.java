@@ -246,7 +246,7 @@ public class GridPageTest {
         report.writeToFile("=================================", "");
     }
 
-    public void checkingSwitchFromSmallToLargeImages(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox switchFromSmallToLarge, TextField inputGridPageURL, Text statusInfo, TextField inputSearch, TextField inputEmailAdress, String xpathPattern1, String xpathPattern2, Properties Homepage, boolean isSuccessful, boolean isAvailable){
+    public void checkingSwitchFromSmallToLargeImages(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox switchFromSmallToLarge, TextField inputGridPageURL, Text statusInfo, TextField inputSearch, Properties Homepage){
         final String infoMessage = "Checking GridPage Switch Small to Large Images";
         ChangeCheckBox.adjustStyle(false,"progress",switchFromSmallToLarge);
         Platform.runLater(() -> {
@@ -267,9 +267,9 @@ public class GridPageTest {
                         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Homepage.getProperty("page.grid.windows.continue"))));
                     }
 
-                    wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.grid.size"))));
+                    wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.grid.size.button"))));
                     try {
-                        webDriver.findElementByXPath(Homepage.getProperty("page.grid.size")).click();
+                        webDriver.findElementByXPath(Homepage.getProperty("page.grid.size.button")).click();
                         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Homepage.getProperty("page.grid.loader"))));
                         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.items.price"))));
                         wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.items.price"))));
@@ -280,7 +280,7 @@ public class GridPageTest {
                             report.writeToFile(infoMessage, "Not Successful! Couldn't find pattern in URL");
                             ChangeCheckBox.adjustStyle(true,"nope",switchFromSmallToLarge);
                         }
-                        webDriver.findElementByXPath(Homepage.getProperty("page.grid.size")).click();
+                        webDriver.findElementByXPath(Homepage.getProperty("page.grid.size.button")).click();
                         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Homepage.getProperty("page.grid.loader"))));
                         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.items.price"))));
                         wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.items.price"))));
@@ -292,7 +292,7 @@ public class GridPageTest {
 
                 }catch (Exception gridPageIssue){
                     ChangeCheckBox.adjustStyle(true,"nope",switchFromSmallToLarge);
-                    isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"GridPageErrorSorting.png");
+                    boolean isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver, "GridPageErrorSorting.png");
                     if (isSuccessful){
                         report.writeToFile("GridPage Error Screenshot: ", "Screenshot successful!");
                     }else {
@@ -320,10 +320,11 @@ public class GridPageTest {
     }
 
 
-    public void checkingPagingForwardBackward(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox pagingForwardBackward, TextField inputGridPageURL, Text statusInfo, TextField inputSearch, TextField inputEmailAdress, String xpathPattern1, String xpathPattern2, Properties Homepage, boolean isSuccessful, boolean isAvailable){
+    public void checkingPagingForwardBackward(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox pagingForwardBackward, TextField inputGridPageURL, Text statusInfo, TextField inputSearch, Properties Homepage){
+        final String infoMessage = "Checking GridPage Paging Forward / Backward";
+        ChangeCheckBox.adjustStyle(false,"progress",pagingForwardBackward);
         Platform.runLater(() -> {
-            pagingForwardBackward.setStyle("-fx-background-color: #eef442");
-            statusInfo.setText("Checking GridPage Paging Forward / Backward...");
+            statusInfo.setText(""+infoMessage+"...");
         });
 
         try {
@@ -333,6 +334,7 @@ public class GridPageTest {
                 webDriver.navigate().to(inputGridPageURL.getText().trim());
                 WebDriverWait wait = new WebDriverWait(webDriver, 10);
 
+                boolean isSuccessful;
                 try{
                     if(webDriver.findElements(By.xpath(Homepage.getProperty("page.grid.windows"))).size() > 0){
                         report.writeToFile("provided GridPageURL "+inputGridPageURL.getText(), " included Windows! Adjusted GridPage to make test happen!");
@@ -340,7 +342,7 @@ public class GridPageTest {
                         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Homepage.getProperty("page.grid.windows.continue"))));
                     }
 
-                    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(@class, 'grid-item-size-btns')]/a")));
+                    wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.grid.size.button"))));
                     try {
                         webDriver.findElementByXPath(Homepage.getProperty("page.pageNumbers")).click();
                         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.items.price"))));
@@ -373,26 +375,17 @@ public class GridPageTest {
                                 report.writeToFile("GridPage Error Screenshot: ", "Screenshot not successful!");
                             }
                         }
-
-                        Platform.runLater(() -> {
-                            pagingForwardBackward.setStyle("-fx-background-color: #CCFF99");
-                            pagingForwardBackward.setSelected(true);
-                        });
+                        ChangeCheckBox.adjustStyle(true,"complete",pagingForwardBackward);
+                        report.writeToFile(infoMessage, "Complete");
 
 
                     }catch (Exception noLargeImageButton){
-                        report.writeToFile("Checking  GridPage Paging Forward/Backward: ", "Not Successful! Couldn't find Page 2 Button");
-                        Platform.runLater(() -> {
-                            pagingForwardBackward.setStyle("-fx-background-color: #FF0000");
-                            pagingForwardBackward.setSelected(true);
-                        });
+                        report.writeToFile(infoMessage, "Not Successful! Couldn't find Page 2 Button");
+                        ChangeCheckBox.adjustStyle(true,"nope",pagingForwardBackward);
                     }
 
                 }catch (Exception gridPageIssue){
-                    Platform.runLater(() -> {
-                        pagingForwardBackward.setStyle("-fx-background-color: #FF0000");
-                        pagingForwardBackward.setSelected(true);
-                    });
+                    ChangeCheckBox.adjustStyle(true,"nope",pagingForwardBackward);
                     isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"GridPageErrorSorting.png");
                     if (isSuccessful){
                         report.writeToFile("GridPage Error Screenshot: ", "Screenshot successful!");
@@ -400,38 +393,33 @@ public class GridPageTest {
                         report.writeToFile("GridPage Error Screenshot: ", "Screenshot not successful!");
                     }
                     webDriver.navigate().to(inputSearch.getText().trim());
-                    report.writeToFile("Checking GridPage Paging Forward/Backward: ", "Sorting on this Page doesn't seems to be working or very slow");
+                    report.writeToFile(infoMessage, "Sorting on this Page doesn't seems to be working or very slow");
                     gridPageIssue.printStackTrace();
                 }
             }catch (Exception noMainMenuLinkFound){
-                Platform.runLater(() -> {
-                    pagingForwardBackward.setStyle("-fx-background-color: #FF0000");
-                    pagingForwardBackward.setSelected(true);
-                });
+                ChangeCheckBox.adjustStyle(true,"nope",pagingForwardBackward);
                 webDriver.navigate().to(inputSearch.getText().trim());
-                report.writeToFile("Checking GridPage Paging Forward/Backward: ", "Couldn't navigate to requested Site!");
+                report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
                 noMainMenuLinkFound.printStackTrace();
             }
 
         }catch (Exception noCategoryLinksLeftSideMenu){
-            Platform.runLater(() -> {
-                pagingForwardBackward.setStyle("-fx-background-color: #FF0000");
-                pagingForwardBackward.setSelected(true);
-            });
+            ChangeCheckBox.adjustStyle(true,"nope",pagingForwardBackward);
             webDriver.navigate().to(inputSearch.getText().trim());
-            report.writeToFile("Checking GridPage Paging Forward/Backward: ", "unable to check! Browser not responding");
+            report.writeToFile(infoMessage, "unable to check! Browser not responding");
             noCategoryLinksLeftSideMenu.printStackTrace();
         }
 
         report.writeToFile("=================================", "");
     }
 
-    public void checkingProductView300(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox productView300, TextField inputGridPageURL, Text statusInfo, TextField inputSearch, TextField inputEmailAdress, String xpathPattern1, String xpathPattern2, Properties Homepage, boolean isSuccessful, boolean isAvailable){
+    public void checkingProductView300(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox productView300, TextField inputGridPageURL, Text statusInfo, TextField inputSearch, Properties Homepage){
+        final String infoMessage = "Checking GridPage Product View 300";
+        ChangeCheckBox.adjustStyle(false,"progress",productView300);
         Platform.runLater(() -> {
-            productView300.setStyle("-fx-background-color: #eef442");
-            statusInfo.setText("Checking GridPage Product View 300...");
+            statusInfo.setText(""+infoMessage+"...");
         });
-        xpathPattern1 = "//*[contains(@class, 'window-box')]";
+
         try {
             ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
             webDriver.switchTo().window(tabs.get(0));
@@ -439,6 +427,7 @@ public class GridPageTest {
                 webDriver.navigate().to(inputGridPageURL.getText().trim());
                 WebDriverWait wait = new WebDriverWait(webDriver, 10);
 
+                boolean isSuccessful;
                 try{
                     if(webDriver.findElements(By.xpath(Homepage.getProperty("page.grid.windows"))).size() > 0){
                         report.writeToFile("provided GridPageURL "+inputGridPageURL.getText(), " included Windows! Adjusted GridPage to make test happen!");
@@ -447,9 +436,9 @@ public class GridPageTest {
                     }
 
 
-                    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(@class, 'items-per-page-entries')]/a")));
+                    wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.grid.items.number"))));
                     try {
-                        Point hoverItem = webDriver.findElement(By.xpath("//*[contains(@class, 'items-per-page-entries')]/a")).getLocation();
+                        Point hoverItem = webDriver.findElement(By.xpath(Homepage.getProperty("page.grid.items.number"))).getLocation();
                         ((JavascriptExecutor)webDriver).executeScript("return window.title;");
                         ((JavascriptExecutor)webDriver).executeScript("window.scrollBy(0,"+(hoverItem.getY())+");");
                         // Scroll up
@@ -459,48 +448,36 @@ public class GridPageTest {
                         }
 
 
-                        webDriver.findElementByXPath("//*[contains(@class, 'items-per-page-entries')]/a ").click();
+                        webDriver.findElementByXPath(Homepage.getProperty("page.grid.items.number")).click();
                         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Homepage.getProperty("page.grid.loader"))));
-                        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@class, 'gridProducts')]/div/div/a/div[contains(@class, 'price')]")));
-                        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(@class, 'gridProducts')]/div/div/a/div[contains(@class, 'price')]")));
-                        List<WebElement> ItemsGridPageProductView300 = webDriver.findElementsByXPath("//*[contains(@class, 'gridProducts')]/div/div/a/div[contains(@class, 'price')]");
-                        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(@class, 'items-per-page-entries')]/a")));
+                        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.items.price"))));
+                        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.items.price"))));
+                        List<WebElement> ItemsGridPageProductView300 = webDriver.findElementsByXPath(Homepage.getProperty("page.items.price"));
+                        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.grid.items.number"))));
 
                         if (webDriver.getCurrentUrl().contains("ipp=300") && ItemsGridPageProductView300.size() == 300){
-                            report.writeToFile("Checking  GridPage Product View 300: ", "Successful! Found pattern in URL and counted 300 Items!");
-                            Platform.runLater(() -> {
-                                productView300.setStyle("-fx-background-color: #CCFF99");
-                                productView300.setSelected(true);
-                            });
+                            report.writeToFile(infoMessage, "Successful! Found pattern in URL and counted 300 Items!");
+                            ChangeCheckBox.adjustStyle(true,"complete",productView300);
                         }else {
-                            report.writeToFile("Checking  GridPage Product View 300: ", "Not Successful, loaded "+ItemsGridPageProductView300.size()+" items and Url not changed");
+                            report.writeToFile(infoMessage, "Not Successful, loaded "+ItemsGridPageProductView300.size()+" items and Url not changed");
                             isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"GridPageErrorPagingBackward.png");
                             if (isSuccessful){
                                 report.writeToFile("GridPage Error Screenshot: ", "Screenshot successful!");
                             }else {
                                 report.writeToFile("GridPage Error Screenshot: ", "Screenshot not successful!");
                             }
-                            Platform.runLater(() -> {
-                                productView300.setStyle("-fx-background-color: #FF0000");
-                                productView300.setSelected(true);
-                            });
+                            ChangeCheckBox.adjustStyle(true,"nope",productView300);
                         }
 
 
 
                     }catch (Exception noLargeImageButton){
-                        report.writeToFile("Checking  GridPage Paging Forward/Backward: ", "Not Successful! Couldn't find 300 Items View Button");
-                        Platform.runLater(() -> {
-                            productView300.setStyle("-fx-background-color: #FF0000");
-                            productView300.setSelected(true);
-                        });
+                        report.writeToFile(infoMessage, "Not Successful! Couldn't find 300 Items View Button");
+                        ChangeCheckBox.adjustStyle(true,"nope",productView300);
                     }
 
                 }catch (Exception gridPageIssue){
-                    Platform.runLater(() -> {
-                        productView300.setStyle("-fx-background-color: #FF0000");
-                        productView300.setSelected(true);
-                    });
+                    ChangeCheckBox.adjustStyle(true,"nope",productView300);
                     isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"GridPageErrorSorting.png");
                     if (isSuccessful){
                         report.writeToFile("GridPage Error Screenshot: ", "Screenshot successful!");
@@ -508,44 +485,40 @@ public class GridPageTest {
                         report.writeToFile("GridPage Error Screenshot: ", "Screenshot not successful!");
                     }
                     webDriver.navigate().to(inputSearch.getText().trim());
-                    report.writeToFile("Checking GridPage GridPage Product View 300: ", "Sorting on this Page doesn't seems to be working or very slow");
+                    report.writeToFile(infoMessage, "Sorting on this Page doesn't seems to be working or very slow");
                     gridPageIssue.printStackTrace();
                 }
             }catch (Exception noMainMenuLinkFound){
-                Platform.runLater(() -> {
-                    productView300.setStyle("-fx-background-color: #FF0000");
-                    productView300.setSelected(true);
-                });
+                ChangeCheckBox.adjustStyle(true,"nope",productView300);
                 webDriver.navigate().to(inputSearch.getText().trim());
-                report.writeToFile("Checking GridPage GridPage Product View 300: ", "Couldn't navigate to requested Site!");
+                report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
                 noMainMenuLinkFound.printStackTrace();
             }
 
         }catch (Exception noCategoryLinksLeftSideMenu){
-            Platform.runLater(() -> {
-                productView300.setStyle("-fx-background-color: #FF0000");
-                productView300.setSelected(true);
-            });
+            ChangeCheckBox.adjustStyle(true,"nope",productView300);
             webDriver.navigate().to(inputSearch.getText().trim());
-            report.writeToFile("Checking GridPage GridPage Product View 300: ", "unable to check! Browser not responding");
+            report.writeToFile(infoMessage, "unable to check! Browser not responding");
             noCategoryLinksLeftSideMenu.printStackTrace();
         }
 
         report.writeToFile("=================================", "");
     }
 
-    public void checkingDeeperStyle(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox deeperStyle, TextField inputGridPageURL, Text statusInfo, TextField inputSearch, TextField inputEmailAdress, String xpathPattern1, String xpathPattern2, Properties Homepage, boolean isSuccessful, boolean isAvailable){
+    public void checkingDeeperStyle(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox deeperStyle, TextField inputGridPageURL, Text statusInfo, TextField inputSearch, Properties Homepage){
+        final String infoMessage = "Checking GridPage Deeper Style";
+        ChangeCheckBox.adjustStyle(false,"progress",deeperStyle);
         Platform.runLater(() -> {
-            deeperStyle.setStyle("-fx-background-color: #eef442");
-            statusInfo.setText("Checking GridPage Deeper Style...");
+            statusInfo.setText(""+infoMessage+"...");
         });
-        xpathPattern1 = "//*[contains(@data-id, 'style_block')]/ul/li/a[1] ";
+
         try {
             ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
             webDriver.switchTo().window(tabs.get(0));
             try {
                 webDriver.navigate().to(inputGridPageURL.getText().trim());
                 WebDriverWait wait = new WebDriverWait(webDriver, 10);
+                boolean isSuccessful;
                 try{
                     if(webDriver.findElements(By.xpath(Homepage.getProperty("page.grid.windows"))).size() > 0){
                         report.writeToFile("provided GridPageURL "+inputGridPageURL.getText(), " included Windows! Adjusted GridPage to make test happen!");
@@ -555,27 +528,18 @@ public class GridPageTest {
 
 
                     try{
-                        final String tagNameDeeperStyle = webDriver.findElementByXPath(xpathPattern1).getText();
-                        webDriver.findElementByXPath(xpathPattern1).click();
+                        final String tagNameDeeperStyle = webDriver.findElementByXPath(Homepage.getProperty("page.grid.first.tag")).getText();
+                        webDriver.findElementByXPath(Homepage.getProperty("page.grid.first.tag")).click();
                         if (webDriver.getCurrentUrl().contains(tagNameDeeperStyle.toLowerCase())){
-                            report.writeToFile("Checking  GridPage Deeper Style: ", "Successful! Clicked on first tag and redirected to a functioning page!");
-                            Platform.runLater(() -> {
-                                deeperStyle.setStyle("-fx-background-color: #CCFF99");
-                                deeperStyle.setSelected(true);
-                            });
+                            report.writeToFile(infoMessage, "Successful! Clicked on first tag and redirected to a functioning page!");
+                            ChangeCheckBox.adjustStyle(true,"complete",deeperStyle);
                         }else{
-                            report.writeToFile("Checking  GridPage Deeper Style: ", "Not Successful! Couldn't find Keyword "+ tagNameDeeperStyle +"in redirected URL "+webDriver.getCurrentUrl()+"!");
-                            Platform.runLater(() -> {
-                                deeperStyle.setStyle("-fx-background-color: #FF0000");
-                                deeperStyle.setSelected(true);
-                            });
+                            report.writeToFile(infoMessage, "Not Successful! Couldn't find Keyword "+ tagNameDeeperStyle +"in redirected URL "+webDriver.getCurrentUrl()+"!");
+                            ChangeCheckBox.adjustStyle(true,"nope",deeperStyle);
                         }
 
                     }catch (Exception noStyleTagFound){
-                        Platform.runLater(() -> {
-                            deeperStyle.setStyle("-fx-background-color: #FF0000");
-                            deeperStyle.setSelected(true);
-                        });
+                        ChangeCheckBox.adjustStyle(true,"nope",deeperStyle);
                         isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"GridPageErrorDeeperStyle.png");
                         if (isSuccessful){
                             report.writeToFile("GridPage Error Screenshot: ", "Screenshot successful!");
@@ -586,10 +550,7 @@ public class GridPageTest {
 
 
                 }catch (Exception gridPageIssue){
-                    Platform.runLater(() -> {
-                        deeperStyle.setStyle("-fx-background-color: #FF0000");
-                        deeperStyle.setSelected(true);
-                    });
+                    ChangeCheckBox.adjustStyle(true,"nope",deeperStyle);
                     isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"GridPageErrorDeeperStyle.png");
                     if (isSuccessful){
                         report.writeToFile("GridPage Error Screenshot: ", "Screenshot successful!");
@@ -597,25 +558,19 @@ public class GridPageTest {
                         report.writeToFile("GridPage Error Screenshot: ", "Screenshot not successful!");
                     }
                     webDriver.navigate().to(inputSearch.getText().trim());
-                    report.writeToFile("Checking GridPage Deeper Style: ", "Sorting on this Page doesn't seems to be working or very slow");
+                    report.writeToFile(infoMessage, "Sorting on this Page doesn't seems to be working or very slow");
                     gridPageIssue.printStackTrace();
                 }
             }catch (Exception noMainMenuLinkFound){
-                Platform.runLater(() -> {
-                    deeperStyle.setStyle("-fx-background-color: #FF0000");
-                    deeperStyle.setSelected(true);
-                });
+                ChangeCheckBox.adjustStyle(true,"nope",deeperStyle);
                 webDriver.navigate().to(inputSearch.getText().trim());
-                report.writeToFile("Checking GridPage Deeper Style: ", "Couldn't navigate to requested Site!");
+                report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
                 noMainMenuLinkFound.printStackTrace();
             }
-            }catch (Exception noCategoryLinksLeftSideMenu){
-            Platform.runLater(() -> {
-                deeperStyle.setStyle("-fx-background-color: #FF0000");
-                deeperStyle.setSelected(true);
-            });
+        }catch (Exception noCategoryLinksLeftSideMenu){
+            ChangeCheckBox.adjustStyle(true,"nope",deeperStyle);
             webDriver.navigate().to(inputSearch.getText().trim());
-            report.writeToFile("Checking GridPage Deeper Style: ", "unable to check! Browser not responding");
+            report.writeToFile(infoMessage, "unable to check! Browser not responding");
             noCategoryLinksLeftSideMenu.printStackTrace();
         }
 
@@ -623,11 +578,13 @@ public class GridPageTest {
     }
 
     public void checkingStyleBoxOpenClose(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox styleBoxOpenClose, TextField inputGridPageURL, Text statusInfo, TextField inputSearch, TextField inputEmailAdress, String xpathPattern1, String xpathPattern2, Properties Homepage, boolean isSuccessful, boolean isAvailable){
+        final String infoMessage = "Checking GridPage Style Box Open/Close";
+        ChangeCheckBox.adjustStyle(false,"progress",styleBoxOpenClose);
+
         Platform.runLater(() -> {
-            styleBoxOpenClose.setStyle("-fx-background-color: #eef442");
-            statusInfo.setText("Checking GridPage Style Box Open/Close");
+            statusInfo.setText(""+infoMessage+"...");
         });
-        xpathPattern1 = "//*[contains(@data-id, 'style_block')]/ul/li/a ";
+
         try {
             ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
             webDriver.switchTo().window(tabs.get(0));
@@ -639,11 +596,10 @@ public class GridPageTest {
                         report.writeToFile("provided GridPageURL "+inputGridPageURL.getText(), " included Windows! Adjusted GridPage to make test happen!");
                         webDriver.findElementByXPath(Homepage.getProperty("page.grid.windows.continue")).click();
                         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Homepage.getProperty("page.grid.windows.continue"))));
-                    }else {
-                        System.out.println("No Window Element!");
                     }
+
                     try {
-                        Point hoverItem = webDriver.findElement(By.xpath("//*[contains(@data-id, 'style_block')]/*[contains(@class, 'btn btn-grey toggle-categories hidden nct nct-Click-Selected-More_Categories_Button ncts-Bottom_More_Options')]")).getLocation();
+                        Point hoverItem = webDriver.findElement(By.xpath(Homepage.getProperty("page.sidebar.showMoreTags.button"))).getLocation();
                         ((JavascriptExecutor)webDriver).executeScript("return window.title;");
                         ((JavascriptExecutor)webDriver).executeScript("window.scrollBy(0,"+(hoverItem.getY())+");");
                         // Scroll up
@@ -651,15 +607,15 @@ public class GridPageTest {
                             Thread.sleep(100);
                             js.executeScript("window.scrollBy(0,-400)");
                         }
-                        webDriver.findElementByXPath("//*[contains(@data-id, 'style_block')]/*[contains(@class, 'btn btn-grey toggle-categories hidden nct nct-Click-Selected-More_Categories_Button ncts-Bottom_More_Options')] ").click();
-                        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[contains(@data-id, 'style_block')]/*[contains(@class, 'btn btn-grey toggle-categories hidden nct nct-Click-Selected-More_Categories_Button ncts-Bottom_More_Options')]")));
+                        webDriver.findElementByXPath(Homepage.getProperty("page.sidebar.showMoreTags.button")).click();
+                        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Homepage.getProperty("page.sidebar.showMoreTags.button"))));
                         isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"GridPageStyleBoxOpenClose1.png");
                         if (isSuccessful){
                             report.writeToFile("GridPage See More: ", "Screenshot successful!");
                         }else {
                             report.writeToFile("GridPage See More: ", "Screenshot not successful!");
                         }
-                        webDriver.findElementByXPath("//*[contains(@data-id, 'style_block')]/*[contains(@class, 'middle-toggle-categories nct nct-Click-Selected-More_Categories_Button')]  ").click();
+                        webDriver.findElementByXPath(Homepage.getProperty("page.sidebar.showLessTags.button")).click();
                         for (int i = 0; i < 5; i++) {
                             Thread.sleep(100);
                             js.executeScript("window.scrollBy(0,100)");
@@ -675,32 +631,23 @@ public class GridPageTest {
                             report.writeToFile("GridPage See Less: ", "Screenshot not successful!");
                         }
 
-                        Platform.runLater(() -> {
-                            styleBoxOpenClose.setStyle("-fx-background-color: #CCFF99");
-                            styleBoxOpenClose.setSelected(true);
-                        });
-                        report.writeToFile("Checking GridPage Style Box Open/Close: ", "Successful! Style Box- Open/Close working as expected");
+                        ChangeCheckBox.adjustStyle(true,"complete",styleBoxOpenClose);
+                        report.writeToFile(infoMessage, "Successful! Style Box- Open/Close working as expected");
 
                     }catch (Exception noStyleBoxOpenCloseFound){
-                        Platform.runLater(() -> {
-                            styleBoxOpenClose.setStyle("-fx-background-color: #FF0000");
-                            styleBoxOpenClose.setSelected(true);
-                        });
+                        ChangeCheckBox.adjustStyle(true,"nope",styleBoxOpenClose);
                         isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"GridPageErrorStyleBoxOpenClose.png");
                         if (isSuccessful){
                             report.writeToFile("GridPage Error Screenshot: ", "Screenshot successful!");
                         }else {
                             report.writeToFile("GridPage Error Screenshot: ", "Screenshot not successful!");
                         }
-                        report.writeToFile("Checking GridPage Style Box Open/Close: ", "Couldn't find any Show-More Button");
+                        report.writeToFile(infoMessage, "Couldn't find any Show-More Button");
                     }
 
 
                 }catch (Exception gridPageIssue){
-                    Platform.runLater(() -> {
-                        styleBoxOpenClose.setStyle("-fx-background-color: #FF0000");
-                        styleBoxOpenClose.setSelected(true);
-                    });
+                    ChangeCheckBox.adjustStyle(true,"nope",styleBoxOpenClose);
                     isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"GridPageErrorStyleBoxOpenClose.png");
                     if (isSuccessful){
                         report.writeToFile("GridPage Error Screenshot: ", "Screenshot successful!");
@@ -708,34 +655,29 @@ public class GridPageTest {
                         report.writeToFile("GridPage Error Screenshot: ", "Screenshot not successful!");
                     }
                     webDriver.navigate().to(inputSearch.getText().trim());
-                    report.writeToFile("Checking GridPage Style Box Open/Close: ", "Sorting on this Page doesn't seems to be working or very slow");
+                    report.writeToFile(infoMessage, "Sorting on this Page doesn't seems to be working or very slow");
                     gridPageIssue.printStackTrace();
                 }
             }catch (Exception noMainMenuLinkFound){
-                Platform.runLater(() -> {
-                    styleBoxOpenClose.setStyle("-fx-background-color: #FF0000");
-                    styleBoxOpenClose.setSelected(true);
-                });
+                ChangeCheckBox.adjustStyle(true,"nope",styleBoxOpenClose);
                 webDriver.navigate().to(inputSearch.getText().trim());
-                report.writeToFile("Checking GridPage Style Box Open/Close: ", "Couldn't navigate to requested Site!");
+                report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
                 noMainMenuLinkFound.printStackTrace();
             }
         }catch (Exception noCategoryLinksLeftSideMenu){
-            Platform.runLater(() -> {
-                styleBoxOpenClose.setStyle("-fx-background-color: #FF0000");
-                styleBoxOpenClose.setSelected(true);
-            });
+            ChangeCheckBox.adjustStyle(true,"nope",styleBoxOpenClose);
             webDriver.navigate().to(inputSearch.getText().trim());
-            report.writeToFile("Checking GridPage Style Box Open/Close: ", "unable to check! Browser not responding");
+            report.writeToFile(infoMessage, "unable to check! Browser not responding");
             noCategoryLinksLeftSideMenu.printStackTrace();
         }
 
         report.writeToFile("=================================", "");
     }
     public void checkingFilterApply(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox filtersApply, TextField inputGridPageURL, Text statusInfo, TextField inputSearch, Properties Homepage, boolean isSuccessful, boolean isAvailable, JFXCheckBox checkingSalesPriceFilter, JFXCheckBox checkingGenderFilter, JFXCheckBox checkingColorFilter, JFXCheckBox checkingBrandFilter, JFXCheckBox checkingMerchandiseFilter){
+        final String infoMessage = "Checking GridPage Filter Apply";
+        ChangeCheckBox.adjustStyle(false,"progress",filtersApply);
         Platform.runLater(() -> {
-            filtersApply.setStyle("-fx-background-color: #eef442");
-            statusInfo.setText("Checking GridPage Filter Apply");
+            statusInfo.setText(""+infoMessage+"...");
         });
         try {
             ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
@@ -748,9 +690,9 @@ public class GridPageTest {
                         report.writeToFile("provided GridPageURL "+inputGridPageURL.getText(), " included Windows! Adjusted GridPage to make test happen!");
                         webDriver.findElementByXPath(Homepage.getProperty("page.grid.windows.continue")).click();
                         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Homepage.getProperty("page.grid.windows.continue"))));
-                    }else {
-                        System.out.println("No Window Element!");
                     }
+
+
                     int MAX_FILTERS_TO_APPLY = 3;
 
 
@@ -1100,35 +1042,23 @@ public class GridPageTest {
                                     report.writeToFile("Checking GridPage Remove All Filter from Sidebar: ", "Not Successful! Couldn't remove all Filters via RemoveAllButton!");
                                 }
 
-                                Platform.runLater(() -> {
-                                    filtersApply.setStyle("-fx-background-color: #CCFF99");
-                                    filtersApply.setSelected(true);
-                                });
+                                ChangeCheckBox.adjustStyle(true,"complete",filtersApply);
 
                             }catch (Exception noResetAllFilters){
                                 report.writeToFile("Checking GridPage Remove All Filter from Sidebar: ", "Not Successful! Couldn't find remove all Button!");
-                                Platform.runLater(() -> {
-                                    filtersApply.setStyle("-fx-background-color: #FF0000");
-                                    filtersApply.setSelected(true);
-                                });
+                                ChangeCheckBox.adjustStyle(true,"nope",filtersApply);
                                 noResetAllFilters.printStackTrace();
                             }
 
 
                         }catch (Exception noAddedPreviousFilter){
                             report.writeToFile("Checking GridPage Filter Remove from Filter Box", "unable to add previous filter!");
-                            Platform.runLater(() -> {
-                                filtersApply.setStyle("-fx-background-color: #FF0000");
-                                filtersApply.setSelected(true);
-                            });
+                            ChangeCheckBox.adjustStyle(true,"nope",filtersApply);
                             noAddedPreviousFilter.printStackTrace();
                         }
 
                     }catch (Exception notRemoveFirstAppliedFilter){
-                        Platform.runLater(() -> {
-                            filtersApply.setStyle("-fx-background-color: #FF0000");
-                            filtersApply.setSelected(true);
-                        });
+                        ChangeCheckBox.adjustStyle(true,"nope",filtersApply);
                         isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"GridPageErrorFiltersRemoveFromFilterBox.png");
                         if (isSuccessful){
                             report.writeToFile("GridPage Error Screenshot: ", "Screenshot successful!");
@@ -1142,10 +1072,7 @@ public class GridPageTest {
 
 
                 }catch (Exception gridPageIssue){
-                    Platform.runLater(() -> {
-                        filtersApply.setStyle("-fx-background-color: #FF0000");
-                        filtersApply.setSelected(true);
-                    });
+                    ChangeCheckBox.adjustStyle(true,"nope",filtersApply);
                     isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"GridPageErrorFiltersApply.png");
                     if (isSuccessful){
                         report.writeToFile("GridPage Error Screenshot: ", "Screenshot successful!");
@@ -1153,25 +1080,19 @@ public class GridPageTest {
                         report.writeToFile("GridPage Error Screenshot: ", "Screenshot not successful!");
                     }
                     webDriver.navigate().to(inputSearch.getText().trim());
-                    report.writeToFile("Checking GridPage Checking GridPage Filter Apply: ", "Sorting on this Page doesn't seems to be working or very slow");
+                    report.writeToFile(infoMessage, "Sorting on this Page doesn't seems to be working or very slow");
                     gridPageIssue.printStackTrace();
                 }
             }catch (Exception noMainMenuLinkFound){
-                Platform.runLater(() -> {
-                    filtersApply.setStyle("-fx-background-color: #FF0000");
-                    filtersApply.setSelected(true);
-                });
+                ChangeCheckBox.adjustStyle(true,"nope",filtersApply);
                 webDriver.navigate().to(inputSearch.getText().trim());
-                report.writeToFile("Checking GridPage Checking GridPage Filter Apply: ", "Couldn't navigate to requested Site!");
+                report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
                 noMainMenuLinkFound.printStackTrace();
             }
         }catch (Exception noCategoryLinksLeftSideMenu){
-            Platform.runLater(() -> {
-                filtersApply.setStyle("-fx-background-color: #FF0000");
-                filtersApply.setSelected(true);
-            });
+            ChangeCheckBox.adjustStyle(true,"nope",filtersApply);
             webDriver.navigate().to(inputSearch.getText().trim());
-            report.writeToFile("Checking GridPage Checking GridPage Filter Apply: ", "unable to check! Browser not responding");
+            report.writeToFile(infoMessage, "unable to check! Browser not responding");
             noCategoryLinksLeftSideMenu.printStackTrace();
         }
 
@@ -1179,9 +1100,11 @@ public class GridPageTest {
     }
 
     public void checkingSearchBoxInBrandFilter(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox searchBoxInBrandFilter, TextField inputGridPageURL, TextField inputGridPageKeyword,Text statusInfo, TextField inputSearch, TextField inputEmailAdress, String xpathPattern1, String xpathPattern2, Properties Homepage, boolean isSuccessful, boolean isAvailable){
+        final String infoMessage = "Checking GridPage Search Box in Brand Filter";
+        ChangeCheckBox.adjustStyle(false,"progress",searchBoxInBrandFilter);
+
         Platform.runLater(() -> {
-            searchBoxInBrandFilter.setStyle("-fx-background-color: #eef442");
-            statusInfo.setText("Checking GridPage Search Box in Brand Filter...");
+            statusInfo.setText(""+infoMessage+"...");
         });
 
 
@@ -1210,17 +1133,11 @@ public class GridPageTest {
                         final String urlLocationBefore = webDriver.getCurrentUrl();
                         webDriver.findElement(By.xpath(Homepage.getProperty("page.sidebar.brand.suggestions"))).click();
                         if (urlLocationBefore != webDriver.getCurrentUrl() && webDriver.getCurrentUrl().contains(inputGridPageKeyword.getText().trim().toLowerCase())){
-                            Platform.runLater(() -> {
-                                searchBoxInBrandFilter.setStyle("-fx-background-color: #CCFF99");
-                                searchBoxInBrandFilter.setSelected(true);
-                            });
+                            ChangeCheckBox.adjustStyle(true,"complete",searchBoxInBrandFilter);
                             report.writeToFile("Checking GridPage Search Box in Brand Filter: ", "Successful! Redirected to a functioning page containing \""+inputGridPageKeyword.getText().trim().toLowerCase()+"\" in the URL");
                         }else{
-                            Platform.runLater(() -> {
-                                searchBoxInBrandFilter.setStyle("-fx-background-color: #FF0000");
-                                searchBoxInBrandFilter.setSelected(true);
-                            });
-                            report.writeToFile("Checking GridPage Search Box in Brand Filter: ", "Not successful! ");
+                            ChangeCheckBox.adjustStyle(true,"nope",searchBoxInBrandFilter);
+                            report.writeToFile(infoMessage, "Not successful! ");
                             isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"GridPageErrorSearchInBrandFilter.png");
                             if (isSuccessful){
                                 report.writeToFile("GridPage Error Screenshot: ", "Screenshot successful!");
@@ -1230,24 +1147,18 @@ public class GridPageTest {
                         }
 
                     }catch (Exception noStyleBoxOpenCloseFound){
-                        Platform.runLater(() -> {
-                            searchBoxInBrandFilter.setStyle("-fx-background-color: #FF0000");
-                            searchBoxInBrandFilter.setSelected(true);
-                        });
+                        ChangeCheckBox.adjustStyle(true,"nope",searchBoxInBrandFilter);
                         isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"GridPageErrorSearchInBrandFilter.png");
                         if (isSuccessful){
                             report.writeToFile("GridPage Error Screenshot: ", "Screenshot successful!");
                         }else {
                             report.writeToFile("GridPage Error Screenshot: ", "Screenshot not successful!");
                         }
-                        report.writeToFile("Checking GridPage Search Box in Brand Filter: ", "Couldn't find any Suggestion Box to enter Keyword");
+                        report.writeToFile(infoMessage, "Couldn't find any Suggestion Box to enter Keyword");
                         noStyleBoxOpenCloseFound.printStackTrace();
                     }
                 }catch (Exception gridPageIssue){
-                    Platform.runLater(() -> {
-                        searchBoxInBrandFilter.setStyle("-fx-background-color: #FF0000");
-                        searchBoxInBrandFilter.setSelected(true);
-                    });
+                    ChangeCheckBox.adjustStyle(true,"nope",searchBoxInBrandFilter);
                     isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"GridPageErrorSearchInBrandFilter.png");
                     if (isSuccessful){
                         report.writeToFile("GridPage Error Screenshot: ", "Screenshot successful!");
@@ -1255,25 +1166,19 @@ public class GridPageTest {
                         report.writeToFile("GridPage Error Screenshot: ", "Screenshot not successful!");
                     }
                     webDriver.navigate().to(inputSearch.getText().trim());
-                    report.writeToFile("Checking GridPage Search Box in Brand Filter: ", "Sorting on this Page doesn't seems to be working or very slow");
+                    report.writeToFile(infoMessage, "Sorting on this Page doesn't seems to be working or very slow");
                     gridPageIssue.printStackTrace();
                 }
             }catch (Exception noRequestedSiteFound){
-                Platform.runLater(() -> {
-                    searchBoxInBrandFilter.setStyle("-fx-background-color: #FF0000");
-                    searchBoxInBrandFilter.setSelected(true);
-                });
+                ChangeCheckBox.adjustStyle(true,"nope",searchBoxInBrandFilter);
                 webDriver.navigate().to(inputSearch.getText().trim());
-                report.writeToFile("Checking GridPage Search Box in Brand Filter: ", "Couldn't navigate to requested Site!");
+                report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
                 noRequestedSiteFound.printStackTrace();
             }
         }catch (Exception noBrowserWorking){
-            Platform.runLater(() -> {
-                searchBoxInBrandFilter.setStyle("-fx-background-color: #FF0000");
-                searchBoxInBrandFilter.setSelected(true);
-            });
+            ChangeCheckBox.adjustStyle(true,"nope",searchBoxInBrandFilter);
             webDriver.navigate().to(inputSearch.getText().trim());
-            report.writeToFile("Checking GridPage Search Box in Brand Filter: ", "unable to check! Browser not responding");
+            report.writeToFile(infoMessage, "unable to check! Browser not responding");
             noBrowserWorking.printStackTrace();
         }
 
@@ -1281,10 +1186,12 @@ public class GridPageTest {
 
     }
 
-    public void checkingSearchBoxInShopFilter(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox searchBoxInBrandFilter, TextField inputGridPageURL, TextField inputGridPageKeyword,Text statusInfo, TextField inputSearch, TextField inputEmailAdress, String xpathPattern1, String xpathPattern2, Properties Homepage, boolean isSuccessful, boolean isAvailable){
+    public void checkingSearchBoxInShopFilter(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox searchBoxInShopFilter, TextField inputGridPageURL, TextField inputGridPageKeyword,Text statusInfo, TextField inputSearch, TextField inputEmailAdress, String xpathPattern1, String xpathPattern2, Properties Homepage, boolean isSuccessful, boolean isAvailable){
+        final String infoMessage = "Checking GridPage Search Box in Shop Filter";
+        ChangeCheckBox.adjustStyle(false,"progress",searchBoxInShopFilter);
+
         Platform.runLater(() -> {
-            searchBoxInBrandFilter.setStyle("-fx-background-color: #eef442");
-            statusInfo.setText("Checking GridPage Search Box in Shop Filter...");
+            statusInfo.setText(""+infoMessage+"...");
         });
 
 
@@ -1313,24 +1220,15 @@ public class GridPageTest {
                         final String urlLocationBefore = webDriver.getCurrentUrl();
                         webDriver.findElement(By.xpath(Homepage.getProperty("page.sidebar.shop.suggestions"))).click();
                         if (urlLocationBefore != webDriver.getCurrentUrl() && webDriver.getCurrentUrl().contains(inputGridPageKeyword.getText().trim().toLowerCase())){
-                            Platform.runLater(() -> {
-                                searchBoxInBrandFilter.setStyle("-fx-background-color: #CCFF99");
-                                searchBoxInBrandFilter.setSelected(true);
-                            });
-                            report.writeToFile("Checking GridPage Search Box in Shop Filter: ", "Successful! Redirected to a functioning page containing \""+inputGridPageKeyword.getText().trim().toLowerCase()+"\" in the URL");
+                            ChangeCheckBox.adjustStyle(true,"complete",searchBoxInShopFilter);
+                            report.writeToFile(infoMessage, "Successful! Redirected to a functioning page containing \""+inputGridPageKeyword.getText().trim().toLowerCase()+"\" in the URL");
                         }else{
-                            Platform.runLater(() -> {
-                                searchBoxInBrandFilter.setStyle("-fx-background-color: #FF0000");
-                                searchBoxInBrandFilter.setSelected(true);
-                            });
-                            report.writeToFile("Checking GridPage Search Box in Shop Filter: ", "Not successful! URL is the same or Keyword \""+inputGridPageKeyword.getText().trim().toLowerCase()+"\" couldn't be founded in URL");
+                            ChangeCheckBox.adjustStyle(true,"nope",searchBoxInShopFilter);
+                            report.writeToFile(infoMessage, "Not successful! URL is the same or Keyword \""+inputGridPageKeyword.getText().trim().toLowerCase()+"\" couldn't be founded in URL");
                         }
 
                     }catch (Exception noStyleBoxOpenCloseFound){
-                        Platform.runLater(() -> {
-                            searchBoxInBrandFilter.setStyle("-fx-background-color: #FF0000");
-                            searchBoxInBrandFilter.setSelected(true);
-                        });
+                        ChangeCheckBox.adjustStyle(true,"nope",searchBoxInShopFilter);
                         isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"GridPageErrorSearchInShopFilter.png");
                         if (isSuccessful){
                             report.writeToFile("GridPage Error Screenshot: ", "Screenshot successful!");
@@ -1341,10 +1239,7 @@ public class GridPageTest {
                         noStyleBoxOpenCloseFound.printStackTrace();
                     }
                 }catch (Exception gridPageIssue){
-                    Platform.runLater(() -> {
-                        searchBoxInBrandFilter.setStyle("-fx-background-color: #FF0000");
-                        searchBoxInBrandFilter.setSelected(true);
-                    });
+                    ChangeCheckBox.adjustStyle(true,"nope",searchBoxInShopFilter);
                     isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"GridPageErrorSearchInBrandFilter.png");
                     if (isSuccessful){
                         report.writeToFile("GridPage Error Screenshot: ", "Screenshot successful!");
@@ -1352,25 +1247,19 @@ public class GridPageTest {
                         report.writeToFile("GridPage Error Screenshot: ", "Screenshot not successful!");
                     }
                     webDriver.navigate().to(inputSearch.getText().trim());
-                    report.writeToFile("Checking GridPage Search Box in Shop Filter: ", "Sorting on this Page doesn't seems to be working or very slow");
+                    report.writeToFile(infoMessage, "Sorting on this Page doesn't seems to be working or very slow");
                     gridPageIssue.printStackTrace();
                 }
             }catch (Exception noRequestedSiteFound){
-                Platform.runLater(() -> {
-                    searchBoxInBrandFilter.setStyle("-fx-background-color: #FF0000");
-                    searchBoxInBrandFilter.setSelected(true);
-                });
+                ChangeCheckBox.adjustStyle(true,"nope",searchBoxInShopFilter);
                 webDriver.navigate().to(inputSearch.getText().trim());
-                report.writeToFile("Checking GridPage Search Box in Shop Filter: ", "Couldn't navigate to requested Site!");
+                report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
                 noRequestedSiteFound.printStackTrace();
             }
         }catch (Exception noBrowserWorking){
-            Platform.runLater(() -> {
-                searchBoxInBrandFilter.setStyle("-fx-background-color: #FF0000");
-                searchBoxInBrandFilter.setSelected(true);
-            });
+            ChangeCheckBox.adjustStyle(true,"nope",searchBoxInShopFilter);
             webDriver.navigate().to(inputSearch.getText().trim());
-            report.writeToFile("Checking GridPage Search Box in Shop Filter: ", "unable to check! Browser not responding");
+            report.writeToFile(infoMessage, "unable to check! Browser not responding");
             noBrowserWorking.printStackTrace();
         }
 
