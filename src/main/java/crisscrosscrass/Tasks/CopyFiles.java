@@ -67,6 +67,8 @@ public class CopyFiles {
         properties.setProperty("inputGridPageURLWithFillIns","https://taschen.ladenzeile.de/kulturbeutel-kammtasche/");
         properties.setProperty("inputBrandPageOverview","https://www.ladenzeile.de/marken.html");
         properties.setProperty("inputLucenePage","emaroon");
+        properties.setProperty("inputAccountEmail","tester@visual-meta.com");
+        properties.setProperty("inputAccountPassword","testpassword");
 
 
         FileWriter writer = null;

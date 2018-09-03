@@ -1,6 +1,8 @@
 package crisscrosscrass.Tests;
 
 import com.jfoenix.controls.JFXCheckBox;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
 import crisscrosscrass.Tasks.ChangeCheckBox;
 import crisscrosscrass.Tasks.Report;
 import crisscrosscrass.Tasks.ScreenshotViaWebDriver;
@@ -20,7 +22,7 @@ import java.util.List;
 import java.util.Properties;
 
 public class FavoritePageTest {
-    public void PersonalListTest(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox PersonalList, Text statusInfo, TextField inputSearch, Properties Homepage){
+    public void PersonalListTest(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox PersonalList, Text statusInfo, TextField inputSearch, Properties Homepage, JFXTextField inputAccountEmail, JFXPasswordField inputAccountPassword){
         final String infoMessage = "Checking Personal List";
         ChangeCheckBox.adjustStyle(false,"progress",PersonalList);
         Platform.runLater(() -> {
@@ -42,13 +44,20 @@ public class FavoritePageTest {
                     wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.myaccount.emailInput"))));
                     wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.myaccount.passwordInput"))));
 
-                    // christopher.eckardt@visual-meta.com
-                    // gtpyf12x
                     WebElement element = webDriver.findElementByXPath(Homepage.getProperty("page.myaccount.emailInput"));
-                    element.sendKeys("christopher.eckardt@visual-meta.com");
+                    element.sendKeys(inputAccountEmail.getText());
                     element = webDriver.findElementByXPath(Homepage.getProperty("page.myaccount.passwordInput"));
-                    element.sendKeys("blabla");
-                    element.submit();
+                    element.sendKeys(inputAccountPassword.getText());
+                    webDriver.findElementByXPath(Homepage.getProperty("page.myaccount.login.button")).click();
+
+                    for (int i = 0; i < 10; i++) {
+                        Thread.sleep(100);
+                        js.executeScript("window.scrollBy(0,100)");
+                    }
+                    for (int i = 0; i < 10; i++) {
+                        Thread.sleep(100);
+                        js.executeScript("window.scrollBy(0,-100)");
+                    }
 
 
                     ChangeCheckBox.adjustStyle(true,"complete",PersonalList);

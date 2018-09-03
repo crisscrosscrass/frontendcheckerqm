@@ -1,6 +1,8 @@
 package crisscrosscrass.Controller;
 
 import com.jfoenix.controls.JFXCheckBox;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
 import crisscrosscrass.*;
 import crisscrosscrass.Tasks.*;
 import crisscrosscrass.Tests.*;
@@ -106,6 +108,10 @@ public class FrontEndCheckController implements Serializable{
     TextField inputBrandPageOverview;
     @FXML
     TextField inputLucenePage;
+    @FXML
+    JFXTextField inputAccountEmail;
+    @FXML
+    JFXPasswordField inputAccountPassword;
     @FXML
     HBox outputPlace;
     @FXML
@@ -220,7 +226,12 @@ public class FrontEndCheckController implements Serializable{
         inputGridPageURLWithFillIns.setText(userData.getProperty("inputGridPageURLWithFillIns"));
         inputBrandPageOverview.setText(userData.getProperty("inputBrandPageOverview"));
         inputLucenePage.setText(userData.getProperty("inputLucenePage"));
+        inputAccountEmail.setText(userData.getProperty("inputAccountEmail"));
+        inputAccountPassword.setText(userData.getProperty("inputAccountPassword"));
 
+
+        //opening Menu in User Interface
+        Platform.runLater(() -> settingTitledPane.setExpanded(true));
 
 
 
@@ -312,7 +323,7 @@ public class FrontEndCheckController implements Serializable{
                     inputBrandPageOverview.setDisable(true);
                     inputLucenePage.setDisable(true);
                     settingTitledPane.setExpanded(false);
-                });
+        });
 
 
 
@@ -476,7 +487,7 @@ public class FrontEndCheckController implements Serializable{
                         try{
                             tabPane.getSelectionModel().select(tabFavoritePage);
                             FavoritePageTest favoritePageTest = new FavoritePageTest();
-                            favoritePageTest.PersonalListTest(webDriver,report,js,favoritePageController.PersonalList, statusInfo,inputSearch, Homepage);
+                            favoritePageTest.PersonalListTest(webDriver,report,js,favoritePageController.PersonalList, statusInfo,inputSearch, Homepage, inputAccountEmail, inputAccountPassword);
                         }catch (Exception noLucenePageWorking){
                             noLucenePageWorking.printStackTrace();
                         }

@@ -4,6 +4,16 @@
 .default-color3.chart-pie { -fx-pie-color: #adff2f; }
 .default-color4.chart-pie { -fx-pie-color: #ff5700; }
 
+#password.text-field,#login.text-field {
+    -fx-text-fill: white;
+    -fx-font-size: 12pt;
+}
+
+#password.text-field:focused,#login.text-field:focused {
+    -fx-text-fill:  #e83062;
+    -fx-font-size: 12pt;
+}
+
 .titled-pane{
     -fx-text-fill: white;
 }
