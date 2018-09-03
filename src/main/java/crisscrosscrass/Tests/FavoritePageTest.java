@@ -5,13 +5,11 @@ import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import crisscrosscrass.Tasks.ChangeCheckBox;
 import crisscrosscrass.Tasks.Report;
-import crisscrosscrass.Tasks.ScreenshotViaWebDriver;
 import javafx.application.Platform;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Point;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -40,7 +38,7 @@ public class FavoritePageTest {
                     webDriver.findElementByXPath(Homepage.getProperty("page.main.myaccount")).click();
                     wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.myaccount.button.toLogin"))));
                     webDriver.findElementByXPath(Homepage.getProperty("page.myaccount.button.toLogin")).click();
-                    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='box-headline']/div[2]/span/span/span")));
+                    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.myaccount.button.toRegister"))));
                     wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.myaccount.emailInput"))));
                     wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.myaccount.passwordInput"))));
 
@@ -50,25 +48,168 @@ public class FavoritePageTest {
                     element.sendKeys(inputAccountPassword.getText());
                     webDriver.findElementByXPath(Homepage.getProperty("page.myaccount.login.button")).click();
 
-                    for (int i = 0; i < 10; i++) {
-                        Thread.sleep(100);
-                        js.executeScript("window.scrollBy(0,100)");
-                    }
-                    for (int i = 0; i < 10; i++) {
-                        Thread.sleep(100);
-                        js.executeScript("window.scrollBy(0,-100)");
+
+                    String testPatternList1 = "List 1 Test";
+                    String testPatternList2 = "List 2 Test";
+
+                    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.myaccount.createNewList"))));
+                    webDriver.findElementByXPath(Homepage.getProperty("page.myaccount.createNewList")).click();
+                    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.myaccount.modalDialogBox"))));
+                    webDriver.findElementByXPath(Homepage.getProperty("page.myaccount.modalListNameInput")).sendKeys(testPatternList1);
+                    webDriver.findElementByXPath(Homepage.getProperty("page.myaccount.modalSaveButton")).click();
+                    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.myaccount.modalConfirmToast"))));
+                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Homepage.getProperty("page.myaccount.modalConfirmToast"))));
+                    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.myaccount.myPersonalList"))));
+                    List<WebElement> MyPersonalList = webDriver.findElementsByXPath(Homepage.getProperty("page.myaccount.myPersonalList"));
+                    boolean isSuccessful = false;
+                    int foundItemAtIndex = 0;
+
+                    for (int i = 0 ; i < MyPersonalList.size() ; i++ ){
+                        if (MyPersonalList.get(i).getText().equals(testPatternList1) ){
+                            isSuccessful = true;
+                            if (i == 0){
+                                i = 1;
+                            }
+                            foundItemAtIndex = (i-1);
+                        }
                     }
 
+                    if (isSuccessful){
+                        report.writeToFile("Create List: ", "Created successfully a list called \""+testPatternList1+"\"");
+                    }else {
+                        report.writeToFile("Create List: ", "Couldn't create a list called \""+testPatternList1+"\"");
+                    }
 
-                    ChangeCheckBox.adjustStyle(true,"complete",PersonalList);
-                    report.writeToFile(infoMessage, "Complete");
+                    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.myaccount.editListIcon"))));
+                    if (!isSuccessful){
+                        report.writeToFile(infoMessage, "Couldn't delete List \""+testPatternList1+"\" created from Previous Test ");
+                    }else {
+                        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.myaccount.editListIcon"))));
+                        MyPersonalList = webDriver.findElementsByXPath(Homepage.getProperty("page.myaccount.editListIcon"));
+                        MyPersonalList.get(foundItemAtIndex).click();
+                        MyPersonalList = webDriver.findElementsByXPath(Homepage.getProperty("page.myaccount.deleteList"));
+                        MyPersonalList.get(foundItemAtIndex).click();
+                        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.myaccount.modalDialogBox"))));
+                        webDriver.findElementByXPath(Homepage.getProperty("page.myaccount.modalSaveButton")).click();
+                        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.myaccount.modalConfirmToast"))));
+                        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Homepage.getProperty("page.myaccount.modalConfirmToast"))));
+
+                        //check in new personal List if created List Item exist
+                        MyPersonalList = webDriver.findElementsByXPath(Homepage.getProperty("page.myaccount.myPersonalList"));
+
+                        if (MyPersonalList.size() == 0){
+
+                        }else {
+                            for (int i = 0 ; i < MyPersonalList.size() ; i++ ){
+                                if (MyPersonalList.get(i).getText().equals(testPatternList1) ){
+                                    isSuccessful = false;
+                                }
+                            }
+                        }
+
+                    }
+
+                    if (isSuccessful){
+                        report.writeToFile("Delete List : ", "Could delete \""+testPatternList1+"\" successfully from List");
+                    }else {
+                        report.writeToFile("Delete List :", "Couldn't delete \""+testPatternList1+"\" from List, because Pattern still in List");
+                    }
+
+                    if (!isSuccessful){
+                        report.writeToFile(infoMessage, "Couldn't rename List \""+testPatternList1+"\" created from Previous Tests ");
+                    }else {
+
+                        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.myaccount.createNewList"))));
+                        webDriver.findElementByXPath(Homepage.getProperty("page.myaccount.createNewList")).click();
+                        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.myaccount.modalDialogBox"))));
+                        webDriver.findElementByXPath(Homepage.getProperty("page.myaccount.modalListNameInput")).sendKeys(testPatternList1);
+                        webDriver.findElementByXPath(Homepage.getProperty("page.myaccount.modalSaveButton")).click();
+                        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.myaccount.modalConfirmToast"))));
+                        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Homepage.getProperty("page.myaccount.modalConfirmToast"))));
+                        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.myaccount.myPersonalList"))));
+                        MyPersonalList = webDriver.findElementsByXPath(Homepage.getProperty("page.myaccount.myPersonalList"));
+
+                        foundItemAtIndex = 0;
+
+                        for (int i = 0 ; i < MyPersonalList.size() ; i++ ){
+                            if (MyPersonalList.get(i).getText().equals(testPatternList1) ){
+                                if (i == 0){
+                                    i = 1;
+                                }
+                                foundItemAtIndex = (i-1);
+                            }
+                        }
+
+                        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.myaccount.editListIcon"))));
+                        MyPersonalList = webDriver.findElementsByXPath(Homepage.getProperty("page.myaccount.editListIcon"));
+                        MyPersonalList.get(foundItemAtIndex).click();
+                        MyPersonalList = webDriver.findElementsByXPath(Homepage.getProperty("page.myaccount.renameList"));
+                        MyPersonalList.get(foundItemAtIndex).click();
+                        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.myaccount.modalDialogBox"))));
+                        webDriver.findElementByXPath(Homepage.getProperty("page.myaccount.modalListNameInput")).sendKeys(testPatternList2);
+                        webDriver.findElementByXPath(Homepage.getProperty("page.myaccount.modalSaveButton")).click();
+                        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Homepage.getProperty("page.myaccount.modalSaveButton"))));
+
+                        isSuccessful = false;
+                        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.myaccount.myPersonalList"))));
+                        MyPersonalList = webDriver.findElementsByXPath(Homepage.getProperty("page.myaccount.myPersonalList"));
+
+                        for (int i = 0 ; i < MyPersonalList.size() ; i++ ){
+                            if (MyPersonalList.get(i).getText().equals(testPatternList2) ){
+                                isSuccessful = true;
+                            }
+                        }
+
+                        if (isSuccessful){
+                            report.writeToFile(infoMessage, "Could rename \""+testPatternList1+"\" successfully from List to  \""+testPatternList2+"\" ");
+                        }else {
+                            report.writeToFile(infoMessage, "Couldn't rename \""+testPatternList1+"\" from List, because new Name not exist in List");
+                        }
+
+                        if (!isSuccessful){
+                            report.writeToFile(infoMessage, "Couldn't GoTo List \""+testPatternList1+"\" created from Previous Tests ");
+                        }else {
+                            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.myaccount.createNewList"))));
+                            webDriver.findElementByXPath(Homepage.getProperty("page.myaccount.createNewList")).click();
+                            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.myaccount.modalDialogBox"))));
+                            webDriver.findElementByXPath(Homepage.getProperty("page.myaccount.modalListNameInput")).sendKeys(testPatternList1);
+                            webDriver.findElementByXPath(Homepage.getProperty("page.myaccount.modalSaveButton")).click();
+                            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.myaccount.modalConfirmToast"))));
+                            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Homepage.getProperty("page.myaccount.modalConfirmToast"))));
+                            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.myaccount.myPersonalList"))));
+                            MyPersonalList = webDriver.findElementsByXPath(Homepage.getProperty("page.myaccount.myPersonalList"));
+
+
+                            for (WebElement MyPersonalItem : MyPersonalList){
+                                if (MyPersonalItem.getText().equals(testPatternList1) ){
+                                    MyPersonalItem.click();
+                                    break;
+                                }
+                            }
+
+
+                            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.myaccount.header"))));
+                            isSuccessful = webDriver.findElementByXPath(Homepage.getProperty("page.myaccount.header")).getText().contains(testPatternList1);
+
+
+
+                            if (isSuccessful){
+                                report.writeToFile(infoMessage, "Could create and select \""+testPatternList1+"\" successfully from List ");
+                                ChangeCheckBox.adjustStyle(true,"complete",PersonalList);
+                            }else {
+                                report.writeToFile(infoMessage, "Couldn't rename \""+testPatternList1+"\" from List, because new Name not exist in List");
+                                ChangeCheckBox.adjustStyle(true,"nope",PersonalList);
+                            }
+                        }
+
+                    }
 
 
 
                 }catch (Exception accountPageIssue){
                     ChangeCheckBox.adjustStyle(true,"nope",PersonalList);
                     webDriver.navigate().to(inputSearch.getText().trim());
-                    report.writeToFile(infoMessage, "Couldn't detect item for Detail Page");
+                    report.writeToFile(infoMessage, "Couldn't detect menu items for Personal List");
                     accountPageIssue.printStackTrace();
                 }
             }catch (Exception noRequestedSiteFound){
