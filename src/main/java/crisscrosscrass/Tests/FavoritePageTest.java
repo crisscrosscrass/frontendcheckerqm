@@ -5,11 +5,13 @@ import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import crisscrosscrass.Tasks.ChangeCheckBox;
 import crisscrosscrass.Tasks.Report;
+import crisscrosscrass.Tasks.ScreenshotViaWebDriver;
 import javafx.application.Platform;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -269,6 +271,179 @@ public class FavoritePageTest {
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",PersonalList);
             webDriver.navigate().to(inputSearch.getText().trim());
+            report.writeToFile(infoMessage, "unable to check! Browser not responding");
+            noBrowserWorking.printStackTrace();
+        }
+
+        report.writeToFile("=================================", "");
+
+    }
+
+    public void ApplySortingOnList(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox applySortingOnList, Text statusInfo, TextField inputGridPageURL, Properties Homepage, JFXTextField inputAccountEmail, JFXPasswordField inputAccountPassword){
+        final String infoMessage = "Checking Apply Sorting Values";
+        ChangeCheckBox.adjustStyle(false,"progress",applySortingOnList);
+        Platform.runLater(() -> {
+            statusInfo.setText(""+infoMessage+"...");
+        });
+
+
+        try {
+            ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
+            webDriver.switchTo().window(tabs.get(0));
+            try {
+                webDriver.navigate().to(inputGridPageURL.getText().trim());
+                WebDriverWait wait = new WebDriverWait(webDriver, 10);
+                try{
+
+                    String testPatternList1 = "List 1 Test";
+
+                    if(webDriver.findElements(By.xpath(Homepage.getProperty("page.grid.windows"))).size() > 0){
+                        webDriver.findElementByXPath(Homepage.getProperty("page.grid.windows.continue")).click();
+                        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Homepage.getProperty("page.grid.windows.continue"))));
+                    }
+                    if(webDriver.findElements(By.xpath(Homepage.getProperty("page.items.favorite.dropdown.opener"))).size() == 0){
+                        //User needs to Login first!
+                        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.main.myaccount"))));
+                        webDriver.findElementByXPath(Homepage.getProperty("page.main.myaccount")).click();
+                        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.myaccount.button.toLogin"))));
+                        webDriver.findElementByXPath(Homepage.getProperty("page.myaccount.button.toLogin")).click();
+                        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.myaccount.button.toRegister"))));
+                        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.myaccount.emailInput"))));
+                        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.myaccount.passwordInput"))));
+
+                        WebElement element = webDriver.findElementByXPath(Homepage.getProperty("page.myaccount.emailInput"));
+                        element.sendKeys(inputAccountEmail.getText());
+                        element = webDriver.findElementByXPath(Homepage.getProperty("page.myaccount.passwordInput"));
+                        element.sendKeys(inputAccountPassword.getText());
+                        webDriver.findElementByXPath(Homepage.getProperty("page.myaccount.login.button")).click();
+                        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.myaccount.createNewList"))));
+
+                        //go Back to First Page
+                        webDriver.navigate().to(inputGridPageURL.getText().trim());
+
+                        //check again if Windows exist and remove them
+                        if(webDriver.findElements(By.xpath(Homepage.getProperty("page.grid.windows"))).size() > 0){
+                            webDriver.findElementByXPath(Homepage.getProperty("page.grid.windows.continue")).click();
+                            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Homepage.getProperty("page.grid.windows.continue"))));
+                        }
+                    }
+                    wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.items.favorite.dropdown.opener"))));
+                    Point hoverOpener = webDriver.findElement(By.xpath(Homepage.getProperty("page.items.favorite.dropdown.opener"))).getLocation();
+                    ((JavascriptExecutor)webDriver).executeScript("return window.title;");
+                    ((JavascriptExecutor)webDriver).executeScript("window.scrollBy(0,"+(hoverOpener.getY())+");");
+                    List<WebElement> FavoriteDropDownButtonElements = webDriver.findElementsByXPath(Homepage.getProperty("page.items.favorite.dropdown.opener"));
+
+
+
+                    for (int i = 0 ; i <= 5 ; i++){
+                        FavoriteDropDownButtonElements.get(i).click();
+                        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.items.favorite.dropdown.list"))));
+                        List<WebElement> FavoriteDropDownListElements = webDriver.findElementsByXPath(Homepage.getProperty("page.items.favorite.dropdown.list"));
+                        for (WebElement DropDownItem : FavoriteDropDownListElements){
+                            if (DropDownItem.getText().equals(testPatternList1)){
+                                DropDownItem.click();
+                                break;
+                            }
+                        }
+
+                    }
+                    report.writeToFile("Successfully added items to Personal List \""+testPatternList1+"\" !");
+                    report.writeToFile("");
+
+
+
+
+                    wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.main.myfavorites"))));
+                    Point hoverItem = webDriver.findElement(By.xpath(Homepage.getProperty("page.main.myfavorites"))).getLocation();
+                    ((JavascriptExecutor)webDriver).executeScript("return window.title;");
+                    ((JavascriptExecutor)webDriver).executeScript("window.scrollBy(0,"+(hoverItem.getY())+");");
+                    // Scroll up to element
+                    for (int i = 0; i < 1; i++) {
+                        Thread.sleep(100);
+                        js.executeScript("window.scrollBy(0,-400)");
+                    }
+                    webDriver.findElementByXPath(Homepage.getProperty("page.main.myfavorites")).click();
+
+
+
+
+                    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.myaccount.myPersonalList"))));
+                    List<WebElement> MyPersonalList = webDriver.findElementsByXPath(Homepage.getProperty("page.myaccount.myPersonalList"));
+
+                    for (WebElement MyPersonalItem : MyPersonalList){
+                        if (MyPersonalItem.getText().equals(testPatternList1) ){
+                            MyPersonalItem.click();
+                            break;
+                        }
+                    }
+                    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.myaccount.header"))));
+
+                    List<WebElement> ItemsGridPage = webDriver.findElementsByXPath(Homepage.getProperty("page.items.price"));
+                    double checkStartingPriceFirstItem = Double.parseDouble(ItemsGridPage.get(0).getText().replaceAll("(^\\s?\\€?)|(\\-\\s*\\€?\\d*\\,?\\.?.*)|(\\€?\\*\\s*\\d*\\,?\\.?)$|(\\€?\\*\\s\\d*.*$)|(\\s?\\€?$)","").trim().replaceAll("\\.","").replaceAll(",","."));
+                    wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.myaccount.sorting.dropdown.button"))));
+                    webDriver.findElementByXPath(Homepage.getProperty("page.myaccount.sorting.dropdown.button")).click();
+                    wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.myaccount.sorting.dropdown.options"))));
+                    List<WebElement> DropDownOptions = webDriver.findElementsByXPath(Homepage.getProperty("page.myaccount.sorting.dropdown.options"));
+                    DropDownOptions.get(1).click();
+                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Homepage.getProperty("page.grid.loader"))));
+                    wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.myaccount.sorting.dropdown.button"))));
+
+                    List<WebElement> ItemsGridPageSortingLowToHigh = webDriver.findElementsByXPath(Homepage.getProperty("page.items.price"));
+
+                    double checkPriceLowToHighFirstItem = Double.parseDouble(ItemsGridPageSortingLowToHigh.get(0).getText().replaceAll("(^\\s?\\€?)|(\\-\\s*\\€?\\d*\\,?\\.?.*)|(\\€?\\*\\s*\\d*\\,?\\.?)$|(\\€?\\*\\s\\d*.*$)|(\\s?\\€?$)","").trim().replaceAll("\\.","").replaceAll(",","."));
+                    double checkPriceLowToHighLastItem = Double.parseDouble(ItemsGridPageSortingLowToHigh.get(ItemsGridPageSortingLowToHigh.size()-1).getText().replaceAll("(^\\s?\\€?)|(\\-\\s*\\€?\\d*\\,?\\.?.*)|(\\€?\\*\\s*\\d*\\,?\\.?)$|(\\€?\\*\\s\\d*.*$)|(\\s?\\€?$)","").trim().replaceAll("\\.","").replaceAll(",","."));
+                    if (webDriver.getCurrentUrl().contains("sort=price_asc")){
+                        report.writeToFile("Successful changed Sorting from Lowest to Highest Price!", "");
+                    }
+                    if (checkPriceLowToHighFirstItem < checkPriceLowToHighLastItem){
+                        report.writeToFile("Checking  Personal List Page Price Lowest to Highest: ", "Successful! First Item Price("+checkPriceLowToHighFirstItem+") is lower than last Item Price("+checkPriceLowToHighLastItem+") !");
+                    }else {
+                        report.writeToFile("Checking  Personal List Price Lowest to Highest: ", "Not Successful! First Item Price("+checkPriceLowToHighFirstItem+") is NOT lower than last Item Price("+checkPriceLowToHighLastItem+") !");
+                    }
+                    report.writeToFile("");
+
+                    wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.myaccount.sorting.dropdown.button"))));
+                    webDriver.findElementByXPath(Homepage.getProperty("page.myaccount.sorting.dropdown.button")).click();
+                    wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.myaccount.sorting.dropdown.options"))));
+                    DropDownOptions = webDriver.findElementsByXPath(Homepage.getProperty("page.myaccount.sorting.dropdown.options"));
+                    DropDownOptions.get(2).click();
+                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Homepage.getProperty("page.grid.loader"))));
+                    wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.myaccount.sorting.dropdown.button"))));
+
+                    List<WebElement> ItemsGridPageSortingHighToLow = webDriver.findElementsByXPath(Homepage.getProperty("page.items.price"));
+                    double checkPriceHighToLowFirstItem = Double.parseDouble(ItemsGridPageSortingHighToLow.get(0).getText().replaceAll("(^\\s?\\€?)|(\\-\\s*\\€?\\d*\\,?\\.?.*)|(\\€?\\*\\s*\\d*\\,?\\.?)$|(\\€?\\*\\s\\d*.*$)|(\\s?\\€?$)","").trim().replaceAll("\\.","").replaceAll(",","."));
+                    double checkPriceHighToLowLastItem = Double.parseDouble(ItemsGridPageSortingHighToLow.get(ItemsGridPageSortingHighToLow.size()-1).getText().replaceAll("(^\\s?\\€?)|(\\-\\s*\\€?\\d*\\,?\\.?.*)|(\\€?\\*\\s*\\d*\\,?\\.?)$|(\\€?\\*\\s\\d*.*$)|(\\s?\\€?$)","").trim().replaceAll("\\.","").replaceAll(",","."));
+                    if (webDriver.getCurrentUrl().contains("sort=price_desc")){
+                        report.writeToFile("Successful changed Sorting from Highest to Lowest Price!", "");
+                    }
+                    if (checkPriceHighToLowFirstItem > checkPriceHighToLowLastItem){
+                        report.writeToFile("Checking  Personal List Page Price Highest to Lowest: ", "Successful! First Item Price("+checkPriceHighToLowFirstItem+") is higher than last Item Price("+checkPriceHighToLowLastItem+") !");
+                    }else {
+                        report.writeToFile("Checking  Personal List Page Price Highest to Lowest: ", "Not Successful! First Item Price("+checkPriceHighToLowFirstItem+") is NOT higher than last Item Price("+checkPriceHighToLowLastItem+") !");
+                    }
+                    report.writeToFile("");
+
+
+                    ChangeCheckBox.adjustStyle(true,"complete",applySortingOnList);
+                    webDriver.navigate().to(inputGridPageURL.getText().trim());
+                    report.writeToFile(infoMessage, "Complete");
+
+
+                }catch (Exception gridPageIssue){
+                    ChangeCheckBox.adjustStyle(true,"nope",applySortingOnList);
+                    webDriver.navigate().to(inputGridPageURL.getText().trim());
+                    report.writeToFile(infoMessage, "Couldn't detect Favorite Lists");
+                    gridPageIssue.printStackTrace();
+                }
+            }catch (Exception noRequestedSiteFound){
+                ChangeCheckBox.adjustStyle(true,"nope",applySortingOnList);
+                webDriver.navigate().to(inputGridPageURL.getText().trim());
+                report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
+                noRequestedSiteFound.printStackTrace();
+            }
+        }catch (Exception noBrowserWorking){
+            ChangeCheckBox.adjustStyle(true,"nope",applySortingOnList);
+            webDriver.navigate().to(inputGridPageURL.getText().trim());
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
             noBrowserWorking.printStackTrace();
         }

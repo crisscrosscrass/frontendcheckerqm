@@ -7,4 +7,7 @@ public class FavoritePageController {
 
     @FXML
     JFXCheckBox PersonalList;
+
+    @FXML
+    JFXCheckBox SortingOnList;
 }

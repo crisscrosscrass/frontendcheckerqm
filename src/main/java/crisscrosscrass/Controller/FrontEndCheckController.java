@@ -487,7 +487,8 @@ public class FrontEndCheckController implements Serializable{
                         try{
                             tabPane.getSelectionModel().select(tabFavoritePage);
                             FavoritePageTest favoritePageTest = new FavoritePageTest();
-                            favoritePageTest.PersonalListTest(webDriver,report,js,favoritePageController.PersonalList, statusInfo,inputSearch, Homepage, inputAccountEmail, inputAccountPassword);
+                            //favoritePageTest.PersonalListTest(webDriver,report,js,favoritePageController.PersonalList, statusInfo,inputSearch, Homepage, inputAccountEmail, inputAccountPassword);
+                            favoritePageTest.ApplySortingOnList(webDriver,report,js,favoritePageController.SortingOnList,statusInfo,inputGridPageURL, Homepage, inputAccountEmail, inputAccountPassword);
                         }catch (Exception noLucenePageWorking){
                             noLucenePageWorking.printStackTrace();
                         }

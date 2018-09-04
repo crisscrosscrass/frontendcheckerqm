@@ -7,8 +7,9 @@
 <?import javafx.scene.layout.*?>
 
 <?import com.jfoenix.controls.JFXCheckBox?>
-<AnchorPane style="-fx-background-color: white;" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="crisscrosscrass.Controller.FavoritePageController">
+<VBox style="-fx-background-color: white;" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="crisscrosscrass.Controller.FavoritePageController">
     <children>
         <JFXCheckBox fx:id="PersonalList" text="Personal List Tests" />
+        <JFXCheckBox fx:id="SortingOnList" text="Items Sorting on Personal List" />
     </children>
-</AnchorPane>
+</VBox>
