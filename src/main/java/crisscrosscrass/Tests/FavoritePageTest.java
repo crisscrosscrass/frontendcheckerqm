@@ -451,4 +451,105 @@ public class FavoritePageTest {
         report.writeToFile("=================================", "");
 
     }
+
+    public void SelectionOnList(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox selectionOnList, Text statusInfo, TextField inputSearch, Properties Homepage, JFXTextField inputAccountEmail, JFXPasswordField inputAccountPassword){
+        final String infoMessage = "Checking Selection on Personal List";
+        ChangeCheckBox.adjustStyle(false,"progress",selectionOnList);
+        Platform.runLater(() -> {
+            statusInfo.setText(""+infoMessage+"...");
+        });
+
+
+        try {
+            ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
+            webDriver.switchTo().window(tabs.get(0));
+            try {
+                webDriver.navigate().to(inputSearch.getText().trim());
+                WebDriverWait wait = new WebDriverWait(webDriver, 10);
+                try{
+                    String testPatternList1 = "List 1 Test";
+
+                    wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.main.myfavorites"))));
+                    Point hoverItem = webDriver.findElement(By.xpath(Homepage.getProperty("page.main.myfavorites"))).getLocation();
+                    ((JavascriptExecutor)webDriver).executeScript("return window.title;");
+                    ((JavascriptExecutor)webDriver).executeScript("window.scrollBy(0,"+(hoverItem.getY())+");");
+                    // Scroll up to element
+                    for (int i = 0; i < 1; i++) {
+                        Thread.sleep(100);
+                        js.executeScript("window.scrollBy(0,-400)");
+                    }
+                    webDriver.findElementByXPath(Homepage.getProperty("page.main.myfavorites")).click();
+
+                    wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.main.myaccount"))));
+                    webDriver.findElementByXPath(Homepage.getProperty("page.main.myaccount")).click();
+                    wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.myaccount.button.toLogin"))));
+                    webDriver.findElementByXPath(Homepage.getProperty("page.myaccount.button.toLogin")).click();
+                    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.myaccount.button.toRegister"))));
+                    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.myaccount.emailInput"))));
+                    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.myaccount.passwordInput"))));
+
+                    WebElement element = webDriver.findElementByXPath(Homepage.getProperty("page.myaccount.emailInput"));
+                    element.sendKeys(inputAccountEmail.getText());
+                    element = webDriver.findElementByXPath(Homepage.getProperty("page.myaccount.passwordInput"));
+                    element.sendKeys(inputAccountPassword.getText());
+                    webDriver.findElementByXPath(Homepage.getProperty("page.myaccount.login.button")).click();
+                    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.myaccount.createNewList"))));
+
+
+                    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.myaccount.myPersonalList"))));
+                    List<WebElement> MyPersonalList = webDriver.findElementsByXPath(Homepage.getProperty("page.myaccount.myPersonalList"));
+
+                    for (WebElement MyPersonalItem : MyPersonalList){
+                        if (MyPersonalItem.getText().equals(testPatternList1) ){
+                            MyPersonalItem.click();
+                            break;
+                        }
+                    }
+
+                    try{
+                        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.myaccount.header"))));
+                        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.myaccount.selectAllProduct.button"))));
+                        System.out.println("GreenCheckMarks: "+webDriver.findElements(By.xpath(Homepage.getProperty("page.myaccount.greenCheckMarkBoxes"))).size()+"");
+                        if(webDriver.findElements(By.xpath(Homepage.getProperty("page.myaccount.greenCheckMarkBoxes"))).size() == 0){
+                            webDriver.findElementByXPath(Homepage.getProperty("page.myaccount.selectAllProduct.button")).click();
+                            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.myaccount.greenCheckMarkBoxes"))));
+                            System.out.println("GreenCheckMarks: "+webDriver.findElements(By.xpath(Homepage.getProperty("page.myaccount.greenCheckMarkBoxes"))).size()+"");
+                            if(webDriver.findElements(By.xpath(Homepage.getProperty("page.myaccount.greenCheckMarkBoxes"))).size() > 0){
+                                report.writeToFile(infoMessage,"Successfully Green check marks appears on "+webDriver.findElements(By.xpath(Homepage.getProperty("page.myaccount.greenCheckMarkBoxes"))).size()+" items!");
+                            }
+                        }
+
+                        ChangeCheckBox.adjustStyle(true,"complete",selectionOnList);
+                        webDriver.navigate().to(inputSearch.getText().trim());
+                        report.writeToFile(infoMessage, "Complete");
+
+                    }catch (Exception noGreenCheckMark){
+                        ChangeCheckBox.adjustStyle(true,"nope",selectionOnList);
+                        webDriver.navigate().to(inputSearch.getText().trim());
+                        report.writeToFile(infoMessage, "Couldn't detect Favorite Lists");
+                        noGreenCheckMark.printStackTrace();
+                    }
+
+                }catch (Exception gridPageIssue){
+                    ChangeCheckBox.adjustStyle(true,"nope",selectionOnList);
+                    webDriver.navigate().to(inputSearch.getText().trim());
+                    report.writeToFile(infoMessage, "Couldn't detect Favorite Lists");
+                    gridPageIssue.printStackTrace();
+                }
+            }catch (Exception noRequestedSiteFound){
+                ChangeCheckBox.adjustStyle(true,"nope",selectionOnList);
+                webDriver.navigate().to(inputSearch.getText().trim());
+                report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
+                noRequestedSiteFound.printStackTrace();
+            }
+        }catch (Exception noBrowserWorking){
+            ChangeCheckBox.adjustStyle(true,"nope",selectionOnList);
+            webDriver.navigate().to(inputSearch.getText().trim());
+            report.writeToFile(infoMessage, "unable to check! Browser not responding");
+            noBrowserWorking.printStackTrace();
+        }
+
+        report.writeToFile("=================================", "");
+
+    }
 }

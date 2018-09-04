@@ -33,7 +33,7 @@ import java.io.*;
 import java.net.URL;
 import java.util.Properties;
 
-public class FrontEndCheckController implements Serializable{
+public class MainControllerFrontEndCheck implements Serializable{
 
 
     // Basic Settings
@@ -478,6 +478,7 @@ public class FrontEndCheckController implements Serializable{
                             ImageGroupingPageTest imageGroupingPageTest = new ImageGroupingPageTest();
                             imageGroupingPageTest.ImageGroupingClickOut(webDriver,report,js,imageGroupingController.ImageGroupingClickOut,inputLucenePage,statusInfo,inputGridPageURL, Homepage);
                             imageGroupingPageTest.DetailPageOfOffer(webDriver,report,js,imageGroupingController.DetailPageOfOffer,inputLucenePage,statusInfo,inputGridPageURL, Homepage);
+
                         }catch (Exception noLucenePageWorking){
                             noLucenePageWorking.printStackTrace();
                         }
@@ -488,7 +489,8 @@ public class FrontEndCheckController implements Serializable{
                             tabPane.getSelectionModel().select(tabFavoritePage);
                             FavoritePageTest favoritePageTest = new FavoritePageTest();
                             //favoritePageTest.PersonalListTest(webDriver,report,js,favoritePageController.PersonalList, statusInfo,inputSearch, Homepage, inputAccountEmail, inputAccountPassword);
-                            favoritePageTest.ApplySortingOnList(webDriver,report,js,favoritePageController.SortingOnList,statusInfo,inputGridPageURL, Homepage, inputAccountEmail, inputAccountPassword);
+                            //favoritePageTest.ApplySortingOnList(webDriver,report,js,favoritePageController.SortingOnList,statusInfo,inputGridPageURL, Homepage, inputAccountEmail, inputAccountPassword);
+                            favoritePageTest.SelectionOnList(webDriver,report,js,favoritePageController.SelectionOnList,statusInfo,inputSearch, Homepage, inputAccountEmail, inputAccountPassword);
                         }catch (Exception noLucenePageWorking){
                             noLucenePageWorking.printStackTrace();
                         }

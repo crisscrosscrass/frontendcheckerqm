@@ -11,5 +11,6 @@
     <children>
         <JFXCheckBox fx:id="PersonalList" text="Personal List Tests" />
         <JFXCheckBox fx:id="SortingOnList" text="Items Sorting on Personal List" />
+        <JFXCheckBox fx:id="SelectionOnList" text="Items Selection on Personal List" />
     </children>
 </VBox>

@@ -10,4 +10,7 @@ public class FavoritePageController {
 
     @FXML
     JFXCheckBox SortingOnList;
+
+    @FXML
+    JFXCheckBox SelectionOnList;
 }

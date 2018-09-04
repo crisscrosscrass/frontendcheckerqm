@@ -2,7 +2,6 @@ package crisscrosscrass.Controller;
 
 import crisscrosscrass.Tasks.AnimationObject;
 import crisscrosscrass.Main;
-import crisscrosscrass.Tasks.ConfigSettings;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -57,7 +56,7 @@ public class SplashFXMLController implements Initializable {
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                        FrontEndCheckController controller = loader.getController();
+                        MainControllerFrontEndCheck controller = loader.getController();
 
                         primaryStage.setTitle("Frontend Check");
                         URL LogoLocation = Main.class.getClassLoader().getResource("Images/VisualMeta.png");
