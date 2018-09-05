@@ -8,31 +8,31 @@ public class ChangeCheckBox {
 
     private static String isInProgress = "#EEF442";
     private static String isSuccessful = "#0F9D58";
-    private static String notSuccessful = "#FF0000";
+    private static String isNotSuccessful = "#FF0000";
     private static String isStandard = "#535341";
 
 
     public static void adjustStyle(boolean select, String status, JFXCheckBox editedCheckBox){
 
-        if (status.equals("complete")){
+        if (("complete").equals(status)){
             Platform.runLater(() -> {
                 editedCheckBox.setStyle("-fx-background-color: transparent");
                 editedCheckBox.setCheckedColor(Paint.valueOf(isSuccessful));
                 editedCheckBox.setUnCheckedColor(Paint.valueOf(isSuccessful));
                 editedCheckBox.setSelected(select);
             });
-        } else if (status.equals("progress")){
+        } else if (("progress").equals(status)){
             Platform.runLater(() -> {
                 editedCheckBox.setStyle("-fx-background-color: "+isInProgress+"");
                 editedCheckBox.setCheckedColor(Paint.valueOf(isInProgress));
                 editedCheckBox.setUnCheckedColor(Paint.valueOf(isInProgress));
                 editedCheckBox.setSelected(select);
             });
-        }else if(status.equals("nope")){
+        }else if(("nope").equals(status)){
             Platform.runLater(() -> {
                 editedCheckBox.setStyle("-fx-background-color: transparent");
-                editedCheckBox.setCheckedColor(Paint.valueOf(notSuccessful));
-                editedCheckBox.setUnCheckedColor(Paint.valueOf(notSuccessful));
+                editedCheckBox.setCheckedColor(Paint.valueOf(isNotSuccessful));
+                editedCheckBox.setUnCheckedColor(Paint.valueOf(isNotSuccessful));
                 editedCheckBox.setSelected(select);
             });
         }else {
@@ -52,8 +52,8 @@ public class ChangeCheckBox {
         return isSuccessful.substring(1,7).toLowerCase();
     }
 
-    public static String getNotSuccessful() {
-        return notSuccessful.substring(1,7).toLowerCase();
+    public static String getIsNotSuccessful() {
+        return isNotSuccessful.substring(1,7).toLowerCase();
     }
 
     public static String getIsStandard() {

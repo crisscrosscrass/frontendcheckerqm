@@ -572,9 +572,9 @@ public class HomepageTest {
         report.writeToFile("=================================", "");
     }
 
-    public void checkingImprint(ChromeDriver webDriver, Report report, JFXCheckBox checkPrivacyPopUp, Text statusInfo, TextField checkImprint, Properties Homepage) {
+    public void checkingImprint(ChromeDriver webDriver, Report report, JFXCheckBox checkImprint, Text statusInfo, TextField inputImprintURL, Properties Homepage) {
         final String infoMessage = "Checking Imprint";
-        ChangeCheckBox.adjustStyle(false,"progress",checkPrivacyPopUp);
+        ChangeCheckBox.adjustStyle(false,"progress",checkImprint);
         Platform.runLater(() -> {
             statusInfo.setText(""+infoMessage+"...");
         });
@@ -582,27 +582,27 @@ public class HomepageTest {
         try {
             ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
             webDriver.switchTo().window(tabs.get(0));
-            webDriver.navigate().to(checkImprint.getText().trim());
+            webDriver.navigate().to(inputImprintURL.getText().trim());
             WebDriverWait wait = new WebDriverWait(webDriver, 10);
             try{
                 wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("imprintpage.costumer.button"))));
                 String checkLinkUrl = webDriver.findElementByXPath(Homepage.getProperty("imprintpage.costumer.button")).getAttribute("href").trim().toLowerCase();
                 webDriver.findElementByXPath(Homepage.getProperty("imprintpage.costumer.button")).click();
                 if ( webDriver.getCurrentUrl().trim().toLowerCase().equals(checkLinkUrl) ){
-                    ChangeCheckBox.adjustStyle(true,"complete",checkPrivacyPopUp);
+                    ChangeCheckBox.adjustStyle(true,"complete",checkImprint);
                     report.writeToFile(infoMessage, "Successfull! User is redirected to working page");
                 }else {
-                    ChangeCheckBox.adjustStyle(true,"nope",checkPrivacyPopUp);
+                    ChangeCheckBox.adjustStyle(true,"nope",checkImprint);
                     report.writeToFile(infoMessage, "Not successfull! User is not redirected to working page");
                 }
 
             }catch (Exception noPrivacyBoxFound){
-                ChangeCheckBox.adjustStyle(true,"nope",checkPrivacyPopUp);
-                report.writeToFile(infoMessage, "unable to find Privacy PopUp");
+                ChangeCheckBox.adjustStyle(true,"nope",checkImprint);
+                report.writeToFile(infoMessage, "unable to find Costumer Service Button");
                 noPrivacyBoxFound.printStackTrace();
             }
         }catch (Exception noPrivacyBox){
-            ChangeCheckBox.adjustStyle(true,"nope",checkPrivacyPopUp);
+            ChangeCheckBox.adjustStyle(true,"nope",checkImprint);
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
             noPrivacyBox.printStackTrace();
         }

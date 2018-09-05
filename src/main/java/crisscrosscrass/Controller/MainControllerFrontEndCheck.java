@@ -185,8 +185,6 @@ public class MainControllerFrontEndCheck implements Serializable{
     public void initialize() {
         System.out.println("FrontendCheckController launched!");
 
-
-
         //add Listener to Settings
         settingHomepage.setOnAction(event -> updateCheckerTabs());
         settingGridPage.setOnAction(event -> updateCheckerTabs());
@@ -236,8 +234,6 @@ public class MainControllerFrontEndCheck implements Serializable{
 
         //opening Menu in User Interface
         Platform.runLater(() -> settingTitledPane.setExpanded(true));
-
-
 
     }
 
@@ -657,7 +653,7 @@ public class MainControllerFrontEndCheck implements Serializable{
                     System.out.println("GreenCheck!");
                     ++passTest;
                 }
-                if (checkBox.getCheckedColor().toString().substring(2,8).equals(ChangeCheckBox.getNotSuccessful())){
+                if (checkBox.getCheckedColor().toString().substring(2,8).equals(ChangeCheckBox.getIsNotSuccessful())){
                     System.out.println("Red Check!");
                     ++failTest;
                 }
