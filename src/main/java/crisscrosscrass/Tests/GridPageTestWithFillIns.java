@@ -18,7 +18,7 @@ import java.util.Properties;
 
 public class GridPageTestWithFillIns {
 
-    public void ShowAllFillInPage(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox showAllFillInPage, TextField inputGridPageURLWithFillIns, Text statusInfo, TextField inputSearch, Properties Homepage){
+    public void checkingShowAllFillInPage(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox showAllFillInPage, TextField inputGridPageURLWithFillIns, Text statusInfo, TextField inputSearch, Properties Homepage){
         Platform.runLater(() -> {
             showAllFillInPage.setStyle("-fx-background-color: #eef442");
             statusInfo.setText("Checking GridPage with Fill Ins...");

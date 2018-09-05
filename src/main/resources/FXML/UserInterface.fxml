@@ -22,7 +22,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="mainStage" prefHeight="857.0" prefWidth="1000.0" style="-fx-background-color: grey;" stylesheets="@../Style/Main.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="crisscrosscrass.Controller.MainControllerFrontEndCheck">
+<AnchorPane fx:id="mainStage" prefHeight="896.0" prefWidth="1010.0" style="-fx-background-color: grey;" stylesheets="@../Style/Main.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="crisscrosscrass.Controller.MainControllerFrontEndCheck">
    <children>
       <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" spacing="5.0" style="-fx-background-color: grey;">
          <children>
@@ -70,20 +70,20 @@
                   <HBox alignment="CENTER_RIGHT">
                      <children>
                         <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="GridPageURLwihtoutWindows" />
-                        <TextField fx:id="inputGridPageURL" focusTraversable="false" prefHeight="25.0" prefWidth="287.0" text="https://www.ladenzeile.de/mode/" />
+                        <TextField fx:id="inputGridPageURL" focusTraversable="false" prefWidth="300.0" text="https://www.ladenzeile.de/mode/" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_RIGHT">
                      <children>
                         <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Brand/Shop Keyword" />
-                        <TextField fx:id="inputGridPageKeyword" focusTraversable="false" text="nike" />
+                        <TextField fx:id="inputGridPageKeyword" focusTraversable="false" prefWidth="300.0" text="nike" />
                      </children>
                   </HBox>
                   <Accordion>
                     <panes>
-                      <TitledPane animated="false" prefHeight="121.0" prefWidth="495.0" text="Filters">
+                      <TitledPane animated="false" text="Filters">
                            <content>
-                              <VBox prefHeight="200.0" prefWidth="100.0">
+                              <VBox>
                                  <children>
                                     <JFXCheckBox fx:id="checkingSalesPriceFilter" selected="true" text="SalesPrice" />
                                     <JFXCheckBox fx:id="checkingGenderFilter" selected="true" text="Gender" />
@@ -97,32 +97,29 @@
                     </panes>
                   </Accordion>
                </children>
-               <padding>
-                  <Insets left="10.0" right="10.0" />
-               </padding>
             </VBox>
             <HBox alignment="CENTER_RIGHT" style="-fx-border-radius: 5; -fx-border-color: white;">
                <children>
                   <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="GridPageURL with Windows" />
-                  <TextField fx:id="inputGridPageURLWithWindows" focusTraversable="false" prefHeight="25.0" prefWidth="297.0" text="https://www.ladenzeile.de/mode/damen/" />
+                  <TextField fx:id="inputGridPageURLWithWindows" focusTraversable="false" prefWidth="300.0" text="https://www.ladenzeile.de/mode/damen/" />
                </children>
             </HBox>
             <HBox alignment="CENTER_RIGHT" layoutX="30.0" layoutY="318.0" style="-fx-border-radius: 5; -fx-border-color: white;">
                <children>
                   <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="GridPageURL with FillIns" />
-                  <TextField fx:id="inputGridPageURLWithFillIns" focusTraversable="false" prefHeight="25.0" prefWidth="321.0" text="https://taschen.ladenzeile.de/kulturbeutel-kammtasche/" />
+                  <TextField fx:id="inputGridPageURLWithFillIns" focusTraversable="false" prefWidth="300.0" text="https://taschen.ladenzeile.de/kulturbeutel-kammtasche/" />
                </children>
             </HBox>
             <HBox alignment="CENTER_RIGHT" style="-fx-border-radius: 5; -fx-border-color: white;">
                <children>
                   <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Brand Page (Overview)" />
-                  <TextField fx:id="inputBrandPageOverview" focusTraversable="false" prefHeight="25.0" prefWidth="315.0" text="https://www.ladenzeile.de/marken.html" />
+                  <TextField fx:id="inputBrandPageOverview" focusTraversable="false" prefWidth="300.0" text="https://www.ladenzeile.de/marken.html" />
                </children>
             </HBox>
             <HBox alignment="CENTER_RIGHT" style="-fx-border-color: white; -fx-border-radius: 5;">
                <children>
                   <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Lucene Keyword" />
-                  <TextField fx:id="inputLucenePage" focusTraversable="false" text="emaroon" />
+                  <TextField fx:id="inputLucenePage" focusTraversable="false" prefWidth="300.0" text="emaroon" />
                </children>
             </HBox>
             <VBox alignment="CENTER" style="-fx-border-radius: 5; -fx-border-color: white;">
@@ -144,6 +141,12 @@
                   <Insets bottom="10.0" top="5.0" />
                </padding>
             </VBox>
+            <HBox alignment="CENTER_RIGHT" layoutX="30.0" layoutY="378.0" style="-fx-border-color: white; -fx-border-radius: 5;">
+               <children>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Partnershops Page URL" />
+                  <TextField fx:id="inputPartnershopsPageURL" focusTraversable="false" prefWidth="300.0" text="https://www.ladenzeile.de/partner/shops" />
+               </children>
+            </HBox>
             <ProgressBar fx:id="progressIndicator" prefWidth="400.0" progress="0.0">
                <VBox.margin>
                   <Insets bottom="10.0" top="20.0" />
@@ -223,7 +226,7 @@
             </VBox>
          </children>
       </VBox>
-      <TabPane fx:id="tabPane" layoutX="10.0" layoutY="600.0" prefHeight="240.0" prefWidth="970.0">
+      <TabPane fx:id="tabPane" layoutX="14.0" layoutY="642.0" prefHeight="240.0" prefWidth="970.0">
          <tabs>
             <Tab fx:id="tabHomepage" closable="false" text="Homepage">
                <content>

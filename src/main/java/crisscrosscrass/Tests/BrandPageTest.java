@@ -19,7 +19,7 @@ import java.util.Properties;
 
 public class BrandPageTest {
 
-    public void pagingWithWindowsForward(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox brandsWithoutLogo, TextField inputBrandPageOverview, Text statusInfo, TextField inputSearch, Properties Homepage){
+    public void checkingBrandsWithoutLogo(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox brandsWithoutLogo, TextField inputBrandPageOverview, Text statusInfo, TextField inputSearch, Properties Homepage){
         Platform.runLater(() -> {
             brandsWithoutLogo.setStyle("-fx-background-color: #eef442");
             statusInfo.setText("Checking Brand Page Overview...");

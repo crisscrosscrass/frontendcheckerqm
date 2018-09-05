@@ -117,6 +117,8 @@ public class MainControllerFrontEndCheck implements Serializable{
     @FXML
     JFXPasswordField inputAccountPassword;
     @FXML
+    JFXTextField inputPartnershopsPageURL;
+    @FXML
     HBox outputPlace;
     @FXML
     ImageView preloaderCat;
@@ -441,18 +443,18 @@ public class MainControllerFrontEndCheck implements Serializable{
                     if (!tabGridPageWithWindows.isDisable()){
                         tabPane.getSelectionModel().select(tabGridPageWithWindows);
                         GridPageTestWithWindows gridPageTestWithWindows = new GridPageTestWithWindows();
-                        gridPageTestWithWindows.pagingWithWindowsForward(webDriver,report,js,gridPageWithWindowsController.PagingWithWindowsForward,inputGridPageURLWithWindows,statusInfo,inputSearch,inputEmailAdress,xpathPattern1,xpathPattern2,Homepage,isSuccessful,isAvailable);
+                        gridPageTestWithWindows.checkingPagingWithWindowsForward(webDriver,report,js,gridPageWithWindowsController.PagingWithWindowsForward,inputGridPageURLWithWindows,statusInfo,inputSearch,inputEmailAdress,xpathPattern1,xpathPattern2,Homepage,isSuccessful,isAvailable);
                     }
 
                     if (!tabGridPageFillIns.isDisable()){
                         tabPane.getSelectionModel().select(tabGridPageFillIns);
                         GridPageTestWithFillIns gridPageTestWithFillIns = new GridPageTestWithFillIns();
-                        gridPageTestWithFillIns.ShowAllFillInPage(webDriver,report,js,gridPageWithFillInsController.showAllFillInPage,inputGridPageURLWithFillIns,statusInfo,inputSearch, Homepage);
+                        gridPageTestWithFillIns.checkingShowAllFillInPage(webDriver,report,js,gridPageWithFillInsController.showAllFillInPage,inputGridPageURLWithFillIns,statusInfo,inputSearch, Homepage);
                     }
                     if (!tabBrandPage.isDisable()){
                         tabPane.getSelectionModel().select(tabBrandPage);
                         BrandPageTest brandPageTest = new BrandPageTest();
-                        brandPageTest.pagingWithWindowsForward(webDriver,report,js,brandOverviewController.brandsWithoutLogo,inputBrandPageOverview,statusInfo,inputSearch, Homepage);
+                        brandPageTest.checkingBrandsWithoutLogo(webDriver,report,js,brandOverviewController.brandsWithoutLogo,inputBrandPageOverview,statusInfo,inputSearch, Homepage);
                     }
                     if (!tabLucenePage.isDisable()){
                         try{

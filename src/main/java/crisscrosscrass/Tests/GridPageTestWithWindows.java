@@ -19,7 +19,7 @@ import java.util.Properties;
 
 public class GridPageTestWithWindows {
 
-    public void pagingWithWindowsForward(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox searchBoxInBrandFilter, TextField inputGridPageURLWithWindows,  Text statusInfo, TextField inputSearch, TextField inputEmailAdress, String xpathPattern1, String xpathPattern2, Properties Homepage, boolean isSuccessful, boolean isAvailable){
+    public void checkingPagingWithWindowsForward(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox searchBoxInBrandFilter, TextField inputGridPageURLWithWindows, Text statusInfo, TextField inputSearch, TextField inputEmailAdress, String xpathPattern1, String xpathPattern2, Properties Homepage, boolean isSuccessful, boolean isAvailable){
         Platform.runLater(() -> {
             searchBoxInBrandFilter.setStyle("-fx-background-color: #eef442");
             statusInfo.setText("Checking GridPage with Windows Paging Forward...");
