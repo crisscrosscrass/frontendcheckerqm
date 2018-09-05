@@ -20,7 +20,7 @@ import java.util.Properties;
 
 public class ImageGroupingPageTest {
 
-    public void ImageGroupingClickOut(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox ImageGroupingClickOut, TextField inputLucenePage, Text statusInfo, TextField inputGridPageURL, Properties Homepage){
+    public void checkingImageGroupingClickOut(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox ImageGroupingClickOut, TextField inputLucenePage, Text statusInfo, TextField inputGridPageURL, Properties Homepage){
         Platform.runLater(() -> {
             ImageGroupingClickOut.setStyle("-fx-background-color: #eef442");
             statusInfo.setText("Checking Image Grouping Click Out...");
@@ -147,7 +147,7 @@ public class ImageGroupingPageTest {
 
     }
 
-    public void DetailPageOfOffer(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox DetailPageOfOffer, TextField inputLucenePage, Text statusInfo, TextField inputGridPageURL, Properties Homepage){
+    public void checkingDetailPageOfOffer(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox DetailPageOfOffer, TextField inputLucenePage, Text statusInfo, TextField inputGridPageURL, Properties Homepage){
         Platform.runLater(() -> {
             DetailPageOfOffer.setStyle("-fx-background-color: #eef442");
             statusInfo.setText("Checking Image Grouping Detail Page of Offer...");

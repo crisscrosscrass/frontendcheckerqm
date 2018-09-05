@@ -571,4 +571,41 @@ public class HomepageTest {
         }
         report.writeToFile("=================================", "");
     }
+
+    public void checkingImprint(ChromeDriver webDriver, Report report, JFXCheckBox checkPrivacyPopUp, Text statusInfo, TextField checkImprint, Properties Homepage) {
+        final String infoMessage = "Checking Imprint";
+        ChangeCheckBox.adjustStyle(false,"progress",checkPrivacyPopUp);
+        Platform.runLater(() -> {
+            statusInfo.setText(""+infoMessage+"...");
+        });
+
+        try {
+            ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
+            webDriver.switchTo().window(tabs.get(0));
+            webDriver.navigate().to(checkImprint.getText().trim());
+            WebDriverWait wait = new WebDriverWait(webDriver, 10);
+            try{
+                wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("imprintpage.costumer.button"))));
+                String checkLinkUrl = webDriver.findElementByXPath(Homepage.getProperty("imprintpage.costumer.button")).getAttribute("href").trim().toLowerCase();
+                webDriver.findElementByXPath(Homepage.getProperty("imprintpage.costumer.button")).click();
+                if ( webDriver.getCurrentUrl().trim().toLowerCase().equals(checkLinkUrl) ){
+                    ChangeCheckBox.adjustStyle(true,"complete",checkPrivacyPopUp);
+                    report.writeToFile(infoMessage, "Successfull! User is redirected to working page");
+                }else {
+                    ChangeCheckBox.adjustStyle(true,"nope",checkPrivacyPopUp);
+                    report.writeToFile(infoMessage, "Not successfull! User is not redirected to working page");
+                }
+
+            }catch (Exception noPrivacyBoxFound){
+                ChangeCheckBox.adjustStyle(true,"nope",checkPrivacyPopUp);
+                report.writeToFile(infoMessage, "unable to find Privacy PopUp");
+                noPrivacyBoxFound.printStackTrace();
+            }
+        }catch (Exception noPrivacyBox){
+            ChangeCheckBox.adjustStyle(true,"nope",checkPrivacyPopUp);
+            report.writeToFile(infoMessage, "unable to check! Browser not responding");
+            noPrivacyBox.printStackTrace();
+        }
+        report.writeToFile("=================================", "");
+    }
 }

@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.Properties;
 
 public class FavoritePageTest {
-    public void PersonalListTest(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox PersonalList, Text statusInfo, TextField inputSearch, Properties Homepage, JFXTextField inputAccountEmail, JFXPasswordField inputAccountPassword){
+    public void checkingPersonalListTest(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox PersonalList, Text statusInfo, TextField inputSearch, Properties Homepage, JFXTextField inputAccountEmail, JFXPasswordField inputAccountPassword){
         final String infoMessage = "Checking Personal List";
         ChangeCheckBox.adjustStyle(false,"progress",PersonalList);
         Platform.runLater(() -> {
@@ -279,7 +279,7 @@ public class FavoritePageTest {
 
     }
 
-    public void ApplySortingOnList(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox applySortingOnList, Text statusInfo, TextField inputGridPageURL, Properties Homepage, JFXTextField inputAccountEmail, JFXPasswordField inputAccountPassword){
+    public void checkingApplySortingOnList(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox applySortingOnList, Text statusInfo, TextField inputGridPageURL, Properties Homepage, JFXTextField inputAccountEmail, JFXPasswordField inputAccountPassword){
         final String infoMessage = "Checking Apply Sorting Values";
         ChangeCheckBox.adjustStyle(false,"progress",applySortingOnList);
         Platform.runLater(() -> {
@@ -452,7 +452,7 @@ public class FavoritePageTest {
 
     }
 
-    public void SelectionOnList(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox selectionOnList, Text statusInfo, TextField inputSearch, Properties Homepage, JFXTextField inputAccountEmail, JFXPasswordField inputAccountPassword){
+    public void checkingSelectionOnList(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox selectionOnList, Text statusInfo, TextField inputSearch, Properties Homepage, JFXTextField inputAccountEmail, JFXPasswordField inputAccountPassword){
         final String infoMessage = "Checking Selection on Personal List";
         ChangeCheckBox.adjustStyle(false,"progress",selectionOnList);
         Platform.runLater(() -> {

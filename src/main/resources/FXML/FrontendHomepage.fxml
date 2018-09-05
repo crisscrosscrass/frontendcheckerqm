@@ -19,5 +19,6 @@
         <JFXCheckBox fx:id="checkTextSearchAndSuggestions" text="Text Search &amp; Suggestions" />
         <JFXCheckBox fx:id="checkFeedbackPopUp" text="Feedback PopUp" />
         <JFXCheckBox fx:id="checkPrivacyPopUp" text="Privacy PopUp" />
+        <JFXCheckBox fx:id="checkImprint" text="Imprint - Costumer Service" />
     </children>
 </VBox>

@@ -22,7 +22,7 @@ import java.util.Properties;
 
 public class DetailPageTest {
 
-    public void SwitchTabsinDetailPage(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox SwitchTabsInDetailPage, TextField inputLucenePage, Text statusInfo, TextField inputGridPageURL, Properties Homepage){
+    public void checkingSwitchTabsinDetailPage(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox SwitchTabsInDetailPage, TextField inputLucenePage, Text statusInfo, TextField inputGridPageURL, Properties Homepage){
         final String infoMessage = "Checking Detail Page Tab Switch";
         ChangeCheckBox.adjustStyle(false,"progress",SwitchTabsInDetailPage);
         Platform.runLater(() -> {
@@ -101,7 +101,7 @@ public class DetailPageTest {
 
     }
 
-    public void SimilarProductClickOut(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox SimilarProductsClickOut, TextField inputLucenePage, Text statusInfo, TextField inputGridPageURL, Properties Homepage){
+    public void checkingSimilarProductClickOut(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox SimilarProductsClickOut, TextField inputLucenePage, Text statusInfo, TextField inputGridPageURL, Properties Homepage){
         final String infoMessage = "Checking Detail Page Similar Product";
         ChangeCheckBox.adjustStyle(false,"progress",SimilarProductsClickOut);
         Platform.runLater(() -> {
@@ -203,7 +203,7 @@ public class DetailPageTest {
 
     }
 
-    public void PagingForwardBackward(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox PagingForwardBackward, TextField inputLucenePage, Text statusInfo, TextField inputGridPageURL, Properties Homepage){
+    public void checkingPagingForwardBackward(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox PagingForwardBackward, TextField inputLucenePage, Text statusInfo, TextField inputGridPageURL, Properties Homepage){
         final String infoMessage = "Checking Detail Page Paging-Forward/Backward";
         ChangeCheckBox.adjustStyle(false,"progress",PagingForwardBackward);
         Platform.runLater(() -> {
@@ -316,7 +316,7 @@ public class DetailPageTest {
 
     }
 
-    public void JumpToNonExistingPage(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox JumpToNonExistingPage, TextField inputLucenePage, Text statusInfo, TextField inputGridPageURL, Properties Homepage){
+    public void checkingJumpToNonExistingPage(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox JumpToNonExistingPage, TextField inputLucenePage, Text statusInfo, TextField inputGridPageURL, Properties Homepage){
         final String infoMessage = "Checking Detail Page Jump to non-existing Page";
         ChangeCheckBox.adjustStyle(false,"progress",JumpToNonExistingPage);
         Platform.runLater(() -> {
