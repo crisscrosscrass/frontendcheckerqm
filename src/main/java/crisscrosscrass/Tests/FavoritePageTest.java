@@ -36,9 +36,6 @@ public class FavoritePageTest {
                 webDriver.navigate().to(inputSearch.getText().trim());
                 WebDriverWait wait = new WebDriverWait(webDriver, 10);
 
-
-
-
                 /************************
                  * Add List Section
                  */
@@ -655,6 +652,7 @@ public class FavoritePageTest {
         }
 
         report.writeToFile("=================================", "");
+
 
     }
 }

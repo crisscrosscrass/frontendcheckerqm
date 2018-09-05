@@ -35,123 +35,62 @@ import java.util.Properties;
 
 public class MainControllerFrontEndCheck implements Serializable{
 
-
     // Basic Settings
-    @FXML
-    Button startwebdriver;
-
-
-
-
+    @FXML Button startwebdriver;
     //Filter Settings
-    @FXML
-    public JFXCheckBox checkingSalesPriceFilter;
-
-    @FXML
-    public JFXCheckBox checkingGenderFilter;
-
-    @FXML
-    public JFXCheckBox checkingColorFilter;
-
-    @FXML
-    public JFXCheckBox checkingBrandFilter;
-
-    @FXML
-    public JFXCheckBox checkingMerchandiseFilter;
-
+    @FXML public JFXCheckBox checkingSalesPriceFilter;
+    @FXML public JFXCheckBox checkingGenderFilter;
+    @FXML public JFXCheckBox checkingColorFilter;
+    @FXML public JFXCheckBox checkingBrandFilter;
+    @FXML public JFXCheckBox checkingMerchandiseFilter;
     // Tab Settings
-    @FXML
-    Accordion settingsAccordion;
-    @FXML
-    TitledPane settingTitledPane;
-    @FXML
-    JFXCheckBox settingHomepage;
-    @FXML
-    JFXCheckBox settingGridPage;
-    @FXML
-    JFXCheckBox settingGridPageWithWindows;
-    @FXML
-    JFXCheckBox settingGridPageFillIns;
-    @FXML
-    JFXCheckBox settingBrandPage;
-    @FXML
-    JFXCheckBox settingLucenePage;
-    @FXML
-    JFXCheckBox settingLucenePageWithDeletions;
-    @FXML
-    JFXCheckBox settingDetailPage;
-    @FXML
-    JFXCheckBox settingImageGrouping;
-    @FXML
-    JFXCheckBox settingFavoritePage;
-
+    @FXML Accordion settingsAccordion;
+    @FXML TitledPane settingTitledPane;
+    @FXML JFXCheckBox settingHomepage;
+    @FXML JFXCheckBox settingGridPage;
+    @FXML JFXCheckBox settingGridPageWithWindows;
+    @FXML JFXCheckBox settingGridPageFillIns;
+    @FXML JFXCheckBox settingBrandPage;
+    @FXML JFXCheckBox settingLucenePage;
+    @FXML JFXCheckBox settingLucenePageWithDeletions;
+    @FXML JFXCheckBox settingDetailPage;
+    @FXML JFXCheckBox settingImageGrouping;
+    @FXML JFXCheckBox settingFavoritePage;
+    @FXML JFXCheckBox settingPartnerShopPage;
     //Main Menu Settings
-    @FXML
-    ProgressBar progressIndicator;
-    @FXML
-    Text statusInfo;
-    @FXML
-    TextField inputSearch;
-    @FXML
-    TextField inputEmailAdress;
-    @FXML
-    TextField inputTextSearchAndSuggestions;
-    @FXML
-    TextField inputImprintURL;
-    @FXML
-    TextField inputTermsOfUseURL;
-    @FXML
-    TextField inputGridPageURL;
-    @FXML
-    TextField inputGridPageKeyword;
-    @FXML
-    TextField inputGridPageURLWithWindows;
-    @FXML
-    TextField inputGridPageURLWithFillIns;
-    @FXML
-    TextField inputBrandPageOverview;
-    @FXML
-    TextField inputLucenePage;
-    @FXML
-    JFXTextField inputAccountEmail;
-    @FXML
-    JFXPasswordField inputAccountPassword;
-    @FXML
-    JFXTextField inputPartnershopsPageURL;
-    @FXML
-    HBox outputPlace;
-    @FXML
-    ImageView preloaderCat;
-    @FXML
-    VBox CheckBoxesPlace;
-    @FXML
-    AnchorPane mainStage;
-    @FXML
-    TabPane tabPane;
-
+    @FXML ProgressBar progressIndicator;
+    @FXML Text statusInfo;
+    @FXML TextField inputSearch;
+    @FXML TextField inputEmailAdress;
+    @FXML TextField inputTextSearchAndSuggestions;
+    @FXML TextField inputImprintURL;
+    @FXML TextField inputTermsOfUseURL;
+    @FXML TextField inputGridPageURL;
+    @FXML TextField inputGridPageKeyword;
+    @FXML TextField inputGridPageURLWithWindows;
+    @FXML TextField inputGridPageURLWithFillIns;
+    @FXML TextField inputBrandPageOverview;
+    @FXML TextField inputLucenePage;
+    @FXML JFXTextField inputAccountEmail;
+    @FXML TextField inputPartnerShopPageURL;
+    @FXML JFXPasswordField inputAccountPassword;
+    @FXML HBox outputPlace;
+    @FXML ImageView preloaderCat;
+    @FXML VBox CheckBoxesPlace;
+    @FXML AnchorPane mainStage;
+    @FXML TabPane tabPane;
     //tab views
-    @FXML
-    Tab tabHomepage;
-    @FXML
-    Tab tabGridPage;
-    @FXML
-    Tab tabGridPageWithWindows;
-    @FXML
-    Tab tabGridPageFillIns;
-    @FXML
-    Tab tabBrandPage;
-    @FXML
-    Tab tabLucenePage;
-    @FXML
-    Tab tabLucenePageWithDeletions;
-    @FXML
-    Tab tabDetailPage;
-    @FXML
-    Tab tabImageGrouping;
-    @FXML
-    Tab tabFavoritePage;
-
-
+    @FXML Tab tabHomepage;
+    @FXML Tab tabGridPage;
+    @FXML Tab tabGridPageWithWindows;
+    @FXML Tab tabGridPageFillIns;
+    @FXML Tab tabBrandPage;
+    @FXML Tab tabLucenePage;
+    @FXML Tab tabLucenePageWithDeletions;
+    @FXML Tab tabDetailPage;
+    @FXML Tab tabImageGrouping;
+    @FXML Tab tabFavoritePage;
+    @FXML Tab tabPartnerShopPage;
     //data visualisation
     @FXML PieChart pieChartForHomepageTests;
     @FXML PieChart pieChartForDetailPageTests;
@@ -169,8 +108,7 @@ public class MainControllerFrontEndCheck implements Serializable{
     @FXML DetailPageController detailPageController;
     @FXML ImageGroupingController imageGroupingController;
     @FXML FavoritePageController favoritePageController;
-
-
+    @FXML PartnershopsPageController partnershopsPageController;
 
     private static boolean isSuccessful = false;
     private static boolean isAvailable = false;
@@ -178,10 +116,6 @@ public class MainControllerFrontEndCheck implements Serializable{
     private static String xpathPattern2 = "";
     private static String xpathPatternImage1 = "";
     private static String xpathPatternImage2 = "";
-
-
-
-
 
     @FXML
     public void initialize() {
@@ -198,6 +132,7 @@ public class MainControllerFrontEndCheck implements Serializable{
         settingDetailPage.setOnAction(event -> updateCheckerTabs());
         settingImageGrouping.setOnAction(event -> updateCheckerTabs());
         settingFavoritePage.setOnAction(event -> updateCheckerTabs());
+        settingPartnerShopPage.setOnAction(event -> updateCheckerTabs());
 
         //update Tabs on Frontend
         updateCheckerTabs();
@@ -303,14 +238,18 @@ public class MainControllerFrontEndCheck implements Serializable{
         else{
             tabFavoritePage.setDisable(true);
         }
+        if (settingPartnerShopPage.isSelected()){
+            tabPartnerShopPage.setDisable(false);
+            tabPane.getSelectionModel().select(tabPartnerShopPage);
+        }
+        else{
+            tabPartnerShopPage.setDisable(true);
+        }
     }
 
     @FXML
     public void startRealAction() {
-
         System.out.println("Start Engine...");
-
-
         Platform.runLater(() -> {
 
                     progressIndicator.setProgress(-1);
@@ -326,7 +265,6 @@ public class MainControllerFrontEndCheck implements Serializable{
                     inputLucenePage.setDisable(true);
                     settingTitledPane.setExpanded(false);
         });
-
 
 
         Task task = new Task<Object>() {
@@ -500,6 +438,16 @@ public class MainControllerFrontEndCheck implements Serializable{
                             favoritePageTest.checkingPersonalListTest(webDriver,report,js,favoritePageController.PersonalList, statusInfo,inputSearch, Homepage, inputAccountEmail, inputAccountPassword);
                             favoritePageTest.checkingApplySortingOnList(webDriver,report,js,favoritePageController.SortingOnList,statusInfo,inputGridPageURL, Homepage, inputAccountEmail, inputAccountPassword);
                             favoritePageTest.checkingSelectionOnList(webDriver,report,js,favoritePageController.SelectionOnList,statusInfo,inputSearch, Homepage, inputAccountEmail, inputAccountPassword);
+                        }catch (Exception noLucenePageWorking){
+                            noLucenePageWorking.printStackTrace();
+                        }
+
+                    }
+                    if (!tabPartnerShopPage.isDisable()){
+                        try{
+                            tabPane.getSelectionModel().select(tabPartnerShopPage);
+                            PartnerShopsPageTest partnerShopsPageTest = new PartnerShopsPageTest();
+                            partnerShopsPageTest.checkingGoToTopButton(webDriver,report,js,partnershopsPageController.GoToTopButton,statusInfo,inputPartnerShopPageURL, Homepage, inputAccountEmail, inputAccountPassword);
                         }catch (Exception noLucenePageWorking){
                             noLucenePageWorking.printStackTrace();
                         }
@@ -701,6 +649,7 @@ public class MainControllerFrontEndCheck implements Serializable{
         settingDetailPage.setSelected(true);
         settingImageGrouping.setSelected(true);
         settingFavoritePage.setSelected(true);
+        settingPartnerShopPage.setSelected(true);
         updateCheckerTabs();
     }
 
@@ -716,6 +665,7 @@ public class MainControllerFrontEndCheck implements Serializable{
         settingDetailPage.setSelected(false);
         settingImageGrouping.setSelected(false);
         settingFavoritePage.setSelected(false);
+        settingPartnerShopPage.setSelected(false);
         updateCheckerTabs();
     }
 

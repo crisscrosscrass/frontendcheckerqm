@@ -1,5 +1,28 @@
-///// JAVA TEMPLATE /////
-public void checkingGoToTopButton(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox GoToTopButton, Text statusInfo, TextField inputGridPageURL, Properties Homepage, JFXTextField inputAccountEmail, JFXPasswordField inputAccountPassword){
+package crisscrosscrass.Tests;
+
+import com.jfoenix.controls.JFXCheckBox;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
+import crisscrosscrass.Tasks.ChangeCheckBox;
+import crisscrosscrass.Tasks.Report;
+import javafx.application.Platform;
+import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Point;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Properties;
+
+public class PartnerShopsPageTest {
+
+    public void checkingGoToTopButton(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox GoToTopButton, Text statusInfo, TextField inputPartnerShopPageURL, Properties Homepage, JFXTextField inputAccountEmail, JFXPasswordField inputAccountPassword){
         final String infoMessage = "Checking Go to Top Button";
         ChangeCheckBox.adjustStyle(false,"progress",GoToTopButton);
         Platform.runLater(() -> {
@@ -10,30 +33,30 @@ public void checkingGoToTopButton(ChromeDriver webDriver, Report report, Javascr
             ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
             webDriver.switchTo().window(tabs.get(0));
             try {
-                webDriver.navigate().to(inputGridPageURL.getText().trim());
+                webDriver.navigate().to(inputPartnerShopPageURL.getText().trim());
                 WebDriverWait wait = new WebDriverWait(webDriver, 10);
                 try{
 
                     ChangeCheckBox.adjustStyle(true,"complete",GoToTopButton);
-                    webDriver.navigate().to(inputGridPageURL.getText().trim());
+                    webDriver.navigate().to(inputPartnerShopPageURL.getText().trim());
                     report.writeToFile(infoMessage, "Complete");
 
 
                 }catch (Exception gridPageIssue){
                     ChangeCheckBox.adjustStyle(true,"nope",GoToTopButton);
-                    webDriver.navigate().to(inputGridPageURL.getText().trim());
+                    webDriver.navigate().to(inputPartnerShopPageURL.getText().trim());
                     report.writeToFile(infoMessage, "Couldn't detect Favorite Lists");
                     gridPageIssue.printStackTrace();
                 }
             }catch (Exception noRequestedSiteFound){
                 ChangeCheckBox.adjustStyle(true,"nope",GoToTopButton);
-                webDriver.navigate().to(inputGridPageURL.getText().trim());
+                webDriver.navigate().to(inputPartnerShopPageURL.getText().trim());
                 report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
                 noRequestedSiteFound.printStackTrace();
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",GoToTopButton);
-            webDriver.navigate().to(inputGridPageURL.getText().trim());
+            webDriver.navigate().to(inputPartnerShopPageURL.getText().trim());
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
             noBrowserWorking.printStackTrace();
         }
@@ -41,35 +64,4 @@ public void checkingGoToTopButton(ChromeDriver webDriver, Report report, Javascr
         report.writeToFile("=================================", "");
 
     }
-
-
-//////////////////// CSS ////////////////////////////////
-.check-box{
--fx-font-family: "Segoe UI Light";
--fx-font-size: 14;
--fx-text-fill:#01449f;}
-
-.check-box .box{
--fx-outer-border: #cadbec;
--fx-body-color: white;
- -fx-background-color:
-   -fx-outer-border,
-   -fx-body-color;
--fx-background-insets: 0, 1;
--fx-background-radius: 2px, 0px;}
-
-.check-box .mark {
--fx-shape:"M14.596,2.055L12.455,0C9.687,2.884,6.011,6.714,5.158,7.602L2.055,4.624L0,6.765l5.242,5.037l0.003-0.004
-l0.003,0.004L14.596,2.055z";}
-
-.check-box:selected .mark {
--fx-background-color: #0181e2;}
-
-.check-box .mark {
-      -fx-shape:"M14.596,2.055L12.455,0C9.687,2.884,6.011,6.714,5.158,7.602L2.055,4.624L0,6.765l5.242,5.037l0.003-0.004
-    l0.003,0.004L14.596,2.055z";
-    -fx-scale-x: 2;
-    -fx-scale-y: 2;
-    -fx-translate-x: 5px;
-    -fx-translate-y: -5px;
 }
