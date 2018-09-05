@@ -468,6 +468,7 @@ public class FavoritePageTest {
                 WebDriverWait wait = new WebDriverWait(webDriver, 10);
                 try{
                     String testPatternList1 = "List 1 Test";
+                    String testPatternList2 = "List 2 Test";
 
                     wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.main.myfavorites"))));
                     Point hoverItem = webDriver.findElement(By.xpath(Homepage.getProperty("page.main.myfavorites"))).getLocation();
@@ -479,22 +480,23 @@ public class FavoritePageTest {
                         js.executeScript("window.scrollBy(0,-400)");
                     }
                     webDriver.findElementByXPath(Homepage.getProperty("page.main.myfavorites")).click();
+                    if(webDriver.findElements(By.xpath(Homepage.getProperty("page.myaccount.myPersonalList"))).size() == 0){
+                        //user needs to login first
+                        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.main.myaccount"))));
+                        webDriver.findElementByXPath(Homepage.getProperty("page.main.myaccount")).click();
+                        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.myaccount.button.toLogin"))));
+                        webDriver.findElementByXPath(Homepage.getProperty("page.myaccount.button.toLogin")).click();
+                        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.myaccount.button.toRegister"))));
+                        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.myaccount.emailInput"))));
+                        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.myaccount.passwordInput"))));
 
-                    wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.main.myaccount"))));
-                    webDriver.findElementByXPath(Homepage.getProperty("page.main.myaccount")).click();
-                    wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.myaccount.button.toLogin"))));
-                    webDriver.findElementByXPath(Homepage.getProperty("page.myaccount.button.toLogin")).click();
-                    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.myaccount.button.toRegister"))));
-                    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.myaccount.emailInput"))));
-                    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.myaccount.passwordInput"))));
-
-                    WebElement element = webDriver.findElementByXPath(Homepage.getProperty("page.myaccount.emailInput"));
-                    element.sendKeys(inputAccountEmail.getText());
-                    element = webDriver.findElementByXPath(Homepage.getProperty("page.myaccount.passwordInput"));
-                    element.sendKeys(inputAccountPassword.getText());
-                    webDriver.findElementByXPath(Homepage.getProperty("page.myaccount.login.button")).click();
-                    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.myaccount.createNewList"))));
-
+                        WebElement element = webDriver.findElementByXPath(Homepage.getProperty("page.myaccount.emailInput"));
+                        element.sendKeys(inputAccountEmail.getText());
+                        element = webDriver.findElementByXPath(Homepage.getProperty("page.myaccount.passwordInput"));
+                        element.sendKeys(inputAccountPassword.getText());
+                        webDriver.findElementByXPath(Homepage.getProperty("page.myaccount.login.button")).click();
+                        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.myaccount.createNewList"))));
+                    }
 
                     wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.myaccount.myPersonalList"))));
                     List<WebElement> MyPersonalList = webDriver.findElementsByXPath(Homepage.getProperty("page.myaccount.myPersonalList"));
@@ -507,22 +509,125 @@ public class FavoritePageTest {
                     }
 
                     try{
+                        int oldAmountOfGreenCheckMarks = 0;
+
                         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.myaccount.header"))));
                         wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.myaccount.selectAllProduct.button"))));
-                        System.out.println("GreenCheckMarks: "+webDriver.findElements(By.xpath(Homepage.getProperty("page.myaccount.greenCheckMarkBoxes"))).size()+"");
                         if(webDriver.findElements(By.xpath(Homepage.getProperty("page.myaccount.greenCheckMarkBoxes"))).size() == 0){
                             webDriver.findElementByXPath(Homepage.getProperty("page.myaccount.selectAllProduct.button")).click();
                             wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.myaccount.greenCheckMarkBoxes"))));
-                            System.out.println("GreenCheckMarks: "+webDriver.findElements(By.xpath(Homepage.getProperty("page.myaccount.greenCheckMarkBoxes"))).size()+"");
                             if(webDriver.findElements(By.xpath(Homepage.getProperty("page.myaccount.greenCheckMarkBoxes"))).size() > 0){
-                                report.writeToFile(infoMessage,"Successfully Green check marks appears on "+webDriver.findElements(By.xpath(Homepage.getProperty("page.myaccount.greenCheckMarkBoxes"))).size()+" items!");
+                                report.writeToFile(infoMessage+" GreenCheck Marks: ","Successfully! Green check marks appears on "+webDriver.findElements(By.xpath(Homepage.getProperty("page.myaccount.greenCheckMarkBoxes"))).size()+" items!");
+                                oldAmountOfGreenCheckMarks = webDriver.findElements(By.xpath(Homepage.getProperty("page.myaccount.greenCheckMarkBoxes"))).size();
+                            }else {
+                                report.writeToFile(infoMessage+" GreenCheck Marks: ","Not Successfully! Green check marks appears on "+webDriver.findElements(By.xpath(Homepage.getProperty("page.myaccount.greenCheckMarkBoxes"))).size()+" items!");
                             }
+                        }else {
+                            report.writeToFile(infoMessage+" GreenCheck Marks: ","Not Successfully! Green check marks appears before selecting on "+webDriver.findElements(By.xpath(Homepage.getProperty("page.myaccount.greenCheckMarkBoxes"))).size()+" items!");
                         }
 
-                        ChangeCheckBox.adjustStyle(true,"complete",selectionOnList);
-                        webDriver.navigate().to(inputSearch.getText().trim());
-                        report.writeToFile(infoMessage, "Complete");
+                        try{
+                            boolean isStandardListFull = false;
+                            boolean isTestListEmpty = false;
 
+                            wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.myaccount.moveAllProduct.button"))));
+                            webDriver.findElementByXPath(Homepage.getProperty("page.myaccount.moveAllProduct.button")).click();
+                            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.myaccount.moveToStandardList"))));
+                            webDriver.findElementByXPath(Homepage.getProperty("page.myaccount.moveToStandardList")).click();
+                            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Homepage.getProperty("page.myaccount.moveToStandardList"))));
+                            wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.myaccount.selectAllProduct.button"))));
+                            webDriver.findElementByXPath(Homepage.getProperty("page.myaccount.selectAllProduct.button")).click();
+                            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.myaccount.greenCheckMarkBoxes"))));
+                            if (oldAmountOfGreenCheckMarks <= webDriver.findElements(By.xpath(Homepage.getProperty("page.myaccount.greenCheckMarkBoxes"))).size()){
+                                isStandardListFull = true;
+                            }
+
+                            MyPersonalList = webDriver.findElementsByXPath(Homepage.getProperty("page.myaccount.myPersonalList"));
+                            for (WebElement MyPersonalItem : MyPersonalList){
+                                if (MyPersonalItem.getText().equals(testPatternList1) ){
+                                    MyPersonalItem.click();
+                                    break;
+                                }
+                            }
+                            if(webDriver.findElements(By.xpath(Homepage.getProperty("page.myaccount.selectAllProduct.button"))).size() == 0){
+                                isTestListEmpty = true;
+                            }
+
+                            if (isStandardListFull == isTestListEmpty){
+                                report.writeToFile(infoMessage+" Selection Move: ","Successfully check Selection Move! Test List is Empty and Standard List is filled ");
+                            }else if (!isStandardListFull){
+                                report.writeToFile(infoMessage+" Selection Move: ","Not successful check, Standard List is not filled ");
+                            }else {
+                                report.writeToFile(infoMessage+" Selection Move: ","Not successful check, Test List is not empty ");
+                            }
+
+                            ChangeCheckBox.adjustStyle(true,"complete",selectionOnList);
+                            report.writeToFile(infoMessage, "Complete");
+
+
+                            try{
+
+                                //Delete First created List!
+                                MyPersonalList = webDriver.findElementsByXPath(Homepage.getProperty("page.myaccount.myPersonalList"));
+                                int foundItemAtIndex = 0;
+
+                                for (int i = 0 ; i < MyPersonalList.size() ; i++ ){
+                                    if (MyPersonalList.get(i).getText().equals(testPatternList1) ){
+                                        if (i == 0){
+                                            i = 1;
+                                        }
+                                        foundItemAtIndex = (i-1);
+                                    }
+                                }
+
+                                wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.myaccount.editListIcon"))));
+                                MyPersonalList = webDriver.findElementsByXPath(Homepage.getProperty("page.myaccount.editListIcon"));
+                                MyPersonalList.get(foundItemAtIndex).click();
+                                MyPersonalList = webDriver.findElementsByXPath(Homepage.getProperty("page.myaccount.deleteList"));
+                                MyPersonalList.get(foundItemAtIndex).click();
+                                wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.myaccount.modalDialogBox"))));
+                                webDriver.findElementByXPath(Homepage.getProperty("page.myaccount.modalSaveButton")).click();
+                                wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.myaccount.modalConfirmToast"))));
+                                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Homepage.getProperty("page.myaccount.modalConfirmToast"))));
+
+                                //Delete Second created List!
+
+                                MyPersonalList = webDriver.findElementsByXPath(Homepage.getProperty("page.myaccount.myPersonalList"));
+                                foundItemAtIndex = 0;
+
+                                for (int i = 0 ; i < MyPersonalList.size() ; i++ ){
+                                    if (MyPersonalList.get(i).getText().equals(testPatternList2) ){
+                                        if (i == 0){
+                                            i = 1;
+                                        }
+                                        foundItemAtIndex = (i-1);
+                                    }
+                                }
+
+                                wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.myaccount.editListIcon"))));
+                                MyPersonalList = webDriver.findElementsByXPath(Homepage.getProperty("page.myaccount.editListIcon"));
+                                MyPersonalList.get(foundItemAtIndex).click();
+                                MyPersonalList = webDriver.findElementsByXPath(Homepage.getProperty("page.myaccount.deleteList"));
+                                MyPersonalList.get(foundItemAtIndex).click();
+                                wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.myaccount.modalDialogBox"))));
+                                webDriver.findElementByXPath(Homepage.getProperty("page.myaccount.modalSaveButton")).click();
+                                wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.myaccount.modalConfirmToast"))));
+                                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Homepage.getProperty("page.myaccount.modalConfirmToast"))));
+
+                                report.writeToFile(infoMessage, "(Deleted all created lists too! )");
+
+                            }catch (Exception noCleanUp){
+                                webDriver.navigate().to(inputSearch.getText().trim());
+                                report.writeToFile(infoMessage, "Couldn't delete all created Lists");
+                                noCleanUp.printStackTrace();
+                            }
+
+                        }catch (Exception noSelectionMove){
+                            ChangeCheckBox.adjustStyle(true,"nope",selectionOnList);
+                            webDriver.navigate().to(inputSearch.getText().trim());
+                            report.writeToFile(infoMessage, "Couldn't move items from Favorite Lists to another List");
+                            noSelectionMove.printStackTrace();
+                        }
                     }catch (Exception noGreenCheckMark){
                         ChangeCheckBox.adjustStyle(true,"nope",selectionOnList);
                         webDriver.navigate().to(inputSearch.getText().trim());
