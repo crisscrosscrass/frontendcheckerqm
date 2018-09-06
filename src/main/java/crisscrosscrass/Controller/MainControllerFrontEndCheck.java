@@ -132,23 +132,14 @@ public class MainControllerFrontEndCheck implements Serializable{
         //update Tabs on Frontend
         updateCheckerTabs();
         //check if Properties File is available if yes, load data into Input Fields
-        File configSettings = new File("temp//UserSettings.properties");
-        if (!configSettings.exists()) {
+        File file = new File("temp//UserSettings.properties");
+        if (!file.exists()) {
             copyUserSettingFiles();
         }
-        String location = System.getProperty("user.dir");
-        location = location.replace("\\","//");
-        location += "//temp//";
+        //load userInputData into Properties
         Properties userData = null;
-        try{
-            FileReader reader = new FileReader(location+"UserSettings.properties");
-            userData = new Properties();
-            userData.load(reader);
-        } catch (FileNotFoundException noFileFound) {
-            noFileFound.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        ConfigSettings configSettingsReader = new ConfigSettings();
+        userData = configSettingsReader.readConfigSettings(userData);
         inputSearch.setText(userData.getProperty("inputSearch"));
         inputEmailAdress.setText(userData.getProperty("inputEmailAdress"));
         inputTextSearchAndSuggestions.setText(userData.getProperty("inputTextSearchAndSuggestions"));
@@ -160,7 +151,6 @@ public class MainControllerFrontEndCheck implements Serializable{
         inputLucenePage.setText(userData.getProperty("inputLucenePage"));
         inputAccountEmail.setText(userData.getProperty("inputAccountEmail"));
         inputAccountPassword.setText(userData.getProperty("inputAccountPassword"));
-
 
         //opening Menu in User Interface
         Platform.runLater(() -> settingTitledPane.setExpanded(true));

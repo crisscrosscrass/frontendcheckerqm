@@ -1,8 +1,6 @@
 package crisscrosscrass.Tasks;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.Properties;
 
 public class ConfigSettings {
@@ -29,7 +27,19 @@ public class ConfigSettings {
 
     }
 
-    public void readConfigSettings(){
-        
+    public Properties readConfigSettings(Properties properties){
+        try{
+            String location = System.getProperty("user.dir");
+            location = location.replace("\\","//");
+            location += "//temp//";
+            FileReader reader = new FileReader(location+"UserSettings.properties");
+            properties = new Properties();
+            properties.load(reader);
+        } catch (FileNotFoundException noFileFound) {
+            noFileFound.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return properties;
     }
 }
