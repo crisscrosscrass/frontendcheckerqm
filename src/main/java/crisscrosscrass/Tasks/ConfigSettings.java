@@ -27,16 +27,14 @@ public class ConfigSettings {
 
     }
 
-    public Properties readConfigSettings(Properties properties){
+    public Properties readConfigSettings(){
+        Properties properties = new Properties();
         try{
             String location = System.getProperty("user.dir");
             location = location.replace("\\","//");
             location += "//temp//";
             FileReader reader = new FileReader(location+"UserSettings.properties");
-            properties = new Properties();
             properties.load(reader);
-        } catch (FileNotFoundException noFileFound) {
-            noFileFound.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }

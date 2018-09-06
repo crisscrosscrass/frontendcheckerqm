@@ -39,7 +39,6 @@ public class AnimationObject {
                     fadeTransition.play();
                     transition.play();
                     transition.setOnFinished(event2 -> {
-                        System.out.println("some random code will happen here...");
                         transition.setDuration(Duration.seconds(1));
                         fadeTransition.setDuration(Duration.seconds(1));
                         transition.setToY(0);
@@ -48,15 +47,12 @@ public class AnimationObject {
                         fadeTransition.play();
                         transition.play();
                         transition.setOnFinished(finisher -> {
-                            System.out.println("finally done...");
                             transition.stop();
                             fadeTransition.stop();
                         });
                     });
                 });
                 new Thread(sleeper).start();
-
-
                 return null;
             }
         };

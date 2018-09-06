@@ -22,7 +22,6 @@ public class ReportWindowController {
 
     @FXML
     public void initialize() {
-        System.out.println("MainControllerFrontEndCheck launched!");
         runReport();
         //SlideShow();
     }

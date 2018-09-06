@@ -23,6 +23,7 @@ import javafx.scene.text.Text;
 
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Window;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -34,6 +35,8 @@ import java.net.URL;
 import java.util.Properties;
 
 public class MainControllerFrontEndCheck implements Serializable{
+    final static Logger logger = Logger.getRootLogger();
+
     // Basic Settings
     @FXML Button startwebdriver;
     //Filter Settings
@@ -117,6 +120,7 @@ public class MainControllerFrontEndCheck implements Serializable{
 
     @FXML
     public void initialize() {
+        logger.info( "Main Controller launched!" );
         //add Listener to Settings
         settingHomepage.setOnAction(event -> updateCheckerTabs());
         settingGridPage.setOnAction(event -> updateCheckerTabs());
@@ -137,9 +141,8 @@ public class MainControllerFrontEndCheck implements Serializable{
             copyUserSettingFiles();
         }
         //load userInputData into Properties
-        Properties userData = null;
         ConfigSettings configSettingsReader = new ConfigSettings();
-        userData = configSettingsReader.readConfigSettings(userData);
+        Properties userData = configSettingsReader.readConfigSettings();
         inputSearch.setText(userData.getProperty("inputSearch"));
         inputEmailAdress.setText(userData.getProperty("inputEmailAdress"));
         inputTextSearchAndSuggestions.setText(userData.getProperty("inputTextSearchAndSuggestions"));
@@ -233,7 +236,7 @@ public class MainControllerFrontEndCheck implements Serializable{
 
     @FXML
     public void startRealAction() {
-        System.out.println("Start Engine...");
+        logger.info("Start Engine...");
         Platform.runLater(() -> {
 
                     progressIndicator.setProgress(-1);
@@ -286,7 +289,7 @@ public class MainControllerFrontEndCheck implements Serializable{
                 // * detect if Ressources are available
                 File webdriverFile = new File("temp//chromedriver.exe");
                 if (!webdriverFile.exists()) {
-                    System.out.println("Webdriver not exist");
+                    logger.info("Webdriver not exist, create webdriverFile");
                     copyFiles();
                 }
 
@@ -325,7 +328,7 @@ public class MainControllerFrontEndCheck implements Serializable{
                     webDriver.navigate().to(inputSearch.getText().trim());
                     long finish = System.currentTimeMillis();
                     long totalTime = finish - start;
-                    System.out.println("Total Time for page load - "+totalTime);
+                    logger.info("Total Time for page load - "+totalTime);
                     report.writeToFile("Checking Website: ", inputSearch.getText().trim());
                     report.writeToFile("=================================", "");
                     if (!tabHomepage.isDisable()){
@@ -506,7 +509,7 @@ public class MainControllerFrontEndCheck implements Serializable{
             outputPlace.getChildren().addAll(link);
             progressIndicator.setProgress(100);
             changeButtonText();
-            System.out.println("Process Finished");
+            logger.info("All process to checkes are finished");
         }));
     }
 
