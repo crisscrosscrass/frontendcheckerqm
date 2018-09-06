@@ -2,6 +2,7 @@ package crisscrosscrass.Controller;
 
 import crisscrosscrass.Tasks.AnimationObject;
 import crisscrosscrass.Main;
+import crisscrosscrass.Tasks.ConfigSettings;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -96,26 +97,8 @@ public class SplashFXMLController implements Initializable {
                                 properties.setProperty("inputLucenePage",controller.inputLucenePage.getText());
                                 properties.setProperty("inputAccountEmail",controller.inputAccountEmail.getText());
                                 properties.setProperty("inputAccountPassword",controller.inputAccountPassword.getText());
-
-                                String location = System.getProperty("user.dir");
-                                location = location.replace("\\","//");
-                                location += "//temp//";
-                                FileWriter writer = null;
-                                try {
-                                    writer = new FileWriter(location+"UserSettings.properties");
-                                    properties.store(writer,System.getProperty("user.name"));
-                                } catch (IOException noWritter) {
-                                    noWritter.printStackTrace();
-                                }finally {
-                                    if (writer != null){
-                                        try{
-                                            writer.close();
-                                        }catch (Exception notClosed){
-                                            notClosed.printStackTrace();
-                                        }
-                                    }
-                                }
-
+                                ConfigSettings configSettingsOnClose = new ConfigSettings();
+                                configSettingsOnClose.saveConfigSettings(properties);
                             }
 
                             closeProgram();

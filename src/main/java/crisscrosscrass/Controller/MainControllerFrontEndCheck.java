@@ -34,7 +34,6 @@ import java.net.URL;
 import java.util.Properties;
 
 public class MainControllerFrontEndCheck implements Serializable{
-
     // Basic Settings
     @FXML Button startwebdriver;
     //Filter Settings
@@ -64,7 +63,6 @@ public class MainControllerFrontEndCheck implements Serializable{
     @FXML TextField inputEmailAdress;
     @FXML TextField inputTextSearchAndSuggestions;
     @FXML TextField inputImprintURL;
-    @FXML TextField inputTermsOfUseURL;
     @FXML TextField inputGridPageURL;
     @FXML TextField inputGridPageKeyword;
     @FXML TextField inputGridPageURLWithWindows;
@@ -119,8 +117,6 @@ public class MainControllerFrontEndCheck implements Serializable{
 
     @FXML
     public void initialize() {
-        System.out.println("FrontendCheckController launched!");
-
         //add Listener to Settings
         settingHomepage.setOnAction(event -> updateCheckerTabs());
         settingGridPage.setOnAction(event -> updateCheckerTabs());
@@ -133,16 +129,13 @@ public class MainControllerFrontEndCheck implements Serializable{
         settingImageGrouping.setOnAction(event -> updateCheckerTabs());
         settingFavoritePage.setOnAction(event -> updateCheckerTabs());
         settingPartnerShopPage.setOnAction(event -> updateCheckerTabs());
-
         //update Tabs on Frontend
         updateCheckerTabs();
-
         //check if Properties File is available if yes, load data into Input Fields
         File configSettings = new File("temp//UserSettings.properties");
         if (!configSettings.exists()) {
             copyUserSettingFiles();
         }
-
         String location = System.getProperty("user.dir");
         location = location.replace("\\","//");
         location += "//temp//";
@@ -346,24 +339,20 @@ public class MainControllerFrontEndCheck implements Serializable{
                     report.writeToFile("=================================", "");
                     if (!tabHomepage.isDisable()){
                         tabPane.getSelectionModel().select(tabHomepage);
-                        //setting up PieChart
-
                         HomepageTest homepageTest = new HomepageTest();
-                        //homepageTest.checkingCategories(webDriver,report,frontendHomepageController.checkCategoryLinksLeftSideMenu,statusInfo,inputSearch, Homepage);
-                        //homepageTest.checkingShopOfTheWeek(webDriver,report,frontendHomepageController.checkLogoFromShopOfTheWeek,statusInfo,inputSearch, Homepage);
-                        //homepageTest.checkingShopOfTheWeekCategories(webDriver,report,frontendHomepageController.checkCategoryLinksFromShopOfTheWeek,statusInfo,inputSearch, Homepage);
-                        //homepageTest.checkingNewsletterBanner(webDriver,report,frontendHomepageController.checkNewsletterBannerFunctionality,statusInfo,inputSearch,inputEmailAdress, Homepage);
-                        //homepageTest.checkingNewsletterPopUp(webDriver,report,frontendHomepageController.checkNewsletterPopUp,statusInfo,inputSearch, Homepage);
-                        //homepageTest.checkingNewsletterPopUpFunctionality(webDriver,report,js,frontendHomepageController.checkNewsletterPopUpFunctionality,statusInfo,inputSearch,inputEmailAdress, Homepage);
-                        //homepageTest.checkingFooterLinks(webDriver,report, frontendHomepageController.checkFooterLinks,statusInfo,inputSearch, Homepage);
-                        //homepageTest.checkingSearchAndSuggestions(webDriver,report, frontendHomepageController.checkTextSearchAndSuggestions,inputTextSearchAndSuggestions,statusInfo,inputSearch, Homepage);
-                        //homepageTest.checkingFeedbackPopUp(webDriver,report, frontendHomepageController.checkFeedbackPopUp, statusInfo,inputSearch, Homepage);
-                        //homepageTest.checkingPrivacyPopUp(webDriver,report, frontendHomepageController.checkPrivacyPopUp, statusInfo,inputSearch, Homepage);
+                        homepageTest.checkingCategories(webDriver,report,frontendHomepageController.checkCategoryLinksLeftSideMenu,statusInfo,inputSearch, Homepage);
+                        homepageTest.checkingShopOfTheWeek(webDriver,report,frontendHomepageController.checkLogoFromShopOfTheWeek,statusInfo,inputSearch, Homepage);
+                        homepageTest.checkingShopOfTheWeekCategories(webDriver,report,frontendHomepageController.checkCategoryLinksFromShopOfTheWeek,statusInfo,inputSearch, Homepage);
+                        homepageTest.checkingNewsletterBanner(webDriver,report,frontendHomepageController.checkNewsletterBannerFunctionality,statusInfo,inputSearch,inputEmailAdress, Homepage);
+                        homepageTest.checkingNewsletterPopUp(webDriver,report,frontendHomepageController.checkNewsletterPopUp,statusInfo,inputSearch, Homepage);
+                        homepageTest.checkingNewsletterPopUpFunctionality(webDriver,report,js,frontendHomepageController.checkNewsletterPopUpFunctionality,statusInfo,inputSearch,inputEmailAdress, Homepage);
+                        homepageTest.checkingFooterLinks(webDriver,report, frontendHomepageController.checkFooterLinks,statusInfo,inputSearch, Homepage);
+                        homepageTest.checkingSearchAndSuggestions(webDriver,report, frontendHomepageController.checkTextSearchAndSuggestions,inputTextSearchAndSuggestions,statusInfo,inputSearch, Homepage);
+                        homepageTest.checkingFeedbackPopUp(webDriver,report, frontendHomepageController.checkFeedbackPopUp, statusInfo,inputSearch, Homepage);
+                        homepageTest.checkingPrivacyPopUp(webDriver,report, frontendHomepageController.checkPrivacyPopUp, statusInfo,inputSearch, Homepage);
                         homepageTest.checkingImprint(webDriver,report, frontendHomepageController.checkImprint, statusInfo,inputImprintURL, Homepage);
-
-
+                        //setting up PieChart
                         //updateDataViaPieChart();
-
                     }
                     if (!tabGridPage.isDisable()){
                         tabPane.getSelectionModel().select(tabGridPage);

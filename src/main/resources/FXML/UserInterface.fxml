@@ -51,12 +51,6 @@
                         <TextField fx:id="inputImprintURL" focusTraversable="false" prefWidth="300.0" text="https://www.ladenzeile.de/impressum.html" />
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER_RIGHT" layoutX="21.0" layoutY="71.0">
-                     <children>
-                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Terms of Use URL" />
-                        <TextField fx:id="inputTermsOfUseURL" focusTraversable="false" prefWidth="300.0" text="https://www.ladenzeile.de/nutzungserklaerung.html" />
-                     </children>
-                  </HBox>
                </children>
                <VBox.margin>
                   <Insets />

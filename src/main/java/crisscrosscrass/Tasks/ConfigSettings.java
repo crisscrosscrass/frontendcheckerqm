@@ -7,17 +7,29 @@ import java.util.Properties;
 
 public class ConfigSettings {
 
-    public void createConfigSettingstFile(String inputSearch) throws IOException {
+    public void saveConfigSettings(Properties properties) {
         String location = System.getProperty("user.dir");
         location = location.replace("\\","//");
         location += "//temp//";
+        FileWriter writer = null;
+        try {
+            writer = new FileWriter(location+"UserSettings.properties");
+            properties.store(writer,System.getProperty("user.name"));
+        } catch (IOException noWritter) {
+            noWritter.printStackTrace();
+        }finally {
+            if (writer != null){
+                try{
+                    writer.close();
+                }catch (Exception notClosed){
+                    notClosed.printStackTrace();
+                }
+            }
+        }
 
-        //File reportFile = new File(location+"report.txt");
+    }
 
-        Properties properties = new Properties();
-        properties.setProperty("inputSearch",inputSearch);
-        FileWriter writer = new FileWriter(location+"ConfigSettings.properties");
-        properties.store(writer,"Author: Crisscrosscrass");
-        writer.close();
+    public void readConfigSettings(){
+        
     }
 }
