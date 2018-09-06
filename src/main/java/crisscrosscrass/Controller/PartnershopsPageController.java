@@ -5,4 +5,6 @@ import javafx.fxml.FXML;
 
 public class PartnershopsPageController {
     @FXML JFXCheckBox GoToTopButton;
+    @FXML JFXCheckBox BecomePartnerPopUp;
+    @FXML JFXCheckBox SortingReviews;
 }
