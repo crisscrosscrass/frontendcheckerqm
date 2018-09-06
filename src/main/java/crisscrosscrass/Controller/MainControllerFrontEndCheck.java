@@ -151,6 +151,7 @@ public class MainControllerFrontEndCheck implements Serializable{
         inputLucenePage.setText(userData.getProperty("inputLucenePage"));
         inputAccountEmail.setText(userData.getProperty("inputAccountEmail"));
         inputAccountPassword.setText(userData.getProperty("inputAccountPassword"));
+        inputPartnerShopPageURL.setText(userData.getProperty("inputPartnerShopPageURL"));
 
         //opening Menu in User Interface
         Platform.runLater(() -> settingTitledPane.setExpanded(true));
@@ -531,13 +532,13 @@ public class MainControllerFrontEndCheck implements Serializable{
     @FXML
     private void copyFiles() {
         CopyFiles bringit = new CopyFiles();
-        bringit.copyFileThere();
+        bringit.copyChromeDriverFile();
 
     }
     @FXML
     private void copyUserSettingFiles() {
         CopyFiles bringit = new CopyFiles();
-        bringit.CopyUserSettingsThere();
+        bringit.copyUserSettings();
 
     }
 

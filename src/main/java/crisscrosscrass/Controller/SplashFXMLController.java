@@ -84,7 +84,6 @@ public class SplashFXMLController implements Initializable {
                             System.out.println("Closing");
                             File configSettings = new File("temp//UserSettings.properties");
                             if (configSettings.exists()) {
-
                                 Properties properties = new Properties();
                                 properties.setProperty("inputSearch",controller.inputSearch.getText());
                                 properties.setProperty("inputEmailAdress",controller.inputEmailAdress.getText());
@@ -97,10 +96,10 @@ public class SplashFXMLController implements Initializable {
                                 properties.setProperty("inputLucenePage",controller.inputLucenePage.getText());
                                 properties.setProperty("inputAccountEmail",controller.inputAccountEmail.getText());
                                 properties.setProperty("inputAccountPassword",controller.inputAccountPassword.getText());
+                                properties.setProperty("inputPartnerShopPageURL",controller.inputPartnerShopPageURL.getText());
                                 ConfigSettings configSettingsOnClose = new ConfigSettings();
                                 configSettingsOnClose.saveConfigSettings(properties);
                             }
-
                             closeProgram();
                         });
 
