@@ -35,7 +35,7 @@ import java.net.URL;
 import java.util.Properties;
 
 public class MainControllerFrontEndCheck implements Serializable{
-    final static Logger logger = Logger.getRootLogger();
+    final static Logger logger = Logger.getLogger(MainControllerFrontEndCheck.class);
 
     // Basic Settings
     @FXML Button startwebdriver;
@@ -424,19 +424,18 @@ public class MainControllerFrontEndCheck implements Serializable{
                         }catch (Exception noLucenePageWorking){
                             noLucenePageWorking.printStackTrace();
                         }
-
                     }
                     if (!tabPartnerShopPage.isDisable()){
                         try{
                             tabPane.getSelectionModel().select(tabPartnerShopPage);
                             PartnerShopsPageTest partnerShopsPageTest = new PartnerShopsPageTest();
-                            partnerShopsPageTest.checkingGoToTopButton(webDriver,report,js,partnershopsPageController.GoToTopButton,statusInfo,inputPartnerShopPageURL, Homepage);
-                            partnerShopsPageTest.checkingBecomePartnerPopUp(webDriver,report,js,partnershopsPageController.BecomePartnerPopUp,statusInfo,inputPartnerShopPageURL, Homepage);
-                            partnerShopsPageTest.checkingSortingReviews(webDriver,report,js,partnershopsPageController.SortingReviews,statusInfo,inputPartnerShopPageURL, Homepage);
+                            //partnerShopsPageTest.checkingGoToTopButton(webDriver,report,js,partnershopsPageController.GoToTopButton,statusInfo,inputPartnerShopPageURL, Homepage);
+                            //partnerShopsPageTest.checkingBecomePartnerPopUp(webDriver,report,js,partnershopsPageController.BecomePartnerPopUp,statusInfo,inputPartnerShopPageURL, Homepage);
+                            //partnerShopsPageTest.checkingSortingReviews(webDriver,report,js,partnershopsPageController.SortingReviews,statusInfo,inputPartnerShopPageURL, Homepage);
+                            partnerShopsPageTest.checkingShopLinkName(webDriver,report,js,partnershopsPageController.ShopLinkName,statusInfo,inputPartnerShopPageURL, Homepage);
                         }catch (Exception noLucenePageWorking){
                             noLucenePageWorking.printStackTrace();
                         }
-
                     }
 
 

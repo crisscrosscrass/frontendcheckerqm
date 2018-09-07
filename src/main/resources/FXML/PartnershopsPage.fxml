@@ -7,6 +7,7 @@
     <children>
         <JFXCheckBox fx:id="GoToTopButton" text="Go to Top Button" />
         <JFXCheckBox fx:id="BecomePartnerPopUp" text="Become Partner Pop Up" />
-        <JFXCheckBox fx:id="SortingReviews" text="Shop Link - Name / Logo" />
+        <JFXCheckBox fx:id="SortingReviews" text="Sorting- Best/Number Review" />
+        <JFXCheckBox fx:id="ShopLinkName" text="Shop Link - Name / Logo" />
     </children>
 </VBox>
