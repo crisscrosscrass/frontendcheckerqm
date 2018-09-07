@@ -1,17 +1,17 @@
 package crisscrosscrass.Tasks;
 
+import crisscrosscrass.Tests.PartnerShopsPageTest;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class FilterButtonCheckViaJavaScript {
-
+    final static Logger logger = Logger.getLogger(PartnerShopsPageTest.class);
     static boolean answer = false;
 
-
     public static boolean pressFilterButton(WebDriver webDriver, JavascriptExecutor js, String xpathString){
-
         try{
             WebElement elementTestClick = webDriver.findElement(By.xpath(xpathString));
             js.executeScript("arguments[0].click();", elementTestClick);
@@ -20,13 +20,10 @@ public class FilterButtonCheckViaJavaScript {
                 js.executeScript("window.scrollBy(0,100)");
             }
             answer = true;
-
         }catch (Exception testclickscript){
-            System.out.println("Javascript Click could find element");
-
+            logger.error("Javascript Click couldn't find any element");
             answer = false;
         }
-
         return answer;
     }
 

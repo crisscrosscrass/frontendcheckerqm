@@ -8,4 +8,6 @@ public class PartnershopsPageController {
     @FXML JFXCheckBox BecomePartnerPopUp;
     @FXML JFXCheckBox SortingReviews;
     @FXML JFXCheckBox ShopLinkName;
+    @FXML JFXCheckBox ShopLinkLogo;
+    @FXML JFXCheckBox ShopLinkReview;
 }

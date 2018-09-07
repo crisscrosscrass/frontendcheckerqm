@@ -1,7 +1,7 @@
 ///// JAVA TEMPLATE /////
-public void checkingGoToTopButton(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox GoToTopButton, Text statusInfo, TextField inputGridPageURL, Properties Homepage, JFXTextField inputAccountEmail, JFXPasswordField inputAccountPassword){
-        final String infoMessage = "Checking Go to Top Button";
-        ChangeCheckBox.adjustStyle(false,"progress",GoToTopButton);
+public void checkingShopLinkLogo(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox ShopLinkName, Text statusInfo, TextField inputPartnerShopPageURL, Properties Homepage){
+        final String infoMessage = "Checking Shop Link";
+        ChangeCheckBox.adjustStyle(false,"progress",ShopLinkName);
         Platform.runLater(() -> {
             statusInfo.setText(""+infoMessage+"...");
         });
@@ -10,30 +10,25 @@ public void checkingGoToTopButton(ChromeDriver webDriver, Report report, Javascr
             ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
             webDriver.switchTo().window(tabs.get(0));
             try {
-                webDriver.navigate().to(inputGridPageURL.getText().trim());
+                webDriver.navigate().to(inputPartnerShopPageURL.getText().trim());
                 WebDriverWait wait = new WebDriverWait(webDriver, 10);
                 try{
-
-                    ChangeCheckBox.adjustStyle(true,"complete",GoToTopButton);
-                    webDriver.navigate().to(inputGridPageURL.getText().trim());
-                    report.writeToFile(infoMessage, "Complete");
-
-
+                    // ToDo.....
                 }catch (Exception gridPageIssue){
-                    ChangeCheckBox.adjustStyle(true,"nope",GoToTopButton);
-                    webDriver.navigate().to(inputGridPageURL.getText().trim());
-                    report.writeToFile(infoMessage, "Couldn't detect Favorite Lists");
+                    ChangeCheckBox.adjustStyle(true,"nope",ShopLinkName);
+                    webDriver.navigate().to(inputPartnerShopPageURL.getText().trim());
+                    report.writeToFile(infoMessage, "Couldn't detect \"Sorting\" Button");
                     gridPageIssue.printStackTrace();
                 }
             }catch (Exception noRequestedSiteFound){
-                ChangeCheckBox.adjustStyle(true,"nope",GoToTopButton);
-                webDriver.navigate().to(inputGridPageURL.getText().trim());
+                ChangeCheckBox.adjustStyle(true,"nope",ShopLinkName);
+                webDriver.navigate().to(inputPartnerShopPageURL.getText().trim());
                 report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
                 noRequestedSiteFound.printStackTrace();
             }
         }catch (Exception noBrowserWorking){
-            ChangeCheckBox.adjustStyle(true,"nope",GoToTopButton);
-            webDriver.navigate().to(inputGridPageURL.getText().trim());
+            ChangeCheckBox.adjustStyle(true,"nope",ShopLinkName);
+            webDriver.navigate().to(inputPartnerShopPageURL.getText().trim());
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
             noBrowserWorking.printStackTrace();
         }

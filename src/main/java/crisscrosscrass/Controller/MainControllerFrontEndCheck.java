@@ -120,7 +120,7 @@ public class MainControllerFrontEndCheck implements Serializable{
 
     @FXML
     public void initialize() {
-        logger.info( "Main Controller launched!" );
+        logger.info( "Main Program started!" );
         //add Listener to Settings
         settingHomepage.setOnAction(event -> updateCheckerTabs());
         settingGridPage.setOnAction(event -> updateCheckerTabs());
@@ -408,7 +408,6 @@ public class MainControllerFrontEndCheck implements Serializable{
                             ImageGroupingPageTest imageGroupingPageTest = new ImageGroupingPageTest();
                             imageGroupingPageTest.checkingImageGroupingClickOut(webDriver,report,js,imageGroupingController.ImageGroupingClickOut,inputLucenePage,statusInfo,inputGridPageURL, Homepage);
                             imageGroupingPageTest.checkingDetailPageOfOffer(webDriver,report,js,imageGroupingController.DetailPageOfOffer,inputLucenePage,statusInfo,inputGridPageURL, Homepage);
-
                         }catch (Exception noLucenePageWorking){
                             noLucenePageWorking.printStackTrace();
                         }
@@ -421,8 +420,8 @@ public class MainControllerFrontEndCheck implements Serializable{
                             favoritePageTest.checkingPersonalListTest(webDriver,report,js,favoritePageController.PersonalList, statusInfo,inputSearch, Homepage, inputAccountEmail, inputAccountPassword);
                             favoritePageTest.checkingApplySortingOnList(webDriver,report,js,favoritePageController.SortingOnList,statusInfo,inputGridPageURL, Homepage, inputAccountEmail, inputAccountPassword);
                             favoritePageTest.checkingSelectionOnList(webDriver,report,js,favoritePageController.SelectionOnList,statusInfo,inputSearch, Homepage, inputAccountEmail, inputAccountPassword);
-                        }catch (Exception noLucenePageWorking){
-                            noLucenePageWorking.printStackTrace();
+                        }catch (Exception noFavoritePageWorking){
+                            noFavoritePageWorking.printStackTrace();
                         }
                     }
                     if (!tabPartnerShopPage.isDisable()){
@@ -432,9 +431,11 @@ public class MainControllerFrontEndCheck implements Serializable{
                             //partnerShopsPageTest.checkingGoToTopButton(webDriver,report,js,partnershopsPageController.GoToTopButton,statusInfo,inputPartnerShopPageURL, Homepage);
                             //partnerShopsPageTest.checkingBecomePartnerPopUp(webDriver,report,js,partnershopsPageController.BecomePartnerPopUp,statusInfo,inputPartnerShopPageURL, Homepage);
                             //partnerShopsPageTest.checkingSortingReviews(webDriver,report,js,partnershopsPageController.SortingReviews,statusInfo,inputPartnerShopPageURL, Homepage);
-                            partnerShopsPageTest.checkingShopLinkName(webDriver,report,js,partnershopsPageController.ShopLinkName,statusInfo,inputPartnerShopPageURL, Homepage);
-                        }catch (Exception noLucenePageWorking){
-                            noLucenePageWorking.printStackTrace();
+                            //partnerShopsPageTest.checkingShopLinkName(webDriver,report,js,partnershopsPageController.ShopLinkName,statusInfo,inputPartnerShopPageURL, Homepage);
+                            //partnerShopsPageTest.checkingShopLinkLogo(webDriver,report,js,partnershopsPageController.ShopLinkLogo,statusInfo,inputPartnerShopPageURL, Homepage);
+                            partnerShopsPageTest.checkingShopReview(webDriver,report,js,partnershopsPageController.ShopLinkReview,statusInfo,inputPartnerShopPageURL, Homepage);
+                        }catch (Exception noPartnerShopPageWorking){
+                            noPartnerShopPageWorking.printStackTrace();
                         }
                     }
 

@@ -6,6 +6,7 @@ import com.jfoenix.controls.JFXTextField;
 import crisscrosscrass.Controller.MainControllerFrontEndCheck;
 import crisscrosscrass.Tasks.ChangeCheckBox;
 import crisscrosscrass.Tasks.Report;
+import crisscrosscrass.Tasks.ScreenshotViaWebDriver;
 import javafx.application.Platform;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
@@ -21,6 +22,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class PartnerShopsPageTest {
     final static Logger logger = Logger.getLogger(PartnerShopsPageTest.class);
@@ -44,7 +46,7 @@ public class PartnerShopsPageTest {
                     ((JavascriptExecutor)webDriver).executeScript("return window.title;");
                     ((JavascriptExecutor)webDriver).executeScript("window.scrollBy(0,"+(hoverItem.getY())+");");
                     wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.main.totopbutton"))));
-                    webDriver.findElementByXPath(Homepage.getProperty("page.main.totopbutton"));
+                    webDriver.findElementByXPath(Homepage.getProperty("page.main.totopbutton")).click();
                     try {
                         webDriver.findElementByXPath(Homepage.getProperty("partnerpage.shops.h3")).click();
                         ChangeCheckBox.adjustStyle(true,"complete",GoToTopButton);
@@ -171,8 +173,8 @@ public class PartnerShopsPageTest {
                     ((JavascriptExecutor)webDriver).executeScript("return window.title;");
                     ((JavascriptExecutor)webDriver).executeScript("window.scrollBy(0,"+(hoverItem.getY())+");");
                     List<WebElement> ShopRatingCounts = webDriver.findElementsByXPath(Homepage.getProperty("partnerpage.shops.ratingcounts"));
-                    int FirstShopAmountOfReviews = Integer.parseInt(ShopRatingCounts.get(0).getText().replaceAll("([A-Z]|[a-z]).*","").trim());
-                    int LastShopAmountOfReviews = Integer.parseInt(ShopRatingCounts.get(ShopRatingCounts.size()-1).getText().replaceAll("([A-Z]|[a-z]).*","").trim());
+                    final int FirstShopAmountOfReviews = Integer.parseInt(ShopRatingCounts.get(0).getText().replaceAll("([A-Z]|[a-z]).*","").trim());
+                    final int LastShopAmountOfReviews = Integer.parseInt(ShopRatingCounts.get(ShopRatingCounts.size()-1).getText().replaceAll("([A-Z]|[a-z]).*","").trim());
                     if (FirstShopAmountOfReviews >= LastShopAmountOfReviews){
                         report.writeToFile("Sorting- Number of Reviews", "Successful ! First shop in the list has more reviews ("+FirstShopAmountOfReviews+") than last shop ("+LastShopAmountOfReviews+")");
                         ChangeCheckBox.adjustStyle(true,"complete",SortingReviews);
@@ -204,7 +206,7 @@ public class PartnerShopsPageTest {
     }
 
     public void checkingShopLinkName(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox ShopLinkName, Text statusInfo, TextField inputPartnerShopPageURL, Properties Homepage){
-        final String infoMessage = "Checking Shop Link";
+        final String infoMessage = "Checking Shop Link Name";
         ChangeCheckBox.adjustStyle(false,"progress",ShopLinkName);
         Platform.runLater(() -> {
             statusInfo.setText(""+infoMessage+"...");
@@ -217,12 +219,27 @@ public class PartnerShopsPageTest {
                 webDriver.navigate().to(inputPartnerShopPageURL.getText().trim());
                 WebDriverWait wait = new WebDriverWait(webDriver, 10);
                 try{
-                    //detect all shoplinks
-                    //click on any random shop name
-                    //check if
-
-
-
+                    wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("partnerpage.shops.shoplinknames"))));
+                    List<WebElement> AllShopLinkNames = webDriver.findElementsByXPath(Homepage.getProperty("partnerpage.shops.shoplinknames"));
+                    final int randomSelectedNumber = ThreadLocalRandom.current().nextInt(0, AllShopLinkNames.size() );
+                    Point hoverItem = AllShopLinkNames.get(randomSelectedNumber).getLocation();
+                    ((JavascriptExecutor)webDriver).executeScript("return window.title;");
+                    ((JavascriptExecutor)webDriver).executeScript("window.scrollBy(0,"+(hoverItem.getY())+");");
+                    String selectedShopName = AllShopLinkNames.get(randomSelectedNumber).getText();
+                    AllShopLinkNames.get(randomSelectedNumber).click();
+                    if (webDriver.getTitle().toLowerCase().contains(selectedShopName.toLowerCase())){
+                        ChangeCheckBox.adjustStyle(true,"complete",ShopLinkName);
+                        report.writeToFile(infoMessage, "Successful! User is redirected to page that contains the Shop Name in Page Title");
+                    }else {
+                        ChangeCheckBox.adjustStyle(true,"nope",ShopLinkName);
+                        report.writeToFile(infoMessage, "Not successful! User is redirected to page("+webDriver.getCurrentUrl().toLowerCase().trim()+") that NOT contains the Shop Name("+selectedShopName.toLowerCase()+") in Page Title("+webDriver.getTitle().toLowerCase()+")");
+                        boolean isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver, "checkingShopLinkName.png");
+                        if (isSuccessful){
+                            report.writeToFile(infoMessage, "Screenshot successful!");
+                        }else {
+                            report.writeToFile(infoMessage, "Screenshot not successful!");
+                        }
+                    }
                 }catch (Exception gridPageIssue){
                     ChangeCheckBox.adjustStyle(true,"nope",ShopLinkName);
                     webDriver.navigate().to(inputPartnerShopPageURL.getText().trim());
@@ -244,5 +261,113 @@ public class PartnerShopsPageTest {
 
         report.writeToFile("=================================", "");
 
+    }
+    public void checkingShopLinkLogo(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox ShopLinkLogo, Text statusInfo, TextField inputPartnerShopPageURL, Properties Homepage){
+        final String infoMessage = "Checking Shop Link Logo";
+        ChangeCheckBox.adjustStyle(false,"progress",ShopLinkLogo);
+        Platform.runLater(() -> {
+            statusInfo.setText(""+infoMessage+"...");
+        });
+
+        try {
+            ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
+            webDriver.switchTo().window(tabs.get(0));
+            try {
+                webDriver.navigate().to(inputPartnerShopPageURL.getText().trim());
+                WebDriverWait wait = new WebDriverWait(webDriver, 10);
+                try{
+                    wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(Homepage.getProperty("partnerpage.shops.shoplogos.noplaceholder"))));
+                    List<WebElement> AllShopLogoLinksWithoutPlaceholder = webDriver.findElementsByXPath(Homepage.getProperty("partnerpage.shops.shoplogos.noplaceholder"));
+                    final int randomSelectedNumber = ThreadLocalRandom.current().nextInt(0, AllShopLogoLinksWithoutPlaceholder.size() );
+                    Point hoverItem = AllShopLogoLinksWithoutPlaceholder.get(randomSelectedNumber).getLocation();
+                    ((JavascriptExecutor)webDriver).executeScript("return window.title;");
+                    ((JavascriptExecutor)webDriver).executeScript("window.scrollBy(0,"+(hoverItem.getY())+");");
+                    String LogoURLFromSelectedItem = AllShopLogoLinksWithoutPlaceholder.get(randomSelectedNumber).getAttribute("src");
+                    AllShopLogoLinksWithoutPlaceholder.get(randomSelectedNumber).click();
+                    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.grid.shop.image"))));
+                    if (webDriver.findElementByXPath(Homepage.getProperty("page.grid.shop.image")).getAttribute("src").equals(LogoURLFromSelectedItem)){
+                        ChangeCheckBox.adjustStyle(true,"complete",ShopLinkLogo);
+                        report.writeToFile(infoMessage, "Successful! Logo URL in HP and logo URL on upper left side of redirected page are the same");
+                    }else {
+                        ChangeCheckBox.adjustStyle(true,"nope",ShopLinkLogo);
+                        report.writeToFile(infoMessage, "Not successful! Logo URL in HP and logo URL on upper left side of redirected page are NOT the same");
+                        boolean isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver, "checkingShopLinkLogo.png");
+                        if (isSuccessful){
+                            report.writeToFile(infoMessage, "Screenshot successful!");
+                        }else {
+                            report.writeToFile(infoMessage, "Screenshot not successful!");
+                        }
+                    }
+                }catch (Exception gridPageIssue){
+                    ChangeCheckBox.adjustStyle(true,"nope",ShopLinkLogo);
+                    webDriver.navigate().to(inputPartnerShopPageURL.getText().trim());
+                    report.writeToFile(infoMessage, "Couldn't detect \"Sorting\" Button");
+                    gridPageIssue.printStackTrace();
+                }
+            }catch (Exception noRequestedSiteFound){
+                ChangeCheckBox.adjustStyle(true,"nope",ShopLinkLogo);
+                webDriver.navigate().to(inputPartnerShopPageURL.getText().trim());
+                report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
+                noRequestedSiteFound.printStackTrace();
+            }
+        }catch (Exception noBrowserWorking){
+            ChangeCheckBox.adjustStyle(true,"nope",ShopLinkLogo);
+            webDriver.navigate().to(inputPartnerShopPageURL.getText().trim());
+            report.writeToFile(infoMessage, "unable to check! Browser not responding");
+            noBrowserWorking.printStackTrace();
+        }
+        report.writeToFile("=================================", "");
+    }
+    public void checkingShopReview(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox ShopLinkLogo, Text statusInfo, TextField inputPartnerShopPageURL, Properties Homepage){
+        final String infoMessage = "Checking Shop Link Logo";
+        ChangeCheckBox.adjustStyle(false,"progress",ShopLinkLogo);
+        Platform.runLater(() -> {
+            statusInfo.setText(""+infoMessage+"...");
+        });
+
+        try {
+            ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
+            webDriver.switchTo().window(tabs.get(0));
+            try {
+                webDriver.navigate().to(inputPartnerShopPageURL.getText().trim());
+                WebDriverWait wait = new WebDriverWait(webDriver, 10);
+                try{
+                    //detect all shop review buttons
+                    wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("partnerpage.shops.shopreviews"))));
+                    List<WebElement> AllShopReviews = webDriver.findElementsByXPath(Homepage.getProperty("partnerpage.shops.shopreviews"));
+                    //select on random shop, scroll to it
+                    final int randomSelectedNumber = ThreadLocalRandom.current().nextInt(0, AllShopReviews.size() );
+                    Point hoverItem = AllShopReviews.get(randomSelectedNumber).getLocation();
+                    ((JavascriptExecutor)webDriver).executeScript("return window.title;");
+                    ((JavascriptExecutor)webDriver).executeScript("window.scrollBy(0,"+(hoverItem.getY())+");");
+                    //click on shop review button
+                    AllShopReviews.get(randomSelectedNumber).click();
+                    //check if user is redirected
+                    if (webDriver.getCurrentUrl().contains("review")){
+                        ChangeCheckBox.adjustStyle(true,"complete",ShopLinkLogo);
+                        report.writeToFile(infoMessage, "Successful! User is redirected to a functioning page with the word \"review\" in the URl");
+                    }else {
+                        ChangeCheckBox.adjustStyle(true,"nope",ShopLinkLogo);
+                        report.writeToFile(infoMessage, "Not successful! User is NOT redirected to a functioning page with the word \"review\" in the URl");
+                    }
+                }catch (Exception gridPageIssue){
+                    ChangeCheckBox.adjustStyle(true,"nope",ShopLinkLogo);
+                    webDriver.navigate().to(inputPartnerShopPageURL.getText().trim());
+                    report.writeToFile(infoMessage, "Couldn't detect \"Sorting\" Button");
+                    gridPageIssue.printStackTrace();
+                }
+            }catch (Exception noRequestedSiteFound){
+                ChangeCheckBox.adjustStyle(true,"nope",ShopLinkLogo);
+                webDriver.navigate().to(inputPartnerShopPageURL.getText().trim());
+                report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
+                noRequestedSiteFound.printStackTrace();
+            }
+        }catch (Exception noBrowserWorking){
+            ChangeCheckBox.adjustStyle(true,"nope",ShopLinkLogo);
+            webDriver.navigate().to(inputPartnerShopPageURL.getText().trim());
+            report.writeToFile(infoMessage, "unable to check! Browser not responding");
+            noBrowserWorking.printStackTrace();
+        }
+        report.writeToFile("=================================", "");
     }
 }
