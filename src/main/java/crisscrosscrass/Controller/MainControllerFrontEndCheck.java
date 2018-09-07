@@ -22,16 +22,20 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 import javafx.scene.text.TextAlignment;
+import javafx.stage.FileChooser;
 import javafx.stage.Window;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.*;
 
 
 import java.net.URL;
+import java.util.List;
 import java.util.Properties;
 
 public class MainControllerFrontEndCheck implements Serializable{
@@ -516,8 +520,172 @@ public class MainControllerFrontEndCheck implements Serializable{
     }
 
 
+    //Just for Themeweek! Will be removed once the Themeweek is over
+    @FXML
+    public void LoadFileWithURLs() {
+        FileChooser fileChooser = new FileChooser();
+        File fileWithURLS = fileChooser.showOpenDialog(null);
+        if (fileWithURLS != null){
+
+            Task task = new Task<Object>() {
+                @Override
+                protected Void call() {
+                    startCrawlerCheck();
+                    return null;
+                }
+                private void startCrawlerCheck(){
+                    Platform.runLater(() -> {
+                        progressIndicator.setProgress(-1);
+                    });
+
+                    try {
+                        final Logger logger = Logger.getRootLogger();
+                        // * Load Properties File
+                        String resourceName = "configs/page.properties";
+                        ClassLoader loader = Thread.currentThread().getContextClassLoader();
+                        Properties Homepage = new Properties();
+                        try(InputStream resourceStream = loader.getResourceAsStream(resourceName)) {
+                            Homepage.load(resourceStream);
+                        }catch (Exception nope){
+                            nope.getStackTrace();
+                        }
+                        Report report = new Report();
+                        report.clearWrittenReport();
+
+                        // * Setup up Webdriver
+                        System.setProperty("webdriver.chrome.driver", "temp//chromedriver.exe");
+                        ChromeOptions option = new ChromeOptions();
+                        option.addArguments("disable-infobars");
+                        option.addArguments("start-maximized");
+                        ChromeDriver webDriver = new ChromeDriver(option);
+                        JavascriptExecutor js = webDriver;
+                        WebDriverWait wait = new WebDriverWait(webDriver, 10);
 
 
+
+                        Platform.runLater(() -> {
+                            Window window = mainStage.getScene().getWindow();
+                            window.requestFocus();
+                            statusInfo.setText("Open Maximize Mode...");
+                        });
+                        webDriver.manage().window().maximize();
+                        Platform.runLater(() -> statusInfo.setText("Go to requested Website..."));
+
+                        String fileWithURLLocation = fileWithURLS.getAbsolutePath();
+                        FileReader fileReader = new FileReader(fileWithURLLocation);
+                        BufferedReader bufferedReader = new BufferedReader(fileReader);
+                        String line;
+                        while ( (line = bufferedReader.readLine()) != null){
+                            long start = System.currentTimeMillis();
+                            String StatusUpdate = line;
+                            Platform.runLater(() -> statusInfo.setText(StatusUpdate.toLowerCase().trim()));
+                            webDriver.navigate().to(line.toLowerCase().trim());
+                            long finish = System.currentTimeMillis();
+                            long totalTime = finish - start;
+                            //logger.info(line + " Total Time for page load - " + totalTime);
+                            try{
+                                try{
+                                    //ToDo need to veryfiy URLbefore & URLafter!!!
+                                    if(webDriver.findElements(By.xpath(Homepage.getProperty("page.grid.windows"))).size() > 0){
+                                        //logger.info("provided GridPageURL "+inputGridPageURL.getText()+ " included Windows! Adjusted GridPage to make test happen!");
+                                        webDriver.findElementByXPath(Homepage.getProperty("page.grid.windows.continue")).click();
+                                        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Homepage.getProperty("page.grid.windows.continue"))));
+                                    }
+                                    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.items.info.icon"))));
+                                    wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.items.info.icon"))));
+                                    List<WebElement> ItemsOnGridPage = webDriver.findElementsByXPath(Homepage.getProperty("page.items.info.icon"));
+                                    logger.info(ItemsOnGridPage.size());
+                                    if (ItemsOnGridPage.size() != 0){
+                                        report.writeToFile(line.toLowerCase().trim()+" - YES");
+                                    }else {
+                                        report.writeToFile(line.toLowerCase().trim()+" - NO");
+                                    }
+                                }catch (Exception noPrice){
+                                    try{
+                                        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.items.info.icon"))));
+                                        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.items.info.icon"))));
+                                        List<WebElement> ItemsOnGridPage = webDriver.findElementsByXPath(Homepage.getProperty("page.items.info.icon"));
+                                        logger.info(ItemsOnGridPage.size());
+                                        if (ItemsOnGridPage.size() != 0){
+                                            report.writeToFile(line.toLowerCase().trim()+" - YES");
+                                        }else {
+                                            report.writeToFile(line.toLowerCase().trim()+" - NO");
+                                        }
+                                    }catch (Exception noAtAll){
+                                        report.writeToFile(line.toLowerCase().trim()+" - NO");
+                                        noPrice.printStackTrace();
+                                    }
+                                }
+                            }catch(NoSuchElementException noItemsFound){
+                                report.writeToFile(line.toLowerCase().trim()+" - NO");
+                                noItemsFound.printStackTrace();
+                            }
+
+
+                        }
+                        try {
+                            bufferedReader.close();
+                        }catch (Exception noCloseBufferReader){
+                            noCloseBufferReader.printStackTrace();
+                        }
+                        try {
+                            fileReader.close();
+                        }catch (Exception noCloseFileReader){
+                            noCloseFileReader.printStackTrace();
+                        }
+
+                        webDriver.navigate().to(inputSearch.getText().trim());
+
+                        // close webdriver and clear tasklist
+                        Platform.runLater(() -> statusInfo.setText("Closing Browser..."));
+                        try {
+                            webDriver.close();
+                        }catch (Exception driverClosing){
+                            driverClosing.printStackTrace();
+                        }
+                        try {
+                            webDriver.quit();
+                        }catch (Exception driverQuit){
+                            driverQuit.printStackTrace();
+                        }
+                        try {
+                            Runtime.getRuntime().exec("TASKKILL /F /IM chromedriver.exe");
+                            Runtime.getRuntime().exec("taskkill /im chromedriver.exe /f");
+                        } catch (IOException io) {
+                            io.printStackTrace();
+                        }
+                    } catch (Exception noLoadFileWithURL) {
+                        noLoadFileWithURL.printStackTrace();
+                    }
+                }
+
+            };
+
+            Thread thread = new Thread(task);
+            thread.setDaemon(true);
+            thread.start();
+
+            task.setOnSucceeded(e -> Platform.runLater(() -> {
+                Hyperlink link = new Hyperlink("open Report");
+                link.setOnAction(event -> {
+                    ReportWindow window = new ReportWindow();
+                    try {
+                        window.MyReportWindow();
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
+                });
+                link.setStyle("-fx-font: 24 arial;");
+                link.setTextAlignment(TextAlignment.CENTER);
+                outputPlace.getChildren().addAll(link);
+                progressIndicator.setProgress(100);
+                changeButtonText();
+                logger.info("All process to checkes are finished");
+            }));
+
+        }
+
+    }
     @FXML
     private void changeButtonText() {
         statusInfo.setText("Running complete");

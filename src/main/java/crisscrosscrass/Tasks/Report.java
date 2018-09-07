@@ -30,7 +30,7 @@ public class Report {
         }
         try {
             BufferedWriter buffW = new BufferedWriter(new FileWriter(reportFile,true));
-            buffW.write(ReportMessage+"\r");
+            buffW.write(ReportMessage+"\r\n");
             buffW.close();
             //System.out.println("Written into file");
         } catch (IOException e) {

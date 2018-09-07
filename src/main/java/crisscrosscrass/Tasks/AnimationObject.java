@@ -15,9 +15,6 @@ public class AnimationObject {
             protected Void call() throws InterruptedException {
                 TranslateTransition transition = new TranslateTransition();
                 FadeTransition fadeTransition = new FadeTransition();
-
-                //ImageViewReport.setOpacity(100);
-
                 transition.setDuration(Duration.millis(1));
                 fadeTransition.setDuration(Duration.millis(1));
                 transition.setNode(ImageViewReport);
@@ -56,8 +53,6 @@ public class AnimationObject {
                 return null;
             }
         };
-
-
         Thread thread = new Thread(task);
         thread.setDaemon(true);
         thread.start();
@@ -99,7 +94,6 @@ public class AnimationObject {
                 return null;
             }
         };
-
         Thread thread = new Thread(task);
         thread.setDaemon(true);
         thread.start();
@@ -153,12 +147,8 @@ public class AnimationObject {
                     return null;
                 }
             };
-
-
             Thread thread = new Thread(task);
             thread.setDaemon(true);
             thread.start();
         }
-
-
     }

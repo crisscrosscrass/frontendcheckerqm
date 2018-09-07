@@ -135,12 +135,23 @@
                   <Insets bottom="10.0" top="5.0" />
                </padding>
             </VBox>
-            <HBox alignment="CENTER_RIGHT" layoutX="30.0" layoutY="378.0" style="-fx-border-color: white; -fx-border-radius: 5;">
+            <VBox alignment="CENTER" style="-fx-border-color: white; -fx-border-radius: 5;">
                <children>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Partnershops Page URL" />
-                  <TextField fx:id="inputPartnerShopPageURL" focusTraversable="false" prefWidth="300.0" text="https://www.ladenzeile.de/partner/shops" />
+                  <HBox alignment="CENTER_RIGHT">
+                     <children>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Partnershops Page URL" />
+                        <TextField fx:id="inputPartnerShopPageURL" focusTraversable="false" prefWidth="300.0" text="https://www.ladenzeile.de/partner/shops" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT">
+                     <children>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Shop Search Box" />
+                        <TextField fx:id="inputPartnerShopSearch" focusTraversable="false" prefWidth="300.0" text="bonprix | nike" />
+                     </children>
+                  </HBox>
                </children>
-            </HBox>
+            </VBox>
+            <HBox alignment="CENTER_RIGHT" layoutX="30.0" layoutY="378.0" style="-fx-border-color: white; -fx-border-radius: 5;" />
             <ProgressBar fx:id="progressIndicator" prefWidth="400.0" progress="0.0">
                <VBox.margin>
                   <Insets bottom="10.0" top="20.0" />
@@ -216,6 +227,7 @@
                      </children>
                   </AnchorPane>
                   <HBox fx:id="outputPlace" alignment="CENTER" />
+                  <JFXButton onAction="#LoadFileWithURLs" ripplerFill="WHITE" style="-fx-background-color: #e83062;" text="LoadFileWithURL" textFill="WHITE" />
                </children>
             </VBox>
          </children>

@@ -14,9 +14,7 @@ public class ScreenshotViaWebDriver {
 
     static boolean answer = false;
 
-
     public static boolean printScreen(WebDriver webDriver, String fileName){
-
             String location = System.getProperty("user.dir");
             location = location.replace("\\", "//");
             location += "//temp//";

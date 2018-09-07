@@ -324,7 +324,6 @@ public class PartnerShopsPageTest {
         Platform.runLater(() -> {
             statusInfo.setText(""+infoMessage+"...");
         });
-
         try {
             ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
             webDriver.switchTo().window(tabs.get(0));
@@ -332,17 +331,13 @@ public class PartnerShopsPageTest {
                 webDriver.navigate().to(inputPartnerShopPageURL.getText().trim());
                 WebDriverWait wait = new WebDriverWait(webDriver, 10);
                 try{
-                    //detect all shop review buttons
                     wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("partnerpage.shops.shopreviews"))));
                     List<WebElement> AllShopReviews = webDriver.findElementsByXPath(Homepage.getProperty("partnerpage.shops.shopreviews"));
-                    //select on random shop, scroll to it
                     final int randomSelectedNumber = ThreadLocalRandom.current().nextInt(0, AllShopReviews.size() );
                     Point hoverItem = AllShopReviews.get(randomSelectedNumber).getLocation();
                     ((JavascriptExecutor)webDriver).executeScript("return window.title;");
                     ((JavascriptExecutor)webDriver).executeScript("window.scrollBy(0,"+(hoverItem.getY())+");");
-                    //click on shop review button
                     AllShopReviews.get(randomSelectedNumber).click();
-                    //check if user is redirected
                     if (webDriver.getCurrentUrl().contains("review")){
                         ChangeCheckBox.adjustStyle(true,"complete",ShopLinkLogo);
                         report.writeToFile(infoMessage, "Successful! User is redirected to a functioning page with the word \"review\" in the URl");
