@@ -1,11 +1,13 @@
 package crisscrosscrass.Tasks;
 
+import crisscrosscrass.Tests.PartnerShopsPageTest;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 
 public class FilterButtonCheck {
-
+    final static Logger logger = Logger.getLogger(FilterButtonCheck.class);
     static boolean answer = false;
 
 

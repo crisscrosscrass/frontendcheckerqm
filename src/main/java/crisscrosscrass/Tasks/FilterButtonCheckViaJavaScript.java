@@ -8,7 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class FilterButtonCheckViaJavaScript {
-    final static Logger logger = Logger.getLogger(PartnerShopsPageTest.class);
+    final static Logger logger = Logger.getLogger(FilterButtonCheckViaJavaScript.class);
     static boolean answer = false;
 
     public static boolean pressFilterButton(WebDriver webDriver, JavascriptExecutor js, String xpathString){
