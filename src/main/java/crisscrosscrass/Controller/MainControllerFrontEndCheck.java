@@ -80,6 +80,7 @@ public class MainControllerFrontEndCheck implements Serializable{
     @FXML TextField inputLucenePage;
     @FXML JFXTextField inputAccountEmail;
     @FXML TextField inputPartnerShopPageURL;
+    @FXML TextField inputPartnerShopSearch;
     @FXML JFXPasswordField inputAccountPassword;
     @FXML HBox outputPlace;
     @FXML ImageView preloaderCat;
@@ -161,6 +162,7 @@ public class MainControllerFrontEndCheck implements Serializable{
         inputAccountEmail.setText(userData.getProperty("inputAccountEmail"));
         inputAccountPassword.setText(userData.getProperty("inputAccountPassword"));
         inputPartnerShopPageURL.setText(userData.getProperty("inputPartnerShopPageURL"));
+        inputPartnerShopSearch.setText(userData.getProperty("inputPartnerShopSearch"));
 
         //opening Menu in User Interface
         Platform.runLater(() -> settingTitledPane.setExpanded(true));
@@ -440,7 +442,7 @@ public class MainControllerFrontEndCheck implements Serializable{
                             //partnerShopsPageTest.checkingShopLinkName(webDriver,report,js,partnershopsPageController.ShopLinkName,statusInfo,inputPartnerShopPageURL, Homepage);
                             //partnerShopsPageTest.checkingShopLinkLogo(webDriver,report,js,partnershopsPageController.ShopLinkLogo,statusInfo,inputPartnerShopPageURL, Homepage);
                             //partnerShopsPageTest.checkingShopReview(webDriver,report,js,partnershopsPageController.ShopLinkReview,statusInfo,inputPartnerShopPageURL, Homepage);
-                            partnerShopsPageTest.checkingShopSearchBox(webDriver,report,js,partnershopsPageController.ShopSearchBox,statusInfo,inputPartnerShopPageURL, Homepage);
+                            partnerShopsPageTest.checkingShopSearchBox(webDriver,report,js,partnershopsPageController.ShopSearchBox,statusInfo,inputPartnerShopPageURL,inputPartnerShopSearch,Homepage);
                         }catch (Exception noPartnerShopPageWorking){
                             noPartnerShopPageWorking.printStackTrace();
                         }

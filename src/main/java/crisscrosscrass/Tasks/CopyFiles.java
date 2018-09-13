@@ -44,6 +44,7 @@ public class CopyFiles {
         properties.setProperty("inputAccountEmail","tester@visual-meta.com");
         properties.setProperty("inputAccountPassword","testpassword");
         properties.setProperty("inputPartnerShopPageURL","https://www.ladenzeile.de/partner/shops");
+        properties.setProperty("inputPartnerShopSearch","nike | bonprix");
         FileWriter writer = null;
         try {
             writer = new FileWriter(location+"UserSettings.properties");
