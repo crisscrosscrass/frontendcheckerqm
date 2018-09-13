@@ -65,6 +65,7 @@ public class MainControllerFrontEndCheck implements Serializable{
     @FXML JFXCheckBox settingImageGrouping;
     @FXML JFXCheckBox settingFavoritePage;
     @FXML JFXCheckBox settingPartnerShopPage;
+    @FXML JFXCheckBox settingBecomeAPartnerPage;
     //Main Menu Settings
     @FXML ProgressBar progressIndicator;
     @FXML Text statusInfo;
@@ -81,6 +82,7 @@ public class MainControllerFrontEndCheck implements Serializable{
     @FXML JFXTextField inputAccountEmail;
     @FXML TextField inputPartnerShopPageURL;
     @FXML TextField inputPartnerShopSearch;
+    @FXML TextField inputBecomeAPartnerPageURL;
     @FXML JFXPasswordField inputAccountPassword;
     @FXML HBox outputPlace;
     @FXML ImageView preloaderCat;
@@ -99,6 +101,7 @@ public class MainControllerFrontEndCheck implements Serializable{
     @FXML Tab tabImageGrouping;
     @FXML Tab tabFavoritePage;
     @FXML Tab tabPartnerShopPage;
+    @FXML Tab tabBecomeAPartnerPage;
     //data visualisation
     @FXML PieChart pieChartForHomepageTests;
     @FXML PieChart pieChartForDetailPageTests;
@@ -117,6 +120,7 @@ public class MainControllerFrontEndCheck implements Serializable{
     @FXML ImageGroupingController imageGroupingController;
     @FXML FavoritePageController favoritePageController;
     @FXML PartnershopsPageController partnershopsPageController;
+    @FXML BecomeAPartnerController becomeAPartnerController;
 
     private static boolean isSuccessful = false;
     private static boolean isAvailable = false;
@@ -140,6 +144,7 @@ public class MainControllerFrontEndCheck implements Serializable{
         settingImageGrouping.setOnAction(event -> updateCheckerTabs());
         settingFavoritePage.setOnAction(event -> updateCheckerTabs());
         settingPartnerShopPage.setOnAction(event -> updateCheckerTabs());
+        settingBecomeAPartnerPage.setOnAction(event -> updateCheckerTabs());
         //update Tabs on Frontend
         updateCheckerTabs();
         //check if Properties File is available if yes, load data into Input Fields
@@ -239,6 +244,12 @@ public class MainControllerFrontEndCheck implements Serializable{
         }
         else{
             tabPartnerShopPage.setDisable(true);
+        }
+        if (settingBecomeAPartnerPage.isSelected()){
+            tabBecomeAPartnerPage.setDisable(false);
+            tabPane.getSelectionModel().select(tabBecomeAPartnerPage);
+        }else{
+            tabBecomeAPartnerPage.setDisable(true);
         }
     }
 
@@ -436,15 +447,24 @@ public class MainControllerFrontEndCheck implements Serializable{
                         try{
                             tabPane.getSelectionModel().select(tabPartnerShopPage);
                             PartnerShopsPageTest partnerShopsPageTest = new PartnerShopsPageTest();
-                            //partnerShopsPageTest.checkingGoToTopButton(webDriver,report,js,partnershopsPageController.GoToTopButton,statusInfo,inputPartnerShopPageURL, Homepage);
-                            //partnerShopsPageTest.checkingBecomePartnerPopUp(webDriver,report,js,partnershopsPageController.BecomePartnerPopUp,statusInfo,inputPartnerShopPageURL, Homepage);
-                            //partnerShopsPageTest.checkingSortingReviews(webDriver,report,js,partnershopsPageController.SortingReviews,statusInfo,inputPartnerShopPageURL, Homepage);
-                            //partnerShopsPageTest.checkingShopLinkName(webDriver,report,js,partnershopsPageController.ShopLinkName,statusInfo,inputPartnerShopPageURL, Homepage);
-                            //partnerShopsPageTest.checkingShopLinkLogo(webDriver,report,js,partnershopsPageController.ShopLinkLogo,statusInfo,inputPartnerShopPageURL, Homepage);
-                            //partnerShopsPageTest.checkingShopReview(webDriver,report,js,partnershopsPageController.ShopLinkReview,statusInfo,inputPartnerShopPageURL, Homepage);
+                            partnerShopsPageTest.checkingGoToTopButton(webDriver,report,js,partnershopsPageController.GoToTopButton,statusInfo,inputPartnerShopPageURL, Homepage);
+                            partnerShopsPageTest.checkingBecomePartnerPopUp(webDriver,report,js,partnershopsPageController.BecomePartnerPopUp,statusInfo,inputPartnerShopPageURL, Homepage);
+                            partnerShopsPageTest.checkingSortingReviews(webDriver,report,js,partnershopsPageController.SortingReviews,statusInfo,inputPartnerShopPageURL, Homepage);
+                            partnerShopsPageTest.checkingShopLinkName(webDriver,report,js,partnershopsPageController.ShopLinkName,statusInfo,inputPartnerShopPageURL, Homepage);
+                            partnerShopsPageTest.checkingShopLinkLogo(webDriver,report,js,partnershopsPageController.ShopLinkLogo,statusInfo,inputPartnerShopPageURL, Homepage);
+                            partnerShopsPageTest.checkingShopReview(webDriver,report,js,partnershopsPageController.ShopLinkReview,statusInfo,inputPartnerShopPageURL, Homepage);
                             partnerShopsPageTest.checkingShopSearchBox(webDriver,report,js,partnershopsPageController.ShopSearchBox,statusInfo,inputPartnerShopPageURL,inputPartnerShopSearch,Homepage);
                         }catch (Exception noPartnerShopPageWorking){
                             noPartnerShopPageWorking.printStackTrace();
+                        }
+                    }
+                    if (!tabBecomeAPartnerPage.isDisable()){
+                        try{
+                            tabPane.getSelectionModel().select(tabBecomeAPartnerPage);
+                            BecomeAPartnerPageTest becomeAPartnerPageTest = new BecomeAPartnerPageTest();
+                            becomeAPartnerPageTest.checkingRegisterButton(webDriver,report,js,becomeAPartnerController.RegisterButton,statusInfo,inputBecomeAPartnerPageURL, Homepage);
+                        }catch (Exception npBecomeAPartnerWorking){
+                            npBecomeAPartnerWorking.printStackTrace();
                         }
                     }
 

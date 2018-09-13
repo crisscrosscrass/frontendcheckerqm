@@ -318,75 +318,6 @@ public class PartnerShopsPageTest {
         }
         report.writeToFile("=================================", "");
     }
-    public void checkingShopSearchBox(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox ShopSearchBox, Text statusInfo, TextField inputPartnerShopPageURL,TextField inputPartnerShopSearch, Properties Homepage){
-        final String infoMessage = "Checking Shop Link Logo";
-        ChangeCheckBox.adjustStyle(false,"progress",ShopSearchBox);
-        Platform.runLater(() -> {
-            statusInfo.setText(""+infoMessage+"...");
-        });
-        try {
-            ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
-            webDriver.switchTo().window(tabs.get(0));
-            try {
-                webDriver.navigate().to(inputPartnerShopPageURL.getText().trim());
-                WebDriverWait wait = new WebDriverWait(webDriver, 10);
-                try{
-                    String[] ShopSearchAliases = inputPartnerShopSearch.getText().trim().split("\\|");
-                    wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("partnerpage.shops.shopreviews"))));
-                    for (int i = 0 ; i < ShopSearchAliases.length ; i++){
-                        //scroll to searchbar
-                        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("partnerpage.shops.searchbar"))));
-                        Point hoverItem = webDriver.findElement(By.xpath(Homepage.getProperty("partnerpage.shops.searchbar"))).getLocation();
-                        ((JavascriptExecutor)webDriver).executeScript("return window.title;");
-                        ((JavascriptExecutor)webDriver).executeScript("window.scrollBy(0,"+(hoverItem.getY())+");");
-                        //enter keyword based on input
-                        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("partnerpage.shops.searchbar"))));
-                        WebElement element = webDriver.findElementByXPath(Homepage.getProperty("partnerpage.shops.searchbar"));
-                        element.sendKeys(ShopSearchAliases[i].trim());
-                        element.submit();
-                        //scroll to searchbar
-                        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("partnerpage.shops.searchbar"))));
-                        hoverItem = webDriver.findElement(By.xpath(Homepage.getProperty("partnerpage.shops.searchbar"))).getLocation();
-                        ((JavascriptExecutor)webDriver).executeScript("return window.title;");
-                        ((JavascriptExecutor)webDriver).executeScript("window.scrollBy(0,"+(hoverItem.getY())+");");
-                        //check if suggestions contains keyword
-                        if(webDriver.findElements(By.xpath(Homepage.getProperty("partnerpage.shops.shoplinknames"))).size() > 0){
-                            wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("partnerpage.shops.shoplinknames"))));
-                            List<WebElement> SearchResults = webDriver.findElementsByXPath(Homepage.getProperty("partnerpage.shops.shoplinknames"));
-                            report.writeToFile("Provided Shop list for Searchkeyword \""+ShopSearchAliases[i].trim()+"\" the following Results :");
-                            if (SearchResults.size() != 0){
-                                for (WebElement SearchResult : SearchResults){
-                                    report.writeToFile(SearchResult.getText());
-                                }
-                            }else {
-                                report.writeToFile("Provided Shop list for Searchkeyword \""+ShopSearchAliases[i].trim()+"\" couldn't loaded completely");
-                            }
-                        }else {
-                            report.writeToFile("Provided Shop list contains no Results for \""+ShopSearchAliases[i].trim()+"\" !");
-                        }
-                    }
-                    ChangeCheckBox.adjustStyle(true,"complete",ShopSearchBox);
-                    report.writeToFile(infoMessage, "Complete");
-                }catch (Exception gridPageIssue){
-                    ChangeCheckBox.adjustStyle(true,"nope",ShopSearchBox);
-                    webDriver.navigate().to(inputPartnerShopPageURL.getText().trim());
-                    report.writeToFile(infoMessage, "Couldn't detect \"Search Bar\" or \"Search Results\"");
-                    gridPageIssue.printStackTrace();
-                }
-            }catch (Exception noRequestedSiteFound){
-                ChangeCheckBox.adjustStyle(true,"nope",ShopSearchBox);
-                webDriver.navigate().to(inputPartnerShopPageURL.getText().trim());
-                report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
-                noRequestedSiteFound.printStackTrace();
-            }
-        }catch (Exception noBrowserWorking){
-            ChangeCheckBox.adjustStyle(true,"nope",ShopSearchBox);
-            webDriver.navigate().to(inputPartnerShopPageURL.getText().trim());
-            report.writeToFile(infoMessage, "unable to check! Browser not responding");
-            noBrowserWorking.printStackTrace();
-        }
-        report.writeToFile("=================================", "");
-    }
     public void checkingShopReview(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox ShopLinkLogo, Text statusInfo, TextField inputPartnerShopPageURL, Properties Homepage){
         final String infoMessage = "Checking Shop Link Logo";
         ChangeCheckBox.adjustStyle(false,"progress",ShopLinkLogo);
@@ -428,6 +359,76 @@ public class PartnerShopsPageTest {
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",ShopLinkLogo);
+            webDriver.navigate().to(inputPartnerShopPageURL.getText().trim());
+            report.writeToFile(infoMessage, "unable to check! Browser not responding");
+            noBrowserWorking.printStackTrace();
+        }
+        report.writeToFile("=================================", "");
+    }
+    public void checkingShopSearchBox(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox ShopSearchBox, Text statusInfo, TextField inputPartnerShopPageURL,TextField inputPartnerShopSearch, Properties Homepage){
+        final String infoMessage = "Checking Shop Link Logo";
+        ChangeCheckBox.adjustStyle(false,"progress",ShopSearchBox);
+        Platform.runLater(() -> {
+            statusInfo.setText(""+infoMessage+"...");
+        });
+        try {
+            ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
+            webDriver.switchTo().window(tabs.get(0));
+            try {
+                webDriver.navigate().to(inputPartnerShopPageURL.getText().trim());
+                WebDriverWait wait = new WebDriverWait(webDriver, 10);
+                try{
+                    String[] ShopSearchAliases = inputPartnerShopSearch.getText().trim().split("\\|");
+                    wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("partnerpage.shops.shopreviews"))));
+                    for (int i = 0 ; i < ShopSearchAliases.length ; i++){
+                        //scroll to searchbar
+                        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("partnerpage.shops.searchbar"))));
+                        Point hoverItem = webDriver.findElement(By.xpath(Homepage.getProperty("partnerpage.shops.searchbar"))).getLocation();
+                        ((JavascriptExecutor)webDriver).executeScript("return window.title;");
+                        ((JavascriptExecutor)webDriver).executeScript("window.scrollBy(0,"+(hoverItem.getY())+");");
+                        //enter keyword based on input
+                        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("partnerpage.shops.searchbar"))));
+                        WebElement element = webDriver.findElementByXPath(Homepage.getProperty("partnerpage.shops.searchbar"));
+                        element.sendKeys(ShopSearchAliases[i].trim());
+                        element.submit();
+                        //scroll to searchbar
+                        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("partnerpage.shops.searchbar"))));
+                        hoverItem = webDriver.findElement(By.xpath(Homepage.getProperty("partnerpage.shops.searchbar"))).getLocation();
+                        ((JavascriptExecutor)webDriver).executeScript("return window.title;");
+                        ((JavascriptExecutor)webDriver).executeScript("window.scrollBy(0,"+(hoverItem.getY())+");");
+                        //check suggestions and put them into the Report List
+                        if(webDriver.findElements(By.xpath(Homepage.getProperty("partnerpage.shops.shoplinknames"))).size() > 0){
+                            wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("partnerpage.shops.shoplinknames"))));
+                            List<WebElement> SearchResults = webDriver.findElementsByXPath(Homepage.getProperty("partnerpage.shops.shoplinknames"));
+                            report.writeToFile("Provided Shop list for Searchkeyword \""+ShopSearchAliases[i].trim()+"\" the following Results :");
+                            if (SearchResults.size() != 0){
+                                for (WebElement SearchResult : SearchResults){
+                                    report.writeToFile(SearchResult.getText());
+                                }
+                            }else {
+                                report.writeToFile("Provided Shop list for Searchkeyword \""+ShopSearchAliases[i].trim()+"\" couldn't loaded completely");
+                            }
+                        }else {
+                            report.writeToFile("Provided Shop list contains no Results for \""+ShopSearchAliases[i].trim()+"\" !");
+                        }
+                        report.writeToFile("");
+                    }
+                    ChangeCheckBox.adjustStyle(true,"complete",ShopSearchBox);
+                    report.writeToFile(infoMessage, "Complete");
+                }catch (Exception gridPageIssue){
+                    ChangeCheckBox.adjustStyle(true,"nope",ShopSearchBox);
+                    webDriver.navigate().to(inputPartnerShopPageURL.getText().trim());
+                    report.writeToFile(infoMessage, "Couldn't detect \"Search Bar\" or \"Search Results\"");
+                    gridPageIssue.printStackTrace();
+                }
+            }catch (Exception noRequestedSiteFound){
+                ChangeCheckBox.adjustStyle(true,"nope",ShopSearchBox);
+                webDriver.navigate().to(inputPartnerShopPageURL.getText().trim());
+                report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
+                noRequestedSiteFound.printStackTrace();
+            }
+        }catch (Exception noBrowserWorking){
+            ChangeCheckBox.adjustStyle(true,"nope",ShopSearchBox);
             webDriver.navigate().to(inputPartnerShopPageURL.getText().trim());
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
             noBrowserWorking.printStackTrace();

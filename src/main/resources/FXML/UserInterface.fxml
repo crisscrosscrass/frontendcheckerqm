@@ -151,7 +151,11 @@
                   </HBox>
                </children>
             </VBox>
-            <HBox alignment="CENTER_RIGHT" layoutX="30.0" layoutY="378.0" style="-fx-border-color: white; -fx-border-radius: 5;" />
+            <HBox alignment="CENTER_RIGHT" layoutX="30.0" layoutY="378.0" style="-fx-border-color: white; -fx-border-radius: 5;">
+               <children>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Become a Partner URL" />
+                  <TextField fx:id="inputBecomeAPartnerPageURL" focusTraversable="false" prefWidth="300.0" text="https://www.ladenzeile.de/partner/info" />
+               </children></HBox>
             <ProgressBar fx:id="progressIndicator" prefWidth="400.0" progress="0.0">
                <VBox.margin>
                   <Insets bottom="10.0" top="20.0" />
@@ -190,6 +194,7 @@
                               <JFXCheckBox fx:id="settingImageGrouping" layoutX="20.0" layoutY="181.0" selected="true" text="Image Grouping" />
                               <JFXCheckBox fx:id="settingFavoritePage" layoutX="20.0" layoutY="181.0" selected="true" text="Favorite Page" />
                               <JFXCheckBox fx:id="settingPartnerShopPage" layoutX="20.0" layoutY="181.0" selected="true" text="Partnershops Page" />
+                              <JFXCheckBox fx:id="settingBecomeAPartnerPage" layoutX="20.0" layoutY="181.0" selected="true" text="Become a Partner Page" />
                            </children>
                         </VBox>
                      </content>
@@ -287,6 +292,11 @@
             <Tab fx:id="tabPartnerShopPage" closable="false" disable="true" text="Favorite Page">
                <content>
                   <fx:include fx:id="partnershopsPage" source="PartnershopsPage.fxml" />
+               </content>
+            </Tab>
+            <Tab fx:id="tabBecomeAPartnerPage" closable="false" disable="true" text="Become a Partner">
+               <content>
+                  <fx:include fx:id="becomeAPartner" source="BecomeAPartner.fxml" />
                </content>
             </Tab>
          </tabs>
