@@ -11,5 +11,6 @@
         <JFXCheckBox fx:id="ShopLinkName" text="Shop Link - Name" />
         <JFXCheckBox fx:id="ShopLinkLogo" text="Shop Link - Logo" />
         <JFXCheckBox fx:id="ShopLinkReview" text="Shop Review" />
+        <JFXCheckBox fx:id="ShopSearchBox" text="Shop Search Box" />
     </children>
 </VBox>

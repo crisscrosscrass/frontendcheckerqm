@@ -10,4 +10,5 @@ public class PartnershopsPageController {
     @FXML JFXCheckBox ShopLinkName;
     @FXML JFXCheckBox ShopLinkLogo;
     @FXML JFXCheckBox ShopLinkReview;
+    @FXML JFXCheckBox ShopSearchBox;
 }

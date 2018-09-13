@@ -35,6 +35,8 @@ import java.io.*;
 
 
 import java.net.URL;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Properties;
 
@@ -437,7 +439,8 @@ public class MainControllerFrontEndCheck implements Serializable{
                             //partnerShopsPageTest.checkingSortingReviews(webDriver,report,js,partnershopsPageController.SortingReviews,statusInfo,inputPartnerShopPageURL, Homepage);
                             //partnerShopsPageTest.checkingShopLinkName(webDriver,report,js,partnershopsPageController.ShopLinkName,statusInfo,inputPartnerShopPageURL, Homepage);
                             //partnerShopsPageTest.checkingShopLinkLogo(webDriver,report,js,partnershopsPageController.ShopLinkLogo,statusInfo,inputPartnerShopPageURL, Homepage);
-                            partnerShopsPageTest.checkingShopReview(webDriver,report,js,partnershopsPageController.ShopLinkReview,statusInfo,inputPartnerShopPageURL, Homepage);
+                            //partnerShopsPageTest.checkingShopReview(webDriver,report,js,partnershopsPageController.ShopLinkReview,statusInfo,inputPartnerShopPageURL, Homepage);
+                            partnerShopsPageTest.checkingShopSearchBox(webDriver,report,js,partnershopsPageController.ShopSearchBox,statusInfo,inputPartnerShopPageURL, Homepage);
                         }catch (Exception noPartnerShopPageWorking){
                             noPartnerShopPageWorking.printStackTrace();
                         }
@@ -515,7 +518,7 @@ public class MainControllerFrontEndCheck implements Serializable{
             outputPlace.getChildren().addAll(link);
             progressIndicator.setProgress(100);
             changeButtonText();
-            logger.info("All process to checkes are finished");
+            logger.info("All process are finished");
         }));
     }
 
@@ -557,6 +560,7 @@ public class MainControllerFrontEndCheck implements Serializable{
                         ChromeOptions option = new ChromeOptions();
                         option.addArguments("disable-infobars");
                         option.addArguments("start-maximized");
+                        //option.addArguments("--headless");
                         ChromeDriver webDriver = new ChromeDriver(option);
                         JavascriptExecutor js = webDriver;
                         WebDriverWait wait = new WebDriverWait(webDriver, 10);
@@ -575,50 +579,73 @@ public class MainControllerFrontEndCheck implements Serializable{
                         FileReader fileReader = new FileReader(fileWithURLLocation);
                         BufferedReader bufferedReader = new BufferedReader(fileReader);
                         String line;
+                        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+                        LocalDateTime now = LocalDateTime.now();
+                        int lineReaderAt = 0;
                         while ( (line = bufferedReader.readLine()) != null){
+                            now = LocalDateTime.now();
                             long start = System.currentTimeMillis();
                             String StatusUpdate = line;
-                            Platform.runLater(() -> statusInfo.setText(StatusUpdate.toLowerCase().trim()));
-                            webDriver.navigate().to(line.toLowerCase().trim());
-                            long finish = System.currentTimeMillis();
-                            long totalTime = finish - start;
-                            //logger.info(line + " Total Time for page load - " + totalTime);
+                            int StatusLine = lineReaderAt;
+                            Platform.runLater(() -> statusInfo.setText("Line : "+StatusLine+" - "+StatusUpdate.toLowerCase().trim()));
+                            logger.info("Webdriver call : "+line.toLowerCase().trim());
+                            ++lineReaderAt;
                             try{
-                                try{
-                                    //ToDo need to veryfiy URLbefore & URLafter!!!
-                                    if(webDriver.findElements(By.xpath(Homepage.getProperty("page.grid.windows"))).size() > 0){
-                                        //logger.info("provided GridPageURL "+inputGridPageURL.getText()+ " included Windows! Adjusted GridPage to make test happen!");
-                                        webDriver.findElementByXPath(Homepage.getProperty("page.grid.windows.continue")).click();
-                                        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Homepage.getProperty("page.grid.windows.continue"))));
-                                    }
-                                    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.items.info.icon"))));
-                                    wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.items.info.icon"))));
-                                    List<WebElement> ItemsOnGridPage = webDriver.findElementsByXPath(Homepage.getProperty("page.items.info.icon"));
-                                    logger.info(ItemsOnGridPage.size());
-                                    if (ItemsOnGridPage.size() != 0){
-                                        report.writeToFile(line.toLowerCase().trim()+" - YES");
-                                    }else {
-                                        report.writeToFile(line.toLowerCase().trim()+" - NO");
-                                    }
-                                }catch (Exception noPrice){
-                                    try{
-                                        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.items.info.icon"))));
-                                        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.items.info.icon"))));
-                                        List<WebElement> ItemsOnGridPage = webDriver.findElementsByXPath(Homepage.getProperty("page.items.info.icon"));
-                                        logger.info(ItemsOnGridPage.size());
-                                        if (ItemsOnGridPage.size() != 0){
-                                            report.writeToFile(line.toLowerCase().trim()+" - YES");
-                                        }else {
-                                            report.writeToFile(line.toLowerCase().trim()+" - NO");
-                                        }
-                                    }catch (Exception noAtAll){
-                                        report.writeToFile(line.toLowerCase().trim()+" - NO");
-                                        noPrice.printStackTrace();
-                                    }
+                                if (line.contains(";")){
+                                    line = line.replaceAll("\\d+;+","");
                                 }
-                            }catch(NoSuchElementException noItemsFound){
-                                report.writeToFile(line.toLowerCase().trim()+" - NO");
-                                noItemsFound.printStackTrace();
+                                webDriver.navigate().to(line.toLowerCase().trim());
+                                long finish = System.currentTimeMillis();
+                                long totalTime = finish - start;
+                                //logger.info(line + " Total Time for page load - " + totalTime);
+                                try{
+                                    try{
+                                        if (StatusUpdate.toLowerCase().trim().equals(webDriver.getCurrentUrl().toLowerCase().trim()) ){
+                                            if(webDriver.findElements(By.xpath(Homepage.getProperty("page.grid.windows"))).size() > 0){
+                                                report.writeToFile(dtf.format(now)+" | "+line.toLowerCase().trim()+" | YES | Windows");
+                                            }else {
+                                                wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.items.info.icon"))));
+                                                wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.items.info.icon"))));
+                                                List<WebElement> ItemsOnGridPage = webDriver.findElementsByXPath(Homepage.getProperty("page.items.info.icon"));
+                                                logger.info("Site: " + webDriver.getCurrentUrl().toLowerCase().trim()+ " Items: " + ItemsOnGridPage.size());
+                                                if (ItemsOnGridPage.size() != 0){
+                                                    report.writeToFile(dtf.format(now)+" | "+line.toLowerCase().trim()+" | YES | "+ " Items: " + ItemsOnGridPage.size());
+                                                }else {
+                                                    report.writeToFile(dtf.format(now)+" | "+line.toLowerCase().trim()+" | NO | No Items");
+                                                }
+                                            }
+                                        }else {
+                                            report.writeToFile(dtf.format(now)+" | "+line.toLowerCase().trim()+" | NO | Redirect to: "+webDriver.getCurrentUrl().toLowerCase().trim());
+                                        }
+
+
+                                    }catch (Exception noPrice){
+                                        try{
+                                            if (StatusUpdate.toLowerCase().trim().equals(webDriver.getCurrentUrl().toLowerCase().trim()) ){
+                                                wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.items.info.icon"))));
+                                                wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.items.info.icon"))));
+                                                List<WebElement> ItemsOnGridPage = webDriver.findElementsByXPath(Homepage.getProperty("page.items.info.icon"));
+                                                logger.info("Site: " + webDriver.getCurrentUrl().toLowerCase().trim()+ " Items: " + ItemsOnGridPage.size());
+                                                if (ItemsOnGridPage.size() != 0){
+                                                    report.writeToFile(dtf.format(now)+" | "+line.toLowerCase().trim()+" | YES | "+ " Items: " + ItemsOnGridPage.size());
+                                                }else {
+                                                    report.writeToFile(dtf.format(now)+" | "+line.toLowerCase().trim()+" | NO | No Items");
+                                                }
+                                            }else{
+                                                report.writeToFile(dtf.format(now)+" | "+line.toLowerCase().trim()+" | NO | Redirect to: "+webDriver.getCurrentUrl().toLowerCase().trim());
+                                            }
+
+                                        }catch (Exception noAtAll){
+                                            report.writeToFile(dtf.format(now)+" | "+line.toLowerCase().trim()+" | YES | Couldn't detect Items for some reason, proberly Image Grouping");
+                                            noPrice.printStackTrace();
+                                        }
+                                    }
+                                }catch(NoSuchElementException noItemsFound){
+                                    report.writeToFile(dtf.format(now)+" | "+line.toLowerCase().trim()+" | NO | Something went wrong while checking");
+                                    noItemsFound.printStackTrace();
+                                }
+                            }catch (Exception noWebDriverNavigate){
+                                report.writeToFile(dtf.format(now)+" | "+line.toLowerCase().trim()+" | Invalid URL | Needs to be checked again");
                             }
 
 

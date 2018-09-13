@@ -318,6 +318,53 @@ public class PartnerShopsPageTest {
         }
         report.writeToFile("=================================", "");
     }
+    public void checkingShopSearchBox(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox ShopLinkLogo, Text statusInfo, TextField inputPartnerShopPageURL, Properties Homepage){
+        final String infoMessage = "Checking Shop Link Logo";
+        ChangeCheckBox.adjustStyle(false,"progress",ShopLinkLogo);
+        Platform.runLater(() -> {
+            statusInfo.setText(""+infoMessage+"...");
+        });
+        try {
+            ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
+            webDriver.switchTo().window(tabs.get(0));
+            try {
+                webDriver.navigate().to(inputPartnerShopPageURL.getText().trim());
+                WebDriverWait wait = new WebDriverWait(webDriver, 10);
+                try{
+                    wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("partnerpage.shops.shopreviews"))));
+                    List<WebElement> AllShopReviews = webDriver.findElementsByXPath(Homepage.getProperty("partnerpage.shops.shopreviews"));
+                    final int randomSelectedNumber = ThreadLocalRandom.current().nextInt(0, AllShopReviews.size() );
+                    Point hoverItem = AllShopReviews.get(randomSelectedNumber).getLocation();
+                    ((JavascriptExecutor)webDriver).executeScript("return window.title;");
+                    ((JavascriptExecutor)webDriver).executeScript("window.scrollBy(0,"+(hoverItem.getY())+");");
+                    AllShopReviews.get(randomSelectedNumber).click();
+                    if (webDriver.getCurrentUrl().contains("review")){
+                        ChangeCheckBox.adjustStyle(true,"complete",ShopLinkLogo);
+                        report.writeToFile(infoMessage, "Successful! User is redirected to a functioning page with the word \"review\" in the URl");
+                    }else {
+                        ChangeCheckBox.adjustStyle(true,"nope",ShopLinkLogo);
+                        report.writeToFile(infoMessage, "Not successful! User is NOT redirected to a functioning page with the word \"review\" in the URl");
+                    }
+                }catch (Exception gridPageIssue){
+                    ChangeCheckBox.adjustStyle(true,"nope",ShopLinkLogo);
+                    webDriver.navigate().to(inputPartnerShopPageURL.getText().trim());
+                    report.writeToFile(infoMessage, "Couldn't detect \"Sorting\" Button");
+                    gridPageIssue.printStackTrace();
+                }
+            }catch (Exception noRequestedSiteFound){
+                ChangeCheckBox.adjustStyle(true,"nope",ShopLinkLogo);
+                webDriver.navigate().to(inputPartnerShopPageURL.getText().trim());
+                report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
+                noRequestedSiteFound.printStackTrace();
+            }
+        }catch (Exception noBrowserWorking){
+            ChangeCheckBox.adjustStyle(true,"nope",ShopLinkLogo);
+            webDriver.navigate().to(inputPartnerShopPageURL.getText().trim());
+            report.writeToFile(infoMessage, "unable to check! Browser not responding");
+            noBrowserWorking.printStackTrace();
+        }
+        report.writeToFile("=================================", "");
+    }
     public void checkingShopReview(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox ShopLinkLogo, Text statusInfo, TextField inputPartnerShopPageURL, Properties Homepage){
         final String infoMessage = "Checking Shop Link Logo";
         ChangeCheckBox.adjustStyle(false,"progress",ShopLinkLogo);
