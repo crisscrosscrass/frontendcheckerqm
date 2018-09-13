@@ -462,7 +462,12 @@ public class MainControllerFrontEndCheck implements Serializable{
                         try{
                             tabPane.getSelectionModel().select(tabBecomeAPartnerPage);
                             BecomeAPartnerPageTest becomeAPartnerPageTest = new BecomeAPartnerPageTest();
-                            becomeAPartnerPageTest.checkingRegisterButton(webDriver,report,js,becomeAPartnerController.RegisterButton,statusInfo,inputBecomeAPartnerPageURL, Homepage);
+                            //becomeAPartnerPageTest.checkingRegisterButton(webDriver,report,js,becomeAPartnerController.RegisterButton,statusInfo,inputBecomeAPartnerPageURL, Homepage);
+                            //becomeAPartnerPageTest.checkingBecomePartnerButton(webDriver,report,js,becomeAPartnerController.BecomeAPartnerButton,statusInfo,inputBecomeAPartnerPageURL, Homepage);
+                            //becomeAPartnerPageTest.checkingGoToTopButton(webDriver,report,js,becomeAPartnerController.GoToTopButton,statusInfo,inputBecomeAPartnerPageURL, Homepage);
+                            //becomeAPartnerPageTest.checkingCountryFlags(webDriver,report,js,becomeAPartnerController.CountryFlags,statusInfo,inputBecomeAPartnerPageURL, Homepage);
+                            //becomeAPartnerPageTest.checkingLoginPartnerdashboard(webDriver,report,js,becomeAPartnerController.LoginPartnerdashboard,statusInfo,inputBecomeAPartnerPageURL, Homepage);
+                            becomeAPartnerPageTest.checkingHelpRegisterTab(webDriver,report,js,becomeAPartnerController.HelpRegisterTab,statusInfo,inputBecomeAPartnerPageURL, Homepage);
                         }catch (Exception npBecomeAPartnerWorking){
                             npBecomeAPartnerWorking.printStackTrace();
                         }

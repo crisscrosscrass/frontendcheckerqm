@@ -319,7 +319,7 @@ public class PartnerShopsPageTest {
         report.writeToFile("=================================", "");
     }
     public void checkingShopReview(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox ShopLinkLogo, Text statusInfo, TextField inputPartnerShopPageURL, Properties Homepage){
-        final String infoMessage = "Checking Shop Link Logo";
+        final String infoMessage = "Checking Shop Review";
         ChangeCheckBox.adjustStyle(false,"progress",ShopLinkLogo);
         Platform.runLater(() -> {
             statusInfo.setText(""+infoMessage+"...");
@@ -366,7 +366,7 @@ public class PartnerShopsPageTest {
         report.writeToFile("=================================", "");
     }
     public void checkingShopSearchBox(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox ShopSearchBox, Text statusInfo, TextField inputPartnerShopPageURL,TextField inputPartnerShopSearch, Properties Homepage){
-        final String infoMessage = "Checking Shop Link Logo";
+        final String infoMessage = "Checking Shop Search Box";
         ChangeCheckBox.adjustStyle(false,"progress",ShopSearchBox);
         Platform.runLater(() -> {
             statusInfo.setText(""+infoMessage+"...");
