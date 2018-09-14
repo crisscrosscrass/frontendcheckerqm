@@ -509,6 +509,16 @@ public class MainControllerFrontEndCheck implements Serializable{
                             tabPane.getSelectionModel().select(tabAffiliateProgram);
                             AffiliateProgramTest affiliateProgramTest = new AffiliateProgramTest();
                             affiliateProgramTest.checkingBecomeAffilinetPartner(webDriver,report,js,affiliateProgramController.BecomeAffilinetPartner,statusInfo,inputAffiliateProgramURL, Homepage);
+                            affiliateProgramTest.checkingBecomeTradeTrackerPartner(webDriver,report,js,affiliateProgramController.BecomeTradeTrackerPartner,statusInfo,inputAffiliateProgramURL, Homepage);
+                        }catch (Exception noBecomeAPartnerWorking){
+                            noBecomeAPartnerWorking.printStackTrace();
+                        }
+                    }
+                    if (!tabMerchandiseOverviewPage.isDisable()){
+                        try{
+                            tabPane.getSelectionModel().select(tabMerchandiseOverviewPage);
+                            MerchandiseOverviewPageTest merchandiseOverviewPageTest = new MerchandiseOverviewPageTest();
+                            merchandiseOverviewPageTest.checkingMerchandiseLetters(webDriver,report,js,merchandiseOverviewPageController.LettertoMerchandise,statusInfo,inputMerchandiseOverviewPageURL, Homepage);
                         }catch (Exception noBecomeAPartnerWorking){
                             noBecomeAPartnerWorking.printStackTrace();
                         }
