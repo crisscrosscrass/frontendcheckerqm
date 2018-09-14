@@ -10,5 +10,6 @@ public class BecomeAPartnerController {
     @FXML JFXCheckBox GoToTopButton;
     @FXML JFXCheckBox CountryFlags;
     @FXML JFXCheckBox LoginPartnerdashboard;
-    @FXML JFXCheckBox HelpRegisterTab;
+    @FXML JFXCheckBox HelpTabSection;
+    @FXML JFXCheckBox DownloadPDFHelp;
 }

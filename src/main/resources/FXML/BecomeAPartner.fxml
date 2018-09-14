@@ -14,6 +14,7 @@
         <JFXCheckBox fx:id="GoToTopButton" text="Go to Top Button" />
         <JFXCheckBox fx:id="CountryFlags" text="Country Flags" />
         <JFXCheckBox fx:id="LoginPartnerdashboard" text="Login Partnerdashboard" />
-        <JFXCheckBox fx:id="HelpRegisterTab" text="Tab Section" />
+        <JFXCheckBox fx:id="HelpTabSection" text="Tab Help Section" />
+        <JFXCheckBox fx:id="DownloadPDFHelp" text="Download PDF Help" />
     </children>
 </VBox>

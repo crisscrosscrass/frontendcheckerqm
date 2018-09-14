@@ -434,8 +434,6 @@ public class GridPageTest {
                         webDriver.findElementByXPath(Homepage.getProperty("page.grid.windows.continue")).click();
                         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Homepage.getProperty("page.grid.windows.continue"))));
                     }
-
-
                     wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.grid.items.number"))));
                     try {
                         Point hoverItem = webDriver.findElement(By.xpath(Homepage.getProperty("page.grid.items.number"))).getLocation();
@@ -446,8 +444,6 @@ public class GridPageTest {
                             Thread.sleep(100);
                             js.executeScript("window.scrollBy(0,-500)");
                         }
-
-
                         webDriver.findElementByXPath(Homepage.getProperty("page.grid.items.number")).click();
                         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Homepage.getProperty("page.grid.loader"))));
                         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.items.price"))));

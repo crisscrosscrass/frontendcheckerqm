@@ -467,7 +467,8 @@ public class MainControllerFrontEndCheck implements Serializable{
                             //becomeAPartnerPageTest.checkingGoToTopButton(webDriver,report,js,becomeAPartnerController.GoToTopButton,statusInfo,inputBecomeAPartnerPageURL, Homepage);
                             //becomeAPartnerPageTest.checkingCountryFlags(webDriver,report,js,becomeAPartnerController.CountryFlags,statusInfo,inputBecomeAPartnerPageURL, Homepage);
                             //becomeAPartnerPageTest.checkingLoginPartnerdashboard(webDriver,report,js,becomeAPartnerController.LoginPartnerdashboard,statusInfo,inputBecomeAPartnerPageURL, Homepage);
-                            becomeAPartnerPageTest.checkingHelpRegisterTab(webDriver,report,js,becomeAPartnerController.HelpRegisterTab,statusInfo,inputBecomeAPartnerPageURL, Homepage);
+                            //becomeAPartnerPageTest.checkingTabHelpSection(webDriver,report,js,becomeAPartnerController.HelpTabSection,statusInfo,inputBecomeAPartnerPageURL, Homepage);
+                            becomeAPartnerPageTest.checkingDownloadOnHelp(webDriver,report,js,becomeAPartnerController.DownloadPDFHelp,statusInfo,inputBecomeAPartnerPageURL, Homepage);
                         }catch (Exception npBecomeAPartnerWorking){
                             npBecomeAPartnerWorking.printStackTrace();
                         }

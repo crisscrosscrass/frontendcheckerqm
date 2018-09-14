@@ -291,8 +291,8 @@ public class BecomeAPartnerPageTest {
 
     }
 
-    public void checkingHelpRegisterTab(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox HelpRegisterTab, Text statusInfo, TextField inputBecomeAPartnerPageURL, Properties Homepage){
-        final String infoMessage = "Checking Login Partnerdashboard";
+    public void checkingTabHelpSection(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox HelpRegisterTab, Text statusInfo, TextField inputBecomeAPartnerPageURL, Properties Homepage){
+        final String infoMessage = "Checking Tab Help Section";
         ChangeCheckBox.adjustStyle(false,"progress",HelpRegisterTab);
         Platform.runLater(() -> {
             statusInfo.setText(""+infoMessage+"...");
@@ -304,12 +304,94 @@ public class BecomeAPartnerPageTest {
                 webDriver.navigate().to(inputBecomeAPartnerPageURL.getText().trim());
                 WebDriverWait wait = new WebDriverWait(webDriver, 10);
                 try{
+                    //click on Help Tab
                     wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("partnerpage.tab.help"))));
-
+                    webDriver.findElementByXPath(Homepage.getProperty("partnerpage.tab.help")).click();
+                    //check if correct page
+                    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("partnerpage.tab.help.content"))));
+                    if (webDriver.findElementByXPath(Homepage.getProperty("partnerpage.tab.help.content")).isDisplayed()){
+                        report.writeToFile("Help Tab: ", "Help Introduction is displayed");
+                    }else{
+                        report.writeToFile("Help Tab: ", "Help Introduction is NOT displayed");
+                    }
+                    try {
+                        //check if register button
+                        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("partnerpage.shops.register.button"))));
+                        //click on register button
+                        webDriver.findElementByXPath(Homepage.getProperty("partnerpage.shops.register.button")).click();
+                        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("partnerpage.shops.becomePartner.close"))));
+                        if (webDriver.findElementByXPath(Homepage.getProperty("partnerpage.shops.becomePartner.close")).isDisplayed()){
+                            webDriver.findElementByXPath(Homepage.getProperty("partnerpage.shops.becomePartner.close")).click();
+                            report.writeToFile("Register- Help: ", "Functioning Pop Up appears");
+                        }else{
+                            report.writeToFile("Register- Help: ", "Functioning Pop Up does NOT appear !");
+                        }
+                        try {
+                            //check if become Partner button
+                            wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("partnerpage.tab.help.becomePartner.button"))));
+                            //click on become partner button
+                            webDriver.findElementByXPath(Homepage.getProperty("partnerpage.tab.help.becomePartner.button")).click();
+                            if (webDriver.findElementByXPath(Homepage.getProperty("partnerpage.shops.becomePartner.close")).isDisplayed()){
+                                webDriver.findElementByXPath(Homepage.getProperty("partnerpage.shops.becomePartner.close")).click();
+                                report.writeToFile("Become Partner Button- Help: ", "Functioning Pop Up appears");
+                            }else{
+                                report.writeToFile("Become Partner Button- Help: ", "Functioning Pop Up does NOT appear !");
+                            }
+                            try {
+                                //scroll down to bottom
+                                wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.main.footer.box"))));
+                                Point hoverItem = webDriver.findElement(By.xpath(Homepage.getProperty("page.main.footer.box"))).getLocation();
+                                ((JavascriptExecutor)webDriver).executeScript("return window.title;");
+                                ((JavascriptExecutor)webDriver).executeScript("window.scrollBy(0,"+(hoverItem.getY())+");");
+                                //click on GoToTop
+                                wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.main.totopbutton"))));
+                                webDriver.findElementByXPath(Homepage.getProperty("page.main.totopbutton")).click();
+                                //check if H3 is in viewport
+                                WebElement h3Element = webDriver.findElementByXPath(Homepage.getProperty("partnerpage.help.h3"));
+                                h3Element.click();
+                                boolean isInViewPort = (boolean)((JavascriptExecutor)webDriver).executeScript(
+                                        "var elem = arguments[0],                 " +
+                                                "  box = elem.getBoundingClientRect(),    " +
+                                                "  cx = box.left + box.width / 2,         " +
+                                                "  cy = box.top + box.height / 2,         " +
+                                                "  e = document.elementFromPoint(cx, cy); " +
+                                                "for (; e; e = e.parentElement) {         " +
+                                                "  if (e === elem)                        " +
+                                                "    return true;                         " +
+                                                "}                                        " +
+                                                "return false;                            "
+                                        , h3Element);
+                                if (isInViewPort){
+                                    ChangeCheckBox.adjustStyle(true,"complete",HelpRegisterTab);
+                                    report.writeToFile("Go to Top- Help: ", "Initial banner (H3) is on user's view");
+                                }else {
+                                    ChangeCheckBox.adjustStyle(true,"nope",HelpRegisterTab);
+                                    report.writeToFile("Go to Top- Help: ", "Initial banner (H3) is NOT on user's view");
+                                }
+                                report.writeToFile("");
+                                report.writeToFile(infoMessage, "Complete!");
+                            }catch (Exception noGoToTopButton){
+                                ChangeCheckBox.adjustStyle(true,"nope",HelpRegisterTab);
+                                webDriver.navigate().to(inputBecomeAPartnerPageURL.getText().trim());
+                                report.writeToFile("Go to Top- Help", "Couldn't detect \"Go To Top\" Button");
+                                noGoToTopButton.printStackTrace();
+                            }
+                        }catch (Exception noBecomePartnerButton){
+                            ChangeCheckBox.adjustStyle(true,"nope",HelpRegisterTab);
+                            webDriver.navigate().to(inputBecomeAPartnerPageURL.getText().trim());
+                            report.writeToFile("Become Partner Button- Help", "Couldn't detect \"Become Partner\" Button");
+                            noBecomePartnerButton.printStackTrace();
+                        }
+                    }catch (Exception noRegisterButton){
+                        ChangeCheckBox.adjustStyle(true,"nope",HelpRegisterTab);
+                        webDriver.navigate().to(inputBecomeAPartnerPageURL.getText().trim());
+                        report.writeToFile("Register- Help", "Couldn't detect \"Register\" Button");
+                        noRegisterButton.printStackTrace();
+                    }
                 }catch (Exception gridPageIssue){
                     ChangeCheckBox.adjustStyle(true,"nope",HelpRegisterTab);
                     webDriver.navigate().to(inputBecomeAPartnerPageURL.getText().trim());
-                    report.writeToFile(infoMessage, "Couldn't detect Tab \"Help\"");
+                    report.writeToFile("Help Tab", "Couldn't detect Tab \"Help\"");
                     gridPageIssue.printStackTrace();
                 }
             }catch (Exception noRequestedSiteFound){
@@ -320,6 +402,67 @@ public class BecomeAPartnerPageTest {
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",HelpRegisterTab);
+            webDriver.navigate().to(inputBecomeAPartnerPageURL.getText().trim());
+            report.writeToFile(infoMessage, "unable to check! Browser not responding");
+            noBrowserWorking.printStackTrace();
+        }
+
+        report.writeToFile("=================================", "");
+
+    }
+    public void checkingDownloadOnHelp(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox DownloadPDFHelp, Text statusInfo, TextField inputBecomeAPartnerPageURL, Properties Homepage){
+        final String infoMessage = "Checking Download-Help";
+        ChangeCheckBox.adjustStyle(false,"progress",DownloadPDFHelp);
+        Platform.runLater(() -> {
+            statusInfo.setText(""+infoMessage+"...");
+        });
+        try {
+            ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
+            webDriver.switchTo().window(tabs.get(0));
+            try {
+                webDriver.navigate().to(inputBecomeAPartnerPageURL.getText().trim());
+                WebDriverWait wait = new WebDriverWait(webDriver, 10);
+                try{
+                    //click on Help Tab
+                    wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("partnerpage.tab.help"))));
+                    webDriver.findElementByXPath(Homepage.getProperty("partnerpage.tab.help")).click();
+                    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("partnerpage.tab.help.content"))));
+                    //scroll down to Download
+                    wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("partnerpage.help.download.button"))));
+                    Point hoverItem = webDriver.findElement(By.xpath(Homepage.getProperty("partnerpage.help.download.button"))).getLocation();
+                    ((JavascriptExecutor)webDriver).executeScript("return window.title;");
+                    ((JavascriptExecutor)webDriver).executeScript("window.scrollBy(0,"+(hoverItem.getY())+");");
+                    //click download
+                    webDriver.findElementByXPath(Homepage.getProperty("partnerpage.help.download.button")).click();
+                    for (int i = 0; i < 5; i++) {
+                        Thread.sleep(100);
+                        js.executeScript("window.scrollBy(0,100)");
+                    }
+                    tabs = new ArrayList<>(webDriver.getWindowHandles());
+                    webDriver.switchTo().window(tabs.get(1));
+                    if(webDriver.getCurrentUrl().contains("pdf")){
+                        report.writeToFile(infoMessage, "Functioning PDF appears");
+                        ChangeCheckBox.adjustStyle(true,"complete",DownloadPDFHelp);
+                    }else {
+                        report.writeToFile(infoMessage, "No functioning PDF appears");
+                        ChangeCheckBox.adjustStyle(true,"nope",DownloadPDFHelp);
+                    }
+                    webDriver.switchTo().window(tabs.get(1)).close();
+                    webDriver.switchTo().window(tabs.get(0));
+                }catch (Exception gridPageIssue){
+                    ChangeCheckBox.adjustStyle(true,"nope",DownloadPDFHelp);
+                    webDriver.navigate().to(inputBecomeAPartnerPageURL.getText().trim());
+                    report.writeToFile(infoMessage, "Couldn't detect \"Download Help\" Button");
+                    gridPageIssue.printStackTrace();
+                }
+            }catch (Exception noRequestedSiteFound){
+                ChangeCheckBox.adjustStyle(true,"nope",DownloadPDFHelp);
+                webDriver.navigate().to(inputBecomeAPartnerPageURL.getText().trim());
+                report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
+                noRequestedSiteFound.printStackTrace();
+            }
+        }catch (Exception noBrowserWorking){
+            ChangeCheckBox.adjustStyle(true,"nope",DownloadPDFHelp);
             webDriver.navigate().to(inputBecomeAPartnerPageURL.getText().trim());
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
             noBrowserWorking.printStackTrace();
