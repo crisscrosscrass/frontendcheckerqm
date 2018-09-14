@@ -66,6 +66,8 @@ public class MainControllerFrontEndCheck implements Serializable{
     @FXML JFXCheckBox settingFavoritePage;
     @FXML JFXCheckBox settingPartnerShopPage;
     @FXML JFXCheckBox settingBecomeAPartnerPage;
+    @FXML JFXCheckBox settingAffiliateProgram;
+    @FXML JFXCheckBox settingMerchandiseOverviewPage;
     //Main Menu Settings
     @FXML ProgressBar progressIndicator;
     @FXML Text statusInfo;
@@ -84,6 +86,8 @@ public class MainControllerFrontEndCheck implements Serializable{
     @FXML TextField inputPartnerShopSearch;
     @FXML TextField inputBecomeAPartnerPageURL;
     @FXML JFXPasswordField inputAccountPassword;
+    @FXML TextField inputAffiliateProgramURL;
+    @FXML TextField inputMerchandiseOverviewPageURL;
     @FXML HBox outputPlace;
     @FXML ImageView preloaderCat;
     @FXML VBox CheckBoxesPlace;
@@ -102,6 +106,8 @@ public class MainControllerFrontEndCheck implements Serializable{
     @FXML Tab tabFavoritePage;
     @FXML Tab tabPartnerShopPage;
     @FXML Tab tabBecomeAPartnerPage;
+    @FXML Tab tabAffiliateProgram;
+    @FXML Tab tabMerchandiseOverviewPage;
     //data visualisation
     @FXML PieChart pieChartForHomepageTests;
     @FXML PieChart pieChartForDetailPageTests;
@@ -121,6 +127,8 @@ public class MainControllerFrontEndCheck implements Serializable{
     @FXML FavoritePageController favoritePageController;
     @FXML PartnershopsPageController partnershopsPageController;
     @FXML BecomeAPartnerController becomeAPartnerController;
+    @FXML AffiliateProgramController affiliateProgramController;
+    @FXML MerchandiseOverviewPageController merchandiseOverviewPageController;
 
     private static boolean isSuccessful = false;
     private static boolean isAvailable = false;
@@ -145,6 +153,8 @@ public class MainControllerFrontEndCheck implements Serializable{
         settingFavoritePage.setOnAction(event -> updateCheckerTabs());
         settingPartnerShopPage.setOnAction(event -> updateCheckerTabs());
         settingBecomeAPartnerPage.setOnAction(event -> updateCheckerTabs());
+        settingAffiliateProgram.setOnAction(event -> updateCheckerTabs());
+        settingMerchandiseOverviewPage.setOnAction(event -> updateCheckerTabs());
         //update Tabs on Frontend
         updateCheckerTabs();
         //check if Properties File is available if yes, load data into Input Fields
@@ -168,6 +178,7 @@ public class MainControllerFrontEndCheck implements Serializable{
         inputAccountPassword.setText(userData.getProperty("inputAccountPassword"));
         inputPartnerShopPageURL.setText(userData.getProperty("inputPartnerShopPageURL"));
         inputPartnerShopSearch.setText(userData.getProperty("inputPartnerShopSearch"));
+        inputBecomeAPartnerPageURL.setText(userData.getProperty("inputBecomeAPartnerPageURL"));
 
         //opening Menu in User Interface
         Platform.runLater(() -> settingTitledPane.setExpanded(true));
@@ -251,6 +262,18 @@ public class MainControllerFrontEndCheck implements Serializable{
         }else{
             tabBecomeAPartnerPage.setDisable(true);
         }
+        if (settingAffiliateProgram.isSelected()){
+            tabAffiliateProgram.setDisable(false);
+            tabPane.getSelectionModel().select(tabAffiliateProgram);
+        }else{
+            tabAffiliateProgram.setDisable(true);
+        }
+        if (settingMerchandiseOverviewPage.isSelected()){
+            tabMerchandiseOverviewPage.setDisable(false);
+            tabPane.getSelectionModel().select(tabMerchandiseOverviewPage);
+        }else{
+            tabMerchandiseOverviewPage.setDisable(true);
+        }
     }
 
     @FXML
@@ -269,6 +292,12 @@ public class MainControllerFrontEndCheck implements Serializable{
                     inputGridPageURLWithFillIns.setDisable(true);
                     inputBrandPageOverview.setDisable(true);
                     inputLucenePage.setDisable(true);
+                    inputAccountEmail.setDisable(true);
+                    inputPartnerShopPageURL.setDisable(true);
+                    inputPartnerShopSearch.setDisable(true);
+                    inputBecomeAPartnerPageURL.setDisable(true);
+                    inputAccountPassword.setDisable(true);
+                    inputImprintURL.setDisable(true);
                     settingTitledPane.setExpanded(false);
         });
 
@@ -314,18 +343,16 @@ public class MainControllerFrontEndCheck implements Serializable{
 
 
 
-
                 // * Basic Settings while Starting WebDriver
                 Platform.runLater(() -> statusInfo.setText("Starting Engine..."));
                 System.setProperty("webdriver.chrome.driver", "temp//chromedriver.exe");
                 ChromeOptions option = new ChromeOptions();
                 option.addArguments("--window-size=1920,1080");
                 //option.addArguments("--headless");
+                //option.addArguments("--disable-gpu");
                 option.addArguments("disable-infobars");
                 option.addArguments("start-maximized");
                 ChromeDriver webDriver = new ChromeDriver(option);
-
-
 
 
                 try{
@@ -464,21 +491,28 @@ public class MainControllerFrontEndCheck implements Serializable{
                         try{
                             tabPane.getSelectionModel().select(tabBecomeAPartnerPage);
                             BecomeAPartnerPageTest becomeAPartnerPageTest = new BecomeAPartnerPageTest();
-                            //becomeAPartnerPageTest.checkingRegisterButton(webDriver,report,js,becomeAPartnerController.RegisterButton,statusInfo,inputBecomeAPartnerPageURL, Homepage);
-                            //becomeAPartnerPageTest.checkingBecomePartnerButton(webDriver,report,js,becomeAPartnerController.BecomeAPartnerButton,statusInfo,inputBecomeAPartnerPageURL, Homepage);
-                            //becomeAPartnerPageTest.checkingGoToTopButton(webDriver,report,js,becomeAPartnerController.GoToTopButton,statusInfo,inputBecomeAPartnerPageURL, Homepage);
-                            //becomeAPartnerPageTest.checkingCountryFlags(webDriver,report,js,becomeAPartnerController.CountryFlags,statusInfo,inputBecomeAPartnerPageURL, Homepage);
-                            //becomeAPartnerPageTest.checkingLoginPartnerdashboard(webDriver,report,js,becomeAPartnerController.LoginPartnerDashboard,statusInfo,inputBecomeAPartnerPageURL, Homepage);
-                            //becomeAPartnerPageTest.checkingTabHelpSection(webDriver,report,js,becomeAPartnerController.HelpTabSection,statusInfo,inputBecomeAPartnerPageURL, Homepage);
-                            //becomeAPartnerPageTest.checkingDownloadOnHelp(webDriver,report,js,becomeAPartnerController.DownloadPDFHelp,statusInfo,inputBecomeAPartnerPageURL, Homepage);
-                            //becomeAPartnerPageTest.checkingTabPartnerSection(webDriver,report,js,becomeAPartnerController.PartnerTabSection,statusInfo,inputBecomeAPartnerPageURL, Homepage);
+                            becomeAPartnerPageTest.checkingRegisterButton(webDriver,report,js,becomeAPartnerController.RegisterButton,statusInfo,inputBecomeAPartnerPageURL, Homepage);
+                            becomeAPartnerPageTest.checkingBecomePartnerButton(webDriver,report,js,becomeAPartnerController.BecomeAPartnerButton,statusInfo,inputBecomeAPartnerPageURL, Homepage);
+                            becomeAPartnerPageTest.checkingGoToTopButton(webDriver,report,js,becomeAPartnerController.GoToTopButton,statusInfo,inputBecomeAPartnerPageURL, Homepage);
+                            becomeAPartnerPageTest.checkingCountryFlags(webDriver,report,js,becomeAPartnerController.CountryFlags,statusInfo,inputBecomeAPartnerPageURL, Homepage);
+                            becomeAPartnerPageTest.checkingLoginPartnerdashboard(webDriver,report,js,becomeAPartnerController.LoginPartnerDashboard,statusInfo,inputBecomeAPartnerPageURL, Homepage);
+                            becomeAPartnerPageTest.checkingTabHelpSection(webDriver,report,js,becomeAPartnerController.HelpTabSection,statusInfo,inputBecomeAPartnerPageURL, Homepage);
+                            becomeAPartnerPageTest.checkingDownloadOnHelp(webDriver,report,js,becomeAPartnerController.DownloadPDFHelp,statusInfo,inputBecomeAPartnerPageURL, Homepage);
+                            becomeAPartnerPageTest.checkingTabPartnerSection(webDriver,report,js,becomeAPartnerController.PartnerTabSection,statusInfo,inputBecomeAPartnerPageURL, Homepage);
                             becomeAPartnerPageTest.checkingFeedProviders(webDriver,report,js,becomeAPartnerController.FeedProviders,statusInfo,inputBecomeAPartnerPageURL, Homepage);
-                        }catch (Exception npBecomeAPartnerWorking){
-                            npBecomeAPartnerWorking.printStackTrace();
+                        }catch (Exception noBecomeAPartnerWorking){
+                            noBecomeAPartnerWorking.printStackTrace();
                         }
                     }
-
-
+                    if (!tabAffiliateProgram.isDisable()){
+                        try{
+                            tabPane.getSelectionModel().select(tabAffiliateProgram);
+                            AffiliateProgramTest affiliateProgramTest = new AffiliateProgramTest();
+                            affiliateProgramTest.checkingBecomeAffilinetPartner(webDriver,report,js,affiliateProgramController.BecomeAffilinetPartner,statusInfo,inputAffiliateProgramURL, Homepage);
+                        }catch (Exception noBecomeAPartnerWorking){
+                            noBecomeAPartnerWorking.printStackTrace();
+                        }
+                    }
                     // close webdriver and clear tasklist
                     Platform.runLater(() -> statusInfo.setText("Closing Browser..."));
                     try {
@@ -758,7 +792,12 @@ public class MainControllerFrontEndCheck implements Serializable{
         inputGridPageURLWithFillIns.setDisable(false);
         inputBrandPageOverview.setDisable(false);
         inputLucenePage.setDisable(false);
-
+        inputAccountEmail.setDisable(false);
+        inputPartnerShopPageURL.setDisable(false);
+        inputPartnerShopSearch.setDisable(false);
+        inputBecomeAPartnerPageURL.setDisable(false);
+        inputImprintURL.setDisable(false);
+        inputAccountPassword.setDisable(false);
     }
 
     @FXML
@@ -862,6 +901,9 @@ public class MainControllerFrontEndCheck implements Serializable{
         settingImageGrouping.setSelected(true);
         settingFavoritePage.setSelected(true);
         settingPartnerShopPage.setSelected(true);
+        settingBecomeAPartnerPage.setSelected(true);
+        settingAffiliateProgram.setSelected(true);
+        settingMerchandiseOverviewPage.setSelected(true);
         updateCheckerTabs();
     }
 
@@ -878,6 +920,9 @@ public class MainControllerFrontEndCheck implements Serializable{
         settingImageGrouping.setSelected(false);
         settingFavoritePage.setSelected(false);
         settingPartnerShopPage.setSelected(false);
+        settingBecomeAPartnerPage.setSelected(false);
+        settingAffiliateProgram.setSelected(false);
+        settingMerchandiseOverviewPage.setSelected(false);
         updateCheckerTabs();
     }
 

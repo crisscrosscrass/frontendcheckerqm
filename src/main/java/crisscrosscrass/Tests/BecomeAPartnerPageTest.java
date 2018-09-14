@@ -122,7 +122,36 @@ public class BecomeAPartnerPageTest {
                     ((JavascriptExecutor)webDriver).executeScript("window.scrollBy(0,"+(hoverItem.getY())+");");
                     wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.main.totopbutton"))));
                     webDriver.findElementByXPath(Homepage.getProperty("page.main.totopbutton")).click();
+                    for (int i = 0; i < 1; i++) {
+                        Thread.sleep(300);
+                        js.executeScript("window.scrollBy(0,100)");
+                    }
+                    for (int i = 0; i < 1; i++) {
+                        Thread.sleep(300);
+                        js.executeScript("window.scrollBy(0,-100)");
+                    }
                     try {
+                        WebElement h3Element = webDriver.findElementByXPath(Homepage.getProperty("partnerpage.info.h3"));
+                        h3Element.click();
+                        boolean isInViewPort = (boolean)((JavascriptExecutor)webDriver).executeScript(
+                                "var elem = arguments[0],                 " +
+                                        "  box = elem.getBoundingClientRect(),    " +
+                                        "  cx = box.left + box.width / 2,         " +
+                                        "  cy = box.top + box.height / 2,         " +
+                                        "  e = document.elementFromPoint(cx, cy); " +
+                                        "for (; e; e = e.parentElement) {         " +
+                                        "  if (e === elem)                        " +
+                                        "    return true;                         " +
+                                        "}                                        " +
+                                        "return false;                            "
+                                , h3Element);
+                        if (isInViewPort){
+                            ChangeCheckBox.adjustStyle(true,"complete",GoToTopButton);
+                            report.writeToFile("Go to Top- Help: ", "Initial banner (H3) is on user's view");
+                        }else {
+                            ChangeCheckBox.adjustStyle(true,"nope",GoToTopButton);
+                            report.writeToFile("Go to Top- Help: ", "Initial banner (H3) is NOT on user's view");
+                        }
                         webDriver.findElementByXPath(Homepage.getProperty("partnerpage.info.h3")).click();
                         ChangeCheckBox.adjustStyle(true,"complete",GoToTopButton);
                         report.writeToFile(infoMessage, "Successful, Initial banner (H3) is on user's view");

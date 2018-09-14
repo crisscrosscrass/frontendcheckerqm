@@ -7,14 +7,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="added a new testcase">
+      <change afterPath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/AffiliateProgramController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/MerchandiseOverviewPageController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Tests/AffiliateProgramTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/FXML/AffiliateProgram.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/FXML/MerchandiseOverviewPage.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/BecomeAPartnerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/BecomeAPartnerController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/MainControllerFrontEndCheck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/MainControllerFrontEndCheck.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/SplashFXMLController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/SplashFXMLController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Tests/BecomeAPartnerPageTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Tests/BecomeAPartnerPageTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Tests/GridPageTestWithWindows.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Tests/GridPageTestWithWindows.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/FXML/BecomeAPartner.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/FXML/BecomeAPartner.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/chromedriver.exe" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/chromedriver.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/configs/page.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/configs/page.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/FXML/UserInterface.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/FXML/UserInterface.fxml" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -111,14 +113,14 @@
           <entry key="backupCode" value="11" />
           <entry key="class" value="13" />
           <entry key="css" value="27" />
-          <entry key="fxml" value="522" />
+          <entry key="fxml" value="547" />
           <entry key="gif" value="2" />
           <entry key="iml" value="1" />
-          <entry key="java" value="2570" />
+          <entry key="java" value="2606" />
           <entry key="jpg" value="12" />
           <entry key="log" value="16" />
           <entry key="png" value="87" />
-          <entry key="properties" value="323" />
+          <entry key="properties" value="324" />
           <entry key="txt" value="66" />
           <entry key="xml" value="17" />
         </counts>
@@ -129,10 +131,10 @@
           <entry key="CSS" value="27" />
           <entry key="IDEA_MODULE" value="1" />
           <entry key="Image" value="101" />
-          <entry key="JAVA" value="2570" />
+          <entry key="JAVA" value="2606" />
           <entry key="PLAIN_TEXT" value="93" />
-          <entry key="Properties" value="323" />
-          <entry key="XML" value="539" />
+          <entry key="Properties" value="324" />
+          <entry key="XML" value="564" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -140,10 +142,10 @@
           <entry key="backupCode" value="89" />
           <entry key="css" value="246" />
           <entry key="dummy" value="29" />
-          <entry key="fxml" value="1658" />
-          <entry key="java" value="46608" />
+          <entry key="fxml" value="1702" />
+          <entry key="java" value="46960" />
           <entry key="log" value="4" />
-          <entry key="properties" value="3243" />
+          <entry key="properties" value="3250" />
           <entry key="regexp" value="5" />
           <entry key="txt" value="1291" />
           <entry key="xml" value="105" />
@@ -152,11 +154,11 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="246" />
-          <entry key="JAVA" value="46608" />
+          <entry key="JAVA" value="46960" />
           <entry key="PLAIN_TEXT" value="1413" />
-          <entry key="Properties" value="3243" />
+          <entry key="Properties" value="3250" />
           <entry key="RegExp" value="5" />
-          <entry key="XML" value="1763" />
+          <entry key="XML" value="1807" />
         </counts>
       </usages-collector>
     </session>
@@ -167,10 +169,10 @@
   <component name="FileEditorManager">
     <leaf>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Tests/BecomeAPartnerPageTest.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Tests/AffiliateProgramTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="365">
-              <caret line="632" column="21" lean-forward="true" selection-start-line="632" selection-start-column="21" selection-end-line="632" selection-end-column="21" />
+            <state relative-caret-position="232">
+              <caret line="36" column="42" lean-forward="true" selection-start-line="36" selection-start-column="42" selection-end-line="36" selection-end-column="42" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -234,11 +236,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/resources/FXML/GridPageWithWindows.fxml" />
-        <option value="$PROJECT_DIR$/src/main/resources/FXML/GridPageNoWindows.fxml" />
-        <option value="$PROJECT_DIR$/src/main/resources/FXML/DetailPage.fxml" />
-        <option value="$PROJECT_DIR$/src/main/resources/FXML/BrandOverview.fxml" />
-        <option value="$PROJECT_DIR$/src/main/resources/FXML/ImageGrouping.fxml" />
         <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/Tests/BrandPageTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/Tests/DetailPageTest.java" />
         <option value="$PROJECT_DIR$/src/main/resources/Style/Main.css" />
@@ -273,18 +270,23 @@
         <option value="$PROJECT_DIR$/temp/report.txt" />
         <option value="$PROJECT_DIR$/src/main/resources/FXML/PartnershopsPage.fxml" />
         <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/PartnershopsPageController.java" />
-        <option value="$PROJECT_DIR$/temp/UserSettings.properties" />
         <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/Tasks/CopyFiles.java" />
-        <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/SplashFXMLController.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/FXML/UserInterface.fxml" />
         <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/Tests/PartnerShopsPageTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/Tests/GridPageTest.java" />
         <option value="$PROJECT_DIR$/src/main/resources/FXML/BecomeAPartner.fxml" />
         <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/BecomeAPartnerController.java" />
         <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/Tests/GridPageTestWithWindows.java" />
-        <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/MainControllerFrontEndCheck.java" />
         <option value="$PROJECT_DIR$/src/main/resources/configs/page.properties" />
+        <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/SplashFXMLController.java" />
+        <option value="$PROJECT_DIR$/temp/UserSettings.properties" />
         <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/Tests/BecomeAPartnerPageTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/AffiliateProgramController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/FXML/AffiliateProgram.fxml" />
+        <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/MerchandiseOverviewPageController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/FXML/MerchandiseOverviewPage.fxml" />
+        <option value="$PROJECT_DIR$/src/main/resources/FXML/UserInterface.fxml" />
+        <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/MainControllerFrontEndCheck.java" />
+        <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/Tests/AffiliateProgramTest.java" />
       </list>
     </option>
   </component>
@@ -475,7 +477,7 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="SearchEverywhereHistoryKey" value="MainControllerFrontEndCheck launched&#9;null&#9;null" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1536919760576" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1536931935114" />
     <property name="dynamic.classpath" value="false" />
     <property name="full.screen.before.presentation.mode" value="false" />
     <property name="last.edited.regexp" value="928 Bewertungen&#10;3 Beoordelingen" />
@@ -645,13 +647,6 @@
       <option name="presentableId" value="Default" />
       <updated>1359379246138</updated>
       <workItem from="1359379250712" duration="1302000" />
-    </task>
-    <task id="LOCAL-00110" summary="removed some bugs">
-      <created>1535114374217</created>
-      <option name="number" value="00110" />
-      <option name="presentableId" value="LOCAL-00110" />
-      <option name="project" value="LOCAL" />
-      <updated>1535114374220</updated>
     </task>
     <task id="LOCAL-00111" summary="added new testcases">
       <created>1535121643286</created>
@@ -989,7 +984,14 @@
       <option name="project" value="LOCAL" />
       <updated>1536913969165</updated>
     </task>
-    <option name="localTasksCounter" value="159" />
+    <task id="LOCAL-00159" summary="added a new testcase">
+      <created>1536919785402</created>
+      <option name="number" value="00159" />
+      <option name="presentableId" value="LOCAL-00159" />
+      <option name="project" value="LOCAL" />
+      <updated>1536919785402</updated>
+    </task>
+    <option name="localTasksCounter" value="160" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1191,65 +1193,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/PageLuceneWithItemsController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/ImageGroupingController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="7" column="9" selection-start-line="7" selection-start-column="9" selection-end-line="7" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/FXML/GridPageWithFillIns.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/FXML/GridPageNoWindows.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" lean-forward="true" selection-end-line="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/GridPageNoWindowsController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="5" column="42" selection-start-line="5" selection-start-column="42" selection-end-line="5" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/FavoritePageController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="38" lean-forward="true" selection-start-line="8" selection-start-column="38" selection-end-line="8" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/FrontendHomepageController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="25" lean-forward="true" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/FXML/FrontendHomepage.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="78" lean-forward="true" selection-start-line="21" selection-start-column="78" selection-end-line="21" selection-end-column="78" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="459">
@@ -1401,20 +1344,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/temp/UserSettings.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="13" lean-forward="true" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/SplashFXMLController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="99" column="98" selection-start-line="99" selection-start-column="98" selection-end-line="99" selection-end-column="98" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/temp/myapp.log">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-219473">
@@ -1422,26 +1351,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/FXML/DetailPage.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="12" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/backupCode">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="37" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/FXML/UserInterface.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="184" column="37" lean-forward="true" selection-start-line="184" selection-start-column="37" selection-end-line="184" selection-end-column="37" />
         </state>
       </provider>
     </entry>
@@ -1473,13 +1386,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Tests/PartnerShopsPageTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="50" column="107" lean-forward="true" selection-start-line="50" selection-start-column="24" selection-end-line="50" selection-end-column="107" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Tests/HomepageTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2652">
@@ -1501,14 +1407,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/FXML/BecomeAPartner.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="35" selection-start-line="18" selection-start-column="35" selection-end-line="18" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/temp/GridPageErrorPagingWindows.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -1516,16 +1414,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="184">
           <caret line="36" column="138" lean-forward="true" selection-start-line="36" selection-start-column="138" selection-end-line="36" selection-end-column="138" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/MainControllerFrontEndCheck.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="474" column="66" lean-forward="true" selection-start-line="474" selection-start-column="66" selection-end-line="474" selection-end-column="66" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1553,10 +1441,134 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/SplashFXMLController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="263">
+          <caret line="99" column="67" selection-start-line="99" selection-start-column="67" selection-end-line="99" selection-end-column="67" />
+          <folding>
+            <element signature="e#5464#5465#0" expanded="true" />
+            <element signature="e#5544#5545#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/temp/UserSettings.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="21" selection-start-line="3" selection-start-column="21" selection-end-line="3" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/FXML/BecomeAPartner.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="35" selection-start-line="18" selection-start-column="35" selection-end-line="18" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/FXML/BrandOverview.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/FXML/DetailPage.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/FXML/ImageGrouping.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" selection-start-line="5" selection-end-line="10" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/FXML/AffiliateProgram.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" selection-start-line="8" selection-end-line="14" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/MerchandiseOverviewPageController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="42" lean-forward="true" selection-start-line="6" selection-start-column="42" selection-end-line="6" selection-end-column="42" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/FXML/MerchandiseOverviewPage.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="7" lean-forward="true" selection-start-line="13" selection-start-column="7" selection-end-line="13" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/AffiliateProgramController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="26" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="26" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/ImageGroupingController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/FXML/UserInterface.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="167" column="48" lean-forward="true" selection-start-line="167" selection-start-column="48" selection-end-line="167" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Tests/BecomeAPartnerPageTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="365">
-          <caret line="632" column="21" lean-forward="true" selection-start-line="632" selection-start-column="21" selection-end-line="632" selection-end-column="21" />
+        <state relative-caret-position="518">
+          <caret line="686" column="5" lean-forward="true" selection-start-line="624" selection-start-column="4" selection-end-line="686" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Tests/PartnerShopsPageTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="27" column="4" selection-start-line="27" selection-start-column="4" selection-end-line="27" selection-end-column="78" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/MainControllerFrontEndCheck.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="212">
+          <caret line="510" column="185" selection-start-line="510" selection-start-column="161" selection-end-line="510" selection-end-column="185" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Tests/AffiliateProgramTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="232">
+          <caret line="36" column="42" lean-forward="true" selection-start-line="36" selection-start-column="42" selection-end-line="36" selection-end-column="42" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

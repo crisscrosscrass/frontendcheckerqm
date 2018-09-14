@@ -99,6 +99,7 @@ public class SplashFXMLController implements Initializable {
                                 properties.setProperty("inputAccountPassword",controller.inputAccountPassword.getText());
                                 properties.setProperty("inputPartnerShopPageURL",controller.inputPartnerShopPageURL.getText());
                                 properties.setProperty("inputPartnerShopSearch",controller.inputPartnerShopSearch.getText());
+                                properties.setProperty("inputBecomeAPartnerPageURL",controller.inputBecomeAPartnerPageURL.getText());
                                 ConfigSettings configSettingsOnClose = new ConfigSettings();
                                 configSettingsOnClose.saveConfigSettings(properties);
                             }
