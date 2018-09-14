@@ -319,6 +319,8 @@ public class MainControllerFrontEndCheck implements Serializable{
                 Platform.runLater(() -> statusInfo.setText("Starting Engine..."));
                 System.setProperty("webdriver.chrome.driver", "temp//chromedriver.exe");
                 ChromeOptions option = new ChromeOptions();
+                option.addArguments("--window-size=1920,1080");
+                //option.addArguments("--headless");
                 option.addArguments("disable-infobars");
                 option.addArguments("start-maximized");
                 ChromeDriver webDriver = new ChromeDriver(option);
@@ -466,9 +468,11 @@ public class MainControllerFrontEndCheck implements Serializable{
                             //becomeAPartnerPageTest.checkingBecomePartnerButton(webDriver,report,js,becomeAPartnerController.BecomeAPartnerButton,statusInfo,inputBecomeAPartnerPageURL, Homepage);
                             //becomeAPartnerPageTest.checkingGoToTopButton(webDriver,report,js,becomeAPartnerController.GoToTopButton,statusInfo,inputBecomeAPartnerPageURL, Homepage);
                             //becomeAPartnerPageTest.checkingCountryFlags(webDriver,report,js,becomeAPartnerController.CountryFlags,statusInfo,inputBecomeAPartnerPageURL, Homepage);
-                            //becomeAPartnerPageTest.checkingLoginPartnerdashboard(webDriver,report,js,becomeAPartnerController.LoginPartnerdashboard,statusInfo,inputBecomeAPartnerPageURL, Homepage);
+                            //becomeAPartnerPageTest.checkingLoginPartnerdashboard(webDriver,report,js,becomeAPartnerController.LoginPartnerDashboard,statusInfo,inputBecomeAPartnerPageURL, Homepage);
                             //becomeAPartnerPageTest.checkingTabHelpSection(webDriver,report,js,becomeAPartnerController.HelpTabSection,statusInfo,inputBecomeAPartnerPageURL, Homepage);
-                            becomeAPartnerPageTest.checkingDownloadOnHelp(webDriver,report,js,becomeAPartnerController.DownloadPDFHelp,statusInfo,inputBecomeAPartnerPageURL, Homepage);
+                            //becomeAPartnerPageTest.checkingDownloadOnHelp(webDriver,report,js,becomeAPartnerController.DownloadPDFHelp,statusInfo,inputBecomeAPartnerPageURL, Homepage);
+                            //becomeAPartnerPageTest.checkingTabPartnerSection(webDriver,report,js,becomeAPartnerController.PartnerTabSection,statusInfo,inputBecomeAPartnerPageURL, Homepage);
+                            becomeAPartnerPageTest.checkingFeedProviders(webDriver,report,js,becomeAPartnerController.FeedProviders,statusInfo,inputBecomeAPartnerPageURL, Homepage);
                         }catch (Exception npBecomeAPartnerWorking){
                             npBecomeAPartnerWorking.printStackTrace();
                         }

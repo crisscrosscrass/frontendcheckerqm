@@ -34,6 +34,7 @@ public class GridPageTestWithWindows {
                 WebDriverWait wait = new WebDriverWait(webDriver, 10);
                 try{
                     if(webDriver.findElements(By.xpath(Homepage.getProperty("page.grid.windows"))).size() > 0){
+                        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.grid.windows.continue"))));
                         webDriver.findElementByXPath(Homepage.getProperty("page.grid.windows.continue")).click();
                         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Homepage.getProperty("page.grid.windows.continue"))));
                         Platform.runLater(() -> {

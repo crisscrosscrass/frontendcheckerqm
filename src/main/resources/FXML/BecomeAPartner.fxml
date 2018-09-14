@@ -13,8 +13,10 @@
         <JFXCheckBox fx:id="BecomeAPartnerButton" text="Become Partner Button" />
         <JFXCheckBox fx:id="GoToTopButton" text="Go to Top Button" />
         <JFXCheckBox fx:id="CountryFlags" text="Country Flags" />
-        <JFXCheckBox fx:id="LoginPartnerdashboard" text="Login Partnerdashboard" />
+        <JFXCheckBox fx:id="LoginPartnerDashboard" text="Login Partner Dashboard" />
         <JFXCheckBox fx:id="HelpTabSection" text="Tab Help Section" />
         <JFXCheckBox fx:id="DownloadPDFHelp" text="Download PDF Help" />
+        <JFXCheckBox fx:id="PartnerTabSection" text="Tab Partner Section" />
+        <JFXCheckBox fx:id="FeedProviders" text="Feed Providers" />
     </children>
 </VBox>
