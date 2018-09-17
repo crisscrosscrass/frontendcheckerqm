@@ -17,4 +17,5 @@ public class FrontendHomepageController {
     @FXML JFXCheckBox checkFeedbackPopUp;
     @FXML JFXCheckBox checkPrivacyPopUp;
     @FXML JFXCheckBox checkImprint;
+    @FXML JFXCheckBox PrivacyPolicy;
 }

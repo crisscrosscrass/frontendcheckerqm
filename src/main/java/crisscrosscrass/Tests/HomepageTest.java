@@ -586,7 +586,7 @@ public class HomepageTest {
             WebDriverWait wait = new WebDriverWait(webDriver, 10);
             try{
                 wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("imprintpage.costumer.button"))));
-                String checkLinkUrl = webDriver.findElementByXPath(Homepage.getProperty("imprintpage.costumer.button")).getAttribute("href").trim().toLowerCase();
+                final String checkLinkUrl = webDriver.findElementByXPath(Homepage.getProperty("imprintpage.costumer.button")).getAttribute("href").trim().toLowerCase();
                 webDriver.findElementByXPath(Homepage.getProperty("imprintpage.costumer.button")).click();
                 if ( webDriver.getCurrentUrl().trim().toLowerCase().equals(checkLinkUrl) ){
                     ChangeCheckBox.adjustStyle(true,"complete",checkImprint);
@@ -607,5 +607,51 @@ public class HomepageTest {
             noPrivacyBox.printStackTrace();
         }
         report.writeToFile("=================================", "");
+    }
+    public void checkingPrivacyPolicy(ChromeDriver webDriver, Report report, JFXCheckBox PrivacyPolicy, Text statusInfo, TextField inputPrivacyPolicy, Properties Homepage) {
+        final String infoMessage = "Checking Privacy Policy";
+        ChangeCheckBox.adjustStyle(false,"progress",PrivacyPolicy);
+        Platform.runLater(() -> {
+            statusInfo.setText(""+infoMessage+"...");
+        });
+
+        try {
+            ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
+            webDriver.switchTo().window(tabs.get(0));
+            try {
+                webDriver.navigate().to(inputPrivacyPolicy.getText().trim());
+                WebDriverWait wait = new WebDriverWait(webDriver, 10);
+                try{
+                    wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("privacypage.link"))));
+                    final String beforeURL = webDriver.getCurrentUrl().toLowerCase().trim();
+                    webDriver.findElementByXPath(Homepage.getProperty("privacypage.link")).click();
+                    if (webDriver.getCurrentUrl().toLowerCase().trim() != beforeURL){
+                        report.writeToFile(infoMessage, "Successful!");
+                        ChangeCheckBox.adjustStyle(true,"complete",PrivacyPolicy);
+                    }else{
+                        report.writeToFile(infoMessage, "Failed !");
+                        ChangeCheckBox.adjustStyle(true,"nope",PrivacyPolicy);
+                    }
+                }catch (Exception gridPageIssue){
+                    ChangeCheckBox.adjustStyle(true,"nope",PrivacyPolicy);
+                    webDriver.navigate().to(inputPrivacyPolicy.getText().trim());
+                    report.writeToFile(infoMessage, "Couldn't detect \"Privacy\" Link");
+                    gridPageIssue.printStackTrace();
+                }
+            }catch (Exception noRequestedSiteFound){
+                ChangeCheckBox.adjustStyle(true,"nope",PrivacyPolicy);
+                webDriver.navigate().to(inputPrivacyPolicy.getText().trim());
+                report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
+                noRequestedSiteFound.printStackTrace();
+            }
+        }catch (Exception noBrowserWorking){
+            ChangeCheckBox.adjustStyle(true,"nope",PrivacyPolicy);
+            webDriver.navigate().to(inputPrivacyPolicy.getText().trim());
+            report.writeToFile(infoMessage, "unable to check! Browser not responding");
+            noBrowserWorking.printStackTrace();
+        }
+
+        report.writeToFile("=================================", "");
+
     }
 }
