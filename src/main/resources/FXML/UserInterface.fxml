@@ -22,7 +22,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="mainStage" prefHeight="936.0" prefWidth="1010.0" style="-fx-background-color: grey;" stylesheets="@../Style/Main.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="crisscrosscrass.Controller.MainControllerFrontEndCheck">
+<AnchorPane fx:id="mainStage" prefHeight="964.0" prefWidth="1010.0" style="-fx-background-color: grey;" stylesheets="@../Style/Main.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="crisscrosscrass.Controller.MainControllerFrontEndCheck">
    <children>
       <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" spacing="5.0" style="-fx-background-color: grey;">
          <children>
@@ -162,12 +162,22 @@
                   <TextField fx:id="inputAffiliateProgramURL" focusTraversable="false" prefWidth="300.0" text="https://www.ladenzeile.de/affiliate-programm/" />
                </children>
             </HBox>
-            <HBox alignment="CENTER_RIGHT" layoutX="30.0" layoutY="578.0" style="-fx-border-color: white; -fx-border-radius: 5;">
+            <VBox style="-fx-border-color: white; -fx-border-radius: 5;">
                <children>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Merchandise Overview Page" />
-                  <TextField fx:id="inputMerchandiseOverviewPageURL" focusTraversable="false" prefWidth="300.0" text="https://www.ladenzeile.de/merchandise.html" />
+                  <HBox alignment="CENTER_RIGHT">
+                     <children>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Merchandise Overview Page" />
+                        <TextField fx:id="inputMerchandiseOverviewPageURL" focusTraversable="false" prefWidth="300.0" text="https://www.ladenzeile.de/merchandise.html" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT">
+                     <children>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Merchandise Search" />
+                        <TextField fx:id="inputMerchandiseSearch" focusTraversable="false" prefWidth="300.0" text="Alf | Nier" />
+                     </children>
+                  </HBox>
                </children>
-            </HBox>
+            </VBox>
             <ProgressBar fx:id="progressIndicator" prefWidth="400.0" progress="0.0">
                <VBox.margin>
                   <Insets bottom="10.0" top="20.0" />
@@ -251,7 +261,7 @@
             </VBox>
          </children>
       </VBox>
-      <TabPane fx:id="tabPane" layoutX="14.0" layoutY="690.0" prefHeight="240.0" prefWidth="970.0">
+      <TabPane fx:id="tabPane" layoutX="14.0" layoutY="710.0" prefHeight="240.0" prefWidth="970.0">
          <tabs>
             <Tab fx:id="tabHomepage" closable="false" text="Homepage">
                <content>

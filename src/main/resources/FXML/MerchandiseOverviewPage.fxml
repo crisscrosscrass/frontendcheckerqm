@@ -10,5 +10,7 @@
 <VBox style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="crisscrosscrass.Controller.MerchandiseOverviewPageController">
     <children>
         <JFXCheckBox fx:id="LettertoMerchandise" text="Letter to Merchandise" />
+        <JFXCheckBox fx:id="MerchandiseName" text="Merchandise Name" />
+        <JFXCheckBox fx:id="MerchandiseSearch" text="Merchandise Search" />
     </children>
 </VBox>

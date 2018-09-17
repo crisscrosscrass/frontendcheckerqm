@@ -88,6 +88,7 @@ public class MainControllerFrontEndCheck implements Serializable{
     @FXML JFXPasswordField inputAccountPassword;
     @FXML TextField inputAffiliateProgramURL;
     @FXML TextField inputMerchandiseOverviewPageURL;
+    @FXML TextField inputMerchandiseSearch;
     @FXML HBox outputPlace;
     @FXML ImageView preloaderCat;
     @FXML VBox CheckBoxesPlace;
@@ -518,7 +519,9 @@ public class MainControllerFrontEndCheck implements Serializable{
                         try{
                             tabPane.getSelectionModel().select(tabMerchandiseOverviewPage);
                             MerchandiseOverviewPageTest merchandiseOverviewPageTest = new MerchandiseOverviewPageTest();
-                            merchandiseOverviewPageTest.checkingMerchandiseLetters(webDriver,report,js,merchandiseOverviewPageController.LettertoMerchandise,statusInfo,inputMerchandiseOverviewPageURL, Homepage);
+                            //merchandiseOverviewPageTest.checkingMerchandiseLetters(webDriver,report,js,merchandiseOverviewPageController.LettertoMerchandise,statusInfo,inputMerchandiseOverviewPageURL, Homepage);
+                            //merchandiseOverviewPageTest.checkingMerchandiseName(webDriver,report,js,merchandiseOverviewPageController.MerchandiseName,statusInfo,inputMerchandiseOverviewPageURL, Homepage);
+                            merchandiseOverviewPageTest.checkingMerchandiseSearch(webDriver,report,js,merchandiseOverviewPageController.MerchandiseSearch,statusInfo,inputMerchandiseOverviewPageURL,inputMerchandiseSearch, Homepage);
                         }catch (Exception noBecomeAPartnerWorking){
                             noBecomeAPartnerWorking.printStackTrace();
                         }

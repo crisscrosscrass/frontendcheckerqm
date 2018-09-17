@@ -5,4 +5,6 @@ import javafx.fxml.FXML;
 
 public class MerchandiseOverviewPageController {
     @FXML JFXCheckBox LettertoMerchandise;
+    @FXML JFXCheckBox MerchandiseName;
+    @FXML JFXCheckBox MerchandiseSearch;
 }

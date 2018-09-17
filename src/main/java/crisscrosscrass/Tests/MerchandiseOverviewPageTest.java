@@ -106,4 +106,95 @@ public class MerchandiseOverviewPageTest {
         report.writeToFile("=================================", "");
 
     }
+    public void checkingMerchandiseName(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox MerchandiseName, Text statusInfo, TextField inputMerchandiseOverviewPageURL, Properties Homepage){
+        final String infoMessage = "Checking Merchandise Name";
+        ChangeCheckBox.adjustStyle(false,"progress",MerchandiseName);
+        Platform.runLater(() -> {
+            statusInfo.setText(""+infoMessage+"...");
+        });
+        try {
+            ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
+            webDriver.switchTo().window(tabs.get(0));
+            try {
+                webDriver.navigate().to(inputMerchandiseOverviewPageURL.getText().trim());
+                WebDriverWait wait = new WebDriverWait(webDriver, 10);
+                try{
+                    wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("merchandisepage.merchandise.links"))));
+                    List<WebElement> AllMerchandiseLinks = webDriver.findElementsByXPath(Homepage.getProperty("merchandisepage.merchandise.links"));
+                    final int randomSelectIndex = ThreadLocalRandom.current().nextInt(0, AllMerchandiseLinks.size() );
+                    final String selectedMerchandise = AllMerchandiseLinks.get(randomSelectIndex).getText();
+                    Point hoverItem = AllMerchandiseLinks.get(randomSelectIndex).getLocation();
+                    ((JavascriptExecutor)webDriver).executeScript("return window.title;");
+                    ((JavascriptExecutor)webDriver).executeScript("window.scrollBy(0,"+(hoverItem.getY())+");");
+                    AllMerchandiseLinks.get(randomSelectIndex).click();
+                    if (webDriver.getCurrentUrl().toLowerCase().trim().contains(selectedMerchandise.toLowerCase().trim()) | webDriver.getTitle().toLowerCase().trim().contains(selectedMerchandise.toLowerCase().trim() )){
+                        ChangeCheckBox.adjustStyle(true,"complete",MerchandiseName);
+                        report.writeToFile(infoMessage, "Successful! Could detect \""+selectedMerchandise+"\" in redirected Page"+webDriver.getCurrentUrl().toLowerCase());
+                    }else {
+                        ChangeCheckBox.adjustStyle(true,"nope",MerchandiseName);
+                        report.writeToFile(infoMessage, "Not successful! Couldn't detect \""+selectedMerchandise+"\" in redirected Page"+webDriver.getCurrentUrl().toLowerCase());
+                    }
+
+                }catch (Exception gridPageIssue){
+                    ChangeCheckBox.adjustStyle(true,"nope",MerchandiseName);
+                    webDriver.navigate().to(inputMerchandiseOverviewPageURL.getText().trim());
+                    report.writeToFile(infoMessage, "Couldn't detect \"Link-Name\" to Merchandise");
+                    gridPageIssue.printStackTrace();
+                }
+            }catch (Exception noRequestedSiteFound){
+                ChangeCheckBox.adjustStyle(true,"nope",MerchandiseName);
+                webDriver.navigate().to(inputMerchandiseOverviewPageURL.getText().trim());
+                report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
+                noRequestedSiteFound.printStackTrace();
+            }
+        }catch (Exception noBrowserWorking){
+            ChangeCheckBox.adjustStyle(true,"nope",MerchandiseName);
+            webDriver.navigate().to(inputMerchandiseOverviewPageURL.getText().trim());
+            report.writeToFile(infoMessage, "unable to check! Browser not responding");
+            noBrowserWorking.printStackTrace();
+        }
+
+        report.writeToFile("=================================", "");
+
+    }
+    public void checkingMerchandiseSearch(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox MerchandiseName, Text statusInfo, TextField inputMerchandiseOverviewPageURL,TextField inputMerchandiseSearch, Properties Homepage){
+        final String infoMessage = "Checking Merchandise Search";
+        ChangeCheckBox.adjustStyle(false,"progress",MerchandiseName);
+        Platform.runLater(() -> {
+            statusInfo.setText(""+infoMessage+"...");
+        });
+        try {
+            ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
+            webDriver.switchTo().window(tabs.get(0));
+            try {
+                webDriver.navigate().to(inputMerchandiseOverviewPageURL.getText().trim());
+                WebDriverWait wait = new WebDriverWait(webDriver, 10);
+                try{
+                    wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("merchandisepage.search.bar"))));
+                    String[] AllSearchQueries = inputMerchandiseSearch.getText().split("\\|");
+
+
+
+                }catch (Exception gridPageIssue){
+                    ChangeCheckBox.adjustStyle(true,"nope",MerchandiseName);
+                    webDriver.navigate().to(inputMerchandiseOverviewPageURL.getText().trim());
+                    report.writeToFile(infoMessage, "Couldn't detect \"Search\" Merchandise");
+                    gridPageIssue.printStackTrace();
+                }
+            }catch (Exception noRequestedSiteFound){
+                ChangeCheckBox.adjustStyle(true,"nope",MerchandiseName);
+                webDriver.navigate().to(inputMerchandiseOverviewPageURL.getText().trim());
+                report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
+                noRequestedSiteFound.printStackTrace();
+            }
+        }catch (Exception noBrowserWorking){
+            ChangeCheckBox.adjustStyle(true,"nope",MerchandiseName);
+            webDriver.navigate().to(inputMerchandiseOverviewPageURL.getText().trim());
+            report.writeToFile(infoMessage, "unable to check! Browser not responding");
+            noBrowserWorking.printStackTrace();
+        }
+
+        report.writeToFile("=================================", "");
+
+    }
 }
