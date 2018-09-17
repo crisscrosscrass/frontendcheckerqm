@@ -8,11 +8,7 @@
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="added a new testcase">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/MainControllerFrontEndCheck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/MainControllerFrontEndCheck.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/MerchandiseOverviewPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/MerchandiseOverviewPageController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Tests/MerchandiseOverviewPageTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Tests/MerchandiseOverviewPageTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/FXML/MerchandiseOverviewPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/FXML/MerchandiseOverviewPage.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/FXML/UserInterface.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/FXML/UserInterface.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/configs/page.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/configs/page.properties" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
@@ -114,12 +110,12 @@
           <entry key="fxml" value="549" />
           <entry key="gif" value="2" />
           <entry key="iml" value="1" />
-          <entry key="java" value="2670" />
+          <entry key="java" value="2683" />
           <entry key="jpg" value="12" />
           <entry key="log" value="16" />
           <entry key="png" value="87" />
-          <entry key="properties" value="332" />
-          <entry key="txt" value="67" />
+          <entry key="properties" value="335" />
+          <entry key="txt" value="69" />
           <entry key="xml" value="17" />
         </counts>
       </usages-collector>
@@ -129,9 +125,9 @@
           <entry key="CSS" value="27" />
           <entry key="IDEA_MODULE" value="1" />
           <entry key="Image" value="101" />
-          <entry key="JAVA" value="2670" />
-          <entry key="PLAIN_TEXT" value="94" />
-          <entry key="Properties" value="332" />
+          <entry key="JAVA" value="2683" />
+          <entry key="PLAIN_TEXT" value="96" />
+          <entry key="Properties" value="335" />
           <entry key="XML" value="566" />
         </counts>
       </usages-collector>
@@ -141,9 +137,9 @@
           <entry key="css" value="246" />
           <entry key="dummy" value="29" />
           <entry key="fxml" value="1718" />
-          <entry key="java" value="47854" />
+          <entry key="java" value="48406" />
           <entry key="log" value="4" />
-          <entry key="properties" value="3381" />
+          <entry key="properties" value="3401" />
           <entry key="regexp" value="5" />
           <entry key="txt" value="1291" />
           <entry key="xml" value="105" />
@@ -152,9 +148,9 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="246" />
-          <entry key="JAVA" value="47854" />
+          <entry key="JAVA" value="48406" />
           <entry key="PLAIN_TEXT" value="1413" />
-          <entry key="Properties" value="3381" />
+          <entry key="Properties" value="3401" />
           <entry key="RegExp" value="5" />
           <entry key="XML" value="1823" />
         </counts>
@@ -169,8 +165,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Tests/MerchandiseOverviewPageTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="385">
-              <caret line="175" lean-forward="true" selection-start-line="175" selection-end-line="175" />
+            <state relative-caret-position="-92">
+              <caret line="174" column="68" lean-forward="true" selection-start-line="174" selection-start-column="68" selection-end-line="174" selection-end-column="68" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -282,8 +278,8 @@
         <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/Tests/AffiliateProgramTest.java" />
         <option value="$PROJECT_DIR$/src/main/resources/FXML/MerchandiseOverviewPage.fxml" />
         <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/MerchandiseOverviewPageController.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/configs/page.properties" />
         <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/MainControllerFrontEndCheck.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/configs/page.properties" />
         <option value="$PROJECT_DIR$/src/main/java/crisscrosscrass/Tests/MerchandiseOverviewPageTest.java" />
       </list>
     </option>
@@ -475,7 +471,7 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="SearchEverywhereHistoryKey" value="MainControllerFrontEndCheck launched&#9;null&#9;null" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1537164602125" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1537167697357" />
     <property name="dynamic.classpath" value="false" />
     <property name="full.screen.before.presentation.mode" value="false" />
     <property name="last.edited.regexp" value="928 Bewertungen&#10;3 Beoordelingen" />
@@ -645,13 +641,6 @@
       <option name="presentableId" value="Default" />
       <updated>1359379246138</updated>
       <workItem from="1359379250712" duration="1302000" />
-    </task>
-    <task id="LOCAL-00113" summary="added new testcase">
-      <created>1535362056216</created>
-      <option name="number" value="00113" />
-      <option name="presentableId" value="LOCAL-00113" />
-      <option name="project" value="LOCAL" />
-      <updated>1535362056216</updated>
     </task>
     <task id="LOCAL-00114" summary="added new testcase">
       <created>1535366000469</created>
@@ -989,7 +978,14 @@
       <option name="project" value="LOCAL" />
       <updated>1536937352903</updated>
     </task>
-    <option name="localTasksCounter" value="162" />
+    <task id="LOCAL-00162" summary="added a new testcase">
+      <created>1537164618393</created>
+      <option name="number" value="00162" />
+      <option name="presentableId" value="LOCAL-00162" />
+      <option name="project" value="LOCAL" />
+      <updated>1537164618394</updated>
+    </task>
+    <option name="localTasksCounter" value="163" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1040,7 +1036,7 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.2867804" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.2867804" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="DB Browser" order="3" />
@@ -1052,7 +1048,7 @@
       <window_info id="Capture Tool" order="9" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.48933902" weight="0.32827735" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.43443498" visible="true" weight="0.37594798" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.43443498" visible="true" weight="0.1744312" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4989339" weight="0.39875388" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -1363,13 +1359,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Tests/HomepageTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2652">
-          <caret line="149" column="53" lean-forward="true" selection-start-line="149" selection-start-column="53" selection-end-line="149" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Tests/GridPageTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="127">
@@ -1464,13 +1453,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/temp/report.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="68" selection-start-line="9" selection-start-column="56" selection-end-line="9" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/BecomeAPartnerController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -1512,13 +1494,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Tests/PartnerShopsPageTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="280" column="1" selection-start-line="280" selection-start-column="1" selection-end-line="280" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/FXML/MerchandiseOverviewPage.fxml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -1534,27 +1509,48 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Tests/PartnerShopsPageTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="283" column="112" lean-forward="true" selection-start-line="281" selection-start-column="20" selection-end-line="283" selection-end-column="112" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/configs/page.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="128" selection-start-line="128" selection-end-line="128" selection-end-column="26" />
+        <state relative-caret-position="51">
+          <caret line="103" column="62" selection-start-line="103" selection-start-column="62" selection-end-line="103" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Tests/HomepageTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="447" column="84" selection-start-line="447" selection-start-column="58" selection-end-line="447" selection-end-column="84" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/MainControllerFrontEndCheck.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="394">
-          <caret line="523" column="219" selection-start-line="523" selection-start-column="197" selection-end-line="523" selection-end-column="219" />
+          <caret line="523" column="153" selection-start-line="523" selection-start-column="136" selection-end-line="523" selection-end-column="153" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/temp/report.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Tests/MerchandiseOverviewPageTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="385">
-          <caret line="175" lean-forward="true" selection-start-line="175" selection-end-line="175" />
+        <state relative-caret-position="-92">
+          <caret line="174" column="68" lean-forward="true" selection-start-line="174" selection-start-column="68" selection-end-line="174" selection-end-column="68" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

@@ -157,9 +157,9 @@ public class MerchandiseOverviewPageTest {
         report.writeToFile("=================================", "");
 
     }
-    public void checkingMerchandiseSearch(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox MerchandiseName, Text statusInfo, TextField inputMerchandiseOverviewPageURL,TextField inputMerchandiseSearch, Properties Homepage){
+    public void checkingMerchandiseSearch(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox MerchandiseSearch, Text statusInfo, TextField inputMerchandiseOverviewPageURL,TextField inputMerchandiseSearch, Properties Homepage){
         final String infoMessage = "Checking Merchandise Search";
-        ChangeCheckBox.adjustStyle(false,"progress",MerchandiseName);
+        ChangeCheckBox.adjustStyle(false,"progress",MerchandiseSearch);
         Platform.runLater(() -> {
             statusInfo.setText(""+infoMessage+"...");
         });
@@ -170,25 +170,53 @@ public class MerchandiseOverviewPageTest {
                 webDriver.navigate().to(inputMerchandiseOverviewPageURL.getText().trim());
                 WebDriverWait wait = new WebDriverWait(webDriver, 10);
                 try{
-                    wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("merchandisepage.search.bar"))));
                     String[] AllSearchQueries = inputMerchandiseSearch.getText().split("\\|");
-
-
-
+                    //all search queries
+                    for (int i=0 ; i<AllSearchQueries.length ; i++){
+                        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("merchandisepage.search.bar"))));
+                        Point hoverItem = webDriver.findElementByXPath(Homepage.getProperty("merchandisepage.search.bar")).getLocation();
+                        ((JavascriptExecutor)webDriver).executeScript("return window.title;");
+                        ((JavascriptExecutor)webDriver).executeScript("window.scrollBy(0,"+(hoverItem.getY())+");");
+                        WebElement element = webDriver.findElement(By.xpath(Homepage.getProperty("merchandisepage.search.bar")));
+                        element.sendKeys(AllSearchQueries[i].trim());
+                        try{
+                            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("merchandisepage.search.suggestions"))));
+                            List<WebElement> AllMerchandiseSuggestions = webDriver.findElementsByXPath(Homepage.getProperty("merchandisepage.search.suggestions"));
+                            report.writeToFile("Merchandise Suggestions for \""+AllSearchQueries[i].trim()+"\": ");
+                            for (WebElement Merchandise : AllMerchandiseSuggestions){
+                                report.writeToFile(Merchandise.getText());
+                            }
+                            final String selectedSuggestionMerchandise = AllMerchandiseSuggestions.get(0).getText().trim();
+                            AllMerchandiseSuggestions.get(0).click();
+                            if (webDriver.getCurrentUrl().toLowerCase().trim().contains(selectedSuggestionMerchandise.toLowerCase().trim()) | webDriver.getTitle().toLowerCase().trim().contains(selectedSuggestionMerchandise.toLowerCase().trim()) ){
+                                report.writeToFile("Click on Suggestion \""+selectedSuggestionMerchandise.trim()+"\": ", "Successful! User is redirected to a page that contains \""+selectedSuggestionMerchandise.trim()+"\" ");
+                            }else{
+                                report.writeToFile("Click on Suggestion \""+selectedSuggestionMerchandise.trim()+"\": ", "Not successful! User is redirected to a page that NOT contains \""+selectedSuggestionMerchandise.trim()+"\" ");
+                            }
+                            report.writeToFile("");
+                            webDriver.navigate().to(inputMerchandiseOverviewPageURL.getText().trim());
+                        }catch (Exception noSuggestionsFound){
+                            report.writeToFile(infoMessage, "Couldn't detect \"Suggestions\" for Merchandise Search \""+AllSearchQueries[i].trim()+"\" ");
+                            webDriver.navigate().to(inputMerchandiseOverviewPageURL.getText().trim());
+                            noSuggestionsFound.printStackTrace();
+                        }
+                    }
+                    ChangeCheckBox.adjustStyle(true,"complete",MerchandiseSearch);
+                    report.writeToFile(infoMessage, "Complete!");
                 }catch (Exception gridPageIssue){
-                    ChangeCheckBox.adjustStyle(true,"nope",MerchandiseName);
+                    ChangeCheckBox.adjustStyle(true,"nope",MerchandiseSearch);
                     webDriver.navigate().to(inputMerchandiseOverviewPageURL.getText().trim());
                     report.writeToFile(infoMessage, "Couldn't detect \"Search\" Merchandise");
                     gridPageIssue.printStackTrace();
                 }
             }catch (Exception noRequestedSiteFound){
-                ChangeCheckBox.adjustStyle(true,"nope",MerchandiseName);
+                ChangeCheckBox.adjustStyle(true,"nope",MerchandiseSearch);
                 webDriver.navigate().to(inputMerchandiseOverviewPageURL.getText().trim());
                 report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
                 noRequestedSiteFound.printStackTrace();
             }
         }catch (Exception noBrowserWorking){
-            ChangeCheckBox.adjustStyle(true,"nope",MerchandiseName);
+            ChangeCheckBox.adjustStyle(true,"nope",MerchandiseSearch);
             webDriver.navigate().to(inputMerchandiseOverviewPageURL.getText().trim());
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
             noBrowserWorking.printStackTrace();
