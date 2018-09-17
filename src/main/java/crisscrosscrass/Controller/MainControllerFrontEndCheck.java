@@ -180,6 +180,9 @@ public class MainControllerFrontEndCheck implements Serializable{
         inputPartnerShopPageURL.setText(userData.getProperty("inputPartnerShopPageURL"));
         inputPartnerShopSearch.setText(userData.getProperty("inputPartnerShopSearch"));
         inputBecomeAPartnerPageURL.setText(userData.getProperty("inputBecomeAPartnerPageURL"));
+        inputAffiliateProgramURL.setText(userData.getProperty("inputAffiliateProgramURL"));
+        inputMerchandiseOverviewPageURL.setText(userData.getProperty("inputMerchandiseOverviewPageURL"));
+        inputMerchandiseSearch.setText(userData.getProperty("inputMerchandiseSearch"));
 
         //opening Menu in User Interface
         Platform.runLater(() -> settingTitledPane.setExpanded(true));
@@ -299,6 +302,9 @@ public class MainControllerFrontEndCheck implements Serializable{
                     inputBecomeAPartnerPageURL.setDisable(true);
                     inputAccountPassword.setDisable(true);
                     inputImprintURL.setDisable(true);
+                    inputAffiliateProgramURL.setDisable(true);
+                    inputMerchandiseOverviewPageURL.setDisable(true);
+                    inputMerchandiseSearch.setDisable(true);
                     settingTitledPane.setExpanded(false);
         });
 
@@ -812,6 +818,9 @@ public class MainControllerFrontEndCheck implements Serializable{
         inputBecomeAPartnerPageURL.setDisable(false);
         inputImprintURL.setDisable(false);
         inputAccountPassword.setDisable(false);
+        inputAffiliateProgramURL.setDisable(false);
+        inputMerchandiseOverviewPageURL.setDisable(false);
+        inputMerchandiseSearch.setDisable(false);
     }
 
     @FXML

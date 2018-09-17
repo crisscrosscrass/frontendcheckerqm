@@ -125,10 +125,10 @@ public class MerchandiseOverviewPageTest {
                     AllMerchandiseLinks.get(randomSelectIndex).click();
                     if (webDriver.getCurrentUrl().toLowerCase().trim().contains(selectedMerchandise.toLowerCase().trim()) | webDriver.getTitle().toLowerCase().trim().contains(selectedMerchandise.toLowerCase().trim() )){
                         ChangeCheckBox.adjustStyle(true,"complete",MerchandiseName);
-                        report.writeToFile(infoMessage, "Successful! Could detect \""+selectedMerchandise+"\" in redirected Page"+webDriver.getCurrentUrl().toLowerCase());
+                        report.writeToFile(infoMessage, "Successful! Could detect \""+selectedMerchandise+"\" in redirected Page "+webDriver.getCurrentUrl().toLowerCase());
                     }else {
                         ChangeCheckBox.adjustStyle(true,"nope",MerchandiseName);
-                        report.writeToFile(infoMessage, "Not successful! Couldn't detect \""+selectedMerchandise+"\" in redirected Page"+webDriver.getCurrentUrl().toLowerCase());
+                        report.writeToFile(infoMessage, "Not successful! Couldn't detect \""+selectedMerchandise+"\" in redirected Page "+webDriver.getCurrentUrl().toLowerCase());
                     }
                 }catch (Exception gridPageIssue){
                     ChangeCheckBox.adjustStyle(true,"nope",MerchandiseName);

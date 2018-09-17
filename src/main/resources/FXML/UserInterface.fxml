@@ -173,7 +173,7 @@
                   <HBox alignment="CENTER_RIGHT">
                      <children>
                         <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Merchandise Search" />
-                        <TextField fx:id="inputMerchandiseSearch" focusTraversable="false" prefWidth="300.0" text="Alf | Nier" />
+                        <TextField fx:id="inputMerchandiseSearch" focusTraversable="false" prefWidth="300.0" text="Fifa | Alf" />
                      </children>
                   </HBox>
                </children>

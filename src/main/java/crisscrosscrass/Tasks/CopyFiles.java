@@ -45,6 +45,10 @@ public class CopyFiles {
         properties.setProperty("inputAccountPassword","testpassword");
         properties.setProperty("inputPartnerShopPageURL","https://www.ladenzeile.de/partner/shops");
         properties.setProperty("inputPartnerShopSearch","nike | bonprix");
+        properties.setProperty("inputBecomeAPartnerPageURL","https://www.ladenzeile.de/partner/info");
+        properties.setProperty("inputAffiliateProgramURL","https://www.ladenzeile.de/affiliate-programm/");
+        properties.setProperty("inputMerchandiseOverviewPageURL","https://www.ladenzeile.de/merchandise.html");
+        properties.setProperty("inputMerchandiseSearch","Fifa | Alf");
         FileWriter writer = null;
         try {
             writer = new FileWriter(location+"UserSettings.properties");
