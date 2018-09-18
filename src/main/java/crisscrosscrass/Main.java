@@ -12,7 +12,6 @@ import javafx.stage.StageStyle;
 import java.net.URL;
 
 public class Main extends Application {
-
     @Override
     public void start(Stage primaryStage) throws Exception{
         //Parent parent = FXMLLoader.load(getClass().getResource("/FXML/UserInterface.fxml"));
@@ -26,11 +25,7 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(parent, Color.TRANSPARENT));
         primaryStage.show();
     }
-
     public static void main(String[] args){
-
         launch(args);
     }
-
-
 }

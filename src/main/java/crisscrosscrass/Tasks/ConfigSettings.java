@@ -26,7 +26,6 @@ public class ConfigSettings {
         }
 
     }
-
     public Properties readConfigSettings(){
         Properties properties = new Properties();
         try{

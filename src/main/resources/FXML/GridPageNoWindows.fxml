@@ -3,7 +3,7 @@
 <?import com.jfoenix.controls.JFXCheckBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox style="-fx-background-color: white;" prefHeight="200.0" prefWidth="100.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="crisscrosscrass.Controller.GridPageNoWindowsController">
+<VBox fx:id="GridPageNoWindowsCheckBoxCollection" style="-fx-background-color: white;" prefHeight="200.0" prefWidth="100.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="crisscrosscrass.Controller.GridPageNoWindowsController">
    <children>
       <JFXCheckBox fx:id="sortingValues" text="Sorting values on Grid Page" />
       <JFXCheckBox fx:id="switchFromSmallToLarge" text="Switch from Small to Large Images" />
