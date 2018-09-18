@@ -1,6 +1,7 @@
 package crisscrosscrass.Tests;
 
 import com.jfoenix.controls.JFXCheckBox;
+import crisscrosscrass.Tasks.ChangeCheckBox;
 import crisscrosscrass.Tasks.Report;
 import crisscrosscrass.Tasks.ScreenshotViaWebDriver;
 import javafx.application.Platform;
@@ -21,9 +22,10 @@ import java.util.Properties;
 public class ImageGroupingPageTest {
 
     public void checkingImageGroupingClickOut(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox ImageGroupingClickOut, TextField inputLucenePage, Text statusInfo, TextField inputGridPageURL, Properties Homepage){
+        final String infoMessage = "Checking Image Grouping Click Out";
+        ChangeCheckBox.adjustStyle(false,"progress",ImageGroupingClickOut);
         Platform.runLater(() -> {
-            ImageGroupingClickOut.setStyle("-fx-background-color: #eef442");
-            statusInfo.setText("Checking Image Grouping Click Out...");
+            statusInfo.setText(""+infoMessage+"...");
         });
         try {
             ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
@@ -73,17 +75,11 @@ public class ImageGroupingPageTest {
                         final String urlComparison = webDriver.getCurrentUrl();
                         webDriver.switchTo().window(tabs.get(1));
                         if (webDriver.getCurrentUrl().contains(urlComparison)){
-                            report.writeToFile("Checking Image Grouping Click Out: ", "Successful!");
-                            Platform.runLater(() -> {
-                                ImageGroupingClickOut.setStyle("-fx-background-color: #CCFF99");
-                                ImageGroupingClickOut.setSelected(true);
-                            });
+                            report.writeToFile(infoMessage, "Successful!");
+                            ChangeCheckBox.adjustStyle(true,"complete",ImageGroupingClickOut);
                         }else {
-                            report.writeToFile("Checking Image Grouping Click Out: ", "Not successful!");
-                            Platform.runLater(() -> {
-                                ImageGroupingClickOut.setStyle("-fx-background-color: #FF0000");
-                                ImageGroupingClickOut.setSelected(true);
-                            });
+                            report.writeToFile(infoMessage, "Not successful!");
+                            ChangeCheckBox.adjustStyle(true,"nope",ImageGroupingClickOut);
                         }
                         webDriver.switchTo().window(tabs.get(2)).close();
                         webDriver.switchTo().window(tabs.get(1)).close();
@@ -91,10 +87,7 @@ public class ImageGroupingPageTest {
                         webDriver.navigate().to(inputGridPageURL.getText().trim());
 
                     }catch (Exception noProduktVariants){
-                        Platform.runLater(() -> {
-                            ImageGroupingClickOut.setStyle("-fx-background-color: #FF0000");
-                            ImageGroupingClickOut.setSelected(true);
-                        });
+                        ChangeCheckBox.adjustStyle(true,"nope",ImageGroupingClickOut);
                         isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver, "DetailPageImageGrouping.png");
                         if (isSuccessful){
                             report.writeToFile("Checking Image Grouping Click Out: ", "Screenshot successful!");
@@ -102,18 +95,11 @@ public class ImageGroupingPageTest {
                             report.writeToFile("Checking Image Grouping Click Out: ", "Screenshot not successful!");
                         }
                         webDriver.navigate().to(inputGridPageURL.getText().trim());
-                        report.writeToFile("Checking Image Grouping Click Out: ", "Couldn't detect Product Variants in Image Grouping");
+                        report.writeToFile(infoMessage, "Couldn't detect Product Variants in Image Grouping");
                         noProduktVariants.printStackTrace();
                     }
-
-
-
-
                 }catch (Exception gridPageIssue){
-                    Platform.runLater(() -> {
-                        ImageGroupingClickOut.setStyle("-fx-background-color: #FF0000");
-                        ImageGroupingClickOut.setSelected(true);
-                    });
+                    ChangeCheckBox.adjustStyle(true,"nope",ImageGroupingClickOut);
                     isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver, "DetailPageImageGrouping.png");
                     if (isSuccessful){
                         report.writeToFile("Checking Image Grouping Click Out: ", "Screenshot successful!");
@@ -121,25 +107,19 @@ public class ImageGroupingPageTest {
                         report.writeToFile("Checking Image Grouping Click Out: ", "Screenshot not successful!");
                     }
                     webDriver.navigate().to(inputGridPageURL.getText().trim());
-                    report.writeToFile("Checking Image Grouping Click Out: ", "Couldn't detect Image Grouping Icon for Detail Grouping Page");
+                    report.writeToFile(infoMessage, "Couldn't detect Image Grouping Icon for Detail Grouping Page");
                     gridPageIssue.printStackTrace();
                 }
             }catch (Exception noRequestedSiteFound){
-                Platform.runLater(() -> {
-                    ImageGroupingClickOut.setStyle("-fx-background-color: #FF0000");
-                    ImageGroupingClickOut.setSelected(true);
-                });
+                ChangeCheckBox.adjustStyle(true,"nope",ImageGroupingClickOut);
                 webDriver.navigate().to(inputGridPageURL.getText().trim());
-                report.writeToFile("Checking Image Grouping Click Out: ", "Couldn't navigate to requested Site!");
+                report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
                 noRequestedSiteFound.printStackTrace();
             }
         }catch (Exception noBrowserWorking){
-            Platform.runLater(() -> {
-                ImageGroupingClickOut.setStyle("-fx-background-color: #FF0000");
-                ImageGroupingClickOut.setSelected(true);
-            });
+            ChangeCheckBox.adjustStyle(true,"nope",ImageGroupingClickOut);
             webDriver.navigate().to(inputGridPageURL.getText().trim());
-            report.writeToFile("Checking Image Grouping Click Out: ", "unable to check! Browser not responding");
+            report.writeToFile(infoMessage, "unable to check! Browser not responding");
             noBrowserWorking.printStackTrace();
         }
 
@@ -148,9 +128,10 @@ public class ImageGroupingPageTest {
     }
 
     public void checkingDetailPageOfOffer(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox DetailPageOfOffer, TextField inputLucenePage, Text statusInfo, TextField inputGridPageURL, Properties Homepage){
+        final String infoMessage = "Checking Image Grouping Detail Page of Offer";
+        ChangeCheckBox.adjustStyle(false,"progress",DetailPageOfOffer);
         Platform.runLater(() -> {
-            DetailPageOfOffer.setStyle("-fx-background-color: #eef442");
-            statusInfo.setText("Checking Image Grouping Detail Page of Offer...");
+            statusInfo.setText(""+infoMessage+"...");
         });
         try {
             ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
@@ -177,29 +158,15 @@ public class ImageGroupingPageTest {
                         List<WebElement> productVariantsInfoIcons = webDriver.findElementsByXPath(Homepage.getProperty("imagegrouping.page.infoicon.variant"));
                         productVariantsInfoIcons.get(0).click();
                         if (webDriver.getCurrentUrl().contains("detail")){
-                            report.writeToFile("Checking Image Grouping Detail Page of Offer: ", "Successful!");
-                            Platform.runLater(() -> {
-                                DetailPageOfOffer.setStyle("-fx-background-color: #CCFF99");
-                                DetailPageOfOffer.setSelected(true);
-                            });
+                            report.writeToFile(infoMessage, "Successful!");
+                            ChangeCheckBox.adjustStyle(true,"complete",DetailPageOfOffer);
                         }else {
-                            report.writeToFile("Checking Image Grouping Detail Page of Offer: ", "Not successful! Unable to detect Pattern in URL");
-                            Platform.runLater(() -> {
-                                DetailPageOfOffer.setStyle("-fx-background-color: #FF0000");
-                                DetailPageOfOffer.setSelected(true);
-                            });
+                            report.writeToFile(infoMessage, "Not successful! Unable to detect Pattern in URL");
+                            ChangeCheckBox.adjustStyle(true,"nope",DetailPageOfOffer);
                         }
-
-
-
-
                         webDriver.navigate().to(inputGridPageURL.getText().trim());
-
                     }catch (Exception noProduktVariants){
-                        Platform.runLater(() -> {
-                            DetailPageOfOffer.setStyle("-fx-background-color: #FF0000");
-                            DetailPageOfOffer.setSelected(true);
-                        });
+                        ChangeCheckBox.adjustStyle(true,"nope",DetailPageOfOffer);
                         isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver, "DetailPageImageGroupingOffer.png");
                         if (isSuccessful){
                             report.writeToFile("Checking Image Grouping Detail Page of Offer: ", "Screenshot successful!");
@@ -207,18 +174,11 @@ public class ImageGroupingPageTest {
                             report.writeToFile("Checking Image Grouping Detail Page of Offer: ", "Screenshot not successful!");
                         }
                         webDriver.navigate().to(inputGridPageURL.getText().trim());
-                        report.writeToFile("Checking Image Grouping Detail Page of Offer: ", "Couldn't detect Product Variants in Image Grouping");
+                        report.writeToFile(infoMessage, "Couldn't detect Product Variants in Image Grouping");
                         noProduktVariants.printStackTrace();
                     }
-
-
-
-
                 }catch (Exception gridPageIssue){
-                    Platform.runLater(() -> {
-                        DetailPageOfOffer.setStyle("-fx-background-color: #FF0000");
-                        DetailPageOfOffer.setSelected(true);
-                    });
+                    ChangeCheckBox.adjustStyle(true,"nope",DetailPageOfOffer);
                     isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver, "DetailPageImageGroupingOffer.png");
                     if (isSuccessful){
                         report.writeToFile("Checking Image Grouping Detail Page of Offer: ", "Screenshot successful!");
@@ -226,30 +186,21 @@ public class ImageGroupingPageTest {
                         report.writeToFile("Checking Image Grouping Detail Page of Offer: ", "Screenshot not successful!");
                     }
                     webDriver.navigate().to(inputGridPageURL.getText().trim());
-                    report.writeToFile("Checking Image Grouping Detail Page of Offer: ", "Couldn't detect Image Grouping Icon for Detail Grouping Page");
+                    report.writeToFile(infoMessage, "Couldn't detect Image Grouping Icon for Detail Grouping Page");
                     gridPageIssue.printStackTrace();
                 }
             }catch (Exception noRequestedSiteFound){
-                Platform.runLater(() -> {
-                    DetailPageOfOffer.setStyle("-fx-background-color: #FF0000");
-                    DetailPageOfOffer.setSelected(true);
-                });
+                ChangeCheckBox.adjustStyle(true,"nope",DetailPageOfOffer);
                 webDriver.navigate().to(inputGridPageURL.getText().trim());
-                report.writeToFile("Checking Image Grouping Detail Page of Offer: ", "Couldn't navigate to requested Site!");
+                report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
                 noRequestedSiteFound.printStackTrace();
             }
         }catch (Exception noBrowserWorking){
-            Platform.runLater(() -> {
-                DetailPageOfOffer.setStyle("-fx-background-color: #FF0000");
-                DetailPageOfOffer.setSelected(true);
-            });
+            ChangeCheckBox.adjustStyle(true,"nope",DetailPageOfOffer);
             webDriver.navigate().to(inputGridPageURL.getText().trim());
-            report.writeToFile("Checking Image Grouping Detail Page of Offer: ", "unable to check! Browser not responding");
+            report.writeToFile(infoMessage, "unable to check! Browser not responding");
             noBrowserWorking.printStackTrace();
         }
-
         report.writeToFile("=================================", "");
-
     }
-
 }

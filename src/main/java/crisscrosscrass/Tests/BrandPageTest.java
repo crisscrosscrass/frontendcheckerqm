@@ -1,6 +1,7 @@
 package crisscrosscrass.Tests;
 
 import com.jfoenix.controls.JFXCheckBox;
+import crisscrosscrass.Tasks.ChangeCheckBox;
 import crisscrosscrass.Tasks.Report;
 import crisscrosscrass.Tasks.ScreenshotViaWebDriver;
 import javafx.application.Platform;
@@ -20,12 +21,11 @@ import java.util.Properties;
 public class BrandPageTest {
 
     public void checkingBrandsWithoutLogo(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox brandsWithoutLogo, TextField inputBrandPageOverview, Text statusInfo, TextField inputSearch, Properties Homepage){
+        final String infoMessage = "Checking Brand Page Overview";
+        ChangeCheckBox.adjustStyle(false,"progress",brandsWithoutLogo);
         Platform.runLater(() -> {
-            brandsWithoutLogo.setStyle("-fx-background-color: #eef442");
-            statusInfo.setText("Checking Brand Page Overview...");
+            statusInfo.setText(""+infoMessage+"...");
         });
-
-
         try {
             ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
             webDriver.switchTo().window(tabs.get(0));
@@ -37,11 +37,9 @@ public class BrandPageTest {
                     wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("brandpage.quicklinks"))));
                     List<WebElement> quickMenuLetters = webDriver.findElementsByXPath(Homepage.getProperty("brandpage.quicklinks"));
                     ArrayList allCollectedLinks = new ArrayList();
-
                     for (WebElement FillIns : quickMenuLetters){
                         allCollectedLinks.add(FillIns.getAttribute("href").trim().toLowerCase());
                     }
-
                     for (int i = 0 ; i < allCollectedLinks.size() ; i++){
                         ((JavascriptExecutor)webDriver).executeScript("window.open()");
                         tabs = new ArrayList<>(webDriver.getWindowHandles());
@@ -70,23 +68,13 @@ public class BrandPageTest {
                                 report.writeToFile(quickMenuItem.getText());
                             }
                         }
-
                         webDriver.switchTo().window(tabs.get(1)).close();
                         webDriver.switchTo().window(tabs.get(0));
                     }
-
-
-
-                    Platform.runLater(() -> {
-                        brandsWithoutLogo.setStyle("-fx-background-color: #CCFF99");
-                        brandsWithoutLogo.setSelected(true);
-                    });
-                    report.writeToFile("Checking Brand Page Overview: ", "Successful! Redirected to a functioning page!");
+                    ChangeCheckBox.adjustStyle(true,"complete",brandsWithoutLogo);
+                    report.writeToFile(infoMessage, "Successful! Redirected to a functioning page!");
                 }catch (Exception gridPageIssue){
-                    Platform.runLater(() -> {
-                        brandsWithoutLogo.setStyle("-fx-background-color: #FF0000");
-                        brandsWithoutLogo.setSelected(true);
-                    });
+                    ChangeCheckBox.adjustStyle(true,"nope",brandsWithoutLogo);
                     boolean isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver, "ErrorCheckingBrandPageOverview.png");
                     if (isSuccessful){
                         report.writeToFile("BrandPage Error Screenshot: ", "Screenshot successful!");
@@ -94,30 +82,22 @@ public class BrandPageTest {
                         report.writeToFile("BrandPage Error Screenshot: ", "Screenshot not successful!");
                     }
                     webDriver.navigate().to(inputSearch.getText().trim());
-                    report.writeToFile("Checking Brand Page Overview: ", "Couldn't find any QuickMenu Elements");
+                    report.writeToFile(infoMessage, "Couldn't find any QuickMenu Elements");
                     gridPageIssue.printStackTrace();
                 }
             }catch (Exception noRequestedSiteFound){
-                Platform.runLater(() -> {
-                    brandsWithoutLogo.setStyle("-fx-background-color: #FF0000");
-                    brandsWithoutLogo.setSelected(true);
-                });
+                ChangeCheckBox.adjustStyle(true,"nope",brandsWithoutLogo);
                 webDriver.navigate().to(inputSearch.getText().trim());
-                report.writeToFile("Checking Brand Page Overview: ", "Couldn't navigate to requested Site!");
+                report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
                 noRequestedSiteFound.printStackTrace();
             }
         }catch (Exception noBrowserWorking){
-            Platform.runLater(() -> {
-                brandsWithoutLogo.setStyle("-fx-background-color: #FF0000");
-                brandsWithoutLogo.setSelected(true);
-            });
+            ChangeCheckBox.adjustStyle(true,"nope",brandsWithoutLogo);
             webDriver.navigate().to(inputSearch.getText().trim());
-            report.writeToFile("Checking Brand Page Overview: ", "unable to check! Browser not responding");
+            report.writeToFile(infoMessage, "unable to check! Browser not responding");
             noBrowserWorking.printStackTrace();
         }
-
         report.writeToFile("=================================", "");
-
     }
 
 }

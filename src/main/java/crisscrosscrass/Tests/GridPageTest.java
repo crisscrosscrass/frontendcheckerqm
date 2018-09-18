@@ -576,11 +576,9 @@ public class GridPageTest {
     public void checkingStyleBoxOpenClose(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox styleBoxOpenClose, TextField inputGridPageURL, Text statusInfo, TextField inputSearch, TextField inputEmailAdress, String xpathPattern1, String xpathPattern2, Properties Homepage, boolean isSuccessful, boolean isAvailable){
         final String infoMessage = "Checking GridPage Style Box Open/Close";
         ChangeCheckBox.adjustStyle(false,"progress",styleBoxOpenClose);
-
         Platform.runLater(() -> {
             statusInfo.setText(""+infoMessage+"...");
         });
-
         try {
             ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
             webDriver.switchTo().window(tabs.get(0));
@@ -593,7 +591,6 @@ public class GridPageTest {
                         webDriver.findElementByXPath(Homepage.getProperty("page.grid.windows.continue")).click();
                         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Homepage.getProperty("page.grid.windows.continue"))));
                     }
-
                     try {
                         Point hoverItem = webDriver.findElement(By.xpath(Homepage.getProperty("page.sidebar.showMoreTags.button"))).getLocation();
                         ((JavascriptExecutor)webDriver).executeScript("return window.title;");
@@ -626,10 +623,8 @@ public class GridPageTest {
                         }else {
                             report.writeToFile("GridPage See Less: ", "Screenshot not successful!");
                         }
-
                         ChangeCheckBox.adjustStyle(true,"complete",styleBoxOpenClose);
                         report.writeToFile(infoMessage, "Successful! Style Box- Open/Close working as expected");
-
                     }catch (Exception noStyleBoxOpenCloseFound){
                         ChangeCheckBox.adjustStyle(true,"nope",styleBoxOpenClose);
                         isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"GridPageErrorStyleBoxOpenClose.png");
@@ -640,8 +635,6 @@ public class GridPageTest {
                         }
                         report.writeToFile(infoMessage, "Couldn't find any Show-More Button");
                     }
-
-
                 }catch (Exception gridPageIssue){
                     ChangeCheckBox.adjustStyle(true,"nope",styleBoxOpenClose);
                     isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"GridPageErrorStyleBoxOpenClose.png");
@@ -666,7 +659,6 @@ public class GridPageTest {
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
             noCategoryLinksLeftSideMenu.printStackTrace();
         }
-
         report.writeToFile("=================================", "");
     }
     public void checkingFilterApply(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox filtersApply, TextField inputGridPageURL, Text statusInfo, TextField inputSearch, Properties Homepage, boolean isSuccessful, boolean isAvailable, JFXCheckBox checkingSalesPriceFilter, JFXCheckBox checkingGenderFilter, JFXCheckBox checkingColorFilter, JFXCheckBox checkingBrandFilter, JFXCheckBox checkingMerchandiseFilter){
@@ -687,17 +679,11 @@ public class GridPageTest {
                         webDriver.findElementByXPath(Homepage.getProperty("page.grid.windows.continue")).click();
                         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Homepage.getProperty("page.grid.windows.continue"))));
                     }
-
-
                     int MAX_FILTERS_TO_APPLY = 3;
-
-
-
                     if (checkingSalesPriceFilter.isSelected() &&  MAX_FILTERS_TO_APPLY >= 1 ){
                         final String reportInfoCurrentFilter = "Apply Sales Price: ";
                         final String xPathFilterApply = Homepage.getProperty("page.sidebar.salesprice");
                         final JFXCheckBox checkBoxToApplyChanges = checkingSalesPriceFilter;
-
                         Platform.runLater(() -> checkBoxToApplyChanges.setStyle("-fx-background-color: #eef442"));
                         try {
                             if(webDriver.findElements(By.xpath(xPathFilterApply)).size() > 0){
@@ -727,11 +713,6 @@ public class GridPageTest {
                             report.writeToFile(reportInfoCurrentFilter, "Something goes wrong, couldn't apply Filter!");
                         }
                     }
-
-
-
-
-
                     if (checkingGenderFilter.isSelected() &&  MAX_FILTERS_TO_APPLY >= 1 ){
                         final String reportInfoCurrentFilter = "Apply Gender Filter: ";
                         final String xPathFilterApply = Homepage.getProperty("page.sidebar.gender");
@@ -766,12 +747,6 @@ public class GridPageTest {
                             report.writeToFile(reportInfoCurrentFilter, "Something goes wrong, couldn't apply Filter!");
                         }
                     }
-
-
-
-
-
-
                     if (checkingColorFilter.isSelected() &&  MAX_FILTERS_TO_APPLY >= 1 ){
                         final String reportInfoCurrentFilter = "Apply Color Filter: ";
                         final String xPathFilterApply = Homepage.getProperty("page.sidebar.color");
@@ -801,17 +776,10 @@ public class GridPageTest {
                             report.writeToFile(reportInfoCurrentFilter, "Something goes wrong, couldn't apply Filter!");
                         }
                     }
-
-
-
-
-
-
                     if (checkingBrandFilter.isSelected() &&  MAX_FILTERS_TO_APPLY >= 1 ){
                         final String reportInfoCurrentFilter = "Apply Brand Filter: ";
                         final String xPathFilterApply = Homepage.getProperty("page.sidebar.brand");
                         final JFXCheckBox checkBoxToApplyChanges = checkingBrandFilter;
-
                         Platform.runLater(() -> checkBoxToApplyChanges.setStyle("-fx-background-color: #eef442"));
                         try {
                             if(webDriver.findElements(By.xpath(xPathFilterApply)).size() > 0){
@@ -841,10 +809,6 @@ public class GridPageTest {
                             report.writeToFile(reportInfoCurrentFilter, "Something goes wrong, couldn't apply Filter!");
                         }
                     }
-
-
-
-
                     if (checkingMerchandiseFilter.isSelected() &&  MAX_FILTERS_TO_APPLY >= 1 ){
                         final String reportInfoCurrentFilter = "Apply Merchandise Filter: ";
                         final String xPathFilterApply = Homepage.getProperty("page.sidebar.merchandise");
@@ -879,16 +843,10 @@ public class GridPageTest {
                             report.writeToFile(reportInfoCurrentFilter, "Something goes wrong, couldn't apply Filter!");
                         }
                     }
-
-
                     if (MAX_FILTERS_TO_APPLY == 0){
                         report.writeToFile("Checking GridPage Filter Apply", "Complete!");
                     }
                     report.writeToFile("");
-
-
-
-
 
                     Platform.runLater(() -> {
                         statusInfo.setText("Checking Filters - Remove from Filter Box...");
@@ -926,11 +884,6 @@ public class GridPageTest {
                             xPathMyFirstSelected = Homepage.getProperty("page.sidebar.color");
                         }
                     }
-
-
-
-
-
                     try {
                         final String reportInfoCurrentFilter = "First selected Filter \""+textFilterForTestCaseRemove+"\" from FilterBox(top): ";
                         wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.sidebar.myfilters"))));
@@ -1098,12 +1051,9 @@ public class GridPageTest {
     public void checkingSearchBoxInBrandFilter(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox searchBoxInBrandFilter, TextField inputGridPageURL, TextField inputGridPageKeyword,Text statusInfo, TextField inputSearch, TextField inputEmailAdress, String xpathPattern1, String xpathPattern2, Properties Homepage, boolean isSuccessful, boolean isAvailable){
         final String infoMessage = "Checking GridPage Search Box in Brand Filter";
         ChangeCheckBox.adjustStyle(false,"progress",searchBoxInBrandFilter);
-
         Platform.runLater(() -> {
             statusInfo.setText(""+infoMessage+"...");
         });
-
-
         try {
             ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
             webDriver.switchTo().window(tabs.get(0));
@@ -1177,20 +1127,14 @@ public class GridPageTest {
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
             noBrowserWorking.printStackTrace();
         }
-
         report.writeToFile("=================================", "");
-
     }
-
     public void checkingSearchBoxInShopFilter(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox searchBoxInShopFilter, TextField inputGridPageURL, TextField inputGridPageKeyword,Text statusInfo, TextField inputSearch, TextField inputEmailAdress, String xpathPattern1, String xpathPattern2, Properties Homepage, boolean isSuccessful, boolean isAvailable){
         final String infoMessage = "Checking GridPage Search Box in Shop Filter";
         ChangeCheckBox.adjustStyle(false,"progress",searchBoxInShopFilter);
-
         Platform.runLater(() -> {
             statusInfo.setText(""+infoMessage+"...");
         });
-
-
         try {
             ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
             webDriver.switchTo().window(tabs.get(0));

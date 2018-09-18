@@ -355,11 +355,11 @@ public class MainControllerFrontEndCheck implements Serializable{
                 Platform.runLater(() -> statusInfo.setText("Starting Engine..."));
                 System.setProperty("webdriver.chrome.driver", "temp//chromedriver.exe");
                 ChromeOptions option = new ChromeOptions();
-                option.addArguments("--window-size=1920,1080");
+                //option.addArguments("--window-size=1920,1080");
                 //option.addArguments("--headless");
                 //option.addArguments("--disable-gpu");
-                option.addArguments("disable-infobars");
-                option.addArguments("start-maximized");
+                option.addArguments("--disable-infobars");
+                option.addArguments("--start-maximized");
                 ChromeDriver webDriver = new ChromeDriver(option);
 
 
@@ -376,7 +376,7 @@ public class MainControllerFrontEndCheck implements Serializable{
                         window.requestFocus();
                         statusInfo.setText("Open Maximize Mode...");
                     });
-                    webDriver.manage().window().maximize();
+                    //webDriver.manage().window().maximize();
                     Platform.runLater(() -> statusInfo.setText("Go to requested Website..."));
 
 

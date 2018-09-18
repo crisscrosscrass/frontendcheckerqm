@@ -258,9 +258,7 @@ public class PartnerShopsPageTest {
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
             noBrowserWorking.printStackTrace();
         }
-
         report.writeToFile("=================================", "");
-
     }
     public void checkingShopLinkLogo(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox ShopLinkLogo, Text statusInfo, TextField inputPartnerShopPageURL, Properties Homepage){
         final String infoMessage = "Checking Shop Link Logo";

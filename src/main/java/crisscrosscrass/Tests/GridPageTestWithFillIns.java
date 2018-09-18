@@ -1,6 +1,7 @@
 package crisscrosscrass.Tests;
 
 import com.jfoenix.controls.JFXCheckBox;
+import crisscrosscrass.Tasks.ChangeCheckBox;
 import crisscrosscrass.Tasks.Report;
 import crisscrosscrass.Tasks.ScreenshotViaWebDriver;
 import javafx.application.Platform;
@@ -19,12 +20,11 @@ import java.util.Properties;
 public class GridPageTestWithFillIns {
 
     public void checkingShowAllFillInPage(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox showAllFillInPage, TextField inputGridPageURLWithFillIns, Text statusInfo, TextField inputSearch, Properties Homepage){
+        final String infoMessage = "Checking GridPage with Fill Ins";
+        ChangeCheckBox.adjustStyle(false,"progress",showAllFillInPage);
         Platform.runLater(() -> {
-            showAllFillInPage.setStyle("-fx-background-color: #eef442");
-            statusInfo.setText("Checking GridPage with Fill Ins...");
+            statusInfo.setText(""+infoMessage+"...");
         });
-
-
         try {
             ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
             webDriver.switchTo().window(tabs.get(0));
@@ -75,16 +75,10 @@ public class GridPageTestWithFillIns {
                         }
 
                     }
-                    Platform.runLater(() -> {
-                        showAllFillInPage.setStyle("-fx-background-color: #CCFF99");
-                        showAllFillInPage.setSelected(true);
-                    });
-                    report.writeToFile("Checking GridPage with Fill Ins: ", "Complete!");
+                    ChangeCheckBox.adjustStyle(true,"complete",showAllFillInPage);
+                    report.writeToFile(infoMessage, "Complete!");
                 }catch (Exception gridPageIssue){
-                    Platform.runLater(() -> {
-                        showAllFillInPage.setStyle("-fx-background-color: #FF0000");
-                        showAllFillInPage.setSelected(true);
-                    });
+                    ChangeCheckBox.adjustStyle(true,"nope",showAllFillInPage);
                     boolean isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver, "GridPageErrorPagingWindows.png");
                     if (isSuccessful){
                         report.writeToFile("GridPage Error Screenshot: ", "Screenshot successful!");
@@ -92,25 +86,19 @@ public class GridPageTestWithFillIns {
                         report.writeToFile("GridPage Error Screenshot: ", "Screenshot not successful!");
                     }
                     webDriver.navigate().to(inputSearch.getText().trim());
-                    report.writeToFile("Checking GridPage with Fill Ins: ", "Could find any FillIns-Boxes");
+                    report.writeToFile(infoMessage, "Could find any FillIns-Boxes");
                     gridPageIssue.printStackTrace();
                 }
             }catch (Exception noRequestedSiteFound){
-                Platform.runLater(() -> {
-                    showAllFillInPage.setStyle("-fx-background-color: #FF0000");
-                    showAllFillInPage.setSelected(true);
-                });
+                ChangeCheckBox.adjustStyle(true,"nope",showAllFillInPage);
                 webDriver.navigate().to(inputSearch.getText().trim());
-                report.writeToFile("Checking GridPage with Fill Ins: ", "Couldn't navigate to requested Site!");
+                report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
                 noRequestedSiteFound.printStackTrace();
             }
         }catch (Exception noBrowserWorking){
-            Platform.runLater(() -> {
-                showAllFillInPage.setStyle("-fx-background-color: #FF0000");
-                showAllFillInPage.setSelected(true);
-            });
+            ChangeCheckBox.adjustStyle(true,"nope",showAllFillInPage);
             webDriver.navigate().to(inputSearch.getText().trim());
-            report.writeToFile("Checking GridPage with Fill Ins: ", "unable to check! Browser not responding");
+            report.writeToFile(infoMessage, "unable to check! Browser not responding");
             noBrowserWorking.printStackTrace();
         }
 

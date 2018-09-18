@@ -614,7 +614,6 @@ public class HomepageTest {
         Platform.runLater(() -> {
             statusInfo.setText(""+infoMessage+"...");
         });
-
         try {
             ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
             webDriver.switchTo().window(tabs.get(0));
@@ -623,9 +622,9 @@ public class HomepageTest {
                 WebDriverWait wait = new WebDriverWait(webDriver, 10);
                 try{
                     wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("privacypage.link"))));
-                    final String beforeURL = webDriver.getCurrentUrl().toLowerCase().trim();
+                    final String previousURL = webDriver.getCurrentUrl().toLowerCase().trim();
                     webDriver.findElementByXPath(Homepage.getProperty("privacypage.link")).click();
-                    if (webDriver.getCurrentUrl().toLowerCase().trim() != beforeURL){
+                    if (webDriver.getCurrentUrl().toLowerCase().trim() != previousURL){
                         report.writeToFile(infoMessage, "Successful!");
                         ChangeCheckBox.adjustStyle(true,"complete",PrivacyPolicy);
                     }else{
