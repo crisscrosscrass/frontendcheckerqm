@@ -8,6 +8,9 @@ import crisscrosscrass.*;
 import crisscrosscrass.Tasks.*;
 import crisscrosscrass.Tests.*;
 import javafx.application.Platform;
+import javafx.beans.binding.Binding;
+import javafx.beans.binding.StringBinding;
+import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
@@ -73,6 +76,7 @@ public class MainControllerFrontEndCheck implements Serializable{
     //Element Boxes
     @FXML HBox ElementLuceneBox;
     @FXML VBox ElementLoginBox;
+    @FXML HBox ElementTextSearchSuggestionBox;
     //Main Menu Settings
     @FXML ProgressBar progressIndicator;
     @FXML Text statusInfo;
@@ -142,12 +146,18 @@ public class MainControllerFrontEndCheck implements Serializable{
     private static String xpathPatternImage1 = "";
     private static String xpathPatternImage2 = "";
 
+
+
     @FXML
     public void initialize() {
         logger.info( "Main Program started!" );
+
+        for (countries country : countries.values()){
+            countrySelection.getItems().add(country);
+        }
         //add Countries to country select
-        countrySelection.getItems().addAll("https://www.ladenzeile.de/");
         countrySelection.setPromptText("Which country should be checked ?");
+
 
         //add Listener to Settings
         settingHomepage.setOnAction(event -> updateCheckerTabs());
@@ -167,6 +177,7 @@ public class MainControllerFrontEndCheck implements Serializable{
         //Bind Element Inputs to Settings
         ElementLuceneBox.visibleProperty().bind(settingLucenePage.selectedProperty());
         ElementLoginBox.visibleProperty().bind(settingFavoritePage.selectedProperty());
+        ElementTextSearchSuggestionBox.visibleProperty().bind(settingHomepage.selectedProperty());
         //update Tabs on Frontend
         updateCheckerTabs();
         //check if Properties File is available if yes, load data into Input Fields
@@ -197,6 +208,17 @@ public class MainControllerFrontEndCheck implements Serializable{
 
         //opening Menu in User Interface
         Platform.runLater(() -> settingTitledPane.setExpanded(true));
+
+        //Binding Values to Selection
+        //inputSearch.textProperty().bind(countrySelection.getSelectionModel().selectedItemProperty().asString());
+        countrySelection.setOnAction( selectedEvent -> {
+            inputSearch.setText(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getLocationMainPage());
+            inputImprintURL.setText(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getlocationImprintPage());
+            inputPrivacyPolicy.setText(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getPrivacyPage());
+            inputBrandPageOverview.setText(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getLocationBrandOverviewPage());
+            inputPartnerShopPageURL.setText(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getLocationPartnershopsPageURL());
+            inputBecomeAPartnerPageURL.setText(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getLocationBecomePartnerPageURL());
+        });
 
     }
 
