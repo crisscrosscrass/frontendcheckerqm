@@ -290,14 +290,13 @@ public class MainControllerFrontEndCheck implements Serializable{
             ElementGridPageWithoutWindowBox.setVisible(false);
         }
         settingManager.setValidationColor(settingFavoritePage,inputAccountEmail);
+        updateResultsBoxes();
     }
 
     public void updateResultsBoxes(){
-        if (settingHomepage.isSelected()){
-            //count all successfully checked checkboxes
-            //count all checkboxes
-            //update Result Box
-        }
+        ResultsManager resultsManager = new ResultsManager();
+        resultsManager.updateResultsCheckbox(settingHomepage,frontendHomepageController.frontendHomePageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),BoxHomepageResult);
+        resultsManager.updateResultsCheckbox(settingGridPage,gridPageNoWindowsController.GridPageNoWindowsCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),BoxGridPageResult);
     }
 
 
