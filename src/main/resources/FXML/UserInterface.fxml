@@ -8,13 +8,12 @@
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -25,39 +24,139 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="mainStage" style="-fx-background-color: grey;" stylesheets="@../Style/Main.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="crisscrosscrass.Controller.MainControllerFrontEndCheck">
+<AnchorPane fx:id="mainStage" prefHeight="821.0" prefWidth="1283.0" style="-fx-background-color: white;" stylesheets="@../Style/Main.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="crisscrosscrass.Controller.MainControllerFrontEndCheck">
    <children>
-      <VBox layoutX="-1.0">
+      <VBox alignment="CENTER" prefHeight="133.0" prefWidth="186.0" spacing="5.0" style="-fx-background-color: grey; -fx-border-width: 1;" visible="false">
          <children>
-            <HBox>
+            <TextField fx:id="inputSearch" alignment="CENTER" text="https://www.ladenzeile.de/" visible="false">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </TextField>
+            <VBox alignment="CENTER" prefHeight="100.0" prefWidth="509.0" spacing="5.0" style="-fx-border-color: white; -fx-border-radius: 5;">
                <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="814.0" style="-fx-background-color: #0c343dff;">
+                  <HBox alignment="CENTER_RIGHT" spacing="20.0">
                      <children>
-                        <JFXComboBox fx:id="countrySelection" focusColor="#e83062" unFocusColor="WHITE" />
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Email Adress Test:" />
+                        <TextField fx:id="inputEmailAdress" focusTraversable="false" prefWidth="300.0" text="tester@testermail.com" visible="false" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" layoutX="21.0" layoutY="41.0">
+                     <children>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Imprint URL" />
+                        <TextField fx:id="inputImprintURL" focusTraversable="false" prefWidth="300.0" text="https://www.ladenzeile.de/impressum.html" visible="false" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" layoutX="21.0" layoutY="78.0">
+                     <children>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Privacy Policy URL" />
+                        <TextField fx:id="inputPrivacyPolicy" focusTraversable="false" prefWidth="300.0" text="https://www.ladenzeile.de/nutzungserklaerung.html" visible="false" />
                      </children>
                   </HBox>
                </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </VBox>
+            <VBox alignment="CENTER_LEFT" layoutX="30.0" layoutY="129.0" spacing="5.0" style="-fx-border-color: white; -fx-border-radius: 5;" />
+            <HBox alignment="CENTER_RIGHT" style="-fx-border-radius: 5; -fx-border-color: white;">
+               <children>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Brand Page (Overview)" />
+                  <TextField fx:id="inputBrandPageOverview" focusTraversable="false" prefWidth="300.0" text="https://www.ladenzeile.de/marken.html" visible="false" />
+               </children>
             </HBox>
+            <VBox alignment="CENTER" style="-fx-border-color: white; -fx-border-radius: 5;">
+               <children>
+                  <HBox alignment="CENTER_RIGHT">
+                     <children>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Partnershops Page URL" />
+                        <TextField fx:id="inputPartnerShopPageURL" focusTraversable="false" prefWidth="300.0" text="https://www.ladenzeile.de/partner/shops" visible="false" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <HBox alignment="CENTER_RIGHT" layoutX="30.0" layoutY="378.0" style="-fx-border-color: white; -fx-border-radius: 5;">
+               <children>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Become a Partner URL" />
+                  <TextField fx:id="inputBecomeAPartnerPageURL" focusTraversable="false" prefWidth="300.0" text="https://www.ladenzeile.de/partner/info" visible="false" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" layoutX="30.0" layoutY="546.0" style="-fx-border-color: white; -fx-border-radius: 5;">
+               <children>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Affiliate Program URL" />
+                  <TextField fx:id="inputAffiliateProgramURL" focusTraversable="false" prefWidth="300.0" text="https://www.ladenzeile.de/affiliate-programm/" visible="false" />
+               </children>
+            </HBox>
+            <VBox style="-fx-border-color: white; -fx-border-radius: 5;">
+               <children>
+                  <HBox alignment="CENTER_RIGHT">
+                     <children>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Merchandise Overview Page" />
+                        <TextField fx:id="inputMerchandiseOverviewPageURL" focusTraversable="false" prefWidth="300.0" text="https://www.ladenzeile.de/merchandise.html" visible="false" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <ProgressBar fx:id="progressIndicator" prefWidth="400.0" progress="0.0">
+               <VBox.margin>
+                  <Insets bottom="10.0" top="20.0" />
+               </VBox.margin>
+            </ProgressBar>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets left="20.0" />
+         </padding>
+      </VBox>
+      <VBox layoutX="-1.0" prefHeight="804.0" prefWidth="1284.0">
+         <children>
+            <HBox prefHeight="131.0" prefWidth="1284.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="814.0" spacing="25.0" style="-fx-background-color: #0c343dff;">
+                     <children>
+                        <JFXComboBox fx:id="countrySelection" focusColor="#e83062" prefHeight="63.0" prefWidth="125.0" unFocusColor="WHITE">
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding></JFXComboBox>
+                        <ImageView fitHeight="84.0" fitWidth="553.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Images/VisualMeta_White.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="472.0" style="-fx-background-color: #45818eff;" />
+               </children>
+            </HBox>
+            <HBox prefHeight="43.0" prefWidth="1284.0" />
             <HBox prefHeight="704.0" prefWidth="1443.0" spacing="10.0">
                <children>
-                  <VBox fillWidth="false" prefHeight="704.0" prefWidth="996.0">
+                  <VBox fillWidth="false" prefHeight="704.0" prefWidth="816.0">
                      <children>
-                        <HBox prefHeight="386.0" prefWidth="850.0">
+                        <HBox prefHeight="342.0" prefWidth="800.0">
                            <children>
                               <VBox prefHeight="386.0" prefWidth="622.0" spacing="5.0">
                                  <children>
                                     <HBox alignment="CENTER" spacing="10.0">
                                        <children>
-                                          <JFXButton alignment="CENTER" onAction="#selectAllSettingCheckBoxes" style="-fx-background-color: #0f9d58;" text="Select All" textFill="WHITE" />
-                                          <JFXButton alignment="CENTER" onAction="#deselectAllSettingCheckBoxes" style="-fx-background-color: #5a5a5a;" text="Deselect All" textFill="WHITE" />
+                                          <JFXButton alignment="CENTER" onAction="#selectAllSettingCheckBoxes" style="-fx-background-color: #0f9d58;" text="Full Test" textFill="WHITE" />
+                                          <JFXButton alignment="CENTER" onAction="#deselectAllSettingCheckBoxes" style="-fx-background-color: #5a5a5a;" text="Custom Test" textFill="WHITE" />
                                        </children>
                                     </HBox>
                                     <GridPane fx:id="settingGridPane" prefHeight="295.0" prefWidth="622.0" vgap="5.0">
                                       <columnConstraints>
                                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="98.0" minWidth="0.0" prefWidth="2.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="313.0" minWidth="10.0" prefWidth="293.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="310.0" minWidth="10.0" prefWidth="24.0" />
-                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="378.0" minWidth="10.0" prefWidth="336.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="313.0" minWidth="10.0" prefWidth="280.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="310.0" minWidth="0.0" prefWidth="12.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="378.0" minWidth="10.0" prefWidth="283.0" />
                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="0.0" prefWidth="0.0" />
                                       </columnConstraints>
                                       <rowConstraints>
@@ -155,7 +254,7 @@
                                           <ImageView fx:id="preloaderCat" fitWidth="50.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                                        </children>
                                     </HBox>
-                                    <FontAwesomeIconView fill="WHITE" glyphName="USER_SECRET" size="35" />
+                                    <FontAwesomeIconView fill="#0c343d" glyphName="USER_SECRET" size="35" />
                                     <Text fx:id="statusInfo" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="" textAlignment="CENTER" wrappingWidth="150.0">
                                        <VBox.margin>
                                           <Insets />
@@ -178,188 +277,104 @@
                               </VBox>
                            </children>
                         </HBox>
-                        <Accordion fx:id="settingsAccordion" focusTraversable="false" nodeOrientation="LEFT_TO_RIGHT">
-                           <panes>
-                            <TitledPane fx:id="settingTitledPane" animated="false" text="TestSelection" />
-                           </panes>
-                        </Accordion>
-                        <HBox fx:id="ElementLuceneBox" alignment="CENTER_RIGHT" prefHeight="27.0" prefWidth="235.0" style="-fx-border-color: white; -fx-border-radius: 5;">
+                        <GridPane alignment="CENTER">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="479.0" minWidth="10.0" prefWidth="465.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
                            <children>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="SearchPage Keyword" />
-                              <TextField fx:id="inputLucenePage" focusTraversable="false" prefWidth="300.0" text="emaroon" />
-                           </children>
-                        </HBox>
-                        <VBox fx:id="ElementLoginBox" alignment="CENTER" prefHeight="91.0" prefWidth="359.0" style="-fx-border-radius: 5; -fx-border-color: white;">
-                           <children>
-                              <HBox alignment="CENTER_RIGHT" spacing="20.0">
+                              <HBox fx:id="ElementLuceneBox" alignment="CENTER_RIGHT" GridPane.rowIndex="6">
                                  <children>
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Login" />
-                                    <JFXTextField id="login" fx:id="inputAccountEmail" focusColor="#e83062" prefHeight="37.0" prefWidth="376.0" text="christopher.eckardt@visual-meta.com" unFocusColor="WHITE" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="SearchPage Keyword" />
+                                    <TextField fx:id="inputLucenePage" focusTraversable="false" prefWidth="300.0" text="emaroon" />
                                  </children>
                               </HBox>
-                              <HBox alignment="CENTER_RIGHT" layoutX="11.0" layoutY="11.0" spacing="20.0">
+                              <HBox fx:id="ElementFiltersBox" alignment="CENTER" spacing="10.0" GridPane.rowIndex="1">
                                  <children>
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="PW" />
-                                    <JFXPasswordField id="password" fx:id="inputAccountPassword" focusColor="#e83062" prefHeight="37.0" prefWidth="307.0" text="blabla" unFocusColor="WHITE" />
+                                    <JFXCheckBox fx:id="checkingSalesPriceFilter" checkedColor="#45818e" selected="true" text="SalesPrice" />
+                                    <JFXCheckBox fx:id="checkingGenderFilter" checkedColor="#45818e" selected="true" text="Gender" />
+                                    <JFXCheckBox fx:id="checkingColorFilter" checkedColor="#45818e" selected="true" text="Color" />
+                                    <JFXCheckBox fx:id="checkingBrandFilter" checkedColor="#45818e" text="Brand" />
+                                    <JFXCheckBox fx:id="checkingMerchandiseFilter" checkedColor="#45818e" text="Merchandise" />
                                  </children>
                               </HBox>
-                           </children>
-                           <padding>
-                              <Insets bottom="10.0" top="5.0" />
-                           </padding>
-                        </VBox>
-                        <HBox fx:id="ElementTextSearchSuggestionBox" alignment="CENTER_RIGHT" layoutX="10.0" layoutY="431.0" prefHeight="27.0" prefWidth="360.0" style="-fx-border-color: white; -fx-border-radius: 5;">
-                           <children>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text Search + Suggestions: " />
-                              <TextField fx:id="inputTextSearchAndSuggestions" focusTraversable="false" prefWidth="300.0" text="pumps | sneakers blue" />
-                           </children>
-                        </HBox>
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" spacing="5.0" style="-fx-background-color: grey; -fx-border-width: 1;">
-                     <children>
-                        <TextField fx:id="inputSearch" alignment="CENTER" text="https://www.ladenzeile.de/">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </TextField>
-                        <VBox alignment="CENTER" prefHeight="100.0" prefWidth="509.0" spacing="5.0" style="-fx-border-color: white; -fx-border-radius: 5;">
-                           <children>
-                              <HBox alignment="CENTER_RIGHT" spacing="20.0">
+                              <HBox fx:id="ElementGridPageWithoutWindowBox" alignment="CENTER_RIGHT" GridPane.rowIndex="3">
                                  <children>
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Email Adress Test:" />
-                                    <TextField fx:id="inputEmailAdress" focusTraversable="false" prefWidth="300.0" text="tester@testermail.com" />
-                                 </children>
-                              </HBox>
-                              <HBox alignment="CENTER_RIGHT" layoutX="21.0" layoutY="41.0">
-                                 <children>
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Imprint URL" />
-                                    <TextField fx:id="inputImprintURL" focusTraversable="false" prefWidth="300.0" text="https://www.ladenzeile.de/impressum.html" />
-                                 </children>
-                              </HBox>
-                              <HBox alignment="CENTER_RIGHT" layoutX="21.0" layoutY="78.0">
-                                 <children>
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Privacy Policy URL" />
-                                    <TextField fx:id="inputPrivacyPolicy" focusTraversable="false" prefWidth="300.0" text="https://www.ladenzeile.de/nutzungserklaerung.html" />
-                                 </children>
-                              </HBox>
-                           </children>
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                           <padding>
-                              <Insets left="10.0" />
-                           </padding>
-                        </VBox>
-                        <VBox alignment="CENTER_LEFT" layoutX="30.0" layoutY="129.0" spacing="5.0" style="-fx-border-color: white; -fx-border-radius: 5;">
-                           <children>
-                              <HBox alignment="CENTER_RIGHT">
-                                 <children>
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="GridPageURLwihtoutWindows" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="GridPageURLwihtoutWindows" />
                                     <TextField fx:id="inputGridPageURL" focusTraversable="false" prefWidth="300.0" text="https://www.ladenzeile.de/mode/" />
                                  </children>
                               </HBox>
-                              <HBox alignment="CENTER_RIGHT">
+                              <VBox fx:id="ElementLoginBox" alignment="CENTER" GridPane.rowIndex="9">
                                  <children>
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Brand/Shop Keyword" />
-                                    <TextField fx:id="inputGridPageKeyword" focusTraversable="false" prefWidth="300.0" text="nike" />
+                                    <HBox alignment="CENTER" spacing="5.0">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Login" />
+                                          <JFXTextField id="login" fx:id="inputAccountEmail" focusColor="#e83062" prefHeight="37.0" prefWidth="376.0" text="christopher.eckardt@visual-meta.com" unFocusColor="WHITE" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER" layoutX="11.0" layoutY="11.0" spacing="5.0">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="PW" />
+                                          <JFXPasswordField id="password" fx:id="inputAccountPassword" focusColor="#e83062" prefHeight="37.0" prefWidth="307.0" text="blabla" unFocusColor="WHITE" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                              <HBox fx:id="ElementTextSearchSuggestionBox" alignment="CENTER_RIGHT">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text Search + Suggestions: " />
+                                    <TextField fx:id="inputTextSearchAndSuggestions" focusTraversable="false" prefWidth="300.0" text="pumps | sneakers blue" />
                                  </children>
                               </HBox>
-                              <Accordion>
-                                <panes>
-                                  <TitledPane animated="false" text="Filters">
-                                       <content>
-                                          <VBox>
-                                             <children>
-                                                <JFXCheckBox fx:id="checkingSalesPriceFilter" selected="true" text="SalesPrice" />
-                                                <JFXCheckBox fx:id="checkingGenderFilter" selected="true" text="Gender" />
-                                                <JFXCheckBox fx:id="checkingColorFilter" selected="true" text="Color" />
-                                                <JFXCheckBox fx:id="checkingBrandFilter" text="Brand" />
-                                                <JFXCheckBox fx:id="checkingMerchandiseFilter" text="Merchandise" />
-                                             </children>
-                                          </VBox>
-                                       </content>
-                                  </TitledPane>
-                                </panes>
-                              </Accordion>
-                           </children>
-                        </VBox>
-                        <HBox alignment="CENTER_RIGHT" style="-fx-border-radius: 5; -fx-border-color: white;">
-                           <children>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="GridPageURL with Windows" />
-                              <TextField fx:id="inputGridPageURLWithWindows" focusTraversable="false" prefWidth="300.0" text="https://www.ladenzeile.de/mode/damen/" />
-                           </children>
-                        </HBox>
-                        <HBox alignment="CENTER_RIGHT" layoutX="30.0" layoutY="318.0" style="-fx-border-radius: 5; -fx-border-color: white;">
-                           <children>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="GridPageURL with FillIns" />
-                              <TextField fx:id="inputGridPageURLWithFillIns" focusTraversable="false" prefWidth="300.0" text="https://taschen.ladenzeile.de/kulturbeutel-kammtasche/" />
-                           </children>
-                        </HBox>
-                        <HBox alignment="CENTER_RIGHT" style="-fx-border-radius: 5; -fx-border-color: white;">
-                           <children>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Brand Page (Overview)" />
-                              <TextField fx:id="inputBrandPageOverview" focusTraversable="false" prefWidth="300.0" text="https://www.ladenzeile.de/marken.html" />
-                           </children>
-                        </HBox>
-                        <VBox alignment="CENTER" style="-fx-border-color: white; -fx-border-radius: 5;">
-                           <children>
-                              <HBox alignment="CENTER_RIGHT">
+                              <HBox fx:id="ElementShopSearchBox" alignment="CENTER_RIGHT" GridPane.rowIndex="7">
                                  <children>
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Partnershops Page URL" />
-                                    <TextField fx:id="inputPartnerShopPageURL" focusTraversable="false" prefWidth="300.0" text="https://www.ladenzeile.de/partner/shops" />
-                                 </children>
-                              </HBox>
-                              <HBox alignment="CENTER_RIGHT">
-                                 <children>
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Shop Search Box" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Shop Search Box" />
                                     <TextField fx:id="inputPartnerShopSearch" focusTraversable="false" prefWidth="300.0" text="bonprix | nike" />
                                  </children>
                               </HBox>
-                           </children>
-                        </VBox>
-                        <HBox alignment="CENTER_RIGHT" layoutX="30.0" layoutY="378.0" style="-fx-border-color: white; -fx-border-radius: 5;">
-                           <children>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Become a Partner URL" />
-                              <TextField fx:id="inputBecomeAPartnerPageURL" focusTraversable="false" prefWidth="300.0" text="https://www.ladenzeile.de/partner/info" />
-                           </children>
-                        </HBox>
-                        <HBox alignment="CENTER_RIGHT" layoutX="30.0" layoutY="546.0" style="-fx-border-color: white; -fx-border-radius: 5;">
-                           <children>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Affiliate Program URL" />
-                              <TextField fx:id="inputAffiliateProgramURL" focusTraversable="false" prefWidth="300.0" text="https://www.ladenzeile.de/affiliate-programm/" />
-                           </children>
-                        </HBox>
-                        <VBox style="-fx-border-color: white; -fx-border-radius: 5;">
-                           <children>
-                              <HBox alignment="CENTER_RIGHT">
+                              <HBox fx:id="ElementMerchandiseSearchBox" alignment="CENTER_RIGHT" GridPane.rowIndex="8">
                                  <children>
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Merchandise Overview Page" />
-                                    <TextField fx:id="inputMerchandiseOverviewPageURL" focusTraversable="false" prefWidth="300.0" text="https://www.ladenzeile.de/merchandise.html" />
-                                 </children>
-                              </HBox>
-                              <HBox alignment="CENTER_RIGHT">
-                                 <children>
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Merchandise Search" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Merchandise Search" />
                                     <TextField fx:id="inputMerchandiseSearch" focusTraversable="false" prefWidth="300.0" text="Fifa | Alf" />
                                  </children>
                               </HBox>
+                              <HBox fx:id="ElementGridPageSearchBox" alignment="CENTER_RIGHT" GridPane.rowIndex="2">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Brand/Shop Keyword" />
+                                    <TextField fx:id="inputGridPageKeyword" focusTraversable="false" prefWidth="300.0" text="nike" />
+                                 </children>
+                              </HBox>
+                              <HBox fx:id="ElementGridPageWithWindowBox" alignment="CENTER_RIGHT" GridPane.rowIndex="4">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="GridPageURL with Windows" />
+                                    <TextField fx:id="inputGridPageURLWithWindows" focusTraversable="false" prefWidth="300.0" text="https://www.ladenzeile.de/mode/damen/" />
+                                 </children>
+                              </HBox>
+                              <HBox fx:id="ElementGridPageWithFillInsBox" alignment="CENTER_RIGHT" GridPane.rowIndex="5">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="GridPageURL with FillIns" />
+                                    <TextField fx:id="inputGridPageURLWithFillIns" focusTraversable="false" prefWidth="300.0" text="https://taschen.ladenzeile.de/kulturbeutel-kammtasche/" />
+                                 </children>
+                              </HBox>
                            </children>
-                        </VBox>
-                        <ProgressBar fx:id="progressIndicator" prefWidth="400.0" progress="0.0">
                            <VBox.margin>
-                              <Insets bottom="10.0" top="20.0" />
+                              <Insets left="10.0" />
                            </VBox.margin>
-                        </ProgressBar>
+                        </GridPane>
                      </children>
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                     <padding>
-                        <Insets left="20.0" />
-                     </padding>
                   </VBox>
-                  <TabPane fx:id="tabPane" prefHeight="366.0" prefWidth="484.0">
+                  <TabPane fx:id="tabPane" prefHeight="704.0" prefWidth="246.0">
                      <tabs>
                         <Tab fx:id="tabHomepage" closable="false" text="Homepage">
                            <content>

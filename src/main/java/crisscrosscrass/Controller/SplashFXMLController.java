@@ -67,19 +67,18 @@ public class SplashFXMLController implements Initializable {
                         primaryStage.initStyle(StageStyle.DECORATED);
                         //primaryStage.initStyle(StageStyle.UNIFIED);
                         final int shadowSize = 20;
+                        /*
                         root.setStyle(
                                 "-fx-background-color: transparent;" +
                                         "-fx-effect: dropshadow(gaussian, #e83062, " + shadowSize + ", 0, 0, 0);" +
                                         "-fx-background-insets: " + shadowSize + ";"
                         );
+                        */
                         //primaryStage.initStyle(StageStyle.UTILITY);
-
-                        root.setStyle("-fx-background-color: grey;");
+                        //root.setStyle("-fx-background-color: grey;");
 
                         primaryStage.setScene(new Scene(root));
                         primaryStage.getScene().setFill(Color.TRANSPARENT);
-
-
 
                         primaryStage.setOnCloseRequest(e -> {
                             System.out.println("Closing");
@@ -114,16 +113,11 @@ public class SplashFXMLController implements Initializable {
                             rootPane.getScene().getWindow().hide();
                         });
 
-
                     }
                     public void closeProgram(){
                         System.out.println("DataSaved!");
                     }
                 });
-
-
-
-
 
             } catch (InterruptedException e) {
                 e.printStackTrace();

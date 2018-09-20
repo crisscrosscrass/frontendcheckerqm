@@ -21,7 +21,7 @@ import java.util.Properties;
 
 public class ImageGroupingPageTest {
 
-    public void checkingImageGroupingClickOut(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox ImageGroupingClickOut, TextField inputLucenePage, Text statusInfo, TextField inputGridPageURL, Properties Homepage){
+    public void checkingImageGroupingClickOut(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox ImageGroupingClickOut, Text statusInfo, TextField inputGridPageURL, Properties Homepage){
         final String infoMessage = "Checking Image Grouping Click Out";
         ChangeCheckBox.adjustStyle(false,"progress",ImageGroupingClickOut);
         Platform.runLater(() -> {
@@ -127,7 +127,7 @@ public class ImageGroupingPageTest {
 
     }
 
-    public void checkingDetailPageOfOffer(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox DetailPageOfOffer, TextField inputLucenePage, Text statusInfo, TextField inputGridPageURL, Properties Homepage){
+    public void checkingDetailPageOfOffer(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox DetailPageOfOffer, Text statusInfo, TextField inputGridPageURL, Properties Homepage){
         final String infoMessage = "Checking Image Grouping Detail Page of Offer";
         ChangeCheckBox.adjustStyle(false,"progress",DetailPageOfOffer);
         Platform.runLater(() -> {

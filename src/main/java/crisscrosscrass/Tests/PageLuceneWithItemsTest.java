@@ -9,6 +9,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -317,6 +318,10 @@ public class PageLuceneWithItemsTest {
                                 while (FilterBoxColorsUnchecked.size() > 0 && selectColorCounter < 5){
                                     wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("lucenepage.sidebar.boxes.colors.unchecked"))));
                                     report.writeToFile("Select Color Filter "+(selectColorCounter+1)+": ", "Complete!");
+                                    //scroll to
+                                    Point hoverItem = FilterBoxColorsUnchecked.get(0).getLocation();
+                                    ((JavascriptExecutor)webDriver).executeScript("return window.title;");
+                                    ((JavascriptExecutor)webDriver).executeScript("window.scrollBy(0,"+(hoverItem.getY())+");");
                                     FilterBoxColorsUnchecked.get(0).click();
                                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Homepage.getProperty("page.grid.loader"))));
                                     wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.items.price"))));

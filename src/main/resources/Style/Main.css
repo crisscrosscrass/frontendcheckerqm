@@ -4,6 +4,7 @@
 .default-color3.chart-pie { -fx-pie-color: #adff2f; }
 .default-color4.chart-pie { -fx-pie-color: #ff5700; }
 
+/*
 #password.text-field,#login.text-field {
     -fx-text-fill: white;
     -fx-font-size: 12pt;
@@ -13,13 +14,15 @@
 -fx-background-color: #0c343dff;
 -fx-background-insets: 0 0 -1 0, 0, 1, 2;
 -fx-background-radius: 3px, 3px, 2px, 1px;
--fx-padding: 0.333333em 0.666667em 0.333333em 0.666667em; /* 4 8 4 8 */
+-fx-padding: 0.333333em 0.666667em 0.333333em 0.666667em;
 -fx-text-fill: white;
 -fx-alignment: CENTER;
 -fx-content-display: LEFT;
 }
+*/
+
 .jfx-combo-box{
-    -fx-text-fill: white;
+   -fx-text-fill: white;
 }
 .combo-box > .list-cell {
 -fx-background: #0c343dff;
@@ -35,7 +38,15 @@
 -fx-scale-z: 1.0;
 }
 #settingGridPane .box {
--fx-scale-x: 1.0;
+-fx-scale-x: 1.2;
+-fx-scale-y: 2.0;
+-fx-scale-z: 1.0;
+-fx-translate-x: -1px;
+-fx-translate-y: 0px;
+-fx-border-width: 0px;
+}
+#settingGridPane:indeterminate  > .box{
+-fx-scale-x: 1.2;
 -fx-scale-y: 2.0;
 -fx-scale-z: 1.0;
 -fx-translate-x: -1px;

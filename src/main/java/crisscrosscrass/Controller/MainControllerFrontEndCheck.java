@@ -8,9 +8,6 @@ import crisscrosscrass.*;
 import crisscrosscrass.Tasks.*;
 import crisscrosscrass.Tests.*;
 import javafx.application.Platform;
-import javafx.beans.binding.Binding;
-import javafx.beans.binding.StringBinding;
-import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
@@ -57,8 +54,8 @@ public class MainControllerFrontEndCheck implements Serializable{
     @FXML public JFXCheckBox checkingBrandFilter;
     @FXML public JFXCheckBox checkingMerchandiseFilter;
     // Tab Settings
-    @FXML Accordion settingsAccordion;
-    @FXML TitledPane settingTitledPane;
+    //@FXML Accordion settingsAccordion;
+    //@FXML TitledPane settingTitledPane;
     @FXML JFXCheckBox settingHomepage;
     @FXML JFXCheckBox settingGridPage;
     @FXML JFXCheckBox settingGridPageWithWindows;
@@ -73,10 +70,17 @@ public class MainControllerFrontEndCheck implements Serializable{
     @FXML JFXCheckBox settingBecomeAPartnerPage;
     @FXML JFXCheckBox settingAffiliateProgram;
     @FXML JFXCheckBox settingMerchandiseOverviewPage;
-    //Element Boxes
+    //Element Boxes to hide
     @FXML HBox ElementLuceneBox;
     @FXML VBox ElementLoginBox;
     @FXML HBox ElementTextSearchSuggestionBox;
+    @FXML HBox ElementShopSearchBox;
+    @FXML HBox ElementMerchandiseSearchBox;
+    @FXML HBox ElementGridPageSearchBox;
+    @FXML HBox ElementGridPageWithoutWindowBox;
+    @FXML HBox ElementGridPageWithWindowBox;
+    @FXML HBox ElementGridPageWithFillInsBox;
+    @FXML HBox ElementFiltersBox;
     //Main Menu Settings
     @FXML ProgressBar progressIndicator;
     @FXML Text statusInfo;
@@ -121,10 +125,7 @@ public class MainControllerFrontEndCheck implements Serializable{
     @FXML Tab tabMerchandiseOverviewPage;
     //data visualisation
     @FXML VBox PlaceForPieCharts;
-
-
-
-    //Controller Settings
+    //Controller for each CheckList
     @FXML FrontendHomepageController frontendHomepageController;
     @FXML GridPageWithWindowsController gridPageWithWindowsController;
     @FXML GridPageNoWindowsController gridPageNoWindowsController;
@@ -156,7 +157,7 @@ public class MainControllerFrontEndCheck implements Serializable{
             countrySelection.getItems().add(country);
         }
         //add Countries to country select
-        countrySelection.setPromptText("Which country should be checked ?");
+        countrySelection.setPromptText("Which country?");
 
 
         //add Listener to Settings
@@ -178,6 +179,12 @@ public class MainControllerFrontEndCheck implements Serializable{
         ElementLuceneBox.visibleProperty().bind(settingLucenePage.selectedProperty());
         ElementLoginBox.visibleProperty().bind(settingFavoritePage.selectedProperty());
         ElementTextSearchSuggestionBox.visibleProperty().bind(settingHomepage.selectedProperty());
+        ElementShopSearchBox.visibleProperty().bind(settingPartnerShopPage.selectedProperty());
+        ElementMerchandiseSearchBox.visibleProperty().bind(settingMerchandiseOverviewPage.selectedProperty());
+        ElementGridPageSearchBox.visibleProperty().bind(settingGridPage.selectedProperty());
+        ElementFiltersBox.visibleProperty().bind(settingGridPage.selectedProperty());
+        ElementGridPageWithWindowBox.visibleProperty().bind(settingGridPageWithWindows.selectedProperty());
+        ElementGridPageWithFillInsBox.visibleProperty().bind(settingGridPageFillIns.selectedProperty());
         //update Tabs on Frontend
         updateCheckerTabs();
         //check if Properties File is available if yes, load data into Input Fields
@@ -207,7 +214,7 @@ public class MainControllerFrontEndCheck implements Serializable{
         inputMerchandiseSearch.setText(userData.getProperty("inputMerchandiseSearch"));
 
         //opening Menu in User Interface
-        Platform.runLater(() -> settingTitledPane.setExpanded(true));
+        //Platform.runLater(() -> settingTitledPane.setExpanded(true));
 
         //Binding Values to Selection
         //inputSearch.textProperty().bind(countrySelection.getSelectionModel().selectedItemProperty().asString());
@@ -218,98 +225,31 @@ public class MainControllerFrontEndCheck implements Serializable{
             inputBrandPageOverview.setText(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getLocationBrandOverviewPage());
             inputPartnerShopPageURL.setText(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getLocationPartnershopsPageURL());
             inputBecomeAPartnerPageURL.setText(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getLocationBecomePartnerPageURL());
+            inputAffiliateProgramURL.setText(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getLocationAffiliateProgramPageURL());
+            inputMerchandiseOverviewPageURL.setText(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getLocationMerchandiseOverviewPageURL());
         });
-
     }
 
     public void updateCheckerTabs(){
-        if (settingHomepage.isSelected()){
-            tabHomepage.setDisable(false);
-            tabPane.getSelectionModel().select(tabHomepage);
+        SettingManager settingManager = new SettingManager();
+        settingManager.updateSettingControlls(settingHomepage,tabHomepage,tabPane);
+        settingManager.updateSettingControlls(settingGridPage,tabGridPage,tabPane);
+        settingManager.updateSettingControlls(settingGridPageWithWindows,tabGridPageWithWindows,tabPane);
+        settingManager.updateSettingControlls(settingGridPageFillIns,tabGridPageFillIns,tabPane);
+        settingManager.updateSettingControlls(settingBrandPage,tabBrandPage,tabPane);
+        settingManager.updateSettingControlls(settingLucenePage,tabLucenePage,tabPane);
+        settingManager.updateSettingControlls(settingLucenePageWithDeletions,tabLucenePageWithDeletions,tabPane);
+        settingManager.updateSettingControlls(settingDetailPage,tabDetailPage,tabPane);
+        settingManager.updateSettingControlls(settingImageGrouping,tabImageGrouping,tabPane);
+        settingManager.updateSettingControlls(settingFavoritePage,tabFavoritePage,tabPane);
+        settingManager.updateSettingControlls(settingPartnerShopPage,tabPartnerShopPage,tabPane);
+        settingManager.updateSettingControlls(settingBecomeAPartnerPage,tabBecomeAPartnerPage,tabPane);
+        settingManager.updateSettingControlls(settingAffiliateProgram,tabAffiliateProgram,tabPane);
+        settingManager.updateSettingControlls(settingMerchandiseOverviewPage,tabMerchandiseOverviewPage,tabPane);
+        if (settingGridPage.isSelected() | settingImageGrouping.isSelected() | settingDetailPage.isSelected()|settingFavoritePage.isSelected()){
+            ElementGridPageWithoutWindowBox.setVisible(true);
         }else{
-            tabHomepage.setDisable(true);
-        }
-        if (settingGridPage.isSelected()){
-            tabGridPage.setDisable(false);
-            tabPane.getSelectionModel().select(tabGridPage);
-        }else{
-            tabGridPage.setDisable(true);
-        }
-        if (settingGridPageWithWindows.isSelected()){
-            tabGridPageWithWindows.setDisable(false);
-            tabPane.getSelectionModel().select(tabGridPageWithWindows);
-        }else{
-            tabGridPageWithWindows.setDisable(true);
-        }
-        if (settingGridPageFillIns.isSelected()){
-            tabGridPageFillIns.setDisable(false);
-            tabPane.getSelectionModel().select(tabGridPageFillIns);
-        }else{
-            tabGridPageFillIns.setDisable(true);
-        }
-        if (settingBrandPage.isSelected()){
-            tabBrandPage.setDisable(false);
-            tabPane.getSelectionModel().select(tabBrandPage);
-        }else{
-            tabBrandPage.setDisable(true);
-        }
-        if (settingLucenePage.isSelected()){
-            tabLucenePage.setDisable(false);
-            tabPane.getSelectionModel().select(tabLucenePage);
-        }else{
-            tabLucenePage.setDisable(true);
-        }
-        if (settingLucenePageWithDeletions.isSelected()){
-            tabLucenePageWithDeletions.setDisable(false);
-            tabPane.getSelectionModel().select(tabLucenePageWithDeletions);
-        }else{
-            tabLucenePageWithDeletions.setDisable(true);
-        }
-        if (settingDetailPage.isSelected()) {
-            tabDetailPage.setDisable(false);
-            tabPane.getSelectionModel().select(tabDetailPage);
-        }
-        else {
-            tabDetailPage.setDisable(true);
-        }
-        if (settingImageGrouping.isSelected()){
-            tabImageGrouping.setDisable(false);
-            tabPane.getSelectionModel().select(tabImageGrouping);
-        }
-        else{
-            tabImageGrouping.setDisable(true);
-        }
-        if (settingFavoritePage.isSelected()){
-            tabFavoritePage.setDisable(false);
-            tabPane.getSelectionModel().select(tabFavoritePage);
-        }
-        else{
-            tabFavoritePage.setDisable(true);
-        }
-        if (settingPartnerShopPage.isSelected()){
-            tabPartnerShopPage.setDisable(false);
-            tabPane.getSelectionModel().select(tabPartnerShopPage);
-        }
-        else{
-            tabPartnerShopPage.setDisable(true);
-        }
-        if (settingBecomeAPartnerPage.isSelected()){
-            tabBecomeAPartnerPage.setDisable(false);
-            tabPane.getSelectionModel().select(tabBecomeAPartnerPage);
-        }else{
-            tabBecomeAPartnerPage.setDisable(true);
-        }
-        if (settingAffiliateProgram.isSelected()){
-            tabAffiliateProgram.setDisable(false);
-            tabPane.getSelectionModel().select(tabAffiliateProgram);
-        }else{
-            tabAffiliateProgram.setDisable(true);
-        }
-        if (settingMerchandiseOverviewPage.isSelected()){
-            tabMerchandiseOverviewPage.setDisable(false);
-            tabPane.getSelectionModel().select(tabMerchandiseOverviewPage);
-        }else{
-            tabMerchandiseOverviewPage.setDisable(true);
+            ElementGridPageWithoutWindowBox.setVisible(false);
         }
     }
 
@@ -338,7 +278,7 @@ public class MainControllerFrontEndCheck implements Serializable{
                     inputAffiliateProgramURL.setDisable(true);
                     inputMerchandiseOverviewPageURL.setDisable(true);
                     inputMerchandiseSearch.setDisable(true);
-                    settingTitledPane.setExpanded(false);
+                    //settingTitledPane.setExpanded(false);
         });
 
 
@@ -351,7 +291,6 @@ public class MainControllerFrontEndCheck implements Serializable{
             }
 
             private void startMainCheck(){
-
                 // * Load Properties File
                 String resourceName = "configs/page.properties";
                 ClassLoader loader = Thread.currentThread().getContextClassLoader();
@@ -361,7 +300,6 @@ public class MainControllerFrontEndCheck implements Serializable{
                 }catch (Exception nope){
                     nope.getStackTrace();
                 }
-
                 // * Basic Settings before Starting WebDriver
                 // * Browser, Javascript , etc.
                 Platform.runLater(() -> {
@@ -371,14 +309,12 @@ public class MainControllerFrontEndCheck implements Serializable{
                     Image catty = new Image(String.valueOf(cattyLocation));
                     preloaderCat.setImage(catty);
                 });
-
                 // * detect if Ressources are available
                 File webdriverFile = new File("temp//chromedriver.exe");
                 if (!webdriverFile.exists()) {
                     logger.info("Webdriver not exist, create webdriverFile");
                     copyFiles();
                 }
-
                 // * Basic Settings while Starting WebDriver
                 Platform.runLater(() -> statusInfo.setText("Starting Engine..."));
                 System.setProperty("webdriver.chrome.driver", "temp//chromedriver.exe");
@@ -414,14 +350,14 @@ public class MainControllerFrontEndCheck implements Serializable{
                         try{
                             tabPane.getSelectionModel().select(tabHomepage);
                             HomepageTest homepageTest = new HomepageTest();
-                            //homepageTest.checkingCategories(webDriver,report,frontendHomepageController.checkCategoryLinksLeftSideMenu,statusInfo,inputSearch, Homepage);
+                            homepageTest.checkingCategories(webDriver,report,frontendHomepageController.checkCategoryLinksLeftSideMenu,statusInfo,inputSearch, Homepage);
                             homepageTest.checkingShopOfTheWeek(webDriver,report,frontendHomepageController.checkLogoFromShopOfTheWeek,statusInfo,inputSearch, Homepage);
                             homepageTest.checkingShopOfTheWeekCategories(webDriver,report,frontendHomepageController.checkCategoryLinksFromShopOfTheWeek,statusInfo,inputSearch, Homepage);
                             homepageTest.checkingNewsletterBanner(webDriver,report,frontendHomepageController.checkNewsletterBannerFunctionality,statusInfo,inputSearch,inputEmailAdress, Homepage);
                             homepageTest.checkingNewsletterPopUp(webDriver,report,frontendHomepageController.checkNewsletterPopUp,statusInfo,inputSearch, Homepage);
-                            //homepageTest.checkingNewsletterPopUpFunctionality(webDriver,report,js,frontendHomepageController.checkNewsletterPopUpFunctionality,statusInfo,inputSearch,inputEmailAdress, Homepage);
-                            //homepageTest.checkingFooterLinks(webDriver,report, frontendHomepageController.checkFooterLinks,statusInfo,inputSearch, Homepage);
-                            //homepageTest.checkingSearchAndSuggestions(webDriver,report, frontendHomepageController.checkTextSearchAndSuggestions,inputTextSearchAndSuggestions,statusInfo,inputSearch, Homepage);
+                            homepageTest.checkingNewsletterPopUpFunctionality(webDriver,report,js,frontendHomepageController.checkNewsletterPopUpFunctionality,statusInfo,inputSearch,inputEmailAdress, Homepage);
+                            homepageTest.checkingFooterLinks(webDriver,report, frontendHomepageController.checkFooterLinks,statusInfo,inputSearch, Homepage);
+                            homepageTest.checkingSearchAndSuggestions(webDriver,report, frontendHomepageController.checkTextSearchAndSuggestions,inputTextSearchAndSuggestions,statusInfo,inputSearch, Homepage);
                             homepageTest.checkingFeedbackPopUp(webDriver,report, frontendHomepageController.checkFeedbackPopUp, statusInfo,inputSearch, Homepage);
                             homepageTest.checkingPrivacyPopUp(webDriver,report, frontendHomepageController.checkPrivacyPopUp, statusInfo,inputSearch, Homepage);
                             homepageTest.checkingImprint(webDriver,report, frontendHomepageController.checkImprint, statusInfo,inputImprintURL, Homepage);
@@ -493,10 +429,10 @@ public class MainControllerFrontEndCheck implements Serializable{
                         try{
                             tabPane.getSelectionModel().select(tabDetailPage);
                             DetailPageTest detailPageTest = new DetailPageTest();
-                            detailPageTest.checkingSwitchTabsinDetailPage(webDriver,report,js,detailPageController.SwitchTabsInDetailPage,inputLucenePage,statusInfo,inputGridPageURL, Homepage);
-                            detailPageTest.checkingSimilarProductClickOut(webDriver,report,js,detailPageController.SimilarProductsClickOut,inputLucenePage,statusInfo,inputGridPageURL, Homepage);
-                            detailPageTest.checkingPagingForwardBackward(webDriver,report,js,detailPageController.PagingForwardBackward,inputLucenePage,statusInfo,inputGridPageURL, Homepage);
-                            detailPageTest.checkingJumpToNonExistingPage(webDriver,report,js,detailPageController.JumpToNonExistingPage,inputLucenePage,statusInfo,inputGridPageURL, Homepage);
+                            detailPageTest.checkingSwitchTabsinDetailPage(webDriver,report,js,detailPageController.SwitchTabsInDetailPage, statusInfo,inputGridPageURL, Homepage);
+                            detailPageTest.checkingSimilarProductClickOut(webDriver,report,js,detailPageController.SimilarProductsClickOut, statusInfo,inputGridPageURL, Homepage);
+                            detailPageTest.checkingPagingForwardBackward(webDriver,report,js,detailPageController.PagingForwardBackward, statusInfo,inputGridPageURL, Homepage);
+                            detailPageTest.checkingJumpToNonExistingPage(webDriver,report,js,detailPageController.JumpToNonExistingPage, statusInfo,inputGridPageURL, Homepage);
                         }catch (Exception noDetailPageWorking){
                             noDetailPageWorking.printStackTrace();
                         }
@@ -506,8 +442,8 @@ public class MainControllerFrontEndCheck implements Serializable{
                         try{
                             tabPane.getSelectionModel().select(tabImageGrouping);
                             ImageGroupingPageTest imageGroupingPageTest = new ImageGroupingPageTest();
-                            imageGroupingPageTest.checkingImageGroupingClickOut(webDriver,report,js,imageGroupingController.ImageGroupingClickOut,inputLucenePage,statusInfo,inputGridPageURL, Homepage);
-                            imageGroupingPageTest.checkingDetailPageOfOffer(webDriver,report,js,imageGroupingController.DetailPageOfOffer,inputLucenePage,statusInfo,inputGridPageURL, Homepage);
+                            imageGroupingPageTest.checkingImageGroupingClickOut(webDriver,report,js,imageGroupingController.ImageGroupingClickOut, statusInfo,inputGridPageURL, Homepage);
+                            imageGroupingPageTest.checkingDetailPageOfOffer(webDriver,report,js,imageGroupingController.DetailPageOfOffer, statusInfo,inputGridPageURL, Homepage);
                         }catch (Exception noLucenePageWorking){
                             noLucenePageWorking.printStackTrace();
                         }
