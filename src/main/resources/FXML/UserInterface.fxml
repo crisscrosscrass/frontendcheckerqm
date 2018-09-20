@@ -140,9 +140,9 @@
             <HBox prefHeight="57.0" prefWidth="1284.0" />
             <HBox prefHeight="704.0" prefWidth="1443.0" spacing="10.0">
                <children>
-                  <VBox fillWidth="false" prefHeight="670.0" prefWidth="813.0">
+                  <VBox fillWidth="false" prefHeight="691.0" prefWidth="793.0">
                      <children>
-                        <HBox prefHeight="478.0" prefWidth="800.0">
+                        <HBox prefHeight="372.0" prefWidth="793.0">
                            <children>
                               <VBox prefHeight="386.0" prefWidth="622.0" spacing="5.0">
                                  <children>
@@ -274,7 +274,7 @@
                                     </Button>
                                     <HBox fx:id="outputPlace" alignment="CENTER" />
                                     <JFXButton onAction="#LoadFileWithURLs" ripplerFill="WHITE" style="-fx-background-color: #e83062;" text="LoadFileWithURL" textFill="WHITE" />
-                                    <TabPane fx:id="tabPane" prefHeight="704.0" prefWidth="246.0">
+                                    <TabPane fx:id="tabPane" prefHeight="704.0" prefWidth="172.0">
                                        <tabs>
                                           <Tab fx:id="tabHomepage" closable="false" text="Homepage">
                                              <content>
@@ -606,6 +606,12 @@
                               </Label>
                            </children>
                         </GridPane>
+                        <Label fx:id="resultBoxFailedTestCases" alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="193.0" style="-fx-background-color: #434343ff;" text="failed test cases" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <VBox fx:id="placeForFailedTestCases" prefHeight="313.0" prefWidth="482.0" />
                      </children>
                   </VBox>
                </children>

@@ -3,8 +3,9 @@
 <?import com.jfoenix.controls.JFXCheckBox?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane style="-fx-background-color: white;" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="crisscrosscrass.Controller.GridPageWithFillInsController">
+<?import javafx.scene.layout.VBox?>
+<VBox fx:id="gridPageWithFillInsCheckBoxCollection" style="-fx-background-color: white;" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="crisscrosscrass.Controller.GridPageWithFillInsController">
 <children>
     <JFXCheckBox fx:id="showAllFillInPage" text="Show all Fill in Page" />
 </children>
-</AnchorPane>
+</VBox>

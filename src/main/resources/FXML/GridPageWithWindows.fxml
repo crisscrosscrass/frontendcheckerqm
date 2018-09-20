@@ -3,8 +3,9 @@
 <?import com.jfoenix.controls.JFXCheckBox?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane style="-fx-background-color: white;" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="crisscrosscrass.Controller.GridPageWithWindowsController">
+<?import javafx.scene.layout.VBox?>
+<VBox fx:id="gridPageWithWindowsCheckBoxCollection" style="-fx-background-color: white;" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="crisscrosscrass.Controller.GridPageWithWindowsController">
    <children>
       <JFXCheckBox fx:id="PagingWithWindowsForward" text="Paging with Windows Forward" />
    </children>
-</AnchorPane>
+</VBox>
