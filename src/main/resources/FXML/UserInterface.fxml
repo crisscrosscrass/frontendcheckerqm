@@ -9,6 +9,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
@@ -115,7 +116,7 @@
       </VBox>
       <VBox layoutX="-1.0" prefHeight="804.0" prefWidth="1284.0">
          <children>
-            <HBox prefHeight="131.0" prefWidth="1284.0">
+            <HBox prefHeight="145.0" prefWidth="1284.0">
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="814.0" spacing="25.0" style="-fx-background-color: #0c343dff;">
                      <children>
@@ -136,12 +137,12 @@
                   <HBox prefHeight="100.0" prefWidth="472.0" style="-fx-background-color: #45818eff;" />
                </children>
             </HBox>
-            <HBox prefHeight="43.0" prefWidth="1284.0" />
+            <HBox prefHeight="57.0" prefWidth="1284.0" />
             <HBox prefHeight="704.0" prefWidth="1443.0" spacing="10.0">
                <children>
-                  <VBox fillWidth="false" prefHeight="704.0" prefWidth="816.0">
+                  <VBox fillWidth="false" prefHeight="670.0" prefWidth="813.0">
                      <children>
-                        <HBox prefHeight="342.0" prefWidth="800.0">
+                        <HBox prefHeight="478.0" prefWidth="800.0">
                            <children>
                               <VBox prefHeight="386.0" prefWidth="622.0" spacing="5.0">
                                  <children>
@@ -251,10 +252,10 @@
                                  <children>
                                     <HBox alignment="CENTER" style="-fx-background-color: white;">
                                        <children>
-                                          <ImageView fx:id="preloaderCat" fitWidth="50.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
+                                          <ImageView fx:id="preloaderCat" fitHeight="50.0" fitWidth="50.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                                        </children>
                                     </HBox>
-                                    <FontAwesomeIconView fill="#0c343d" glyphName="USER_SECRET" size="35" />
+                                    <FontAwesomeIconView fill="#45818e" glyphName="USER_SECRET" size="35" />
                                     <Text fx:id="statusInfo" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="" textAlignment="CENTER" wrappingWidth="150.0">
                                        <VBox.margin>
                                           <Insets />
@@ -273,6 +274,80 @@
                                     </Button>
                                     <HBox fx:id="outputPlace" alignment="CENTER" />
                                     <JFXButton onAction="#LoadFileWithURLs" ripplerFill="WHITE" style="-fx-background-color: #e83062;" text="LoadFileWithURL" textFill="WHITE" />
+                                    <TabPane fx:id="tabPane" prefHeight="704.0" prefWidth="246.0">
+                                       <tabs>
+                                          <Tab fx:id="tabHomepage" closable="false" text="Homepage">
+                                             <content>
+                                                <fx:include fx:id="frontendHomepage" source="FrontendHomepage.fxml" />
+                                             </content>
+                                          </Tab>
+                                          <Tab fx:id="tabGridPage" closable="false" disable="true" text="Grid Page">
+                                             <content>
+                                                <fx:include fx:id="gridPageNoWindows" source="GridPageNoWindows.fxml" />
+                                             </content>
+                                          </Tab>
+                                          <Tab fx:id="tabGridPageWithWindows" closable="false" disable="true" text="Grid Page with Windows">
+                                             <content>
+                                                <fx:include fx:id="gridPageWithWindows" source="GridPageWithWindows.fxml" />
+                                             </content>
+                                          </Tab>
+                                          <Tab fx:id="tabGridPageFillIns" closable="false" disable="true" text="Grid Page Fill-ins">
+                                             <content>
+                                                <fx:include fx:id="gridPageWithFillIns" source="GridPageWithFillIns.fxml" />
+                                             </content>
+                                          </Tab>
+                                          <Tab fx:id="tabBrandPage" closable="false" disable="true" text="Brand Page">
+                                              <content>
+                                                  <fx:include fx:id="brandOverview" source="BrandOverview.fxml" />
+                                              </content>
+                                          </Tab>
+                                          <Tab fx:id="tabLucenePage" closable="false" disable="true" text="Lucene Page">
+                                             <content>
+                                                 <fx:include fx:id="pageLuceneWithItems" source="PageLuceneWithItems.fxml" />
+                                             </content>
+                                          </Tab>
+                                          <Tab fx:id="tabDetailPage" closable="false" disable="true" text="Detail Page">
+                                             <content>
+                                                <fx:include fx:id="detailPage" source="DetailPage.fxml" />
+                                             </content>
+                                          </Tab>
+                                          <Tab fx:id="tabImageGrouping" closable="false" disable="true" text="Image Grouping">
+                                             <content>
+                                                <fx:include fx:id="imageGrouping" source="ImageGrouping.fxml" />
+                                             </content>
+                                          </Tab>
+                                          <Tab fx:id="tabFavoritePage" closable="false" disable="true" text="Favorite Page">
+                                             <content>
+                                                <fx:include fx:id="favoritePage" source="FavoritePage.fxml" />
+                                             </content>
+                                          </Tab>
+                                          <Tab fx:id="tabPartnerShopPage" closable="false" disable="true" text="Partnershops">
+                                             <content>
+                                                <fx:include fx:id="partnershopsPage" source="PartnershopsPage.fxml" />
+                                             </content>
+                                          </Tab>
+                                          <Tab fx:id="tabBecomeAPartnerPage" closable="false" disable="true" text="Become a Partner">
+                                             <content>
+                                                <fx:include fx:id="becomeAPartner" source="BecomeAPartner.fxml" />
+                                             </content>
+                                          </Tab>
+                                          <Tab fx:id="tabAffiliateProgram" closable="false" disable="true" text="Affiliate Program">
+                                             <content>
+                                                <fx:include fx:id="affiliateProgram" source="AffiliateProgram.fxml" />
+                                             </content>
+                                          </Tab>
+                                          <Tab fx:id="tabMerchandiseOverviewPage" closable="false" disable="true" text="Merchandise Overview Page">
+                                             <content>
+                                                <fx:include fx:id="merchandiseOverviewPage" source="MerchandiseOverviewPage.fxml" />
+                                             </content>
+                                          </Tab>
+                                          <Tab fx:id="tabLucenePageWithDeletions" closable="false" disable="true" text="Lucene Page with Deletions">
+                                             <content>
+                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                             </content>
+                                          </Tab>
+                                       </tabs>
+                                    </TabPane>
                                  </children>
                               </VBox>
                            </children>
@@ -317,18 +392,8 @@
                               </HBox>
                               <VBox fx:id="ElementLoginBox" alignment="CENTER" GridPane.rowIndex="9">
                                  <children>
-                                    <HBox alignment="CENTER" spacing="5.0">
-                                       <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Login" />
-                                          <JFXTextField id="login" fx:id="inputAccountEmail" focusColor="#e83062" prefHeight="37.0" prefWidth="376.0" text="christopher.eckardt@visual-meta.com" unFocusColor="WHITE" />
-                                       </children>
-                                    </HBox>
-                                    <HBox alignment="CENTER" layoutX="11.0" layoutY="11.0" spacing="5.0">
-                                       <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="PW" />
-                                          <JFXPasswordField id="password" fx:id="inputAccountPassword" focusColor="#e83062" prefHeight="37.0" prefWidth="307.0" text="blabla" unFocusColor="WHITE" />
-                                       </children>
-                                    </HBox>
+                                    <JFXTextField id="login" fx:id="inputAccountEmail" focusColor="#e83062" onKeyTyped="#updateCheckerTabs" prefHeight="37.0" prefWidth="376.0" promptText="Login-Email" text="christopher.eckardt@visual-meta.com" unFocusColor="WHITE" />
+                                    <JFXPasswordField id="password" fx:id="inputAccountPassword" focusColor="#e83062" prefHeight="37.0" prefWidth="307.0" promptText="Password" text="blabla" unFocusColor="WHITE" />
                                  </children>
                               </VBox>
                               <HBox fx:id="ElementTextSearchSuggestionBox" alignment="CENTER_RIGHT">
@@ -374,81 +439,175 @@
                         </GridPane>
                      </children>
                   </VBox>
-                  <TabPane fx:id="tabPane" prefHeight="704.0" prefWidth="246.0">
-                     <tabs>
-                        <Tab fx:id="tabHomepage" closable="false" text="Homepage">
-                           <content>
-                              <fx:include fx:id="frontendHomepage" source="FrontendHomepage.fxml" />
-                           </content>
-                        </Tab>
-                        <Tab fx:id="tabGridPage" closable="false" disable="true" text="Grid Page">
-                           <content>
-                              <fx:include fx:id="gridPageNoWindows" source="GridPageNoWindows.fxml" />
-                           </content>
-                        </Tab>
-                        <Tab fx:id="tabGridPageWithWindows" closable="false" disable="true" text="Grid Page with Windows">
-                           <content>
-                              <fx:include fx:id="gridPageWithWindows" source="GridPageWithWindows.fxml" />
-                           </content>
-                        </Tab>
-                        <Tab fx:id="tabGridPageFillIns" closable="false" disable="true" text="Grid Page Fill-ins">
-                           <content>
-                              <fx:include fx:id="gridPageWithFillIns" source="GridPageWithFillIns.fxml" />
-                           </content>
-                        </Tab>
-                        <Tab fx:id="tabBrandPage" closable="false" disable="true" text="Brand Page">
-                            <content>
-                                <fx:include fx:id="brandOverview" source="BrandOverview.fxml" />
-                            </content>
-                        </Tab>
-                        <Tab fx:id="tabLucenePage" closable="false" disable="true" text="Lucene Page">
-                           <content>
-                               <fx:include fx:id="pageLuceneWithItems" source="PageLuceneWithItems.fxml" />
-                           </content>
-                        </Tab>
-                        <Tab fx:id="tabLucenePageWithDeletions" closable="false" disable="true" text="Lucene Page with Deletions">
-                           <content>
-                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                           </content>
-                        </Tab>
-                        <Tab fx:id="tabDetailPage" closable="false" disable="true" text="Detail Page">
-                           <content>
-                              <fx:include fx:id="detailPage" source="DetailPage.fxml" />
-                           </content>
-                        </Tab>
-                        <Tab fx:id="tabImageGrouping" closable="false" disable="true" text="Image Grouping">
-                           <content>
-                              <fx:include fx:id="imageGrouping" source="ImageGrouping.fxml" />
-                           </content>
-                        </Tab>
-                        <Tab fx:id="tabFavoritePage" closable="false" disable="true" text="Favorite Page">
-                           <content>
-                              <fx:include fx:id="favoritePage" source="FavoritePage.fxml" />
-                           </content>
-                        </Tab>
-                        <Tab fx:id="tabPartnerShopPage" closable="false" disable="true" text="Partnershops">
-                           <content>
-                              <fx:include fx:id="partnershopsPage" source="PartnershopsPage.fxml" />
-                           </content>
-                        </Tab>
-                        <Tab fx:id="tabBecomeAPartnerPage" closable="false" disable="true" text="Become a Partner">
-                           <content>
-                              <fx:include fx:id="becomeAPartner" source="BecomeAPartner.fxml" />
-                           </content>
-                        </Tab>
-                        <Tab fx:id="tabAffiliateProgram" closable="false" disable="true" text="Affiliate Program">
-                           <content>
-                              <fx:include fx:id="affiliateProgram" source="AffiliateProgram.fxml" />
-                           </content>
-                        </Tab>
-                        <Tab fx:id="tabMerchandiseOverviewPage" closable="false" disable="true" text="Merchandise Overview Page">
-                           <content>
-                              <fx:include fx:id="merchandiseOverviewPage" source="MerchandiseOverviewPage.fxml" />
-                           </content>
-                        </Tab>
-                     </tabs>
-                  </TabPane>
-                  <VBox fx:id="PlaceForPieCharts" alignment="CENTER" prefHeight="722.0" prefWidth="250.0" />
+                  <VBox fx:id="PlaceForPieCharts" alignment="CENTER" />
+                  <VBox prefHeight="670.0" prefWidth="492.0">
+                     <children>
+                        <HBox prefHeight="42.0" prefWidth="472.0" />
+                        <GridPane vgap="1.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="203.0" minWidth="10.0" prefWidth="173.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="167.0" minWidth="10.0" prefWidth="58.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="89.0" minWidth="6.0" prefWidth="16.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="179.0" minWidth="10.0" prefWidth="159.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="94.0" minWidth="10.0" prefWidth="59.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="94.0" minWidth="9.0" prefWidth="9.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label fx:id="resultBoxHomepage" alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="193.0" style="-fx-background-color: #165f6fff;" text="Homepage" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="resultBoxGridPageWindows" alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="193.0" style="-fx-background-color: #165f6fff;" text="Grid Page Window" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="resultBoxGridPage" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="40.0" prefHeight="36.0" prefWidth="193.0" style="-fx-background-color: #165f6fff;" text="Grid Page" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="resultBoxGridPageFillIns" alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="193.0" style="-fx-background-color: #165f6fff;" text="Grid Page Fill-ins" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="resultBoxBrandPage" alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="193.0" style="-fx-background-color: #165f6fff;" text="Brand Page" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="3">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="resultBoxLucenePage" alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="193.0" style="-fx-background-color: #165f6fff;" text="Lucene Page" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="resultBoxLucenePageWitth" alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="193.0" style="-fx-background-color: #165f6fff;" text="Lucene Page with" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="4">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="resultBoxDetailPage" alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="193.0" style="-fx-background-color: #165f6fff;" text="Detail Page" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="4">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="resultBoxImageGrouping" alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="193.0" style="-fx-background-color: #165f6fff;" text="Image Grouping" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="5">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="resultBoxFavoritePage" alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="193.0" style="-fx-background-color: #165f6fff;" text="Favorite Page" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="5">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="resultBoxPartnershopPage" alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="193.0" style="-fx-background-color: #165f6fff;" text="Partnershops Page" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="6">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="resultBoxBecomePartner" alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="193.0" style="-fx-background-color: #165f6fff;" text="Become Partner" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="6">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="resultBoxAffiliateProgram" alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="193.0" style="-fx-background-color: #165f6fff;" text="Affiliate Program" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="7">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="resultBoxMerchandise" alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="193.0" style="-fx-background-color: #165f6fff;" text="Merchandise" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="7">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="BoxHomepageResult" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="55.0" style="-fx-background-color: #45818eff;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="BoxGridPageResult" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="55.0" style="-fx-background-color: #45818eff;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="BoxGridPageWindowsResult" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="55.0" style="-fx-background-color: #45818eff;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="BoxGridPageFillInsResult" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="55.0" style="-fx-background-color: #45818eff;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="BoxBrandPageResult" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="55.0" style="-fx-background-color: #45818eff;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="BoxLucenePageWitthResult" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="55.0" style="-fx-background-color: #45818eff;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="BoxImageGroupingResult" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="55.0" style="-fx-background-color: #45818eff;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="BoxPartnershopPageResult" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="55.0" style="-fx-background-color: #45818eff;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="BoxAffiliateProgramResult" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="55.0" style="-fx-background-color: #45818eff;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="BoxLucenePageResult" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="55.0" style="-fx-background-color: #45818eff;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="3">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="BoxDetailPageResult" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="55.0" style="-fx-background-color: #45818eff;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="4">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="BoxFavoritePageResult" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="55.0" style="-fx-background-color: #45818eff;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="5">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="BoxBecomePartnerResult" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="55.0" style="-fx-background-color: #45818eff;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="6">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="BoxMerchandiseResult" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="55.0" style="-fx-background-color: #45818eff;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="7">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </GridPane>
+                     </children>
+                  </VBox>
                </children>
             </HBox>
          </children>

@@ -41,8 +41,8 @@ public class CopyFiles {
         properties.setProperty("inputGridPageURLWithFillIns","https://taschen.ladenzeile.de/kulturbeutel-kammtasche/");
         properties.setProperty("inputBrandPageOverview","https://www.ladenzeile.de/marken.html");
         properties.setProperty("inputLucenePage","emaroon");
-        properties.setProperty("inputAccountEmail","tester@visual-meta.com");
-        properties.setProperty("inputAccountPassword","testpassword");
+        properties.setProperty("inputAccountEmail","");
+        properties.setProperty("inputAccountPassword","");
         properties.setProperty("inputPartnerShopPageURL","https://www.ladenzeile.de/partner/shops");
         properties.setProperty("inputPartnerShopSearch","nike | bonprix");
         properties.setProperty("inputBecomeAPartnerPageURL","https://www.ladenzeile.de/partner/info");

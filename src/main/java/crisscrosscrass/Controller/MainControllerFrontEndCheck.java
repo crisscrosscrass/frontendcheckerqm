@@ -4,10 +4,14 @@ import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.validation.RequiredFieldValidator;
 import crisscrosscrass.*;
 import crisscrosscrass.Tasks.*;
 import crisscrosscrass.Tests.*;
 import javafx.application.Platform;
+import javafx.beans.InvalidationListener;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
@@ -20,6 +24,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
 
 import javafx.scene.text.TextAlignment;
@@ -139,6 +144,35 @@ public class MainControllerFrontEndCheck implements Serializable{
     @FXML BecomeAPartnerController becomeAPartnerController;
     @FXML AffiliateProgramController affiliateProgramController;
     @FXML MerchandiseOverviewPageController merchandiseOverviewPageController;
+    //ResultBoxes
+    @FXML Label resultBoxHomepage;
+    @FXML Label resultBoxGridPage;
+    @FXML Label resultBoxGridPageWindows;
+    @FXML Label resultBoxGridPageFillIns;
+    @FXML Label resultBoxBrandPage;
+    @FXML Label resultBoxLucenePage;
+    @FXML Label resultBoxLucenePageWitth;
+    @FXML Label resultBoxDetailPage;
+    @FXML Label resultBoxImageGrouping;
+    @FXML Label resultBoxFavoritePage;
+    @FXML Label resultBoxPartnershopPage;
+    @FXML Label resultBoxBecomePartner;
+    @FXML Label resultBoxAffiliateProgram;
+    @FXML Label resultBoxMerchandise;
+    @FXML Label BoxHomepageResult;
+    @FXML Label BoxGridPageResult;
+    @FXML Label BoxGridPageWindowsResult;
+    @FXML Label BoxGridPageFillInsResult;
+    @FXML Label BoxBrandPageResult;
+    @FXML Label BoxLucenePageResult;
+    @FXML Label BoxLucenePageWitthResult;
+    @FXML Label BoxDetailPageResult;
+    @FXML Label BoxImageGroupingResult;
+    @FXML Label BoxFavoritePageResult;
+    @FXML Label BoxPartnershopPageResult;
+    @FXML Label BoxBecomePartnerResult;
+    @FXML Label BoxAffiliateProgramResult;
+    @FXML Label BoxMerchandiseResult;
 
     private static boolean isSuccessful = false;
     private static boolean isAvailable = false;
@@ -185,8 +219,8 @@ public class MainControllerFrontEndCheck implements Serializable{
         ElementFiltersBox.visibleProperty().bind(settingGridPage.selectedProperty());
         ElementGridPageWithWindowBox.visibleProperty().bind(settingGridPageWithWindows.selectedProperty());
         ElementGridPageWithFillInsBox.visibleProperty().bind(settingGridPageFillIns.selectedProperty());
-        //update Tabs on Frontend
-        updateCheckerTabs();
+        inputAccountEmail.setOnAction(ValidationEvent -> updateCheckerTabs());
+
         //check if Properties File is available if yes, load data into Input Fields
         File file = new File("temp//UserSettings.properties");
         if (!file.exists()) {
@@ -228,36 +262,49 @@ public class MainControllerFrontEndCheck implements Serializable{
             inputAffiliateProgramURL.setText(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getLocationAffiliateProgramPageURL());
             inputMerchandiseOverviewPageURL.setText(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getLocationMerchandiseOverviewPageURL());
         });
+
+
+        updateCheckerTabs();
+
     }
 
     public void updateCheckerTabs(){
         SettingManager settingManager = new SettingManager();
-        settingManager.updateSettingControlls(settingHomepage,tabHomepage,tabPane);
-        settingManager.updateSettingControlls(settingGridPage,tabGridPage,tabPane);
-        settingManager.updateSettingControlls(settingGridPageWithWindows,tabGridPageWithWindows,tabPane);
-        settingManager.updateSettingControlls(settingGridPageFillIns,tabGridPageFillIns,tabPane);
-        settingManager.updateSettingControlls(settingBrandPage,tabBrandPage,tabPane);
-        settingManager.updateSettingControlls(settingLucenePage,tabLucenePage,tabPane);
-        settingManager.updateSettingControlls(settingLucenePageWithDeletions,tabLucenePageWithDeletions,tabPane);
-        settingManager.updateSettingControlls(settingDetailPage,tabDetailPage,tabPane);
-        settingManager.updateSettingControlls(settingImageGrouping,tabImageGrouping,tabPane);
-        settingManager.updateSettingControlls(settingFavoritePage,tabFavoritePage,tabPane);
-        settingManager.updateSettingControlls(settingPartnerShopPage,tabPartnerShopPage,tabPane);
-        settingManager.updateSettingControlls(settingBecomeAPartnerPage,tabBecomeAPartnerPage,tabPane);
-        settingManager.updateSettingControlls(settingAffiliateProgram,tabAffiliateProgram,tabPane);
-        settingManager.updateSettingControlls(settingMerchandiseOverviewPage,tabMerchandiseOverviewPage,tabPane);
-        if (settingGridPage.isSelected() | settingImageGrouping.isSelected() | settingDetailPage.isSelected()|settingFavoritePage.isSelected()){
+        settingManager.updateSettingControlls(settingHomepage,tabHomepage,tabPane,resultBoxHomepage,BoxHomepageResult);
+        settingManager.updateSettingControlls(settingGridPage,tabGridPage,tabPane,resultBoxGridPage,BoxGridPageResult);
+        settingManager.updateSettingControlls(settingGridPageWithWindows,tabGridPageWithWindows,tabPane,resultBoxGridPageWindows,BoxGridPageWindowsResult);
+        settingManager.updateSettingControlls(settingGridPageFillIns,tabGridPageFillIns,tabPane,resultBoxGridPageFillIns,BoxGridPageFillInsResult);
+        settingManager.updateSettingControlls(settingBrandPage,tabBrandPage,tabPane,resultBoxBrandPage,BoxBrandPageResult);
+        settingManager.updateSettingControlls(settingLucenePage,tabLucenePage,tabPane,resultBoxLucenePage,BoxLucenePageResult);
+        settingManager.updateSettingControlls(settingLucenePageWithDeletions,tabLucenePageWithDeletions,tabPane,resultBoxLucenePageWitth,BoxLucenePageWitthResult);
+        settingManager.updateSettingControlls(settingDetailPage,tabDetailPage,tabPane,resultBoxDetailPage,BoxDetailPageResult);
+        settingManager.updateSettingControlls(settingImageGrouping,tabImageGrouping,tabPane,resultBoxImageGrouping,BoxImageGroupingResult);
+        settingManager.updateSettingControlls(settingFavoritePage,tabFavoritePage,tabPane,resultBoxFavoritePage,BoxFavoritePageResult);
+        settingManager.updateSettingControlls(settingPartnerShopPage,tabPartnerShopPage,tabPane,resultBoxPartnershopPage,BoxPartnershopPageResult);
+        settingManager.updateSettingControlls(settingBecomeAPartnerPage,tabBecomeAPartnerPage,tabPane,resultBoxBecomePartner,BoxBecomePartnerResult);
+        settingManager.updateSettingControlls(settingAffiliateProgram,tabAffiliateProgram,tabPane,resultBoxAffiliateProgram,BoxAffiliateProgramResult);
+        settingManager.updateSettingControlls(settingMerchandiseOverviewPage,tabMerchandiseOverviewPage,tabPane,resultBoxMerchandise,BoxMerchandiseResult);
+        if (settingGridPage.isSelected() | settingImageGrouping.isSelected() | settingDetailPage.isSelected()| settingFavoritePage.isSelected()){
             ElementGridPageWithoutWindowBox.setVisible(true);
         }else{
             ElementGridPageWithoutWindowBox.setVisible(false);
         }
+        settingManager.setValidationColor(settingFavoritePage,inputAccountEmail);
     }
+
+    public void updateResultsBoxes(){
+        if (settingHomepage.isSelected()){
+            //count all successfully checked checkboxes
+            //count all checkboxes
+            //update Result Box
+        }
+    }
+
 
     @FXML
     public void startRealAction() {
         logger.info("Start Engine...");
         Platform.runLater(() -> {
-
                     progressIndicator.setProgress(-1);
                     startwebdriver.setDisable(true);
                     inputSearch.setDisable(true);
@@ -448,7 +495,7 @@ public class MainControllerFrontEndCheck implements Serializable{
                             noLucenePageWorking.printStackTrace();
                         }
                     }
-                    if (!tabFavoritePage.isDisable()){
+                    if (!tabFavoritePage.isDisable() & inputAccountEmail.getText() != null & !inputAccountEmail.getText().equals("") & inputAccountEmail.getText().toLowerCase().contains("@visual-meta.com") ){
                         try{
                             tabPane.getSelectionModel().select(tabFavoritePage);
                             FavoritePageTest favoritePageTest = new FavoritePageTest();
