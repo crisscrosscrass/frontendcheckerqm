@@ -62,7 +62,7 @@ public class MainController implements Serializable{
     @FXML JFXCheckBox settingGridPageFillIns;
     @FXML JFXCheckBox settingBrandPage;
     @FXML JFXCheckBox settingLucenePage;
-    @FXML JFXCheckBox settingLucenePageWithDeletions;
+    @FXML JFXCheckBox settingMainMenuOnHomePage;
     @FXML JFXCheckBox settingDetailPage;
     @FXML JFXCheckBox settingImageGrouping;
     @FXML JFXCheckBox settingFavoritePage;
@@ -115,7 +115,7 @@ public class MainController implements Serializable{
     @FXML Tab tabGridPageFillIns;
     @FXML Tab tabBrandPage;
     @FXML Tab tabLucenePage;
-    @FXML Tab tabLucenePageWithDeletions;
+    @FXML Tab tabMainMenuOnHomePage;
     @FXML Tab tabDetailPage;
     @FXML Tab tabImageGrouping;
     @FXML Tab tabFavoritePage;
@@ -132,6 +132,7 @@ public class MainController implements Serializable{
     @FXML GridPageWithFillInsController gridPageWithFillInsController;
     @FXML BrandOverviewController brandOverviewController;
     @FXML PageLuceneWithItemsController pageLuceneWithItemsController;
+    @FXML MainMenuOnHomePageController mainMenuOnHomePageController;
     @FXML DetailPageController detailPageController;
     @FXML ImageGroupingController imageGroupingController;
     @FXML FavoritePageController favoritePageController;
@@ -147,7 +148,7 @@ public class MainController implements Serializable{
     @FXML Label resultBoxGridPageFillIns;
     @FXML Label resultBoxBrandPage;
     @FXML Label resultBoxLucenePage;
-    @FXML Label resultBoxLucenePageWitth;
+    @FXML Label resultBoxMainMenuOnHomePage;
     @FXML Label resultBoxDetailPage;
     @FXML Label resultBoxImageGrouping;
     @FXML Label resultBoxFavoritePage;
@@ -161,7 +162,7 @@ public class MainController implements Serializable{
     @FXML Label BoxGridPageFillInsResult;
     @FXML Label BoxBrandPageResult;
     @FXML Label BoxLucenePageResult;
-    @FXML Label BoxLucenePageWitthResult;
+    @FXML Label BoxMainMenuOnHomePageResult;
     @FXML Label BoxDetailPageResult;
     @FXML Label BoxImageGroupingResult;
     @FXML Label BoxFavoritePageResult;
@@ -190,8 +191,6 @@ public class MainController implements Serializable{
         }
         //add Countries to country select
         countrySelection.setPromptText("Which country?");
-
-
         //add Listener to Settings
         settingHomepage.setOnAction(event -> updateCheckerTabs());
         settingGridPage.setOnAction(event -> updateCheckerTabs());
@@ -199,7 +198,7 @@ public class MainController implements Serializable{
         settingGridPageFillIns.setOnAction(event -> updateCheckerTabs());
         settingBrandPage.setOnAction(event -> updateCheckerTabs());
         settingLucenePage.setOnAction(event -> updateCheckerTabs());
-        settingLucenePageWithDeletions.setOnAction(event -> updateCheckerTabs());
+        settingMainMenuOnHomePage.setOnAction(event -> updateCheckerTabs());
         settingDetailPage.setOnAction(event -> updateCheckerTabs());
         settingImageGrouping.setOnAction(event -> updateCheckerTabs());
         settingFavoritePage.setOnAction(event -> updateCheckerTabs());
@@ -244,12 +243,7 @@ public class MainController implements Serializable{
         inputAffiliateProgramURL.setText(userData.getProperty("inputAffiliateProgramURL"));
         inputMerchandiseOverviewPageURL.setText(userData.getProperty("inputMerchandiseOverviewPageURL"));
         inputMerchandiseSearch.setText(userData.getProperty("inputMerchandiseSearch"));
-
-        //opening Menu in User Interface
-        //Platform.runLater(() -> settingTitledPane.setExpanded(true));
-
         //Binding Values to Selection
-        //inputSearch.textProperty().bind(countrySelection.getSelectionModel().selectedItemProperty().asString());
         countrySelection.setOnAction( selectedEvent -> {
             inputSearch.setText(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getLocationMainPage());
             inputImprintURL.setText(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getlocationImprintPage());
@@ -259,104 +253,16 @@ public class MainController implements Serializable{
             inputBecomeAPartnerPageURL.setText(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getLocationBecomePartnerPageURL());
             inputAffiliateProgramURL.setText(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getLocationAffiliateProgramPageURL());
             inputMerchandiseOverviewPageURL.setText(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getLocationMerchandiseOverviewPageURL());
+            //TODO enable startwebdriver.setDisable(false);
         });
+        //set Start Button to disable, first Country has to be selected
+        //TODO enable startwebdriver.setDisable(true);
+        //update all Boxes before Starting
         updateResultsBoxes();
         updateCheckerTabs();
     }
 
-    public void updateCheckerTabs(){
-        SettingManager settingManager = new SettingManager();
-        settingManager.updateSettingControlls(settingHomepage,tabHomepage);
-        settingManager.updateSettingControlls(settingGridPage,tabGridPage);
-        settingManager.updateSettingControlls(settingGridPageWithWindows,tabGridPageWithWindows);
-        settingManager.updateSettingControlls(settingGridPageFillIns,tabGridPageFillIns);
-        settingManager.updateSettingControlls(settingBrandPage,tabBrandPage);
-        settingManager.updateSettingControlls(settingLucenePage,tabLucenePage);
-        settingManager.updateSettingControlls(settingLucenePageWithDeletions,tabLucenePageWithDeletions);
-        settingManager.updateSettingControlls(settingDetailPage,tabDetailPage);
-        settingManager.updateSettingControlls(settingImageGrouping,tabImageGrouping);
-        settingManager.updateSettingControlls(settingFavoritePage,tabFavoritePage);
-        settingManager.updateSettingControlls(settingPartnerShopPage,tabPartnerShopPage);
-        settingManager.updateSettingControlls(settingBecomeAPartnerPage,tabBecomeAPartnerPage);
-        settingManager.updateSettingControlls(settingAffiliateProgram,tabAffiliateProgram);
-        settingManager.updateSettingControlls(settingMerchandiseOverviewPage,tabMerchandiseOverviewPage);
-        if (settingGridPage.isSelected() | settingImageGrouping.isSelected() | settingDetailPage.isSelected()| settingFavoritePage.isSelected()){
-            ElementGridPageWithoutWindowBox.setVisible(true);
-        }else{
-            ElementGridPageWithoutWindowBox.setVisible(false);
-        }
-        updateTestCasesGlobalCounter();
-        settingManager.setValidationColor(settingFavoritePage,inputAccountEmail);
-    }
 
-    public void updateTestCasesGlobalCounter(){
-        globalCounterTestCases.setText(""+getGlobalTestCaesNumber());
-    }
-    public void updateGlobalPercentTestCounter(){
-        int currentValue = getGlobalPassedTestCases();
-        int MaxValue = getGlobalTestCaesNumber();
-        int percent = (currentValue * 100) / MaxValue;
-        globalPercentTestPassedCounter.setText(""+percent);
-    }
-    public int getGlobalTestCaesNumber(){
-        int globalCounterTestCasesNumber = 0;
-        ResultsManager resultsManager = new ResultsManager();
-        globalCounterTestCasesNumber += resultsManager.getTestCasesNumber(settingHomepage,frontendHomepageController.frontendHomePageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
-        globalCounterTestCasesNumber += resultsManager.getTestCasesNumber(settingGridPage,gridPageNoWindowsController.GridPageNoWindowsCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
-        globalCounterTestCasesNumber += resultsManager.getTestCasesNumber(settingGridPageWithWindows,gridPageWithWindowsController.gridPageWithWindowsCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
-        globalCounterTestCasesNumber += resultsManager.getTestCasesNumber(settingGridPageFillIns,gridPageWithFillInsController.gridPageWithFillInsCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
-        globalCounterTestCasesNumber += resultsManager.getTestCasesNumber(settingBrandPage,brandOverviewController.brandPageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
-        globalCounterTestCasesNumber += resultsManager.getTestCasesNumber(settingLucenePage,pageLuceneWithItemsController.lucenePageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
-        globalCounterTestCasesNumber += resultsManager.getTestCasesNumber(settingDetailPage,detailPageController.detailPageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
-        globalCounterTestCasesNumber += resultsManager.getTestCasesNumber(settingImageGrouping,imageGroupingController.imageGroupingCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
-        globalCounterTestCasesNumber += resultsManager.getTestCasesNumber(settingFavoritePage,favoritePageController.favoritePageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
-        globalCounterTestCasesNumber += resultsManager.getTestCasesNumber(settingPartnerShopPage,partnershopsPageController.partnerShopCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
-        globalCounterTestCasesNumber += resultsManager.getTestCasesNumber(settingBecomeAPartnerPage,becomeAPartnerController.becomePartnerCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
-        globalCounterTestCasesNumber += resultsManager.getTestCasesNumber(settingAffiliateProgram,affiliateProgramController.affiliateProgramCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
-        globalCounterTestCasesNumber += resultsManager.getTestCasesNumber(settingMerchandiseOverviewPage,merchandiseOverviewPageController.merchandiseOverviewCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
-        return globalCounterTestCasesNumber;
-    }
-
-    public void updateResultsBoxes(){
-        SettingManager settingManager = new SettingManager();
-        settingManager.updateResultBoxes(settingHomepage,"",resultBoxHomepage,BoxHomepageResult);
-        settingManager.updateResultBoxes(settingGridPage,"",resultBoxGridPage,BoxGridPageResult);
-        settingManager.updateResultBoxes(settingGridPageWithWindows,"",resultBoxGridPageWindows,BoxGridPageWindowsResult);
-        settingManager.updateResultBoxes(settingGridPageFillIns,"",resultBoxGridPageFillIns,BoxGridPageFillInsResult);
-        settingManager.updateResultBoxes(settingBrandPage,"",resultBoxBrandPage,BoxBrandPageResult);
-        settingManager.updateResultBoxes(settingLucenePage,"",resultBoxLucenePage,BoxLucenePageResult);
-        settingManager.updateResultBoxes(settingLucenePageWithDeletions,"",resultBoxLucenePageWitth,BoxLucenePageWitthResult);
-        settingManager.updateResultBoxes(settingDetailPage,"",resultBoxDetailPage,BoxDetailPageResult);
-        settingManager.updateResultBoxes(settingImageGrouping,"",resultBoxImageGrouping,BoxImageGroupingResult);
-        settingManager.updateResultBoxes(settingFavoritePage,"",resultBoxFavoritePage,BoxFavoritePageResult);
-        settingManager.updateResultBoxes(settingPartnerShopPage,"",resultBoxPartnershopPage,BoxPartnershopPageResult);
-        settingManager.updateResultBoxes(settingBecomeAPartnerPage,"",resultBoxBecomePartner,BoxBecomePartnerResult);
-        settingManager.updateResultBoxes(settingAffiliateProgram,"",resultBoxAffiliateProgram,BoxAffiliateProgramResult);
-        settingManager.updateResultBoxes(settingMerchandiseOverviewPage,"",resultBoxMerchandise,BoxMerchandiseResult);
-    }
-    public void updateGlobalTestCases(){
-        globalPassedTestPassedCounter.setText(""+ getGlobalPassedTestCases());
-        globalSelectedTestPassedCounter.setText("/"+getGlobalTestCaesNumber());
-    }
-
-    public int getGlobalPassedTestCases(){
-        int globalFailedTestCasesNumber = 0;
-        ResultsManager resultsManager = new ResultsManager();
-        globalFailedTestCasesNumber += resultsManager.getPassedTestCasesNumber(settingHomepage,frontendHomepageController.frontendHomePageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
-        globalFailedTestCasesNumber += resultsManager.getPassedTestCasesNumber(settingGridPage,gridPageNoWindowsController.GridPageNoWindowsCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
-        globalFailedTestCasesNumber += resultsManager.getPassedTestCasesNumber(settingGridPageWithWindows,gridPageWithWindowsController.gridPageWithWindowsCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
-        globalFailedTestCasesNumber += resultsManager.getPassedTestCasesNumber(settingGridPageFillIns,gridPageWithFillInsController.gridPageWithFillInsCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
-        globalFailedTestCasesNumber += resultsManager.getPassedTestCasesNumber(settingBrandPage,brandOverviewController.brandPageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
-        globalFailedTestCasesNumber += resultsManager.getPassedTestCasesNumber(settingLucenePage,pageLuceneWithItemsController.lucenePageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
-        globalFailedTestCasesNumber += resultsManager.getPassedTestCasesNumber(settingDetailPage,detailPageController.detailPageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
-        globalFailedTestCasesNumber += resultsManager.getPassedTestCasesNumber(settingImageGrouping,imageGroupingController.imageGroupingCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
-        globalFailedTestCasesNumber += resultsManager.getPassedTestCasesNumber(settingFavoritePage,favoritePageController.favoritePageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
-        globalFailedTestCasesNumber += resultsManager.getPassedTestCasesNumber(settingPartnerShopPage,partnershopsPageController.partnerShopCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
-        globalFailedTestCasesNumber += resultsManager.getPassedTestCasesNumber(settingBecomeAPartnerPage,becomeAPartnerController.becomePartnerCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
-        globalFailedTestCasesNumber += resultsManager.getPassedTestCasesNumber(settingAffiliateProgram,affiliateProgramController.affiliateProgramCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
-        globalFailedTestCasesNumber += resultsManager.getPassedTestCasesNumber(settingMerchandiseOverviewPage,merchandiseOverviewPageController.merchandiseOverviewCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
-        return globalFailedTestCasesNumber;
-    }
 
     @FXML
     public void startRealAction() {
@@ -570,6 +476,21 @@ public class MainController implements Serializable{
                         updateGlobalTestCases();
                         resultsManager.updateResultsCheckbox(settingLucenePage,pageLuceneWithItemsController.lucenePageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),BoxLucenePageResult,placeForFailedTestCases);
                         settingManager.updateResultBoxes(settingLucenePage,"complete",resultBoxLucenePage,BoxLucenePageResult);
+                    } );
+                    if (!tabMainMenuOnHomePage.isDisable()){
+                        try{
+                            tabPane.getSelectionModel().select(tabMainMenuOnHomePage);
+                            settingManager.updateResultBoxes(settingMainMenuOnHomePage,"progress",resultBoxMainMenuOnHomePage,BoxMainMenuOnHomePageResult);
+                            MainMenuOnHomePageTest mainMenuOnHomePageTest = new MainMenuOnHomePageTest();
+                            mainMenuOnHomePageTest.checkingGoToTopButton(webDriver,report,js,partnershopsPageController.GoToTopButton,statusInfo,inputPartnerShopPageURL, Homepage);
+                        }catch (Exception noMainMenuWorking){
+                            noMainMenuWorking.printStackTrace();
+                        }
+                    }
+                    Platform.runLater(() -> {
+                        updateGlobalTestCases();
+                        resultsManager.updateResultsCheckbox(settingMainMenuOnHomePage,mainMenuOnHomePageController.mainMenuCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),BoxMainMenuOnHomePageResult,placeForFailedTestCases);
+                        settingManager.updateResultBoxes(settingMainMenuOnHomePage,"complete",resultBoxMainMenuOnHomePage,BoxMainMenuOnHomePageResult);
                     } );
                     if (!tabDetailPage.isDisable()){
                         try{
@@ -1076,7 +997,7 @@ public class MainController implements Serializable{
         settingGridPageFillIns.setSelected(true);
         settingBrandPage.setSelected(true);
         settingLucenePage.setSelected(true);
-        //settingLucenePageWithDeletions.setSelected(true);
+        settingMainMenuOnHomePage.setSelected(true);
         settingDetailPage.setSelected(true);
         settingImageGrouping.setSelected(true);
         settingFavoritePage.setSelected(true);
@@ -1095,7 +1016,7 @@ public class MainController implements Serializable{
         settingGridPageFillIns.setSelected(false);
         settingBrandPage.setSelected(false);
         settingLucenePage.setSelected(false);
-        settingLucenePageWithDeletions.setSelected(false);
+        settingMainMenuOnHomePage.setSelected(false);
         settingDetailPage.setSelected(false);
         settingImageGrouping.setSelected(false);
         settingFavoritePage.setSelected(false);
@@ -1104,6 +1025,101 @@ public class MainController implements Serializable{
         settingAffiliateProgram.setSelected(false);
         settingMerchandiseOverviewPage.setSelected(false);
         updateCheckerTabs();
+    }
+    public void updateCheckerTabs(){
+        SettingManager settingManager = new SettingManager();
+        settingManager.updateSettingControlls(settingHomepage,tabHomepage);
+        settingManager.updateSettingControlls(settingGridPage,tabGridPage);
+        settingManager.updateSettingControlls(settingGridPageWithWindows,tabGridPageWithWindows);
+        settingManager.updateSettingControlls(settingGridPageFillIns,tabGridPageFillIns);
+        settingManager.updateSettingControlls(settingBrandPage,tabBrandPage);
+        settingManager.updateSettingControlls(settingLucenePage,tabLucenePage);
+        settingManager.updateSettingControlls(settingMainMenuOnHomePage, tabMainMenuOnHomePage);
+        settingManager.updateSettingControlls(settingDetailPage,tabDetailPage);
+        settingManager.updateSettingControlls(settingImageGrouping,tabImageGrouping);
+        settingManager.updateSettingControlls(settingFavoritePage,tabFavoritePage);
+        settingManager.updateSettingControlls(settingPartnerShopPage,tabPartnerShopPage);
+        settingManager.updateSettingControlls(settingBecomeAPartnerPage,tabBecomeAPartnerPage);
+        settingManager.updateSettingControlls(settingAffiliateProgram,tabAffiliateProgram);
+        settingManager.updateSettingControlls(settingMerchandiseOverviewPage,tabMerchandiseOverviewPage);
+        if (settingGridPage.isSelected() | settingImageGrouping.isSelected() | settingDetailPage.isSelected()| settingFavoritePage.isSelected()){
+            ElementGridPageWithoutWindowBox.setVisible(true);
+        }else{
+            ElementGridPageWithoutWindowBox.setVisible(false);
+        }
+        updateTestCasesGlobalCounter();
+        settingManager.setValidationColor(settingFavoritePage,inputAccountEmail);
+    }
+
+    public void updateTestCasesGlobalCounter(){
+        globalCounterTestCases.setText(""+ getGlobalTestCaseNumber());
+    }
+    public void updateGlobalPercentTestCounter(){
+        int currentValue = getGlobalPassedTestCases();
+        int MaxValue = getGlobalTestCaseNumber();
+        int percent = (currentValue * 100) / MaxValue;
+        globalPercentTestPassedCounter.setText(""+percent);
+    }
+    public int getGlobalTestCaseNumber(){
+        int globalCounterTestCasesNumber = 0;
+        ResultsManager resultsManager = new ResultsManager();
+        globalCounterTestCasesNumber += resultsManager.getTestCasesNumber(settingHomepage,frontendHomepageController.frontendHomePageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
+        globalCounterTestCasesNumber += resultsManager.getTestCasesNumber(settingGridPage,gridPageNoWindowsController.GridPageNoWindowsCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
+        globalCounterTestCasesNumber += resultsManager.getTestCasesNumber(settingGridPageWithWindows,gridPageWithWindowsController.gridPageWithWindowsCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
+        globalCounterTestCasesNumber += resultsManager.getTestCasesNumber(settingGridPageFillIns,gridPageWithFillInsController.gridPageWithFillInsCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
+        globalCounterTestCasesNumber += resultsManager.getTestCasesNumber(settingBrandPage,brandOverviewController.brandPageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
+        globalCounterTestCasesNumber += resultsManager.getTestCasesNumber(settingLucenePage,pageLuceneWithItemsController.lucenePageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
+        globalCounterTestCasesNumber += resultsManager.getTestCasesNumber(settingMainMenuOnHomePage,mainMenuOnHomePageController.mainMenuCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
+        globalCounterTestCasesNumber += resultsManager.getTestCasesNumber(settingDetailPage,detailPageController.detailPageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
+        globalCounterTestCasesNumber += resultsManager.getTestCasesNumber(settingImageGrouping,imageGroupingController.imageGroupingCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
+        globalCounterTestCasesNumber += resultsManager.getTestCasesNumber(settingFavoritePage,favoritePageController.favoritePageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
+        globalCounterTestCasesNumber += resultsManager.getTestCasesNumber(settingPartnerShopPage,partnershopsPageController.partnerShopCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
+        globalCounterTestCasesNumber += resultsManager.getTestCasesNumber(settingBecomeAPartnerPage,becomeAPartnerController.becomePartnerCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
+        globalCounterTestCasesNumber += resultsManager.getTestCasesNumber(settingAffiliateProgram,affiliateProgramController.affiliateProgramCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
+        globalCounterTestCasesNumber += resultsManager.getTestCasesNumber(settingMerchandiseOverviewPage,merchandiseOverviewPageController.merchandiseOverviewCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
+        return globalCounterTestCasesNumber;
+    }
+
+    public void updateResultsBoxes(){
+        SettingManager settingManager = new SettingManager();
+        settingManager.updateResultBoxes(settingHomepage,"",resultBoxHomepage,BoxHomepageResult);
+        settingManager.updateResultBoxes(settingGridPage,"",resultBoxGridPage,BoxGridPageResult);
+        settingManager.updateResultBoxes(settingGridPageWithWindows,"",resultBoxGridPageWindows,BoxGridPageWindowsResult);
+        settingManager.updateResultBoxes(settingGridPageFillIns,"",resultBoxGridPageFillIns,BoxGridPageFillInsResult);
+        settingManager.updateResultBoxes(settingBrandPage,"",resultBoxBrandPage,BoxBrandPageResult);
+        settingManager.updateResultBoxes(settingLucenePage,"",resultBoxLucenePage,BoxLucenePageResult);
+        settingManager.updateResultBoxes(settingMainMenuOnHomePage,"", resultBoxMainMenuOnHomePage, BoxMainMenuOnHomePageResult);
+        settingManager.updateResultBoxes(settingDetailPage,"",resultBoxDetailPage,BoxDetailPageResult);
+        settingManager.updateResultBoxes(settingImageGrouping,"",resultBoxImageGrouping,BoxImageGroupingResult);
+        settingManager.updateResultBoxes(settingFavoritePage,"",resultBoxFavoritePage,BoxFavoritePageResult);
+        settingManager.updateResultBoxes(settingPartnerShopPage,"",resultBoxPartnershopPage,BoxPartnershopPageResult);
+        settingManager.updateResultBoxes(settingBecomeAPartnerPage,"",resultBoxBecomePartner,BoxBecomePartnerResult);
+        settingManager.updateResultBoxes(settingAffiliateProgram,"",resultBoxAffiliateProgram,BoxAffiliateProgramResult);
+        settingManager.updateResultBoxes(settingMerchandiseOverviewPage,"",resultBoxMerchandise,BoxMerchandiseResult);
+    }
+    public void updateGlobalTestCases(){
+        globalPassedTestPassedCounter.setText(""+ getGlobalPassedTestCases());
+        globalSelectedTestPassedCounter.setText("/"+ getGlobalTestCaseNumber());
+    }
+
+    public int getGlobalPassedTestCases(){
+        int globalFailedTestCasesNumber = 0;
+        ResultsManager resultsManager = new ResultsManager();
+        globalFailedTestCasesNumber += resultsManager.getPassedTestCasesNumber(settingHomepage,frontendHomepageController.frontendHomePageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
+        globalFailedTestCasesNumber += resultsManager.getPassedTestCasesNumber(settingGridPage,gridPageNoWindowsController.GridPageNoWindowsCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
+        globalFailedTestCasesNumber += resultsManager.getPassedTestCasesNumber(settingGridPageWithWindows,gridPageWithWindowsController.gridPageWithWindowsCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
+        globalFailedTestCasesNumber += resultsManager.getPassedTestCasesNumber(settingGridPageFillIns,gridPageWithFillInsController.gridPageWithFillInsCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
+        globalFailedTestCasesNumber += resultsManager.getPassedTestCasesNumber(settingBrandPage,brandOverviewController.brandPageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
+        globalFailedTestCasesNumber += resultsManager.getPassedTestCasesNumber(settingLucenePage,pageLuceneWithItemsController.lucenePageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
+        globalFailedTestCasesNumber += resultsManager.getPassedTestCasesNumber(settingMainMenuOnHomePage,mainMenuOnHomePageController.mainMenuCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
+        globalFailedTestCasesNumber += resultsManager.getPassedTestCasesNumber(settingDetailPage,detailPageController.detailPageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
+        globalFailedTestCasesNumber += resultsManager.getPassedTestCasesNumber(settingImageGrouping,imageGroupingController.imageGroupingCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
+        globalFailedTestCasesNumber += resultsManager.getPassedTestCasesNumber(settingFavoritePage,favoritePageController.favoritePageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
+        globalFailedTestCasesNumber += resultsManager.getPassedTestCasesNumber(settingPartnerShopPage,partnershopsPageController.partnerShopCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
+        globalFailedTestCasesNumber += resultsManager.getPassedTestCasesNumber(settingBecomeAPartnerPage,becomeAPartnerController.becomePartnerCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
+        globalFailedTestCasesNumber += resultsManager.getPassedTestCasesNumber(settingAffiliateProgram,affiliateProgramController.affiliateProgramCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
+        globalFailedTestCasesNumber += resultsManager.getPassedTestCasesNumber(settingMerchandiseOverviewPage,merchandiseOverviewPageController.merchandiseOverviewCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
+        return globalFailedTestCasesNumber;
     }
 
 

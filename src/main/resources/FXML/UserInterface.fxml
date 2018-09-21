@@ -173,9 +173,9 @@
                         <fx:include fx:id="merchandiseOverviewPage" source="MerchandiseOverviewPage.fxml" />
                      </content>
                   </Tab>
-                  <Tab fx:id="tabLucenePageWithDeletions" closable="false" disable="true" text="Lucene Page with Deletions">
+                  <Tab fx:id="tabMainMenuOnHomePage" closable="false" disable="true" text="Main Menu">
                      <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                        <fx:include fx:id="mainMenuOnHomePage" source="MainMenuOnHomePage.fxml" />
                      </content>
                   </Tab>
                </tabs>
@@ -278,7 +278,7 @@
                                                   <Font size="20.0" />
                                               </font>
                                           </JFXCheckBox>
-                                          <JFXCheckBox fx:id="settingLucenePageWithDeletions" checkedColor="#45818e" disable="true" prefHeight="40.0" prefWidth="290.0" selected="false" style="-fx-background-color: #165f6fff;" text="Lucene Page with Deletions" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                          <JFXCheckBox fx:id="settingMainMenuOnHomePage" checkedColor="#45818e" prefHeight="57.0" prefWidth="290.0" selected="true" style="-fx-background-color: #165f6fff;" text="Main Menu" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="4">
                                               <font>
                                                   <Font size="20.0" />
                                               </font>
@@ -566,7 +566,7 @@
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="resultBoxLucenePageWitth" alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="193.0" style="-fx-background-color: #666666ff;" text="Lucene Page with" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="4">
+                              <Label fx:id="resultBoxMainMenuOnHomePage" alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="193.0" style="-fx-background-color: #666666ff;" text="MainMenu" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="4">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -631,7 +631,7 @@
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="BoxLucenePageWitthResult" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #d9d9d9ff;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                              <Label fx:id="BoxMainMenuOnHomePageResult" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #d9d9d9ff;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="4">
                                  <font>
                                     <Font size="18.0" />
                                  </font>

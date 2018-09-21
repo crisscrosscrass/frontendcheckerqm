@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.layout.VBox?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<VBox fx:id="mainMenuCheckBoxCollection" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="crisscrosscrass.Controller.MainMenuOnHomePageController">
+    <children>
+        <JFXCheckBox fx:id="MainMenuLinkTabs" text="Main Menu Link Tabs" />
+    </children>
+</VBox>
