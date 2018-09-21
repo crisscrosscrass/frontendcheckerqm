@@ -55,4 +55,26 @@ public class ResultsManager {
         }
         return allCheckBoxes;
     }
+    public int getPassedTestCasesNumber(JFXCheckBox settingTestButton, JFXCheckBox[] checkboxes){
+        int passTest = 0;
+        for (JFXCheckBox checkBox : checkboxes){
+            if (checkBox.isSelected() ){
+                if (checkBox.getCheckedColor().toString().substring(2,8).equals(ChangeCheckBox.getIsSuccessful())){
+                    ++passTest;
+                }
+            }
+        }
+        return passTest;
+    }
+    public int getFailedTestCasesNumber(JFXCheckBox settingTestButton, JFXCheckBox[] checkboxes){
+        int failTest = 0;
+        for (JFXCheckBox checkBox : checkboxes){
+            if (checkBox.isSelected() ){
+                if (checkBox.getCheckedColor().toString().substring(2,8).equals(ChangeCheckBox.getIsNotSuccessful())){
+                    ++failTest;
+                }
+            }
+        }
+        return failTest;
+    }
 }

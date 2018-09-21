@@ -15,7 +15,6 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import org.apache.log4j.Logger;
 
 import java.io.*;
 import java.net.URL;
@@ -58,7 +57,7 @@ public class SplashFXMLController implements Initializable {
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                        MainControllerFrontEndCheck controller = loader.getController();
+                        MainController controller = loader.getController();
 
                         primaryStage.setTitle("Frontend Check");
                         URL LogoLocation = Main.class.getClassLoader().getResource("Images/VisualMeta.png");

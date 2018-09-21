@@ -25,7 +25,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="mainStage" prefHeight="821.0" prefWidth="1300.0" style="-fx-background-color: white;" stylesheets="@../Style/Main.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="crisscrosscrass.Controller.MainControllerFrontEndCheck">
+<AnchorPane fx:id="mainStage" prefHeight="821.0" prefWidth="1300.0" style="-fx-background-color: white;" stylesheets="@../Style/Main.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="crisscrosscrass.Controller.MainController">
    <children>
       <VBox alignment="CENTER" prefHeight="133.0" prefWidth="186.0" spacing="5.0" style="-fx-background-color: grey; -fx-border-width: 1;" visible="false">
          <children>
@@ -192,7 +192,7 @@
          <children>
             <HBox prefHeight="111.0" prefWidth="1306.0">
                <children>
-                  <HBox alignment="CENTER_LEFT" prefHeight="111.0" prefWidth="796.0" spacing="25.0" style="-fx-background-color: #0c343dff;">
+                  <HBox alignment="CENTER_LEFT" prefHeight="88.0" prefWidth="783.0" spacing="25.0" style="-fx-background-color: #0c343dff;">
                      <children>
                         <JFXComboBox fx:id="countrySelection" focusColor="#e83062" prefHeight="63.0" prefWidth="125.0" unFocusColor="WHITE">
                            <padding>
@@ -208,13 +208,13 @@
                         <Insets />
                      </HBox.margin>
                   </HBox>
-                  <HBox prefHeight="111.0" prefWidth="509.0" style="-fx-background-color: #45818eff;" />
+                  <HBox prefHeight="88.0" prefWidth="530.0" style="-fx-background-color: #45818eff;" />
                </children>
             </HBox>
             <HBox prefHeight="57.0" prefWidth="1284.0" />
             <HBox prefHeight="704.0" prefWidth="1443.0" spacing="10.0">
                <children>
-                  <VBox fillWidth="false" prefHeight="691.0" prefWidth="793.0">
+                  <VBox fillWidth="false" prefHeight="682.0" prefWidth="770.0">
                      <children>
                         <HBox prefHeight="372.0" prefWidth="793.0">
                            <children>
@@ -326,7 +326,7 @@
                                  <children>
                                     <VBox alignment="CENTER" prefHeight="100.0" prefWidth="129.0" style="-fx-background-color: #0c343dff; -fx-background-radius: 20;">
                                        <children>
-                                          <Label fx:id="globalCounterTestCases" alignment="BOTTOM_CENTER" contentDisplay="CENTER" prefHeight="65.0" prefWidth="129.0" text="85" textAlignment="CENTER" textFill="WHITE">
+                                          <Label fx:id="globalCounterTestCases" alignment="BOTTOM_CENTER" contentDisplay="CENTER" prefHeight="65.0" prefWidth="129.0" textAlignment="CENTER" textFill="WHITE">
                                              <font>
                                                 <Font size="48.0" />
                                              </font>
@@ -343,7 +343,7 @@
                                           <ImageView fx:id="preloaderCat" fitHeight="50.0" fitWidth="50.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                                        </children>
                                     </HBox>
-                                    <Button fx:id="startwebdriver" minHeight="40.0" mnemonicParsing="false" onAction="#startRealAction" prefHeight="92.0" prefWidth="129.0" style="-fx-background-color: #e83062; -fx-border-color: black; -fx-background-radius: 20; -fx-border-radius: 20;" text="GO" textFill="WHITE">
+                                    <Button fx:id="startwebdriver" minHeight="40.0" mnemonicParsing="false" onAction="#startRealAction" prefHeight="78.0" prefWidth="104.0" style="-fx-background-color: #e83062; -fx-border-color: black; -fx-background-radius: 20; -fx-border-radius: 20;" text="GO" textFill="WHITE">
                                        <font>
                                           <Font name="Arial Black" size="12.0" />
                                        </font>
@@ -448,13 +448,73 @@
                      </children>
                   </VBox>
                   <VBox fx:id="PlaceForPieCharts" alignment="CENTER" />
-                  <VBox prefHeight="670.0" prefWidth="492.0">
+                  <VBox prefHeight="670.0" prefWidth="492.0" spacing="5.0">
                      <children>
                         <HBox prefHeight="42.0" prefWidth="472.0">
                            <children>
                               <FontAwesomeIconView fill="#45818e" glyphName="USER_SECRET" size="35" />
                               <Text fx:id="statusInfo" strokeType="OUTSIDE" strokeWidth="0.0" text="" wrappingWidth="449.0" />
                            </children></HBox>
+                        <HBox layoutX="10.0" layoutY="10.0" prefHeight="81.0" prefWidth="492.0" spacing="10.0">
+                           <children>
+                              <VBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #0c343dff; -fx-background-radius: 20;">
+                                 <children>
+                                    <Label fx:id="globalPercentTestPassedCounter" alignment="BOTTOM_CENTER" contentDisplay="BOTTOM" textAlignment="CENTER" textFill="WHITE">
+                                       <font>
+                                          <Font size="48.0" />
+                                       </font>
+                                    </Label>
+                                    <Label alignment="TOP_CENTER" contentDisplay="TOP" layoutX="10.0" layoutY="10.0" text="\%" textAlignment="CENTER" textFill="WHITE" translateY="-15.0">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER_LEFT" layoutX="256.0" layoutY="10.0" prefHeight="97.0" prefWidth="145.0">
+                                 <children>
+                                    <Label fx:id="globalPercentTestPassedCounter11" alignment="TOP_LEFT" text="Frontend">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                    </Label>
+                                    <Label alignment="TOP_CENTER" contentDisplay="TOP" layoutX="10.0" layoutY="10.0" text="Quality" translateY="-15.0">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="BOTTOM_CENTER" layoutX="206.0" layoutY="10.0" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #0c343dff; -fx-background-radius: 20;">
+                                 <children>
+                                    <Label fx:id="globalPassedTestPassedCounter" alignment="BOTTOM_CENTER" contentDisplay="BOTTOM" textAlignment="CENTER" textFill="WHITE">
+                                       <font>
+                                          <Font size="48.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="globalSelectedTestPassedCounter" alignment="TOP_CENTER" contentDisplay="TOP" layoutX="10.0" layoutY="10.0" textAlignment="CENTER" textFill="WHITE" translateY="-15.0">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER_LEFT" layoutX="184.0" layoutY="10.0" prefHeight="97.0" prefWidth="145.0">
+                                 <children>
+                                    <Label fx:id="globalPercentTestPassedCounter111" alignment="BOTTOM_CENTER" contentDisplay="BOTTOM" text="Test cases">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                    </Label>
+                                    <Label alignment="TOP_CENTER" contentDisplay="TOP" layoutX="10.0" layoutY="10.0" text="passed" translateY="-15.0">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
                         <GridPane fx:id="ResultBoxesCollection" vgap="1.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="203.0" minWidth="10.0" prefWidth="173.0" />
@@ -476,142 +536,142 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <Label fx:id="resultBoxHomepage" alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="193.0" style="-fx-background-color: #165f6fff;" text="Homepage" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="1">
+                              <Label fx:id="resultBoxHomepage" alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="193.0" style="-fx-background-color: #666666ff;" text="Homepage" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="1">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="resultBoxGridPageWindows" alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="193.0" style="-fx-background-color: #165f6fff;" text="Grid Page Window" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="2">
+                              <Label fx:id="resultBoxGridPageWindows" alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="193.0" style="-fx-background-color: #666666ff#666666ff;" text="Grid Page Window" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="2">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="resultBoxGridPage" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="40.0" prefHeight="36.0" prefWidth="193.0" style="-fx-background-color: #165f6fff;" text="Grid Page" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                              <Label fx:id="resultBoxGridPage" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="40.0" prefHeight="36.0" prefWidth="193.0" style="-fx-background-color: #666666ff;" text="Grid Page" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="1">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="resultBoxGridPageFillIns" alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="193.0" style="-fx-background-color: #165f6fff;" text="Grid Page Fill-ins" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                              <Label fx:id="resultBoxGridPageFillIns" alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="193.0" style="-fx-background-color: #666666ff;" text="Grid Page Fill-ins" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="2">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="resultBoxBrandPage" alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="193.0" style="-fx-background-color: #165f6fff;" text="Brand Page" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="3">
+                              <Label fx:id="resultBoxBrandPage" alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="193.0" style="-fx-background-color: #666666ff;" text="Brand Page" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="3">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="resultBoxLucenePage" alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="193.0" style="-fx-background-color: #165f6fff;" text="Lucene Page" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                              <Label fx:id="resultBoxLucenePage" alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="193.0" style="-fx-background-color: #666666ff;" text="Lucene Page" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="3">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="resultBoxLucenePageWitth" alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="193.0" style="-fx-background-color: #165f6fff;" text="Lucene Page with" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="4">
+                              <Label fx:id="resultBoxLucenePageWitth" alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="193.0" style="-fx-background-color: #666666ff;" text="Lucene Page with" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="4">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="resultBoxDetailPage" alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="193.0" style="-fx-background-color: #165f6fff;" text="Detail Page" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="4">
+                              <Label fx:id="resultBoxDetailPage" alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="193.0" style="-fx-background-color: #666666ff;" text="Detail Page" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="4">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="resultBoxImageGrouping" alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="193.0" style="-fx-background-color: #165f6fff;" text="Image Grouping" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="5">
+                              <Label fx:id="resultBoxImageGrouping" alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="193.0" style="-fx-background-color: #666666ff;" text="Image Grouping" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="5">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="resultBoxFavoritePage" alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="193.0" style="-fx-background-color: #165f6fff;" text="Favorite Page" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="5">
+                              <Label fx:id="resultBoxFavoritePage" alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="193.0" style="-fx-background-color: #666666ff;" text="Favorite Page" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="5">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="resultBoxPartnershopPage" alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="193.0" style="-fx-background-color: #165f6fff;" text="Partnershops Page" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="6">
+                              <Label fx:id="resultBoxPartnershopPage" alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="193.0" style="-fx-background-color: #666666ff;" text="Partnershops Page" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="6">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="resultBoxBecomePartner" alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="193.0" style="-fx-background-color: #165f6fff;" text="Become Partner" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="6">
+                              <Label fx:id="resultBoxBecomePartner" alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="193.0" style="-fx-background-color: #666666ff;" text="Become Partner" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="6">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="resultBoxAffiliateProgram" alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="193.0" style="-fx-background-color: #165f6fff;" text="Affiliate Program" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="7">
+                              <Label fx:id="resultBoxAffiliateProgram" alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="193.0" style="-fx-background-color: #666666ff;" text="Affiliate Program" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="7">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="resultBoxMerchandise" alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="193.0" style="-fx-background-color: #165f6fff;" text="Merchandise" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="7">
+                              <Label fx:id="resultBoxMerchandise" alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="193.0" style="-fx-background-color: #666666ff;" text="Merchandise" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="7">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="BoxHomepageResult" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #45818eff;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                              <Label fx:id="BoxHomepageResult" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #d9d9d9ff;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="BoxGridPageResult" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #45818eff;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                              <Label fx:id="BoxGridPageResult" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #d9d9d9ff;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="1">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="BoxGridPageWindowsResult" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #45818eff;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                              <Label fx:id="BoxGridPageWindowsResult" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #d9d9d9ff;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="BoxGridPageFillInsResult" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #45818eff;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                              <Label fx:id="BoxGridPageFillInsResult" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #d9d9d9ff;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="2">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="BoxBrandPageResult" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #45818eff;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                              <Label fx:id="BoxBrandPageResult" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #d9d9d9ff;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="BoxLucenePageWitthResult" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #45818eff;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                              <Label fx:id="BoxLucenePageWitthResult" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #d9d9d9ff;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="4">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="BoxImageGroupingResult" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #45818eff;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                              <Label fx:id="BoxImageGroupingResult" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #d9d9d9ff;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="5">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="BoxPartnershopPageResult" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #45818eff;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                              <Label fx:id="BoxPartnershopPageResult" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #d9d9d9ff;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="6">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="BoxAffiliateProgramResult" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #45818eff;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                              <Label fx:id="BoxAffiliateProgramResult" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #d9d9d9ff;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="7">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="BoxLucenePageResult" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #45818eff;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="3">
+                              <Label fx:id="BoxLucenePageResult" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #d9d9d9ff;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="3">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="BoxDetailPageResult" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #45818eff;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="4">
+                              <Label fx:id="BoxDetailPageResult" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #d9d9d9ff;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="4">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="BoxFavoritePageResult" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #45818eff;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="5">
+                              <Label fx:id="BoxFavoritePageResult" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #d9d9d9ff;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="5">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="BoxBecomePartnerResult" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #45818eff;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="6">
+                              <Label fx:id="BoxBecomePartnerResult" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #d9d9d9ff;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="6">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="BoxMerchandiseResult" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #45818eff;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="7">
+                              <Label fx:id="BoxMerchandiseResult" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #d9d9d9ff;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="7">
                                  <font>
                                     <Font size="18.0" />
                                  </font>

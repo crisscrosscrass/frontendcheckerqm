@@ -41,8 +41,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Properties;
 
-public class MainControllerFrontEndCheck implements Serializable{
-    final static Logger logger = Logger.getLogger(MainControllerFrontEndCheck.class);
+public class MainController implements Serializable{
+    final static Logger logger = Logger.getLogger(MainController.class);
 
     // Basic Settings
     @FXML Button startwebdriver;
@@ -170,6 +170,9 @@ public class MainControllerFrontEndCheck implements Serializable{
     @FXML Label BoxAffiliateProgramResult;
     @FXML Label BoxMerchandiseResult;
     @FXML VBox placeForFailedTestCases;
+    @FXML Label globalPercentTestPassedCounter;
+    @FXML Label globalPassedTestPassedCounter;
+    @FXML Label globalSelectedTestPassedCounter;
 
     private static boolean isSuccessful = false;
     private static boolean isAvailable = false;
@@ -177,8 +180,6 @@ public class MainControllerFrontEndCheck implements Serializable{
     private static String xpathPattern2 = "";
     private static String xpathPatternImage1 = "";
     private static String xpathPatternImage2 = "";
-
-
 
     @FXML
     public void initialize() {
@@ -259,10 +260,8 @@ public class MainControllerFrontEndCheck implements Serializable{
             inputAffiliateProgramURL.setText(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getLocationAffiliateProgramPageURL());
             inputMerchandiseOverviewPageURL.setText(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getLocationMerchandiseOverviewPageURL());
         });
-
         updateResultsBoxes();
         updateCheckerTabs();
-
     }
 
     public void updateCheckerTabs(){
@@ -291,6 +290,15 @@ public class MainControllerFrontEndCheck implements Serializable{
     }
 
     public void updateTestCasesGlobalCounter(){
+        globalCounterTestCases.setText(""+getGlobalTestCaesNumber());
+    }
+    public void updateGlobalPercentTestCounter(){
+        int currentValue = getGlobalPassedTestCases();
+        int MaxValue = getGlobalTestCaesNumber();
+        int percent = (currentValue * 100) / MaxValue;
+        globalPercentTestPassedCounter.setText(""+percent);
+    }
+    public int getGlobalTestCaesNumber(){
         int globalCounterTestCasesNumber = 0;
         ResultsManager resultsManager = new ResultsManager();
         globalCounterTestCasesNumber += resultsManager.getTestCasesNumber(settingHomepage,frontendHomepageController.frontendHomePageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
@@ -306,7 +314,7 @@ public class MainControllerFrontEndCheck implements Serializable{
         globalCounterTestCasesNumber += resultsManager.getTestCasesNumber(settingBecomeAPartnerPage,becomeAPartnerController.becomePartnerCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
         globalCounterTestCasesNumber += resultsManager.getTestCasesNumber(settingAffiliateProgram,affiliateProgramController.affiliateProgramCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
         globalCounterTestCasesNumber += resultsManager.getTestCasesNumber(settingMerchandiseOverviewPage,merchandiseOverviewPageController.merchandiseOverviewCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
-        globalCounterTestCases.setText(""+globalCounterTestCasesNumber);
+        return globalCounterTestCasesNumber;
     }
 
     public void updateResultsBoxes(){
@@ -325,6 +333,29 @@ public class MainControllerFrontEndCheck implements Serializable{
         settingManager.updateResultBoxes(settingBecomeAPartnerPage,"",resultBoxBecomePartner,BoxBecomePartnerResult);
         settingManager.updateResultBoxes(settingAffiliateProgram,"",resultBoxAffiliateProgram,BoxAffiliateProgramResult);
         settingManager.updateResultBoxes(settingMerchandiseOverviewPage,"",resultBoxMerchandise,BoxMerchandiseResult);
+    }
+    public void updateGlobalTestCases(){
+        globalPassedTestPassedCounter.setText(""+ getGlobalPassedTestCases());
+        globalSelectedTestPassedCounter.setText("/"+getGlobalTestCaesNumber());
+    }
+
+    public int getGlobalPassedTestCases(){
+        int globalFailedTestCasesNumber = 0;
+        ResultsManager resultsManager = new ResultsManager();
+        globalFailedTestCasesNumber += resultsManager.getPassedTestCasesNumber(settingHomepage,frontendHomepageController.frontendHomePageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
+        globalFailedTestCasesNumber += resultsManager.getPassedTestCasesNumber(settingGridPage,gridPageNoWindowsController.GridPageNoWindowsCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
+        globalFailedTestCasesNumber += resultsManager.getPassedTestCasesNumber(settingGridPageWithWindows,gridPageWithWindowsController.gridPageWithWindowsCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
+        globalFailedTestCasesNumber += resultsManager.getPassedTestCasesNumber(settingGridPageFillIns,gridPageWithFillInsController.gridPageWithFillInsCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
+        globalFailedTestCasesNumber += resultsManager.getPassedTestCasesNumber(settingBrandPage,brandOverviewController.brandPageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
+        globalFailedTestCasesNumber += resultsManager.getPassedTestCasesNumber(settingLucenePage,pageLuceneWithItemsController.lucenePageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
+        globalFailedTestCasesNumber += resultsManager.getPassedTestCasesNumber(settingDetailPage,detailPageController.detailPageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
+        globalFailedTestCasesNumber += resultsManager.getPassedTestCasesNumber(settingImageGrouping,imageGroupingController.imageGroupingCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
+        globalFailedTestCasesNumber += resultsManager.getPassedTestCasesNumber(settingFavoritePage,favoritePageController.favoritePageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
+        globalFailedTestCasesNumber += resultsManager.getPassedTestCasesNumber(settingPartnerShopPage,partnershopsPageController.partnerShopCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
+        globalFailedTestCasesNumber += resultsManager.getPassedTestCasesNumber(settingBecomeAPartnerPage,becomeAPartnerController.becomePartnerCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
+        globalFailedTestCasesNumber += resultsManager.getPassedTestCasesNumber(settingAffiliateProgram,affiliateProgramController.affiliateProgramCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
+        globalFailedTestCasesNumber += resultsManager.getPassedTestCasesNumber(settingMerchandiseOverviewPage,merchandiseOverviewPageController.merchandiseOverviewCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
+        return globalFailedTestCasesNumber;
     }
 
     @FXML
@@ -448,6 +479,7 @@ public class MainControllerFrontEndCheck implements Serializable{
                         }
                     }
                     Platform.runLater(() ->{
+                        updateGlobalTestCases();
                         resultsManager.updateResultsCheckbox(settingHomepage,frontendHomepageController.frontendHomePageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),BoxHomepageResult,placeForFailedTestCases);
                         settingManager.updateResultBoxes(settingHomepage,"complete",resultBoxHomepage,BoxHomepageResult);
                     });
@@ -473,6 +505,7 @@ public class MainControllerFrontEndCheck implements Serializable{
                         }
                     }
                     Platform.runLater(() -> {
+                        updateGlobalTestCases();
                         resultsManager.updateResultsCheckbox(settingGridPage,gridPageNoWindowsController.GridPageNoWindowsCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),BoxGridPageResult,placeForFailedTestCases);
                         settingManager.updateResultBoxes(settingGridPage,"complete",resultBoxGridPage,BoxGridPageResult);
                     } );
@@ -487,6 +520,7 @@ public class MainControllerFrontEndCheck implements Serializable{
                         }
                     }
                     Platform.runLater(() -> {
+                        updateGlobalTestCases();
                         resultsManager.updateResultsCheckbox(settingGridPageWithWindows,gridPageWithWindowsController.gridPageWithWindowsCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),BoxGridPageWindowsResult,placeForFailedTestCases);
                         settingManager.updateResultBoxes(settingGridPageWithWindows,"complete",resultBoxGridPageWindows,BoxGridPageWindowsResult);
                     } );
@@ -501,6 +535,7 @@ public class MainControllerFrontEndCheck implements Serializable{
                         }
                     }
                     Platform.runLater(() -> {
+                        updateGlobalTestCases();
                         resultsManager.updateResultsCheckbox(settingGridPageFillIns,gridPageWithFillInsController.gridPageWithFillInsCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),BoxGridPageFillInsResult,placeForFailedTestCases);
                         settingManager.updateResultBoxes(settingGridPageFillIns,"complete",resultBoxGridPageFillIns,BoxGridPageFillInsResult);
                     } );
@@ -515,6 +550,7 @@ public class MainControllerFrontEndCheck implements Serializable{
                         }
                     }
                     Platform.runLater(() -> {
+                        updateGlobalTestCases();
                         resultsManager.updateResultsCheckbox(settingBrandPage,brandOverviewController.brandPageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),BoxBrandPageResult,placeForFailedTestCases);
                         settingManager.updateResultBoxes(settingBrandPage,"complete",resultBoxBrandPage,BoxBrandPageResult);
                     } );
@@ -531,6 +567,7 @@ public class MainControllerFrontEndCheck implements Serializable{
                         }
                     }
                     Platform.runLater(() -> {
+                        updateGlobalTestCases();
                         resultsManager.updateResultsCheckbox(settingLucenePage,pageLuceneWithItemsController.lucenePageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),BoxLucenePageResult,placeForFailedTestCases);
                         settingManager.updateResultBoxes(settingLucenePage,"complete",resultBoxLucenePage,BoxLucenePageResult);
                     } );
@@ -549,6 +586,7 @@ public class MainControllerFrontEndCheck implements Serializable{
 
                     }
                     Platform.runLater(() -> {
+                        updateGlobalTestCases();
                         resultsManager.updateResultsCheckbox(settingDetailPage,detailPageController.detailPageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),BoxDetailPageResult,placeForFailedTestCases);
                         settingManager.updateResultBoxes(settingDetailPage,"complete",resultBoxDetailPage,BoxDetailPageResult);
                     } );
@@ -564,6 +602,7 @@ public class MainControllerFrontEndCheck implements Serializable{
                         }
                     }
                     Platform.runLater(() -> {
+                        updateGlobalTestCases();
                         resultsManager.updateResultsCheckbox(settingImageGrouping,imageGroupingController.imageGroupingCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),BoxImageGroupingResult,placeForFailedTestCases);
                         settingManager.updateResultBoxes(settingImageGrouping,"complete",resultBoxImageGrouping,BoxImageGroupingResult);
                     } );
@@ -580,6 +619,7 @@ public class MainControllerFrontEndCheck implements Serializable{
                         }
                     }
                     Platform.runLater(() -> {
+                        updateGlobalTestCases();
                         resultsManager.updateResultsCheckbox(settingFavoritePage,favoritePageController.favoritePageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),BoxFavoritePageResult,placeForFailedTestCases);
                         settingManager.updateResultBoxes(settingFavoritePage,"complete",resultBoxFavoritePage,BoxFavoritePageResult);
                     } );
@@ -600,6 +640,7 @@ public class MainControllerFrontEndCheck implements Serializable{
                         }
                     }
                     Platform.runLater(() -> {
+                        updateGlobalTestCases();
                         resultsManager.updateResultsCheckbox(settingPartnerShopPage,partnershopsPageController.partnerShopCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),BoxPartnershopPageResult,placeForFailedTestCases);
                         settingManager.updateResultBoxes(settingPartnerShopPage,"complete",resultBoxPartnershopPage,BoxPartnershopPageResult);
                     } );
@@ -622,6 +663,7 @@ public class MainControllerFrontEndCheck implements Serializable{
                         }
                     }
                     Platform.runLater(() -> {
+                        updateGlobalTestCases();
                         resultsManager.updateResultsCheckbox(settingBecomeAPartnerPage,becomeAPartnerController.becomePartnerCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),BoxBecomePartnerResult,placeForFailedTestCases);
                         settingManager.updateResultBoxes(settingBecomeAPartnerPage,"complete",resultBoxBecomePartner,BoxBecomePartnerResult);
                     } );
@@ -637,6 +679,7 @@ public class MainControllerFrontEndCheck implements Serializable{
                         }
                     }
                     Platform.runLater(() -> {
+                        updateGlobalTestCases();
                         resultsManager.updateResultsCheckbox(settingAffiliateProgram,affiliateProgramController.affiliateProgramCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),BoxAffiliateProgramResult,placeForFailedTestCases);
                         settingManager.updateResultBoxes(settingAffiliateProgram,"complete",resultBoxAffiliateProgram,BoxAffiliateProgramResult);
                     } );
@@ -654,8 +697,10 @@ public class MainControllerFrontEndCheck implements Serializable{
                         }
                     }
                     Platform.runLater(() -> {
+                        updateGlobalTestCases();
                         resultsManager.updateResultsCheckbox(settingMerchandiseOverviewPage,merchandiseOverviewPageController.merchandiseOverviewCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),BoxMerchandiseResult,placeForFailedTestCases);
                         settingManager.updateResultBoxes(settingMerchandiseOverviewPage,"complete",resultBoxMerchandise,BoxMerchandiseResult);
+                        updateGlobalPercentTestCounter();
                     } );
                     // close webdriver and clear tasklist
                     Platform.runLater(() -> statusInfo.setText("Closing Browser..."));

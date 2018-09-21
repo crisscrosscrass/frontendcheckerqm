@@ -2,12 +2,9 @@ package crisscrosscrass.Tasks;
 
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXTextField;
-import crisscrosscrass.Controller.MainControllerFrontEndCheck;
 import javafx.application.Platform;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
 import javafx.scene.paint.Color;
 
 public class SettingManager {
