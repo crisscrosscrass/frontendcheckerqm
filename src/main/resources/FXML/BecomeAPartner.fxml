@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 
 <?import com.jfoenix.controls.JFXCheckBox?>
-<VBox style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="crisscrosscrass.Controller.BecomeAPartnerController">
+<VBox fx:id="becomePartnerCheckBoxCollection" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="crisscrosscrass.Controller.BecomeAPartnerController">
     <children>
         <JFXCheckBox fx:id="RegisterButton" text="Register" />
         <JFXCheckBox fx:id="BecomeAPartnerButton" text="Become Partner Button" />

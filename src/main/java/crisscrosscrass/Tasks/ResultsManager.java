@@ -47,4 +47,12 @@ public class ResultsManager {
             BoxHomepageResult.setText(" - ");
         }
     }
+    public int getTestCasesNumber(JFXCheckBox settingTestButton, JFXCheckBox[] checkboxes){
+        int allCheckBoxes = 0;
+        if (settingTestButton.isSelected()) {
+            //count all checkboxes
+            allCheckBoxes = checkboxes.length;
+        }
+        return allCheckBoxes;
+    }
 }

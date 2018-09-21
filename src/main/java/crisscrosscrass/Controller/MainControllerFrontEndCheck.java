@@ -4,14 +4,10 @@ import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
-import com.jfoenix.validation.RequiredFieldValidator;
 import crisscrosscrass.*;
 import crisscrosscrass.Tasks.*;
 import crisscrosscrass.Tests.*;
 import javafx.application.Platform;
-import javafx.beans.InvalidationListener;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
@@ -24,7 +20,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
 
 import javafx.scene.text.TextAlignment;
@@ -145,6 +140,7 @@ public class MainControllerFrontEndCheck implements Serializable{
     @FXML AffiliateProgramController affiliateProgramController;
     @FXML MerchandiseOverviewPageController merchandiseOverviewPageController;
     //ResultBoxes
+    @FXML Label globalCounterTestCases;
     @FXML Label resultBoxHomepage;
     @FXML Label resultBoxGridPage;
     @FXML Label resultBoxGridPageWindows;
@@ -264,46 +260,72 @@ public class MainControllerFrontEndCheck implements Serializable{
             inputMerchandiseOverviewPageURL.setText(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getLocationMerchandiseOverviewPageURL());
         });
 
-
+        updateResultsBoxes();
         updateCheckerTabs();
 
     }
 
     public void updateCheckerTabs(){
         SettingManager settingManager = new SettingManager();
-        settingManager.updateSettingControlls(settingHomepage,tabHomepage,tabPane,resultBoxHomepage,BoxHomepageResult);
-        settingManager.updateSettingControlls(settingGridPage,tabGridPage,tabPane,resultBoxGridPage,BoxGridPageResult);
-        settingManager.updateSettingControlls(settingGridPageWithWindows,tabGridPageWithWindows,tabPane,resultBoxGridPageWindows,BoxGridPageWindowsResult);
-        settingManager.updateSettingControlls(settingGridPageFillIns,tabGridPageFillIns,tabPane,resultBoxGridPageFillIns,BoxGridPageFillInsResult);
-        settingManager.updateSettingControlls(settingBrandPage,tabBrandPage,tabPane,resultBoxBrandPage,BoxBrandPageResult);
-        settingManager.updateSettingControlls(settingLucenePage,tabLucenePage,tabPane,resultBoxLucenePage,BoxLucenePageResult);
-        settingManager.updateSettingControlls(settingLucenePageWithDeletions,tabLucenePageWithDeletions,tabPane,resultBoxLucenePageWitth,BoxLucenePageWitthResult);
-        settingManager.updateSettingControlls(settingDetailPage,tabDetailPage,tabPane,resultBoxDetailPage,BoxDetailPageResult);
-        settingManager.updateSettingControlls(settingImageGrouping,tabImageGrouping,tabPane,resultBoxImageGrouping,BoxImageGroupingResult);
-        settingManager.updateSettingControlls(settingFavoritePage,tabFavoritePage,tabPane,resultBoxFavoritePage,BoxFavoritePageResult);
-        settingManager.updateSettingControlls(settingPartnerShopPage,tabPartnerShopPage,tabPane,resultBoxPartnershopPage,BoxPartnershopPageResult);
-        settingManager.updateSettingControlls(settingBecomeAPartnerPage,tabBecomeAPartnerPage,tabPane,resultBoxBecomePartner,BoxBecomePartnerResult);
-        settingManager.updateSettingControlls(settingAffiliateProgram,tabAffiliateProgram,tabPane,resultBoxAffiliateProgram,BoxAffiliateProgramResult);
-        settingManager.updateSettingControlls(settingMerchandiseOverviewPage,tabMerchandiseOverviewPage,tabPane,resultBoxMerchandise,BoxMerchandiseResult);
+        settingManager.updateSettingControlls(settingHomepage,tabHomepage);
+        settingManager.updateSettingControlls(settingGridPage,tabGridPage);
+        settingManager.updateSettingControlls(settingGridPageWithWindows,tabGridPageWithWindows);
+        settingManager.updateSettingControlls(settingGridPageFillIns,tabGridPageFillIns);
+        settingManager.updateSettingControlls(settingBrandPage,tabBrandPage);
+        settingManager.updateSettingControlls(settingLucenePage,tabLucenePage);
+        settingManager.updateSettingControlls(settingLucenePageWithDeletions,tabLucenePageWithDeletions);
+        settingManager.updateSettingControlls(settingDetailPage,tabDetailPage);
+        settingManager.updateSettingControlls(settingImageGrouping,tabImageGrouping);
+        settingManager.updateSettingControlls(settingFavoritePage,tabFavoritePage);
+        settingManager.updateSettingControlls(settingPartnerShopPage,tabPartnerShopPage);
+        settingManager.updateSettingControlls(settingBecomeAPartnerPage,tabBecomeAPartnerPage);
+        settingManager.updateSettingControlls(settingAffiliateProgram,tabAffiliateProgram);
+        settingManager.updateSettingControlls(settingMerchandiseOverviewPage,tabMerchandiseOverviewPage);
         if (settingGridPage.isSelected() | settingImageGrouping.isSelected() | settingDetailPage.isSelected()| settingFavoritePage.isSelected()){
             ElementGridPageWithoutWindowBox.setVisible(true);
         }else{
             ElementGridPageWithoutWindowBox.setVisible(false);
         }
+        updateTestCasesGlobalCounter();
         settingManager.setValidationColor(settingFavoritePage,inputAccountEmail);
-        placeForFailedTestCases.getChildren().clear();
-        updateResultsBoxes();
+    }
+
+    public void updateTestCasesGlobalCounter(){
+        int globalCounterTestCasesNumber = 0;
+        ResultsManager resultsManager = new ResultsManager();
+        globalCounterTestCasesNumber += resultsManager.getTestCasesNumber(settingHomepage,frontendHomepageController.frontendHomePageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
+        globalCounterTestCasesNumber += resultsManager.getTestCasesNumber(settingGridPage,gridPageNoWindowsController.GridPageNoWindowsCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
+        globalCounterTestCasesNumber += resultsManager.getTestCasesNumber(settingGridPageWithWindows,gridPageWithWindowsController.gridPageWithWindowsCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
+        globalCounterTestCasesNumber += resultsManager.getTestCasesNumber(settingGridPageFillIns,gridPageWithFillInsController.gridPageWithFillInsCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
+        globalCounterTestCasesNumber += resultsManager.getTestCasesNumber(settingBrandPage,brandOverviewController.brandPageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
+        globalCounterTestCasesNumber += resultsManager.getTestCasesNumber(settingLucenePage,pageLuceneWithItemsController.lucenePageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
+        globalCounterTestCasesNumber += resultsManager.getTestCasesNumber(settingDetailPage,detailPageController.detailPageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
+        globalCounterTestCasesNumber += resultsManager.getTestCasesNumber(settingImageGrouping,imageGroupingController.imageGroupingCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
+        globalCounterTestCasesNumber += resultsManager.getTestCasesNumber(settingFavoritePage,favoritePageController.favoritePageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
+        globalCounterTestCasesNumber += resultsManager.getTestCasesNumber(settingPartnerShopPage,partnershopsPageController.partnerShopCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
+        globalCounterTestCasesNumber += resultsManager.getTestCasesNumber(settingBecomeAPartnerPage,becomeAPartnerController.becomePartnerCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
+        globalCounterTestCasesNumber += resultsManager.getTestCasesNumber(settingAffiliateProgram,affiliateProgramController.affiliateProgramCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
+        globalCounterTestCasesNumber += resultsManager.getTestCasesNumber(settingMerchandiseOverviewPage,merchandiseOverviewPageController.merchandiseOverviewCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
+        globalCounterTestCases.setText(""+globalCounterTestCasesNumber);
     }
 
     public void updateResultsBoxes(){
-        ResultsManager resultsManager = new ResultsManager();
-        resultsManager.updateResultsCheckbox(settingHomepage,frontendHomepageController.frontendHomePageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),BoxHomepageResult,placeForFailedTestCases);
-        resultsManager.updateResultsCheckbox(settingGridPage,gridPageNoWindowsController.GridPageNoWindowsCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),BoxGridPageResult,placeForFailedTestCases);
-        resultsManager.updateResultsCheckbox(settingGridPageWithWindows,gridPageWithWindowsController.gridPageWithWindowsCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),BoxGridPageWindowsResult,placeForFailedTestCases);
-        resultsManager.updateResultsCheckbox(settingGridPageFillIns,gridPageWithFillInsController.gridPageWithFillInsCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),BoxGridPageWindowsResult,placeForFailedTestCases);
-        resultsManager.updateResultsCheckbox(settingBrandPage,brandOverviewController.brandPageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),BoxGridPageWindowsResult,placeForFailedTestCases);
+        SettingManager settingManager = new SettingManager();
+        settingManager.updateResultBoxes(settingHomepage,"",resultBoxHomepage,BoxHomepageResult);
+        settingManager.updateResultBoxes(settingGridPage,"",resultBoxGridPage,BoxGridPageResult);
+        settingManager.updateResultBoxes(settingGridPageWithWindows,"",resultBoxGridPageWindows,BoxGridPageWindowsResult);
+        settingManager.updateResultBoxes(settingGridPageFillIns,"",resultBoxGridPageFillIns,BoxGridPageFillInsResult);
+        settingManager.updateResultBoxes(settingBrandPage,"",resultBoxBrandPage,BoxBrandPageResult);
+        settingManager.updateResultBoxes(settingLucenePage,"",resultBoxLucenePage,BoxLucenePageResult);
+        settingManager.updateResultBoxes(settingLucenePageWithDeletions,"",resultBoxLucenePageWitth,BoxLucenePageWitthResult);
+        settingManager.updateResultBoxes(settingDetailPage,"",resultBoxDetailPage,BoxDetailPageResult);
+        settingManager.updateResultBoxes(settingImageGrouping,"",resultBoxImageGrouping,BoxImageGroupingResult);
+        settingManager.updateResultBoxes(settingFavoritePage,"",resultBoxFavoritePage,BoxFavoritePageResult);
+        settingManager.updateResultBoxes(settingPartnerShopPage,"",resultBoxPartnershopPage,BoxPartnershopPageResult);
+        settingManager.updateResultBoxes(settingBecomeAPartnerPage,"",resultBoxBecomePartner,BoxBecomePartnerResult);
+        settingManager.updateResultBoxes(settingAffiliateProgram,"",resultBoxAffiliateProgram,BoxAffiliateProgramResult);
+        settingManager.updateResultBoxes(settingMerchandiseOverviewPage,"",resultBoxMerchandise,BoxMerchandiseResult);
     }
-
 
     @FXML
     public void startRealAction() {
@@ -367,7 +389,10 @@ public class MainControllerFrontEndCheck implements Serializable{
                     copyFiles();
                 }
                 // * Basic Settings while Starting WebDriver
-                Platform.runLater(() -> statusInfo.setText("Starting Engine..."));
+                Platform.runLater(() -> {
+                    placeForFailedTestCases.getChildren().clear();
+                    statusInfo.setText("Starting Engine...");
+                });
                 System.setProperty("webdriver.chrome.driver", "temp//chromedriver.exe");
                 ChromeOptions option = new ChromeOptions();
                 //option.addArguments("--window-size=1920,1080");
@@ -381,6 +406,8 @@ public class MainControllerFrontEndCheck implements Serializable{
                     Report report = new Report();
                     report.clearWrittenReport();
                     ScreenshotViaWebDriver.clearWrittenScreenshots();
+                    ResultsManager resultsManager = new ResultsManager();
+                    SettingManager settingManager = new SettingManager();
 
                     // open Startpage and set window
                     Platform.runLater(() -> {
@@ -400,29 +427,34 @@ public class MainControllerFrontEndCheck implements Serializable{
                     if (!tabHomepage.isDisable()){
                         try{
                             tabPane.getSelectionModel().select(tabHomepage);
+                            settingManager.updateResultBoxes(settingHomepage,"progress",resultBoxHomepage,BoxHomepageResult);
                             HomepageTest homepageTest = new HomepageTest();
-                            //homepageTest.checkingCategories(webDriver,report,frontendHomepageController.checkCategoryLinksLeftSideMenu,statusInfo,inputSearch, Homepage);
+                            homepageTest.checkingCategories(webDriver,report,frontendHomepageController.checkCategoryLinksLeftSideMenu,statusInfo,inputSearch, Homepage);
                             homepageTest.checkingShopOfTheWeek(webDriver,report,frontendHomepageController.checkLogoFromShopOfTheWeek,statusInfo,inputSearch, Homepage);
                             homepageTest.checkingShopOfTheWeekCategories(webDriver,report,frontendHomepageController.checkCategoryLinksFromShopOfTheWeek,statusInfo,inputSearch, Homepage);
                             homepageTest.checkingNewsletterBanner(webDriver,report,frontendHomepageController.checkNewsletterBannerFunctionality,statusInfo,inputSearch,inputEmailAdress, Homepage);
                             homepageTest.checkingNewsletterPopUp(webDriver,report,frontendHomepageController.checkNewsletterPopUp,statusInfo,inputSearch, Homepage);
                             homepageTest.checkingNewsletterPopUpFunctionality(webDriver,report,js,frontendHomepageController.checkNewsletterPopUpFunctionality,statusInfo,inputSearch,inputEmailAdress, Homepage);
-                            //homepageTest.checkingFooterLinks(webDriver,report, frontendHomepageController.checkFooterLinks,statusInfo,inputSearch, Homepage);
-                            //homepageTest.checkingSearchAndSuggestions(webDriver,report, frontendHomepageController.checkTextSearchAndSuggestions,inputTextSearchAndSuggestions,statusInfo,inputSearch, Homepage);
+                            homepageTest.checkingFooterLinks(webDriver,report, frontendHomepageController.checkFooterLinks,statusInfo,inputSearch, Homepage);
+                            homepageTest.checkingSearchAndSuggestions(webDriver,report, frontendHomepageController.checkTextSearchAndSuggestions,inputTextSearchAndSuggestions,statusInfo,inputSearch, Homepage);
                             homepageTest.checkingFeedbackPopUp(webDriver,report, frontendHomepageController.checkFeedbackPopUp, statusInfo,inputSearch, Homepage);
                             homepageTest.checkingPrivacyPopUp(webDriver,report, frontendHomepageController.checkPrivacyPopUp, statusInfo,inputSearch, Homepage);
                             homepageTest.checkingImprint(webDriver,report, frontendHomepageController.checkImprint, statusInfo,inputImprintURL, Homepage);
                             homepageTest.checkingPrivacyPolicy(webDriver,report, frontendHomepageController.PrivacyPolicy, statusInfo,inputPrivacyPolicy, Homepage);
                             //VisualResults visualResults = new VisualResults();
                             //Platform.runLater(() -> visualResults.createPieChart(PlaceForPieCharts,frontendHomepageController.frontendHomePageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),"HomepageTest"));
-                            Platform.runLater(() -> updateCheckerTabs() );
                         }catch (Exception noHomePageWorking){
                             noHomePageWorking.printStackTrace();
                         }
                     }
+                    Platform.runLater(() ->{
+                        resultsManager.updateResultsCheckbox(settingHomepage,frontendHomepageController.frontendHomePageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),BoxHomepageResult,placeForFailedTestCases);
+                        settingManager.updateResultBoxes(settingHomepage,"complete",resultBoxHomepage,BoxHomepageResult);
+                    });
                     if (!tabGridPage.isDisable()){
                         try{
                             tabPane.getSelectionModel().select(tabGridPage);
+                            settingManager.updateResultBoxes(settingGridPage,"progress",resultBoxGridPage,BoxGridPageResult);
                             GridPageTest gridPageTest = new GridPageTest();
                             gridPageTest.checkingSorting(webDriver,report,js,gridPageNoWindowsController.sortingValues,inputGridPageURL,statusInfo,inputSearch, Homepage);
                             gridPageTest.checkingSwitchFromSmallToLargeImages(webDriver,report,js,gridPageNoWindowsController.switchFromSmallToLarge,inputGridPageURL,statusInfo,inputSearch, Homepage);
@@ -435,40 +467,61 @@ public class MainControllerFrontEndCheck implements Serializable{
                             gridPageTest.checkingSearchBoxInShopFilter(webDriver,report,js,gridPageNoWindowsController.searchBoxInShopFilter,inputGridPageURL,inputGridPageKeyword,statusInfo,inputSearch,inputEmailAdress,xpathPattern1,xpathPattern2,Homepage,isSuccessful,isAvailable);
                             //VisualResults visualResults = new VisualResults();
                             //Platform.runLater(() -> visualResults.createPieChart(PlaceForPieCharts,gridPageNoWindowsController.GridPageNoWindowsCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),"GridPageTest"));
+
                         }catch (Exception noGridPageWorking){
                             noGridPageWorking.printStackTrace();
                         }
                     }
+                    Platform.runLater(() -> {
+                        resultsManager.updateResultsCheckbox(settingGridPage,gridPageNoWindowsController.GridPageNoWindowsCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),BoxGridPageResult,placeForFailedTestCases);
+                        settingManager.updateResultBoxes(settingGridPage,"complete",resultBoxGridPage,BoxGridPageResult);
+                    } );
                     if (!tabGridPageWithWindows.isDisable()){
                         try{
                             tabPane.getSelectionModel().select(tabGridPageWithWindows);
+                            settingManager.updateResultBoxes(settingGridPageWithWindows,"progress",resultBoxGridPageWindows,BoxGridPageWindowsResult);
                             GridPageTestWithWindows gridPageTestWithWindows = new GridPageTestWithWindows();
                             gridPageTestWithWindows.checkingPagingWithWindowsForward(webDriver,report,js,gridPageWithWindowsController.PagingWithWindowsForward,inputGridPageURLWithWindows,statusInfo,inputSearch,inputEmailAdress,xpathPattern1,xpathPattern2,Homepage,isSuccessful,isAvailable);
                         }catch (Exception noGridPagWindowsWorking){
                             noGridPagWindowsWorking.printStackTrace();
                         }
                     }
+                    Platform.runLater(() -> {
+                        resultsManager.updateResultsCheckbox(settingGridPageWithWindows,gridPageWithWindowsController.gridPageWithWindowsCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),BoxGridPageWindowsResult,placeForFailedTestCases);
+                        settingManager.updateResultBoxes(settingGridPageWithWindows,"complete",resultBoxGridPageWindows,BoxGridPageWindowsResult);
+                    } );
                     if (!tabGridPageFillIns.isDisable()){
                         try{
                             tabPane.getSelectionModel().select(tabGridPageFillIns);
+                            settingManager.updateResultBoxes(settingGridPageFillIns,"progress",resultBoxGridPageFillIns,BoxGridPageFillInsResult);
                             GridPageTestWithFillIns gridPageTestWithFillIns = new GridPageTestWithFillIns();
                             gridPageTestWithFillIns.checkingShowAllFillInPage(webDriver,report,js,gridPageWithFillInsController.showAllFillInPage,inputGridPageURLWithFillIns,statusInfo,inputSearch, Homepage);
                         }catch (Exception noGridPageWorking){
                             noGridPageWorking.printStackTrace();
                         }
                     }
+                    Platform.runLater(() -> {
+                        resultsManager.updateResultsCheckbox(settingGridPageFillIns,gridPageWithFillInsController.gridPageWithFillInsCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),BoxGridPageFillInsResult,placeForFailedTestCases);
+                        settingManager.updateResultBoxes(settingGridPageFillIns,"complete",resultBoxGridPageFillIns,BoxGridPageFillInsResult);
+                    } );
                     if (!tabBrandPage.isDisable()){
                         try{
                             tabPane.getSelectionModel().select(tabBrandPage);
+                            settingManager.updateResultBoxes(settingBrandPage,"progress",resultBoxBrandPage,BoxBrandPageResult);
                             BrandPageTest brandPageTest = new BrandPageTest();
                             brandPageTest.checkingBrandsWithoutLogo(webDriver,report,js,brandOverviewController.brandsWithoutLogo,inputBrandPageOverview,statusInfo,inputSearch, Homepage);
                         }catch (Exception noBrandWorking){
                             noBrandWorking.printStackTrace();
                         }
                     }
+                    Platform.runLater(() -> {
+                        resultsManager.updateResultsCheckbox(settingBrandPage,brandOverviewController.brandPageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),BoxBrandPageResult,placeForFailedTestCases);
+                        settingManager.updateResultBoxes(settingBrandPage,"complete",resultBoxBrandPage,BoxBrandPageResult);
+                    } );
                     if (!tabLucenePage.isDisable()){
                         try{
                             tabPane.getSelectionModel().select(tabLucenePage);
+                            settingManager.updateResultBoxes(settingLucenePage,"progress",resultBoxLucenePage,BoxLucenePageResult);
                             PageLuceneWithItemsTest pageLuceneWithItemsTest = new PageLuceneWithItemsTest();
                             pageLuceneWithItemsTest.checkingSorting(webDriver,report,js,pageLuceneWithItemsController.PageLuceneWithItemsSorting,inputLucenePage,statusInfo,inputSearch, Homepage);
                             pageLuceneWithItemsTest.checkingCollapse(webDriver,report,js,pageLuceneWithItemsController.PageLuceneWithItemsCollapse,inputLucenePage,statusInfo,inputSearch, Homepage);
@@ -477,9 +530,14 @@ public class MainControllerFrontEndCheck implements Serializable{
                             noLucenePageWorking.printStackTrace();
                         }
                     }
+                    Platform.runLater(() -> {
+                        resultsManager.updateResultsCheckbox(settingLucenePage,pageLuceneWithItemsController.lucenePageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),BoxLucenePageResult,placeForFailedTestCases);
+                        settingManager.updateResultBoxes(settingLucenePage,"complete",resultBoxLucenePage,BoxLucenePageResult);
+                    } );
                     if (!tabDetailPage.isDisable()){
                         try{
                             tabPane.getSelectionModel().select(tabDetailPage);
+                            settingManager.updateResultBoxes(settingDetailPage,"progress",resultBoxDetailPage,BoxDetailPageResult);
                             DetailPageTest detailPageTest = new DetailPageTest();
                             detailPageTest.checkingSwitchTabsinDetailPage(webDriver,report,js,detailPageController.SwitchTabsInDetailPage, statusInfo,inputGridPageURL, Homepage);
                             detailPageTest.checkingSimilarProductClickOut(webDriver,report,js,detailPageController.SimilarProductsClickOut, statusInfo,inputGridPageURL, Homepage);
@@ -490,9 +548,14 @@ public class MainControllerFrontEndCheck implements Serializable{
                         }
 
                     }
+                    Platform.runLater(() -> {
+                        resultsManager.updateResultsCheckbox(settingDetailPage,detailPageController.detailPageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),BoxDetailPageResult,placeForFailedTestCases);
+                        settingManager.updateResultBoxes(settingDetailPage,"complete",resultBoxDetailPage,BoxDetailPageResult);
+                    } );
                     if (!tabImageGrouping.isDisable()){
                         try{
                             tabPane.getSelectionModel().select(tabImageGrouping);
+                            settingManager.updateResultBoxes(settingImageGrouping,"progress",resultBoxImageGrouping,BoxImageGroupingResult);
                             ImageGroupingPageTest imageGroupingPageTest = new ImageGroupingPageTest();
                             imageGroupingPageTest.checkingImageGroupingClickOut(webDriver,report,js,imageGroupingController.ImageGroupingClickOut, statusInfo,inputGridPageURL, Homepage);
                             imageGroupingPageTest.checkingDetailPageOfOffer(webDriver,report,js,imageGroupingController.DetailPageOfOffer, statusInfo,inputGridPageURL, Homepage);
@@ -500,9 +563,14 @@ public class MainControllerFrontEndCheck implements Serializable{
                             noLucenePageWorking.printStackTrace();
                         }
                     }
+                    Platform.runLater(() -> {
+                        resultsManager.updateResultsCheckbox(settingImageGrouping,imageGroupingController.imageGroupingCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),BoxImageGroupingResult,placeForFailedTestCases);
+                        settingManager.updateResultBoxes(settingImageGrouping,"complete",resultBoxImageGrouping,BoxImageGroupingResult);
+                    } );
                     if (!tabFavoritePage.isDisable() & inputAccountEmail.getText() != null & !inputAccountEmail.getText().equals("") & inputAccountEmail.getText().toLowerCase().contains("@visual-meta.com") ){
                         try{
                             tabPane.getSelectionModel().select(tabFavoritePage);
+                            settingManager.updateResultBoxes(settingFavoritePage,"progress",resultBoxFavoritePage,BoxFavoritePageResult);
                             FavoritePageTest favoritePageTest = new FavoritePageTest();
                             favoritePageTest.checkingPersonalListTest(webDriver,report,js,favoritePageController.PersonalList, statusInfo,inputSearch, Homepage, inputAccountEmail, inputAccountPassword);
                             favoritePageTest.checkingApplySortingOnList(webDriver,report,js,favoritePageController.SortingOnList,statusInfo,inputGridPageURL, Homepage, inputAccountEmail, inputAccountPassword);
@@ -511,9 +579,14 @@ public class MainControllerFrontEndCheck implements Serializable{
                             noFavoritePageWorking.printStackTrace();
                         }
                     }
+                    Platform.runLater(() -> {
+                        resultsManager.updateResultsCheckbox(settingFavoritePage,favoritePageController.favoritePageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),BoxFavoritePageResult,placeForFailedTestCases);
+                        settingManager.updateResultBoxes(settingFavoritePage,"complete",resultBoxFavoritePage,BoxFavoritePageResult);
+                    } );
                     if (!tabPartnerShopPage.isDisable()){
                         try{
                             tabPane.getSelectionModel().select(tabPartnerShopPage);
+                            settingManager.updateResultBoxes(settingPartnerShopPage,"progress",resultBoxPartnershopPage,BoxPartnershopPageResult);
                             PartnerShopsPageTest partnerShopsPageTest = new PartnerShopsPageTest();
                             partnerShopsPageTest.checkingGoToTopButton(webDriver,report,js,partnershopsPageController.GoToTopButton,statusInfo,inputPartnerShopPageURL, Homepage);
                             partnerShopsPageTest.checkingBecomePartnerPopUp(webDriver,report,js,partnershopsPageController.BecomePartnerPopUp,statusInfo,inputPartnerShopPageURL, Homepage);
@@ -526,9 +599,14 @@ public class MainControllerFrontEndCheck implements Serializable{
                             noPartnerShopPageWorking.printStackTrace();
                         }
                     }
+                    Platform.runLater(() -> {
+                        resultsManager.updateResultsCheckbox(settingPartnerShopPage,partnershopsPageController.partnerShopCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),BoxPartnershopPageResult,placeForFailedTestCases);
+                        settingManager.updateResultBoxes(settingPartnerShopPage,"complete",resultBoxPartnershopPage,BoxPartnershopPageResult);
+                    } );
                     if (!tabBecomeAPartnerPage.isDisable()){
                         try{
                             tabPane.getSelectionModel().select(tabBecomeAPartnerPage);
+                            settingManager.updateResultBoxes(settingBecomeAPartnerPage,"progress",resultBoxBecomePartner,BoxBecomePartnerResult);
                             BecomeAPartnerPageTest becomeAPartnerPageTest = new BecomeAPartnerPageTest();
                             becomeAPartnerPageTest.checkingRegisterButton(webDriver,report,js,becomeAPartnerController.RegisterButton,statusInfo,inputBecomeAPartnerPageURL, Homepage);
                             becomeAPartnerPageTest.checkingBecomePartnerButton(webDriver,report,js,becomeAPartnerController.BecomeAPartnerButton,statusInfo,inputBecomeAPartnerPageURL, Homepage);
@@ -543,9 +621,14 @@ public class MainControllerFrontEndCheck implements Serializable{
                             noBecomeAPartnerWorking.printStackTrace();
                         }
                     }
+                    Platform.runLater(() -> {
+                        resultsManager.updateResultsCheckbox(settingBecomeAPartnerPage,becomeAPartnerController.becomePartnerCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),BoxBecomePartnerResult,placeForFailedTestCases);
+                        settingManager.updateResultBoxes(settingBecomeAPartnerPage,"complete",resultBoxBecomePartner,BoxBecomePartnerResult);
+                    } );
                     if (!tabAffiliateProgram.isDisable()){
                         try{
                             tabPane.getSelectionModel().select(tabAffiliateProgram);
+                            settingManager.updateResultBoxes(settingAffiliateProgram,"progress",resultBoxAffiliateProgram,BoxAffiliateProgramResult);
                             AffiliateProgramTest affiliateProgramTest = new AffiliateProgramTest();
                             affiliateProgramTest.checkingBecomeAffilinetPartner(webDriver,report,js,affiliateProgramController.BecomeAffilinetPartner,statusInfo,inputAffiliateProgramURL, Homepage);
                             affiliateProgramTest.checkingBecomeTradeTrackerPartner(webDriver,report,js,affiliateProgramController.BecomeTradeTrackerPartner,statusInfo,inputAffiliateProgramURL, Homepage);
@@ -553,9 +636,14 @@ public class MainControllerFrontEndCheck implements Serializable{
                             noBecomeAPartnerWorking.printStackTrace();
                         }
                     }
+                    Platform.runLater(() -> {
+                        resultsManager.updateResultsCheckbox(settingAffiliateProgram,affiliateProgramController.affiliateProgramCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),BoxAffiliateProgramResult,placeForFailedTestCases);
+                        settingManager.updateResultBoxes(settingAffiliateProgram,"complete",resultBoxAffiliateProgram,BoxAffiliateProgramResult);
+                    } );
                     if (!tabMerchandiseOverviewPage.isDisable()){
                         try{
                             tabPane.getSelectionModel().select(tabMerchandiseOverviewPage);
+                            settingManager.updateResultBoxes(settingMerchandiseOverviewPage,"progress",resultBoxMerchandise,BoxMerchandiseResult);
                             MerchandiseOverviewPageTest merchandiseOverviewPageTest = new MerchandiseOverviewPageTest();
                             merchandiseOverviewPageTest.checkingMerchandiseLetters(webDriver,report,js,merchandiseOverviewPageController.LettertoMerchandise,statusInfo,inputMerchandiseOverviewPageURL, Homepage);
                             merchandiseOverviewPageTest.checkingMerchandiseName(webDriver,report,js,merchandiseOverviewPageController.MerchandiseName,statusInfo,inputMerchandiseOverviewPageURL, Homepage);
@@ -565,6 +653,10 @@ public class MainControllerFrontEndCheck implements Serializable{
                             noBecomeAPartnerWorking.printStackTrace();
                         }
                     }
+                    Platform.runLater(() -> {
+                        resultsManager.updateResultsCheckbox(settingMerchandiseOverviewPage,merchandiseOverviewPageController.merchandiseOverviewCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),BoxMerchandiseResult,placeForFailedTestCases);
+                        settingManager.updateResultBoxes(settingMerchandiseOverviewPage,"complete",resultBoxMerchandise,BoxMerchandiseResult);
+                    } );
                     // close webdriver and clear tasklist
                     Platform.runLater(() -> statusInfo.setText("Closing Browser..."));
                     try {
@@ -939,7 +1031,7 @@ public class MainControllerFrontEndCheck implements Serializable{
         settingGridPageFillIns.setSelected(true);
         settingBrandPage.setSelected(true);
         settingLucenePage.setSelected(true);
-        settingLucenePageWithDeletions.setSelected(true);
+        //settingLucenePageWithDeletions.setSelected(true);
         settingDetailPage.setSelected(true);
         settingImageGrouping.setSelected(true);
         settingFavoritePage.setSelected(true);

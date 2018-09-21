@@ -1,10 +1,11 @@
 package crisscrosscrass.Controller;
 
 import com.jfoenix.controls.JFXCheckBox;
-import com.sun.scenario.effect.impl.sw.java.JSWEffectPeer;
 import javafx.fxml.FXML;
+import javafx.scene.layout.VBox;
 
 public class BecomeAPartnerController {
+    @FXML VBox becomePartnerCheckBoxCollection;
     @FXML JFXCheckBox RegisterButton;
     @FXML JFXCheckBox BecomeAPartnerButton;
     @FXML JFXCheckBox GoToTopButton;

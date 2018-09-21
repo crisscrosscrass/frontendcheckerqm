@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 
 <?import com.jfoenix.controls.JFXCheckBox?>
-<VBox style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="crisscrosscrass.Controller.MerchandiseOverviewPageController">
+<VBox fx:id="merchandiseOverviewCheckBoxCollection" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="crisscrosscrass.Controller.MerchandiseOverviewPageController">
     <children>
         <JFXCheckBox fx:id="LettertoMerchandise" text="Letter to Merchandise" />
         <JFXCheckBox fx:id="MerchandiseName" text="Merchandise Name" />

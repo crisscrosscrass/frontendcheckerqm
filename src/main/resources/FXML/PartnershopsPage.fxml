@@ -3,7 +3,7 @@
 <?import com.jfoenix.controls.JFXCheckBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox style="-fx-background-color: white;" prefHeight="200.0" prefWidth="100.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="crisscrosscrass.Controller.PartnershopsPageController">
+<VBox fx:id="partnerShopCheckBoxCollection" style="-fx-background-color: white;" prefHeight="200.0" prefWidth="100.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="crisscrosscrass.Controller.PartnershopsPageController">
     <children>
         <JFXCheckBox fx:id="GoToTopButton" text="Go to Top Button" />
         <JFXCheckBox fx:id="BecomePartnerPopUp" text="Become Partner Pop Up" />
