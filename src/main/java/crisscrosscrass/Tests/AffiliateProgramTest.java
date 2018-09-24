@@ -22,7 +22,7 @@ public class AffiliateProgramTest {
     final static Logger logger = Logger.getLogger(AffiliateProgramTest.class);
 
     public void checkingBecomeAffilinetPartner(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox BecomeAffilinetPartner, Text statusInfo, TextField inputAffiliateProgramURL, Properties Homepage){
-        final String infoMessage = "Checking Become Affilinet Partner";
+        final String infoMessage = BecomeAffilinetPartner.getText();
         ChangeCheckBox.adjustStyle(false,"progress",BecomeAffilinetPartner);
         Platform.runLater(() -> {
             statusInfo.setText(""+infoMessage+"...");
@@ -71,7 +71,7 @@ public class AffiliateProgramTest {
 
     }
     public void checkingBecomeTradeTrackerPartner(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox BecomeTradeTrackerPartner, Text statusInfo, TextField inputAffiliateProgramURL, Properties Homepage){
-        final String infoMessage = "Checking Become TradeTracker  Partner";
+        final String infoMessage = BecomeTradeTrackerPartner.getText();
         ChangeCheckBox.adjustStyle(false,"progress",BecomeTradeTrackerPartner);
         Platform.runLater(() -> {
             statusInfo.setText(""+infoMessage+"...");

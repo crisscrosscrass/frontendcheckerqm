@@ -25,7 +25,7 @@ public class PartnerShopsPageTest {
     final static Logger logger = Logger.getLogger(PartnerShopsPageTest.class);
 
     public void checkingGoToTopButton(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox GoToTopButton, Text statusInfo, TextField inputPartnerShopPageURL, Properties Homepage){
-        final String infoMessage = "Checking Go to Top Button";
+        final String infoMessage = GoToTopButton.getText();
         ChangeCheckBox.adjustStyle(false,"progress",GoToTopButton);
         Platform.runLater(() -> {
             statusInfo.setText(""+infoMessage+"...");
@@ -77,7 +77,7 @@ public class PartnerShopsPageTest {
     }
 
     public void checkingBecomePartnerPopUp(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox BecomePartnerPopUp, Text statusInfo, TextField inputPartnerShopPageURL, Properties Homepage){
-        final String infoMessage = "Checking Become Partner Button";
+        final String infoMessage = BecomePartnerPopUp.getText();
         ChangeCheckBox.adjustStyle(false,"progress",BecomePartnerPopUp);
         Platform.runLater(() -> {
             statusInfo.setText(""+infoMessage+"...");
@@ -127,7 +127,7 @@ public class PartnerShopsPageTest {
 
     }
     public void checkingSortingReviews(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox SortingReviews, Text statusInfo, TextField inputPartnerShopPageURL, Properties Homepage){
-        final String infoMessage = "Checking Sorting Reviews";
+        final String infoMessage = SortingReviews.getText();
         ChangeCheckBox.adjustStyle(false,"progress",SortingReviews);
         Platform.runLater(() -> {
             statusInfo.setText(""+infoMessage+"...");
@@ -203,7 +203,7 @@ public class PartnerShopsPageTest {
     }
 
     public void checkingShopLinkName(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox ShopLinkName, Text statusInfo, TextField inputPartnerShopPageURL, Properties Homepage){
-        final String infoMessage = "Checking Shop Link Name";
+        final String infoMessage = ShopLinkName.getText();
         ChangeCheckBox.adjustStyle(false,"progress",ShopLinkName);
         Platform.runLater(() -> {
             statusInfo.setText(""+infoMessage+"...");
@@ -258,7 +258,7 @@ public class PartnerShopsPageTest {
         report.writeToFile("=================================", "");
     }
     public void checkingShopLinkLogo(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox ShopLinkLogo, Text statusInfo, TextField inputPartnerShopPageURL, Properties Homepage){
-        final String infoMessage = "Checking Shop Link Logo";
+        final String infoMessage = ShopLinkLogo.getText();
         ChangeCheckBox.adjustStyle(false,"progress",ShopLinkLogo);
         Platform.runLater(() -> {
             statusInfo.setText(""+infoMessage+"...");
@@ -314,7 +314,7 @@ public class PartnerShopsPageTest {
         report.writeToFile("=================================", "");
     }
     public void checkingShopReview(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox ShopLinkLogo, Text statusInfo, TextField inputPartnerShopPageURL, Properties Homepage){
-        final String infoMessage = "Checking Shop Review";
+        final String infoMessage = ShopLinkLogo.getText();
         ChangeCheckBox.adjustStyle(false,"progress",ShopLinkLogo);
         Platform.runLater(() -> {
             statusInfo.setText(""+infoMessage+"...");
@@ -361,7 +361,7 @@ public class PartnerShopsPageTest {
         report.writeToFile("=================================", "");
     }
     public void checkingShopSearchBox(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox ShopSearchBox, Text statusInfo, TextField inputPartnerShopPageURL,TextField inputPartnerShopSearch, Properties Homepage){
-        final String infoMessage = "Checking Shop Search Box";
+        final String infoMessage = ShopSearchBox.getText();
         ChangeCheckBox.adjustStyle(false,"progress",ShopSearchBox);
         Platform.runLater(() -> {
             statusInfo.setText(""+infoMessage+"...");

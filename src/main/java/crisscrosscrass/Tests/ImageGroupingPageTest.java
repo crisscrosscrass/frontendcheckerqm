@@ -22,7 +22,7 @@ import java.util.Properties;
 public class ImageGroupingPageTest {
 
     public void checkingImageGroupingClickOut(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox ImageGroupingClickOut, Text statusInfo, TextField inputGridPageURL, Properties Homepage){
-        final String infoMessage = "Checking Image Grouping Click Out";
+        final String infoMessage = ImageGroupingClickOut.getText();
         ChangeCheckBox.adjustStyle(false,"progress",ImageGroupingClickOut);
         Platform.runLater(() -> {
             statusInfo.setText(""+infoMessage+"...");
@@ -128,7 +128,7 @@ public class ImageGroupingPageTest {
     }
 
     public void checkingDetailPageOfOffer(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox DetailPageOfOffer, Text statusInfo, TextField inputGridPageURL, Properties Homepage){
-        final String infoMessage = "Checking Image Grouping Detail Page of Offer";
+        final String infoMessage = DetailPageOfOffer.getText();
         ChangeCheckBox.adjustStyle(false,"progress",DetailPageOfOffer);
         Platform.runLater(() -> {
             statusInfo.setText(""+infoMessage+"...");

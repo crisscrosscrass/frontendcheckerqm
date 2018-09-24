@@ -20,7 +20,7 @@ import java.util.Properties;
 public class GridPageTestWithFillIns {
 
     public void checkingShowAllFillInPage(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox showAllFillInPage, TextField inputGridPageURLWithFillIns, Text statusInfo, TextField inputSearch, Properties Homepage){
-        final String infoMessage = "Checking GridPage with Fill Ins";
+        final String infoMessage = showAllFillInPage.getText();
         ChangeCheckBox.adjustStyle(false,"progress",showAllFillInPage);
         Platform.runLater(() -> {
             statusInfo.setText(""+infoMessage+"...");

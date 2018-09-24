@@ -21,7 +21,7 @@ import java.util.Properties;
 public class GridPageTestWithWindows {
 
     public void checkingPagingWithWindowsForward(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox searchBoxInBrandFilter, TextField inputGridPageURLWithWindows, Text statusInfo, TextField inputSearch, TextField inputEmailAdress, String xpathPattern1, String xpathPattern2, Properties Homepage, boolean isSuccessful, boolean isAvailable){
-        final String infoMessage = "Checking GridPage with Windows Paging Forward";
+        final String infoMessage = searchBoxInBrandFilter.getText();
         ChangeCheckBox.adjustStyle(false,"progress",searchBoxInBrandFilter);
         Platform.runLater(() -> {
             statusInfo.setText(""+infoMessage+"...");

@@ -23,7 +23,7 @@ import java.util.Properties;
 public class DetailPageTest {
 
     public void checkingSwitchTabsinDetailPage(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox SwitchTabsInDetailPage, Text statusInfo, TextField inputGridPageURL, Properties Homepage){
-        final String infoMessage = "Checking Detail Page Tab Switch";
+        final String infoMessage = SwitchTabsInDetailPage.getText();
         ChangeCheckBox.adjustStyle(false,"progress",SwitchTabsInDetailPage);
         Platform.runLater(() -> {
             statusInfo.setText(""+infoMessage+"...");
@@ -102,7 +102,7 @@ public class DetailPageTest {
     }
 
     public void checkingSimilarProductClickOut(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox SimilarProductsClickOut, Text statusInfo, TextField inputGridPageURL, Properties Homepage){
-        final String infoMessage = "Checking Detail Page Similar Product";
+        final String infoMessage = SimilarProductsClickOut.getText();
         ChangeCheckBox.adjustStyle(false,"progress",SimilarProductsClickOut);
         Platform.runLater(() -> {
             statusInfo.setText(""+infoMessage+"...");
@@ -204,7 +204,7 @@ public class DetailPageTest {
     }
 
     public void checkingPagingForwardBackward(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox PagingForwardBackward, Text statusInfo, TextField inputGridPageURL, Properties Homepage){
-        final String infoMessage = "Checking Detail Page Paging-Forward/Backward";
+        final String infoMessage = PagingForwardBackward.getText();
         ChangeCheckBox.adjustStyle(false,"progress",PagingForwardBackward);
         Platform.runLater(() -> {
             statusInfo.setText(""+infoMessage+"...");
@@ -317,7 +317,7 @@ public class DetailPageTest {
     }
 
     public void checkingJumpToNonExistingPage(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox JumpToNonExistingPage, Text statusInfo, TextField inputGridPageURL, Properties Homepage){
-        final String infoMessage = "Checking Detail Page Jump to non-existing Page";
+        final String infoMessage = JumpToNonExistingPage.getText();
         ChangeCheckBox.adjustStyle(false,"progress",JumpToNonExistingPage);
         Platform.runLater(() -> {
             statusInfo.setText(""+infoMessage+"...");

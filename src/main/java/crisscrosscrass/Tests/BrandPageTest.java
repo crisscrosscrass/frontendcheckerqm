@@ -21,7 +21,7 @@ import java.util.Properties;
 public class BrandPageTest {
 
     public void checkingBrandsWithoutLogo(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox brandsWithoutLogo, TextField inputBrandPageOverview, Text statusInfo, TextField inputSearch, Properties Homepage){
-        final String infoMessage = "Checking Brand Page Overview";
+        final String infoMessage = brandsWithoutLogo.getText();
         ChangeCheckBox.adjustStyle(false,"progress",brandsWithoutLogo);
         Platform.runLater(() -> {
             statusInfo.setText(""+infoMessage+"...");

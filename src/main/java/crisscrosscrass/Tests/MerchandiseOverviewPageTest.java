@@ -23,9 +23,9 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class MerchandiseOverviewPageTest {
     final static Logger logger = Logger.getLogger(MerchandiseOverviewPageTest.class);
-    public void checkingMerchandiseLetters(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox BecomeTradeTrackerPartner, Text statusInfo, TextField inputMerchandiseOverviewPageURL, Properties Homepage){
-        final String infoMessage = "Checking Letter to Merchandise";
-        ChangeCheckBox.adjustStyle(false,"progress",BecomeTradeTrackerPartner);
+    public void checkingMerchandiseLetters(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox LettertoMerchandise, Text statusInfo, TextField inputMerchandiseOverviewPageURL, Properties Homepage){
+        final String infoMessage = LettertoMerchandise.getText();
+        ChangeCheckBox.adjustStyle(false,"progress",LettertoMerchandise);
         Platform.runLater(() -> {
             statusInfo.setText(""+infoMessage+"...");
         });
@@ -70,10 +70,10 @@ public class MerchandiseOverviewPageTest {
                                     "return false;                            "
                             , ViewPortElement);
                     if (isInViewPort){
-                        ChangeCheckBox.adjustStyle(true,"complete",BecomeTradeTrackerPartner);
+                        ChangeCheckBox.adjustStyle(true,"complete",LettertoMerchandise);
                         report.writeToFile(infoMessage, "The letter \""+selectedLetter+"\" which was clicked appears on top of page in user's pageview");
                     }else {
-                        ChangeCheckBox.adjustStyle(true,"nope",BecomeTradeTrackerPartner);
+                        ChangeCheckBox.adjustStyle(true,"nope",LettertoMerchandise);
                         report.writeToFile(infoMessage, "The letter \""+selectedLetter+"\" which was clicked appears on in user's pageview");
                         boolean isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver, "MerchandisePageLetterToMerchandise.png");
                         if (isSuccessful){
@@ -83,19 +83,19 @@ public class MerchandiseOverviewPageTest {
                         }
                     }
                 }catch (Exception gridPageIssue){
-                    ChangeCheckBox.adjustStyle(true,"nope",BecomeTradeTrackerPartner);
+                    ChangeCheckBox.adjustStyle(true,"nope",LettertoMerchandise);
                     webDriver.navigate().to(inputMerchandiseOverviewPageURL.getText().trim());
                     report.writeToFile(infoMessage, "Couldn't detect \"Letters\" to Merchandise");
                     gridPageIssue.printStackTrace();
                 }
             }catch (Exception noRequestedSiteFound){
-                ChangeCheckBox.adjustStyle(true,"nope",BecomeTradeTrackerPartner);
+                ChangeCheckBox.adjustStyle(true,"nope",LettertoMerchandise);
                 webDriver.navigate().to(inputMerchandiseOverviewPageURL.getText().trim());
                 report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
                 noRequestedSiteFound.printStackTrace();
             }
         }catch (Exception noBrowserWorking){
-            ChangeCheckBox.adjustStyle(true,"nope",BecomeTradeTrackerPartner);
+            ChangeCheckBox.adjustStyle(true,"nope",LettertoMerchandise);
             webDriver.navigate().to(inputMerchandiseOverviewPageURL.getText().trim());
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
             noBrowserWorking.printStackTrace();
@@ -103,7 +103,7 @@ public class MerchandiseOverviewPageTest {
         report.writeToFile("=================================", "");
     }
     public void checkingMerchandiseName(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox MerchandiseName, Text statusInfo, TextField inputMerchandiseOverviewPageURL, Properties Homepage){
-        final String infoMessage = "Checking Merchandise Name";
+        final String infoMessage = MerchandiseName.getText();
         ChangeCheckBox.adjustStyle(false,"progress",MerchandiseName);
         Platform.runLater(() -> {
             statusInfo.setText(""+infoMessage+"...");
@@ -153,7 +153,7 @@ public class MerchandiseOverviewPageTest {
 
     }
     public void checkingMerchandiseSearch(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox MerchandiseSearch, Text statusInfo, TextField inputMerchandiseOverviewPageURL,TextField inputMerchandiseSearch, Properties Homepage){
-        final String infoMessage = "Checking Merchandise Search";
+        final String infoMessage = MerchandiseSearch.getText();
         ChangeCheckBox.adjustStyle(false,"progress",MerchandiseSearch);
         Platform.runLater(() -> {
             statusInfo.setText(""+infoMessage+"...");
@@ -221,7 +221,7 @@ public class MerchandiseOverviewPageTest {
 
     }
     public void checkingMerchandiseGoToTop(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox GoToTopButton, Text statusInfo, TextField inputMerchandiseOverviewPageURL, Properties Homepage){
-        final String infoMessage = "Checking Merchandise Go To Top";
+        final String infoMessage = GoToTopButton.getText();
         ChangeCheckBox.adjustStyle(false,"progress",GoToTopButton);
         Platform.runLater(() -> {
             statusInfo.setText(""+infoMessage+"...");

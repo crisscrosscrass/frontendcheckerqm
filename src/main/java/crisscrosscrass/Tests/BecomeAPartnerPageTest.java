@@ -24,7 +24,7 @@ public class BecomeAPartnerPageTest {
     final static org.apache.log4j.Logger logger = Logger.getLogger(BecomeAPartnerPageTest.class);
 
     public void checkingRegisterButton(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox RegisterButton, Text statusInfo, TextField inputBecomeAPartnerPageURL, Properties Homepage){
-        final String infoMessage = "Checking Register Button";
+        final String infoMessage = RegisterButton.getText();
         ChangeCheckBox.adjustStyle(false,"progress",RegisterButton);
         Platform.runLater(() -> {
             statusInfo.setText(""+infoMessage+"...");
@@ -64,7 +64,7 @@ public class BecomeAPartnerPageTest {
 
     }
     public void checkingBecomePartnerButton(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox RegisterButton, Text statusInfo, TextField inputBecomeAPartnerPageURL, Properties Homepage){
-        final String infoMessage = "Checking Become Partner Button";
+        final String infoMessage = RegisterButton.getText();
         ChangeCheckBox.adjustStyle(false,"progress",RegisterButton);
         Platform.runLater(() -> {
             statusInfo.setText(""+infoMessage+"...");

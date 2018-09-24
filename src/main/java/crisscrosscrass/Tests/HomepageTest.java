@@ -23,7 +23,7 @@ public class HomepageTest {
 
     public void checkingCategories(ChromeDriver webDriver, Report report, JFXCheckBox checkCategoryLinksLeftSideMenu, Text statusInfo, TextField inputSearch, Properties Homepage){
 
-        final String infoMessage = "Checking Category Links";
+        final String infoMessage = checkCategoryLinksLeftSideMenu.getText();
 
         // Check on Category Links - Left Side Menu
         ChangeCheckBox.adjustStyle(false,"progress",checkCategoryLinksLeftSideMenu);
@@ -69,7 +69,7 @@ public class HomepageTest {
 
     public void checkingShopOfTheWeek(ChromeDriver webDriver, Report report, JFXCheckBox checkLogoFromShopOfTheWeek, Text statusInfo, TextField inputSearch, Properties Homepage){
 
-        final String infoMessage = "Checking Logo Shop of the Week";
+        final String infoMessage = checkLogoFromShopOfTheWeek.getText();
 
         // Check on Logo Shop of the Week
         ChangeCheckBox.adjustStyle(false,"progress",checkLogoFromShopOfTheWeek);
@@ -139,7 +139,7 @@ public class HomepageTest {
     public void checkingShopOfTheWeekCategories(ChromeDriver webDriver, Report report, JFXCheckBox checkCategoryLinksFromShopOfTheWeek, Text statusInfo, TextField inputSearch, Properties Homepage){
         // Category Links from Shop of the Week
 
-        final String infoMessage = "Checking Category Links from Shop of the Week";
+        final String infoMessage = checkCategoryLinksFromShopOfTheWeek.getText();
         ChangeCheckBox.adjustStyle(false,"progress",checkCategoryLinksFromShopOfTheWeek);
         Platform.runLater(() -> {
             statusInfo.setText(""+infoMessage+"...");
@@ -188,7 +188,7 @@ public class HomepageTest {
 
     public void checkingNewsletterBanner(ChromeDriver webDriver, Report report, JFXCheckBox checkNewsletterBannerFunctionality, Text statusInfo, TextField inputSearch, TextField inputEmailAdress, Properties Homepage){
         // Newsletter Banner Functionality
-        final String infoMessage = "Checking Newsletter Banner Functionality";
+        final String infoMessage = checkNewsletterBannerFunctionality.getText();
         ChangeCheckBox.adjustStyle(false,"progress",checkNewsletterBannerFunctionality);
         Platform.runLater(() -> {
             statusInfo.setText(""+infoMessage+"...");
@@ -239,7 +239,7 @@ public class HomepageTest {
     }
     public void checkingNewsletterPopUp(ChromeDriver webDriver, Report report, JFXCheckBox checkNewsletterPopUp, Text statusInfo, TextField inputSearch, Properties Homepage){
         // Newsletter PopUp
-        final String infoMessage = "Checking Newsletter PopUp";
+        final String infoMessage = checkNewsletterPopUp.getText();
         ChangeCheckBox.adjustStyle(false,"progress",checkNewsletterPopUp);
         Platform.runLater(() -> {
             statusInfo.setText(""+infoMessage+"...");
@@ -284,7 +284,7 @@ public class HomepageTest {
     }
     public void checkingNewsletterPopUpFunctionality(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox checkNewsletterPopUpFunctionality, Text statusInfo, TextField inputSearch, TextField inputEmailAdress, Properties Homepage){
         // Newsletter PopUp Functionality
-        final String infoMessage = "Checking Newsletter PopUp Functionality";
+        final String infoMessage = checkNewsletterPopUpFunctionality.getText();
         ChangeCheckBox.adjustStyle(false,"progress",checkNewsletterPopUpFunctionality);
         Platform.runLater(() -> {
             statusInfo.setText(""+infoMessage+"...");
@@ -357,7 +357,7 @@ public class HomepageTest {
 
     public void checkingFooterLinks(ChromeDriver webDriver, Report report, JFXCheckBox checkFooterLinks, Text statusInfo, TextField inputSearch, Properties Homepage){
         // Footer Links
-        final String infoMessage = "Checking Footer Links & Categories";
+        final String infoMessage = checkFooterLinks.getText();
         ChangeCheckBox.adjustStyle(false,"progress",checkFooterLinks);
         Platform.runLater(() -> {
             statusInfo.setText(""+infoMessage+"...");
@@ -428,7 +428,7 @@ public class HomepageTest {
     public void checkingSearchAndSuggestions(ChromeDriver webDriver, Report report, JFXCheckBox checkTextSearchAndSuggestions, TextField inputTextSearchAndSuggestions, Text statusInfo, TextField inputSearch, Properties Homepage){
 
         // Text Search & Suggestions in InputSearch
-        final String infoMessage = "Checking Text Search and Suggestions in InputSearch";
+        final String infoMessage = checkTextSearchAndSuggestions.getText();
         ChangeCheckBox.adjustStyle(false,"progress",checkTextSearchAndSuggestions);
         Platform.runLater(() -> {
             statusInfo.setText(""+infoMessage+"...");
@@ -495,7 +495,7 @@ public class HomepageTest {
     }
     public void checkingFeedbackPopUp(ChromeDriver webDriver, Report report, JFXCheckBox checkFeedbackPopUp, Text statusInfo, TextField inputSearch, Properties Homepage){
         // Feedback PopUp
-        final String infoMessage = "Checking Feedback PopUp";
+        final String infoMessage = checkFeedbackPopUp.getText();
         ChangeCheckBox.adjustStyle(false,"progress",checkFeedbackPopUp);
         Platform.runLater(() -> {
             statusInfo.setText(""+infoMessage+"...");
@@ -537,7 +537,7 @@ public class HomepageTest {
 
     public void checkingPrivacyPopUp(ChromeDriver webDriver, Report report, JFXCheckBox checkPrivacyPopUp, Text statusInfo, TextField inputSearch, Properties Homepage) {
         // Privacy PopUp
-        final String infoMessage = "Checking Feedback PopUp";
+        final String infoMessage = checkPrivacyPopUp.getText();
         ChangeCheckBox.adjustStyle(false,"progress",checkPrivacyPopUp);
         Platform.runLater(() -> {
             statusInfo.setText(""+infoMessage+"...");
@@ -573,7 +573,7 @@ public class HomepageTest {
     }
 
     public void checkingImprint(ChromeDriver webDriver, Report report, JFXCheckBox checkImprint, Text statusInfo, TextField inputImprintURL, Properties Homepage) {
-        final String infoMessage = "Checking Imprint";
+        final String infoMessage = checkImprint.getText();
         ChangeCheckBox.adjustStyle(false,"progress",checkImprint);
         Platform.runLater(() -> {
             statusInfo.setText(""+infoMessage+"...");
@@ -609,7 +609,7 @@ public class HomepageTest {
         report.writeToFile("=================================", "");
     }
     public void checkingPrivacyPolicy(ChromeDriver webDriver, Report report, JFXCheckBox PrivacyPolicy, Text statusInfo, TextField inputPrivacyPolicy, Properties Homepage) {
-        final String infoMessage = "Checking Privacy Policy";
+        final String infoMessage = PrivacyPolicy.getText();
         ChangeCheckBox.adjustStyle(false,"progress",PrivacyPolicy);
         Platform.runLater(() -> {
             statusInfo.setText(""+infoMessage+"...");

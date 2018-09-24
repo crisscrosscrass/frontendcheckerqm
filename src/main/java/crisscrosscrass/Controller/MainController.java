@@ -482,7 +482,7 @@ public class MainController implements Serializable{
                             tabPane.getSelectionModel().select(tabMainMenuOnHomePage);
                             settingManager.updateResultBoxes(settingMainMenuOnHomePage,"progress",resultBoxMainMenuOnHomePage,BoxMainMenuOnHomePageResult);
                             MainMenuOnHomePageTest mainMenuOnHomePageTest = new MainMenuOnHomePageTest();
-                            mainMenuOnHomePageTest.checkingGoToTopButton(webDriver,report,js,partnershopsPageController.GoToTopButton,statusInfo,inputPartnerShopPageURL, Homepage);
+                            mainMenuOnHomePageTest.checkingMainMenuTabs(webDriver,report,js,mainMenuOnHomePageController.MainMenuLinkTabs,statusInfo,inputSearch, Homepage);
                         }catch (Exception noMainMenuWorking){
                             noMainMenuWorking.printStackTrace();
                         }
@@ -1057,8 +1057,12 @@ public class MainController implements Serializable{
     public void updateGlobalPercentTestCounter(){
         int currentValue = getGlobalPassedTestCases();
         int MaxValue = getGlobalTestCaseNumber();
-        int percent = (currentValue * 100) / MaxValue;
-        globalPercentTestPassedCounter.setText(""+percent);
+        if (0 == currentValue){
+            globalPercentTestPassedCounter.setText(""+0);
+        }else{
+            int percent = (currentValue * 100) / MaxValue;
+            globalPercentTestPassedCounter.setText(""+percent);
+        }
     }
     public int getGlobalTestCaseNumber(){
         int globalCounterTestCasesNumber = 0;

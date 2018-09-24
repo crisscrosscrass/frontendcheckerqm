@@ -22,7 +22,7 @@ import java.util.Properties;
 public class PageLuceneWithItemsTest {
 
     public void checkingSorting(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox PageLuceneWithItemsSorting, TextField inputLucenePage, Text statusInfo, TextField inputSearch, Properties Homepage){
-        final String infoMessage = "Checking Lucene Page with Items Sorting";
+        final String infoMessage = PageLuceneWithItemsSorting.getText();
         ChangeCheckBox.adjustStyle(false,"progress",PageLuceneWithItemsSorting);
         Platform.runLater(() -> {
             statusInfo.setText(""+infoMessage+"...");
@@ -201,7 +201,7 @@ public class PageLuceneWithItemsTest {
     }
 
     public void checkingCollapse(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox PageLuceneWithItemsCollapse, TextField inputLucenePage, Text statusInfo, TextField inputSearch, Properties Homepage){
-        final String infoMessage = "Checking Lucene Page Collapse Filters";
+        final String infoMessage = PageLuceneWithItemsCollapse.getText();
         ChangeCheckBox.adjustStyle(false,"progress",PageLuceneWithItemsCollapse);
         Platform.runLater(() -> {
             statusInfo.setText(""+infoMessage+"...");
@@ -290,7 +290,7 @@ public class PageLuceneWithItemsTest {
     }
 
     public void checkingMultiselect(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox PageLuceneWithItemsMultiSelect, TextField inputLucenePage, Text statusInfo, TextField inputSearch, Properties Homepage){
-        final String infoMessage = "Checking Lucene Page Multiselect Filters";
+        final String infoMessage = PageLuceneWithItemsMultiSelect.getText();
         ChangeCheckBox.adjustStyle(false,"progress",PageLuceneWithItemsMultiSelect);
         Platform.runLater(() -> {
             statusInfo.setText(""+infoMessage+"...");

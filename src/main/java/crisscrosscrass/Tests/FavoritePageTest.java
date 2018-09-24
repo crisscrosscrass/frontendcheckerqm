@@ -23,7 +23,7 @@ import java.util.Properties;
 
 public class FavoritePageTest {
     public void checkingPersonalListTest(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox PersonalList, Text statusInfo, TextField inputSearch, Properties Homepage, JFXTextField inputAccountEmail, JFXPasswordField inputAccountPassword){
-        final String infoMessage = "Checking Personal List";
+        final String infoMessage = PersonalList.getText();
         ChangeCheckBox.adjustStyle(false,"progress",PersonalList);
         Platform.runLater(() -> {
             statusInfo.setText(""+infoMessage+"...");
@@ -277,7 +277,7 @@ public class FavoritePageTest {
     }
 
     public void checkingApplySortingOnList(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox applySortingOnList, Text statusInfo, TextField inputGridPageURL, Properties Homepage, JFXTextField inputAccountEmail, JFXPasswordField inputAccountPassword){
-        final String infoMessage = "Checking Apply Sorting Values";
+        final String infoMessage = applySortingOnList.getText();
         ChangeCheckBox.adjustStyle(false,"progress",applySortingOnList);
         Platform.runLater(() -> {
             statusInfo.setText(""+infoMessage+"...");
@@ -450,7 +450,7 @@ public class FavoritePageTest {
     }
 
     public void checkingSelectionOnList(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox selectionOnList, Text statusInfo, TextField inputSearch, Properties Homepage, JFXTextField inputAccountEmail, JFXPasswordField inputAccountPassword){
-        final String infoMessage = "Checking Selection on Personal List";
+        final String infoMessage = selectionOnList.getText();
         ChangeCheckBox.adjustStyle(false,"progress",selectionOnList);
         Platform.runLater(() -> {
             statusInfo.setText(""+infoMessage+"...");

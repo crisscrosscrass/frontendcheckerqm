@@ -22,7 +22,7 @@ import java.util.Properties;
 public class GridPageTest {
 
     public void checkingSorting(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox sortingValues, TextField inputGridPageURL, Text statusInfo, TextField inputSearch, Properties Homepage){
-        final String infoMessage = "Checking GridPage Sorting Values";
+        final String infoMessage = sortingValues.getText();
         ChangeCheckBox.adjustStyle(false,"progress",sortingValues);
         Platform.runLater(() -> {
             statusInfo.setText(""+infoMessage+"...");
@@ -247,7 +247,7 @@ public class GridPageTest {
     }
 
     public void checkingSwitchFromSmallToLargeImages(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox switchFromSmallToLarge, TextField inputGridPageURL, Text statusInfo, TextField inputSearch, Properties Homepage){
-        final String infoMessage = "Checking GridPage Switch Small to Large Images";
+        final String infoMessage = switchFromSmallToLarge.getText();
         ChangeCheckBox.adjustStyle(false,"progress",switchFromSmallToLarge);
         Platform.runLater(() -> {
             statusInfo.setText(""+infoMessage+"...");
@@ -321,7 +321,7 @@ public class GridPageTest {
 
 
     public void checkingPagingForwardBackward(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox pagingForwardBackward, TextField inputGridPageURL, Text statusInfo, TextField inputSearch, Properties Homepage){
-        final String infoMessage = "Checking GridPage Paging Forward / Backward";
+        final String infoMessage = pagingForwardBackward.getText();
         ChangeCheckBox.adjustStyle(false,"progress",pagingForwardBackward);
         Platform.runLater(() -> {
             statusInfo.setText(""+infoMessage+"...");
@@ -414,7 +414,7 @@ public class GridPageTest {
     }
 
     public void checkingProductView300(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox productView300, TextField inputGridPageURL, Text statusInfo, TextField inputSearch, Properties Homepage){
-        final String infoMessage = "Checking GridPage Product View 300";
+        final String infoMessage = productView300.getText();
         ChangeCheckBox.adjustStyle(false,"progress",productView300);
         Platform.runLater(() -> {
             statusInfo.setText(""+infoMessage+"...");
@@ -502,7 +502,7 @@ public class GridPageTest {
     }
 
     public void checkingDeeperStyle(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox deeperStyle, TextField inputGridPageURL, Text statusInfo, TextField inputSearch, Properties Homepage){
-        final String infoMessage = "Checking GridPage Deeper Style";
+        final String infoMessage = deeperStyle.getText();
         ChangeCheckBox.adjustStyle(false,"progress",deeperStyle);
         Platform.runLater(() -> {
             statusInfo.setText(""+infoMessage+"...");
@@ -574,7 +574,7 @@ public class GridPageTest {
     }
 
     public void checkingStyleBoxOpenClose(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox styleBoxOpenClose, TextField inputGridPageURL, Text statusInfo, TextField inputSearch, TextField inputEmailAdress, String xpathPattern1, String xpathPattern2, Properties Homepage, boolean isSuccessful, boolean isAvailable){
-        final String infoMessage = "Checking GridPage Style Box Open/Close";
+        final String infoMessage = styleBoxOpenClose.getText();
         ChangeCheckBox.adjustStyle(false,"progress",styleBoxOpenClose);
         Platform.runLater(() -> {
             statusInfo.setText(""+infoMessage+"...");
@@ -662,7 +662,7 @@ public class GridPageTest {
         report.writeToFile("=================================", "");
     }
     public void checkingFilterApply(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox filtersApply, TextField inputGridPageURL, Text statusInfo, TextField inputSearch, Properties Homepage, boolean isSuccessful, boolean isAvailable, JFXCheckBox checkingSalesPriceFilter, JFXCheckBox checkingGenderFilter, JFXCheckBox checkingColorFilter, JFXCheckBox checkingBrandFilter, JFXCheckBox checkingMerchandiseFilter){
-        final String infoMessage = "Checking GridPage Filter Apply";
+        final String infoMessage = filtersApply.getText();
         ChangeCheckBox.adjustStyle(false,"progress",filtersApply);
         Platform.runLater(() -> {
             statusInfo.setText(""+infoMessage+"...");
@@ -1049,7 +1049,7 @@ public class GridPageTest {
     }
 
     public void checkingSearchBoxInBrandFilter(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox searchBoxInBrandFilter, TextField inputGridPageURL, TextField inputGridPageKeyword,Text statusInfo, TextField inputSearch, TextField inputEmailAdress, String xpathPattern1, String xpathPattern2, Properties Homepage, boolean isSuccessful, boolean isAvailable){
-        final String infoMessage = "Checking GridPage Search Box in Brand Filter";
+        final String infoMessage = searchBoxInBrandFilter.getText();
         ChangeCheckBox.adjustStyle(false,"progress",searchBoxInBrandFilter);
         Platform.runLater(() -> {
             statusInfo.setText(""+infoMessage+"...");
@@ -1130,7 +1130,7 @@ public class GridPageTest {
         report.writeToFile("=================================", "");
     }
     public void checkingSearchBoxInShopFilter(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox searchBoxInShopFilter, TextField inputGridPageURL, TextField inputGridPageKeyword,Text statusInfo, TextField inputSearch, TextField inputEmailAdress, String xpathPattern1, String xpathPattern2, Properties Homepage, boolean isSuccessful, boolean isAvailable){
-        final String infoMessage = "Checking GridPage Search Box in Shop Filter";
+        final String infoMessage = searchBoxInShopFilter.getText();
         ChangeCheckBox.adjustStyle(false,"progress",searchBoxInShopFilter);
         Platform.runLater(() -> {
             statusInfo.setText(""+infoMessage+"...");
