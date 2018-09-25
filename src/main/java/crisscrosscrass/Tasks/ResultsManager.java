@@ -1,14 +1,17 @@
 package crisscrosscrass.Tasks;
 
 import com.jfoenix.controls.JFXCheckBox;
+import crisscrosscrass.Tests.MainMenuOnHomePageTest;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
 
 public class ResultsManager {
+    private final static Logger logger = Logger.getLogger(ResultsManager.class);
     public void updateResultsCheckbox(JFXCheckBox settingTestButton, JFXCheckBox[] checkboxes, Label BoxHomepageResult, VBox placeForFailedTestCases){
         if (settingTestButton.isSelected()){
             //count all checkboxes
@@ -50,7 +53,6 @@ public class ResultsManager {
     public int getTestCasesNumber(JFXCheckBox settingTestButton, JFXCheckBox[] checkboxes){
         int allCheckBoxes = 0;
         if (settingTestButton.isSelected()) {
-            //count all checkboxes
             allCheckBoxes = checkboxes.length;
         }
         return allCheckBoxes;
@@ -58,7 +60,7 @@ public class ResultsManager {
     public int getPassedTestCasesNumber(JFXCheckBox settingTestButton, JFXCheckBox[] checkboxes){
         int passTest = 0;
         for (JFXCheckBox checkBox : checkboxes){
-            if (checkBox.isSelected() ){
+            if (checkBox.isSelected() & settingTestButton.isSelected() ){
                 if (checkBox.getCheckedColor().toString().substring(2,8).equals(ChangeCheckBox.getIsSuccessful())){
                     ++passTest;
                 }
@@ -69,7 +71,7 @@ public class ResultsManager {
     public int getFailedTestCasesNumber(JFXCheckBox settingTestButton, JFXCheckBox[] checkboxes){
         int failTest = 0;
         for (JFXCheckBox checkBox : checkboxes){
-            if (checkBox.isSelected() ){
+            if (checkBox.isSelected() & settingTestButton.isSelected() ){
                 if (checkBox.getCheckedColor().toString().substring(2,8).equals(ChangeCheckBox.getIsNotSuccessful())){
                     ++failTest;
                 }

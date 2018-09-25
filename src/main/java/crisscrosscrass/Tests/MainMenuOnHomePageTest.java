@@ -53,7 +53,7 @@ public class MainMenuOnHomePageTest {
                         for (WebElement SubMenuLink : allMainMenuSubLinks){
                             hover.moveToElement(SubMenuLink).build().perform();
                             if (null != SubMenuLink.getAttribute("href")){
-                                logger.info(SubMenuLink.getAttribute("innerHTML") + " | " + SubMenuLink.getAttribute("href"));
+                                //logger.info(SubMenuLink.getAttribute("innerHTML") + " | " + SubMenuLink.getAttribute("href"));
                             }
                         }
                         ++counterXPath;
