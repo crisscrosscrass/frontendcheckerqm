@@ -6,5 +6,6 @@
 <VBox fx:id="mainMenuCheckBoxCollection" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="crisscrosscrass.Controller.MainMenuOnHomePageController">
     <children>
         <JFXCheckBox fx:id="MainMenuLinkTabs" text="Main Menu Link Tabs" />
+        <JFXCheckBox fx:id="MainMenuLinkIndex" text="Main Menu Link on Index" />
     </children>
 </VBox>

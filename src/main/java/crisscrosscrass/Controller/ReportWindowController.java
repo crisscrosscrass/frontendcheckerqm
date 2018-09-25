@@ -4,6 +4,8 @@ package crisscrosscrass.Controller;
 import crisscrosscrass.Tasks.AnimationObject;
 import crisscrosscrass.Tasks.ViewImageWindow;
 import javafx.fxml.FXML;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
@@ -14,7 +16,7 @@ import java.io.*;
 
 public class ReportWindowController {
 
-    @FXML Text text;
+    @FXML TextArea text;
     @FXML FlowPane ImageGallery;
 
     int extraDuration = 1;
@@ -25,12 +27,7 @@ public class ReportWindowController {
         runReport();
         //SlideShow();
     }
-
-
-
     private void runReport() {
-
-
         //dsplay all images located in temp
         AnimationObject wowEffect = new AnimationObject();
         String location = System.getProperty("user.dir");
@@ -53,13 +50,8 @@ public class ReportWindowController {
             wowEffect.SlideShow(myOwnImageView,extraDuration);
             extraDuration++;
         }
-
-
-
         // reading and displaying report
-
         String myText = "";
-
         try (BufferedReader reader = new BufferedReader(new FileReader(new File("temp//report.txt")))) {
 
             String line;
@@ -72,6 +64,7 @@ public class ReportWindowController {
         }
         text.setText(myText);
     }
+
 
 }
 

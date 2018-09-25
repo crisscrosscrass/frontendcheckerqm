@@ -20,7 +20,7 @@ public class WebdriverTab {
         webDriver.switchTo().window(tabs.get(1)); //switches to new tab
         webDriver.get(baseUrl);
         try{
-            if ( webDriver.getTitle().contains(checkKeyword) | webDriver.findElement(By.xpath("//*[@id='headline']/h1")).getText().contains(checkKeyword) | webDriver.getCurrentUrl().contains(checkKeyword) ) {
+            if ( webDriver.getTitle().toLowerCase().trim().contains(checkKeyword.toLowerCase().trim()) | webDriver.findElement(By.xpath("//*[@id='headline']/h1")).getText().toLowerCase().trim().contains(checkKeyword.toLowerCase().trim()) | webDriver.getCurrentUrl().contains(checkKeyword.toLowerCase().trim()) ) {
                 answer = true;
             }else{
                 answer = false;
@@ -36,7 +36,6 @@ public class WebdriverTab {
     }
     public boolean openCheckURLTitleH1H2(WebDriver webDriver, String baseUrl, String checkKeyword ){
         answer = false;
-        screenShot = false;
 
         ((JavascriptExecutor)webDriver).executeScript("window.open()");
         ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
@@ -46,7 +45,7 @@ public class WebdriverTab {
         boolean checkH1Element = webDriver.findElements( By.id("//*[@id='headline']/h1") ).size() != 0;
         boolean checkH2Element = webDriver.findElements( By.id("//*[@id='headline']/h2") ).size() != 0;
         try{
-            if ( webDriver.getTitle().contains(checkKeyword) | webDriver.getCurrentUrl().contains(checkKeyword) ) {
+            if ( webDriver.getTitle().contains(checkKeyword.toLowerCase().trim()) | webDriver.getCurrentUrl().contains(checkKeyword.toLowerCase().trim()) ) {
                 answer = true;
             }else{
                 answer = false;
@@ -71,7 +70,7 @@ public class WebdriverTab {
         try{
             String ShopOfTheWeekGridImage = webDriver.findElement(By.xpath(imageXPathGrid)).getAttribute("src");
 
-            if ( webDriver.getTitle().contains(checkKeyword) | webDriver.findElement(By.xpath("//*[@id='headline']/h1")).getText().contains(checkKeyword) ) {
+            if ( webDriver.getTitle().toLowerCase().trim().contains(checkKeyword.toLowerCase().trim()) | webDriver.findElement(By.xpath("//*[@id='headline']/h1")).getText().toLowerCase().trim().contains(checkKeyword.toLowerCase().trim()) ) {
                 logger.info("Keyword found");
                 if (checkPreviousImageUrl.contains(ShopOfTheWeekGridImage)){
                     logger.info("Image url also found!");

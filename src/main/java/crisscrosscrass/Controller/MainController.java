@@ -334,8 +334,9 @@ public class MainController implements Serializable{
                 ChromeOptions option = new ChromeOptions();
                 //option.addArguments("--window-size=1920,1080");
                 //option.addArguments("--headless");
-                //option.addArguments("--disable-gpu");
+                option.addArguments("--disable-gpu");
                 option.addArguments("--disable-infobars");
+                option.addArguments("--disable-notifications");
                 option.addArguments("--start-maximized");
                 ChromeDriver webDriver = new ChromeDriver(option);
                 try{
@@ -482,7 +483,8 @@ public class MainController implements Serializable{
                             tabPane.getSelectionModel().select(tabMainMenuOnHomePage);
                             settingManager.updateResultBoxes(settingMainMenuOnHomePage,"progress",resultBoxMainMenuOnHomePage,BoxMainMenuOnHomePageResult);
                             MainMenuOnHomePageTest mainMenuOnHomePageTest = new MainMenuOnHomePageTest();
-                            mainMenuOnHomePageTest.checkingMainMenuTabs(webDriver,report,js,mainMenuOnHomePageController.MainMenuLinkTabs,statusInfo,inputSearch, Homepage);
+                            //mainMenuOnHomePageTest.checkingMainMenuTabs(webDriver,report,js,mainMenuOnHomePageController.MainMenuLinkTabs,statusInfo,inputSearch, Homepage);
+                            mainMenuOnHomePageTest.checkingMainMenuIndex(webDriver,report,js,mainMenuOnHomePageController.MainMenuLinkIndex,statusInfo,inputSearch, Homepage);
                         }catch (Exception noMainMenuWorking){
                             noMainMenuWorking.printStackTrace();
                         }
@@ -874,7 +876,7 @@ public class MainController implements Serializable{
                 outputPlace.getChildren().addAll(link);
                 progressIndicator.setProgress(100);
                 changeButtonText();
-                logger.info("All process to checkes are finished");
+                logger.info("All process to check are finished");
             }));
 
         }
