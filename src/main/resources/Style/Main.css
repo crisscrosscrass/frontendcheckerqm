@@ -23,6 +23,13 @@
 
 .jfx-combo-box{
    -fx-text-fill: white;
+   -fx-prompt-text-fill: #ffffff;
+}
+.jfx-combo-box .text-field{
+   -fx-text-fill: white;
+}
+.jfx-combo-box .text-field:focused {
+   -fx-text-fill: white;
 }
 .combo-box > .list-cell {
 -fx-background: #0c343dff;

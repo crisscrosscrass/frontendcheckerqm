@@ -29,7 +29,7 @@ public class ModalBox {
         JFXButton jfxButton = new JFXButton("Close");
         jfxButton.setStyle("-fx-background-color:  #e83062; -fx-text-fill: white;");
 
-        JFXDialog dialog = new JFXDialog(placeToAddInfo,content, JFXDialog.DialogTransition.CENTER);
+        JFXDialog dialog = new JFXDialog(placeToAddInfo,content, JFXDialog.DialogTransition.LEFT);
         jfxButton.setOnAction(event -> {
             dialog.close();
             placeToAddInfo.setVisible(false);

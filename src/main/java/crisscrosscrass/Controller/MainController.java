@@ -46,6 +46,7 @@ public class MainController implements Serializable{
 
     // Basic Settings
     @FXML Button startwebdriver;
+    @FXML Button stopWebdriver;
     //Filter Settings
     @FXML JFXComboBox countrySelection;
     @FXML public JFXCheckBox checkingSalesPriceFilter;
@@ -289,6 +290,7 @@ public class MainController implements Serializable{
         infoMerchandiseTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingMerchandiseOverviewPage.getText(),merchandiseOverviewPageController.merchandiseOverviewCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),stackpane));
         //set Start Button to disable, first Country has to be selected
         startwebdriver.setDisable(true);
+        stopWebdriver.setDisable(true);
         //update all Boxes before Starting
         updateResultsBoxes();
         updateCheckerTabs();
@@ -372,6 +374,8 @@ public class MainController implements Serializable{
                 option.addArguments("--start-maximized");
                 ChromeDriver webDriver = new ChromeDriver(option);
                 try{
+                    stopWebdriver.setDisable(false);
+                    stopWebdriver.setOnAction(event -> webDriver.close());
                     JavascriptExecutor js = webDriver;
                     Report report = new Report();
                     report.clearWrittenReport();
@@ -658,6 +662,8 @@ public class MainController implements Serializable{
                         settingManager.updateResultBoxes(settingMerchandiseOverviewPage,"complete",resultBoxMerchandise,BoxMerchandiseResult);
                         updateGlobalPercentTestCounter();
                     } );
+
+
                     // close webdriver and clear tasklist
                     Platform.runLater(() -> statusInfo.setText("Closing Browser..."));
                     try {
@@ -715,7 +721,7 @@ public class MainController implements Serializable{
                 }
             });
             preloaderCat.setImage(null);
-            link.setStyle("-fx-font: 24 arial;");
+            link.setStyle("-fx-font: 18 arial;");
             link.setTextAlignment(TextAlignment.CENTER);
             outputPlace.getChildren().addAll(link);
             progressIndicator.setProgress(100);
@@ -723,9 +729,7 @@ public class MainController implements Serializable{
             logger.info("All process are finished");
         }));
     }
-
-
-    //Just for Themeweek! Will be removed once the Themeweek is over
+    //Just for Themeweek! Will be removed once the Themeweek is over and no one need it anymore
     @FXML
     public void LoadFileWithURLs() {
         FileChooser fileChooser = new FileChooser();
@@ -919,6 +923,7 @@ public class MainController implements Serializable{
     private void changeButtonText() {
         statusInfo.setText("Running complete");
         startwebdriver.setDisable(false);
+        stopWebdriver.setDisable(true);
         inputSearch.setDisable(false);
         inputEmailAdress.setDisable(false);
         inputTextSearchAndSuggestions.setDisable(false);
