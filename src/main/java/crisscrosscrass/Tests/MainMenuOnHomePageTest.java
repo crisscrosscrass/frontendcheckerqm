@@ -286,6 +286,7 @@ public class MainMenuOnHomePageTest {
                     googleSearch.submit();
                     wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='g']//h3/a")));
                     List<WebElement> GoogleResults = webDriver.findElementsByXPath("//div[@class='g']//h3/a");
+                        /* havent
                         if (previousURL.equals(GoogleResults.get(0).getAttribute("href").toLowerCase().trim())){
                             logger.info("Site on index");
                             ChangeCheckBox.adjustStyle(true,"complete",ShoppingWorldsOnIndex);
@@ -295,6 +296,16 @@ public class MainMenuOnHomePageTest {
                             ChangeCheckBox.adjustStyle(true,"nope",ShoppingWorldsOnIndex);
                             report.writeToFile(infoMessage,"\"" + previousURL+"\" | No Index");
                         }
+                         */
+                    if (GoogleResults.size() > 0 ){
+                        logger.info("Site on index");
+                        ChangeCheckBox.adjustStyle(true,"complete",ShoppingWorldsOnIndex);
+                        report.writeToFile(infoMessage,"\"" + previousURL+"\" | Index");
+                    }else {
+                        logger.info("Site not index");
+                        ChangeCheckBox.adjustStyle(true,"nope",ShoppingWorldsOnIndex);
+                        report.writeToFile(infoMessage,"\"" + previousURL+"\" | No Index");
+                    }
                 }catch (Exception gridPageIssue){
                     ChangeCheckBox.adjustStyle(true,"nope",ShoppingWorldsOnIndex);
                     webDriver.navigate().to(inputSearch.getText().trim());

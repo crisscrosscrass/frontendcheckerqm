@@ -21,6 +21,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -192,7 +193,7 @@
          <children>
             <HBox prefHeight="111.0" prefWidth="1306.0">
                <children>
-                  <HBox alignment="CENTER_LEFT" prefHeight="88.0" prefWidth="783.0" spacing="25.0" style="-fx-background-color: #0c343dff;">
+                  <HBox alignment="CENTER_LEFT" prefHeight="88.0" prefWidth="852.0" spacing="25.0" style="-fx-background-color: #0c343dff;">
                      <children>
                         <JFXComboBox fx:id="countrySelection" focusColor="#e83062" prefHeight="63.0" prefWidth="125.0" unFocusColor="WHITE">
                            <padding>
@@ -208,17 +209,17 @@
                         <Insets />
                      </HBox.margin>
                   </HBox>
-                  <HBox prefHeight="88.0" prefWidth="530.0" style="-fx-background-color: #45818eff;" />
+                  <HBox prefHeight="88.0" prefWidth="449.0" style="-fx-background-color: #45818eff;" />
                </children>
             </HBox>
             <HBox prefHeight="57.0" prefWidth="1284.0" />
             <HBox prefHeight="704.0" prefWidth="1443.0" spacing="10.0">
                <children>
-                  <VBox fillWidth="false" prefHeight="682.0" prefWidth="770.0">
+                  <VBox fillWidth="false" prefHeight="682.0" prefWidth="825.0">
                      <children>
-                        <HBox prefHeight="372.0" prefWidth="793.0">
+                        <HBox prefHeight="355.0" prefWidth="789.0">
                            <children>
-                              <VBox prefHeight="386.0" prefWidth="622.0" spacing="5.0">
+                              <VBox prefHeight="355.0" prefWidth="660.0" spacing="5.0">
                                  <children>
                                     <HBox alignment="CENTER" spacing="10.0">
                                        <children>
@@ -226,13 +227,15 @@
                                           <JFXButton alignment="CENTER" onAction="#deselectAllSettingCheckBoxes" style="-fx-background-color: #5a5a5a;" text="Custom Test" textFill="WHITE" />
                                        </children>
                                     </HBox>
-                                    <GridPane fx:id="settingGridPane" prefHeight="295.0" prefWidth="622.0" vgap="5.0">
+                                    <GridPane fx:id="settingGridPane" prefHeight="295.0" prefWidth="641.0" vgap="5.0">
                                       <columnConstraints>
                                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="98.0" minWidth="0.0" prefWidth="2.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="313.0" minWidth="10.0" prefWidth="280.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="310.0" minWidth="0.0" prefWidth="12.0" />
-                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="378.0" minWidth="10.0" prefWidth="283.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="0.0" prefWidth="0.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="317.0" minWidth="10.0" prefWidth="293.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="310.0" minWidth="10.0" prefWidth="19.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="310.0" minWidth="0.0" prefWidth="22.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="378.0" minWidth="10.0" prefWidth="292.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="378.0" minWidth="10.0" prefWidth="16.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="0.0" prefWidth="14.0" />
                                       </columnConstraints>
                                       <rowConstraints>
                                         <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
@@ -253,7 +256,7 @@
                                                 <Insets />
                                              </opaqueInsets>
                                           </JFXCheckBox>
-                                          <JFXCheckBox fx:id="settingGridPage" checkedColor="#45818e" prefHeight="40.0" prefWidth="290.0" selected="true" style="-fx-background-color: #165f6fff;" text="Grid Page" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                                          <JFXCheckBox fx:id="settingGridPage" checkedColor="#45818e" prefHeight="40.0" prefWidth="290.0" selected="true" style="-fx-background-color: #165f6fff;" text="Grid Page" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="1">
                                            <font>
                                                <Font size="20.0" />
                                            </font>
@@ -263,7 +266,7 @@
                                                   <Font size="20.0" />
                                               </font>
                                           </JFXCheckBox>
-                                          <JFXCheckBox fx:id="settingGridPageFillIns" checkedColor="#45818e" prefHeight="57.0" prefWidth="290.0" selected="true" style="-fx-background-color: #165f6fff;" text="Grid Page Fill-ins" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                                          <JFXCheckBox fx:id="settingGridPageFillIns" checkedColor="#45818e" prefHeight="57.0" prefWidth="290.0" selected="true" style="-fx-background-color: #165f6fff;" text="Grid Page Fill-ins" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="2">
                                            <font>
                                                <Font size="20.0" />
                                            </font>
@@ -273,7 +276,7 @@
                                                   <Font size="20.0" />
                                               </font>
                                           </JFXCheckBox>
-                                          <JFXCheckBox fx:id="settingLucenePage" checkedColor="#45818e" prefHeight="57.0" prefWidth="290.0" selected="true" style="-fx-background-color: #165f6fff;" text="Lucene Page" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                                          <JFXCheckBox fx:id="settingLucenePage" checkedColor="#45818e" prefHeight="57.0" prefWidth="290.0" selected="true" style="-fx-background-color: #165f6fff;" text="Lucene Page" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="3">
                                               <font>
                                                   <Font size="20.0" />
                                               </font>
@@ -283,7 +286,7 @@
                                                   <Font size="20.0" />
                                               </font>
                                           </JFXCheckBox>
-                                          <JFXCheckBox fx:id="settingDetailPage" checkedColor="#45818e" prefHeight="57.0" prefWidth="290.0" selected="true" style="-fx-background-color: #165f6fff;" text="Detail Page" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="4">
+                                          <JFXCheckBox fx:id="settingDetailPage" checkedColor="#45818e" prefHeight="57.0" prefWidth="290.0" selected="true" style="-fx-background-color: #165f6fff;" text="Detail Page" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="4">
                                               <font>
                                                   <Font size="20.0" />
                                               </font>
@@ -293,7 +296,7 @@
                                                   <Font size="20.0" />
                                               </font>
                                           </JFXCheckBox>
-                                          <JFXCheckBox fx:id="settingFavoritePage" checkedColor="#45818e" prefHeight="57.0" prefWidth="290.0" selected="true" style="-fx-background-color: #165f6fff;" text="Favorite Page" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="5">
+                                          <JFXCheckBox fx:id="settingFavoritePage" checkedColor="#45818e" prefHeight="57.0" prefWidth="290.0" selected="true" style="-fx-background-color: #165f6fff;" text="Favorite Page" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="5">
                                               <font>
                                                   <Font size="20.0" />
                                               </font>
@@ -303,7 +306,7 @@
                                                   <Font size="20.0" />
                                               </font>
                                           </JFXCheckBox>
-                                          <JFXCheckBox fx:id="settingBecomeAPartnerPage" checkedColor="#45818e" prefHeight="57.0" prefWidth="290.0" selected="true" style="-fx-background-color: #165f6fff;" text="Become a Partner Page" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="6">
+                                          <JFXCheckBox fx:id="settingBecomeAPartnerPage" checkedColor="#45818e" prefHeight="57.0" prefWidth="290.0" selected="true" style="-fx-background-color: #165f6fff;" text="Become a Partner Page" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="6">
                                               <font>
                                                   <Font size="20.0" />
                                               </font>
@@ -313,11 +316,25 @@
                                                   <Font size="20.0" />
                                               </font>
                                           </JFXCheckBox>
-                                          <JFXCheckBox fx:id="settingMerchandiseOverviewPage" checkedColor="#45818e" prefHeight="57.0" prefWidth="290.0" selected="true" style="-fx-background-color: #165f6fff;" text="Merchandise Overview Page" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="7">
+                                          <JFXCheckBox fx:id="settingMerchandiseOverviewPage" checkedColor="#45818e" prefHeight="57.0" prefWidth="290.0" selected="true" style="-fx-background-color: #165f6fff;" text="Merchandise Overview Page" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="7">
                                               <font>
                                                   <Font size="20.0" />
                                               </font>
                                           </JFXCheckBox>
+                                          <FontAwesomeIconView fx:id="infoHomepageTest" fill="#45818e" glyphName="QUESTION_CIRCLE" size="20" wrappingWidth="17.85714292526245" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                          <FontAwesomeIconView fx:id="infoGridPageTest" fill="#45818e" glyphName="QUESTION_CIRCLE" layoutX="307.0" layoutY="55.0" size="20" wrappingWidth="17.85714292526245" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+                                          <FontAwesomeIconView fx:id="infoGridPageWindowTest" fill="#45818e" glyphName="QUESTION_CIRCLE" layoutX="640.0" layoutY="55.0" size="20" wrappingWidth="17.85714292526245" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                          <FontAwesomeIconView fx:id="infoGridPageFillInsTest" fill="#45818e" glyphName="QUESTION_CIRCLE" layoutX="307.0" layoutY="95.0" size="20" wrappingWidth="17.85714292526245" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+                                          <FontAwesomeIconView fx:id="infoBrandTest" fill="#45818e" glyphName="QUESTION_CIRCLE" layoutX="640.0" layoutY="95.0" size="20" wrappingWidth="17.85714292526245" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                                          <FontAwesomeIconView fx:id="infoLuceneTest" fill="#45818e" glyphName="QUESTION_CIRCLE" layoutX="307.0" layoutY="135.0" size="20" wrappingWidth="17.85714292526245" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+                                          <FontAwesomeIconView fx:id="infoOnMainMenuTest" fill="#45818e" glyphName="QUESTION_CIRCLE" layoutX="640.0" layoutY="135.0" size="20" wrappingWidth="17.85714292526245" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                                          <FontAwesomeIconView fx:id="infoDetailPageTest" fill="#45818e" glyphName="QUESTION_CIRCLE" layoutX="307.0" layoutY="175.0" size="20" wrappingWidth="17.85714292526245" GridPane.columnIndex="5" GridPane.rowIndex="4" />
+                                          <FontAwesomeIconView fx:id="infoImageGroupingTest" fill="#45818e" glyphName="QUESTION_CIRCLE" layoutX="640.0" layoutY="175.0" size="20" wrappingWidth="17.85714292526245" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                                          <FontAwesomeIconView fx:id="infoFavoritePageTest" fill="#45818e" glyphName="QUESTION_CIRCLE" layoutX="307.0" layoutY="215.0" size="20" wrappingWidth="17.85714292526245" GridPane.columnIndex="5" GridPane.rowIndex="5" />
+                                          <FontAwesomeIconView fx:id="infoPartnerShopPageTest" fill="#45818e" glyphName="QUESTION_CIRCLE" layoutX="640.0" layoutY="215.0" size="20" wrappingWidth="17.85714292526245" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                                          <FontAwesomeIconView fx:id="infoBecomeAPartnerPageTest" fill="#45818e" glyphName="QUESTION_CIRCLE" layoutX="307.0" layoutY="255.0" size="20" wrappingWidth="17.85714292526245" GridPane.columnIndex="5" GridPane.rowIndex="6" />
+                                          <FontAwesomeIconView fx:id="infoAffiliateTest" fill="#45818e" glyphName="QUESTION_CIRCLE" layoutX="640.0" layoutY="255.0" size="20" wrappingWidth="17.85714292526245" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+                                          <FontAwesomeIconView fx:id="infoMerchandiseTest" fill="#45818e" glyphName="QUESTION_CIRCLE" layoutX="307.0" layoutY="295.0" size="20" wrappingWidth="17.85714292526245" GridPane.columnIndex="5" GridPane.rowIndex="7" />
                                        </children>
                                     </GridPane>
                                  </children>
@@ -690,5 +707,6 @@
             </HBox>
          </children>
       </VBox>
+      <StackPane fx:id="stackpane" layoutY="150.0" prefHeight="321.0" prefWidth="801.0" visible="false" />
    </children>
 </AnchorPane>

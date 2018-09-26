@@ -1,12 +1,10 @@
 package crisscrosscrass.Controller;
 
-import com.jfoenix.controls.JFXCheckBox;
-import com.jfoenix.controls.JFXComboBox;
-import com.jfoenix.controls.JFXPasswordField;
-import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.*;
 import crisscrosscrass.*;
 import crisscrosscrass.Tasks.*;
 import crisscrosscrass.Tests.*;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -19,6 +17,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
@@ -38,6 +37,7 @@ import java.io.*;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
@@ -108,6 +108,22 @@ public class MainController implements Serializable{
     @FXML VBox CheckBoxesPlace;
     @FXML AnchorPane mainStage;
     @FXML TabPane tabPane;
+    @FXML StackPane stackpane;
+    //Info Buttons
+    @FXML FontAwesomeIconView infoHomepageTest;
+    @FXML FontAwesomeIconView infoGridPageTest;
+    @FXML FontAwesomeIconView infoGridPageWindowTest;
+    @FXML FontAwesomeIconView infoGridPageFillInsTest;
+    @FXML FontAwesomeIconView infoBrandTest;
+    @FXML FontAwesomeIconView infoLuceneTest;
+    @FXML FontAwesomeIconView infoOnMainMenuTest;
+    @FXML FontAwesomeIconView infoDetailPageTest;
+    @FXML FontAwesomeIconView infoImageGroupingTest;
+    @FXML FontAwesomeIconView infoFavoritePageTest;
+    @FXML FontAwesomeIconView infoPartnerShopPageTest;
+    @FXML FontAwesomeIconView infoBecomeAPartnerPageTest;
+    @FXML FontAwesomeIconView infoAffiliateTest;
+    @FXML FontAwesomeIconView infoMerchandiseTest;
     //tab views
     @FXML Tab tabHomepage;
     @FXML Tab tabGridPage;
@@ -253,10 +269,26 @@ public class MainController implements Serializable{
             inputBecomeAPartnerPageURL.setText(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getLocationBecomePartnerPageURL());
             inputAffiliateProgramURL.setText(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getLocationAffiliateProgramPageURL());
             inputMerchandiseOverviewPageURL.setText(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getLocationMerchandiseOverviewPageURL());
-            //TODO enable startwebdriver.setDisable(false);
+            startwebdriver.setDisable(false);
         });
+        //Bind Info to QuestionMark Buttons
+        ModalBox modalBox = new ModalBox();
+        infoHomepageTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingHomepage.getText(),frontendHomepageController.frontendHomePageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),stackpane));
+        infoGridPageTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingGridPage.getText(),gridPageNoWindowsController.GridPageNoWindowsCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),stackpane));
+        infoGridPageWindowTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingGridPageWithWindows.getText(),gridPageWithWindowsController.gridPageWithWindowsCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),stackpane));
+        infoGridPageFillInsTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingGridPageFillIns.getText(),gridPageWithFillInsController.gridPageWithFillInsCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),stackpane));
+        infoBrandTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingBrandPage.getText(),brandOverviewController.brandPageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),stackpane));
+        infoLuceneTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingLucenePage.getText(),pageLuceneWithItemsController.lucenePageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),stackpane));
+        infoOnMainMenuTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingMainMenuOnHomePage.getText(),mainMenuOnHomePageController.mainMenuCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),stackpane));
+        infoDetailPageTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingDetailPage.getText(),detailPageController.detailPageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),stackpane));
+        infoImageGroupingTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingImageGrouping.getText(),imageGroupingController.imageGroupingCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),stackpane));
+        infoFavoritePageTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingFavoritePage.getText(),favoritePageController.favoritePageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),stackpane));
+        infoPartnerShopPageTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingPartnerShopPage.getText(),partnershopsPageController.partnerShopCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),stackpane));
+        infoBecomeAPartnerPageTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingBecomeAPartnerPage.getText(),becomeAPartnerController.becomePartnerCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),stackpane));
+        infoAffiliateTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingAffiliateProgram.getText(),affiliateProgramController.affiliateProgramCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),stackpane));
+        infoMerchandiseTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingMerchandiseOverviewPage.getText(),merchandiseOverviewPageController.merchandiseOverviewCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),stackpane));
         //set Start Button to disable, first Country has to be selected
-        //TODO enable startwebdriver.setDisable(true);
+        startwebdriver.setDisable(true);
         //update all Boxes before Starting
         updateResultsBoxes();
         updateCheckerTabs();
@@ -483,7 +515,7 @@ public class MainController implements Serializable{
                             tabPane.getSelectionModel().select(tabMainMenuOnHomePage);
                             settingManager.updateResultBoxes(settingMainMenuOnHomePage,"progress",resultBoxMainMenuOnHomePage,BoxMainMenuOnHomePageResult);
                             MainMenuOnHomePageTest mainMenuOnHomePageTest = new MainMenuOnHomePageTest();
-                            //mainMenuOnHomePageTest.checkingMainMenuTabs(webDriver,report,js,mainMenuOnHomePageController.MainMenuLinkTabs,statusInfo,inputSearch, Homepage);
+                            mainMenuOnHomePageTest.checkingMainMenuTabs(webDriver,report,js,mainMenuOnHomePageController.MainMenuLinkTabs,statusInfo,inputSearch, Homepage);
                             //mainMenuOnHomePageTest.checkingMainMenuIndex(webDriver,report,js,mainMenuOnHomePageController.MainMenuLinkIndex,statusInfo,inputSearch, Homepage);
                             mainMenuOnHomePageTest.checkingShoppingWorld(webDriver,report,js,mainMenuOnHomePageController.ShoppingWorlds,statusInfo,inputSearch, Homepage);
                             mainMenuOnHomePageTest.checkingShoppingWorldOnIndex(webDriver,report,js,mainMenuOnHomePageController.ShoppingWorldsOnIndex,statusInfo,inputSearch, Homepage);
@@ -508,7 +540,6 @@ public class MainController implements Serializable{
                         }catch (Exception noDetailPageWorking){
                             noDetailPageWorking.printStackTrace();
                         }
-
                     }
                     Platform.runLater(() -> {
                         updateGlobalTestCases();
@@ -991,6 +1022,37 @@ public class MainController implements Serializable{
         }catch (Exception DataPieChartNotWorking){
             DataPieChartNotWorking.printStackTrace();
         }
+    }
+    @FXML
+    public void loadDialog(){
+        final String nameOfTestCase = "HomepageTestCase";
+        JFXCheckBox[] checkboxes = frontendHomepageController.frontendHomePageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]);
+
+
+        StringBuilder sb = new StringBuilder();
+        for (JFXCheckBox checkBox : checkboxes){
+            sb.append(checkBox.getText()+"\n");
+        }
+
+        Text headerMessage = new Text();
+        headerMessage.setText(nameOfTestCase.toString());
+        Text mainContent = new Text();
+        mainContent.setText(sb.toString());
+
+        stackpane.setVisible(true);
+        JFXDialogLayout content = new JFXDialogLayout();
+        content.setHeading(headerMessage);
+        content.setBody(mainContent);
+        JFXButton jfxButton = new JFXButton("Close");
+
+        JFXDialog dialog = new JFXDialog(stackpane,content, JFXDialog.DialogTransition.CENTER);
+        jfxButton.setOnAction(event -> {
+            dialog.close();
+            stackpane.setVisible(false);
+        });
+        content.setActions(jfxButton);
+        dialog.setOnDialogClosed(event -> stackpane.setVisible(false));
+        dialog.show();
     }
 
     @FXML

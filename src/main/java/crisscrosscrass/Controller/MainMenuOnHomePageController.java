@@ -7,7 +7,6 @@ import javafx.scene.layout.VBox;
 public class MainMenuOnHomePageController {
     @FXML VBox mainMenuCheckBoxCollection;
     @FXML JFXCheckBox MainMenuLinkTabs;
-    @FXML JFXCheckBox MainMenuLinkIndex;
     @FXML JFXCheckBox ShoppingWorlds;
     @FXML JFXCheckBox ShoppingWorldsOnIndex;
 }
