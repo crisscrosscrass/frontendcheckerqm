@@ -7,5 +7,7 @@
     <children>
         <JFXCheckBox fx:id="MainMenuLinkTabs" text="Main Menu Link Tabs" />
         <JFXCheckBox fx:id="MainMenuLinkIndex" text="Main Menu Link on Index" />
+        <JFXCheckBox fx:id="ShoppingWorlds" text="Shopping World" />
+        <JFXCheckBox fx:id="ShoppingWorldsOnIndex" text="Shopping World on Index" />
     </children>
 </VBox>

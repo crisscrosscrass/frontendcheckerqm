@@ -214,4 +214,106 @@ public class MainMenuOnHomePageTest {
         report.writeToFile("=================================", "");
 
     }
+
+    public void checkingShoppingWorld(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox ShoppingWorlds, Text statusInfo, TextField inputSearch, Properties Homepage){
+        final String infoMessage = ShoppingWorlds.getText();
+        Report failedMainMenuTest = new Report();
+        final String failedReportName = "failedMainMenuIndexTest";
+        failedMainMenuTest.clearWrittenNamendReport(failedReportName);
+        ChangeCheckBox.adjustStyle(false,"progress",ShoppingWorlds);
+        Platform.runLater(() -> {
+            statusInfo.setText(""+infoMessage+"...");
+        });
+        try {
+            ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
+            webDriver.switchTo().window(tabs.get(0));
+            try {
+                webDriver.navigate().to(inputSearch.getText().trim());
+                WebDriverWait wait = new WebDriverWait(webDriver, 10);
+                try{
+                    wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.main.shoppingworld"))));
+                    webDriver.findElementByXPath(Homepage.getProperty("page.main.shoppingworld")).click();
+                    if (webDriver.getCurrentUrl().contains("inspiration")){
+                        ChangeCheckBox.adjustStyle(true,"complete",ShoppingWorlds);
+                        report.writeToFile(infoMessage, "User is redirected to a page whose URL contains \"inspiration\"");
+                    }else {
+                        ChangeCheckBox.adjustStyle(true,"nope",ShoppingWorlds);
+                        report.writeToFile(infoMessage, "User is NOT redirected to a page whose URL contains \"inspiration\"");
+                    }
+                }catch (Exception gridPageIssue){
+                    ChangeCheckBox.adjustStyle(true,"nope",ShoppingWorlds);
+                    webDriver.navigate().to(inputSearch.getText().trim());
+                    report.writeToFile(infoMessage, "Couldn't detect \"Main Menu\" Links");
+                    gridPageIssue.printStackTrace();
+                }
+            }catch (Exception noRequestedSiteFound){
+                ChangeCheckBox.adjustStyle(true,"nope",ShoppingWorlds);
+                webDriver.navigate().to(inputSearch.getText().trim());
+                report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
+                noRequestedSiteFound.printStackTrace();
+            }
+        }catch (Exception noBrowserWorking){
+            ChangeCheckBox.adjustStyle(true,"nope",ShoppingWorlds);
+            webDriver.navigate().to(inputSearch.getText().trim());
+            report.writeToFile(infoMessage, "unable to check! Browser not responding");
+            noBrowserWorking.printStackTrace();
+        }
+        report.writeToFile("=================================", "");
+
+    }
+    public void checkingShoppingWorldOnIndex(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox ShoppingWorldsOnIndex, Text statusInfo, TextField inputSearch, Properties Homepage){
+        final String infoMessage = ShoppingWorldsOnIndex.getText();
+        Report failedMainMenuTest = new Report();
+        final String failedReportName = "failedMainMenuIndexTest";
+        failedMainMenuTest.clearWrittenNamendReport(failedReportName);
+        ChangeCheckBox.adjustStyle(false,"progress",ShoppingWorldsOnIndex);
+        Platform.runLater(() -> {
+            statusInfo.setText(""+infoMessage+"...");
+        });
+        try {
+            ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
+            webDriver.switchTo().window(tabs.get(0));
+            try {
+                webDriver.navigate().to(inputSearch.getText().trim());
+                WebDriverWait wait = new WebDriverWait(webDriver, 10);
+                try{
+                    wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.main.shoppingworld"))));
+                    final String previousURL = webDriver.findElementByXPath(Homepage.getProperty("page.main.shoppingworld")).getAttribute("href").toLowerCase().trim();
+                    webDriver.navigate().to("https://www.google.com/");
+                    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='lst-ib']")));
+                    WebElement googleSearch = webDriver.findElementByXPath("//*[@id='lst-ib']");
+                    googleSearch.sendKeys("site:"+previousURL);
+                    googleSearch.submit();
+                    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='g']//h3/a")));
+                    List<WebElement> GoogleResults = webDriver.findElementsByXPath("//div[@class='g']//h3/a");
+                        if (previousURL.equals(GoogleResults.get(0).getAttribute("href").toLowerCase().trim())){
+                            logger.info("Site on index");
+                            ChangeCheckBox.adjustStyle(true,"complete",ShoppingWorldsOnIndex);
+                            report.writeToFile(infoMessage,"\"" + previousURL+"\" | Index");
+                        }else {
+                            logger.info("Site not index");
+                            ChangeCheckBox.adjustStyle(true,"nope",ShoppingWorldsOnIndex);
+                            report.writeToFile(infoMessage,"\"" + previousURL+"\" | No Index");
+                        }
+                }catch (Exception gridPageIssue){
+                    ChangeCheckBox.adjustStyle(true,"nope",ShoppingWorldsOnIndex);
+                    webDriver.navigate().to(inputSearch.getText().trim());
+                    report.writeToFile(infoMessage, "Couldn't detect \"Main Menu\" Links");
+                    gridPageIssue.printStackTrace();
+                }
+            }catch (Exception noRequestedSiteFound){
+                ChangeCheckBox.adjustStyle(true,"nope",ShoppingWorldsOnIndex);
+                webDriver.navigate().to(inputSearch.getText().trim());
+                report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
+                noRequestedSiteFound.printStackTrace();
+            }
+        }catch (Exception noBrowserWorking){
+            ChangeCheckBox.adjustStyle(true,"nope",ShoppingWorldsOnIndex);
+            webDriver.navigate().to(inputSearch.getText().trim());
+            report.writeToFile(infoMessage, "unable to check! Browser not responding");
+            noBrowserWorking.printStackTrace();
+        }
+        report.writeToFile("=================================", "");
+
+    }
 }
