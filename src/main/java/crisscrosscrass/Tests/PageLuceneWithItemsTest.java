@@ -192,7 +192,6 @@ public class PageLuceneWithItemsTest {
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",PageLuceneWithItemsSorting);
-            webDriver.navigate().to(inputSearch.getText().trim());
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
             noBrowserWorking.printStackTrace();
         }
@@ -282,7 +281,6 @@ public class PageLuceneWithItemsTest {
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",PageLuceneWithItemsCollapse);
-            webDriver.navigate().to(inputSearch.getText().trim());
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
             noBrowserWorking.printStackTrace();
         }
@@ -380,7 +378,6 @@ public class PageLuceneWithItemsTest {
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",PageLuceneWithItemsMultiSelect);
-            webDriver.navigate().to(inputSearch.getText().trim());
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
             noBrowserWorking.printStackTrace();
         }

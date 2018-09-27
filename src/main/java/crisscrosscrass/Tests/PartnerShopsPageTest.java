@@ -67,22 +67,17 @@ public class PartnerShopsPageTest {
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",GoToTopButton);
-            webDriver.navigate().to(inputPartnerShopPageURL.getText().trim());
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
             noBrowserWorking.printStackTrace();
         }
-
         report.writeToFile("=================================", "");
-
     }
-
     public void checkingBecomePartnerPopUp(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox BecomePartnerPopUp, Text statusInfo, TextField inputPartnerShopPageURL, Properties Homepage){
         final String infoMessage = BecomePartnerPopUp.getText();
         ChangeCheckBox.adjustStyle(false,"progress",BecomePartnerPopUp);
         Platform.runLater(() -> {
             statusInfo.setText(""+infoMessage+"...");
         });
-
         try {
             ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
             webDriver.switchTo().window(tabs.get(0));
@@ -118,13 +113,10 @@ public class PartnerShopsPageTest {
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",BecomePartnerPopUp);
-            webDriver.navigate().to(inputPartnerShopPageURL.getText().trim());
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
             noBrowserWorking.printStackTrace();
         }
-
         report.writeToFile("=================================", "");
-
     }
     public void checkingSortingReviews(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox SortingReviews, Text statusInfo, TextField inputPartnerShopPageURL, Properties Homepage){
         final String infoMessage = SortingReviews.getText();
@@ -132,7 +124,6 @@ public class PartnerShopsPageTest {
         Platform.runLater(() -> {
             statusInfo.setText(""+infoMessage+"...");
         });
-
         try {
             ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
             webDriver.switchTo().window(tabs.get(0));
@@ -193,15 +184,11 @@ public class PartnerShopsPageTest {
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",SortingReviews);
-            webDriver.navigate().to(inputPartnerShopPageURL.getText().trim());
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
             noBrowserWorking.printStackTrace();
         }
-
         report.writeToFile("=================================", "");
-
     }
-
     public void checkingShopLinkName(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox ShopLinkName, Text statusInfo, TextField inputPartnerShopPageURL, Properties Homepage){
         final String infoMessage = ShopLinkName.getText();
         ChangeCheckBox.adjustStyle(false,"progress",ShopLinkName);
@@ -251,7 +238,6 @@ public class PartnerShopsPageTest {
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",ShopLinkName);
-            webDriver.navigate().to(inputPartnerShopPageURL.getText().trim());
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
             noBrowserWorking.printStackTrace();
         }
@@ -307,7 +293,6 @@ public class PartnerShopsPageTest {
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",ShopLinkLogo);
-            webDriver.navigate().to(inputPartnerShopPageURL.getText().trim());
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
             noBrowserWorking.printStackTrace();
         }
@@ -354,7 +339,6 @@ public class PartnerShopsPageTest {
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",ShopLinkLogo);
-            webDriver.navigate().to(inputPartnerShopPageURL.getText().trim());
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
             noBrowserWorking.printStackTrace();
         }
@@ -424,7 +408,6 @@ public class PartnerShopsPageTest {
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",ShopSearchBox);
-            webDriver.navigate().to(inputPartnerShopPageURL.getText().trim());
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
             noBrowserWorking.printStackTrace();
         }

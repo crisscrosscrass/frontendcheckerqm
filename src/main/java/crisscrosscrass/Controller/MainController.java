@@ -632,8 +632,8 @@ public class MainController implements Serializable{
                             tabPane.getSelectionModel().select(tabAffiliateProgram);
                             settingManager.updateResultBoxes(settingAffiliateProgram,"progress",resultBoxAffiliateProgram,BoxAffiliateProgramResult);
                             AffiliateProgramTest affiliateProgramTest = new AffiliateProgramTest();
-                            affiliateProgramTest.checkingBecomeAffilinetPartner(webDriver,report,js,affiliateProgramController.BecomeAffilinetPartner,statusInfo,inputAffiliateProgramURL, Homepage);
-                            affiliateProgramTest.checkingBecomeTradeTrackerPartner(webDriver,report,js,affiliateProgramController.BecomeTradeTrackerPartner,statusInfo,inputAffiliateProgramURL, Homepage);
+                            affiliateProgramTest.checkingBecomeAffilinetPartner(webDriver,report,js,affiliateProgramController.BecomeAffilinetPartner,statusInfo,inputAffiliateProgramURL,inputSearch,Homepage);
+                            affiliateProgramTest.checkingBecomeTradeTrackerPartner(webDriver,report,js,affiliateProgramController.BecomeTradeTrackerPartner,statusInfo,inputAffiliateProgramURL,inputSearch,Homepage);
                         }catch (Exception noBecomeAPartnerWorking){
                             noBecomeAPartnerWorking.printStackTrace();
                         }

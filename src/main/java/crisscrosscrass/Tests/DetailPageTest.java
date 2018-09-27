@@ -394,12 +394,9 @@ public class DetailPageTest {
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",JumpToNonExistingPage);
-            webDriver.navigate().to(inputGridPageURL.getText().trim());
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
             noBrowserWorking.printStackTrace();
         }
-
         report.writeToFile("=================================", "");
-
     }
 }

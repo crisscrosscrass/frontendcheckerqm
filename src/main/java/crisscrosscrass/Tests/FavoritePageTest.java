@@ -267,7 +267,6 @@ public class FavoritePageTest {
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",PersonalList);
-            webDriver.navigate().to(inputSearch.getText().trim());
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
             noBrowserWorking.printStackTrace();
         }
@@ -440,7 +439,6 @@ public class FavoritePageTest {
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",applySortingOnList);
-            webDriver.navigate().to(inputGridPageURL.getText().trim());
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
             noBrowserWorking.printStackTrace();
         }
@@ -646,13 +644,9 @@ public class FavoritePageTest {
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",selectionOnList);
-            webDriver.navigate().to(inputSearch.getText().trim());
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
             noBrowserWorking.printStackTrace();
         }
-
         report.writeToFile("=================================", "");
-
-
     }
 }

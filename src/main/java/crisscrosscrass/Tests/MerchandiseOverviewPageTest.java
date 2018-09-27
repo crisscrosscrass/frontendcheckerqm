@@ -96,7 +96,6 @@ public class MerchandiseOverviewPageTest {
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",LettertoMerchandise);
-            webDriver.navigate().to(inputMerchandiseOverviewPageURL.getText().trim());
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
             noBrowserWorking.printStackTrace();
         }
@@ -144,13 +143,10 @@ public class MerchandiseOverviewPageTest {
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",MerchandiseName);
-            webDriver.navigate().to(inputMerchandiseOverviewPageURL.getText().trim());
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
             noBrowserWorking.printStackTrace();
         }
-
         report.writeToFile("=================================", "");
-
     }
     public void checkingMerchandiseSearch(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox MerchandiseSearch, Text statusInfo, TextField inputMerchandiseOverviewPageURL,TextField inputMerchandiseSearch, Properties Homepage){
         final String infoMessage = MerchandiseSearch.getText();
@@ -212,13 +208,10 @@ public class MerchandiseOverviewPageTest {
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",MerchandiseSearch);
-            webDriver.navigate().to(inputMerchandiseOverviewPageURL.getText().trim());
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
             noBrowserWorking.printStackTrace();
         }
-
         report.writeToFile("=================================", "");
-
     }
     public void checkingMerchandiseGoToTop(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox GoToTopButton, Text statusInfo, TextField inputMerchandiseOverviewPageURL, Properties Homepage){
         final String infoMessage = GoToTopButton.getText();
@@ -286,12 +279,9 @@ public class MerchandiseOverviewPageTest {
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",GoToTopButton);
-            webDriver.navigate().to(inputMerchandiseOverviewPageURL.getText().trim());
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
             noBrowserWorking.printStackTrace();
         }
-
         report.writeToFile("=================================", "");
-
     }
 }

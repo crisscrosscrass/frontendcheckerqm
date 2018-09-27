@@ -60,10 +60,9 @@ public class HomepageTest {
             }
         }catch (Exception noCategoryLinksLeftSideMenu){
             ChangeCheckBox.adjustStyle(true,"nope",checkCategoryLinksLeftSideMenu);
-            webDriver.navigate().to(inputSearch.getText().trim());
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
+            noCategoryLinksLeftSideMenu.printStackTrace();
         }
-
         report.writeToFile("=================================", "");
     }
 
@@ -645,7 +644,6 @@ public class HomepageTest {
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",PrivacyPolicy);
-            webDriver.navigate().to(inputPrivacyPolicy.getText().trim());
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
             noBrowserWorking.printStackTrace();
         }

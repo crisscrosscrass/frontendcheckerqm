@@ -27,7 +27,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="mainStage" prefHeight="822.0" prefWidth="1355.0" style="-fx-background-color: white;" stylesheets="@../Style/Main.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="crisscrosscrass.Controller.MainController">
+<AnchorPane fx:id="mainStage" minHeight="822.0" minWidth="1355.0" prefHeight="822.0" prefWidth="1355.0" style="-fx-background-color: white;" stylesheets="@../Style/Main.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="crisscrosscrass.Controller.MainController">
    <children>
       <VBox alignment="CENTER" prefHeight="229.0" prefWidth="0.0" spacing="5.0" style="-fx-background-color: grey; -fx-border-width: 1;" visible="false">
          <children>
@@ -190,13 +190,13 @@
             <Insets left="20.0" />
          </padding>
       </VBox>
-      <VBox layoutX="-1.0" prefHeight="804.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="0.0">
+      <VBox layoutX="-1.0" minWidth="1349.0" prefHeight="804.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="0.0">
          <children>
-            <HBox alignment="CENTER_LEFT" prefHeight="131.0" prefWidth="1349.0" style="-fx-background-color: #45818eff;" VBox.vgrow="ALWAYS">
+            <HBox alignment="CENTER_LEFT" minWidth="1349.0" prefHeight="131.0" prefWidth="1349.0" style="-fx-background-color: #45818eff;" VBox.vgrow="ALWAYS">
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="96.0" prefWidth="833.0" spacing="25.0" style="-fx-background-color: #0c343dff;">
                      <children>
-                        <JFXComboBox fx:id="countrySelection" focusColor="#e83062" prefHeight="63.0" prefWidth="125.0" unFocusColor="WHITE">
+                        <JFXComboBox fx:id="countrySelection" focusColor="#e83062" prefHeight="63.0" prefWidth="147.0" unFocusColor="WHITE">
                            <padding>
                               <Insets left="20.0" />
                            </padding></JFXComboBox>
@@ -212,8 +212,8 @@
                   </HBox>
                </children>
             </HBox>
-            <HBox prefHeight="25.0" />
-            <HBox prefHeight="667.0" prefWidth="1357.0" spacing="10.0" VBox.vgrow="ALWAYS">
+            <HBox minWidth="1349.0" prefHeight="25.0" />
+            <HBox minWidth="1349.0" prefHeight="667.0" prefWidth="1357.0" spacing="10.0" VBox.vgrow="ALWAYS">
                <children>
                   <VBox fillWidth="false" prefHeight="657.0" prefWidth="907.0">
                      <children>
@@ -225,6 +225,7 @@
                                        <children>
                                           <JFXButton alignment="CENTER" onAction="#selectAllSettingCheckBoxes" style="-fx-background-color: #0f9d58;" text="Full Test" textFill="WHITE" />
                                           <JFXButton alignment="CENTER" onAction="#deselectAllSettingCheckBoxes" style="-fx-background-color: #5a5a5a;" text="Custom Test" textFill="WHITE" />
+                                          <JFXButton onAction="#LoadFileWithURLs" ripplerFill="WHITE" style="-fx-background-color: #e83062;" text="LoadFileWithURL" textFill="WHITE" />
                                        </children>
                                     </HBox>
                                     <GridPane fx:id="settingGridPane" prefHeight="295.0" prefWidth="641.0" vgap="5.0">
@@ -371,7 +372,7 @@
                                           <Insets />
                                        </VBox.margin>
                                     </Button>
-                                    <Button fx:id="stopWebdriver" layoutX="23.0" layoutY="207.0" minHeight="40.0" mnemonicParsing="false" prefHeight="69.0" prefWidth="104.0" style="-fx-background-color: #e83062; -fx-border-color: black; -fx-background-radius: 20; -fx-border-radius: 20;" text="CANCEL" textFill="WHITE">
+                                    <Button fx:id="stopWebdriver" layoutX="23.0" layoutY="207.0" minHeight="40.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="104.0" style="-fx-background-color: #e83062; -fx-border-color: black; -fx-background-radius: 20; -fx-border-radius: 20;" text="CANCEL" textFill="WHITE">
                                        <font>
                                           <Font name="Arial Black" size="12.0" />
                                        </font>
@@ -380,7 +381,6 @@
                                        </cursor>
                                     </Button>
                                     <HBox fx:id="outputPlace" alignment="CENTER" />
-                                    <JFXButton onAction="#LoadFileWithURLs" ripplerFill="WHITE" style="-fx-background-color: #e83062;" text="LoadFileWithURL" textFill="WHITE" />
                                  </children>
                               </VBox>
                            </children>
@@ -722,6 +722,6 @@
             </HBox>
          </children>
       </VBox>
-      <StackPane fx:id="stackpane" layoutY="150.0" prefHeight="321.0" prefWidth="801.0" visible="false" />
+      <StackPane fx:id="stackpane" layoutY="124.0" prefHeight="347.0" prefWidth="801.0" visible="false" />
    </children>
 </AnchorPane>

@@ -405,11 +405,9 @@ public class GridPageTest {
 
         }catch (Exception noCategoryLinksLeftSideMenu){
             ChangeCheckBox.adjustStyle(true,"nope",pagingForwardBackward);
-            webDriver.navigate().to(inputSearch.getText().trim());
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
             noCategoryLinksLeftSideMenu.printStackTrace();
         }
-
         report.writeToFile("=================================", "");
     }
 
@@ -493,11 +491,9 @@ public class GridPageTest {
 
         }catch (Exception noCategoryLinksLeftSideMenu){
             ChangeCheckBox.adjustStyle(true,"nope",productView300);
-            webDriver.navigate().to(inputSearch.getText().trim());
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
             noCategoryLinksLeftSideMenu.printStackTrace();
         }
-
         report.writeToFile("=================================", "");
     }
 
@@ -565,7 +561,6 @@ public class GridPageTest {
             }
         }catch (Exception noCategoryLinksLeftSideMenu){
             ChangeCheckBox.adjustStyle(true,"nope",deeperStyle);
-            webDriver.navigate().to(inputSearch.getText().trim());
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
             noCategoryLinksLeftSideMenu.printStackTrace();
         }
@@ -655,7 +650,6 @@ public class GridPageTest {
             }
         }catch (Exception noCategoryLinksLeftSideMenu){
             ChangeCheckBox.adjustStyle(true,"nope",styleBoxOpenClose);
-            webDriver.navigate().to(inputSearch.getText().trim());
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
             noCategoryLinksLeftSideMenu.printStackTrace();
         }
@@ -1040,7 +1034,6 @@ public class GridPageTest {
             }
         }catch (Exception noCategoryLinksLeftSideMenu){
             ChangeCheckBox.adjustStyle(true,"nope",filtersApply);
-            webDriver.navigate().to(inputSearch.getText().trim());
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
             noCategoryLinksLeftSideMenu.printStackTrace();
         }
@@ -1123,7 +1116,6 @@ public class GridPageTest {
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",searchBoxInBrandFilter);
-            webDriver.navigate().to(inputSearch.getText().trim());
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
             noBrowserWorking.printStackTrace();
         }
@@ -1198,7 +1190,6 @@ public class GridPageTest {
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",searchBoxInShopFilter);
-            webDriver.navigate().to(inputSearch.getText().trim());
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
             noBrowserWorking.printStackTrace();
         }

@@ -118,7 +118,6 @@ public class ImageGroupingPageTest {
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",ImageGroupingClickOut);
-            webDriver.navigate().to(inputGridPageURL.getText().trim());
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
             noBrowserWorking.printStackTrace();
         }
@@ -197,7 +196,6 @@ public class ImageGroupingPageTest {
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",DetailPageOfOffer);
-            webDriver.navigate().to(inputGridPageURL.getText().trim());
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
             noBrowserWorking.printStackTrace();
         }

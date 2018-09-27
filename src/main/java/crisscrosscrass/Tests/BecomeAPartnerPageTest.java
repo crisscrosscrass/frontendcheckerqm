@@ -55,7 +55,6 @@ public class BecomeAPartnerPageTest {
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",RegisterButton);
-            webDriver.navigate().to(inputBecomeAPartnerPageURL.getText().trim());
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
             noBrowserWorking.printStackTrace();
         }
@@ -95,7 +94,6 @@ public class BecomeAPartnerPageTest {
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",RegisterButton);
-            webDriver.navigate().to(inputBecomeAPartnerPageURL.getText().trim());
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
             noBrowserWorking.printStackTrace();
         }
@@ -174,7 +172,6 @@ public class BecomeAPartnerPageTest {
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",GoToTopButton);
-            webDriver.navigate().to(inputBecomeAPartnerPageURL.getText().trim());
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
             noBrowserWorking.printStackTrace();
         }
@@ -248,7 +245,6 @@ public class BecomeAPartnerPageTest {
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",CountryFlags);
-            webDriver.navigate().to(inputBecomeAPartnerPageURL.getText().trim());
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
             noBrowserWorking.printStackTrace();
         }
@@ -311,13 +307,10 @@ public class BecomeAPartnerPageTest {
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",LoginPartnerdashboard);
-            webDriver.navigate().to(inputBecomeAPartnerPageURL.getText().trim());
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
             noBrowserWorking.printStackTrace();
         }
-
         report.writeToFile("=================================", "");
-
     }
 
     public void checkingTabHelpSection(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox HelpRegisterTab, Text statusInfo, TextField inputBecomeAPartnerPageURL, Properties Homepage){
@@ -431,7 +424,6 @@ public class BecomeAPartnerPageTest {
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",HelpRegisterTab);
-            webDriver.navigate().to(inputBecomeAPartnerPageURL.getText().trim());
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
             noBrowserWorking.printStackTrace();
         }
@@ -491,7 +483,6 @@ public class BecomeAPartnerPageTest {
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",DownloadPDFHelp);
-            webDriver.navigate().to(inputBecomeAPartnerPageURL.getText().trim());
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
             noBrowserWorking.printStackTrace();
         }
@@ -614,13 +605,10 @@ public class BecomeAPartnerPageTest {
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",PartnerTabSection);
-            webDriver.navigate().to(inputBecomeAPartnerPageURL.getText().trim());
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
             noBrowserWorking.printStackTrace();
         }
-
         report.writeToFile("=================================", "");
-
     }
     public void checkingFeedProviders(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox FeedProviders, Text statusInfo, TextField inputBecomeAPartnerPageURL, Properties Homepage){
         final String infoMessage = "Checking Feed Providers";
@@ -677,12 +665,9 @@ public class BecomeAPartnerPageTest {
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",FeedProviders);
-            webDriver.navigate().to(inputBecomeAPartnerPageURL.getText().trim());
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
             noBrowserWorking.printStackTrace();
         }
-
         report.writeToFile("=================================", "");
-
     }
 }
