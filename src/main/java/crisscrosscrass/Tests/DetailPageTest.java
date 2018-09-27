@@ -92,13 +92,10 @@ public class DetailPageTest {
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",SwitchTabsInDetailPage);
-            webDriver.navigate().to(inputGridPageURL.getText().trim());
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
             noBrowserWorking.printStackTrace();
         }
-
         report.writeToFile("=================================", "");
-
     }
 
     public void checkingSimilarProductClickOut(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox SimilarProductsClickOut, Text statusInfo, TextField inputGridPageURL, Properties Homepage){
@@ -194,15 +191,11 @@ public class DetailPageTest {
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",SimilarProductsClickOut);
-            webDriver.navigate().to(inputGridPageURL.getText().trim());
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
             noBrowserWorking.printStackTrace();
         }
-
         report.writeToFile("=================================", "");
-
     }
-
     public void checkingPagingForwardBackward(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox PagingForwardBackward, Text statusInfo, TextField inputGridPageURL, Properties Homepage){
         final String infoMessage = PagingForwardBackward.getText();
         ChangeCheckBox.adjustStyle(false,"progress",PagingForwardBackward);
@@ -307,15 +300,11 @@ public class DetailPageTest {
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",PagingForwardBackward);
-            webDriver.navigate().to(inputGridPageURL.getText().trim());
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
             noBrowserWorking.printStackTrace();
         }
-
         report.writeToFile("=================================", "");
-
     }
-
     public void checkingJumpToNonExistingPage(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox JumpToNonExistingPage, Text statusInfo, TextField inputGridPageURL, Properties Homepage){
         final String infoMessage = JumpToNonExistingPage.getText();
         ChangeCheckBox.adjustStyle(false,"progress",JumpToNonExistingPage);

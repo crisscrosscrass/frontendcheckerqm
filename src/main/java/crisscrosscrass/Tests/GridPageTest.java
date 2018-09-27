@@ -238,14 +238,11 @@ public class GridPageTest {
             }
         }catch (Exception noCategoryLinksLeftSideMenu){
             ChangeCheckBox.adjustStyle(true,"nope",sortingValues);
-            webDriver.navigate().to(inputSearch.getText().trim());
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
             noCategoryLinksLeftSideMenu.printStackTrace();
         }
-
         report.writeToFile("=================================", "");
     }
-
     public void checkingSwitchFromSmallToLargeImages(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox switchFromSmallToLarge, TextField inputGridPageURL, Text statusInfo, TextField inputSearch, Properties Homepage){
         final String infoMessage = switchFromSmallToLarge.getText();
         ChangeCheckBox.adjustStyle(false,"progress",switchFromSmallToLarge);
@@ -311,15 +308,11 @@ public class GridPageTest {
 
         }catch (Exception noCategoryLinksLeftSideMenu){
             ChangeCheckBox.adjustStyle(true,"nope",switchFromSmallToLarge);
-            webDriver.navigate().to(inputSearch.getText().trim());
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
             noCategoryLinksLeftSideMenu.printStackTrace();
         }
-
         report.writeToFile("=================================", "");
     }
-
-
     public void checkingPagingForwardBackward(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox pagingForwardBackward, TextField inputGridPageURL, Text statusInfo, TextField inputSearch, Properties Homepage){
         final String infoMessage = pagingForwardBackward.getText();
         ChangeCheckBox.adjustStyle(false,"progress",pagingForwardBackward);
@@ -398,7 +391,6 @@ public class GridPageTest {
                 }
             }catch (Exception noMainMenuLinkFound){
                 ChangeCheckBox.adjustStyle(true,"nope",pagingForwardBackward);
-                webDriver.navigate().to(inputSearch.getText().trim());
                 report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
                 noMainMenuLinkFound.printStackTrace();
             }
@@ -1037,10 +1029,8 @@ public class GridPageTest {
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
             noCategoryLinksLeftSideMenu.printStackTrace();
         }
-
         report.writeToFile("=================================", "");
     }
-
     public void checkingSearchBoxInBrandFilter(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox searchBoxInBrandFilter, TextField inputGridPageURL, TextField inputGridPageKeyword,Text statusInfo, TextField inputSearch, TextField inputEmailAdress, String xpathPattern1, String xpathPattern2, Properties Homepage, boolean isSuccessful, boolean isAvailable){
         final String infoMessage = searchBoxInBrandFilter.getText();
         ChangeCheckBox.adjustStyle(false,"progress",searchBoxInBrandFilter);
@@ -1193,8 +1183,6 @@ public class GridPageTest {
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
             noBrowserWorking.printStackTrace();
         }
-
         report.writeToFile("=================================", "");
-
     }
 }

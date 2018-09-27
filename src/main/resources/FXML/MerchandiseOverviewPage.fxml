@@ -12,6 +12,6 @@
         <JFXCheckBox fx:id="LettertoMerchandise" text="Letter to Merchandise" />
         <JFXCheckBox fx:id="MerchandiseName" text="Merchandise Name" />
         <JFXCheckBox fx:id="MerchandiseSearch" text="Merchandise Search" />
-        <JFXCheckBox fx:id="GoToTop" text="Go to Top" />
+        <JFXCheckBox fx:id="GoToTop" text="Merchandise Go to Top" />
     </children>
 </VBox>
