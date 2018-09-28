@@ -290,7 +290,7 @@ public class MainController implements Serializable{
         infoBecomeAPartnerPageTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingBecomeAPartnerPage.getText(),becomeAPartnerController.becomePartnerCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]), placeForTooltipSetting));
         infoAffiliateTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingAffiliateProgram.getText(),affiliateProgramController.affiliateProgramCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]), placeForTooltipSetting));
         infoMerchandiseTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingMerchandiseOverviewPage.getText(),merchandiseOverviewPageController.merchandiseOverviewCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]), placeForTooltipSetting));
-        infoInputFieldTextSearch.setOnMouseClicked(event -> modalBox.showDialogInputField("TextSearch","Some example Text", placeForTooltipInput));
+        infoInputFieldTextSearch.setOnMouseClicked(event -> modalBox.showDialogInputField(InfoText.valueOf("TextSearch").getHeaderMessage(),InfoText.valueOf("TextSearch").getMainMessage(), placeForTooltipInput));
         //set Start Button to disable, first Country has to be selected
         startwebdriver.setDisable(true);
         stopWebdriver.setDisable(true);

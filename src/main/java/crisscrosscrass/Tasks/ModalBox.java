@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -45,11 +46,14 @@ public class ModalBox {
         headerMessage.setText(nameOfTestCase);
         Text mainContent = new Text();
         mainContent.setText(Message);
+        ScrollPane scrollPane = new ScrollPane(mainContent);
+        scrollPane.setPrefViewportHeight(200);
+        scrollPane.setPrefViewportWidth(400);
 
         placeToDisplayInfo.setVisible(true);
         JFXDialogLayout content = new JFXDialogLayout();
         content.setHeading(headerMessage);
-        content.setBody(mainContent);
+        content.setBody(scrollPane);
         JFXButton jfxButton = new JFXButton("Close");
         jfxButton.setStyle("-fx-background-color:  #e83062; -fx-text-fill: white;");
 
