@@ -10,7 +10,7 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
 public class ModalBox {
-    public void showDialogTestCases(String nameOfTestCase, JFXCheckBox[] checkboxes, StackPane placeToAddInfo){
+    public void showDialogTestCases(String nameOfTestCase, JFXCheckBox[] checkboxes, StackPane placeToDisplayInfo){
         StringBuilder sb = new StringBuilder();
         for (JFXCheckBox checkBox : checkboxes){
             sb.append("- "+checkBox.getText()+"\n");
@@ -22,20 +22,44 @@ public class ModalBox {
         Text mainContent = new Text();
         mainContent.setText(sb.toString());
 
-        placeToAddInfo.setVisible(true);
+        placeToDisplayInfo.setVisible(true);
         JFXDialogLayout content = new JFXDialogLayout();
         content.setHeading(headerMessage);
         content.setBody(mainContent);
         JFXButton jfxButton = new JFXButton("Close");
         jfxButton.setStyle("-fx-background-color:  #e83062; -fx-text-fill: white;");
 
-        JFXDialog dialog = new JFXDialog(placeToAddInfo,content, JFXDialog.DialogTransition.LEFT);
+        JFXDialog dialog = new JFXDialog(placeToDisplayInfo,content, JFXDialog.DialogTransition.LEFT);
         jfxButton.setOnAction(event -> {
             dialog.close();
-            placeToAddInfo.setVisible(false);
+            placeToDisplayInfo.setVisible(false);
         });
         content.setActions(jfxButton);
-        dialog.setOnDialogClosed(event -> placeToAddInfo.setVisible(false));
+        dialog.setOnDialogClosed(event -> placeToDisplayInfo.setVisible(false));
+        dialog.show();
+    }
+    public void showDialogInputField(String nameOfTestCase, String Message, StackPane placeToDisplayInfo){
+
+        Text headerMessage = new Text();
+        headerMessage.setFont(Font.font ("System", FontWeight.BOLD,22));
+        headerMessage.setText(nameOfTestCase);
+        Text mainContent = new Text();
+        mainContent.setText(Message);
+
+        placeToDisplayInfo.setVisible(true);
+        JFXDialogLayout content = new JFXDialogLayout();
+        content.setHeading(headerMessage);
+        content.setBody(mainContent);
+        JFXButton jfxButton = new JFXButton("Close");
+        jfxButton.setStyle("-fx-background-color:  #e83062; -fx-text-fill: white;");
+
+        JFXDialog dialog = new JFXDialog(placeToDisplayInfo,content, JFXDialog.DialogTransition.BOTTOM);
+        jfxButton.setOnAction(event -> {
+            dialog.close();
+            placeToDisplayInfo.setVisible(false);
+        });
+        content.setActions(jfxButton);
+        dialog.setOnDialogClosed(event -> placeToDisplayInfo.setVisible(false));
         dialog.show();
     }
 }

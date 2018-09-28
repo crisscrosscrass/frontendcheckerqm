@@ -37,7 +37,6 @@ import java.io.*;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
@@ -109,7 +108,8 @@ public class MainController implements Serializable{
     @FXML VBox CheckBoxesPlace;
     @FXML AnchorPane mainStage;
     @FXML TabPane tabPane;
-    @FXML StackPane stackpane;
+    @FXML StackPane placeForTooltipSetting;
+    @FXML StackPane placeForTooltipInput;
     //Info Buttons
     @FXML FontAwesomeIconView infoHomepageTest;
     @FXML FontAwesomeIconView infoGridPageTest;
@@ -125,6 +125,7 @@ public class MainController implements Serializable{
     @FXML FontAwesomeIconView infoBecomeAPartnerPageTest;
     @FXML FontAwesomeIconView infoAffiliateTest;
     @FXML FontAwesomeIconView infoMerchandiseTest;
+    @FXML FontAwesomeIconView infoInputFieldTextSearch;
     //tab views
     @FXML Tab tabHomepage;
     @FXML Tab tabGridPage;
@@ -234,6 +235,7 @@ public class MainController implements Serializable{
         ElementGridPageWithWindowBox.visibleProperty().bind(settingGridPageWithWindows.selectedProperty());
         ElementGridPageWithFillInsBox.visibleProperty().bind(settingGridPageFillIns.selectedProperty());
         inputAccountEmail.setOnAction(ValidationEvent -> updateCheckerTabs());
+        infoInputFieldTextSearch.visibleProperty().bind(ElementTextSearchSuggestionBox.visibleProperty());
 
         //check if Properties File is available if yes, load data into Input Fields
         File file = new File("temp//UserSettings.properties");
@@ -274,20 +276,21 @@ public class MainController implements Serializable{
         });
         //Bind Info to QuestionMark Buttons
         ModalBox modalBox = new ModalBox();
-        infoHomepageTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingHomepage.getText(),frontendHomepageController.frontendHomePageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),stackpane));
-        infoGridPageTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingGridPage.getText(),gridPageNoWindowsController.GridPageNoWindowsCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),stackpane));
-        infoGridPageWindowTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingGridPageWithWindows.getText(),gridPageWithWindowsController.gridPageWithWindowsCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),stackpane));
-        infoGridPageFillInsTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingGridPageFillIns.getText(),gridPageWithFillInsController.gridPageWithFillInsCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),stackpane));
-        infoBrandTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingBrandPage.getText(),brandOverviewController.brandPageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),stackpane));
-        infoLuceneTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingLucenePage.getText(),pageLuceneWithItemsController.lucenePageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),stackpane));
-        infoOnMainMenuTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingMainMenuOnHomePage.getText(),mainMenuOnHomePageController.mainMenuCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),stackpane));
-        infoDetailPageTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingDetailPage.getText(),detailPageController.detailPageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),stackpane));
-        infoImageGroupingTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingImageGrouping.getText(),imageGroupingController.imageGroupingCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),stackpane));
-        infoFavoritePageTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingFavoritePage.getText(),favoritePageController.favoritePageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),stackpane));
-        infoPartnerShopPageTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingPartnerShopPage.getText(),partnershopsPageController.partnerShopCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),stackpane));
-        infoBecomeAPartnerPageTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingBecomeAPartnerPage.getText(),becomeAPartnerController.becomePartnerCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),stackpane));
-        infoAffiliateTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingAffiliateProgram.getText(),affiliateProgramController.affiliateProgramCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),stackpane));
-        infoMerchandiseTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingMerchandiseOverviewPage.getText(),merchandiseOverviewPageController.merchandiseOverviewCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),stackpane));
+        infoHomepageTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingHomepage.getText(),frontendHomepageController.frontendHomePageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]), placeForTooltipSetting));
+        infoGridPageTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingGridPage.getText(),gridPageNoWindowsController.GridPageNoWindowsCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]), placeForTooltipSetting));
+        infoGridPageWindowTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingGridPageWithWindows.getText(),gridPageWithWindowsController.gridPageWithWindowsCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]), placeForTooltipSetting));
+        infoGridPageFillInsTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingGridPageFillIns.getText(),gridPageWithFillInsController.gridPageWithFillInsCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]), placeForTooltipSetting));
+        infoBrandTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingBrandPage.getText(),brandOverviewController.brandPageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]), placeForTooltipSetting));
+        infoLuceneTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingLucenePage.getText(),pageLuceneWithItemsController.lucenePageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]), placeForTooltipSetting));
+        infoOnMainMenuTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingMainMenuOnHomePage.getText(),mainMenuOnHomePageController.mainMenuCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]), placeForTooltipSetting));
+        infoDetailPageTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingDetailPage.getText(),detailPageController.detailPageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]), placeForTooltipSetting));
+        infoImageGroupingTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingImageGrouping.getText(),imageGroupingController.imageGroupingCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]), placeForTooltipSetting));
+        infoFavoritePageTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingFavoritePage.getText(),favoritePageController.favoritePageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]), placeForTooltipSetting));
+        infoPartnerShopPageTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingPartnerShopPage.getText(),partnershopsPageController.partnerShopCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]), placeForTooltipSetting));
+        infoBecomeAPartnerPageTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingBecomeAPartnerPage.getText(),becomeAPartnerController.becomePartnerCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]), placeForTooltipSetting));
+        infoAffiliateTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingAffiliateProgram.getText(),affiliateProgramController.affiliateProgramCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]), placeForTooltipSetting));
+        infoMerchandiseTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingMerchandiseOverviewPage.getText(),merchandiseOverviewPageController.merchandiseOverviewCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]), placeForTooltipSetting));
+        infoInputFieldTextSearch.setOnMouseClicked(event -> modalBox.showDialogInputField("TextSearch","Some example Text", placeForTooltipInput));
         //set Start Button to disable, first Country has to be selected
         startwebdriver.setDisable(true);
         stopWebdriver.setDisable(true);
@@ -1044,19 +1047,19 @@ public class MainController implements Serializable{
         Text mainContent = new Text();
         mainContent.setText(sb.toString());
 
-        stackpane.setVisible(true);
+        placeForTooltipSetting.setVisible(true);
         JFXDialogLayout content = new JFXDialogLayout();
         content.setHeading(headerMessage);
         content.setBody(mainContent);
         JFXButton jfxButton = new JFXButton("Close");
 
-        JFXDialog dialog = new JFXDialog(stackpane,content, JFXDialog.DialogTransition.CENTER);
+        JFXDialog dialog = new JFXDialog(placeForTooltipSetting,content, JFXDialog.DialogTransition.CENTER);
         jfxButton.setOnAction(event -> {
             dialog.close();
-            stackpane.setVisible(false);
+            placeForTooltipSetting.setVisible(false);
         });
         content.setActions(jfxButton);
-        dialog.setOnDialogClosed(event -> stackpane.setVisible(false));
+        dialog.setOnDialogClosed(event -> placeForTooltipSetting.setVisible(false));
         dialog.show();
     }
 

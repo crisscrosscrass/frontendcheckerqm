@@ -30,6 +30,7 @@ public class SettingManager {
         }
     }
 
+
     public void setValidationColor(JFXCheckBox settingCheckBox, JFXTextField validationField){
         if (validationField.getText() == null | validationField.getText().equals("") | !validationField.getText().toLowerCase().contains("@visual-meta.com")){
             Platform.runLater(() -> {
