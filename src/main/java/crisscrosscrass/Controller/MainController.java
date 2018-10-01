@@ -12,6 +12,9 @@ import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -31,6 +34,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.awt.*;
 import java.io.*;
 
 
@@ -273,6 +277,7 @@ public class MainController implements Serializable{
             inputAffiliateProgramURL.setText(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getLocationAffiliateProgramPageURL());
             inputMerchandiseOverviewPageURL.setText(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getLocationMerchandiseOverviewPageURL());
             startwebdriver.setDisable(false);
+            validateInputAttributes();
         });
         //Bind Info to QuestionMark Buttons
         ModalBox modalBox = new ModalBox();
@@ -1031,37 +1036,6 @@ public class MainController implements Serializable{
             DataPieChartNotWorking.printStackTrace();
         }
     }
-    @FXML
-    public void loadDialog(){
-        final String nameOfTestCase = "HomepageTestCase";
-        JFXCheckBox[] checkboxes = frontendHomepageController.frontendHomePageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]);
-
-
-        StringBuilder sb = new StringBuilder();
-        for (JFXCheckBox checkBox : checkboxes){
-            sb.append(checkBox.getText()+"\n");
-        }
-
-        Text headerMessage = new Text();
-        headerMessage.setText(nameOfTestCase.toString());
-        Text mainContent = new Text();
-        mainContent.setText(sb.toString());
-
-        placeForTooltipSetting.setVisible(true);
-        JFXDialogLayout content = new JFXDialogLayout();
-        content.setHeading(headerMessage);
-        content.setBody(mainContent);
-        JFXButton jfxButton = new JFXButton("Close");
-
-        JFXDialog dialog = new JFXDialog(placeForTooltipSetting,content, JFXDialog.DialogTransition.CENTER);
-        jfxButton.setOnAction(event -> {
-            dialog.close();
-            placeForTooltipSetting.setVisible(false);
-        });
-        content.setActions(jfxButton);
-        dialog.setOnDialogClosed(event -> placeForTooltipSetting.setVisible(false));
-        dialog.show();
-    }
 
     @FXML
     public void selectAllSettingCheckBoxes(){
@@ -1099,6 +1073,15 @@ public class MainController implements Serializable{
         settingAffiliateProgram.setSelected(false);
         settingMerchandiseOverviewPage.setSelected(false);
         updateCheckerTabs();
+    }
+    public void validateInputAttributes(){
+        if (settingGridPage.isSelected() | settingImageGrouping.isSelected() | settingDetailPage.isSelected()| settingFavoritePage.isSelected()){
+            if (!inputGridPageURL.getText().contains(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getLocationMainPage())){
+                inputGridPageURL.setStyle("-fx-border-style: none solid solid solid; -fx-border-width: 3; -fx-border-color: red;");
+            }else{
+                inputGridPageURL.setStyle("-fx-border-style: none solid solid solid; -fx-border-width: 1; -fx-border-color: green;");
+            }
+        }
     }
     public void updateCheckerTabs(){
         SettingManager settingManager = new SettingManager();
@@ -1179,7 +1162,6 @@ public class MainController implements Serializable{
         globalPassedTestPassedCounter.setText(""+ getGlobalPassedTestCases());
         globalSelectedTestPassedCounter.setText("/"+ getGlobalTestCaseNumber());
     }
-
     public int getGlobalPassedTestCases(){
         int globalFailedTestCasesNumber = 0;
         ResultsManager resultsManager = new ResultsManager();
@@ -1199,6 +1181,4 @@ public class MainController implements Serializable{
         globalFailedTestCasesNumber += resultsManager.getPassedTestCasesNumber(settingMerchandiseOverviewPage,merchandiseOverviewPageController.merchandiseOverviewCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
         return globalFailedTestCasesNumber;
     }
-
-
 }

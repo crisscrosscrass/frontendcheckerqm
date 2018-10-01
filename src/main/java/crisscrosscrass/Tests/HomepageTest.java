@@ -37,6 +37,7 @@ public class HomepageTest {
             try {
 
                 boolean isAvailable = webDriver.findElementByXPath(xpathPattern1) != null;
+                report.writeToFile("Start to check all Category Links: ", "");
                 if(isAvailable){
                     List<WebElement> CategoryLinksLeftSideMenu = webDriver.findElementsByXPath(xpathPattern1);
                     WebdriverTab newtab = new WebdriverTab();
@@ -395,6 +396,7 @@ public class HomepageTest {
                         }
                     }
                 }
+                report.writeToFile("");
                 report.writeToFile("Check all Footers Second Column: ");
                 List<WebElement> footerCategoryLinks = webDriver.findElementsByXPath(Homepage.getProperty("page.main.footer.categories"));
                 for (int i = 0 ; i < footerCategoryLinks.size() ; i++){
@@ -444,10 +446,10 @@ public class HomepageTest {
                             webDriver.switchTo().window(tabs.get(0));
                             WebElement element = webDriver.findElement(By.id(Homepage.getProperty("page.search.bar")));
                             element.sendKeys(searchAliases[i].trim()); // Enter searchAliases without pressing ENTER
-                            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@class, 'main-search-suggestions')]/li/a/div/*[contains(@class, 'srTitle')]")));
-                            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@class, 'main-search-suggestions')]/li/a/div/*[contains(@class, 'srType')]")));
-                            List<WebElement> searchAliasesTitles = webDriver.findElementsByXPath("//*[contains(@class, 'main-search-suggestions')]/li/a/div/*[contains(@class, 'srTitle')]");
-                            List<WebElement> searchAliasesType = webDriver.findElementsByXPath("//*[contains(@class, 'main-search-suggestions')]/li/a/div/*[contains(@class, 'srType')]");
+                            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.search.suggestion.titles"))));
+                            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.search.suggestion.types"))));
+                            List<WebElement> searchAliasesTitles = webDriver.findElementsByXPath(Homepage.getProperty("page.search.suggestion.titles"));
+                            List<WebElement> searchAliasesType = webDriver.findElementsByXPath(Homepage.getProperty("page.search.suggestion.types"));
                             report.writeToFile(infoMessage+" for \""+ searchAliases[i].trim()+"\"");
                             report.writeToFile("Suggestions :");
                             for (int j = 0 ; j < searchAliasesTitles.size() ; j++){
