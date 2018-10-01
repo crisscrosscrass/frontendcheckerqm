@@ -41,6 +41,7 @@ import java.io.*;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
@@ -1043,7 +1044,6 @@ public class MainController implements Serializable{
         settingGridPage.setSelected(true);
         settingGridPageWithWindows.setSelected(true);
         settingGridPageFillIns.setSelected(true);
-        settingBrandPage.setSelected(true);
         settingLucenePage.setSelected(true);
         settingMainMenuOnHomePage.setSelected(true);
         settingDetailPage.setSelected(true);
@@ -1074,14 +1074,58 @@ public class MainController implements Serializable{
         settingMerchandiseOverviewPage.setSelected(false);
         updateCheckerTabs();
     }
-    public void validateInputAttributes(){
+    public boolean validateInputAttributes(){
+        boolean webDriverCanStart = false;
+
+        //no inputfield should be empty
+        //for filter test at least one filer needs to be checked
+        //if GridPageURL+Windiws+FillIns contains not the selected Counry then no
+        //email visual meta cntains
+        boolean isEverythingFilled = true;
+        ArrayList<String> ValidationsErrors = new ArrayList<>();
+        if (inputTextSearchAndSuggestions.getText().length() < 1){
+            logger.info("Checking first InputField");
+            isEverythingFilled = false;
+            logger.info("is Everything: "+isEverythingFilled);
+            ValidationsErrors.add("- the inputTextSearchAndSuggestions cannot be empty\n");
+        }
+        if (inputGridPageKeyword.getText().length() < 1){
+            isEverythingFilled = false;
+            ValidationsErrors.add("- the inputGridPageKeyword cannot be empty\n");
+        }
+        if (inputGridPageURL.getText().length() < 1){
+            isEverythingFilled = false;
+            ValidationsErrors.add("- the inputGridPageURL cannot be empty\n");
+        }
+        if (isEverythingFilled == false){
+            logger.info(ValidationsErrors.toString());
+            ModalBox ErrorInputFields = new ModalBox();
+            ErrorInputFields.showDialogInputField("Error in UserInputs",ValidationsErrors.toString(),placeForTooltipInput);
+        }
+
+
+        String failureStyleSettings = "-fx-border-style: none solid solid solid; -fx-border-width: 3; -fx-border-color:  #e83062;";
+        String successStyleSettings = "-fx-border-style: none none none none; -fx-border-width: 1; -fx-border-color: green;";
+        //String successStyleSettings = null;
         if (settingGridPage.isSelected() | settingImageGrouping.isSelected() | settingDetailPage.isSelected()| settingFavoritePage.isSelected()){
             if (!inputGridPageURL.getText().contains(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getLocationMainPage())){
-                inputGridPageURL.setStyle("-fx-border-style: none solid solid solid; -fx-border-width: 3; -fx-border-color: red;");
+                inputGridPageURL.setStyle(failureStyleSettings);
             }else{
-                inputGridPageURL.setStyle("-fx-border-style: none solid solid solid; -fx-border-width: 1; -fx-border-color: green;");
+                inputGridPageURL.setStyle(successStyleSettings);
+            }
+        }else{
+            inputGridPageURL.setStyle(successStyleSettings);
+        }
+        if (settingFavoritePage.isSelected()){
+            if (inputAccountEmail.getText().equals("") | !inputAccountEmail.getText().toLowerCase().contains("@visual-meta.com")){
+                inputAccountEmail.setStyle(failureStyleSettings);
+            }else{
+                inputAccountEmail.setStyle(successStyleSettings);
             }
         }
+
+
+        return webDriverCanStart;
     }
     public void updateCheckerTabs(){
         SettingManager settingManager = new SettingManager();

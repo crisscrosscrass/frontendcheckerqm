@@ -11,7 +11,7 @@
     <children>
         <JFXCheckBox fx:id="RegisterButton" text="Register" />
         <JFXCheckBox fx:id="BecomeAPartnerButton" text="Become Partner Button" />
-        <JFXCheckBox fx:id="GoToTopButton" text="Go to Top Button" />
+        <JFXCheckBox fx:id="GoToTopButton" text="Become Partner Go to Top Button" />
         <JFXCheckBox fx:id="CountryFlags" text="Country Flags" />
         <JFXCheckBox fx:id="LoginPartnerDashboard" text="Login Partner Dashboard" />
         <JFXCheckBox fx:id="HelpTabSection" text="Tab Help Section" />

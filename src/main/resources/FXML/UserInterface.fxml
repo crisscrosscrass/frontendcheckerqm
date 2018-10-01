@@ -272,7 +272,7 @@
                                                <Font size="20.0" />
                                            </font>
                                           </JFXCheckBox>
-                                          <JFXCheckBox fx:id="settingBrandPage" checkedColor="#45818e" prefHeight="57.0" prefWidth="290.0" selected="true" style="-fx-background-color: #165f6fff;" text="Brand Page" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                          <JFXCheckBox fx:id="settingBrandPage" checkedColor="#45818e" prefHeight="57.0" prefWidth="290.0" style="-fx-background-color: #165f6fff;" text="Brand Page" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                               <font>
                                                   <Font size="20.0" />
                                               </font>

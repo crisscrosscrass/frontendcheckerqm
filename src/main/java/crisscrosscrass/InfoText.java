@@ -19,5 +19,4 @@ public enum InfoText {
     public String getMainMessage() {
         return MainMessage;
     }
-
 }

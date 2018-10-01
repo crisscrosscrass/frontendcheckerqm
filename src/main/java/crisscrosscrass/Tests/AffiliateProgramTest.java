@@ -20,6 +20,7 @@ import java.util.Properties;
 
 public class AffiliateProgramTest {
     final static Logger logger = Logger.getLogger(AffiliateProgramTest.class);
+    Report failedTestCases = new Report();
 
     public void checkingBecomeAffilinetPartner(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox BecomeAffilinetPartner, Text statusInfo, TextField inputAffiliateProgramURL,TextField backupURL, Properties Homepage){
         final String infoMessage = BecomeAffilinetPartner.getText();
@@ -44,6 +45,7 @@ public class AffiliateProgramTest {
                         ChangeCheckBox.adjustStyle(true,"complete",BecomeAffilinetPartner);
                     }else{
                         report.writeToFile(infoMessage, "User is redirected to a NOT affilinet page : "+webDriver.getCurrentUrl().toLowerCase().trim());
+                        failedTestCases.writeToNamedFile("User is redirected to a NOT affilinet page : "+webDriver.getCurrentUrl().toLowerCase().trim(),"FailAndReview");
                         ChangeCheckBox.adjustStyle(true,"nope",BecomeAffilinetPartner);
                     }
                     webDriver.switchTo().window(tabs.get(1)).close();
@@ -52,17 +54,20 @@ public class AffiliateProgramTest {
                     ChangeCheckBox.adjustStyle(true,"nope",BecomeAffilinetPartner);
                     webDriver.navigate().to(backupURL.getText().trim());
                     report.writeToFile(infoMessage, "Couldn't detect \"Become Affilinet Partner\"");
+                    failedTestCases.writeToNamedFile(infoMessage,"Couldn't detect \"Become Affilinet Partner\"","FailAndReview");
                     gridPageIssue.printStackTrace();
                 }
             }catch (Exception noRequestedSiteFound){
                 ChangeCheckBox.adjustStyle(true,"nope",BecomeAffilinetPartner);
                 webDriver.navigate().to(backupURL.getText().trim());
                 report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
+                failedTestCases.writeToNamedFile(infoMessage,"Couldn't navigate to requested Site!","FailAndReview");
                 noRequestedSiteFound.printStackTrace();
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",BecomeAffilinetPartner);
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
+            failedTestCases.writeToNamedFile(infoMessage,"unable to check! Browser not responding","FailAndReview");
             noBrowserWorking.printStackTrace();
         }
 
@@ -111,6 +116,7 @@ public class AffiliateProgramTest {
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",BecomeTradeTrackerPartner);
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
+            failedTestCases.writeToNamedFile(infoMessage,"unable to check! Browser not responding","FailAndReview");
             noBrowserWorking.printStackTrace();
         }
         report.writeToFile("=================================", "");

@@ -79,7 +79,7 @@ public class GridPageTestWithFillIns {
                     report.writeToFile(infoMessage, "Complete!");
                 }catch (Exception gridPageIssue){
                     ChangeCheckBox.adjustStyle(true,"nope",showAllFillInPage);
-                    boolean isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver, "GridPageErrorPagingWindows.png");
+                    boolean isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver, "GridPageWithFillInsErrorPagingWindows.png");
                     if (isSuccessful){
                         report.writeToFile("GridPage Error Screenshot: ", "Screenshot successful!");
                     }else {

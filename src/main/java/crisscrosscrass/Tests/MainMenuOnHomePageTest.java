@@ -48,6 +48,7 @@ public class MainMenuOnHomePageTest {
                     report.writeToFile("Checking Main Menu Links: ");
                     failedMainMenuTest.writeToNamedFile("Failed Main Menu Links: ",failedMainMenuReportName);
                     int counterXPath = 0;
+                    //TODO need to adjust full length
                     for (int i = 0 ; i < 1 ; i++){
                         webDriver.switchTo().window(tabs.get(0));
                         //hover

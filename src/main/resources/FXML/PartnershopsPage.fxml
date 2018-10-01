@@ -5,7 +5,7 @@
 
 <VBox fx:id="partnerShopCheckBoxCollection" style="-fx-background-color: white;" prefHeight="200.0" prefWidth="100.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="crisscrosscrass.Controller.PartnershopsPageController">
     <children>
-        <JFXCheckBox fx:id="GoToTopButton" text="Go to Top Button" />
+        <JFXCheckBox fx:id="GoToTopButton" text="PartnerShops Go to Top Button" />
         <JFXCheckBox fx:id="BecomePartnerPopUp" text="Become Partner Pop Up" />
         <JFXCheckBox fx:id="SortingReviews" text="Sorting- Best/Number Review" />
         <JFXCheckBox fx:id="ShopLinkName" text="Shop Link - Name" />
