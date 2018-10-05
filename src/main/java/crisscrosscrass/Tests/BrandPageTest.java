@@ -19,8 +19,10 @@ import java.util.List;
 import java.util.Properties;
 
 public class BrandPageTest {
+    Report failedTestCases = new Report();
 
     public void checkingBrandsWithoutLogo(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox brandsWithoutLogo, TextField inputBrandPageOverview, Text statusInfo, TextField inputSearch, Properties Homepage){
+        failedTestCases.writeToNamedFile("CHECKING BRANDS PAGE", "FailAndReview");
         final String infoMessage = brandsWithoutLogo.getText();
         ChangeCheckBox.adjustStyle(false,"progress",brandsWithoutLogo);
         Platform.runLater(() -> {
