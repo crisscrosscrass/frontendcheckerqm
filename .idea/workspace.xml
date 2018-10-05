@@ -6,10 +6,8 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="added validation to input field">
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="added validation to all Input Fields">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/FXML/UserInterface.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/FXML/UserInterface.fxml" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -198,14 +196,14 @@
           <entry key="fxml" value="28" />
           <entry key="java" value="2632" />
           <entry key="properties" value="42" />
-          <entry key="txt" value="50" />
+          <entry key="txt" value="66" />
           <entry key="xml" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="JAVA" value="2632" />
-          <entry key="PLAIN_TEXT" value="50" />
+          <entry key="PLAIN_TEXT" value="66" />
           <entry key="Properties" value="42" />
           <entry key="XML" value="29" />
         </counts>
@@ -220,8 +218,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/MainController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="295">
-              <caret line="1061" column="13" lean-forward="true" selection-start-line="1061" selection-start-column="13" selection-end-line="1061" selection-end-column="13" />
+            <state relative-caret-position="108">
+              <caret line="1119" column="13" lean-forward="true" selection-start-line="1119" selection-start-column="13" selection-end-line="1119" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -458,7 +456,7 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="SearchEverywhereHistoryKey" value="MainControllerFrontEndCheck launched&#9;null&#9;null" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1538749181453" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1538751071191" />
     <property name="dynamic.classpath" value="false" />
     <property name="full.screen.before.presentation.mode" value="false" />
     <property name="last.edited.regexp" value="928 Bewertungen&#10;3 Beoordelingen" />
@@ -656,13 +654,6 @@
       <option name="presentableId" value="Default" />
       <updated>1359379246138</updated>
       <workItem from="1359379250712" duration="1302000" />
-    </task>
-    <task id="LOCAL-00140" summary="removed some design elements">
-      <created>1536140882649</created>
-      <option name="number" value="00140" />
-      <option name="presentableId" value="LOCAL-00140" />
-      <option name="project" value="LOCAL" />
-      <updated>1536140882649</updated>
     </task>
     <task id="LOCAL-00141" summary="added new testcase">
       <created>1536142840608</created>
@@ -1000,7 +991,14 @@
       <option name="project" value="LOCAL" />
       <updated>1538398958661</updated>
     </task>
-    <option name="localTasksCounter" value="189" />
+    <task id="LOCAL-00189" summary="added validation to all Input Fields">
+      <created>1538750117348</created>
+      <option name="number" value="00189" />
+      <option name="presentableId" value="LOCAL-00189" />
+      <option name="project" value="LOCAL" />
+      <updated>1538750117349</updated>
+    </task>
+    <option name="localTasksCounter" value="190" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1051,7 +1049,7 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.22654584" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.22654584" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="DB Browser" order="3" />
@@ -1063,7 +1061,7 @@
       <window_info id="Capture Tool" order="9" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.48933902" weight="0.32827735" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.43443498" visible="true" weight="0.1787649" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.43443498" visible="true" weight="0.1787649" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4989339" weight="0.39875388" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -1170,7 +1168,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
-    <MESSAGE value="adding folder to be created if not exist" />
     <MESSAGE value="change some style colors to transparent" />
     <MESSAGE value="added selectAll and Deselect All Button" />
     <MESSAGE value="changes some style" />
@@ -1195,7 +1192,8 @@
     <MESSAGE value="fixed error handling for Browser not responding" />
     <MESSAGE value="added some UX Infos" />
     <MESSAGE value="added validation to input field" />
-    <option name="LAST_COMMIT_MESSAGE" value="added validation to input field" />
+    <MESSAGE value="added validation to all Input Fields" />
+    <option name="LAST_COMMIT_MESSAGE" value="added validation to all Input Fields" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
@@ -1527,8 +1525,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/crisscrosscrass/Controller/MainController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="1061" column="13" lean-forward="true" selection-start-line="1061" selection-start-column="13" selection-end-line="1061" selection-end-column="13" />
+        <state relative-caret-position="108">
+          <caret line="1119" column="13" lean-forward="true" selection-start-line="1119" selection-start-column="13" selection-end-line="1119" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
