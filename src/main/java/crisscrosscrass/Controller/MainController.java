@@ -34,14 +34,12 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.awt.*;
 import java.io.*;
 
 
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
@@ -278,7 +276,6 @@ public class MainController implements Serializable{
             inputAffiliateProgramURL.setText(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getLocationAffiliateProgramPageURL());
             inputMerchandiseOverviewPageURL.setText(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getLocationMerchandiseOverviewPageURL());
             startwebdriver.setDisable(false);
-            validateInputAttributes();
         });
         //Bind Info to QuestionMark Buttons
         ModalBox modalBox = new ModalBox();
@@ -305,40 +302,21 @@ public class MainController implements Serializable{
         updateCheckerTabs();
     }
 
-
+    @FXML
+    public void checkBeforeStart() {
+        boolean mainTestCanStart = validateInputAttributes();
+        logger.info(mainTestCanStart);
+        startRealAction();
+    }
 
     @FXML
     public void startRealAction() {
-        logger.info("Start Engine...");
-        Platform.runLater(() -> {
-                    progressIndicator.setProgress(-1);
-                    startwebdriver.setDisable(true);
-                    inputSearch.setDisable(true);
-                    inputEmailAdress.setDisable(true);
-                    inputTextSearchAndSuggestions.setDisable(true);
-                    inputGridPageURL.setDisable(true);
-                    inputGridPageKeyword.setDisable(true);
-                    inputGridPageURLWithWindows.setDisable(true);
-                    inputGridPageURLWithFillIns.setDisable(true);
-                    inputBrandPageOverview.setDisable(true);
-                    inputLucenePage.setDisable(true);
-                    inputAccountEmail.setDisable(true);
-                    inputPartnerShopPageURL.setDisable(true);
-                    inputPartnerShopSearch.setDisable(true);
-                    inputBecomeAPartnerPageURL.setDisable(true);
-                    inputAccountPassword.setDisable(true);
-                    inputImprintURL.setDisable(true);
-                    inputAffiliateProgramURL.setDisable(true);
-                    inputMerchandiseOverviewPageURL.setDisable(true);
-                    inputMerchandiseSearch.setDisable(true);
-                    //settingTitledPane.setExpanded(false);
-        });
-
+        disableAllInputButtons();
 
         Task task = new Task<Object>() {
             @Override
             protected Void call() {
-                resetAllFormOptions();
+                removeOpenReportFromProgram();
                 startMainCheck();
                 return null;
             }
@@ -715,6 +693,7 @@ public class MainController implements Serializable{
             }
         };
 
+
         Thread thread = new Thread(task);
         thread.setDaemon(true);
         thread.start();
@@ -734,7 +713,7 @@ public class MainController implements Serializable{
             link.setTextAlignment(TextAlignment.CENTER);
             outputPlace.getChildren().addAll(link);
             progressIndicator.setProgress(100);
-            changeButtonText();
+            enableAllInputButtons();
             logger.info("All process are finished");
         }));
     }
@@ -921,36 +900,65 @@ public class MainController implements Serializable{
                 link.setTextAlignment(TextAlignment.CENTER);
                 outputPlace.getChildren().addAll(link);
                 progressIndicator.setProgress(100);
-                changeButtonText();
+                enableAllInputButtons();
                 logger.info("All process to check are finished");
             }));
 
         }
 
     }
+
     @FXML
-    private void changeButtonText() {
-        statusInfo.setText("Running complete");
-        startwebdriver.setDisable(false);
-        stopWebdriver.setDisable(true);
-        inputSearch.setDisable(false);
-        inputEmailAdress.setDisable(false);
-        inputTextSearchAndSuggestions.setDisable(false);
-        inputGridPageURL.setDisable(false);
-        inputGridPageKeyword.setDisable(false);
-        inputGridPageURLWithWindows.setDisable(false);
-        inputGridPageURLWithFillIns.setDisable(false);
-        inputBrandPageOverview.setDisable(false);
-        inputLucenePage.setDisable(false);
-        inputAccountEmail.setDisable(false);
-        inputPartnerShopPageURL.setDisable(false);
-        inputPartnerShopSearch.setDisable(false);
-        inputBecomeAPartnerPageURL.setDisable(false);
-        inputImprintURL.setDisable(false);
-        inputAccountPassword.setDisable(false);
-        inputAffiliateProgramURL.setDisable(false);
-        inputMerchandiseOverviewPageURL.setDisable(false);
-        inputMerchandiseSearch.setDisable(false);
+    private void disableAllInputButtons(){
+        Platform.runLater(() -> {
+            startwebdriver.setDisable(true);
+            inputSearch.setDisable(true);
+            inputEmailAdress.setDisable(true);
+            inputTextSearchAndSuggestions.setDisable(true);
+            inputGridPageURL.setDisable(true);
+            inputGridPageKeyword.setDisable(true);
+            inputGridPageURLWithWindows.setDisable(true);
+            inputGridPageURLWithFillIns.setDisable(true);
+            inputBrandPageOverview.setDisable(true);
+            inputLucenePage.setDisable(true);
+            inputAccountEmail.setDisable(true);
+            inputPartnerShopPageURL.setDisable(true);
+            inputPartnerShopSearch.setDisable(true);
+            inputBecomeAPartnerPageURL.setDisable(true);
+            inputAccountPassword.setDisable(true);
+            inputImprintURL.setDisable(true);
+            inputAffiliateProgramURL.setDisable(true);
+            inputMerchandiseOverviewPageURL.setDisable(true);
+            inputMerchandiseSearch.setDisable(true);
+            //settingTitledPane.setExpanded(false);  no need to expand any Title for now
+        });
+    }
+
+    @FXML
+    private void enableAllInputButtons() {
+        Platform.runLater(() -> {
+            statusInfo.setText("");
+            startwebdriver.setDisable(false);
+            stopWebdriver.setDisable(true);
+            inputSearch.setDisable(false);
+            inputEmailAdress.setDisable(false);
+            inputTextSearchAndSuggestions.setDisable(false);
+            inputGridPageURL.setDisable(false);
+            inputGridPageKeyword.setDisable(false);
+            inputGridPageURLWithWindows.setDisable(false);
+            inputGridPageURLWithFillIns.setDisable(false);
+            inputBrandPageOverview.setDisable(false);
+            inputLucenePage.setDisable(false);
+            inputAccountEmail.setDisable(false);
+            inputPartnerShopPageURL.setDisable(false);
+            inputPartnerShopSearch.setDisable(false);
+            inputBecomeAPartnerPageURL.setDisable(false);
+            inputImprintURL.setDisable(false);
+            inputAccountPassword.setDisable(false);
+            inputAffiliateProgramURL.setDisable(false);
+            inputMerchandiseOverviewPageURL.setDisable(false);
+            inputMerchandiseSearch.setDisable(false);
+        });
     }
 
     @FXML
@@ -987,55 +995,8 @@ public class MainController implements Serializable{
     }
 
     @FXML
-    private void resetAllFormOptions() {
-        Platform.runLater(() -> {
-            frontendHomepageController.checkCategoryLinksLeftSideMenu.setStyle("-fx-background-color: #FFFFFF");
-            frontendHomepageController.checkCategoryLinksLeftSideMenu.setSelected(false);
-            outputPlace.getChildren().clear();
-        });
-    }
-
-    public void updateDataViaPieChart(){
-        PieChart ResultsOfTest = new PieChart();
-        PlaceForPieCharts.getChildren().add(ResultsOfTest);
-        ObservableList<PieChart.Data> pieChartDataHomepageTest = FXCollections.observableArrayList();
-        JFXCheckBox[] checkboxes = frontendHomepageController.frontendHomePageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]);
-        int passTest = 0;
-        int failTest = 0;
-        for (JFXCheckBox checkBox : checkboxes){
-            if (checkBox.isSelected() ){
-                if (checkBox.getCheckedColor().toString().substring(2,8).equals(ChangeCheckBox.getIsSuccessful())){
-                    logger.info("GreenCheck!");
-                    ++passTest;
-                }
-                if (checkBox.getCheckedColor().toString().substring(2,8).equals(ChangeCheckBox.getIsNotSuccessful())){
-                    logger.info("RedCheck!");
-                    ++failTest;
-                }
-            }
-        }
-        PieChart.Data HomepagePass = new PieChart.Data("Pass", passTest);
-        PieChart.Data HomepageFail = new PieChart.Data("Fail", failTest);
-        try{
-            Platform.runLater(() -> {
-                ResultsOfTest.setData(pieChartDataHomepageTest);
-            });
-            Platform.runLater(() -> {
-                pieChartDataHomepageTest.add(HomepagePass);
-                pieChartDataHomepageTest.add(HomepageFail);
-            });
-            int finalFailTest = failTest;
-            int finalPassTest = passTest;
-            Platform.runLater(() -> {
-                HomepageFail.setPieValue(finalFailTest);
-            });
-            Platform.runLater(() -> {
-                HomepagePass.setPieValue(finalPassTest);
-                ResultsOfTest.setTitle("HomepageTest");
-            });
-        }catch (Exception DataPieChartNotWorking){
-            DataPieChartNotWorking.printStackTrace();
-        }
+    private void removeOpenReportFromProgram() {
+        Platform.runLater(() -> outputPlace.getChildren().clear());
     }
 
     @FXML
@@ -1075,57 +1036,104 @@ public class MainController implements Serializable{
         updateCheckerTabs();
     }
     public boolean validateInputAttributes(){
+        String failureStyleSettings = "-fx-border-style: none solid solid solid; -fx-border-width: 3; -fx-border-color:  #e83062;";
+        String successStyleSettings = "-fx-border-style: none none none none; -fx-border-width: 1; -fx-border-color: green;";
+        //String successStyleSettings = null;
         boolean webDriverCanStart = false;
 
         //no inputfield should be empty
         //for filter test at least one filer needs to be checked
         //if GridPageURL+Windiws+FillIns contains not the selected Counry then no
         //email visual meta cntains
-        boolean isEverythingFilled = true;
-        ArrayList<String> ValidationsErrors = new ArrayList<>();
-        if (inputTextSearchAndSuggestions.getText().length() < 1){
-            logger.info("Checking first InputField");
-            isEverythingFilled = false;
-            logger.info("is Everything: "+isEverythingFilled);
-            ValidationsErrors.add("- the inputTextSearchAndSuggestions cannot be empty\n");
+        boolean isEverythingFilledCorrectly = true;
+        StringBuilder ValidationsErrors = new StringBuilder();
+        if (settingHomepage.isSelected()){
+            if (inputTextSearchAndSuggestions.getText().length() < 1){
+                ValidationsErrors.append("- the inputTextSearchAndSuggestions cannot be empty\n");
+            }
         }
-        if (inputGridPageKeyword.getText().length() < 1){
-            isEverythingFilled = false;
-            ValidationsErrors.add("- the inputGridPageKeyword cannot be empty\n");
+        if (settingGridPage.isSelected()){
+            if (inputGridPageKeyword.getText().length() < 1){
+                ValidationsErrors.append("- the inputGridPageKeyword cannot be empty\n");
+            }
+            int amountOfSelectedFilters = 0;
+            if (checkingSalesPriceFilter.isSelected()){
+                ++amountOfSelectedFilters;
+            }
+            if (checkingGenderFilter.isSelected()){
+                ++amountOfSelectedFilters;
+            }
+            if (checkingColorFilter.isSelected()){
+                ++amountOfSelectedFilters;
+            }
+            if (checkingBrandFilter.isSelected()){
+                ++amountOfSelectedFilters;
+            }
+            if (checkingMerchandiseFilter.isSelected()){
+                ++amountOfSelectedFilters;
+            }
+            if (amountOfSelectedFilters < 1){
+                ValidationsErrors.append("- at least one the Filter must be selected\n");
+            }
         }
-        if (inputGridPageURL.getText().length() < 1){
-            isEverythingFilled = false;
-            ValidationsErrors.add("- the inputGridPageURL cannot be empty\n");
-        }
-        if (isEverythingFilled == false){
-            logger.info(ValidationsErrors.toString());
-            ModalBox ErrorInputFields = new ModalBox();
-            ErrorInputFields.showDialogInputField("Error in UserInputs",ValidationsErrors.toString(),placeForTooltipInput);
-        }
-
-
-        String failureStyleSettings = "-fx-border-style: none solid solid solid; -fx-border-width: 3; -fx-border-color:  #e83062;";
-        String successStyleSettings = "-fx-border-style: none none none none; -fx-border-width: 1; -fx-border-color: green;";
-        //String successStyleSettings = null;
         if (settingGridPage.isSelected() | settingImageGrouping.isSelected() | settingDetailPage.isSelected()| settingFavoritePage.isSelected()){
-            if (!inputGridPageURL.getText().contains(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getLocationMainPage())){
+            if (inputGridPageURL.getText().length() < 1) {
+                ValidationsErrors.append("- the inputGridPageURL cannot be empty\n");
+            }
+            if (!inputGridPageURL.getText().contains(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getLocationMainPage()) & !inputGridPageURL.getText().equals("")){
                 inputGridPageURL.setStyle(failureStyleSettings);
+                ValidationsErrors.append("- the inputGridPageURL cannot be unrelated to selected Country\n");
             }else{
                 inputGridPageURL.setStyle(successStyleSettings);
             }
         }else{
             inputGridPageURL.setStyle(successStyleSettings);
         }
+        if (settingGridPageWithWindows.isSelected()) {
+            if (inputGridPageURLWithWindows.getText().length() < 1) {
+                ValidationsErrors.append("- the inputGridPageURLWithWindows cannot be empty\n");
+            }
+        }
+        if (settingGridPageFillIns.isSelected()) {
+            if (inputGridPageURLWithFillIns.getText().length() < 1) {
+                ValidationsErrors.append("- the inputGridPageURLWithFillIns cannot be empty\n");
+            }
+        }
+        if (settingLucenePage.isSelected()){
+            if (inputLucenePage.getText().length() < 1){
+                ValidationsErrors.append("- the inputLucenePage cannot be empty\n");
+            }
+        }
+        if (settingPartnerShopPage.isSelected()){
+            if (inputPartnerShopSearch.getText().length() < 1){
+                ValidationsErrors.append("- the inputPartnerShopSearch cannot be empty\n");
+            }
+        }
+        if (settingMerchandiseOverviewPage.isSelected()){
+            if (inputMerchandiseSearch.getText().length() < 1){
+                ValidationsErrors.append("- the inputMerchandiseSearch cannot be empty\n");
+            }
+        }
         if (settingFavoritePage.isSelected()){
-            if (inputAccountEmail.getText().equals("") | !inputAccountEmail.getText().toLowerCase().contains("@visual-meta.com")){
+            if (inputAccountEmail.getText().length() < 1){
+                ValidationsErrors.append("- the inputAccountEmail cannot be empty\n");
+            }
+            if (!inputAccountEmail.getText().equals("") & !inputAccountEmail.getText().toLowerCase().contains("@visual-meta.com")){
                 inputAccountEmail.setStyle(failureStyleSettings);
+                ValidationsErrors.append("- the inputAccountEmail cannot be unrelated to Company\n");
             }else{
                 inputAccountEmail.setStyle(successStyleSettings);
             }
         }
-
-
-        return webDriverCanStart;
+        logger.info(ValidationsErrors);
+        if (ValidationsErrors.length() > 0 ){
+            isEverythingFilledCorrectly = false;
+        }
+        if (!isEverythingFilledCorrectly){
+            ModalBox ErrorInputFields = new ModalBox();
+            ErrorInputFields.showDialogInputField("Validation Error",ValidationsErrors.toString(),placeForTooltipInput);
+        }
+        return isEverythingFilledCorrectly;
     }
     public void updateCheckerTabs(){
         SettingManager settingManager = new SettingManager();
