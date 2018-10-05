@@ -23,6 +23,7 @@ public class AffiliateProgramTest {
     Report failedTestCases = new Report();
 
     public void checkingBecomeAffilinetPartner(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox BecomeAffilinetPartner, Text statusInfo, TextField inputAffiliateProgramURL,TextField backupURL, Properties Homepage){
+        failedTestCases.writeToNamedFile("CHECKING AFFILIATE PROGRAM PAGE", "FailAndReview");
         final String infoMessage = BecomeAffilinetPartner.getText();
         ChangeCheckBox.adjustStyle(false,"progress",BecomeAffilinetPartner);
         Platform.runLater(() -> {
@@ -54,25 +55,25 @@ public class AffiliateProgramTest {
                     ChangeCheckBox.adjustStyle(true,"nope",BecomeAffilinetPartner);
                     webDriver.navigate().to(backupURL.getText().trim());
                     report.writeToFile(infoMessage, "Couldn't detect \"Become Affilinet Partner\"");
-                    failedTestCases.writeToNamedFile(infoMessage,"Couldn't detect \"Become Affilinet Partner\"","FailAndReview");
+                    failedTestCases.writeToNamedFile(infoMessage,"Couldn't detect \"Become Affilinet Partner\" link","FailAndReview");
                     gridPageIssue.printStackTrace();
                 }
             }catch (Exception noRequestedSiteFound){
                 ChangeCheckBox.adjustStyle(true,"nope",BecomeAffilinetPartner);
                 webDriver.navigate().to(backupURL.getText().trim());
                 report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
-                failedTestCases.writeToNamedFile(infoMessage,"Couldn't navigate to requested Site!","FailAndReview");
+                failedTestCases.writeToNamedFile(infoMessage,"Please check: Couldn't navigate to Affilinet Partner page!","FailAndReview");
                 noRequestedSiteFound.printStackTrace();
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",BecomeAffilinetPartner);
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
-            failedTestCases.writeToNamedFile(infoMessage,"unable to check! Browser not responding","FailAndReview");
+            failedTestCases.writeToNamedFile(infoMessage,"Please check Affilinet Partner page: Browser not responding","FailAndReview");
             noBrowserWorking.printStackTrace();
         }
 
         report.writeToFile("=================================", "");
-
+        failedTestCases.writeToNamedFile("=================================","FailAndReview");
     }
     public void checkingBecomeTradeTrackerPartner(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox BecomeTradeTrackerPartner, Text statusInfo, TextField inputAffiliateProgramURL, TextField backupURL, Properties Homepage){
         final String infoMessage = BecomeTradeTrackerPartner.getText();
@@ -98,6 +99,7 @@ public class AffiliateProgramTest {
                     }else{
                         report.writeToFile(infoMessage, "User is redirected to a NOT tradetracker page : "+webDriver.getCurrentUrl().toLowerCase().trim());
                         ChangeCheckBox.adjustStyle(true,"nope",BecomeTradeTrackerPartner);
+                        failedTestCases.writeToNamedFile(infoMessage,"Please check: User is redirected to a non-functioning tradetracker page : "+webDriver.getCurrentUrl().toLowerCase().trim(),"FailAndReview");
                     }
                     webDriver.switchTo().window(tabs.get(1)).close();
                     webDriver.switchTo().window(tabs.get(0));
@@ -105,20 +107,24 @@ public class AffiliateProgramTest {
                     ChangeCheckBox.adjustStyle(true,"nope",BecomeTradeTrackerPartner);
                     webDriver.navigate().to(backupURL.getText().trim());
                     report.writeToFile(infoMessage, "Couldn't detect \"Become TradeTracker  Partner\"");
+                    failedTestCases.writeToNamedFile(infoMessage,"Please check: Couldn't detect \"Become TradeTracker  Partner\"","FailAndReview");
                     gridPageIssue.printStackTrace();
                 }
             }catch (Exception noRequestedSiteFound){
                 ChangeCheckBox.adjustStyle(true,"nope",BecomeTradeTrackerPartner);
                 webDriver.navigate().to(backupURL.getText().trim());
                 report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
+                failedTestCases.writeToNamedFile(infoMessage, "Please check: Couldn't navigate to Become Trade Tracker Partner page!", "FailAndReview");
                 noRequestedSiteFound.printStackTrace();
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",BecomeTradeTrackerPartner);
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
-            failedTestCases.writeToNamedFile(infoMessage,"unable to check! Browser not responding","FailAndReview");
+            failedTestCases.writeToNamedFile(infoMessage,"Please check Trade Tracker Partner Page! Browser not responding","FailAndReview");
             noBrowserWorking.printStackTrace();
         }
         report.writeToFile("=================================", "");
+        failedTestCases.writeToNamedFile("=================================","FailAndReview");
+
     }
 }
