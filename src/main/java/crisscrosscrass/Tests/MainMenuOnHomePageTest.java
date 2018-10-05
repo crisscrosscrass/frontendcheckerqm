@@ -64,7 +64,7 @@ public class MainMenuOnHomePageTest {
                                     report.writeToFile("Successful |  found \"" + allMainMenuSubLinks.get(j).getAttribute("innerHTML") + "\" Keyword at URL : "+ allMainMenuSubLinks.get(j).getAttribute("href") );
                                 }else {
                                     report.writeToFile("unable to check! | couldn't found \"" + allMainMenuSubLinks.get(j).getAttribute("innerHTML") + "\" Keyword in URL : "+ allMainMenuSubLinks.get(j).getAttribute("href"));
-                                    failedMainMenuTest.writeToNamedFile("unable to check! | couldn't found \"" + allMainMenuSubLinks.get(j).getAttribute("innerHTML") + "\" Keyword in URL : "+ allMainMenuSubLinks.get(j).getAttribute("href"),failedMainMenuReportName);
+                                    failedMainMenuTest.writeToNamedFile(" unable to check! | couldn't found \"" + allMainMenuSubLinks.get(j).getAttribute("innerHTML") + "\" Keyword in URL : "+ allMainMenuSubLinks.get(j).getAttribute("href"),failedMainMenuReportName);
                                 }
                             }
                         }

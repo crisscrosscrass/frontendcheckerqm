@@ -23,7 +23,7 @@ public class HomepageTest {
     Report failedTestCases = new Report();
 
     public void checkingCategories(ChromeDriver webDriver, Report report, JFXCheckBox checkCategoryLinksLeftSideMenu, Text statusInfo, TextField inputSearch, Properties Homepage){
-
+failedTestCases.writeToNamedFile("CHECKING HOMEPAGE", "FailAndReview");
         final String infoMessage = checkCategoryLinksLeftSideMenu.getText();
 
         // Check on Category Links - Left Side Menu
@@ -47,10 +47,10 @@ public class HomepageTest {
                         webDriver.switchTo().window(tabs.get(0));
                         boolean isSuccessful = newtab.open(webDriver, CategoryLinksLeftSideMenu.get(i).getAttribute("href"), CategoryLinksLeftSideMenu.get(i).getAttribute("textContent").trim());
                         if (isSuccessful){
-                            //report.writeToFile("TEST CategoryLinksLeftSideMenu "+i+": Successful | ", "found \"" + CategoryLinksLeftSideMenu.get(i).getAttribute("textContent").trim() + "\" Keyword at URL : "+ CategoryLinksLeftSideMenu.get(i).getAttribute("href"));
+                            report.writeToFile("TEST CategoryLinksLeftSideMenu "+i+": Successful | ", "found \"" + CategoryLinksLeftSideMenu.get(i).getAttribute("textContent").trim() + "\" Keyword at URL : "+ CategoryLinksLeftSideMenu.get(i).getAttribute("href"));
                         }else {
                             report.writeToFile("unable to check! ", "couldn't found \"" + CategoryLinksLeftSideMenu.get(i).getAttribute("textContent").trim() + "\" Keyword in URL : "+ CategoryLinksLeftSideMenu.get(i).getAttribute("href"));
-                            failedTestCases.writeToNamedFile("unable to check! ", "couldn't found \"" + CategoryLinksLeftSideMenu.get(i).getAttribute("textContent").trim() + "\" Keyword in URL : "+ CategoryLinksLeftSideMenu.get(i).getAttribute("href"),"FailAndReview");
+                            failedTestCases.writeToNamedFile("Category links in left Menu! ", "Please review the following URL. Couldn't find \"" + CategoryLinksLeftSideMenu.get(i).getAttribute("textContent").trim() + "\" Keyword in URL : "+ CategoryLinksLeftSideMenu.get(i).getAttribute("href"),"FailAndReview");
                         }
                     }
                 }
@@ -59,11 +59,13 @@ public class HomepageTest {
             }catch (Exception noLeftSideMenu){
                 ChangeCheckBox.adjustStyle(true,"nope",checkCategoryLinksLeftSideMenu);
                 report.writeToFile(infoMessage, "unable to check! No Links found!");
+                failedTestCases.writeToNamedFile(infoMessage, "unable to check left Menu; no links found!", "FailAndReview");
                 noLeftSideMenu.printStackTrace();
             }
         }catch (Exception noCategoryLinksLeftSideMenu){
             ChangeCheckBox.adjustStyle(true,"nope",checkCategoryLinksLeftSideMenu);
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
+            failedTestCases.writeToNamedFile(infoMessage, "unable to check left Menu; no links found!", "FailAndReview");
             noCategoryLinksLeftSideMenu.printStackTrace();
         }
         report.writeToFile("=================================", "");
@@ -99,6 +101,7 @@ public class HomepageTest {
                     }else{
                         ChangeCheckBox.adjustStyle(true,"nope",checkLogoFromShopOfTheWeek);
                         report.writeToFile(infoMessage, "Not the same image url!");
+                        failedTestCases.writeToNamedFile(infoMessage, "Please review Logo from Shop of the week. For reference, see ShopLogoGridPage", "FailAndReview");
                         isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"ShopLogoGridPage.png");
                         if (isSuccessful){
                             report.writeToFile("Checking Logo Shop Screenshot: ", "Screenshot successful!");
@@ -110,12 +113,16 @@ public class HomepageTest {
 
                 }catch (Exception noLogoFoundOnGrid){
                     report.writeToFile(infoMessage, "unable to check! No Logo found on GridPage!");
+                    failedTestCases.writeToNamedFile(infoMessage, "Please check: No Logo found on Grid Page. For reference, see ShopLogoGridPage", "FailAndReview");
                     ChangeCheckBox.adjustStyle(true,"nope",checkLogoFromShopOfTheWeek);
                     isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"ShopLogoGridPage.png");
                     if (isSuccessful){
                         report.writeToFile("Checking Logo Shop Screenshot: ", "Screenshot successful!");
+                        failedTestCases.writeToNamedFile("Checking Logo Shop Screenshot: ", "Screenshot successful!", "FailAndReview");
                     }else {
                         report.writeToFile("Checking Logo Shop Screenshot: ", "Screenshot not successful!");
+                        failedTestCases.writeToNamedFile("Checking Logo Shop Screenshot: ", "Screenshot not successful!", "FailAndReview");
+
                     }
                     webDriver.navigate().to(inputSearch.getText().trim());
                     noLogoFoundOnGrid.printStackTrace();
@@ -126,15 +133,18 @@ public class HomepageTest {
                 ChangeCheckBox.adjustStyle(true,"nope",checkLogoFromShopOfTheWeek);
                 webDriver.navigate().to(inputSearch.getText().trim());
                 report.writeToFile(infoMessage, "unable to check! No Elements found!");
+                failedTestCases.writeToNamedFile(infoMessage, "Please check: Shop of the Week widget not found.", "FailAndReview");
                 noShopLogoFound.printStackTrace();
             }
         }catch (Exception noShopPromo){
             ChangeCheckBox.adjustStyle(true,"nope",checkLogoFromShopOfTheWeek);
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
+            failedTestCases.writeToNamedFile(infoMessage, "Please check Shop of the week: Browser not responding.", "FailAndReview");
             noShopPromo.printStackTrace();
         }
 
         report.writeToFile("=================================", "");
+        failedTestCases.writeToNamedFile("=================================","FailAndReview");
     }
 
 
@@ -165,6 +175,7 @@ public class HomepageTest {
                         report.writeToFile("TEST ShopCategoryLinks "+i+": Successful | ", "found \"" + shopCategoryNames.get(i).getAttribute("textContent").trim() + "\" Keyword at URL : "+ shopCategoryLinks.get(i).getAttribute("href") + " and same Image is available");
                     }else {
                         report.writeToFile("TEST ShopCategoryLinks "+i+": unable to check! |", "couldn't found \"" + shopCategoryNames.get(i).getAttribute("textContent").trim() + "\" Keyword in URL : "+ shopCategoryLinks.get(i).getAttribute("href") + " or Image is not available");
+                    failedTestCases.writeToNamedFile("Shop of The Week Categories "+i+": Please double check links! |", "couldn't found \"" + shopCategoryNames.get(i).getAttribute("textContent").trim() + "\" Keyword in URL : "+ shopCategoryLinks.get(i).getAttribute("href") + " or Image is not available", "FailAndReview");
                     }
                 }
                 webDriver.navigate().to(inputSearch.getText().trim());
@@ -175,16 +186,19 @@ public class HomepageTest {
                 ChangeCheckBox.adjustStyle(true,"nope",checkCategoryLinksFromShopOfTheWeek);
                 webDriver.navigate().to(inputSearch.getText().trim());
                 report.writeToFile(infoMessage, "unable to check! No Elements found!");
+                failedTestCases.writeToNamedFile(infoMessage, "Please check: Shop of the Week widget not found", "FailAndReview");
                 noShopLogoFound.printStackTrace();
             }
         }catch (Exception noShopPromo){
             ChangeCheckBox.adjustStyle(true,"nope",checkCategoryLinksFromShopOfTheWeek);
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
+            failedTestCases.writeToNamedFile(infoMessage, "Please check Shop of the week: Browser not responding.", "FailAndReview");
             noShopPromo.printStackTrace();
         }
 
 
         report.writeToFile("=================================", "");
+        failedTestCases.writeToNamedFile("=================================","FailAndReview");
     }
 
 
@@ -212,15 +226,19 @@ public class HomepageTest {
                     } else {
                         ChangeCheckBox.adjustStyle(true,"nope",checkNewsletterBannerFunctionality);
                         report.writeToFile(infoMessage, "Not working!");
+                        failedTestCases.writeToNamedFile(infoMessage, "Please check: Newsletter not working. For reference, see NewsLetterBannerSignInPage", "FailAndReview");
                     }
                     webDriver.navigate().to(inputSearch.getText().trim());
                 }catch (Exception noConfirmationWrapper){
                     ChangeCheckBox.adjustStyle(true,"nope",checkNewsletterBannerFunctionality);
                     boolean isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver, "NewsLetterBannerSignInPage.png");
                     if (isSuccessful){
-                        report.writeToFile("Checking Logo Shop Screenshot: ", "Screenshot successful!");
+                        report.writeToFile("Checking Newsletter Screenshot: ", "Screenshot successful!");
+                        failedTestCases.writeToNamedFile("Checking Newsletter Screenshot: ", "Screenshot successful!", "FailAndReview");
+
                     }else {
-                        report.writeToFile("Checking Logo Shop Screenshot: ", "Screenshot not successful!");
+                        report.writeToFile("Checking Newsletter Screenshot: ", "Screenshot not successful!");
+                        failedTestCases.writeToNamedFile("Checking Newsletter Screenshot: ", "Screenshot not successful!", "FailAndReview");
                     }
                     report.writeToFile(infoMessage, "ConfirmationPage is missing!");
                     webDriver.navigate().to(inputSearch.getText().trim());
@@ -229,6 +247,7 @@ public class HomepageTest {
 
             }catch (Exception noScrollingToElement){
                 report.writeToFile(infoMessage, "Couldn't find Newsletter Element!");
+                failedTestCases.writeToNamedFile(infoMessage, "Please check: Couldn't find Newsletter Element! For reference, see NewsLetterBannerSignInPage", "FailAndReview");
                 ChangeCheckBox.adjustStyle(true,"nope",checkNewsletterBannerFunctionality);
                 noScrollingToElement.printStackTrace();
             }
@@ -236,9 +255,12 @@ public class HomepageTest {
         }catch (Exception noNewsLetterPromo){
             ChangeCheckBox.adjustStyle(true,"nope",checkNewsletterBannerFunctionality);
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
+            failedTestCases.writeToNamedFile(infoMessage, "Please check Newsletter: Browser not responding! For reference, see NewsLetterBannerSignInPage", "FailAndReview");
             noNewsLetterPromo.printStackTrace();
         }
         report.writeToFile("=================================", "");
+        failedTestCases.writeToNamedFile("=================================","FailAndReview");
+
     }
     public void checkingNewsletterPopUp(ChromeDriver webDriver, Report report, JFXCheckBox checkNewsletterPopUp, Text statusInfo, TextField inputSearch, Properties Homepage){
         // Newsletter PopUp
@@ -263,11 +285,14 @@ public class HomepageTest {
                 }catch (Exception noNewsletterIconCloseFound){
                     ChangeCheckBox.adjustStyle(true,"nope",checkNewsletterPopUp);
                     report.writeToFile(infoMessage, "Couldn't close Newsletter Element!");
+                    failedTestCases.writeToNamedFile(infoMessage, "Please check: Could not Close Newsletter, For reference, see NewsLetterPopUpError", "FailAndReview");
                     boolean isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver, "NewsLetterPopUpError.png");
                     if (isSuccessful){
-                        report.writeToFile("Checking Logo Shop Screenshot: ", "Screenshot successful!");
+                        report.writeToFile("Checking Newsletter Shop Screenshot: ", "Screenshot successful!");
+                        failedTestCases.writeToNamedFile("Checking Newsletter Screenshot: ", "Screenshot successful!", "FailAndReview");
                     }else {
-                        report.writeToFile("Checking Logo Shop Screenshot: ", "Screenshot not successful!");
+                        report.writeToFile("Checking Newsletter Shop Screenshot: ", "Screenshot not successful!");
+                        failedTestCases.writeToNamedFile("Checking Newsletter Screenshot: ", "Screenshot not successful!", "FailAndReview");
                     }
                     webDriver.navigate().to(inputSearch.getText().trim());
                     noNewsletterIconCloseFound.printStackTrace();
@@ -275,15 +300,19 @@ public class HomepageTest {
             }catch (Exception noNewsletterIconFound){
                 ChangeCheckBox.adjustStyle(true,"nope",checkNewsletterPopUp);
                 report.writeToFile(infoMessage, "Couldn't find Newsletter Icon Element!");
+                failedTestCases.writeToNamedFile(infoMessage, "Please check: could not find newsletter. For reference, see NewsLetterPopUpError", "FailAndReview");
                 noNewsletterIconFound.printStackTrace();
             }
 
         }catch (Exception noNewsLetterIcon){
             ChangeCheckBox.adjustStyle(true,"nope",checkNewsletterPopUp);
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
+            failedTestCases.writeToNamedFile(infoMessage, "please check Newsletter: browser not responding! For reference, see NewsLetterPopUpError", "FailAndReview");
             noNewsLetterIcon.printStackTrace();
         }
         report.writeToFile("=================================", "");
+        failedTestCases.writeToNamedFile("=================================","FailAndReview");
+
     }
     public void checkingNewsletterPopUpFunctionality(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox checkNewsletterPopUpFunctionality, Text statusInfo, TextField inputSearch, TextField inputEmailAdress, Properties Homepage){
         // Newsletter PopUp Functionality
@@ -318,27 +347,34 @@ public class HomepageTest {
                         } else {
                             ChangeCheckBox.adjustStyle(true,"nope",checkNewsletterPopUpFunctionality);
                             report.writeToFile("Checking Newsletter PopUp Functionality: ", "Not working!");
+                            failedTestCases.writeToNamedFile("Newsletter PopUp Functionality", "Please check: newsletter subscription process appears NOT to be working. For reference, see NewsLetterSignInPage", "FailAndReview");
                         }
                         webDriver.navigate().to(inputSearch.getText().trim());
                     }catch (Exception noConfirmationWrapper){
                         ChangeCheckBox.adjustStyle(true,"nope",checkNewsletterPopUpFunctionality);
                         isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"NewsLetterSignInPage.png");
                         if (isSuccessful){
-                            report.writeToFile("Checking Logo Shop Screenshot: ", "Screenshot successful!");
+                            report.writeToFile("Checking Newsletter Subscription Screenshot: ", "Screenshot successful!");
+                            failedTestCases.writeToNamedFile("Checking Newsletter Subscription Screenshot: ", "Screenshot successful!", "FailAndReview");
                         }else {
-                            report.writeToFile("Checking Logo Shop Screenshot: ", "Screenshot not successful!");
+                            report.writeToFile("Checking Newsletter Subscription Screenshot: ", "Screenshot not successful!");
+                            failedTestCases.writeToNamedFile("Checking Newsletter Subscription Screenshot: ", "Screenshot not successful!", "FailAndReview");
+
                         }
                         report.writeToFile("Checking Newsletter PopUp Functionality: ", "ConfirmationPage is missing!");
                         webDriver.navigate().to(inputSearch.getText().trim());
                     }
                 }catch (Exception noEmailCouldBeEntered){
                     ChangeCheckBox.adjustStyle(true,"nope",checkNewsletterPopUpFunctionality);
-                    report.writeToFile("Checking Newsletter PopUp Functionality: ", "Email Adress couldn't be entered!");
+                    report.writeToFile("Checking Newsletter PopUp Functionality: ", "Email Address couldn't be entered!");
+                    failedTestCases.writeToNamedFile("Checking Newsletter PopUp Functionality: ", "Please check newsletter: Email Address couldn't be entered!, For reference, see PopUpNewsLetter", "FailAndReview");
                     isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"PopUpNewsLetter.png");
                     if (isSuccessful){
                         report.writeToFile("Checking Logo Shop Screenshot: ", "Screenshot successful!");
+                        failedTestCases.writeToNamedFile("Checking Newsletter Subscription Screenshot: ", "Screenshot successful!", "FailAndReview");
                     }else {
                         report.writeToFile("Checking Logo Shop Screenshot: ", "Screenshot not successful!");
+                        failedTestCases.writeToNamedFile("Checking Newsletter Subscription Screenshot: ", "Screenshot not successful!", "FailAndReview");
                     }
                     webDriver.navigate().to(inputSearch.getText().trim());
                     noEmailCouldBeEntered.printStackTrace();
@@ -346,16 +382,19 @@ public class HomepageTest {
             }catch (Exception noNewsletterIconFound){
                 ChangeCheckBox.adjustStyle(true,"nope",checkNewsletterPopUpFunctionality);
                 report.writeToFile("Checking Newsletter PopUp Functionality: ", "Couldn't find Newsletter Icon Element!");
+                failedTestCases.writeToNamedFile("Checking Newsletter PopUp Functionality: ", "Please check: Couldn't not find Newsletter element!For reference, see PopUpNewsLetter", "FailAndReview");
                 noNewsletterIconFound.printStackTrace();
             }
 
         }catch (Exception noNewsLetterIcon){
             ChangeCheckBox.adjustStyle(true,"nope",checkNewsletterPopUpFunctionality);
             report.writeToFile("Checking Newsletter Pop Functionality: ", "unable to check! Browser not responding");
+            failedTestCases.writeToNamedFile("Checking Newsletter PopUp Functionality: ", "Please check Newsletter: Browser not responding!For reference, see PopUpNewsLetter", "FailAndReview");
             noNewsLetterIcon.printStackTrace();
         }
 
         report.writeToFile("=================================", "");
+        failedTestCases.writeToNamedFile("=================================","FailAndReview");
     }
 
     public void checkingFooterLinks(ChromeDriver webDriver, Report report, JFXCheckBox checkFooterLinks, Text statusInfo, TextField inputSearch, Properties Homepage){
@@ -386,16 +425,19 @@ public class HomepageTest {
                     if (footerFooterLinks.get(i).getAttribute("href").contains("newsletter")){
                         isSuccessful = newtab.openCheckURLTitleH1H2(webDriver,footerFooterLinks.get(i).getAttribute("href"),"newsletter");
                         if (isSuccessful){
-                            //report.writeToFile("TEST FooterLinks "+i+": Successful | ", "found \"" + "Newsletter" + "\" Keyword at URL : "+ footerFooterLinks.get(i).getAttribute("href") );
+                            report.writeToFile("TEST FooterLinks "+i+": Successful | ", "found \"" + "Newsletter" + "\" Keyword at URL : "+ footerFooterLinks.get(i).getAttribute("href") );
                         }else {
                             report.writeToFile("unable to check! |", "couldn't found \"" + "Newsletter" + "\" Keyword in URL : "+ footerFooterLinks.get(i).getAttribute("href") );
+                            failedTestCases.writeToNamedFile("Checking Footer Links! |", "Please review the following URL: couldn't find \"" + "Newsletter" + "\" Keyword in URL : "+ footerFooterLinks.get(i).getAttribute("href"), "FailAndReview" );
                         }
                     }else {
                         isSuccessful = newtab.openCheckURLTitleH1H2(webDriver,footerFooterLinks.get(i).getAttribute("href"),footerFooterLinks.get(i).getText().trim());
                         if (isSuccessful){
-                            //report.writeToFile("TEST FooterLinks "+i+": Successful | ", "found \"" + footerFooterLinks.get(i).getText().trim() + "\" Keyword at URL : "+ footerFooterLinks.get(i).getAttribute("href") );
+                            report.writeToFile("TEST FooterLinks "+i+": Successful | ", "found \"" + footerFooterLinks.get(i).getText().trim() + "\" Keyword at URL : "+ footerFooterLinks.get(i).getAttribute("href") );
                         }else {
                             report.writeToFile("unable to check! ", "couldn't found \"" + footerFooterLinks.get(i).getText().trim() + "\" Keyword in URL : "+ footerFooterLinks.get(i).getAttribute("href") );
+                            failedTestCases.writeToNamedFile("Checking Footer Links! ", "Please check the following URL: couldn't found \"" + footerFooterLinks.get(i).getText().trim() + "\" Keyword in URL : "+ footerFooterLinks.get(i).getAttribute("href"), "FailAndReview" );
+
                         }
                     }
                 }
@@ -406,9 +448,11 @@ public class HomepageTest {
                     webDriver.switchTo().window(tabs.get(0));
                     isSuccessful = newtab.openCheckURLTitleH1H2(webDriver,footerCategoryLinks.get(i).getAttribute("href"),footerCategoryLinks.get(i).getText().trim());
                     if (isSuccessful){
-                        //report.writeToFile("TEST FooterCategoryLinks "+i+": Successful | ", "found \"" + footerCategoryLinks.get(i).getText().trim() + "\" Keyword at URL : "+ footerCategoryLinks.get(i).getAttribute("href") );
+                        report.writeToFile("TEST FooterCategoryLinks "+i+": Successful | ", "found \"" + footerCategoryLinks.get(i).getText().trim() + "\" Keyword at URL : "+ footerCategoryLinks.get(i).getAttribute("href") );
                     }else {
                         report.writeToFile("unable to check! |", "couldn't found \"" + footerCategoryLinks.get(i).getText().trim() + "\" Keyword in URL : "+ footerCategoryLinks.get(i).getAttribute("href") );
+                        failedTestCases.writeToNamedFile("Checking Footer Links! |", "Please check the following URL: couldn't found \"" + footerCategoryLinks.get(i).getText().trim() + "\" Keyword in URL : "+ footerCategoryLinks.get(i).getAttribute("href"),"FailAndReview" );
+
                     }
                 }
                 ChangeCheckBox.adjustStyle(true,"complete",checkFooterLinks);
@@ -418,15 +462,18 @@ public class HomepageTest {
             }catch (Exception noFooterFound){
                 ChangeCheckBox.adjustStyle(true,"nope",checkFooterLinks);
                 report.writeToFile(infoMessage, "Couldn't find Footer Element!");
+                failedTestCases.writeToNamedFile(infoMessage, "Please check: could not find footer links", "FailAndReview");
                 noFooterFound.printStackTrace();
             }
 
         }catch (Exception noFooter){
             ChangeCheckBox.adjustStyle(true,"nope",checkFooterLinks);
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
+            failedTestCases.writeToNamedFile(infoMessage, "Please check footer links: Browser not responding", "FailAndReview");
             noFooter.printStackTrace();
         }
         report.writeToFile("=================================", "");
+        failedTestCases.writeToNamedFile("=================================","FailAndReview");
     }
 
     public void checkingSearchAndSuggestions(ChromeDriver webDriver, Report report, JFXCheckBox checkTextSearchAndSuggestions, TextField inputTextSearchAndSuggestions, Text statusInfo, TextField inputSearch, Properties Homepage){
@@ -454,10 +501,13 @@ public class HomepageTest {
                             List<WebElement> searchAliasesTitles = webDriver.findElementsByXPath(Homepage.getProperty("page.search.suggestion.titles"));
                             List<WebElement> searchAliasesType = webDriver.findElementsByXPath(Homepage.getProperty("page.search.suggestion.types"));
                             report.writeToFile(infoMessage+" for \""+ searchAliases[i].trim()+"\"");
+                            failedTestCases.writeToNamedFile(infoMessage+" for \""+ searchAliases[i].trim()+"\"", "FailAndReview" );
                             report.writeToFile("Suggestions :");
+                            failedTestCases.writeToNamedFile("Check Suggestions :", "FailAndReview");
                             for (int j = 0 ; j < searchAliasesTitles.size() ; j++){
                                 //System.out.println(searchAliasesTitles.get(j).getText() + "  | " + searchAliasesType.get(j).getText());
                                 report.writeToFile(searchAliasesTitles.get(j).getText()+" | "+searchAliasesType.get(j).getText() );
+                                failedTestCases.writeToNamedFile(searchAliasesTitles.get(j).getText()+" | "+searchAliasesType.get(j).getText(), "FailAndReview" );
                             }
                             report.writeToFile("");
                             element.submit();
@@ -466,6 +516,7 @@ public class HomepageTest {
                                 report.writeToFile("Test Title/URL Keyword \"" + searchAliases[i].trim() + "\" : ", "Successful!");
                             }else{
                                 report.writeToFile("Test Title/URL Keyword \"" + searchAliases[i].trim() + "\" : ", "unable to find Keyword at " + webDriver.getCurrentUrl() + " !");
+                                failedTestCases.writeToNamedFile("Suggestion Term/URL Keyword \"" + searchAliases[i].trim() + "\" : ", "Please check: unable to find Keyword at URL " + webDriver.getCurrentUrl() + " !", "FailAndReview");
                             }
                             report.writeToFile("");
 
@@ -478,24 +529,29 @@ public class HomepageTest {
                     }catch (Exception noSearchElements){
                         ChangeCheckBox.adjustStyle(true,"nope",checkTextSearchAndSuggestions);
                         report.writeToFile(infoMessage, "unable to get Suggestions!");
+                        failedTestCases.writeToNamedFile(infoMessage, "Please check: unable to get suggestions", "FailAndReview");
                         noSearchElements.printStackTrace();
                     }
                 }else{
                     ChangeCheckBox.adjustStyle(true,"nope",checkTextSearchAndSuggestions);
-                    report.writeToFile(infoMessage, "no Informations in Inputfield provided!");
+                    report.writeToFile(infoMessage, "no Information in Inputfield provided!");
+                    failedTestCases.writeToNamedFile(infoMessage, "Please note: no information was provided in input field", "FailAndReview");
                 }
 
             }catch (Exception noSearchBarInput){
                 ChangeCheckBox.adjustStyle(true,"nope",checkTextSearchAndSuggestions);
                 report.writeToFile(infoMessage, "unable to enter Search Input");
+                failedTestCases.writeToNamedFile(infoMessage, "Please check: unable to enter Search Input", "FailAndReview");
                 noSearchBarInput.printStackTrace();
             }
         }catch (Exception noInput){
             ChangeCheckBox.adjustStyle(true,"nope",checkTextSearchAndSuggestions);
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
+            failedTestCases.writeToNamedFile(infoMessage, "Please check suggestions: Browser not responding", "FailAndReview");
             noInput.printStackTrace();
         }
         report.writeToFile("=================================", "");
+        failedTestCases.writeToNamedFile("=================================","FailAndReview");
     }
     public void checkingFeedbackPopUp(ChromeDriver webDriver, Report report, JFXCheckBox checkFeedbackPopUp, Text statusInfo, TextField inputSearch, Properties Homepage){
         // Feedback PopUp
@@ -523,20 +579,24 @@ public class HomepageTest {
                 }catch (Exception noClosingFeedBackButton){
                     ChangeCheckBox.adjustStyle(true,"nope",checkFeedbackPopUp);
                     report.writeToFile(infoMessage, "couldn't close PopUp!");
+                    failedTestCases.writeToNamedFile(infoMessage, "Please check: Could not close pop up", "FailAndReview");
                     webDriver.navigate().to(inputSearch.getText().trim());
                 }
 
             }catch (Exception noFeedBackButtonFound){
                 ChangeCheckBox.adjustStyle(true,"nope",checkFeedbackPopUp);
                 report.writeToFile(infoMessage, "unable to check! Couldn't find Feedback Button");
+                failedTestCases.writeToNamedFile(infoMessage, "Please check: Couldn't find Feedback Button", "FailAndReview");
                 webDriver.navigate().to(inputSearch.getText().trim());
             }
         }catch (Exception noFeedBack){
             ChangeCheckBox.adjustStyle(true,"nope",checkFeedbackPopUp);
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
+            failedTestCases.writeToNamedFile(infoMessage, "Please check Feedback pop up: browser not responding", "FailAndReview");
             noFeedBack.printStackTrace();
         }
         report.writeToFile("=================================", "");
+        failedTestCases.writeToNamedFile("=================================","FailAndReview");
     }
 
     public void checkingPrivacyPopUp(ChromeDriver webDriver, Report report, JFXCheckBox checkPrivacyPopUp, Text statusInfo, TextField inputSearch, Properties Homepage) {
@@ -566,14 +626,16 @@ public class HomepageTest {
             }catch (Exception noPrivacyBoxFound){
                 ChangeCheckBox.adjustStyle(true,"nope",checkPrivacyPopUp);
                 report.writeToFile(infoMessage, "unable to find Privacy PopUp");
+                failedTestCases.writeToNamedFile(infoMessage, "Please check: Couldn't find Privacy PopUp", "FailAndReview");
                 noPrivacyBoxFound.printStackTrace();
             }
         }catch (Exception noPrivacyBox){
             ChangeCheckBox.adjustStyle(true,"nope",checkPrivacyPopUp);
-            report.writeToFile(infoMessage, "unable to check! Browser not responding");
+            failedTestCases.writeToNamedFile(infoMessage, "Please check Privacy PopUp: browser not responding", "FailAndReview");
             noPrivacyBox.printStackTrace();
         }
         report.writeToFile("=================================", "");
+        failedTestCases.writeToNamedFile("=================================","FailAndReview");
     }
 
     public void checkingImprint(ChromeDriver webDriver, Report report, JFXCheckBox checkImprint, Text statusInfo, TextField inputImprintURL, Properties Homepage) {
@@ -598,19 +660,23 @@ public class HomepageTest {
                 }else {
                     ChangeCheckBox.adjustStyle(true,"nope",checkImprint);
                     report.writeToFile(infoMessage, "Not successfull! User is not redirected to working page");
+                    failedTestCases.writeToNamedFile(infoMessage, "Please check Imprint page: user is not redirected to working page", "FailAndReview");
                 }
 
             }catch (Exception noPrivacyBoxFound){
                 ChangeCheckBox.adjustStyle(true,"nope",checkImprint);
                 report.writeToFile(infoMessage, "unable to find Costumer Service Button");
+                failedTestCases.writeToNamedFile(infoMessage, "Please check Imprint page: unable to find Costumer Service Button", "FailAndReview");
                 noPrivacyBoxFound.printStackTrace();
             }
         }catch (Exception noPrivacyBox){
             ChangeCheckBox.adjustStyle(true,"nope",checkImprint);
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
+            failedTestCases.writeToNamedFile(infoMessage, "Please check Imprint page: browser not responding", "FailAndReview");
             noPrivacyBox.printStackTrace();
         }
         report.writeToFile("=================================", "");
+        failedTestCases.writeToNamedFile("=================================","FailAndReview");
     }
     public void checkingPrivacyPolicy(ChromeDriver webDriver, Report report, JFXCheckBox PrivacyPolicy, Text statusInfo, TextField inputPrivacyPolicy, Properties Homepage) {
         final String infoMessage = PrivacyPolicy.getText();
@@ -633,27 +699,32 @@ public class HomepageTest {
                         ChangeCheckBox.adjustStyle(true,"complete",PrivacyPolicy);
                     }else{
                         report.writeToFile(infoMessage, "Failed !");
+                        failedTestCases.writeToNamedFile(infoMessage, "Please check Terms of Use page: link to Privacy policy not working", "FailAndReview");
                         ChangeCheckBox.adjustStyle(true,"nope",PrivacyPolicy);
                     }
                 }catch (Exception gridPageIssue){
                     ChangeCheckBox.adjustStyle(true,"nope",PrivacyPolicy);
                     webDriver.navigate().to(inputPrivacyPolicy.getText().trim());
                     report.writeToFile(infoMessage, "Couldn't detect \"Privacy\" Link");
+                    failedTestCases.writeToNamedFile(infoMessage, "Please check Terms of Use page: could not find link to Privacy policy (Please ignore this error if not applicable to specific country)", "FailAndReview");
                     gridPageIssue.printStackTrace();
                 }
             }catch (Exception noRequestedSiteFound){
                 ChangeCheckBox.adjustStyle(true,"nope",PrivacyPolicy);
                 webDriver.navigate().to(inputPrivacyPolicy.getText().trim());
                 report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
+                failedTestCases.writeToNamedFile(infoMessage, "Please check Terms of Use page: could not navigate to Privacy policy page", "FailAndReview");
                 noRequestedSiteFound.printStackTrace();
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",PrivacyPolicy);
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
+            failedTestCases.writeToNamedFile(infoMessage, "Please check Privacy Policy link on Terms of Use page: browser not working", "FailAndReview");
             noBrowserWorking.printStackTrace();
         }
 
         report.writeToFile("=================================", "");
+        failedTestCases.writeToNamedFile("=================================","FailAndReview");
 
     }
 }
