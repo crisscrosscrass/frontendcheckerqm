@@ -6,11 +6,8 @@ import crisscrosscrass.Tasks.*;
 import crisscrosscrass.Tests.*;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.application.Platform;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
-import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -19,11 +16,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
-
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-
 import javafx.scene.text.TextAlignment;
 import javafx.stage.FileChooser;
 import javafx.stage.Window;
@@ -33,10 +28,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.io.*;
-
-
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -293,7 +285,7 @@ public class MainController implements Serializable{
         infoBecomeAPartnerPageTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingBecomeAPartnerPage.getText(),becomeAPartnerController.becomePartnerCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]), placeForTooltipSetting));
         infoAffiliateTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingAffiliateProgram.getText(),affiliateProgramController.affiliateProgramCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]), placeForTooltipSetting));
         infoMerchandiseTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingMerchandiseOverviewPage.getText(),merchandiseOverviewPageController.merchandiseOverviewCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]), placeForTooltipSetting));
-        infoInputFieldTextSearch.setOnMouseClicked(event -> modalBox.showDialogInputField(InfoText.valueOf("TextSearch").getHeaderMessage(),InfoText.valueOf("TextSearch").getMainMessage(), placeForTooltipInput));
+        infoInputFieldTextSearch.setOnMouseClicked(event -> modalBox.showDialogInputFieldValidation(InfoText.valueOf("TextSearch").getHeaderMessage(),InfoText.valueOf("TextSearch").getMainMessage(), placeForTooltipInput));
         //set Start Button to disable, first Country has to be selected
         startwebdriver.setDisable(true);
         stopWebdriver.setDisable(true);
@@ -306,7 +298,9 @@ public class MainController implements Serializable{
     public void checkBeforeStart() {
         boolean mainTestCanStart = validateInputAttributes();
         logger.info(mainTestCanStart);
-        startRealAction();
+        if (mainTestCanStart){
+            Platform.runLater(this::startRealAction);
+        }
     }
 
     @FXML
@@ -377,6 +371,7 @@ public class MainController implements Serializable{
                         statusInfo.setText("Open Maximize Mode...");
                     });
                     //webDriver.manage().window().maximize();
+                    //webDriver.manage().window().setPosition(new Point(-2000, 0));   minimize function doesn't allow Javascript ViewPort
                     Platform.runLater(() -> statusInfo.setText("Go to requested Website..."));
                     long start = System.currentTimeMillis();
                     webDriver.navigate().to(inputSearch.getText().trim());
@@ -930,7 +925,7 @@ public class MainController implements Serializable{
             inputAffiliateProgramURL.setDisable(true);
             inputMerchandiseOverviewPageURL.setDisable(true);
             inputMerchandiseSearch.setDisable(true);
-            //settingTitledPane.setExpanded(false);  no need to expand any Title for now
+            //settingTitledPane.setExpanded(false);  no need to expand any Setting for now
         });
     }
 
@@ -973,27 +968,6 @@ public class MainController implements Serializable{
         bringit.copyUserSettings();
 
     }
-
-
-    @FXML
-    private double checkAllCheckBoxes() {
-        double StateProgress = 0;
-
-        JFXCheckBox[] checkboxes = CheckBoxesPlace.getChildren().toArray(new JFXCheckBox[0]);
-        int AmountOfCheckBoxes = checkboxes.length;
-
-        for (JFXCheckBox checkbox : checkboxes) {
-
-            if (checkbox.isSelected()) {
-                StateProgress += 1;
-
-            }
-        }
-        //System.out.println("State : " + StateProgress + "Amount of Boxes: "+AmountOfCheckBoxes);
-        StateProgress = StateProgress / AmountOfCheckBoxes;
-        return StateProgress;
-    }
-
     @FXML
     private void removeOpenReportFromProgram() {
         Platform.runLater(() -> outputPlace.getChildren().clear());
@@ -1093,6 +1067,12 @@ public class MainController implements Serializable{
             if (inputGridPageURLWithWindows.getText().length() < 1) {
                 ValidationsErrors.append("- the inputGridPageURLWithWindows cannot be empty\n");
             }
+            if (!inputGridPageURLWithWindows.getText().contains(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getLocationMainPage()) & !inputGridPageURLWithWindows.getText().equals("")){
+                inputGridPageURLWithWindows.setStyle(failureStyleSettings);
+                ValidationsErrors.append("- the inputGridPageURLWithWindows cannot be unrelated to selected Country\n");
+            }else{
+                inputGridPageURLWithWindows.setStyle(successStyleSettings);
+            }
         }
         if (settingGridPageFillIns.isSelected()) {
             if (inputGridPageURLWithFillIns.getText().length() < 1) {
@@ -1131,7 +1111,7 @@ public class MainController implements Serializable{
         }
         if (!isEverythingFilledCorrectly){
             ModalBox ErrorInputFields = new ModalBox();
-            ErrorInputFields.showDialogInputField("Validation Error",ValidationsErrors.toString(),placeForTooltipInput);
+            ErrorInputFields.showDialogInputFieldValidation("Validation Error",ValidationsErrors.toString(),placeForTooltipInput);
         }
         return isEverythingFilledCorrectly;
     }

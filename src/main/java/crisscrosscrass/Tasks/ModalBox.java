@@ -39,7 +39,7 @@ public class ModalBox {
         dialog.setOnDialogClosed(event -> placeToDisplayInfo.setVisible(false));
         dialog.show();
     }
-    public void showDialogInputField(String nameOfTestCase, String Message, StackPane placeToDisplayInfo){
+    public void showDialogInputFieldValidation(String nameOfTestCase, String Message, StackPane placeToDisplayInfo){
 
         Text headerMessage = new Text();
         headerMessage.setFont(Font.font ("System", FontWeight.BOLD,22));
@@ -49,6 +49,7 @@ public class ModalBox {
         ScrollPane scrollPane = new ScrollPane(mainContent);
         scrollPane.setPrefViewportHeight(200);
         scrollPane.setPrefViewportWidth(400);
+        scrollPane.setMinWidth(600);
 
         placeToDisplayInfo.setVisible(true);
         JFXDialogLayout content = new JFXDialogLayout();
