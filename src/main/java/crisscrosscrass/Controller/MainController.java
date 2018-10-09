@@ -296,9 +296,7 @@ public class MainController implements Serializable{
 
     @FXML
     public void checkBeforeStart() {
-        boolean mainTestCanStart = validateInputAttributes();
-        logger.info(mainTestCanStart);
-        if (mainTestCanStart){
+        if (validateInputAttributes()){
             Platform.runLater(this::startRealAction);
         }
     }

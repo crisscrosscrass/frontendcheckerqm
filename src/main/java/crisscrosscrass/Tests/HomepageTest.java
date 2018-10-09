@@ -278,8 +278,8 @@ failedTestCases.writeToNamedFile("CHECKING HOMEPAGE", "FailAndReview");
                 webDriver.findElementByXPath(xpathPattern1).click();
                 WebDriverWait wait = new WebDriverWait(webDriver, 10);
                 try{
-                    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='inactivity_popup']/div[1]")));
-                    webDriver.findElementByXPath("//*[@id='inactivity_popup']/div[1]").click();
+                    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.main.newsletter.close"))));
+                    webDriver.findElementByXPath(Homepage.getProperty("page.main.newsletter.close")).click();
                     ChangeCheckBox.adjustStyle(true,"complete",checkNewsletterPopUp);
                     report.writeToFile(infoMessage, "Successful!");
                 }catch (Exception noNewsletterIconCloseFound){
@@ -321,13 +321,12 @@ failedTestCases.writeToNamedFile("CHECKING HOMEPAGE", "FailAndReview");
         Platform.runLater(() -> {
             statusInfo.setText(""+infoMessage+"...");
         });
-        String xpathPattern1 = Homepage.getProperty("page.main.newsletter.icon");
         try {
             ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
             webDriver.switchTo().window(tabs.get(0));
             try {
-                boolean isAvailable = webDriver.findElementByXPath(xpathPattern1) != null;
-                webDriver.findElementByXPath(xpathPattern1).click();
+                boolean isAvailable = webDriver.findElementByXPath(Homepage.getProperty("page.main.newsletter.icon")) != null;
+                webDriver.findElementByXPath(Homepage.getProperty("page.main.newsletter.icon")).click();
                 boolean isSuccessful;
                 try{
                     // Scroll down
@@ -336,7 +335,7 @@ failedTestCases.writeToNamedFile("CHECKING HOMEPAGE", "FailAndReview");
                         js.executeScript("window.scrollBy(0,100)");
                     }
 
-                    WebElement element = webDriver.findElementByXPath("//*[@id=\"subscribing-wrapper\"]/div[1]/form/div[1]/input");
+                    WebElement element = webDriver.findElementByXPath(Homepage.getProperty("page.main.newsletter.input"));
                     element.sendKeys(inputEmailAdress.getText());
                     element.submit();
                     try{
