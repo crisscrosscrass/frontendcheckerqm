@@ -12,6 +12,7 @@ import javafx.scene.text.Text;
 
 public class ModalBox {
     public void showDialogTestCases(String nameOfTestCase, JFXCheckBox[] checkboxes, StackPane placeToDisplayInfo){
+        placeToDisplayInfo.getChildren().clear();
         StringBuilder sb = new StringBuilder();
         for (JFXCheckBox checkBox : checkboxes){
             sb.append("- "+checkBox.getText()+"\n");
@@ -40,6 +41,7 @@ public class ModalBox {
         dialog.show();
     }
     public void showDialogInputFieldValidation(String nameOfTestCase, String Message, StackPane placeToDisplayInfo){
+        placeToDisplayInfo.getChildren().clear();
 
         Text headerMessage = new Text();
         headerMessage.setFont(Font.font ("System", FontWeight.BOLD,22));
@@ -64,7 +66,9 @@ public class ModalBox {
             placeToDisplayInfo.setVisible(false);
         });
         content.setActions(jfxButton);
-        dialog.setOnDialogClosed(event -> placeToDisplayInfo.setVisible(false));
+        dialog.setOnDialogClosed(event -> {
+            placeToDisplayInfo.setVisible(false);
+        });
         dialog.show();
     }
 }

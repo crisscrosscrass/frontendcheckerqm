@@ -1027,9 +1027,6 @@ public class MainController implements Serializable{
             }
         }
         if (settingGridPage.isSelected()){
-            if (inputGridPageKeyword.getText().length() < 1){
-                ValidationsErrors.append("- the inputGridPageKeyword cannot be empty\n");
-            }
             int amountOfSelectedFilters = 0;
             if (checkingSalesPriceFilter.isSelected()){
                 ++amountOfSelectedFilters;
@@ -1048,6 +1045,9 @@ public class MainController implements Serializable{
             }
             if (amountOfSelectedFilters < 1){
                 ValidationsErrors.append("- at least one the Filter must be selected\n");
+            }
+            if (inputGridPageKeyword.getText().length() < 1){
+                ValidationsErrors.append("- the inputGridPageKeyword cannot be empty\n");
             }
         }
         if (settingGridPage.isSelected() | settingImageGrouping.isSelected() | settingDetailPage.isSelected()| settingFavoritePage.isSelected()){
