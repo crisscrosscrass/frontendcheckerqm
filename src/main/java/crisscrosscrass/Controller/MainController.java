@@ -287,11 +287,13 @@ public class MainController implements Serializable{
         infoMerchandiseTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingMerchandiseOverviewPage.getText(),merchandiseOverviewPageController.merchandiseOverviewCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]), placeForTooltipSetting));
         infoInputFieldTextSearch.setOnMouseClicked(event -> modalBox.showDialogInputFieldValidation(InfoText.valueOf("TextSearch").getHeaderMessage(),InfoText.valueOf("TextSearch").getMainMessage(), placeForTooltipInput));
         // Bind validation to Input Fields
+        /* no need for now
         inputGridPageURL.focusedProperty().addListener((arg0, oldValue, newValue) -> {
             if (!newValue) { //when focus lost
                 validateInputAttributesAndShowColor();
             }
         });
+        */
         //set Start Button to disable, first Country has to be selected
         startwebdriver.setDisable(true);
         stopWebdriver.setDisable(true);
@@ -1138,26 +1140,14 @@ public class MainController implements Serializable{
                 }
             }
             if (settingGridPage.isSelected() | settingImageGrouping.isSelected() | settingDetailPage.isSelected()| settingFavoritePage.isSelected()){
-                if (inputGridPageURL.getText().length() < 1) {
+                if (inputGridPageURL.getText().length() < 1 | !inputGridPageURL.getText().contains(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getLocationMainPage()) & !inputGridPageURL.getText().equals("")) {
                     inputGridPageURL.setStyle(failureStyleSettings);
                 }else{
                     inputGridPageURL.setStyle(successStyleSettings);
                 }
-                if (!inputGridPageURL.getText().contains(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getLocationMainPage()) & !inputGridPageURL.getText().equals("")){
-                    inputGridPageURL.setStyle(failureStyleSettings);
-                }else{
-                    inputGridPageURL.setStyle(successStyleSettings);
-                }
-            }else{
-                inputGridPageURL.setStyle(successStyleSettings);
             }
             if (settingGridPageWithWindows.isSelected()) {
-                if (inputGridPageURLWithWindows.getText().length() < 1) {
-                    inputGridPageURLWithWindows.setStyle(failureStyleSettings);
-                }else{
-                    inputGridPageURLWithWindows.setStyle(successStyleSettings);
-                }
-                if (!inputGridPageURLWithWindows.getText().contains(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getLocationMainPage()) & !inputGridPageURLWithWindows.getText().equals("")) {
+                if (inputGridPageURLWithWindows.getText().length() < 1 | !inputGridPageURLWithWindows.getText().contains(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getLocationMainPage()) & !inputGridPageURLWithWindows.getText().equals("")) {
                     inputGridPageURLWithWindows.setStyle(failureStyleSettings);
                 }else{
                     inputGridPageURLWithWindows.setStyle(successStyleSettings);
