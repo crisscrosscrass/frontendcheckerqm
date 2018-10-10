@@ -286,6 +286,12 @@ public class MainController implements Serializable{
         infoAffiliateTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingAffiliateProgram.getText(),affiliateProgramController.affiliateProgramCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]), placeForTooltipSetting));
         infoMerchandiseTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingMerchandiseOverviewPage.getText(),merchandiseOverviewPageController.merchandiseOverviewCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]), placeForTooltipSetting));
         infoInputFieldTextSearch.setOnMouseClicked(event -> modalBox.showDialogInputFieldValidation(InfoText.valueOf("TextSearch").getHeaderMessage(),InfoText.valueOf("TextSearch").getMainMessage(), placeForTooltipInput));
+        // Bind validation to Input Fields
+        inputGridPageURL.focusedProperty().addListener((arg0, oldValue, newValue) -> {
+            if (!newValue) { //when focus lost
+                validateInputAttributesAndShowColor();
+            }
+        });
         //set Start Button to disable, first Country has to be selected
         startwebdriver.setDisable(true);
         stopWebdriver.setDisable(true);
@@ -1007,9 +1013,7 @@ public class MainController implements Serializable{
         settingMerchandiseOverviewPage.setSelected(false);
         updateCheckerTabs();
     }
-    public boolean validateInputAttributes(){
-        String failureStyleSettings = "-fx-border-style: none solid solid solid; -fx-border-width: 3; -fx-border-color:  #e83062;";
-        String successStyleSettings = "-fx-border-style: none none none none; -fx-border-width: 1; -fx-border-color: green;";
+    private boolean validateInputAttributes(){
         //String successStyleSettings = null;
         boolean webDriverCanStart = false;
 
@@ -1053,23 +1057,15 @@ public class MainController implements Serializable{
                 ValidationsErrors.append("- the inputGridPageURL cannot be empty\n");
             }
             if (!inputGridPageURL.getText().contains(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getLocationMainPage()) & !inputGridPageURL.getText().equals("")){
-                inputGridPageURL.setStyle(failureStyleSettings);
                 ValidationsErrors.append("- the inputGridPageURL cannot be unrelated to selected Country\n");
-            }else{
-                inputGridPageURL.setStyle(successStyleSettings);
             }
-        }else{
-            inputGridPageURL.setStyle(successStyleSettings);
         }
         if (settingGridPageWithWindows.isSelected()) {
             if (inputGridPageURLWithWindows.getText().length() < 1) {
                 ValidationsErrors.append("- the inputGridPageURLWithWindows cannot be empty\n");
             }
-            if (!inputGridPageURLWithWindows.getText().contains(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getLocationMainPage()) & !inputGridPageURLWithWindows.getText().equals("")){
-                inputGridPageURLWithWindows.setStyle(failureStyleSettings);
+            if (!inputGridPageURLWithWindows.getText().contains(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getLocationMainPage()) & !inputGridPageURLWithWindows.getText().equals("")) {
                 ValidationsErrors.append("- the inputGridPageURLWithWindows cannot be unrelated to selected Country\n");
-            }else{
-                inputGridPageURLWithWindows.setStyle(successStyleSettings);
             }
         }
         if (settingGridPageFillIns.isSelected()) {
@@ -1097,10 +1093,7 @@ public class MainController implements Serializable{
                 ValidationsErrors.append("- the inputAccountEmail cannot be empty\n");
             }
             if (!inputAccountEmail.getText().equals("") & !inputAccountEmail.getText().toLowerCase().contains("@visual-meta.com")){
-                inputAccountEmail.setStyle(failureStyleSettings);
                 ValidationsErrors.append("- the inputAccountEmail cannot be unrelated to Company\n");
-            }else{
-                inputAccountEmail.setStyle(successStyleSettings);
             }
         }
         logger.info(ValidationsErrors);
@@ -1110,8 +1103,102 @@ public class MainController implements Serializable{
         if (!isEverythingFilledCorrectly){
             ModalBox ErrorInputFields = new ModalBox();
             ErrorInputFields.showDialogInputFieldValidation("Validation Error",ValidationsErrors.toString(),placeForTooltipInput);
+            validateInputAttributesAndShowColor();
         }
         return isEverythingFilledCorrectly;
+    }
+    private void validateInputAttributesAndShowColor(){
+        if (countrySelection.getValue() != null){
+            String failureStyleSettings = "-fx-border-style: none solid solid solid; -fx-border-width: 3; -fx-border-color:  #e83062;";
+            //String successStyleSettings = "-fx-border-style: none none none none; -fx-border-width: 1; -fx-border-color: green;";
+            String successStyleSettings = null;
+            if (settingHomepage.isSelected()){
+                if (inputTextSearchAndSuggestions.getText().length() < 1){
+                    inputTextSearchAndSuggestions.setStyle(failureStyleSettings);
+                }else{
+                    inputTextSearchAndSuggestions.setStyle(successStyleSettings);
+                }
+            }
+            if (settingGridPage.isSelected()){
+                int amountOfSelectedFilters = 0;
+                if (checkingSalesPriceFilter.isSelected()){++amountOfSelectedFilters;}
+                if (checkingGenderFilter.isSelected()){++amountOfSelectedFilters;}
+                if (checkingColorFilter.isSelected()){++amountOfSelectedFilters;}
+                if (checkingBrandFilter.isSelected()){++amountOfSelectedFilters;}
+                if (checkingMerchandiseFilter.isSelected()){++amountOfSelectedFilters;}
+                if (amountOfSelectedFilters < 1){
+                    ElementFiltersBox.setStyle(failureStyleSettings);
+                }else{
+                    ElementFiltersBox.setStyle(successStyleSettings);
+                }
+                if (inputGridPageKeyword.getText().length() < 1){
+                    inputGridPageKeyword.setStyle(failureStyleSettings);
+                }else{
+                    inputGridPageKeyword.setStyle(successStyleSettings);
+                }
+            }
+            if (settingGridPage.isSelected() | settingImageGrouping.isSelected() | settingDetailPage.isSelected()| settingFavoritePage.isSelected()){
+                if (inputGridPageURL.getText().length() < 1) {
+                    inputGridPageURL.setStyle(failureStyleSettings);
+                }else{
+                    inputGridPageURL.setStyle(successStyleSettings);
+                }
+                if (!inputGridPageURL.getText().contains(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getLocationMainPage()) & !inputGridPageURL.getText().equals("")){
+                    inputGridPageURL.setStyle(failureStyleSettings);
+                }else{
+                    inputGridPageURL.setStyle(successStyleSettings);
+                }
+            }else{
+                inputGridPageURL.setStyle(successStyleSettings);
+            }
+            if (settingGridPageWithWindows.isSelected()) {
+                if (inputGridPageURLWithWindows.getText().length() < 1) {
+                    inputGridPageURLWithWindows.setStyle(failureStyleSettings);
+                }else{
+                    inputGridPageURLWithWindows.setStyle(successStyleSettings);
+                }
+                if (!inputGridPageURLWithWindows.getText().contains(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getLocationMainPage()) & !inputGridPageURLWithWindows.getText().equals("")) {
+                    inputGridPageURLWithWindows.setStyle(failureStyleSettings);
+                }else{
+                    inputGridPageURLWithWindows.setStyle(successStyleSettings);
+                }
+            }
+            if (settingGridPageFillIns.isSelected()) {
+                if (inputGridPageURLWithFillIns.getText().length() < 1) {
+                    inputGridPageURLWithFillIns.setStyle(failureStyleSettings);
+                }else{
+                    inputGridPageURLWithFillIns.setStyle(successStyleSettings);
+                }
+            }
+            if (settingLucenePage.isSelected()){
+                if (inputLucenePage.getText().length() < 1){
+                    inputLucenePage.setStyle(failureStyleSettings);
+                }else{
+                    inputLucenePage.setStyle(successStyleSettings);
+                }
+            }
+            if (settingPartnerShopPage.isSelected()){
+                if (inputPartnerShopSearch.getText().length() < 1){
+                    inputPartnerShopSearch.setStyle(failureStyleSettings);
+                }else{
+                    inputPartnerShopSearch.setStyle(successStyleSettings);
+                }
+            }
+            if (settingMerchandiseOverviewPage.isSelected()){
+                if (inputMerchandiseSearch.getText().length() < 1){
+                    inputMerchandiseSearch.setStyle(failureStyleSettings);
+                }else{
+                    inputMerchandiseSearch.setStyle(successStyleSettings);
+                }
+            }
+            if (settingFavoritePage.isSelected()){
+                if (inputAccountEmail.getText().length() < 1 | !inputAccountEmail.getText().equals("") & !inputAccountEmail.getText().toLowerCase().contains("@visual-meta.com")){
+                    inputAccountEmail.setStyle(failureStyleSettings);
+                }else{
+                    inputAccountEmail.setStyle(successStyleSettings);
+                }
+            }
+        }
     }
     public void updateCheckerTabs(){
         SettingManager settingManager = new SettingManager();
