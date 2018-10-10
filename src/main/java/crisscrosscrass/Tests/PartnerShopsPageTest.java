@@ -161,8 +161,8 @@ public class PartnerShopsPageTest {
                     ((JavascriptExecutor)webDriver).executeScript("return window.title;");
                     ((JavascriptExecutor)webDriver).executeScript("window.scrollBy(0,"+(hoverItem.getY())+");");
                     List<WebElement> ShopRatingCounts = webDriver.findElementsByXPath(Homepage.getProperty("partnerpage.shops.ratingcounts"));
-                    final int FirstShopAmountOfReviews = Integer.parseInt(ShopRatingCounts.get(0).getText().replaceAll("([A-Z]|[a-z]).*","").trim());
-                    final int LastShopAmountOfReviews = Integer.parseInt(ShopRatingCounts.get(ShopRatingCounts.size()-1).getText().replaceAll("([A-Z]|[a-z]).*","").trim());
+                    final int FirstShopAmountOfReviews = Integer.parseInt(ShopRatingCounts.get(0).getText().replaceAll("(?![1-9]).*","").trim());
+                    final int LastShopAmountOfReviews = Integer.parseInt(ShopRatingCounts.get(ShopRatingCounts.size()-1).getText().replaceAll("(?![1-9]).*","").trim());
                     if (FirstShopAmountOfReviews >= LastShopAmountOfReviews){
                         report.writeToFile("Sorting- Number of Reviews", "Successful ! First shop in the list has more reviews ("+FirstShopAmountOfReviews+") than last shop ("+LastShopAmountOfReviews+")");
                         ChangeCheckBox.adjustStyle(true,"complete",SortingReviews);
@@ -263,10 +263,15 @@ public class PartnerShopsPageTest {
                     Point hoverItem = AllShopLogoLinksWithoutPlaceholder.get(randomSelectedNumber).getLocation();
                     ((JavascriptExecutor)webDriver).executeScript("return window.title;");
                     ((JavascriptExecutor)webDriver).executeScript("window.scrollBy(0,"+(hoverItem.getY())+");");
+                    //webDriver need to wait until placeholder disappears and the currect shop logo has been loaded
+                    for (int i = 0; i < 1; i++) {
+                        Thread.sleep(1000);
+                        js.executeScript("window.scrollBy(0,-1)");
+                    }
                     String LogoURLFromSelectedItem = AllShopLogoLinksWithoutPlaceholder.get(randomSelectedNumber).getAttribute("src");
                     AllShopLogoLinksWithoutPlaceholder.get(randomSelectedNumber).click();
                     wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.grid.shop.image"))));
-                    if (webDriver.findElementByXPath(Homepage.getProperty("page.grid.shop.image")).getAttribute("src").equals(LogoURLFromSelectedItem)){
+                    if (webDriver.findElementByXPath(Homepage.getProperty("page.grid.shop.image")).getAttribute("src").toLowerCase().trim().equals(LogoURLFromSelectedItem.toLowerCase().trim())){
                         ChangeCheckBox.adjustStyle(true,"complete",ShopLinkLogo);
                         report.writeToFile(infoMessage, "Successful! Logo URL in HP and logo URL on upper left side of redirected page are the same");
                     }else {
