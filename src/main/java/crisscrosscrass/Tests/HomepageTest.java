@@ -105,8 +105,11 @@ failedTestCases.writeToNamedFile("CHECKING HOMEPAGE", "FailAndReview");
                         isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"ShopLogoGridPage.png");
                         if (isSuccessful){
                             report.writeToFile("Checking Logo Shop Screenshot: ", "Screenshot successful!");
+                            failedTestCases.writeToNamedFile("Checking Logo Shop Screenshot: ", "Screenshot successful!", "FailAndReview");
+
                         }else {
                             report.writeToFile("Checking Logo Shop Screenshot: ", "Screenshot not successful!");
+                            failedTestCases.writeToNamedFile("Checking Logo Shop Screenshot: ", "Screenshot not successful!", "FailAndReview");
                         }
                     }
                     webDriver.navigate().to(inputSearch.getText().trim());
