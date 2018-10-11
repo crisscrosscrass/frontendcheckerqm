@@ -95,9 +95,6 @@ public class MainMenuOnHomePageTest {
     }
     public void checkingMainMenuIndex(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox MainMenuLinkIndex, Text statusInfo, TextField inputSearch, Properties Homepage){
         final String infoMessage = MainMenuLinkIndex.getText();
-        Report failedMainMenuTest = new Report();
-        final String failedReportName = "failedMainMenuIndexTest";
-        failedMainMenuTest.clearWrittenNamendReport(failedReportName);
         ChangeCheckBox.adjustStyle(false,"progress",MainMenuLinkIndex);
         Platform.runLater(() -> {
             statusInfo.setText(""+infoMessage+"...");
@@ -117,7 +114,6 @@ public class MainMenuOnHomePageTest {
                     Actions hover = new Actions(webDriver);
                     WebdriverTab newtab = new WebdriverTab();
                     report.writeToFile("Checking Main Menu Links on Index: ");
-                    failedMainMenuTest.writeToNamedFile("Failed Main Menu Links on Index: ",failedReportName);
                     ArrayList<String> urlsToBeChecked = new ArrayList<>();
                     ArrayList<String> keywordsToBeChecked = new ArrayList<>();
                     int counterXPath = 0;
@@ -217,9 +213,6 @@ public class MainMenuOnHomePageTest {
 
     public void checkingShoppingWorld(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox ShoppingWorlds, Text statusInfo, TextField inputSearch, Properties Homepage){
         final String infoMessage = ShoppingWorlds.getText();
-        Report failedMainMenuTest = new Report();
-        final String failedReportName = "failedMainMenuIndexTest";
-        failedMainMenuTest.clearWrittenNamendReport(failedReportName);
         ChangeCheckBox.adjustStyle(false,"progress",ShoppingWorlds);
         Platform.runLater(() -> {
             statusInfo.setText(""+infoMessage+"...");
@@ -262,9 +255,6 @@ public class MainMenuOnHomePageTest {
     }
     public void checkingShoppingWorldOnIndex(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox ShoppingWorldsOnIndex, Text statusInfo, TextField inputSearch, Properties Homepage){
         final String infoMessage = ShoppingWorldsOnIndex.getText();
-        Report failedMainMenuTest = new Report();
-        final String failedReportName = "failedMainMenuIndexTest";
-        failedMainMenuTest.clearWrittenNamendReport(failedReportName);
         ChangeCheckBox.adjustStyle(false,"progress",ShoppingWorldsOnIndex);
         Platform.runLater(() -> {
             statusInfo.setText(""+infoMessage+"...");

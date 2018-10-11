@@ -12,6 +12,7 @@ import javafx.scene.text.Text;
 
 public class ModalBox {
     public void showDialogTestCases(String nameOfTestCase, JFXCheckBox[] checkboxes, StackPane placeToDisplayInfo){
+        placeToDisplayInfo.getChildren().clear();
         StringBuilder sb = new StringBuilder();
         for (JFXCheckBox checkBox : checkboxes){
             sb.append("- "+checkBox.getText()+"\n");
@@ -39,16 +40,19 @@ public class ModalBox {
         dialog.setOnDialogClosed(event -> placeToDisplayInfo.setVisible(false));
         dialog.show();
     }
-    public void showDialogInputField(String nameOfTestCase, String Message, StackPane placeToDisplayInfo){
+    public void showDialogInputFieldValidation(String nameOfTestCase, String Message, StackPane placeToDisplayInfo){
+        placeToDisplayInfo.getChildren().clear();
 
         Text headerMessage = new Text();
         headerMessage.setFont(Font.font ("System", FontWeight.BOLD,22));
         headerMessage.setText(nameOfTestCase);
         Text mainContent = new Text();
+        mainContent.setFont(Font.font ("System", FontWeight.NORMAL,12));
         mainContent.setText(Message);
         ScrollPane scrollPane = new ScrollPane(mainContent);
         scrollPane.setPrefViewportHeight(200);
         scrollPane.setPrefViewportWidth(400);
+        scrollPane.setMinWidth(600);
 
         placeToDisplayInfo.setVisible(true);
         JFXDialogLayout content = new JFXDialogLayout();
@@ -63,7 +67,9 @@ public class ModalBox {
             placeToDisplayInfo.setVisible(false);
         });
         content.setActions(jfxButton);
-        dialog.setOnDialogClosed(event -> placeToDisplayInfo.setVisible(false));
+        dialog.setOnDialogClosed(event -> {
+            placeToDisplayInfo.setVisible(false);
+        });
         dialog.show();
     }
 }

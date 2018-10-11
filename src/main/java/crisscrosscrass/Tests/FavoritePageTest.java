@@ -7,6 +7,7 @@ import crisscrosscrass.Tasks.ChangeCheckBox;
 import crisscrosscrass.Tasks.Report;
 import crisscrosscrass.Tasks.ScreenshotViaWebDriver;
 import javafx.application.Platform;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import org.openqa.selenium.By;
@@ -22,7 +23,7 @@ import java.util.List;
 import java.util.Properties;
 
 public class FavoritePageTest {
-    public void checkingPersonalListTest(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox PersonalList, Text statusInfo, TextField inputSearch, Properties Homepage, JFXTextField inputAccountEmail, JFXPasswordField inputAccountPassword){
+    public void checkingPersonalListTest(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox PersonalList, Text statusInfo, TextField inputSearch, Properties Homepage, TextField inputAccountEmail, PasswordField inputAccountPassword){
         final String infoMessage = PersonalList.getText();
         ChangeCheckBox.adjustStyle(false,"progress",PersonalList);
         Platform.runLater(() -> {
@@ -275,7 +276,7 @@ public class FavoritePageTest {
 
     }
 
-    public void checkingApplySortingOnList(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox applySortingOnList, Text statusInfo, TextField inputGridPageURL, Properties Homepage, JFXTextField inputAccountEmail, JFXPasswordField inputAccountPassword){
+    public void checkingApplySortingOnList(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox applySortingOnList, Text statusInfo, TextField inputGridPageURL, Properties Homepage, TextField inputAccountEmail, PasswordField inputAccountPassword){
         final String infoMessage = applySortingOnList.getText();
         ChangeCheckBox.adjustStyle(false,"progress",applySortingOnList);
         Platform.runLater(() -> {
@@ -447,7 +448,7 @@ public class FavoritePageTest {
 
     }
 
-    public void checkingSelectionOnList(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox selectionOnList, Text statusInfo, TextField inputSearch, Properties Homepage, JFXTextField inputAccountEmail, JFXPasswordField inputAccountPassword){
+    public void checkingSelectionOnList(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox selectionOnList, Text statusInfo, TextField inputSearch, Properties Homepage, TextField inputAccountEmail, PasswordField inputAccountPassword){
         final String infoMessage = selectionOnList.getText();
         ChangeCheckBox.adjustStyle(false,"progress",selectionOnList);
         Platform.runLater(() -> {

@@ -3,13 +3,12 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXCheckBox?>
 <?import com.jfoenix.controls.JFXComboBox?>
-<?import com.jfoenix.controls.JFXPasswordField?>
-<?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tab?>
@@ -27,7 +26,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="mainStage" minHeight="822.0" minWidth="1355.0" prefHeight="840.0" prefWidth="1380.0" style="-fx-background-color: white;" stylesheets="@../Style/Main.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="crisscrosscrass.Controller.MainController">
+<AnchorPane fx:id="mainStage" minHeight="822.0" minWidth="1355.0" prefHeight="925.0" prefWidth="1380.0" style="-fx-background-color: white;" stylesheets="@../Style/Main.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="crisscrosscrass.Controller.MainController">
    <children>
       <VBox alignment="CENTER" prefHeight="229.0" prefWidth="0.0" spacing="5.0" style="-fx-background-color: grey; -fx-border-width: 1;" visible="false">
          <children>
@@ -190,42 +189,58 @@
             <Insets left="20.0" />
          </padding>
       </VBox>
-      <VBox layoutX="-1.0" minWidth="1349.0" prefHeight="804.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="0.0">
+      <VBox layoutX="-1.0" minWidth="1349.0" prefHeight="907.0" prefWidth="1382.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="0.0">
          <children>
-            <HBox alignment="CENTER_LEFT" minWidth="1349.0" prefHeight="131.0" prefWidth="1349.0" style="-fx-background-color: #45818eff;" VBox.vgrow="ALWAYS">
+            <HBox alignment="CENTER_LEFT" style="-fx-background-color: #45818eff;" VBox.vgrow="ALWAYS">
                <children>
-                  <HBox alignment="CENTER_LEFT" prefHeight="96.0" prefWidth="833.0" spacing="25.0" style="-fx-background-color: #0c343dff;">
-                     <children>
-                        <JFXComboBox fx:id="countrySelection" focusColor="#e83062" prefHeight="63.0" prefWidth="147.0" unFocusColor="WHITE">
-                           <padding>
-                              <Insets left="20.0" />
-                           </padding></JFXComboBox>
-                        <ImageView fitHeight="84.0" fitWidth="553.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../Images/VisualMeta_White.png" />
-                           </image>
-                        </ImageView>
-                     </children>
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                  </HBox>
+                  <ImageView fitHeight="84.0" fitWidth="553.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/VisualMeta_White.png" />
+                     </image>
+                  </ImageView>
                </children>
+               <padding>
+                  <Insets bottom="10.0" left="50.0" right="50.0" top="10.0" />
+               </padding>
             </HBox>
             <HBox minWidth="1349.0" prefHeight="25.0" />
-            <HBox minWidth="1349.0" prefHeight="667.0" prefWidth="1357.0" spacing="10.0" VBox.vgrow="ALWAYS">
+            <HBox minWidth="1349.0" prefHeight="789.0" prefWidth="1382.0" spacing="10.0" VBox.vgrow="ALWAYS">
                <children>
-                  <VBox fillWidth="false" prefHeight="657.0" prefWidth="907.0">
+                  <VBox fillWidth="false" prefHeight="784.0" prefWidth="711.0">
                      <children>
-                        <HBox prefHeight="414.0" prefWidth="789.0">
+                        <HBox prefHeight="613.0" prefWidth="789.0">
                            <children>
-                              <VBox prefHeight="355.0" prefWidth="660.0" spacing="5.0">
+                              <VBox prefHeight="404.0" prefWidth="672.0" spacing="5.0">
                                  <children>
+                                    <Text fill="#5a5a5a" strokeType="OUTSIDE" strokeWidth="0.0" text="Step 1: Test selection" underline="true">
+                                       <font>
+                                          <Font size="25.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                    </Text>
+                                    <Text fill="#5a5a5a" layoutX="30.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pick a country and desired tests manually OR use full test quick button">
+                                       <font>
+                                          <Font name="System Italic" size="12.0" />
+                                       </font>
+                                    </Text>
                                     <HBox alignment="CENTER" spacing="10.0">
                                        <children>
-                                          <JFXButton alignment="CENTER" onAction="#selectAllSettingCheckBoxes" style="-fx-background-color: #0f9d58;" text="Full Test" textFill="WHITE" />
-                                          <JFXButton alignment="CENTER" onAction="#deselectAllSettingCheckBoxes" style="-fx-background-color: #5a5a5a;" text="Custom Test" textFill="WHITE" />
-                                          <JFXButton onAction="#LoadFileWithURLs" ripplerFill="WHITE" style="-fx-background-color: #e83062;" text="LoadFileWithURL" textFill="WHITE" />
+                                          <JFXComboBox fx:id="countrySelection" focusColor="#e5306400" promptText="select a country" unFocusColor="#ffffff00" visibleRowCount="15">
+                                             <padding>
+                                                <Insets left="20.0" />
+                                             </padding>
+                                          </JFXComboBox>
+                                          <JFXButton fx:id="fulltestButton" alignment="CENTER" onAction="#selectAllSettingCheckBoxes" prefHeight="37.0" prefWidth="86.0" style="-fx-background-color: #0f9d58;" text="Full Test" textFill="WHITE">
+                                             <font>
+                                                <Font size="16.0" />
+                                             </font></JFXButton>
+                                          <JFXButton fx:id="costumtestButton" alignment="CENTER" onAction="#deselectAllSettingCheckBoxes" style="-fx-background-color: #5a5a5a;" text="Custom Test" textFill="WHITE">
+                                             <font>
+                                                <Font size="16.0" />
+                                             </font></JFXButton>
+                                          <JFXButton onAction="#LoadFileWithURLs" ripplerFill="WHITE" style="-fx-background-color: #e83062;" text="LoadFileWithURL" textFill="WHITE" visible="false" />
                                        </children>
                                     </HBox>
                                     <GridPane fx:id="settingGridPane" prefHeight="295.0" prefWidth="641.0" vgap="5.0">
@@ -239,17 +254,16 @@
                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="0.0" prefWidth="8.0" />
                                       </columnConstraints>
                                       <rowConstraints>
-                                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="59.0" minHeight="10.0" prefHeight="32.0" vgrow="SOMETIMES" />
                                       </rowConstraints>
                                        <children>
-                                          <JFXCheckBox id="settingCheckBox" fx:id="settingHomepage" checkedColor="#45818e" contentDisplay="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="40.0" prefWidth="290.0" selected="true" style="-fx-background-color: #165f6fff;" text="Homepage" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                          <JFXCheckBox id="settingCheckBox" fx:id="settingHomepage" checkedColor="#45818e" contentDisplay="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="40.0" prefWidth="290.0" selected="true" style="-fx-background-color: #165f6f;" text="Homepage" textFill="WHITE" GridPane.columnIndex="1">
                                               <font>
                                                   <Font size="20.0" />
                                               </font>
@@ -257,7 +271,7 @@
                                                 <Insets />
                                              </opaqueInsets>
                                           </JFXCheckBox>
-                                          <JFXCheckBox fx:id="settingGridPage" checkedColor="#45818e" prefHeight="40.0" prefWidth="290.0" selected="true" style="-fx-background-color: #165f6fff;" text="Grid Page" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                                          <JFXCheckBox fx:id="settingGridPage" checkedColor="#45818e" prefHeight="40.0" prefWidth="290.0" selected="true" style="-fx-background-color: #165f6fff;" text="Grid Page" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                            <font>
                                                <Font size="20.0" />
                                            </font>
@@ -267,130 +281,119 @@
                                                   <Font size="20.0" />
                                               </font>
                                           </JFXCheckBox>
-                                          <JFXCheckBox fx:id="settingGridPageFillIns" checkedColor="#45818e" prefHeight="57.0" prefWidth="290.0" selected="true" style="-fx-background-color: #165f6fff;" text="Grid Page Fill-ins" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                                          <JFXCheckBox fx:id="settingGridPageFillIns" checkedColor="#45818e" prefHeight="57.0" prefWidth="290.0" selected="true" style="-fx-background-color: #165f6fff;" text="Grid Page Fill-ins" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="4">
                                            <font>
                                                <Font size="20.0" />
                                            </font>
                                           </JFXCheckBox>
-                                          <JFXCheckBox fx:id="settingBrandPage" checkedColor="#45818e" prefHeight="57.0" prefWidth="290.0" style="-fx-background-color: #165f6fff;" text="Brand Page" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                          <JFXCheckBox fx:id="settingBrandPage" checkedColor="#45818e" prefHeight="57.0" prefWidth="290.0" style="-fx-background-color: #165f6fff;" text="Brand Page" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="5">
                                               <font>
                                                   <Font size="20.0" />
                                               </font>
                                           </JFXCheckBox>
-                                          <JFXCheckBox fx:id="settingLucenePage" checkedColor="#45818e" prefHeight="57.0" prefWidth="290.0" selected="true" style="-fx-background-color: #165f6fff;" text="Lucene Page" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="3">
+                                          <JFXCheckBox fx:id="settingLucenePage" checkedColor="#45818e" prefHeight="57.0" prefWidth="290.0" selected="true" style="-fx-background-color: #165f6fff;" text="Lucene Page" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="5">
                                               <font>
                                                   <Font size="20.0" />
                                               </font>
                                           </JFXCheckBox>
-                                          <JFXCheckBox fx:id="settingMainMenuOnHomePage" checkedColor="#45818e" prefHeight="57.0" prefWidth="290.0" selected="true" style="-fx-background-color: #165f6fff;" text="Main Menu" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                          <JFXCheckBox fx:id="settingMainMenuOnHomePage" checkedColor="#45818e" prefHeight="57.0" prefWidth="290.0" selected="true" style="-fx-background-color: #165f6f;" text="Main Menu" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                               <font>
                                                   <Font size="20.0" />
                                               </font>
                                           </JFXCheckBox>
-                                          <JFXCheckBox fx:id="settingDetailPage" checkedColor="#45818e" prefHeight="57.0" prefWidth="290.0" selected="true" style="-fx-background-color: #165f6fff;" text="Detail Page" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="4">
+                                          <JFXCheckBox fx:id="settingDetailPage" checkedColor="#45818e" prefHeight="57.0" prefWidth="290.0" selected="true" style="-fx-background-color: #165f6fff;" text="Detail Page" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="6">
                                               <font>
                                                   <Font size="20.0" />
                                               </font>
                                           </JFXCheckBox>
-                                          <JFXCheckBox fx:id="settingImageGrouping" checkedColor="#45818e" prefHeight="57.0" prefWidth="290.0" selected="true" style="-fx-background-color: #165f6fff;" text="Image Grouping" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                          <JFXCheckBox fx:id="settingImageGrouping" checkedColor="#45818e" prefHeight="57.0" prefWidth="290.0" selected="true" style="-fx-background-color: #165f6fff;" text="Image Grouping" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="4">
                                               <font>
                                                   <Font size="20.0" />
                                               </font>
                                           </JFXCheckBox>
-                                          <JFXCheckBox fx:id="settingFavoritePage" checkedColor="#45818e" prefHeight="57.0" prefWidth="290.0" selected="true" style="-fx-background-color: #165f6fff;" text="Favorite Page" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="5">
+                                          <JFXCheckBox fx:id="settingFavoritePage" checkedColor="#45818e" prefHeight="57.0" prefWidth="290.0" selected="true" style="-fx-background-color: #165f6fff;" text="Favorite Page" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="6">
                                               <font>
                                                   <Font size="20.0" />
                                               </font>
                                           </JFXCheckBox>
-                                          <JFXCheckBox fx:id="settingPartnerShopPage" checkedColor="#45818e" prefHeight="57.0" prefWidth="290.0" selected="true" style="-fx-background-color: #165f6fff;" text="Partnershops Page" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                                          <JFXCheckBox fx:id="settingPartnerShopPage" checkedColor="#45818e" prefHeight="57.0" prefWidth="290.0" selected="true" style="-fx-background-color: #165f6fff;" text="Partnershops Page" textFill="WHITE" GridPane.columnIndex="4">
                                               <font>
                                                   <Font size="20.0" />
                                               </font>
                                           </JFXCheckBox>
-                                          <JFXCheckBox fx:id="settingBecomeAPartnerPage" checkedColor="#45818e" prefHeight="57.0" prefWidth="290.0" selected="true" style="-fx-background-color: #165f6fff;" text="Become a Partner Page" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="6">
+                                          <JFXCheckBox fx:id="settingBecomeAPartnerPage" checkedColor="#45818e" prefHeight="57.0" prefWidth="290.0" selected="true" style="-fx-background-color: #165f6fff;" text="Become a Partner Page" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="1">
                                               <font>
                                                   <Font size="20.0" />
                                               </font>
                                           </JFXCheckBox>
-                                          <JFXCheckBox fx:id="settingAffiliateProgram" checkedColor="#45818e" prefHeight="57.0" prefWidth="290.0" selected="true" style="-fx-background-color: #165f6fff;" text="Affiliate Program" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                                          <JFXCheckBox fx:id="settingAffiliateProgram" checkedColor="#45818e" prefHeight="57.0" prefWidth="290.0" selected="true" style="-fx-background-color: #165f6fff;" text="Affiliate Program" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="3">
                                               <font>
                                                   <Font size="20.0" />
                                               </font>
                                           </JFXCheckBox>
-                                          <JFXCheckBox fx:id="settingMerchandiseOverviewPage" checkedColor="#45818e" prefHeight="57.0" prefWidth="290.0" selected="true" style="-fx-background-color: #165f6fff;" text="Merchandise Overview Page" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="7">
+                                          <JFXCheckBox fx:id="settingMerchandiseOverviewPage" checkedColor="#45818e" prefHeight="57.0" prefWidth="290.0" selected="true" style="-fx-background-color: #165f6fff;" text="Merchandise Overview Page" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="2">
                                               <font>
                                                   <Font size="20.0" />
                                               </font>
                                           </JFXCheckBox>
-                                          <FontAwesomeIconView fx:id="infoHomepageTest" fill="#45818e" glyphName="QUESTION_CIRCLE" size="20" wrappingWidth="17.85714292526245" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                          <FontAwesomeIconView fx:id="infoGridPageTest" fill="#45818e" glyphName="QUESTION_CIRCLE" layoutX="307.0" layoutY="55.0" size="20" wrappingWidth="17.85714292526245" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+                                          <FontAwesomeIconView fx:id="infoHomepageTest" fill="#45818e" glyphName="QUESTION_CIRCLE" size="20" wrappingWidth="17.85714292526245" GridPane.columnIndex="2" />
+                                          <FontAwesomeIconView fx:id="infoGridPageTest" fill="#45818e" glyphName="QUESTION_CIRCLE" layoutX="307.0" layoutY="55.0" size="20" wrappingWidth="17.85714292526245" GridPane.columnIndex="2" GridPane.rowIndex="3" />
                                           <FontAwesomeIconView fx:id="infoGridPageWindowTest" fill="#45818e" glyphName="QUESTION_CIRCLE" layoutX="640.0" layoutY="55.0" size="20" wrappingWidth="17.85714292526245" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                                          <FontAwesomeIconView fx:id="infoGridPageFillInsTest" fill="#45818e" glyphName="QUESTION_CIRCLE" layoutX="307.0" layoutY="95.0" size="20" wrappingWidth="17.85714292526245" GridPane.columnIndex="5" GridPane.rowIndex="2" />
-                                          <FontAwesomeIconView fx:id="infoBrandTest" fill="#45818e" glyphName="QUESTION_CIRCLE" layoutX="640.0" layoutY="95.0" size="20" wrappingWidth="17.85714292526245" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                                          <FontAwesomeIconView fx:id="infoLuceneTest" fill="#45818e" glyphName="QUESTION_CIRCLE" layoutX="307.0" layoutY="135.0" size="20" wrappingWidth="17.85714292526245" GridPane.columnIndex="5" GridPane.rowIndex="3" />
-                                          <FontAwesomeIconView fx:id="infoOnMainMenuTest" fill="#45818e" glyphName="QUESTION_CIRCLE" layoutX="640.0" layoutY="135.0" size="20" wrappingWidth="17.85714292526245" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-                                          <FontAwesomeIconView fx:id="infoDetailPageTest" fill="#45818e" glyphName="QUESTION_CIRCLE" layoutX="307.0" layoutY="175.0" size="20" wrappingWidth="17.85714292526245" GridPane.columnIndex="5" GridPane.rowIndex="4" />
-                                          <FontAwesomeIconView fx:id="infoImageGroupingTest" fill="#45818e" glyphName="QUESTION_CIRCLE" layoutX="640.0" layoutY="175.0" size="20" wrappingWidth="17.85714292526245" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-                                          <FontAwesomeIconView fx:id="infoFavoritePageTest" fill="#45818e" glyphName="QUESTION_CIRCLE" layoutX="307.0" layoutY="215.0" size="20" wrappingWidth="17.85714292526245" GridPane.columnIndex="5" GridPane.rowIndex="5" />
-                                          <FontAwesomeIconView fx:id="infoPartnerShopPageTest" fill="#45818e" glyphName="QUESTION_CIRCLE" layoutX="640.0" layoutY="215.0" size="20" wrappingWidth="17.85714292526245" GridPane.columnIndex="2" GridPane.rowIndex="6" />
-                                          <FontAwesomeIconView fx:id="infoBecomeAPartnerPageTest" fill="#45818e" glyphName="QUESTION_CIRCLE" layoutX="307.0" layoutY="255.0" size="20" wrappingWidth="17.85714292526245" GridPane.columnIndex="5" GridPane.rowIndex="6" />
-                                          <FontAwesomeIconView fx:id="infoAffiliateTest" fill="#45818e" glyphName="QUESTION_CIRCLE" layoutX="640.0" layoutY="255.0" size="20" wrappingWidth="17.85714292526245" GridPane.columnIndex="2" GridPane.rowIndex="7" />
-                                          <FontAwesomeIconView fx:id="infoMerchandiseTest" fill="#45818e" glyphName="QUESTION_CIRCLE" layoutX="307.0" layoutY="295.0" size="20" wrappingWidth="17.85714292526245" GridPane.columnIndex="5" GridPane.rowIndex="7" />
+                                          <FontAwesomeIconView fx:id="infoGridPageFillInsTest" fill="#45818e" glyphName="QUESTION_CIRCLE" layoutX="307.0" layoutY="95.0" size="20" wrappingWidth="17.85714292526245" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                                          <FontAwesomeIconView fx:id="infoBrandTest" fill="#45818e" glyphName="QUESTION_CIRCLE" layoutX="640.0" layoutY="95.0" size="20" wrappingWidth="17.85714292526245" GridPane.columnIndex="5" GridPane.rowIndex="5" />
+                                          <FontAwesomeIconView fx:id="infoLuceneTest" fill="#45818e" glyphName="QUESTION_CIRCLE" layoutX="307.0" layoutY="135.0" size="20" wrappingWidth="17.85714292526245" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                                          <FontAwesomeIconView fx:id="infoOnMainMenuTest" fill="#45818e" glyphName="QUESTION_CIRCLE" layoutX="640.0" layoutY="135.0" size="20" wrappingWidth="17.85714292526245" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                          <FontAwesomeIconView fx:id="infoDetailPageTest" fill="#45818e" glyphName="QUESTION_CIRCLE" layoutX="307.0" layoutY="175.0" size="20" wrappingWidth="17.85714292526245" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                                          <FontAwesomeIconView fx:id="infoImageGroupingTest" fill="#45818e" glyphName="QUESTION_CIRCLE" layoutX="640.0" layoutY="175.0" size="20" wrappingWidth="17.85714292526245" GridPane.columnIndex="5" GridPane.rowIndex="4" />
+                                          <FontAwesomeIconView fx:id="infoFavoritePageTest" fill="#45818e" glyphName="QUESTION_CIRCLE" layoutX="307.0" layoutY="215.0" size="20" wrappingWidth="17.85714292526245" GridPane.columnIndex="5" GridPane.rowIndex="6" />
+                                          <FontAwesomeIconView fx:id="infoPartnerShopPageTest" fill="#45818e" glyphName="QUESTION_CIRCLE" layoutX="640.0" layoutY="215.0" size="20" wrappingWidth="17.85714292526245" GridPane.columnIndex="5" />
+                                          <FontAwesomeIconView fx:id="infoBecomeAPartnerPageTest" fill="#45818e" glyphName="QUESTION_CIRCLE" layoutX="307.0" layoutY="255.0" size="20" wrappingWidth="17.85714292526245" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+                                          <FontAwesomeIconView fx:id="infoAffiliateTest" fill="#45818e" glyphName="QUESTION_CIRCLE" layoutX="640.0" layoutY="255.0" size="20" wrappingWidth="17.85714292526245" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+                                          <FontAwesomeIconView fx:id="infoMerchandiseTest" fill="#45818e" glyphName="QUESTION_CIRCLE" layoutX="307.0" layoutY="295.0" size="20" wrappingWidth="17.85714292526245" GridPane.columnIndex="5" GridPane.rowIndex="2" />
                                        </children>
                                     </GridPane>
                                  </children>
-                              </VBox>
-                              <VBox alignment="CENTER" spacing="5.0">
-                                 <children>
-                                    <VBox alignment="CENTER" prefHeight="100.0" prefWidth="129.0" style="-fx-background-color: #0c343dff; -fx-background-radius: 20;">
-                                       <children>
-                                          <Label fx:id="globalCounterTestCases" alignment="BOTTOM_CENTER" contentDisplay="CENTER" prefHeight="65.0" prefWidth="129.0" textAlignment="CENTER" textFill="WHITE">
-                                             <font>
-                                                <Font size="48.0" />
-                                             </font>
-                                          </Label>
-                                          <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="36.0" prefWidth="193.0" text="test cases" textAlignment="CENTER" textFill="WHITE">
-                                             <font>
-                                                <Font size="20.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                    </VBox>
-                                    <HBox alignment="CENTER" style="-fx-background-color: white;">
-                                       <children>
-                                          <ImageView fx:id="preloaderCat" fitHeight="50.0" fitWidth="50.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
-                                       </children>
-                                    </HBox>
-                                    <Button fx:id="startwebdriver" minHeight="40.0" mnemonicParsing="false" onAction="#checkBeforeStart" prefHeight="78.0" prefWidth="104.0" style="-fx-background-color: #e83062; -fx-border-color: black; -fx-background-radius: 20; -fx-border-radius: 20;" text="GO" textFill="WHITE">
-                                       <font>
-                                          <Font name="Arial Black" size="12.0" />
-                                       </font>
-                                       <cursor>
-                                          <Cursor fx:constant="OPEN_HAND" />
-                                       </cursor>
-                                       <VBox.margin>
-                                          <Insets />
-                                       </VBox.margin>
-                                    </Button>
-                                    <Button fx:id="stopWebdriver" layoutX="23.0" layoutY="207.0" minHeight="40.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="104.0" style="-fx-background-color: #e83062; -fx-border-color: black; -fx-background-radius: 20; -fx-border-radius: 20;" text="CANCEL" textFill="WHITE">
-                                       <font>
-                                          <Font name="Arial Black" size="12.0" />
-                                       </font>
-                                       <cursor>
-                                          <Cursor fx:constant="OPEN_HAND" />
-                                       </cursor>
-                                    </Button>
-                                    <HBox fx:id="outputPlace" alignment="CENTER" />
-                                 </children>
+                                 <padding>
+                                    <Insets left="20.0" top="5.0" />
+                                 </padding>
                               </VBox>
                            </children>
                         </HBox>
-                        <GridPane alignment="CENTER" prefHeight="350.0" prefWidth="539.0" vgap="20.0">
+                        <VBox spacing="5.0">
+                           <children>
+                              <Text fill="#5a5a5a" strokeType="OUTSIDE" strokeWidth="0.0" text="Step 2: Input fields" underline="true">
+                                 <font>
+                                    <Font size="25.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </Text>
+                              <Text fill="#5a5a5a" layoutX="30.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="For the tests you want to perform, there are mandatory fields to fill-in. Click on &quot;Go&quot; when you are ready!">
+                                 <font>
+                                    <Font name="System Italic" size="12.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </Text>
+                           </children>
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </VBox>
+                        <GridPane prefHeight="340.0" prefWidth="671.0" vgap="20.0">
                            <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="479.0" minWidth="10.0" prefWidth="462.0" />
-                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="479.0" minWidth="10.0" prefWidth="19.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="630.0" minWidth="10.0" prefWidth="630.0" />
+                              <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="479.0" minWidth="0.0" prefWidth="32.0" />
+                              <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="479.0" minWidth="10.0" prefWidth="30.0" />
                            </columnConstraints>
                            <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -403,70 +406,92 @@
                               <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
-                              <HBox fx:id="ElementLuceneBox" alignment="CENTER_RIGHT" GridPane.rowIndex="6">
+                              <HBox fx:id="ElementLuceneBox" alignment="TOP_RIGHT" GridPane.rowIndex="6">
                                  <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="SearchPage Keyword" />
-                                    <TextField fx:id="inputLucenePage" focusTraversable="false" prefWidth="300.0" text="emaroon" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Keyword trigger Lucene Page" wrappingWidth="185.0" />
+                                    <TextField fx:id="inputLucenePage" focusTraversable="false" prefWidth="350.0" text="emaroon" />
                                  </children>
                               </HBox>
-                              <HBox fx:id="ElementFiltersBox" alignment="CENTER" spacing="10.0" GridPane.rowIndex="1">
+                              <HBox fx:id="ElementFiltersBox" alignment="TOP_RIGHT" spacing="10.0" GridPane.rowIndex="4">
                                  <children>
-                                    <JFXCheckBox fx:id="checkingSalesPriceFilter" checkedColor="#45818e" selected="true" text="SalesPrice" />
-                                    <JFXCheckBox fx:id="checkingGenderFilter" checkedColor="#45818e" selected="true" text="Gender" />
-                                    <JFXCheckBox fx:id="checkingColorFilter" checkedColor="#45818e" selected="true" text="Color" />
-                                    <JFXCheckBox fx:id="checkingBrandFilter" checkedColor="#45818e" text="Brand" />
-                                    <JFXCheckBox fx:id="checkingMerchandiseFilter" checkedColor="#45818e" text="Merchandise" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Filters you want to test: " wrappingWidth="175.0" />
+                                    <HBox prefWidth="350.0" spacing="5.0">
+                                       <children>
+                                          <JFXCheckBox fx:id="checkingSalesPriceFilter" checkedColor="#45818e" selected="true" text="Sales" />
+                                          <JFXCheckBox fx:id="checkingGenderFilter" checkedColor="#45818e" selected="true" text="Gender" />
+                                          <JFXCheckBox fx:id="checkingColorFilter" checkedColor="#45818e" selected="true" text="Color" />
+                                          <JFXCheckBox fx:id="checkingBrandFilter" checkedColor="#45818e" text="Brand" />
+                                          <JFXCheckBox fx:id="checkingMerchandiseFilter" checkedColor="#45818e" text="Merchandise" />
+                                       </children>
+                                    </HBox>
                                  </children>
                               </HBox>
-                              <HBox fx:id="ElementGridPageWithoutWindowBox" alignment="CENTER_RIGHT" GridPane.rowIndex="3">
+                              <HBox fx:id="ElementGridPageWithoutWindowBox" alignment="CENTER_RIGHT" GridPane.rowIndex="2">
                                  <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="GridPageURLwihtoutWindows" />
-                                    <TextField fx:id="inputGridPageURL" focusTraversable="false" prefWidth="300.0" text="https://www.ladenzeile.de/mode/" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="GridPageURLwihtoutWindows" wrappingWidth="185.0" />
+                                    <TextField fx:id="inputGridPageURL" focusTraversable="false" prefWidth="350.0" text="https://www.ladenzeile.de/mode/" />
                                  </children>
                               </HBox>
-                              <VBox fx:id="ElementLoginBox" alignment="CENTER" GridPane.rowIndex="9">
+                              <VBox fx:id="ElementLoginBox" alignment="TOP_RIGHT" GridPane.rowIndex="10">
                                  <children>
-                                    <JFXTextField id="login" fx:id="inputAccountEmail" focusColor="#e83062" onKeyTyped="#updateCheckerTabs" prefHeight="37.0" prefWidth="376.0" promptText="Login-Email" text="christopher.eckardt@visual-meta.com" unFocusColor="WHITE" />
-                                    <JFXPasswordField id="password" fx:id="inputAccountPassword" focusColor="#e83062" prefHeight="37.0" prefWidth="307.0" promptText="Password" text="blabla" unFocusColor="WHITE" />
+                                    <Text fill="#5a5a5a" strokeType="OUTSIDE" strokeWidth="0.0" text="Account credentials(FavPage)" wrappingWidth="535.0" />
+                                    <HBox alignment="TOP_RIGHT">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Login email" wrappingWidth="100.0" />
+                                          <TextField fx:id="inputAccountEmail" prefHeight="25.0" prefWidth="350.0" text="christopher.eckardt@visual-meta.com" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="TOP_RIGHT">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Password" wrappingWidth="100.0" />
+                                          <PasswordField fx:id="inputAccountPassword" prefHeight="25.0" prefWidth="350.0" text="blabla" />
+                                       </children>
+                                    </HBox>
                                  </children>
                               </VBox>
                               <HBox fx:id="ElementTextSearchSuggestionBox" alignment="CENTER_RIGHT">
                                  <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text Search + Suggestions: " />
-                                    <TextField fx:id="inputTextSearchAndSuggestions" focusTraversable="false" prefWidth="300.0" text="pumps | sneakers blue" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="HP: text search + Suggestions" wrappingWidth="185.0" />
+                                    <TextField fx:id="inputTextSearchAndSuggestions" focusTraversable="false" prefWidth="350.0" text="pumps | sneakers blue" />
                                  </children>
                               </HBox>
-                              <HBox fx:id="ElementShopSearchBox" alignment="CENTER_RIGHT" GridPane.rowIndex="7">
+                              <HBox fx:id="ElementShopSearchBox" alignment="TOP_RIGHT" GridPane.rowIndex="7">
                                  <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Shop Search Box" />
-                                    <TextField fx:id="inputPartnerShopSearch" focusTraversable="false" prefWidth="300.0" text="bonprix | nike" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Shop Search Box" wrappingWidth="185.0" />
+                                    <TextField fx:id="inputPartnerShopSearch" focusTraversable="false" prefWidth="350.0" text="bonprix | nike" />
                                  </children>
                               </HBox>
                               <HBox fx:id="ElementMerchandiseSearchBox" alignment="CENTER_RIGHT" GridPane.rowIndex="8">
                                  <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Merchandise Search" />
-                                    <TextField fx:id="inputMerchandiseSearch" focusTraversable="false" prefWidth="300.0" text="Fifa | Alf" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Merchandise Search" wrappingWidth="185.0" />
+                                    <TextField fx:id="inputMerchandiseSearch" focusTraversable="false" prefWidth="350.0" text="Fifa | Alf" />
                                  </children>
                               </HBox>
-                              <HBox fx:id="ElementGridPageSearchBox" alignment="CENTER_RIGHT" GridPane.rowIndex="2">
+                              <HBox fx:id="ElementGridPageSearchBox" alignment="CENTER_RIGHT" GridPane.rowIndex="3">
                                  <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Brand/Shop Keyword" />
-                                    <TextField fx:id="inputGridPageKeyword" focusTraversable="false" prefWidth="300.0" text="nike" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Brand | Shop Keyword" wrappingWidth="185.0" />
+                                    <TextField fx:id="inputGridPageKeyword" focusTraversable="false" prefWidth="350.0" text="nike" />
                                  </children>
                               </HBox>
-                              <HBox fx:id="ElementGridPageWithWindowBox" alignment="CENTER_RIGHT" GridPane.rowIndex="4">
+                              <HBox fx:id="ElementGridPageWithWindowBox" alignment="CENTER_RIGHT" GridPane.rowIndex="1">
                                  <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="GridPageURL with Windows" />
-                                    <TextField fx:id="inputGridPageURLWithWindows" focusTraversable="false" prefWidth="300.0" text="https://www.ladenzeile.de/mode/damen/" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="GridPageURL with Windows" wrappingWidth="185.0" />
+                                    <TextField fx:id="inputGridPageURLWithWindows" focusTraversable="false" prefHeight="25.0" prefWidth="350.0" text="https://www.ladenzeile.de/mode/damen/" />
                                  </children>
                               </HBox>
                               <HBox fx:id="ElementGridPageWithFillInsBox" alignment="CENTER_RIGHT" GridPane.rowIndex="5">
                                  <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="GridPageURL with FillIns" />
-                                    <TextField fx:id="inputGridPageURLWithFillIns" focusTraversable="false" prefWidth="300.0" text="https://taschen.ladenzeile.de/kulturbeutel-kammtasche/" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="GridPageURL with FillIns" wrappingWidth="185.0" />
+                                    <TextField fx:id="inputGridPageURLWithFillIns" focusTraversable="false" prefHeight="25.0" prefWidth="350.0" text="https://taschen.ladenzeile.de/kulturbeutel-kammtasche/" />
                                  </children>
                               </HBox>
                               <FontAwesomeIconView fx:id="infoInputFieldTextSearch" fill="#45818e" glyphName="QUESTION_CIRCLE" size="20" wrappingWidth="17.85714292526245" GridPane.columnIndex="1" />
+                              <FontAwesomeIconView fx:id="infoInputFieldGridPageURLwithWindows" fill="#45818e" glyphName="QUESTION_CIRCLE" layoutX="646.0" layoutY="22.0" size="20" wrappingWidth="17.85714292526245" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <FontAwesomeIconView fx:id="infoInputFieldGridPageURLwithoutWindows" fill="#45818e" glyphName="QUESTION_CIRCLE" layoutX="646.0" layoutY="52.0" size="20" wrappingWidth="17.85714292526245" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <FontAwesomeIconView fx:id="infoInputFieldBrandShopKeyword" fill="#45818e" glyphName="QUESTION_CIRCLE" layoutX="646.0" layoutY="172.0" size="20" wrappingWidth="17.85714292526245" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <FontAwesomeIconView fx:id="infoInputFieldGridPageWitthFillIns" fill="#45818e" glyphName="QUESTION_CIRCLE" layoutX="646.0" layoutY="82.0" size="20" wrappingWidth="17.85714292526245" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                              <FontAwesomeIconView fx:id="infoInputFieldLucenePageSearch" fill="#45818e" glyphName="QUESTION_CIRCLE" layoutX="646.0" layoutY="172.0" size="20" wrappingWidth="17.85714292526245" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                              <FontAwesomeIconView fx:id="exclamationMarkGridPageURLwithoutWindows" fill="#e27d00" glyphName="EXCLAMATION_TRIANGLE" layoutX="628.0" layoutY="202.0" size="20" wrappingWidth="17.85714292526245" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                            </children>
                            <VBox.margin>
                               <Insets left="10.0" />
@@ -475,11 +500,57 @@
                      </children>
                   </VBox>
                   <VBox fx:id="PlaceForPieCharts" alignment="CENTER" />
+                  <VBox alignment="CENTER" fillWidth="false" prefHeight="784.0" prefWidth="205.0" spacing="5.0">
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="100.0" prefWidth="129.0" style="-fx-background-color: #0c343dff; -fx-background-radius: 20;">
+                           <children>
+                              <Label fx:id="globalCounterTestCases" alignment="BOTTOM_CENTER" contentDisplay="CENTER" prefHeight="65.0" prefWidth="129.0" textAlignment="CENTER" textFill="WHITE">
+                                 <font>
+                                    <Font size="48.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="36.0" prefWidth="193.0" text="test cases" textAlignment="CENTER" textFill="WHITE">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <Button fx:id="startwebdriver" minHeight="40.0" mnemonicParsing="false" onAction="#checkBeforeStart" prefHeight="78.0" prefWidth="104.0" style="-fx-background-color: #5a5a5a;" text="GO" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Black" size="28.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="OPEN_HAND" />
+                           </cursor>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Button>
+                        <Button fx:id="stopWebdriver" layoutX="23.0" layoutY="207.0" minHeight="40.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="104.0" style="-fx-background-color: #5a5a5a;" text="CANCEL" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Black" size="12.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="OPEN_HAND" />
+                           </cursor>
+                        </Button>
+                        <HBox fx:id="outputPlace" alignment="CENTER" />
+                        <HBox alignment="CENTER" prefHeight="131.0" prefWidth="133.0" style="-fx-background-color: white;">
+                           <children>
+                              <ImageView fx:id="preloaderCat" fitHeight="50.0" fitWidth="50.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
+                           </children>
+                        </HBox>
+                     </children>
+                     <padding>
+                        <Insets right="20.0" />
+                     </padding>
+                  </VBox>
                   <VBox spacing="5.0">
                      <children>
                         <HBox prefHeight="42.0" prefWidth="472.0">
                            <children>
-                              <FontAwesomeIconView fill="#45818e" glyphName="USER_SECRET" size="35" />
+                              <FontAwesomeIconView fill="#165f6f" glyphName="USER_SECRET" size="35" />
                               <Text fx:id="statusInfo" strokeType="OUTSIDE" strokeWidth="0.0" text="" wrappingWidth="449.0" />
                            </children></HBox>
                         <HBox layoutX="10.0" layoutY="10.0" prefHeight="81.0" prefWidth="492.0" spacing="10.0">
@@ -568,137 +639,137 @@
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="resultBoxGridPageWindows" alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="193.0" style="-fx-background-color: #666666ff#666666ff;" text="Grid Page Window" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="2">
+                              <Label fx:id="resultBoxGridPageWindows" alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="193.0" style="-fx-background-color: #666666ff#666666ff;" text="Grid Page Window" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="3">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="resultBoxGridPage" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="40.0" prefHeight="36.0" prefWidth="193.0" style="-fx-background-color: #666666ff;" text="Grid Page" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                              <Label fx:id="resultBoxGridPage" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="40.0" prefHeight="36.0" prefWidth="193.0" style="-fx-background-color: #666666ff;" text="Grid Page" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="4">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="resultBoxGridPageFillIns" alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="193.0" style="-fx-background-color: #666666ff;" text="Grid Page Fill-ins" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                              <Label fx:id="resultBoxGridPageFillIns" alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="193.0" style="-fx-background-color: #666666ff;" text="Grid Page Fill-ins" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="5">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="resultBoxBrandPage" alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="193.0" style="-fx-background-color: #666666ff;" text="Brand Page" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="3">
+                              <Label fx:id="resultBoxBrandPage" alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="193.0" style="-fx-background-color: #666666ff;" text="Brand Page" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="6">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="resultBoxLucenePage" alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="193.0" style="-fx-background-color: #666666ff;" text="Lucene Page" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                              <Label fx:id="resultBoxLucenePage" alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="193.0" style="-fx-background-color: #666666ff;" text="Lucene Page" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="6">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="resultBoxMainMenuOnHomePage" alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="193.0" style="-fx-background-color: #666666ff;" text="MainMenu" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="4">
+                              <Label fx:id="resultBoxMainMenuOnHomePage" alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="193.0" style="-fx-background-color: #666666ff;" text="MainMenu" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="2">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="resultBoxDetailPage" alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="193.0" style="-fx-background-color: #666666ff;" text="Detail Page" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="4">
+                              <Label fx:id="resultBoxDetailPage" alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="193.0" style="-fx-background-color: #666666ff;" text="Detail Page" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="7">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="resultBoxImageGrouping" alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="193.0" style="-fx-background-color: #666666ff;" text="Image Grouping" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="5">
+                              <Label fx:id="resultBoxImageGrouping" alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="193.0" style="-fx-background-color: #666666ff;" text="Image Grouping" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="5">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="resultBoxFavoritePage" alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="193.0" style="-fx-background-color: #666666ff;" text="Favorite Page" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="5">
+                              <Label fx:id="resultBoxFavoritePage" alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="193.0" style="-fx-background-color: #666666ff;" text="Favorite Page" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="7">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="resultBoxPartnershopPage" alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="193.0" style="-fx-background-color: #666666ff;" text="Partnershops Page" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="6">
+                              <Label fx:id="resultBoxPartnershopPage" alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="193.0" style="-fx-background-color: #666666ff;" text="Partnershops Page" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="1">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="resultBoxBecomePartner" alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="193.0" style="-fx-background-color: #666666ff;" text="Become Partner" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="6">
+                              <Label fx:id="resultBoxBecomePartner" alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="193.0" style="-fx-background-color: #666666ff;" text="Become Partner" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="2">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="resultBoxAffiliateProgram" alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="193.0" style="-fx-background-color: #666666ff;" text="Affiliate Program" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="7">
+                              <Label fx:id="resultBoxAffiliateProgram" alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="193.0" style="-fx-background-color: #666666ff;" text="Affiliate Program" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="4">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="resultBoxMerchandise" alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="193.0" style="-fx-background-color: #666666ff;" text="Merchandise" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="7">
+                              <Label fx:id="resultBoxMerchandise" alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="193.0" style="-fx-background-color: #666666ff;" text="Merchandise" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="3">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="BoxHomepageResult" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #d9d9d9ff;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                              <Label fx:id="BoxHomepageResult" alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="60.0" style="-fx-background-color: #d9d9d9ff;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="BoxGridPageResult" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #d9d9d9ff;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                              <Label fx:id="BoxGridPageResult" alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="60.0" style="-fx-background-color: #d9d9d9ff;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="4">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="BoxGridPageWindowsResult" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #d9d9d9ff;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                              <Label fx:id="BoxGridPageWindowsResult" alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="60.0" style="-fx-background-color: #d9d9d9ff;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="BoxGridPageFillInsResult" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #d9d9d9ff;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                              <Label fx:id="BoxGridPageFillInsResult" alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="60.0" style="-fx-background-color: #d9d9d9ff;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="5">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="BoxBrandPageResult" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #d9d9d9ff;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                              <Label fx:id="BoxBrandPageResult" alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="60.0" style="-fx-background-color: #d9d9d9ff;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="6">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="BoxMainMenuOnHomePageResult" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #d9d9d9ff;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                              <Label fx:id="BoxMainMenuOnHomePageResult" alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="60.0" style="-fx-background-color: #d9d9d9ff;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="BoxImageGroupingResult" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #d9d9d9ff;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                              <Label fx:id="BoxImageGroupingResult" alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="60.0" style="-fx-background-color: #d9d9d9ff;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="5">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="BoxPartnershopPageResult" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #d9d9d9ff;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                              <Label fx:id="BoxPartnershopPageResult" alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="60.0" style="-fx-background-color: #d9d9d9ff;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="1">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="BoxAffiliateProgramResult" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #d9d9d9ff;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                              <Label fx:id="BoxAffiliateProgramResult" alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="60.0" style="-fx-background-color: #d9d9d9ff;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="4">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="BoxLucenePageResult" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #d9d9d9ff;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="3">
+                              <Label fx:id="BoxLucenePageResult" alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="60.0" style="-fx-background-color: #d9d9d9ff;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="6">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="BoxDetailPageResult" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #d9d9d9ff;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="4">
+                              <Label fx:id="BoxDetailPageResult" alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="60.0" style="-fx-background-color: #d9d9d9ff;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="7">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="BoxFavoritePageResult" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #d9d9d9ff;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="5">
+                              <Label fx:id="BoxFavoritePageResult" alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="60.0" style="-fx-background-color: #d9d9d9ff;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="7">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="BoxBecomePartnerResult" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #d9d9d9ff;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="6">
+                              <Label fx:id="BoxBecomePartnerResult" alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="60.0" style="-fx-background-color: #d9d9d9ff;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="2">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="BoxMerchandiseResult" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #d9d9d9ff;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="7">
+                              <Label fx:id="BoxMerchandiseResult" alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="60.0" style="-fx-background-color: #d9d9d9ff;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="3">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -724,7 +795,7 @@
             </HBox>
          </children>
       </VBox>
-      <StackPane fx:id="placeForTooltipSetting" layoutY="124.0" prefHeight="366.0" prefWidth="833.0" visible="false" />
-      <StackPane fx:id="placeForTooltipInput" layoutX="2.0" layoutY="475.0" prefHeight="341.0" prefWidth="841.0" visible="false" />
+      <StackPane fx:id="placeForTooltipSetting" layoutY="163.0" prefHeight="376.0" prefWidth="833.0" visible="false" />
+      <StackPane fx:id="placeForTooltipInput" layoutX="2.0" layoutY="533.0" prefHeight="341.0" prefWidth="841.0" visible="false" />
    </children>
 </AnchorPane>
