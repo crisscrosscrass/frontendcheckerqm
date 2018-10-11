@@ -129,6 +129,8 @@ public class MainController implements Serializable{
     @FXML FontAwesomeIconView infoInputFieldGridPageWitthFillIns;
     @FXML FontAwesomeIconView infoInputFieldLucenePageSearch;
     @FXML FontAwesomeIconView exclamationMarkGridPageURLwithoutWindows;
+    @FXML FontAwesomeIconView infoInputFieldShopSearch;
+    @FXML FontAwesomeIconView infoInputFieldMerchandiseSearch;
     //tab views
     @FXML Tab tabHomepage;
     @FXML Tab tabGridPage;
@@ -243,7 +245,9 @@ public class MainController implements Serializable{
         infoInputFieldBrandShopKeyword.visibleProperty().bind(ElementGridPageSearchBox.visibleProperty());
         infoInputFieldGridPageURLwithoutWindows.visibleProperty().bind(ElementGridPageWithoutWindowBox.visibleProperty());
         infoInputFieldGridPageURLwithWindows.visibleProperty().bind(ElementGridPageWithWindowBox.visibleProperty());
-        exclamationMarkGridPageURLwithoutWindows.visibleProperty().bind(ElementGridPageWithWindowBox.visibleProperty());
+        exclamationMarkGridPageURLwithoutWindows.visibleProperty().bind(ElementGridPageWithoutWindowBox.visibleProperty());
+        infoInputFieldMerchandiseSearch.visibleProperty().bind(ElementMerchandiseSearchBox.visibleProperty());
+        infoInputFieldShopSearch.visibleProperty().bind(ElementShopSearchBox.visibleProperty());
         //check if Properties File is available if yes, load data into Input Fields
         File file = new File("temp//UserSettings.properties");
         if (!file.exists()) {
@@ -317,6 +321,9 @@ public class MainController implements Serializable{
         infoInputFieldGridPageURLwithoutWindows.setOnMouseClicked(event -> modalBox.showDialogInputFieldValidation(InfoText.valueOf("GridPageURL").getHeaderMessage(),InfoText.valueOf("GridPageURL").getMainMessage(), placeForTooltipInput));
         infoInputFieldGridPageURLwithWindows.setOnMouseClicked(event -> modalBox.showDialogInputFieldValidation(InfoText.valueOf("GridPageURLWithWindows").getHeaderMessage(),InfoText.valueOf("GridPageURLWithWindows").getMainMessage(), placeForTooltipInput));
         exclamationMarkGridPageURLwithoutWindows.setOnMouseEntered(event -> modalBox.showDialogInputFieldValidation(InfoText.valueOf("exclamationMarkGridPageURLwithoutWindows").getHeaderMessage(),InfoText.valueOf("exclamationMarkGridPageURLwithoutWindows").getMainMessage(), placeForTooltipInput));
+        infoInputFieldShopSearch.setOnMouseClicked(event -> modalBox.showDialogInputFieldValidation(InfoText.valueOf("ShopSearchBox").getHeaderMessage(),InfoText.valueOf("ShopSearchBox").getMainMessage(), placeForTooltipInput));
+        infoInputFieldMerchandiseSearch.setOnMouseClicked(event -> modalBox.showDialogInputFieldValidation(InfoText.valueOf("MerchandiseSearch").getHeaderMessage(),InfoText.valueOf("MerchandiseSearch").getMainMessage(), placeForTooltipInput));
+
         // Bind startWebDriver Color to Validation
         //set Start Button to disable, first Country has to be selected
         startwebdriver.setDisable(true);

@@ -492,6 +492,8 @@
                               <FontAwesomeIconView fx:id="infoInputFieldGridPageWitthFillIns" fill="#45818e" glyphName="QUESTION_CIRCLE" layoutX="646.0" layoutY="82.0" size="20" wrappingWidth="17.85714292526245" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                               <FontAwesomeIconView fx:id="infoInputFieldLucenePageSearch" fill="#45818e" glyphName="QUESTION_CIRCLE" layoutX="646.0" layoutY="172.0" size="20" wrappingWidth="17.85714292526245" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                               <FontAwesomeIconView fx:id="exclamationMarkGridPageURLwithoutWindows" fill="#e27d00" glyphName="EXCLAMATION_TRIANGLE" layoutX="628.0" layoutY="202.0" size="20" wrappingWidth="17.85714292526245" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                              <FontAwesomeIconView fx:id="infoInputFieldShopSearch" fill="#45818e" glyphName="QUESTION_CIRCLE" layoutX="640.0" layoutY="202.0" size="20" wrappingWidth="17.85714292526245" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                              <FontAwesomeIconView fx:id="infoInputFieldMerchandiseSearch" fill="#45818e" glyphName="QUESTION_CIRCLE" layoutX="640.0" layoutY="232.0" size="20" wrappingWidth="17.85714292526245" GridPane.columnIndex="1" GridPane.rowIndex="8" />
                            </children>
                            <VBox.margin>
                               <Insets left="10.0" />

@@ -27,6 +27,7 @@ public class ModalBox {
         placeToDisplayInfo.setVisible(true);
         JFXDialogLayout content = new JFXDialogLayout();
         content.setHeading(headerMessage);
+        mainContent.setFont(Font.font ("System", FontWeight.NORMAL,16));
         content.setBody(mainContent);
         JFXButton jfxButton = new JFXButton("Close");
         jfxButton.setStyle("-fx-background-color:  #e83062; -fx-text-fill: white;");
@@ -47,7 +48,7 @@ public class ModalBox {
         headerMessage.setFont(Font.font ("System", FontWeight.BOLD,22));
         headerMessage.setText(nameOfTestCase);
         Text mainContent = new Text();
-        mainContent.setFont(Font.font ("System", FontWeight.NORMAL,12));
+        mainContent.setFont(Font.font ("System", FontWeight.NORMAL,16));
         mainContent.setText(Message);
         ScrollPane scrollPane = new ScrollPane(mainContent);
         scrollPane.setPrefViewportHeight(200);
