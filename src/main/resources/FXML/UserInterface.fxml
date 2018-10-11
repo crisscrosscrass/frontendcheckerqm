@@ -206,7 +206,7 @@
             <HBox minWidth="1349.0" prefHeight="25.0" />
             <HBox minWidth="1349.0" prefHeight="789.0" prefWidth="1382.0" spacing="10.0" VBox.vgrow="ALWAYS">
                <children>
-                  <VBox fillWidth="false" prefHeight="784.0" prefWidth="676.0">
+                  <VBox fillWidth="false" prefHeight="784.0" prefWidth="711.0">
                      <children>
                         <HBox prefHeight="613.0" prefWidth="789.0">
                            <children>
@@ -385,10 +385,11 @@
                               <Insets bottom="10.0" />
                            </VBox.margin>
                         </VBox>
-                        <GridPane prefHeight="280.0" prefWidth="654.0" vgap="20.0">
+                        <GridPane prefHeight="340.0" prefWidth="671.0" vgap="20.0">
                            <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="630.0" minWidth="10.0" prefWidth="630.0" />
-                              <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="479.0" minWidth="0.0" prefWidth="24.0" />
+                              <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="479.0" minWidth="0.0" prefWidth="32.0" />
+                              <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="479.0" minWidth="10.0" prefWidth="30.0" />
                            </columnConstraints>
                            <rowConstraints>
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -490,6 +491,7 @@
                               <FontAwesomeIconView fx:id="infoInputFieldBrandShopKeyword" fill="#45818e" glyphName="QUESTION_CIRCLE" layoutX="646.0" layoutY="172.0" size="20" wrappingWidth="17.85714292526245" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                               <FontAwesomeIconView fx:id="infoInputFieldGridPageWitthFillIns" fill="#45818e" glyphName="QUESTION_CIRCLE" layoutX="646.0" layoutY="82.0" size="20" wrappingWidth="17.85714292526245" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                               <FontAwesomeIconView fx:id="infoInputFieldLucenePageSearch" fill="#45818e" glyphName="QUESTION_CIRCLE" layoutX="646.0" layoutY="172.0" size="20" wrappingWidth="17.85714292526245" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                              <FontAwesomeIconView fx:id="exclamationMarkGridPageURLwithoutWindows" fill="#e27d00" glyphName="EXCLAMATION_TRIANGLE" layoutX="628.0" layoutY="202.0" size="20" wrappingWidth="17.85714292526245" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                            </children>
                            <VBox.margin>
                               <Insets left="10.0" />

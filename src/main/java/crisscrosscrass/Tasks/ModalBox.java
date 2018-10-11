@@ -47,6 +47,7 @@ public class ModalBox {
         headerMessage.setFont(Font.font ("System", FontWeight.BOLD,22));
         headerMessage.setText(nameOfTestCase);
         Text mainContent = new Text();
+        mainContent.setFont(Font.font ("System", FontWeight.NORMAL,12));
         mainContent.setText(Message);
         ScrollPane scrollPane = new ScrollPane(mainContent);
         scrollPane.setPrefViewportHeight(200);

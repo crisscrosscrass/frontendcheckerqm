@@ -128,6 +128,7 @@ public class MainController implements Serializable{
     @FXML FontAwesomeIconView infoInputFieldBrandShopKeyword;
     @FXML FontAwesomeIconView infoInputFieldGridPageWitthFillIns;
     @FXML FontAwesomeIconView infoInputFieldLucenePageSearch;
+    @FXML FontAwesomeIconView exclamationMarkGridPageURLwithoutWindows;
     //tab views
     @FXML Tab tabHomepage;
     @FXML Tab tabGridPage;
@@ -212,20 +213,20 @@ public class MainController implements Serializable{
         //add Countries to country select
         countrySelection.setPromptText("select a country");
         //add Listener to Settings
-        settingHomepage.setOnAction(event -> updateCheckerTabs());
-        settingGridPage.setOnAction(event -> updateCheckerTabs());
-        settingGridPageWithWindows.setOnAction(event -> updateCheckerTabs());
-        settingGridPageFillIns.setOnAction(event -> updateCheckerTabs());
-        settingBrandPage.setOnAction(event -> updateCheckerTabs());
-        settingLucenePage.setOnAction(event -> updateCheckerTabs());
-        settingMainMenuOnHomePage.setOnAction(event -> updateCheckerTabs());
-        settingDetailPage.setOnAction(event -> updateCheckerTabs());
-        settingImageGrouping.setOnAction(event -> updateCheckerTabs());
-        settingFavoritePage.setOnAction(event -> updateCheckerTabs());
-        settingPartnerShopPage.setOnAction(event -> updateCheckerTabs());
-        settingBecomeAPartnerPage.setOnAction(event -> updateCheckerTabs());
-        settingAffiliateProgram.setOnAction(event -> updateCheckerTabs());
-        settingMerchandiseOverviewPage.setOnAction(event -> updateCheckerTabs());
+        settingHomepage.setOnAction(event -> {updateCheckerTabs(); changeColorForStartButton();});
+        settingGridPage.setOnAction(event -> {updateCheckerTabs(); changeColorForStartButton();});
+        settingGridPageWithWindows.setOnAction(event -> {updateCheckerTabs(); changeColorForStartButton();});
+        settingGridPageFillIns.setOnAction(event -> {updateCheckerTabs(); changeColorForStartButton();});
+        settingBrandPage.setOnAction(event -> {updateCheckerTabs(); changeColorForStartButton();});
+        settingLucenePage.setOnAction(event -> {updateCheckerTabs(); changeColorForStartButton();});
+        settingMainMenuOnHomePage.setOnAction(event -> {updateCheckerTabs(); changeColorForStartButton();});
+        settingDetailPage.setOnAction(event -> {updateCheckerTabs(); changeColorForStartButton();});
+        settingImageGrouping.setOnAction(event -> {updateCheckerTabs(); changeColorForStartButton();});
+        settingFavoritePage.setOnAction(event -> {updateCheckerTabs(); changeColorForStartButton();});
+        settingPartnerShopPage.setOnAction(event -> {updateCheckerTabs(); changeColorForStartButton();});
+        settingBecomeAPartnerPage.setOnAction(event -> {updateCheckerTabs(); changeColorForStartButton();});
+        settingAffiliateProgram.setOnAction(event -> {updateCheckerTabs(); changeColorForStartButton();});
+        settingMerchandiseOverviewPage.setOnAction(event -> {updateCheckerTabs(); changeColorForStartButton();});
         //Bind Elements InputsVisibility to Settings
         ElementLuceneBox.visibleProperty().bind(settingLucenePage.selectedProperty());
         ElementLoginBox.visibleProperty().bind(settingFavoritePage.selectedProperty());
@@ -242,6 +243,7 @@ public class MainController implements Serializable{
         infoInputFieldBrandShopKeyword.visibleProperty().bind(ElementGridPageSearchBox.visibleProperty());
         infoInputFieldGridPageURLwithoutWindows.visibleProperty().bind(ElementGridPageWithoutWindowBox.visibleProperty());
         infoInputFieldGridPageURLwithWindows.visibleProperty().bind(ElementGridPageWithWindowBox.visibleProperty());
+        exclamationMarkGridPageURLwithoutWindows.visibleProperty().bind(ElementGridPageWithWindowBox.visibleProperty());
         //check if Properties File is available if yes, load data into Input Fields
         File file = new File("temp//UserSettings.properties");
         if (!file.exists()) {
@@ -314,6 +316,7 @@ public class MainController implements Serializable{
         infoInputFieldBrandShopKeyword.setOnMouseClicked(event -> modalBox.showDialogInputFieldValidation(InfoText.valueOf("BrandShopKeyword").getHeaderMessage(),InfoText.valueOf("BrandShopKeyword").getMainMessage(), placeForTooltipInput));
         infoInputFieldGridPageURLwithoutWindows.setOnMouseClicked(event -> modalBox.showDialogInputFieldValidation(InfoText.valueOf("GridPageURL").getHeaderMessage(),InfoText.valueOf("GridPageURL").getMainMessage(), placeForTooltipInput));
         infoInputFieldGridPageURLwithWindows.setOnMouseClicked(event -> modalBox.showDialogInputFieldValidation(InfoText.valueOf("GridPageURLWithWindows").getHeaderMessage(),InfoText.valueOf("GridPageURLWithWindows").getMainMessage(), placeForTooltipInput));
+        exclamationMarkGridPageURLwithoutWindows.setOnMouseEntered(event -> modalBox.showDialogInputFieldValidation(InfoText.valueOf("exclamationMarkGridPageURLwithoutWindows").getHeaderMessage(),InfoText.valueOf("exclamationMarkGridPageURLwithoutWindows").getMainMessage(), placeForTooltipInput));
         // Bind startWebDriver Color to Validation
         //set Start Button to disable, first Country has to be selected
         startwebdriver.setDisable(true);
@@ -1055,91 +1058,94 @@ public class MainController implements Serializable{
         //if GridPageURL+Windiws+FillIns contains not the selected Counry then no
         //email visual meta cntains
         boolean isEverythingFilledCorrectly = true;
-        StringBuilder ValidationsErrors = new StringBuilder();
-        if (settingHomepage.isSelected()){
-            if (inputTextSearchAndSuggestions.getText().length() < 1){
-                ValidationsErrors.append("- the inputTextSearchAndSuggestions cannot be empty\n");
+        if (countrySelection.getValue() != null){
+            StringBuilder ValidationsErrors = new StringBuilder();
+            if (settingHomepage.isSelected()){
+                if (inputTextSearchAndSuggestions.getText().length() < 1){
+                    ValidationsErrors.append("- the inputTextSearchAndSuggestions cannot be empty\n");
+                }
+            }
+            if (settingGridPage.isSelected()){
+                int amountOfSelectedFilters = 0;
+                if (checkingSalesPriceFilter.isSelected()){
+                    ++amountOfSelectedFilters;
+                }
+                if (checkingGenderFilter.isSelected()){
+                    ++amountOfSelectedFilters;
+                }
+                if (checkingColorFilter.isSelected()){
+                    ++amountOfSelectedFilters;
+                }
+                if (checkingBrandFilter.isSelected()){
+                    ++amountOfSelectedFilters;
+                }
+                if (checkingMerchandiseFilter.isSelected()){
+                    ++amountOfSelectedFilters;
+                }
+                if (amountOfSelectedFilters < 1){
+                    ValidationsErrors.append("- at least one the Filter must be selected\n");
+                }
+                if (inputGridPageKeyword.getText().length() < 1){
+                    ValidationsErrors.append("- the inputGridPageKeyword cannot be empty\n");
+                }
+            }
+            if (settingGridPage.isSelected() | settingImageGrouping.isSelected() | settingDetailPage.isSelected()| settingFavoritePage.isSelected()){
+                if (inputGridPageURL.getText().length() < 1) {
+                    ValidationsErrors.append("- the inputGridPageURL cannot be empty\n");
+                }
+                if (!inputGridPageURL.getText().contains(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getLocationMainPage()) & !inputGridPageURL.getText().equals("")){
+                    ValidationsErrors.append("- the inputGridPageURL cannot be unrelated to selected Country\n");
+                }
+            }
+            if (settingGridPageWithWindows.isSelected()) {
+                if (inputGridPageURLWithWindows.getText().length() < 1) {
+                    ValidationsErrors.append("- the inputGridPageURLWithWindows cannot be empty\n");
+                }
+                if (!inputGridPageURLWithWindows.getText().contains(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getLocationMainPage()) & !inputGridPageURLWithWindows.getText().equals("")) {
+                    ValidationsErrors.append("- the inputGridPageURLWithWindows cannot be unrelated to selected Country\n");
+                }
+            }
+            if (settingGridPageFillIns.isSelected()) {
+                if (inputGridPageURLWithFillIns.getText().length() < 1) {
+                    ValidationsErrors.append("- the inputGridPageURLWithFillIns cannot be empty\n");
+                }
+            }
+            if (settingLucenePage.isSelected()){
+                if (inputLucenePage.getText().length() < 1){
+                    ValidationsErrors.append("- the inputLucenePage cannot be empty\n");
+                }
+            }
+            if (settingPartnerShopPage.isSelected()){
+                if (inputPartnerShopSearch.getText().length() < 1){
+                    ValidationsErrors.append("- the inputPartnerShopSearch cannot be empty\n");
+                }
+            }
+            if (settingMerchandiseOverviewPage.isSelected()){
+                if (inputMerchandiseSearch.getText().length() < 1){
+                    ValidationsErrors.append("- the inputMerchandiseSearch cannot be empty\n");
+                }
+            }
+            if (settingFavoritePage.isSelected()){
+                if (inputAccountEmail.getText().length() < 1){
+                    ValidationsErrors.append("- the inputAccountEmail cannot be empty\n");
+                }
+                if (!inputAccountEmail.getText().equals("") & !inputAccountEmail.getText().toLowerCase().contains("@visual-meta.com")){
+                    ValidationsErrors.append("- the inputAccountEmail cannot be unrelated to Company\n");
+                }
+            }
+            logger.info(ValidationsErrors);
+            if (ValidationsErrors.length() > 0 ){
+                isEverythingFilledCorrectly = false;
+            }
+            if (showErrorDialog){
+                if (!isEverythingFilledCorrectly){
+                    ModalBox ErrorInputFields = new ModalBox();
+                    ErrorInputFields.showDialogInputFieldValidation("Validation Error",ValidationsErrors.toString(),placeForTooltipInput);
+                }
+                validateInputAttributesAndShowColor();
             }
         }
-        if (settingGridPage.isSelected()){
-            int amountOfSelectedFilters = 0;
-            if (checkingSalesPriceFilter.isSelected()){
-                ++amountOfSelectedFilters;
-            }
-            if (checkingGenderFilter.isSelected()){
-                ++amountOfSelectedFilters;
-            }
-            if (checkingColorFilter.isSelected()){
-                ++amountOfSelectedFilters;
-            }
-            if (checkingBrandFilter.isSelected()){
-                ++amountOfSelectedFilters;
-            }
-            if (checkingMerchandiseFilter.isSelected()){
-                ++amountOfSelectedFilters;
-            }
-            if (amountOfSelectedFilters < 1){
-                ValidationsErrors.append("- at least one the Filter must be selected\n");
-            }
-            if (inputGridPageKeyword.getText().length() < 1){
-                ValidationsErrors.append("- the inputGridPageKeyword cannot be empty\n");
-            }
-        }
-        if (settingGridPage.isSelected() | settingImageGrouping.isSelected() | settingDetailPage.isSelected()| settingFavoritePage.isSelected()){
-            if (inputGridPageURL.getText().length() < 1) {
-                ValidationsErrors.append("- the inputGridPageURL cannot be empty\n");
-            }
-            if (!inputGridPageURL.getText().contains(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getLocationMainPage()) & !inputGridPageURL.getText().equals("")){
-                ValidationsErrors.append("- the inputGridPageURL cannot be unrelated to selected Country\n");
-            }
-        }
-        if (settingGridPageWithWindows.isSelected()) {
-            if (inputGridPageURLWithWindows.getText().length() < 1) {
-                ValidationsErrors.append("- the inputGridPageURLWithWindows cannot be empty\n");
-            }
-            if (!inputGridPageURLWithWindows.getText().contains(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getLocationMainPage()) & !inputGridPageURLWithWindows.getText().equals("")) {
-                ValidationsErrors.append("- the inputGridPageURLWithWindows cannot be unrelated to selected Country\n");
-            }
-        }
-        if (settingGridPageFillIns.isSelected()) {
-            if (inputGridPageURLWithFillIns.getText().length() < 1) {
-                ValidationsErrors.append("- the inputGridPageURLWithFillIns cannot be empty\n");
-            }
-        }
-        if (settingLucenePage.isSelected()){
-            if (inputLucenePage.getText().length() < 1){
-                ValidationsErrors.append("- the inputLucenePage cannot be empty\n");
-            }
-        }
-        if (settingPartnerShopPage.isSelected()){
-            if (inputPartnerShopSearch.getText().length() < 1){
-                ValidationsErrors.append("- the inputPartnerShopSearch cannot be empty\n");
-            }
-        }
-        if (settingMerchandiseOverviewPage.isSelected()){
-            if (inputMerchandiseSearch.getText().length() < 1){
-                ValidationsErrors.append("- the inputMerchandiseSearch cannot be empty\n");
-            }
-        }
-        if (settingFavoritePage.isSelected()){
-            if (inputAccountEmail.getText().length() < 1){
-                ValidationsErrors.append("- the inputAccountEmail cannot be empty\n");
-            }
-            if (!inputAccountEmail.getText().equals("") & !inputAccountEmail.getText().toLowerCase().contains("@visual-meta.com")){
-                ValidationsErrors.append("- the inputAccountEmail cannot be unrelated to Company\n");
-            }
-        }
-        logger.info(ValidationsErrors);
-        if (ValidationsErrors.length() > 0 ){
-            isEverythingFilledCorrectly = false;
-        }
-        if (showErrorDialog){
-            if (!isEverythingFilledCorrectly){
-                ModalBox ErrorInputFields = new ModalBox();
-                ErrorInputFields.showDialogInputFieldValidation("Validation Error",ValidationsErrors.toString(),placeForTooltipInput);
-            }
-            validateInputAttributesAndShowColor();
-        }
+
         return isEverythingFilledCorrectly;
     }
     private void changeColorForStartButton(){
