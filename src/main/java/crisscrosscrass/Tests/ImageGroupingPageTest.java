@@ -20,9 +20,12 @@ import java.util.List;
 import java.util.Properties;
 
 public class ImageGroupingPageTest {
+    Report failedTestCases = new Report();
+
 
     public void checkingImageGroupingClickOut(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox ImageGroupingClickOut, Text statusInfo, TextField inputGridPageURL, Properties Homepage){
         final String infoMessage = ImageGroupingClickOut.getText();
+        failedTestCases.writeToNamedFile("CHECKING IMAGE GROUPING PAGE", "FailAndReview");
         ChangeCheckBox.adjustStyle(false,"progress",ImageGroupingClickOut);
         Platform.runLater(() -> {
             statusInfo.setText(""+infoMessage+"...");
@@ -79,6 +82,7 @@ public class ImageGroupingPageTest {
                             ChangeCheckBox.adjustStyle(true,"complete",ImageGroupingClickOut);
                         }else {
                             report.writeToFile(infoMessage, "Not successful!");
+                            failedTestCases.writeToNamedFile(infoMessage, "Please check Image Grouping Page: clickout not successful!", "FailAndReview");
                             ChangeCheckBox.adjustStyle(true,"nope",ImageGroupingClickOut);
                         }
                         webDriver.switchTo().window(tabs.get(2)).close();
@@ -91,8 +95,10 @@ public class ImageGroupingPageTest {
                         isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver, "DetailPageImageGrouping.png");
                         if (isSuccessful){
                             report.writeToFile("Checking Image Grouping Click Out: ", "Screenshot successful!");
+                            failedTestCases.writeToNamedFile("For more information about the error, see DetailPageImageGrouping", "Screenshot successful!", "FailAndReview");
                         }else {
                             report.writeToFile("Checking Image Grouping Click Out: ", "Screenshot not successful!");
+                            failedTestCases.writeToNamedFile("For more information about the error, see DetailPageImageGrouping", "Screenshot not successful!", "FailAndReview");
                         }
                         webDriver.navigate().to(inputGridPageURL.getText().trim());
                         report.writeToFile(infoMessage, "Couldn't detect Product Variants in Image Grouping");
@@ -103,26 +109,32 @@ public class ImageGroupingPageTest {
                     isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver, "DetailPageImageGrouping.png");
                     if (isSuccessful){
                         report.writeToFile("Checking Image Grouping Click Out: ", "Screenshot successful!");
+                        failedTestCases.writeToNamedFile("For more information about the error, see DetailPageImageGrouping", "Screenshot successful!", "FailAndReview");
                     }else {
                         report.writeToFile("Checking Image Grouping Click Out: ", "Screenshot not successful!");
+                        failedTestCases.writeToNamedFile("For more information about the error, see DetailPageImageGrouping", "Screenshot not successful!", "FailAndReview");
                     }
                     webDriver.navigate().to(inputGridPageURL.getText().trim());
                     report.writeToFile(infoMessage, "Couldn't detect Image Grouping Icon for Detail Grouping Page");
+                    failedTestCases.writeToNamedFile(infoMessage, "Please check Image Grouping Page: Couldn't detect Image Grouping Icon for Detail Page", "FailAndReview");
                     gridPageIssue.printStackTrace();
                 }
             }catch (Exception noRequestedSiteFound){
                 ChangeCheckBox.adjustStyle(true,"nope",ImageGroupingClickOut);
                 webDriver.navigate().to(inputGridPageURL.getText().trim());
                 report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
+                failedTestCases.writeToNamedFile(infoMessage, "Please check Image Grouping Page: Couldn't navigate to requested Site!", "FailAndReview");
                 noRequestedSiteFound.printStackTrace();
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",ImageGroupingClickOut);
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
+            failedTestCases.writeToNamedFile(infoMessage, "Please check Image Grouping Page: Browser not responding!", "FailAndReview");
             noBrowserWorking.printStackTrace();
         }
 
         report.writeToFile("=================================", "");
+        failedTestCases.writeToNamedFile("=================================","FailAndReview");
 
     }
 
@@ -161,6 +173,7 @@ public class ImageGroupingPageTest {
                             ChangeCheckBox.adjustStyle(true,"complete",DetailPageOfOffer);
                         }else {
                             report.writeToFile(infoMessage, "Not successful! Unable to detect Pattern in URL");
+                            failedTestCases.writeToNamedFile(infoMessage, "Please check: Detail page of an offered item seems not to be working on a Image grouping Page", "FailAndReview");
                             ChangeCheckBox.adjustStyle(true,"nope",DetailPageOfOffer);
                         }
                         webDriver.navigate().to(inputGridPageURL.getText().trim());
@@ -169,11 +182,14 @@ public class ImageGroupingPageTest {
                         isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver, "DetailPageImageGroupingOffer.png");
                         if (isSuccessful){
                             report.writeToFile("Checking Image Grouping Detail Page of Offer: ", "Screenshot successful!");
+                            failedTestCases.writeToNamedFile("For more information about the error, see DetailPageImageGroupingOffer", "Screenshot successful!", "FailAndReview");
                         }else {
                             report.writeToFile("Checking Image Grouping Detail Page of Offer: ", "Screenshot not successful!");
+                            failedTestCases.writeToNamedFile("For more information about the error, see DetailPageImageGroupingOffer", "Screenshot not successful!", "FailAndReview");
                         }
                         webDriver.navigate().to(inputGridPageURL.getText().trim());
                         report.writeToFile(infoMessage, "Couldn't detect Product Variants in Image Grouping");
+                        failedTestCases.writeToNamedFile(infoMessage, "Please check Image Grouping Page: Couldn't detect Product Variants in Image Grouping", "FailAndReview");
                         noProduktVariants.printStackTrace();
                     }
                 }catch (Exception gridPageIssue){
@@ -181,24 +197,30 @@ public class ImageGroupingPageTest {
                     isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver, "DetailPageImageGroupingOffer.png");
                     if (isSuccessful){
                         report.writeToFile("Checking Image Grouping Detail Page of Offer: ", "Screenshot successful!");
+                        failedTestCases.writeToNamedFile("For more information about the error, see DetailPageImageGroupingOffer", "Screenshot successful!", "FailAndReview");
                     }else {
                         report.writeToFile("Checking Image Grouping Detail Page of Offer: ", "Screenshot not successful!");
+                        failedTestCases.writeToNamedFile("For more information about the error, see DetailPageImageGroupingOffer", "Screenshot not successful!", "FailAndReview");
                     }
                     webDriver.navigate().to(inputGridPageURL.getText().trim());
                     report.writeToFile(infoMessage, "Couldn't detect Image Grouping Icon for Detail Grouping Page");
+                    failedTestCases.writeToNamedFile(infoMessage, "Please check Image Grouping Page: Couldn't detect Image Grouping Icon for Detail Grouping Page", "FailAndReview");
                     gridPageIssue.printStackTrace();
                 }
             }catch (Exception noRequestedSiteFound){
                 ChangeCheckBox.adjustStyle(true,"nope",DetailPageOfOffer);
                 webDriver.navigate().to(inputGridPageURL.getText().trim());
                 report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
+                failedTestCases.writeToNamedFile(infoMessage, "Please check Image Grouping Page: Couldn't navigate to requested Site!", "FailAndReview");
                 noRequestedSiteFound.printStackTrace();
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",DetailPageOfOffer);
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
+            failedTestCases.writeToNamedFile(infoMessage, "Please check Image Grouping Page: Browser not responding!", "FailAndReview");
             noBrowserWorking.printStackTrace();
         }
         report.writeToFile("=================================", "");
+        failedTestCases.writeToNamedFile("=================================","FailAndReview");
     }
 }
