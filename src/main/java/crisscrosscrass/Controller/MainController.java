@@ -18,7 +18,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.FileChooser;
@@ -124,6 +123,11 @@ public class MainController implements Serializable{
     @FXML FontAwesomeIconView infoAffiliateTest;
     @FXML FontAwesomeIconView infoMerchandiseTest;
     @FXML FontAwesomeIconView infoInputFieldTextSearch;
+    @FXML FontAwesomeIconView infoInputFieldGridPageURLwithWindows;
+    @FXML FontAwesomeIconView infoInputFieldGridPageURLwithoutWindows;
+    @FXML FontAwesomeIconView infoInputFieldBrandShopKeyword;
+    @FXML FontAwesomeIconView infoInputFieldGridPageWitthFillIns;
+    @FXML FontAwesomeIconView infoInputFieldLucenePageSearch;
     //tab views
     @FXML Tab tabHomepage;
     @FXML Tab tabGridPage;
@@ -222,7 +226,7 @@ public class MainController implements Serializable{
         settingBecomeAPartnerPage.setOnAction(event -> updateCheckerTabs());
         settingAffiliateProgram.setOnAction(event -> updateCheckerTabs());
         settingMerchandiseOverviewPage.setOnAction(event -> updateCheckerTabs());
-        //Bind Element Inputs to Settings
+        //Bind Elements InputsVisibility to Settings
         ElementLuceneBox.visibleProperty().bind(settingLucenePage.selectedProperty());
         ElementLoginBox.visibleProperty().bind(settingFavoritePage.selectedProperty());
         ElementTextSearchSuggestionBox.visibleProperty().bind(settingHomepage.selectedProperty());
@@ -232,9 +236,12 @@ public class MainController implements Serializable{
         ElementFiltersBox.visibleProperty().bind(settingGridPage.selectedProperty());
         ElementGridPageWithWindowBox.visibleProperty().bind(settingGridPageWithWindows.selectedProperty());
         ElementGridPageWithFillInsBox.visibleProperty().bind(settingGridPageFillIns.selectedProperty());
-        //inputAccountEmail.setOnAction(ValidationEvent -> updateCheckerTabs());
         infoInputFieldTextSearch.visibleProperty().bind(ElementTextSearchSuggestionBox.visibleProperty());
-
+        infoInputFieldLucenePageSearch.visibleProperty().bind(ElementLuceneBox.visibleProperty());
+        infoInputFieldGridPageWitthFillIns.visibleProperty().bind(ElementGridPageWithFillInsBox.visibleProperty());
+        infoInputFieldBrandShopKeyword.visibleProperty().bind(ElementGridPageSearchBox.visibleProperty());
+        infoInputFieldGridPageURLwithoutWindows.visibleProperty().bind(ElementGridPageWithoutWindowBox.visibleProperty());
+        infoInputFieldGridPageURLwithWindows.visibleProperty().bind(ElementGridPageWithWindowBox.visibleProperty());
         //check if Properties File is available if yes, load data into Input Fields
         File file = new File("temp//UserSettings.properties");
         if (!file.exists()) {
@@ -302,6 +309,11 @@ public class MainController implements Serializable{
         infoAffiliateTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingAffiliateProgram.getText(),affiliateProgramController.affiliateProgramCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]), placeForTooltipSetting));
         infoMerchandiseTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingMerchandiseOverviewPage.getText(),merchandiseOverviewPageController.merchandiseOverviewCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]), placeForTooltipSetting));
         infoInputFieldTextSearch.setOnMouseClicked(event -> modalBox.showDialogInputFieldValidation(InfoText.valueOf("TextSearch").getHeaderMessage(),InfoText.valueOf("TextSearch").getMainMessage(), placeForTooltipInput));
+        infoInputFieldLucenePageSearch.setOnMouseClicked(event -> modalBox.showDialogInputFieldValidation(InfoText.valueOf("LucenePageSearch").getHeaderMessage(),InfoText.valueOf("LucenePageSearch").getMainMessage(), placeForTooltipInput));
+        infoInputFieldGridPageWitthFillIns.setOnMouseClicked(event -> modalBox.showDialogInputFieldValidation(InfoText.valueOf("GridPageWitthFillIns").getHeaderMessage(),InfoText.valueOf("GridPageWitthFillIns").getMainMessage(), placeForTooltipInput));
+        infoInputFieldBrandShopKeyword.setOnMouseClicked(event -> modalBox.showDialogInputFieldValidation(InfoText.valueOf("BrandShopKeyword").getHeaderMessage(),InfoText.valueOf("BrandShopKeyword").getMainMessage(), placeForTooltipInput));
+        infoInputFieldGridPageURLwithoutWindows.setOnMouseClicked(event -> modalBox.showDialogInputFieldValidation(InfoText.valueOf("GridPageURL").getHeaderMessage(),InfoText.valueOf("GridPageURL").getMainMessage(), placeForTooltipInput));
+        infoInputFieldGridPageURLwithWindows.setOnMouseClicked(event -> modalBox.showDialogInputFieldValidation(InfoText.valueOf("GridPageURLWithWindows").getHeaderMessage(),InfoText.valueOf("GridPageURLWithWindows").getMainMessage(), placeForTooltipInput));
         // Bind startWebDriver Color to Validation
         //set Start Button to disable, first Country has to be selected
         startwebdriver.setDisable(true);
@@ -1009,6 +1021,7 @@ public class MainController implements Serializable{
         settingAffiliateProgram.setSelected(true);
         settingMerchandiseOverviewPage.setSelected(true);
         updateCheckerTabs();
+        changeColorForStartButton();
     }
 
     @FXML
@@ -1034,6 +1047,7 @@ public class MainController implements Serializable{
         settingAffiliateProgram.setSelected(false);
         settingMerchandiseOverviewPage.setSelected(false);
         updateCheckerTabs();
+        changeColorForStartButton();
     }
     private boolean validateInputAttributes(boolean showErrorDialog){
         //no inputfield should be empty

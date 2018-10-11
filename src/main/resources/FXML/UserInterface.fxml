@@ -485,6 +485,11 @@
                                  </children>
                               </HBox>
                               <FontAwesomeIconView fx:id="infoInputFieldTextSearch" fill="#45818e" glyphName="QUESTION_CIRCLE" size="20" wrappingWidth="17.85714292526245" GridPane.columnIndex="1" />
+                              <FontAwesomeIconView fx:id="infoInputFieldGridPageURLwithWindows" fill="#45818e" glyphName="QUESTION_CIRCLE" layoutX="646.0" layoutY="22.0" size="20" wrappingWidth="17.85714292526245" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <FontAwesomeIconView fx:id="infoInputFieldGridPageURLwithoutWindows" fill="#45818e" glyphName="QUESTION_CIRCLE" layoutX="646.0" layoutY="52.0" size="20" wrappingWidth="17.85714292526245" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <FontAwesomeIconView fx:id="infoInputFieldBrandShopKeyword" fill="#45818e" glyphName="QUESTION_CIRCLE" layoutX="646.0" layoutY="172.0" size="20" wrappingWidth="17.85714292526245" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <FontAwesomeIconView fx:id="infoInputFieldGridPageWitthFillIns" fill="#45818e" glyphName="QUESTION_CIRCLE" layoutX="646.0" layoutY="82.0" size="20" wrappingWidth="17.85714292526245" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                              <FontAwesomeIconView fx:id="infoInputFieldLucenePageSearch" fill="#45818e" glyphName="QUESTION_CIRCLE" layoutX="646.0" layoutY="172.0" size="20" wrappingWidth="17.85714292526245" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                            </children>
                            <VBox.margin>
                               <Insets left="10.0" />
