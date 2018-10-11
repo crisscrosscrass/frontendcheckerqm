@@ -22,20 +22,26 @@
 */
 
 .jfx-combo-box{
-   -fx-text-fill: white;
-   -fx-prompt-text-fill: #ffffff;
+   -fx-text-fill:  white;
+   -fx-prompt-text-fill: white;
+   -fx-background: #165f6f;
+   -fx-background-color: #165f6f;
 }
 .jfx-combo-box .text-field{
    -fx-text-fill: white;
+   -fx-background: #165f6f;
+   -fx-background-color: #165f6f;
 }
 .jfx-combo-box .text-field:focused {
    -fx-text-fill: white;
+   -fx-background: #165f6f;
+   -fx-background-color: #165f6f;
 }
 .combo-box > .list-cell {
--fx-background: #0c343dff;
--fx-background-color: #0c343dff;
+-fx-background: #165f6f;
+-fx-background-color: #165f6f;
 -fx-text-fill: white;
--fx-font-size: 22pt;
+-fx-font-size: 12pt;
 -fx-font-family: "Lobster";
 }
 
@@ -46,7 +52,7 @@
 }
 #settingGridPane .box {
 -fx-scale-x: 1.2;
--fx-scale-y: 2.0;
+-fx-scale-y: 1.9;
 -fx-scale-z: 1.0;
 -fx-translate-x: -1px;
 -fx-translate-y: 0px;

@@ -18,6 +18,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.FileChooser;
@@ -41,6 +42,8 @@ public class MainController implements Serializable{
     // Basic Settings
     @FXML Button startwebdriver;
     @FXML Button stopWebdriver;
+    @FXML JFXButton fulltestButton;
+    @FXML JFXButton costumtestButton;
     //Filter Settings
     @FXML JFXComboBox countrySelection;
     @FXML public JFXCheckBox checkingSalesPriceFilter;
@@ -90,11 +93,11 @@ public class MainController implements Serializable{
     @FXML TextField inputGridPageURLWithFillIns;
     @FXML TextField inputBrandPageOverview;
     @FXML TextField inputLucenePage;
-    @FXML JFXTextField inputAccountEmail;
     @FXML TextField inputPartnerShopPageURL;
     @FXML TextField inputPartnerShopSearch;
     @FXML TextField inputBecomeAPartnerPageURL;
-    @FXML JFXPasswordField inputAccountPassword;
+    @FXML TextField inputAccountEmail;
+    @FXML PasswordField inputAccountPassword;
     @FXML TextField inputAffiliateProgramURL;
     @FXML TextField inputMerchandiseOverviewPageURL;
     @FXML TextField inputMerchandiseSearch;
@@ -203,7 +206,7 @@ public class MainController implements Serializable{
             countrySelection.getItems().add(country);
         }
         //add Countries to country select
-        countrySelection.setPromptText("Which country?");
+        countrySelection.setPromptText("select a country");
         //add Listener to Settings
         settingHomepage.setOnAction(event -> updateCheckerTabs());
         settingGridPage.setOnAction(event -> updateCheckerTabs());
@@ -229,7 +232,7 @@ public class MainController implements Serializable{
         ElementFiltersBox.visibleProperty().bind(settingGridPage.selectedProperty());
         ElementGridPageWithWindowBox.visibleProperty().bind(settingGridPageWithWindows.selectedProperty());
         ElementGridPageWithFillInsBox.visibleProperty().bind(settingGridPageFillIns.selectedProperty());
-        inputAccountEmail.setOnAction(ValidationEvent -> updateCheckerTabs());
+        //inputAccountEmail.setOnAction(ValidationEvent -> updateCheckerTabs());
         infoInputFieldTextSearch.visibleProperty().bind(ElementTextSearchSuggestionBox.visibleProperty());
 
         //check if Properties File is available if yes, load data into Input Fields
@@ -268,6 +271,19 @@ public class MainController implements Serializable{
             inputAffiliateProgramURL.setText(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getLocationAffiliateProgramPageURL());
             inputMerchandiseOverviewPageURL.setText(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getLocationMerchandiseOverviewPageURL());
             startwebdriver.setDisable(false);
+            if (countrySelection.getSelectionModel().getSelectedItem().toString().equals("DE")){
+                settingImageGrouping.setSelected(false);
+                settingImageGrouping.setDisable(true);
+                updateCheckerTabs();
+            }else{
+                settingImageGrouping.setDisable(false);
+                int selectedColor = 529612127;
+                if (costumtestButton.getBackground().getFills().hashCode() != selectedColor){
+                    settingImageGrouping.setSelected(true);
+                }
+                updateCheckerTabs();
+            }
+            changeColorForStartButton();
         });
         //Bind Info to QuestionMark Buttons
         ModalBox modalBox = new ModalBox();
@@ -286,14 +302,7 @@ public class MainController implements Serializable{
         infoAffiliateTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingAffiliateProgram.getText(),affiliateProgramController.affiliateProgramCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]), placeForTooltipSetting));
         infoMerchandiseTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingMerchandiseOverviewPage.getText(),merchandiseOverviewPageController.merchandiseOverviewCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]), placeForTooltipSetting));
         infoInputFieldTextSearch.setOnMouseClicked(event -> modalBox.showDialogInputFieldValidation(InfoText.valueOf("TextSearch").getHeaderMessage(),InfoText.valueOf("TextSearch").getMainMessage(), placeForTooltipInput));
-        // Bind validation to Input Fields
-        /* no need for now
-        inputGridPageURL.focusedProperty().addListener((arg0, oldValue, newValue) -> {
-            if (!newValue) { //when focus lost
-                validateInputAttributesAndShowColor();
-            }
-        });
-        */
+        // Bind startWebDriver Color to Validation
         //set Start Button to disable, first Country has to be selected
         startwebdriver.setDisable(true);
         stopWebdriver.setDisable(true);
@@ -304,7 +313,7 @@ public class MainController implements Serializable{
 
     @FXML
     public void checkBeforeStart() {
-        if (validateInputAttributes()){
+        if (validateInputAttributes(true)){
             Platform.runLater(this::startRealAction);
         }
     }
@@ -414,6 +423,39 @@ public class MainController implements Serializable{
                         resultsManager.updateResultsCheckbox(settingHomepage,frontendHomepageController.frontendHomePageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),BoxHomepageResult,placeForFailedTestCases);
                         settingManager.updateResultBoxes(settingHomepage,"complete",resultBoxHomepage,BoxHomepageResult);
                     });
+                    if (!tabMainMenuOnHomePage.isDisable()){
+                        try{
+                            tabPane.getSelectionModel().select(tabMainMenuOnHomePage);
+                            settingManager.updateResultBoxes(settingMainMenuOnHomePage,"progress",resultBoxMainMenuOnHomePage,BoxMainMenuOnHomePageResult);
+                            MainMenuOnHomePageTest mainMenuOnHomePageTest = new MainMenuOnHomePageTest();
+                            mainMenuOnHomePageTest.checkingMainMenuTabs(webDriver,report,js,mainMenuOnHomePageController.MainMenuLinkTabs,statusInfo,inputSearch, Homepage);
+                            //mainMenuOnHomePageTest.checkingMainMenuIndex(webDriver,report,js,mainMenuOnHomePageController.MainMenuLinkIndex,statusInfo,inputSearch, Homepage);
+                            mainMenuOnHomePageTest.checkingShoppingWorld(webDriver,report,js,mainMenuOnHomePageController.ShoppingWorlds,statusInfo,inputSearch, Homepage);
+                            mainMenuOnHomePageTest.checkingShoppingWorldOnIndex(webDriver,report,js,mainMenuOnHomePageController.ShoppingWorldsOnIndex,statusInfo,inputSearch, Homepage);
+                        }catch (Exception noMainMenuWorking){
+                            noMainMenuWorking.printStackTrace();
+                        }
+                    }
+                    Platform.runLater(() -> {
+                        updateGlobalTestCases();
+                        resultsManager.updateResultsCheckbox(settingMainMenuOnHomePage,mainMenuOnHomePageController.mainMenuCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),BoxMainMenuOnHomePageResult,placeForFailedTestCases);
+                        settingManager.updateResultBoxes(settingMainMenuOnHomePage,"complete",resultBoxMainMenuOnHomePage,BoxMainMenuOnHomePageResult);
+                    } );
+                    if (!tabGridPageWithWindows.isDisable()){
+                        try{
+                            tabPane.getSelectionModel().select(tabGridPageWithWindows);
+                            settingManager.updateResultBoxes(settingGridPageWithWindows,"progress",resultBoxGridPageWindows,BoxGridPageWindowsResult);
+                            GridPageTestWithWindows gridPageTestWithWindows = new GridPageTestWithWindows();
+                            gridPageTestWithWindows.checkingPagingWithWindowsForward(webDriver,report,js,gridPageWithWindowsController.PagingWithWindowsForward,inputGridPageURLWithWindows,statusInfo,inputSearch,inputEmailAdress,xpathPattern1,xpathPattern2,Homepage,isSuccessful,isAvailable);
+                        }catch (Exception noGridPagWindowsWorking){
+                            noGridPagWindowsWorking.printStackTrace();
+                        }
+                    }
+                    Platform.runLater(() -> {
+                        updateGlobalTestCases();
+                        resultsManager.updateResultsCheckbox(settingGridPageWithWindows,gridPageWithWindowsController.gridPageWithWindowsCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),BoxGridPageWindowsResult,placeForFailedTestCases);
+                        settingManager.updateResultBoxes(settingGridPageWithWindows,"complete",resultBoxGridPageWindows,BoxGridPageWindowsResult);
+                    } );
                     if (!tabGridPage.isDisable()){
                         try{
                             tabPane.getSelectionModel().select(tabGridPage);
@@ -440,21 +482,6 @@ public class MainController implements Serializable{
                         resultsManager.updateResultsCheckbox(settingGridPage,gridPageNoWindowsController.GridPageNoWindowsCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),BoxGridPageResult,placeForFailedTestCases);
                         settingManager.updateResultBoxes(settingGridPage,"complete",resultBoxGridPage,BoxGridPageResult);
                     } );
-                    if (!tabGridPageWithWindows.isDisable()){
-                        try{
-                            tabPane.getSelectionModel().select(tabGridPageWithWindows);
-                            settingManager.updateResultBoxes(settingGridPageWithWindows,"progress",resultBoxGridPageWindows,BoxGridPageWindowsResult);
-                            GridPageTestWithWindows gridPageTestWithWindows = new GridPageTestWithWindows();
-                            gridPageTestWithWindows.checkingPagingWithWindowsForward(webDriver,report,js,gridPageWithWindowsController.PagingWithWindowsForward,inputGridPageURLWithWindows,statusInfo,inputSearch,inputEmailAdress,xpathPattern1,xpathPattern2,Homepage,isSuccessful,isAvailable);
-                        }catch (Exception noGridPagWindowsWorking){
-                            noGridPagWindowsWorking.printStackTrace();
-                        }
-                    }
-                    Platform.runLater(() -> {
-                        updateGlobalTestCases();
-                        resultsManager.updateResultsCheckbox(settingGridPageWithWindows,gridPageWithWindowsController.gridPageWithWindowsCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),BoxGridPageWindowsResult,placeForFailedTestCases);
-                        settingManager.updateResultBoxes(settingGridPageWithWindows,"complete",resultBoxGridPageWindows,BoxGridPageWindowsResult);
-                    } );
                     if (!tabGridPageFillIns.isDisable()){
                         try{
                             tabPane.getSelectionModel().select(tabGridPageFillIns);
@@ -469,21 +496,6 @@ public class MainController implements Serializable{
                         updateGlobalTestCases();
                         resultsManager.updateResultsCheckbox(settingGridPageFillIns,gridPageWithFillInsController.gridPageWithFillInsCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),BoxGridPageFillInsResult,placeForFailedTestCases);
                         settingManager.updateResultBoxes(settingGridPageFillIns,"complete",resultBoxGridPageFillIns,BoxGridPageFillInsResult);
-                    } );
-                    if (!tabBrandPage.isDisable()){
-                        try{
-                            tabPane.getSelectionModel().select(tabBrandPage);
-                            settingManager.updateResultBoxes(settingBrandPage,"progress",resultBoxBrandPage,BoxBrandPageResult);
-                            BrandPageTest brandPageTest = new BrandPageTest();
-                            brandPageTest.checkingBrandsWithoutLogo(webDriver,report,js,brandOverviewController.brandsWithoutLogo,inputBrandPageOverview,statusInfo,inputSearch, Homepage);
-                        }catch (Exception noBrandWorking){
-                            noBrandWorking.printStackTrace();
-                        }
-                    }
-                    Platform.runLater(() -> {
-                        updateGlobalTestCases();
-                        resultsManager.updateResultsCheckbox(settingBrandPage,brandOverviewController.brandPageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),BoxBrandPageResult,placeForFailedTestCases);
-                        settingManager.updateResultBoxes(settingBrandPage,"complete",resultBoxBrandPage,BoxBrandPageResult);
                     } );
                     if (!tabLucenePage.isDisable()){
                         try{
@@ -502,24 +514,6 @@ public class MainController implements Serializable{
                         resultsManager.updateResultsCheckbox(settingLucenePage,pageLuceneWithItemsController.lucenePageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),BoxLucenePageResult,placeForFailedTestCases);
                         settingManager.updateResultBoxes(settingLucenePage,"complete",resultBoxLucenePage,BoxLucenePageResult);
                     } );
-                    if (!tabMainMenuOnHomePage.isDisable()){
-                        try{
-                            tabPane.getSelectionModel().select(tabMainMenuOnHomePage);
-                            settingManager.updateResultBoxes(settingMainMenuOnHomePage,"progress",resultBoxMainMenuOnHomePage,BoxMainMenuOnHomePageResult);
-                            MainMenuOnHomePageTest mainMenuOnHomePageTest = new MainMenuOnHomePageTest();
-                            mainMenuOnHomePageTest.checkingMainMenuTabs(webDriver,report,js,mainMenuOnHomePageController.MainMenuLinkTabs,statusInfo,inputSearch, Homepage);
-                            //mainMenuOnHomePageTest.checkingMainMenuIndex(webDriver,report,js,mainMenuOnHomePageController.MainMenuLinkIndex,statusInfo,inputSearch, Homepage);
-                            mainMenuOnHomePageTest.checkingShoppingWorld(webDriver,report,js,mainMenuOnHomePageController.ShoppingWorlds,statusInfo,inputSearch, Homepage);
-                            mainMenuOnHomePageTest.checkingShoppingWorldOnIndex(webDriver,report,js,mainMenuOnHomePageController.ShoppingWorldsOnIndex,statusInfo,inputSearch, Homepage);
-                        }catch (Exception noMainMenuWorking){
-                            noMainMenuWorking.printStackTrace();
-                        }
-                    }
-                    Platform.runLater(() -> {
-                        updateGlobalTestCases();
-                        resultsManager.updateResultsCheckbox(settingMainMenuOnHomePage,mainMenuOnHomePageController.mainMenuCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),BoxMainMenuOnHomePageResult,placeForFailedTestCases);
-                        settingManager.updateResultBoxes(settingMainMenuOnHomePage,"complete",resultBoxMainMenuOnHomePage,BoxMainMenuOnHomePageResult);
-                    } );
                     if (!tabDetailPage.isDisable()){
                         try{
                             tabPane.getSelectionModel().select(tabDetailPage);
@@ -537,39 +531,6 @@ public class MainController implements Serializable{
                         updateGlobalTestCases();
                         resultsManager.updateResultsCheckbox(settingDetailPage,detailPageController.detailPageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),BoxDetailPageResult,placeForFailedTestCases);
                         settingManager.updateResultBoxes(settingDetailPage,"complete",resultBoxDetailPage,BoxDetailPageResult);
-                    } );
-                    if (!tabImageGrouping.isDisable()){
-                        try{
-                            tabPane.getSelectionModel().select(tabImageGrouping);
-                            settingManager.updateResultBoxes(settingImageGrouping,"progress",resultBoxImageGrouping,BoxImageGroupingResult);
-                            ImageGroupingPageTest imageGroupingPageTest = new ImageGroupingPageTest();
-                            imageGroupingPageTest.checkingImageGroupingClickOut(webDriver,report,js,imageGroupingController.ImageGroupingClickOut, statusInfo,inputGridPageURL, Homepage);
-                            imageGroupingPageTest.checkingDetailPageOfOffer(webDriver,report,js,imageGroupingController.DetailPageOfOffer, statusInfo,inputGridPageURL, Homepage);
-                        }catch (Exception noLucenePageWorking){
-                            noLucenePageWorking.printStackTrace();
-                        }
-                    }
-                    Platform.runLater(() -> {
-                        updateGlobalTestCases();
-                        resultsManager.updateResultsCheckbox(settingImageGrouping,imageGroupingController.imageGroupingCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),BoxImageGroupingResult,placeForFailedTestCases);
-                        settingManager.updateResultBoxes(settingImageGrouping,"complete",resultBoxImageGrouping,BoxImageGroupingResult);
-                    } );
-                    if (!tabFavoritePage.isDisable() & inputAccountEmail.getText() != null & !inputAccountEmail.getText().equals("") & inputAccountEmail.getText().toLowerCase().contains("@visual-meta.com") ){
-                        try{
-                            tabPane.getSelectionModel().select(tabFavoritePage);
-                            settingManager.updateResultBoxes(settingFavoritePage,"progress",resultBoxFavoritePage,BoxFavoritePageResult);
-                            FavoritePageTest favoritePageTest = new FavoritePageTest();
-                            favoritePageTest.checkingPersonalListTest(webDriver,report,js,favoritePageController.PersonalList, statusInfo,inputSearch, Homepage, inputAccountEmail, inputAccountPassword);
-                            favoritePageTest.checkingApplySortingOnList(webDriver,report,js,favoritePageController.SortingOnList,statusInfo,inputGridPageURL, Homepage, inputAccountEmail, inputAccountPassword);
-                            favoritePageTest.checkingSelectionOnList(webDriver,report,js,favoritePageController.SelectionOnList,statusInfo,inputSearch, Homepage, inputAccountEmail, inputAccountPassword);
-                        }catch (Exception noFavoritePageWorking){
-                            noFavoritePageWorking.printStackTrace();
-                        }
-                    }
-                    Platform.runLater(() -> {
-                        updateGlobalTestCases();
-                        resultsManager.updateResultsCheckbox(settingFavoritePage,favoritePageController.favoritePageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),BoxFavoritePageResult,placeForFailedTestCases);
-                        settingManager.updateResultBoxes(settingFavoritePage,"complete",resultBoxFavoritePage,BoxFavoritePageResult);
                     } );
                     if (!tabPartnerShopPage.isDisable()){
                         try{
@@ -615,22 +576,6 @@ public class MainController implements Serializable{
                         resultsManager.updateResultsCheckbox(settingBecomeAPartnerPage,becomeAPartnerController.becomePartnerCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),BoxBecomePartnerResult,placeForFailedTestCases);
                         settingManager.updateResultBoxes(settingBecomeAPartnerPage,"complete",resultBoxBecomePartner,BoxBecomePartnerResult);
                     } );
-                    if (!tabAffiliateProgram.isDisable()){
-                        try{
-                            tabPane.getSelectionModel().select(tabAffiliateProgram);
-                            settingManager.updateResultBoxes(settingAffiliateProgram,"progress",resultBoxAffiliateProgram,BoxAffiliateProgramResult);
-                            AffiliateProgramTest affiliateProgramTest = new AffiliateProgramTest();
-                            affiliateProgramTest.checkingBecomeAffilinetPartner(webDriver,report,js,affiliateProgramController.BecomeAffilinetPartner,statusInfo,inputAffiliateProgramURL,inputSearch,Homepage);
-                            affiliateProgramTest.checkingBecomeTradeTrackerPartner(webDriver,report,js,affiliateProgramController.BecomeTradeTrackerPartner,statusInfo,inputAffiliateProgramURL,inputSearch,Homepage);
-                        }catch (Exception noBecomeAPartnerWorking){
-                            noBecomeAPartnerWorking.printStackTrace();
-                        }
-                    }
-                    Platform.runLater(() -> {
-                        updateGlobalTestCases();
-                        resultsManager.updateResultsCheckbox(settingAffiliateProgram,affiliateProgramController.affiliateProgramCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),BoxAffiliateProgramResult,placeForFailedTestCases);
-                        settingManager.updateResultBoxes(settingAffiliateProgram,"complete",resultBoxAffiliateProgram,BoxAffiliateProgramResult);
-                    } );
                     if (!tabMerchandiseOverviewPage.isDisable()){
                         try{
                             tabPane.getSelectionModel().select(tabMerchandiseOverviewPage);
@@ -648,10 +593,73 @@ public class MainController implements Serializable{
                         updateGlobalTestCases();
                         resultsManager.updateResultsCheckbox(settingMerchandiseOverviewPage,merchandiseOverviewPageController.merchandiseOverviewCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),BoxMerchandiseResult,placeForFailedTestCases);
                         settingManager.updateResultBoxes(settingMerchandiseOverviewPage,"complete",resultBoxMerchandise,BoxMerchandiseResult);
-                        updateGlobalPercentTestCounter();
                     } );
-
-
+                    if (!tabAffiliateProgram.isDisable()){
+                        try{
+                            tabPane.getSelectionModel().select(tabAffiliateProgram);
+                            settingManager.updateResultBoxes(settingAffiliateProgram,"progress",resultBoxAffiliateProgram,BoxAffiliateProgramResult);
+                            AffiliateProgramTest affiliateProgramTest = new AffiliateProgramTest();
+                            affiliateProgramTest.checkingBecomeAffilinetPartner(webDriver,report,js,affiliateProgramController.BecomeAffilinetPartner,statusInfo,inputAffiliateProgramURL,inputSearch,Homepage);
+                            affiliateProgramTest.checkingBecomeTradeTrackerPartner(webDriver,report,js,affiliateProgramController.BecomeTradeTrackerPartner,statusInfo,inputAffiliateProgramURL,inputSearch,Homepage);
+                        }catch (Exception noBecomeAPartnerWorking){
+                            noBecomeAPartnerWorking.printStackTrace();
+                        }
+                    }
+                    Platform.runLater(() -> {
+                        updateGlobalTestCases();
+                        resultsManager.updateResultsCheckbox(settingAffiliateProgram,affiliateProgramController.affiliateProgramCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),BoxAffiliateProgramResult,placeForFailedTestCases);
+                        settingManager.updateResultBoxes(settingAffiliateProgram,"complete",resultBoxAffiliateProgram,BoxAffiliateProgramResult);
+                    } );
+                    if (!tabImageGrouping.isDisable()){
+                        try{
+                            tabPane.getSelectionModel().select(tabImageGrouping);
+                            settingManager.updateResultBoxes(settingImageGrouping,"progress",resultBoxImageGrouping,BoxImageGroupingResult);
+                            ImageGroupingPageTest imageGroupingPageTest = new ImageGroupingPageTest();
+                            imageGroupingPageTest.checkingImageGroupingClickOut(webDriver,report,js,imageGroupingController.ImageGroupingClickOut, statusInfo,inputGridPageURL, Homepage);
+                            imageGroupingPageTest.checkingDetailPageOfOffer(webDriver,report,js,imageGroupingController.DetailPageOfOffer, statusInfo,inputGridPageURL, Homepage);
+                        }catch (Exception noLucenePageWorking){
+                            noLucenePageWorking.printStackTrace();
+                        }
+                    }
+                    Platform.runLater(() -> {
+                        updateGlobalTestCases();
+                        resultsManager.updateResultsCheckbox(settingImageGrouping,imageGroupingController.imageGroupingCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),BoxImageGroupingResult,placeForFailedTestCases);
+                        settingManager.updateResultBoxes(settingImageGrouping,"complete",resultBoxImageGrouping,BoxImageGroupingResult);
+                    } );
+                    if (!tabBrandPage.isDisable()){
+                        try{
+                            tabPane.getSelectionModel().select(tabBrandPage);
+                            settingManager.updateResultBoxes(settingBrandPage,"progress",resultBoxBrandPage,BoxBrandPageResult);
+                            BrandPageTest brandPageTest = new BrandPageTest();
+                            brandPageTest.checkingBrandsWithoutLogo(webDriver,report,js,brandOverviewController.brandsWithoutLogo,inputBrandPageOverview,statusInfo,inputSearch, Homepage);
+                        }catch (Exception noBrandWorking){
+                            noBrandWorking.printStackTrace();
+                        }
+                    }
+                    Platform.runLater(() -> {
+                        updateGlobalTestCases();
+                        resultsManager.updateResultsCheckbox(settingBrandPage,brandOverviewController.brandPageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),BoxBrandPageResult,placeForFailedTestCases);
+                        settingManager.updateResultBoxes(settingBrandPage,"complete",resultBoxBrandPage,BoxBrandPageResult);
+                    } );
+                    if (!tabFavoritePage.isDisable() & inputAccountEmail.getText() != null & !inputAccountEmail.getText().equals("") & inputAccountEmail.getText().toLowerCase().contains("@visual-meta.com") ){
+                        try{
+                            tabPane.getSelectionModel().select(tabFavoritePage);
+                            settingManager.updateResultBoxes(settingFavoritePage,"progress",resultBoxFavoritePage,BoxFavoritePageResult);
+                            FavoritePageTest favoritePageTest = new FavoritePageTest();
+                            favoritePageTest.checkingPersonalListTest(webDriver,report,js,favoritePageController.PersonalList, statusInfo,inputSearch, Homepage, inputAccountEmail, inputAccountPassword);
+                            favoritePageTest.checkingApplySortingOnList(webDriver,report,js,favoritePageController.SortingOnList,statusInfo,inputGridPageURL, Homepage, inputAccountEmail, inputAccountPassword);
+                            favoritePageTest.checkingSelectionOnList(webDriver,report,js,favoritePageController.SelectionOnList,statusInfo,inputSearch, Homepage, inputAccountEmail, inputAccountPassword);
+                        }catch (Exception noFavoritePageWorking){
+                            noFavoritePageWorking.printStackTrace();
+                        }
+                    }
+                    Platform.runLater(() -> {
+                        updateGlobalTestCases();
+                        resultsManager.updateResultsCheckbox(settingFavoritePage,favoritePageController.favoritePageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),BoxFavoritePageResult,placeForFailedTestCases);
+                        settingManager.updateResultBoxes(settingFavoritePage,"complete",resultBoxFavoritePage,BoxFavoritePageResult);
+                    } );
+                    //update all Results
+                    Platform.runLater(() -> updateGlobalPercentTestCounter() );
                     // close webdriver and clear tasklist
                     Platform.runLater(() -> statusInfo.setText("Closing Browser..."));
                     try {
@@ -981,6 +989,8 @@ public class MainController implements Serializable{
 
     @FXML
     public void selectAllSettingCheckBoxes(){
+        costumtestButton.setStyle("-fx-background-color:  #5a5a5a;");
+        fulltestButton.setStyle("-fx-background-color:  #0f9d58;");
         settingHomepage.setSelected(true);
         settingGridPage.setSelected(true);
         settingGridPageWithWindows.setSelected(true);
@@ -988,7 +998,11 @@ public class MainController implements Serializable{
         settingLucenePage.setSelected(true);
         settingMainMenuOnHomePage.setSelected(true);
         settingDetailPage.setSelected(true);
-        settingImageGrouping.setSelected(true);
+        if (countrySelection.getValue() != null){
+            if (!countrySelection.getSelectionModel().getSelectedItem().toString().equals("DE")){settingImageGrouping.setSelected(true);}
+        }else{
+            settingImageGrouping.setSelected(true);
+        }
         settingFavoritePage.setSelected(true);
         settingPartnerShopPage.setSelected(true);
         settingBecomeAPartnerPage.setSelected(true);
@@ -999,6 +1013,8 @@ public class MainController implements Serializable{
 
     @FXML
     public void deselectAllSettingCheckBoxes(){
+        fulltestButton.setStyle("-fx-background-color:  #5a5a5a;");
+        costumtestButton.setStyle("-fx-background-color:  #0f9d58;");
         settingHomepage.setSelected(false);
         settingGridPage.setSelected(false);
         settingGridPageWithWindows.setSelected(false);
@@ -1007,7 +1023,11 @@ public class MainController implements Serializable{
         settingLucenePage.setSelected(false);
         settingMainMenuOnHomePage.setSelected(false);
         settingDetailPage.setSelected(false);
-        settingImageGrouping.setSelected(false);
+        if (countrySelection.getValue() != null) {
+            if (countrySelection.getValue() != null & !countrySelection.getSelectionModel().getSelectedItem().toString().equals("DE")) {settingImageGrouping.setSelected(false);}
+        }else{
+            settingImageGrouping.setSelected(false);
+        }
         settingFavoritePage.setSelected(false);
         settingPartnerShopPage.setSelected(false);
         settingBecomeAPartnerPage.setSelected(false);
@@ -1015,10 +1035,7 @@ public class MainController implements Serializable{
         settingMerchandiseOverviewPage.setSelected(false);
         updateCheckerTabs();
     }
-    private boolean validateInputAttributes(){
-        //String successStyleSettings = null;
-        boolean webDriverCanStart = false;
-
+    private boolean validateInputAttributes(boolean showErrorDialog){
         //no inputfield should be empty
         //for filter test at least one filer needs to be checked
         //if GridPageURL+Windiws+FillIns contains not the selected Counry then no
@@ -1102,12 +1119,21 @@ public class MainController implements Serializable{
         if (ValidationsErrors.length() > 0 ){
             isEverythingFilledCorrectly = false;
         }
-        if (!isEverythingFilledCorrectly){
-            ModalBox ErrorInputFields = new ModalBox();
-            ErrorInputFields.showDialogInputFieldValidation("Validation Error",ValidationsErrors.toString(),placeForTooltipInput);
+        if (showErrorDialog){
+            if (!isEverythingFilledCorrectly){
+                ModalBox ErrorInputFields = new ModalBox();
+                ErrorInputFields.showDialogInputFieldValidation("Validation Error",ValidationsErrors.toString(),placeForTooltipInput);
+            }
             validateInputAttributesAndShowColor();
         }
         return isEverythingFilledCorrectly;
+    }
+    private void changeColorForStartButton(){
+        if (validateInputAttributes(false)){
+            startwebdriver.setStyle("-fx-background-color:  #0f9d58;");
+        }else{
+            startwebdriver.setStyle("-fx-background-color:  #5a5a5a;");
+        }
     }
     private void validateInputAttributesAndShowColor(){
         if (countrySelection.getValue() != null){
@@ -1190,7 +1216,7 @@ public class MainController implements Serializable{
             }
         }
     }
-    public void updateCheckerTabs(){
+    private void updateCheckerTabs(){
         SettingManager settingManager = new SettingManager();
         settingManager.updateSettingControlls(settingHomepage,tabHomepage);
         settingManager.updateSettingControlls(settingGridPage,tabGridPage);
@@ -1212,13 +1238,13 @@ public class MainController implements Serializable{
             ElementGridPageWithoutWindowBox.setVisible(false);
         }
         updateTestCasesGlobalCounter();
-        settingManager.setValidationColor(settingFavoritePage,inputAccountEmail);
+        //settingManager.setValidationColor(settingFavoritePage,inputAccountEmail);
     }
 
-    public void updateTestCasesGlobalCounter(){
+    private void updateTestCasesGlobalCounter(){
         globalCounterTestCases.setText(""+ getGlobalTestCaseNumber());
     }
-    public void updateGlobalPercentTestCounter(){
+    private void updateGlobalPercentTestCounter(){
         int currentValue = getGlobalPassedTestCases();
         int MaxValue = getGlobalTestCaseNumber();
         if (0 == currentValue){
@@ -1228,7 +1254,7 @@ public class MainController implements Serializable{
             globalPercentTestPassedCounter.setText(""+percent);
         }
     }
-    public int getGlobalTestCaseNumber(){
+    private int getGlobalTestCaseNumber(){
         int globalCounterTestCasesNumber = 0;
         ResultsManager resultsManager = new ResultsManager();
         globalCounterTestCasesNumber += resultsManager.getTestCasesNumber(settingHomepage,frontendHomepageController.frontendHomePageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
@@ -1248,7 +1274,7 @@ public class MainController implements Serializable{
         return globalCounterTestCasesNumber;
     }
 
-    public void updateResultsBoxes(){
+    private void updateResultsBoxes(){
         SettingManager settingManager = new SettingManager();
         settingManager.updateResultBoxes(settingHomepage,"",resultBoxHomepage,BoxHomepageResult);
         settingManager.updateResultBoxes(settingGridPage,"",resultBoxGridPage,BoxGridPageResult);
@@ -1265,11 +1291,11 @@ public class MainController implements Serializable{
         settingManager.updateResultBoxes(settingAffiliateProgram,"",resultBoxAffiliateProgram,BoxAffiliateProgramResult);
         settingManager.updateResultBoxes(settingMerchandiseOverviewPage,"",resultBoxMerchandise,BoxMerchandiseResult);
     }
-    public void updateGlobalTestCases(){
+    private void updateGlobalTestCases(){
         globalPassedTestPassedCounter.setText(""+ getGlobalPassedTestCases());
         globalSelectedTestPassedCounter.setText("/"+ getGlobalTestCaseNumber());
     }
-    public int getGlobalPassedTestCases(){
+    private int getGlobalPassedTestCases(){
         int globalFailedTestCasesNumber = 0;
         ResultsManager resultsManager = new ResultsManager();
         globalFailedTestCasesNumber += resultsManager.getPassedTestCasesNumber(settingHomepage,frontendHomepageController.frontendHomePageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
