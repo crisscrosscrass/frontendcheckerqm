@@ -48,12 +48,15 @@ public class BrandPageTest {
                         webDriver.switchTo().window(tabs.get(1)); //switches to new tab
                         webDriver.get(allCollectedLinks.get(i).toString());
                         report.writeToFile("Missing Logos on page " + webDriver.getCurrentUrl() + " :");
+                        failedTestCases.writeToNamedFile("Missing Logos on page " + webDriver.getCurrentUrl() + " :", "FailAndReview");
+
 
                         if(webDriver.findElements(By.xpath(Homepage.getProperty("brandpage.boxwrapper.top"))).size() > 0){
                             wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("brandpage.boxwrapper.top"))));
                             List<WebElement> boxWrapperTop = webDriver.findElementsByXPath(Homepage.getProperty("brandpage.boxwrapper.top"));
                             for (WebElement quickMenuItem : boxWrapperTop){
                                 report.writeToFile(quickMenuItem.getText());
+                                failedTestCases.writeToNamedFile(quickMenuItem.getText(), "FailAndReview");
                             }
                         }
                         if(webDriver.findElements(By.xpath(Homepage.getProperty("brandpage.boxwrapper.bottom"))).size() > 0){
@@ -61,6 +64,7 @@ public class BrandPageTest {
                             List<WebElement> boxWrapperBottom = webDriver.findElementsByXPath(Homepage.getProperty("brandpage.boxwrapper.bottom"));
                             for (WebElement quickMenuItem : boxWrapperBottom){
                                 report.writeToFile(quickMenuItem.getText());
+                                failedTestCases.writeToNamedFile(quickMenuItem.getText(), "FailAndReview");
                             }
                         }
                         if(webDriver.findElements(By.xpath(Homepage.getProperty("brandpage.brandbox"))).size() > 0){
@@ -68,6 +72,7 @@ public class BrandPageTest {
                             List<WebElement> brandboxes = webDriver.findElementsByXPath(Homepage.getProperty("brandpage.brandbox"));
                             for (WebElement quickMenuItem : brandboxes){
                                 report.writeToFile(quickMenuItem.getText());
+                                failedTestCases.writeToNamedFile(quickMenuItem.getText(), "FailAndReview");
                             }
                         }
                         webDriver.switchTo().window(tabs.get(1)).close();
@@ -80,25 +85,32 @@ public class BrandPageTest {
                     boolean isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver, "ErrorCheckingBrandPageOverview.png");
                     if (isSuccessful){
                         report.writeToFile("BrandPage Error Screenshot: ", "Screenshot successful!");
+                        failedTestCases.writeToNamedFile("BrandPage Error Screenshot", "Please check functionalities of Brand Page. For reference, see ErrorCheckingBrandPageOverview", "FailAndReview");
                     }else {
                         report.writeToFile("BrandPage Error Screenshot: ", "Screenshot not successful!");
+                        failedTestCases.writeToNamedFile("BrandPage Error Screenshot", "Screenshot not successful!", "FailAndReview");
                     }
                     webDriver.navigate().to(inputSearch.getText().trim());
                     report.writeToFile(infoMessage, "Couldn't find any QuickMenu Elements");
+                    failedTestCases.writeToNamedFile(infoMessage, "Please check Brand Page: could not find menu element", "FailAndReview");
                     gridPageIssue.printStackTrace();
                 }
             }catch (Exception noRequestedSiteFound){
                 ChangeCheckBox.adjustStyle(true,"nope",brandsWithoutLogo);
                 webDriver.navigate().to(inputSearch.getText().trim());
                 report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
+                failedTestCases.writeToNamedFile(infoMessage, "Please check Brand Page: could not navigate to requested site", "FailAndReview");
                 noRequestedSiteFound.printStackTrace();
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",brandsWithoutLogo);
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
+            failedTestCases.writeToNamedFile(infoMessage, "Please check Brand Page: browser not responding", "FailAndReview");
             noBrowserWorking.printStackTrace();
         }
         report.writeToFile("=================================", "");
+        failedTestCases.writeToNamedFile("=================================","FailAndReview");
+
     }
 
 }
