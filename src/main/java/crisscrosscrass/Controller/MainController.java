@@ -30,6 +30,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.io.*;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -43,6 +44,9 @@ public class MainController implements Serializable{
     @FXML Button stopWebdriver;
     @FXML JFXButton fulltestButton;
     @FXML JFXButton costumtestButton;
+    @FXML JFXButton downloadFullReport;
+    @FXML JFXButton downloadFailCasesReport;
+    @FXML Text texrPlaceForLastReport;
     //Filter Settings
     @FXML JFXComboBox countrySelection;
     @FXML public JFXCheckBox checkingSalesPriceFilter;
@@ -208,46 +212,110 @@ public class MainController implements Serializable{
     @FXML
     public void initialize() {
         logger.info( "Main Program started!" );
-
+        //addAllCountries to Selection
         for (countries country : countries.values()){
             countrySelection.getItems().add(country);
         }
-        //add Countries to country select
-        countrySelection.setPromptText("select a country");
-        //add Listener to Settings
-        settingHomepage.setOnAction(event -> {updateCheckerTabs(); changeColorForStartButton();});
-        settingGridPage.setOnAction(event -> {updateCheckerTabs(); changeColorForStartButton();});
-        settingGridPageWithWindows.setOnAction(event -> {updateCheckerTabs(); changeColorForStartButton();});
-        settingGridPageFillIns.setOnAction(event -> {updateCheckerTabs(); changeColorForStartButton();});
-        settingBrandPage.setOnAction(event -> {updateCheckerTabs(); changeColorForStartButton();});
-        settingLucenePage.setOnAction(event -> {updateCheckerTabs(); changeColorForStartButton();});
-        settingMainMenuOnHomePage.setOnAction(event -> {updateCheckerTabs(); changeColorForStartButton();});
-        settingDetailPage.setOnAction(event -> {updateCheckerTabs(); changeColorForStartButton();});
-        settingImageGrouping.setOnAction(event -> {updateCheckerTabs(); changeColorForStartButton();});
-        settingFavoritePage.setOnAction(event -> {updateCheckerTabs(); changeColorForStartButton();});
-        settingPartnerShopPage.setOnAction(event -> {updateCheckerTabs(); changeColorForStartButton();});
-        settingBecomeAPartnerPage.setOnAction(event -> {updateCheckerTabs(); changeColorForStartButton();});
-        settingAffiliateProgram.setOnAction(event -> {updateCheckerTabs(); changeColorForStartButton();});
-        settingMerchandiseOverviewPage.setOnAction(event -> {updateCheckerTabs(); changeColorForStartButton();});
-        //Bind Elements InputsVisibility to Settings
-        ElementLuceneBox.visibleProperty().bind(settingLucenePage.selectedProperty());
-        ElementLoginBox.visibleProperty().bind(settingFavoritePage.selectedProperty());
-        ElementTextSearchSuggestionBox.visibleProperty().bind(settingHomepage.selectedProperty());
-        ElementShopSearchBox.visibleProperty().bind(settingPartnerShopPage.selectedProperty());
-        ElementMerchandiseSearchBox.visibleProperty().bind(settingMerchandiseOverviewPage.selectedProperty());
-        ElementGridPageSearchBox.visibleProperty().bind(settingGridPage.selectedProperty());
-        ElementFiltersBox.visibleProperty().bind(settingGridPage.selectedProperty());
-        ElementGridPageWithWindowBox.visibleProperty().bind(settingGridPageWithWindows.selectedProperty());
-        ElementGridPageWithFillInsBox.visibleProperty().bind(settingGridPageFillIns.selectedProperty());
-        infoInputFieldTextSearch.visibleProperty().bind(ElementTextSearchSuggestionBox.visibleProperty());
-        infoInputFieldLucenePageSearch.visibleProperty().bind(ElementLuceneBox.visibleProperty());
-        infoInputFieldGridPageWitthFillIns.visibleProperty().bind(ElementGridPageWithFillInsBox.visibleProperty());
-        infoInputFieldBrandShopKeyword.visibleProperty().bind(ElementGridPageSearchBox.visibleProperty());
-        infoInputFieldGridPageURLwithoutWindows.visibleProperty().bind(ElementGridPageWithoutWindowBox.visibleProperty());
-        infoInputFieldGridPageURLwithWindows.visibleProperty().bind(ElementGridPageWithWindowBox.visibleProperty());
-        exclamationMarkGridPageURLwithoutWindows.visibleProperty().bind(ElementGridPageWithoutWindowBox.visibleProperty());
-        infoInputFieldMerchandiseSearch.visibleProperty().bind(ElementMerchandiseSearchBox.visibleProperty());
-        infoInputFieldShopSearch.visibleProperty().bind(ElementShopSearchBox.visibleProperty());
+        addListenerToSettingCheckBoxes();
+        bindVisibilityProbertyToElements();
+        loadUserInputDataToElements();
+        bindCountrySelectionToSpecificTasks();
+        bindInfoButtonsToModalMessages();
+        checkReportFilesAndCompletedDate();
+        //set Start Button to disable, first Country has to be selected
+        startwebdriver.setDisable(true);
+        stopWebdriver.setDisable(true);
+        //update all Boxes before Starting
+        updateResultsBoxes();
+        updateCheckerTabs();
+    }
+
+    private void checkReportFilesAndCompletedDate() {
+        //check if Report exit and if yes add Report Link to download full report
+        File file = new File("temp//report.txt");
+        if (file.exists()){
+            SimpleDateFormat fileDateFormatting = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+            texrPlaceForLastReport.setText("Latest report: "+fileDateFormatting.format(file.lastModified())+" completed");
+            downloadFullReport.setStyle("-fx-background-color:  #0f9d58;");
+            downloadFullReport.setOnAction(event -> {
+                ReportWindow window = new ReportWindow();
+                try {
+                    window.MyCustomReport(file.toString(),"Full Report");
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            });
+        }
+        File file2 = new File("temp//FailAndReview.txt");
+        if (file2.exists()){
+            downloadFailCasesReport.setStyle("-fx-background-color:  #0f9d58;");
+            downloadFailCasesReport.setOnAction(event -> {
+                ReportWindow window = new ReportWindow();
+                try {
+                    window.MyCustomReport(file2.toString(),"Fail Cases Report");
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            });
+        }
+    }
+
+    private void bindInfoButtonsToModalMessages() {
+        //Bind Info to QuestionMark Buttons
+        ModalBox modalBox = new ModalBox();
+        infoHomepageTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingHomepage.getText(),frontendHomepageController.frontendHomePageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]), placeForTooltipSetting));
+        infoGridPageTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingGridPage.getText(),gridPageNoWindowsController.GridPageNoWindowsCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]), placeForTooltipSetting));
+        infoGridPageWindowTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingGridPageWithWindows.getText(),gridPageWithWindowsController.gridPageWithWindowsCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]), placeForTooltipSetting));
+        infoGridPageFillInsTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingGridPageFillIns.getText(),gridPageWithFillInsController.gridPageWithFillInsCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]), placeForTooltipSetting));
+        infoBrandTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingBrandPage.getText(),brandOverviewController.brandPageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]), placeForTooltipSetting));
+        infoLuceneTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingLucenePage.getText(),pageLuceneWithItemsController.lucenePageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]), placeForTooltipSetting));
+        infoOnMainMenuTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingMainMenuOnHomePage.getText(),mainMenuOnHomePageController.mainMenuCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]), placeForTooltipSetting));
+        infoDetailPageTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingDetailPage.getText(),detailPageController.detailPageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]), placeForTooltipSetting));
+        infoImageGroupingTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingImageGrouping.getText(),imageGroupingController.imageGroupingCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]), placeForTooltipSetting));
+        infoFavoritePageTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingFavoritePage.getText(),favoritePageController.favoritePageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]), placeForTooltipSetting));
+        infoPartnerShopPageTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingPartnerShopPage.getText(),partnershopsPageController.partnerShopCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]), placeForTooltipSetting));
+        infoBecomeAPartnerPageTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingBecomeAPartnerPage.getText(),becomeAPartnerController.becomePartnerCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]), placeForTooltipSetting));
+        infoAffiliateTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingAffiliateProgram.getText(),affiliateProgramController.affiliateProgramCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]), placeForTooltipSetting));
+        infoMerchandiseTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingMerchandiseOverviewPage.getText(),merchandiseOverviewPageController.merchandiseOverviewCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]), placeForTooltipSetting));
+        infoInputFieldTextSearch.setOnMouseClicked(event -> modalBox.showDialogInputFieldValidation(InfoText.valueOf("TextSearch").getHeaderMessage(),InfoText.valueOf("TextSearch").getMainMessage(), placeForTooltipInput));
+        infoInputFieldLucenePageSearch.setOnMouseClicked(event -> modalBox.showDialogInputFieldValidation(InfoText.valueOf("LucenePageSearch").getHeaderMessage(),InfoText.valueOf("LucenePageSearch").getMainMessage(), placeForTooltipInput));
+        infoInputFieldGridPageWitthFillIns.setOnMouseClicked(event -> modalBox.showDialogInputFieldValidation(InfoText.valueOf("GridPageWitthFillIns").getHeaderMessage(),InfoText.valueOf("GridPageWitthFillIns").getMainMessage(), placeForTooltipInput));
+        infoInputFieldBrandShopKeyword.setOnMouseClicked(event -> modalBox.showDialogInputFieldValidation(InfoText.valueOf("BrandShopKeyword").getHeaderMessage(),InfoText.valueOf("BrandShopKeyword").getMainMessage(), placeForTooltipInput));
+        infoInputFieldGridPageURLwithoutWindows.setOnMouseClicked(event -> modalBox.showDialogInputFieldValidation(InfoText.valueOf("GridPageURL").getHeaderMessage(),InfoText.valueOf("GridPageURL").getMainMessage(), placeForTooltipInput));
+        infoInputFieldGridPageURLwithWindows.setOnMouseClicked(event -> modalBox.showDialogInputFieldValidation(InfoText.valueOf("GridPageURLWithWindows").getHeaderMessage(),InfoText.valueOf("GridPageURLWithWindows").getMainMessage(), placeForTooltipInput));
+        exclamationMarkGridPageURLwithoutWindows.setOnMouseClicked(event -> modalBox.showDialogInputFieldValidation(InfoText.valueOf("exclamationMarkGridPageURLwithoutWindows").getHeaderMessage(),InfoText.valueOf("exclamationMarkGridPageURLwithoutWindows").getMainMessage(), placeForTooltipInput));
+        infoInputFieldShopSearch.setOnMouseClicked(event -> modalBox.showDialogInputFieldValidation(InfoText.valueOf("ShopSearchBox").getHeaderMessage(),InfoText.valueOf("ShopSearchBox").getMainMessage(), placeForTooltipInput));
+        infoInputFieldMerchandiseSearch.setOnMouseClicked(event -> modalBox.showDialogInputFieldValidation(InfoText.valueOf("MerchandiseSearch").getHeaderMessage(),InfoText.valueOf("MerchandiseSearch").getMainMessage(), placeForTooltipInput));
+    }
+    private void bindCountrySelectionToSpecificTasks() {
+        //Binding Values to Selection
+        countrySelection.setOnAction( selectedEvent -> {
+            inputSearch.setText(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getLocationMainPage());
+            inputImprintURL.setText(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getlocationImprintPage());
+            inputPrivacyPolicy.setText(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getPrivacyPage());
+            inputBrandPageOverview.setText(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getLocationBrandOverviewPage());
+            inputPartnerShopPageURL.setText(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getLocationPartnershopsPageURL());
+            inputBecomeAPartnerPageURL.setText(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getLocationBecomePartnerPageURL());
+            inputAffiliateProgramURL.setText(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getLocationAffiliateProgramPageURL());
+            inputMerchandiseOverviewPageURL.setText(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getLocationMerchandiseOverviewPageURL());
+            startwebdriver.setDisable(false);
+            if (countrySelection.getSelectionModel().getSelectedItem().toString().equals("DE")){
+                settingImageGrouping.setSelected(false);
+                settingImageGrouping.setDisable(true);
+                updateCheckerTabs();
+            }else{
+                settingImageGrouping.setDisable(false);
+                int selectedColor = 529612127;
+                if (costumtestButton.getBackground().getFills().hashCode() != selectedColor){
+                    settingImageGrouping.setSelected(true);
+                }
+                updateCheckerTabs();
+            }
+            // Bind startWebDriver Color to Validation
+            changeColorForStartButton();
+        });
+    }
+    private void loadUserInputDataToElements() {
         //check if Properties File is available if yes, load data into Input Fields
         File file = new File("temp//UserSettings.properties");
         if (!file.exists()) {
@@ -273,66 +341,43 @@ public class MainController implements Serializable{
         inputAffiliateProgramURL.setText(userData.getProperty("inputAffiliateProgramURL"));
         inputMerchandiseOverviewPageURL.setText(userData.getProperty("inputMerchandiseOverviewPageURL"));
         inputMerchandiseSearch.setText(userData.getProperty("inputMerchandiseSearch"));
-        //Binding Values to Selection
-        countrySelection.setOnAction( selectedEvent -> {
-            inputSearch.setText(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getLocationMainPage());
-            inputImprintURL.setText(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getlocationImprintPage());
-            inputPrivacyPolicy.setText(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getPrivacyPage());
-            inputBrandPageOverview.setText(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getLocationBrandOverviewPage());
-            inputPartnerShopPageURL.setText(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getLocationPartnershopsPageURL());
-            inputBecomeAPartnerPageURL.setText(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getLocationBecomePartnerPageURL());
-            inputAffiliateProgramURL.setText(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getLocationAffiliateProgramPageURL());
-            inputMerchandiseOverviewPageURL.setText(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getLocationMerchandiseOverviewPageURL());
-            startwebdriver.setDisable(false);
-            if (countrySelection.getSelectionModel().getSelectedItem().toString().equals("DE")){
-                settingImageGrouping.setSelected(false);
-                settingImageGrouping.setDisable(true);
-                updateCheckerTabs();
-            }else{
-                settingImageGrouping.setDisable(false);
-                int selectedColor = 529612127;
-                if (costumtestButton.getBackground().getFills().hashCode() != selectedColor){
-                    settingImageGrouping.setSelected(true);
-                }
-                updateCheckerTabs();
-            }
-            changeColorForStartButton();
-        });
-        //Bind Info to QuestionMark Buttons
-        ModalBox modalBox = new ModalBox();
-        infoHomepageTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingHomepage.getText(),frontendHomepageController.frontendHomePageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]), placeForTooltipSetting));
-        infoGridPageTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingGridPage.getText(),gridPageNoWindowsController.GridPageNoWindowsCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]), placeForTooltipSetting));
-        infoGridPageWindowTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingGridPageWithWindows.getText(),gridPageWithWindowsController.gridPageWithWindowsCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]), placeForTooltipSetting));
-        infoGridPageFillInsTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingGridPageFillIns.getText(),gridPageWithFillInsController.gridPageWithFillInsCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]), placeForTooltipSetting));
-        infoBrandTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingBrandPage.getText(),brandOverviewController.brandPageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]), placeForTooltipSetting));
-        infoLuceneTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingLucenePage.getText(),pageLuceneWithItemsController.lucenePageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]), placeForTooltipSetting));
-        infoOnMainMenuTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingMainMenuOnHomePage.getText(),mainMenuOnHomePageController.mainMenuCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]), placeForTooltipSetting));
-        infoDetailPageTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingDetailPage.getText(),detailPageController.detailPageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]), placeForTooltipSetting));
-        infoImageGroupingTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingImageGrouping.getText(),imageGroupingController.imageGroupingCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]), placeForTooltipSetting));
-        infoFavoritePageTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingFavoritePage.getText(),favoritePageController.favoritePageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]), placeForTooltipSetting));
-        infoPartnerShopPageTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingPartnerShopPage.getText(),partnershopsPageController.partnerShopCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]), placeForTooltipSetting));
-        infoBecomeAPartnerPageTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingBecomeAPartnerPage.getText(),becomeAPartnerController.becomePartnerCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]), placeForTooltipSetting));
-        infoAffiliateTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingAffiliateProgram.getText(),affiliateProgramController.affiliateProgramCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]), placeForTooltipSetting));
-        infoMerchandiseTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingMerchandiseOverviewPage.getText(),merchandiseOverviewPageController.merchandiseOverviewCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]), placeForTooltipSetting));
-        infoInputFieldTextSearch.setOnMouseClicked(event -> modalBox.showDialogInputFieldValidation(InfoText.valueOf("TextSearch").getHeaderMessage(),InfoText.valueOf("TextSearch").getMainMessage(), placeForTooltipInput));
-        infoInputFieldLucenePageSearch.setOnMouseClicked(event -> modalBox.showDialogInputFieldValidation(InfoText.valueOf("LucenePageSearch").getHeaderMessage(),InfoText.valueOf("LucenePageSearch").getMainMessage(), placeForTooltipInput));
-        infoInputFieldGridPageWitthFillIns.setOnMouseClicked(event -> modalBox.showDialogInputFieldValidation(InfoText.valueOf("GridPageWitthFillIns").getHeaderMessage(),InfoText.valueOf("GridPageWitthFillIns").getMainMessage(), placeForTooltipInput));
-        infoInputFieldBrandShopKeyword.setOnMouseClicked(event -> modalBox.showDialogInputFieldValidation(InfoText.valueOf("BrandShopKeyword").getHeaderMessage(),InfoText.valueOf("BrandShopKeyword").getMainMessage(), placeForTooltipInput));
-        infoInputFieldGridPageURLwithoutWindows.setOnMouseClicked(event -> modalBox.showDialogInputFieldValidation(InfoText.valueOf("GridPageURL").getHeaderMessage(),InfoText.valueOf("GridPageURL").getMainMessage(), placeForTooltipInput));
-        infoInputFieldGridPageURLwithWindows.setOnMouseClicked(event -> modalBox.showDialogInputFieldValidation(InfoText.valueOf("GridPageURLWithWindows").getHeaderMessage(),InfoText.valueOf("GridPageURLWithWindows").getMainMessage(), placeForTooltipInput));
-        exclamationMarkGridPageURLwithoutWindows.setOnMouseEntered(event -> modalBox.showDialogInputFieldValidation(InfoText.valueOf("exclamationMarkGridPageURLwithoutWindows").getHeaderMessage(),InfoText.valueOf("exclamationMarkGridPageURLwithoutWindows").getMainMessage(), placeForTooltipInput));
-        infoInputFieldShopSearch.setOnMouseClicked(event -> modalBox.showDialogInputFieldValidation(InfoText.valueOf("ShopSearchBox").getHeaderMessage(),InfoText.valueOf("ShopSearchBox").getMainMessage(), placeForTooltipInput));
-        infoInputFieldMerchandiseSearch.setOnMouseClicked(event -> modalBox.showDialogInputFieldValidation(InfoText.valueOf("MerchandiseSearch").getHeaderMessage(),InfoText.valueOf("MerchandiseSearch").getMainMessage(), placeForTooltipInput));
-
-        // Bind startWebDriver Color to Validation
-        //set Start Button to disable, first Country has to be selected
-        startwebdriver.setDisable(true);
-        stopWebdriver.setDisable(true);
-        //update all Boxes before Starting
-        updateResultsBoxes();
-        updateCheckerTabs();
     }
-
+    private void bindVisibilityProbertyToElements() {
+        ElementLuceneBox.visibleProperty().bind(settingLucenePage.selectedProperty());
+        ElementLoginBox.visibleProperty().bind(settingFavoritePage.selectedProperty());
+        ElementTextSearchSuggestionBox.visibleProperty().bind(settingHomepage.selectedProperty());
+        ElementShopSearchBox.visibleProperty().bind(settingPartnerShopPage.selectedProperty());
+        ElementMerchandiseSearchBox.visibleProperty().bind(settingMerchandiseOverviewPage.selectedProperty());
+        ElementGridPageSearchBox.visibleProperty().bind(settingGridPage.selectedProperty());
+        ElementFiltersBox.visibleProperty().bind(settingGridPage.selectedProperty());
+        ElementGridPageWithWindowBox.visibleProperty().bind(settingGridPageWithWindows.selectedProperty());
+        ElementGridPageWithFillInsBox.visibleProperty().bind(settingGridPageFillIns.selectedProperty());
+        infoInputFieldTextSearch.visibleProperty().bind(ElementTextSearchSuggestionBox.visibleProperty());
+        infoInputFieldLucenePageSearch.visibleProperty().bind(ElementLuceneBox.visibleProperty());
+        infoInputFieldGridPageWitthFillIns.visibleProperty().bind(ElementGridPageWithFillInsBox.visibleProperty());
+        infoInputFieldBrandShopKeyword.visibleProperty().bind(ElementGridPageSearchBox.visibleProperty());
+        infoInputFieldGridPageURLwithoutWindows.visibleProperty().bind(ElementGridPageWithoutWindowBox.visibleProperty());
+        infoInputFieldGridPageURLwithWindows.visibleProperty().bind(ElementGridPageWithWindowBox.visibleProperty());
+        exclamationMarkGridPageURLwithoutWindows.visibleProperty().bind(ElementGridPageWithoutWindowBox.visibleProperty());
+        infoInputFieldMerchandiseSearch.visibleProperty().bind(ElementMerchandiseSearchBox.visibleProperty());
+        infoInputFieldShopSearch.visibleProperty().bind(ElementShopSearchBox.visibleProperty());
+    }
+    private void addListenerToSettingCheckBoxes() {
+        settingHomepage.setOnAction(event -> {updateCheckerTabs(); changeColorForStartButton();});
+        settingGridPage.setOnAction(event -> {updateCheckerTabs(); changeColorForStartButton();});
+        settingGridPageWithWindows.setOnAction(event -> {updateCheckerTabs(); changeColorForStartButton();});
+        settingGridPageFillIns.setOnAction(event -> {updateCheckerTabs(); changeColorForStartButton();});
+        settingBrandPage.setOnAction(event -> {updateCheckerTabs(); changeColorForStartButton();});
+        settingLucenePage.setOnAction(event -> {updateCheckerTabs(); changeColorForStartButton();});
+        settingMainMenuOnHomePage.setOnAction(event -> {updateCheckerTabs(); changeColorForStartButton();});
+        settingDetailPage.setOnAction(event -> {updateCheckerTabs(); changeColorForStartButton();});
+        settingImageGrouping.setOnAction(event -> {updateCheckerTabs(); changeColorForStartButton();});
+        settingFavoritePage.setOnAction(event -> {updateCheckerTabs(); changeColorForStartButton();});
+        settingPartnerShopPage.setOnAction(event -> {updateCheckerTabs(); changeColorForStartButton();});
+        settingBecomeAPartnerPage.setOnAction(event -> {updateCheckerTabs(); changeColorForStartButton();});
+        settingAffiliateProgram.setOnAction(event -> {updateCheckerTabs(); changeColorForStartButton();});
+        settingMerchandiseOverviewPage.setOnAction(event -> {updateCheckerTabs(); changeColorForStartButton();});
+    }
     @FXML
     public void checkBeforeStart() {
         if (validateInputAttributes(true)){
@@ -730,19 +775,8 @@ public class MainController implements Serializable{
         thread.start();
 
         task.setOnSucceeded(e -> Platform.runLater(() -> {
-            Hyperlink link = new Hyperlink("open Report");
-            link.setOnAction(event -> {
-                ReportWindow window = new ReportWindow();
-                try {
-                    window.MyReportWindow();
-                } catch (IOException e1) {
-                    e1.printStackTrace();
-                }
-            });
+            checkReportFilesAndCompletedDate();
             preloaderCat.setImage(null);
-            link.setStyle("-fx-font: 18 arial;");
-            link.setTextAlignment(TextAlignment.CENTER);
-            outputPlace.getChildren().addAll(link);
             progressIndicator.setProgress(100);
             enableAllInputButtons();
             logger.info("All process are finished");
@@ -1140,7 +1174,6 @@ public class MainController implements Serializable{
                     ValidationsErrors.append("- the inputAccountEmail cannot be unrelated to Company\n");
                 }
             }
-            logger.info(ValidationsErrors);
             if (ValidationsErrors.length() > 0 ){
                 isEverythingFilledCorrectly = false;
             }
@@ -1156,10 +1189,12 @@ public class MainController implements Serializable{
         return isEverythingFilledCorrectly;
     }
     private void changeColorForStartButton(){
-        if (validateInputAttributes(false)){
-            startwebdriver.setStyle("-fx-background-color:  #0f9d58;");
-        }else{
-            startwebdriver.setStyle("-fx-background-color:  #5a5a5a;");
+        if (!startwebdriver.isDisabled()){
+            if (validateInputAttributes(false)){
+                startwebdriver.setStyle("-fx-background-color:  #0f9d58;");
+            }else{
+                startwebdriver.setStyle("-fx-background-color:  #5a5a5a;");
+            }
         }
     }
     private void validateInputAttributesAndShowColor(){

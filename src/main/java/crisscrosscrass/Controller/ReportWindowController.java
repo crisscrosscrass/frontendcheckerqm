@@ -3,6 +3,7 @@ package crisscrosscrass.Controller;
 
 import crisscrosscrass.Tasks.AnimationObject;
 import crisscrosscrass.Tasks.ViewImageWindow;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -21,13 +22,29 @@ public class ReportWindowController {
 
     int extraDuration = 1;
 
-
     @FXML
-    public void initialize() {
+    public void initialize(String pathname) {
         runReport();
-        //SlideShow();
+        displayReport();
     }
-    private void runReport() {
+
+    private void displayReport() {
+        // reading and displaying report
+        String myText = "";
+        try (BufferedReader reader = new BufferedReader(new FileReader(new File("temp//report.txt")))) {
+
+            String line;
+            while ((line = reader.readLine()) != null)
+                //System.out.println(line);
+                myText += line+"\n";
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        text.setText(myText);
+    }
+
+    public void runReport() {
         //dsplay all images located in temp
         AnimationObject wowEffect = new AnimationObject();
         String location = System.getProperty("user.dir");
@@ -50,21 +67,20 @@ public class ReportWindowController {
             wowEffect.SlideShow(myOwnImageView,extraDuration);
             extraDuration++;
         }
-        // reading and displaying report
-        String myText = "";
-        try (BufferedReader reader = new BufferedReader(new FileReader(new File("temp//report.txt")))) {
 
+    }
+    public void displayCustomReport(String pathName){
+        StringBuilder myText = new StringBuilder();
+        try (BufferedReader reader = new BufferedReader(new FileReader(new File(pathName)))) {
             String line;
             while ((line = reader.readLine()) != null)
-                //System.out.println(line);
-                myText += line+"\n";
-
+                myText.append(line).append("\n");
         } catch (IOException e) {
             e.printStackTrace();
         }
-        text.setText(myText);
+        text.setText(myText.toString());
+
+        runReport();
     }
-
-
 }
 

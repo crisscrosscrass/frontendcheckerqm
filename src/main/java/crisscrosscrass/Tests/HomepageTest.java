@@ -633,6 +633,7 @@ failedTestCases.writeToNamedFile("CHECKING HOMEPAGE", "FailAndReview");
             }
         }catch (Exception noPrivacyBox){
             ChangeCheckBox.adjustStyle(true,"nope",checkPrivacyPopUp);
+            report.writeToFile(infoMessage, "unable to check! Browser not responding");
             failedTestCases.writeToNamedFile(infoMessage, "Please check Privacy PopUp: browser not responding", "FailAndReview");
             noPrivacyBox.printStackTrace();
         }
@@ -664,7 +665,6 @@ failedTestCases.writeToNamedFile("CHECKING HOMEPAGE", "FailAndReview");
                     report.writeToFile(infoMessage, "Not successfull! User is not redirected to working page");
                     failedTestCases.writeToNamedFile(infoMessage, "Please check Imprint page: user is not redirected to working page", "FailAndReview");
                 }
-
             }catch (Exception noPrivacyBoxFound){
                 ChangeCheckBox.adjustStyle(true,"nope",checkImprint);
                 report.writeToFile(infoMessage, "unable to find Costumer Service Button");
