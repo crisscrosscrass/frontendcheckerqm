@@ -47,6 +47,9 @@ public class ImageGroupingPageTest {
                     }
                     wait.until(ExpectedConditions.elementToBeClickable((By.xpath(Homepage.getProperty("page.items.grouping")))));
                     List<WebElement> ImageGroupingElements = webDriver.findElementsByXPath(Homepage.getProperty("page.items.grouping"));
+                    Point hoverItem = ImageGroupingElements.get(0).getLocation();
+                    ((JavascriptExecutor)webDriver).executeScript("return window.title;");
+                    ((JavascriptExecutor)webDriver).executeScript("window.scrollBy(0,"+(hoverItem.getY())+");");
                     ImageGroupingElements.get(0).click();
 
                     try{
@@ -161,6 +164,9 @@ public class ImageGroupingPageTest {
                     }
                     wait.until(ExpectedConditions.elementToBeClickable((By.xpath(Homepage.getProperty("page.items.grouping")))));
                     List<WebElement> ImageGroupingElements = webDriver.findElementsByXPath(Homepage.getProperty("page.items.grouping"));
+                    Point hoverItem = ImageGroupingElements.get(0).getLocation();
+                    ((JavascriptExecutor)webDriver).executeScript("return window.title;");
+                    ((JavascriptExecutor)webDriver).executeScript("window.scrollBy(0,"+(hoverItem.getY())+");");
                     ImageGroupingElements.get(0).click();
 
                     try{

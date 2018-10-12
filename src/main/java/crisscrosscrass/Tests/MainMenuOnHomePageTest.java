@@ -26,9 +26,6 @@ public class MainMenuOnHomePageTest {
     public void checkingMainMenuTabs(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox MainMenuLinkTabs, Text statusInfo, TextField inputSearch, Properties Homepage){
         failedTestCases.writeToNamedFile("CHECKING MAIN MENU", "FailAndReview");
         final String infoMessage = MainMenuLinkTabs.getText();
-        Report failedMainMenuTest = new Report();
-        final String failedMainMenuReportName = "failedMainMenuTest";
-        failedMainMenuTest.clearWrittenNamendReport(failedMainMenuReportName);
         ChangeCheckBox.adjustStyle(false,"progress",MainMenuLinkTabs);
         Platform.runLater(() -> {
             statusInfo.setText(""+infoMessage+"...");
@@ -48,7 +45,6 @@ public class MainMenuOnHomePageTest {
                     Actions hover = new Actions(webDriver);
                     WebdriverTab newtab = new WebdriverTab();
                     report.writeToFile("Checking Main Menu Links: ");
-                    failedMainMenuTest.writeToNamedFile("Failed Main Menu Links: ",failedMainMenuReportName);
                     int counterXPath = 0;
                     //TODO need to adjust full length
                     for (int i = 0 ; i < 1 ; i++){
@@ -66,7 +62,6 @@ public class MainMenuOnHomePageTest {
                                     report.writeToFile("Successful |  found \"" + allMainMenuSubLinks.get(j).getAttribute("innerHTML") + "\" Keyword at URL : "+ allMainMenuSubLinks.get(j).getAttribute("href") );
                                 }else {
                                     report.writeToFile("unable to check! | couldn't found \"" + allMainMenuSubLinks.get(j).getAttribute("innerHTML") + "\" Keyword in URL : "+ allMainMenuSubLinks.get(j).getAttribute("href"));
-                                    failedMainMenuTest.writeToNamedFile("unable to check! | couldn't found \"" + allMainMenuSubLinks.get(j).getAttribute("innerHTML") + "\" Keyword in URL : "+ allMainMenuSubLinks.get(j).getAttribute("href"),failedMainMenuReportName);
                                     failedTestCases.writeToNamedFile("Please check the following URL: unable to check! | couldn't found \"" + allMainMenuSubLinks.get(j).getAttribute("innerHTML") + "\" Keyword in URL : "+ allMainMenuSubLinks.get(j).getAttribute("href"),"FailAndReview");
                                 }
                             }
