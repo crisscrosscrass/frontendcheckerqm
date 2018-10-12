@@ -23,7 +23,7 @@
             <HBox alignment="CENTER" prefHeight="150.0">
                <children>
                   <FontAwesomeIconView fill="WHITE" glyphName="EDIT" size="40" />
-                  <Label text="FrontendCheck" textAlignment="CENTER" textFill="WHITE">
+                  <Label fx:id="headerWindow" text="FrontendCheck" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font size="41.0" />
                      </font>

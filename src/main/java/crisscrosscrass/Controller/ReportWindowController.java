@@ -5,6 +5,7 @@ import crisscrosscrass.Tasks.AnimationObject;
 import crisscrosscrass.Tasks.ViewImageWindow;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -19,6 +20,7 @@ public class ReportWindowController {
 
     @FXML TextArea text;
     @FXML FlowPane ImageGallery;
+    @FXML Label headerWindow;
 
     int extraDuration = 1;
 
@@ -69,7 +71,8 @@ public class ReportWindowController {
         }
 
     }
-    public void displayCustomReport(String pathName){
+    public void displayCustomReport(String pathName, String headerLine){
+        headerWindow.setText(headerLine);
         StringBuilder myText = new StringBuilder();
         try (BufferedReader reader = new BufferedReader(new FileReader(new File(pathName)))) {
             String line;

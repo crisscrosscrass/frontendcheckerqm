@@ -39,7 +39,7 @@ public class ReportWindow {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/FXML/ReportInterface.fxml"));
         Parent root = fxmlLoader.load();
         ReportWindowController reportWindowController = fxmlLoader.getController();
-        reportWindowController.displayCustomReport(pathToFile);
+        reportWindowController.displayCustomReport(pathToFile,titleOfWindow);
 
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
