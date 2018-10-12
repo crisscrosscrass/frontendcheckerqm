@@ -1,6 +1,7 @@
 package crisscrosscrass.Tests;
 
 import com.jfoenix.controls.JFXCheckBox;
+import com.sun.security.sasl.ntlm.FactoryImpl;
 import crisscrosscrass.Tasks.ChangeCheckBox;
 import crisscrosscrass.Tasks.Report;
 import crisscrosscrass.Tasks.ScreenshotViaWebDriver;
@@ -19,8 +20,10 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 public class GridPageTestWithWindows {
+    Report failedTestCases = new Report();
 
     public void checkingPagingWithWindowsForward(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox searchBoxInBrandFilter, TextField inputGridPageURLWithWindows, Text statusInfo, TextField inputSearch, TextField inputEmailAdress, String xpathPattern1, String xpathPattern2, Properties Homepage, boolean isSuccessful, boolean isAvailable){
+        failedTestCases.writeToNamedFile("CHECKING GRID PAGE WITH WINDOWS PAGE", "FailAndReview");
         final String infoMessage = searchBoxInBrandFilter.getText();
         ChangeCheckBox.adjustStyle(false,"progress",searchBoxInBrandFilter);
         Platform.runLater(() -> {
@@ -42,11 +45,14 @@ public class GridPageTestWithWindows {
                     }else {
                         ChangeCheckBox.adjustStyle(true,"nope",searchBoxInBrandFilter);
                         report.writeToFile(infoMessage, "Not successful! URL stays the same!");
+                        failedTestCases.writeToNamedFile(infoMessage, "Please Check: review paging functionality on a Grid page with Windows", "FailAndReview");
                         isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"GridPageErrorPagingWindows.png");
                         if (isSuccessful){
                             report.writeToFile("GridPage Error Screenshot: ", "Screenshot successful!");
+                            failedTestCases.writeToNamedFile("See GridPageErrorPagingWindows for more information about the error","Screenshot successful!", "FailAndReview");
                         }else {
                             report.writeToFile("GridPage Error Screenshot: ", "Screenshot not successful!");
+                            failedTestCases.writeToNamedFile("See GridPageErrorPagingWindows for more information about the error","Screenshot not successful!", "FailAndReview");
                         }
                     }
                 }catch (Exception gridPageIssue){
@@ -54,24 +60,30 @@ public class GridPageTestWithWindows {
                     isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"GridPageErrorPagingWindows.png");
                     if (isSuccessful){
                         report.writeToFile("GridPage Error Screenshot: ", "Screenshot successful!");
+                        failedTestCases.writeToNamedFile("See GridPageErrorPagingWindows for more information about the error","Screenshot successful!", "FailAndReview");
                     }else {
                         report.writeToFile("GridPage Error Screenshot: ", "Screenshot not successful!");
+                        failedTestCases.writeToNamedFile("See GridPageErrorPagingWindows for more information about the error","Screenshot not successful!", "FailAndReview");
                     }
                     webDriver.navigate().to(inputSearch.getText().trim());
                     report.writeToFile(infoMessage, "Couldn't find any Windows");
+                    failedTestCases.writeToNamedFile(infoMessage, "Please check: could not find any windows on Grid Page with Windows", "FailAndReview");
                     gridPageIssue.printStackTrace();
                 }
             }catch (Exception noRequestedSiteFound){
                 ChangeCheckBox.adjustStyle(true,"nope",searchBoxInBrandFilter);
                 webDriver.navigate().to(inputSearch.getText().trim());
                 report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
+                failedTestCases.writeToNamedFile(infoMessage, "Please check: could not navigate to Grid Page with Windows", "FailAndReview");
                 noRequestedSiteFound.printStackTrace();
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",searchBoxInBrandFilter);
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
+            failedTestCases.writeToNamedFile(infoMessage, "Please check Grid Page with Windows: Browser not responding", "FailAndReview");
             noBrowserWorking.printStackTrace();
         }
         report.writeToFile("=================================", "");
+        failedTestCases.writeToNamedFile("=================================","FailAndReview");
     }
 }

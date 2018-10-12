@@ -21,8 +21,10 @@ import java.util.*;
 
 public class MainMenuOnHomePageTest {
     final static Logger logger = Logger.getLogger(MainMenuOnHomePageTest.class);
+    Report failedTestCases = new Report();
 
     public void checkingMainMenuTabs(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox MainMenuLinkTabs, Text statusInfo, TextField inputSearch, Properties Homepage){
+        failedTestCases.writeToNamedFile("CHECKING MAIN MENU", "FailAndReview");
         final String infoMessage = MainMenuLinkTabs.getText();
         Report failedMainMenuTest = new Report();
         final String failedMainMenuReportName = "failedMainMenuTest";
@@ -65,6 +67,7 @@ public class MainMenuOnHomePageTest {
                                 }else {
                                     report.writeToFile("unable to check! | couldn't found \"" + allMainMenuSubLinks.get(j).getAttribute("innerHTML") + "\" Keyword in URL : "+ allMainMenuSubLinks.get(j).getAttribute("href"));
                                     failedMainMenuTest.writeToNamedFile("unable to check! | couldn't found \"" + allMainMenuSubLinks.get(j).getAttribute("innerHTML") + "\" Keyword in URL : "+ allMainMenuSubLinks.get(j).getAttribute("href"),failedMainMenuReportName);
+                                    failedTestCases.writeToNamedFile("Please check the following URL: unable to check! | couldn't found \"" + allMainMenuSubLinks.get(j).getAttribute("innerHTML") + "\" Keyword in URL : "+ allMainMenuSubLinks.get(j).getAttribute("href"),"FailAndReview");
                                 }
                             }
                         }
@@ -77,20 +80,24 @@ public class MainMenuOnHomePageTest {
                     ChangeCheckBox.adjustStyle(true,"nope",MainMenuLinkTabs);
                     webDriver.navigate().to(inputSearch.getText().trim());
                     report.writeToFile(infoMessage, "Couldn't detect \"Main Menu\" Links");
+                    failedTestCases.writeToNamedFile("Please check Main Menu: Couldn't detect \"Main Menu\" Links", "FailAndReview");
                     gridPageIssue.printStackTrace();
                 }
             }catch (Exception noRequestedSiteFound){
                 ChangeCheckBox.adjustStyle(true,"nope",MainMenuLinkTabs);
                 webDriver.navigate().to(inputSearch.getText().trim());
                 report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
+                failedTestCases.writeToNamedFile("Please check Main Menu: Couldn't navigate to requested Site!", "FailAndReview");
                 noRequestedSiteFound.printStackTrace();
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",MainMenuLinkTabs);
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
+            failedTestCases.writeToNamedFile("Please check Main Menu: Browser not responding!", "FailAndReview");
             noBrowserWorking.printStackTrace();
         }
         report.writeToFile("=================================", "");
+        failedTestCases.writeToNamedFile("=================================","FailAndReview");
 
     }
     public void checkingMainMenuIndex(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox MainMenuLinkIndex, Text statusInfo, TextField inputSearch, Properties Homepage){
@@ -193,21 +200,25 @@ public class MainMenuOnHomePageTest {
                     ChangeCheckBox.adjustStyle(true,"nope",MainMenuLinkIndex);
                     webDriver.navigate().to(inputSearch.getText().trim());
                     report.writeToFile(infoMessage, "Couldn't detect \"Main Menu\" Links");
+                    failedTestCases.writeToNamedFile("Please check Main Menu: Couldn't detect \"Main Menu\" Links", "FailAndReview");
                     gridPageIssue.printStackTrace();
                 }
             }catch (Exception noRequestedSiteFound){
                 ChangeCheckBox.adjustStyle(true,"nope",MainMenuLinkIndex);
                 webDriver.navigate().to(inputSearch.getText().trim());
                 report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
+                failedTestCases.writeToNamedFile("Please check Main Menu: Couldn't navigate to requested Site!", "FailAndReview");
                 noRequestedSiteFound.printStackTrace();
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",MainMenuLinkIndex);
             webDriver.navigate().to(inputSearch.getText().trim());
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
+            failedTestCases.writeToNamedFile("Please check Main Menu: Browser not responding!", "FailAndReview");
             noBrowserWorking.printStackTrace();
         }
         report.writeToFile("=================================", "");
+        failedTestCases.writeToNamedFile("=================================","FailAndReview");
 
     }
 
@@ -232,25 +243,30 @@ public class MainMenuOnHomePageTest {
                     }else {
                         ChangeCheckBox.adjustStyle(true,"nope",ShoppingWorlds);
                         report.writeToFile(infoMessage, "User is NOT redirected to a page whose URL contains \"inspiration\"");
+                        failedTestCases.writeToNamedFile(infoMessage, "Please check: Shopping World link does not seem to lead to the correct URL", "FailAndReview");
                     }
                 }catch (Exception gridPageIssue){
                     ChangeCheckBox.adjustStyle(true,"nope",ShoppingWorlds);
                     webDriver.navigate().to(inputSearch.getText().trim());
                     report.writeToFile(infoMessage, "Couldn't detect \"Main Menu\" Links");
+                    failedTestCases.writeToNamedFile("Please check Main Menu: Couldn't detect \"Shopping World\" Links", "FailAndReview");
                     gridPageIssue.printStackTrace();
                 }
             }catch (Exception noRequestedSiteFound){
                 ChangeCheckBox.adjustStyle(true,"nope",ShoppingWorlds);
                 webDriver.navigate().to(inputSearch.getText().trim());
                 report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
+                failedTestCases.writeToNamedFile("Please check Main Menu: Couldn't navigate to requested Site!", "FailAndReview");
                 noRequestedSiteFound.printStackTrace();
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",ShoppingWorlds);
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
+            failedTestCases.writeToNamedFile("Please check Main Menu: Browser not responding!", "FailAndReview");
             noBrowserWorking.printStackTrace();
         }
         report.writeToFile("=================================", "");
+        failedTestCases.writeToNamedFile("=================================","FailAndReview");
 
     }
     public void checkingShoppingWorldOnIndex(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox ShoppingWorldsOnIndex, Text statusInfo, TextField inputSearch, Properties Homepage){
@@ -294,25 +310,31 @@ public class MainMenuOnHomePageTest {
                         logger.info("Site not index");
                         ChangeCheckBox.adjustStyle(true,"nope",ShoppingWorldsOnIndex);
                         report.writeToFile(infoMessage,"\"" + previousURL+"\" | No Index");
+                        failedTestCases.writeToNamedFile(infoMessage,"Please check Shopping world link: \"" + previousURL+"\" | No Index", "FailAndReview");
                     }
                 }catch (Exception gridPageIssue){
                     ChangeCheckBox.adjustStyle(true,"nope",ShoppingWorldsOnIndex);
                     webDriver.navigate().to(inputSearch.getText().trim());
-                    report.writeToFile(infoMessage, "Couldn't detect \"Main Menu\" Links");
+                    report.writeToFile(infoMessage, "Couldn't detect \"Shopping World\" Links");
+                    failedTestCases.writeToNamedFile("Please check Main Menu: Couldn't detect \"Shopping World\" Links", "FailAndReview");
                     gridPageIssue.printStackTrace();
                 }
             }catch (Exception noRequestedSiteFound){
                 ChangeCheckBox.adjustStyle(true,"nope",ShoppingWorldsOnIndex);
                 webDriver.navigate().to(inputSearch.getText().trim());
                 report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
+                failedTestCases.writeToNamedFile("Please check Main Menu: Couldn't navigate to requested Site!", "FailAndReview");
                 noRequestedSiteFound.printStackTrace();
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",ShoppingWorldsOnIndex);
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
+            failedTestCases.writeToNamedFile("Please check Main Menu: Browser not responding!", "FailAndReview");
             noBrowserWorking.printStackTrace();
         }
         report.writeToFile("=================================", "");
+        failedTestCases.writeToNamedFile("=================================","FailAndReview");
+
 
     }
 }
