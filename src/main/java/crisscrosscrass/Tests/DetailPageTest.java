@@ -329,7 +329,7 @@ public class DetailPageTest {
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",PagingForwardBackward);
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
-            failedTestCases.writeToNamedFile(infoMessage, "Please check Paging functionalities on Detail Page: browser not responding", "FailAndReview");
+            failedTestCases.writeToNamedFile(infoMessage, "Please check Paging functionality on Detail Page: browser not responding", "FailAndReview");
             noBrowserWorking.printStackTrace();
         }
         report.writeToFile("=================================", "");

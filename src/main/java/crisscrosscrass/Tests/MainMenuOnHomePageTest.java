@@ -316,7 +316,7 @@ public class MainMenuOnHomePageTest {
                     ChangeCheckBox.adjustStyle(true,"nope",ShoppingWorldsOnIndex);
                     webDriver.navigate().to(inputSearch.getText().trim());
                     report.writeToFile(infoMessage, "Couldn't detect \"Shopping World\" Links");
-                    failedTestCases.writeToNamedFile("Please check Main Menu: Couldn't detect \"Shopping World\" Links", "FailAndReview");
+                    failedTestCases.writeToNamedFile("Please check Main Menu: Couldn't detect if  \"Shopping World\" Link is indexed.", "FailAndReview");
                     gridPageIssue.printStackTrace();
                 }
             }catch (Exception noRequestedSiteFound){
