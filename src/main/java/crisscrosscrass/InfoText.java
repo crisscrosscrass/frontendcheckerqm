@@ -4,7 +4,7 @@ public enum InfoText {
     TextSearch("HP: text search + Suggestions","Enter keywords that will be used to test our search functionality and the suggestions.\n" +
             " If you enter more than one keyword, use pipe as separator\n"),
     GridPageURL("Grid Page URL with Windows","This field will be used to test a gridpage with Windows\n"),
-    GridPageURLWithWindows("Grid Page URL with Windows","This field will be used to test a gridpage witthout Windows\n"),
+    GridPageURLWithWindows("Grid Page URL with Windows","This field will be used to test a gridpage without Windows\n"),
     BrandShopKeyword("Brand | Shop Keyword","This field will be used to test brand and shop search boxes. \n" +
             "Pick a single keyword, so it has to be a Brand that is also a Shop. \n"),
     FilterText("Filer Buttons","This field will be used to test a gridpage with Windows\n"),

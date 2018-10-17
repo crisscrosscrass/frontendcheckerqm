@@ -783,12 +783,12 @@
                               </Label>
                            </children>
                         </GridPane>
-                        <Text fill="#5a5a5a" strokeType="OUTSIDE" strokeWidth="0.0" text="detailed results section" underline="true">
+                        <Text fill="#5a5a5a" strokeType="OUTSIDE" strokeWidth="0.0" text="Detailed results:" underline="true">
                            <font>
                               <Font size="25.0" />
                            </font>
                         </Text>
-                        <Text fill="#5a5a5a" strokeType="OUTSIDE" strokeWidth="0.0" text="Please perform a manueal check for failed test cases. You can download full report or only failed cases.">
+                        <Text fill="#5a5a5a" strokeType="OUTSIDE" strokeWidth="0.0" text="Please perform a manual check for failed test cases. You can download full report or only failed cases.">
                            <font>
                               <Font name="System Italic" size="12.0" />
                            </font>
