@@ -251,7 +251,7 @@ public class GridPageTest {
         }catch (Exception noCategoryLinksLeftSideMenu){
             ChangeCheckBox.adjustStyle(true,"nope",sortingValues);
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
-            failedTestCases.writeToNamedFile(infoMessage, "Please check Grid page functionalities: browser not responding", "FailAndReview");
+            failedTestCases.writeToNamedFile(infoMessage, "Please check Grid page functionality: browser not responding", "FailAndReview");
             noCategoryLinksLeftSideMenu.printStackTrace();
         }
         report.writeToFile("=================================", "");
@@ -372,7 +372,7 @@ public class GridPageTest {
                             report.writeToFile("Checking  GridPage Paging Forward: ", "Successful! Found pattern in URL and Previous Page Button appeared!");
                         }else {
                             report.writeToFile("Checking  GridPage Paging Forward: ", "Not Successful! User is not redirected");
-                            failedTestCases.writeToNamedFile("Grid Paging Forward", "Please check paging functionalities on Grid Page. For reference, see GridPageErrorPagingForward", "FailAndReview");
+                            failedTestCases.writeToNamedFile("Grid Paging Forward", "Please check paging functionality on Grid Page. For reference, see GridPageErrorPagingForward", "FailAndReview");
                             isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"GridPageErrorPagingForward.png");
                             if (isSuccessful){
                                 report.writeToFile("GridPage Error Screenshot: ", "Screenshot successful!");
@@ -389,7 +389,7 @@ public class GridPageTest {
                             report.writeToFile("Checking  GridPage Paging Backward: ", "Successful! Found pattern in URL and Previous Page Button disappeared!");
                         }else {
                             report.writeToFile("Checking  GridPage Paging Backward: ", "Not Successful! User is not redirected");
-                            failedTestCases.writeToNamedFile("Grid Paging Forward", "Please check paging functionalities on Grid Page. For reference, see GridPageErrorPagingBackward", "FailAndReview");
+                            failedTestCases.writeToNamedFile("Grid Paging Forward", "Please check paging functionality on Grid Page. For reference, see GridPageErrorPagingBackward", "FailAndReview");
                             isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"GridPageErrorPagingBackward.png");
                             if (isSuccessful){
                                 report.writeToFile("GridPage Error Screenshot: ", "Screenshot successful!");
@@ -1093,7 +1093,7 @@ public class GridPageTest {
                         }
                         webDriver.navigate().to(inputSearch.getText().trim());
                         report.writeToFile("Checking GridPage Remove from Filter Box", "Something goes wrong, couldn't remove Filter!");
-                        failedTestCases.writeToNamedFile("Checking GridPage- Remove All Filter from Sidebar: ", "Please check all filter functionalities!", "FailAndReview");
+                        failedTestCases.writeToNamedFile("Checking GridPage- Remove All Filter from Sidebar: ", "Please check all filter functionality!", "FailAndReview");
                     }
 
 
@@ -1110,20 +1110,20 @@ public class GridPageTest {
                     }
                     webDriver.navigate().to(inputSearch.getText().trim());
                     report.writeToFile(infoMessage, "Sorting on this Page doesn't seems to be working or very slow");
-                    failedTestCases.writeToNamedFile(infoMessage, "Please check filters functionalities on grid page", "FailAndReview");
+                    failedTestCases.writeToNamedFile(infoMessage, "Please check filters functionality on grid page", "FailAndReview");
                     gridPageIssue.printStackTrace();
                 }
             }catch (Exception noMainMenuLinkFound){
                 ChangeCheckBox.adjustStyle(true,"nope",filtersApply);
                 webDriver.navigate().to(inputSearch.getText().trim());
                 report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
-                failedTestCases.writeToNamedFile(infoMessage, "Please check filters functionalities on grid page", "FailAndReview");
+                failedTestCases.writeToNamedFile(infoMessage, "Please check filters functionality on grid page", "FailAndReview");
                 noMainMenuLinkFound.printStackTrace();
             }
         }catch (Exception noCategoryLinksLeftSideMenu){
             ChangeCheckBox.adjustStyle(true,"nope",filtersApply);
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
-            failedTestCases.writeToNamedFile(infoMessage, "Please check filters functionalities on grid page: browser not responding", "FailAndReview");
+            failedTestCases.writeToNamedFile(infoMessage, "Please check filters functionality on grid page: browser not responding", "FailAndReview");
             noCategoryLinksLeftSideMenu.printStackTrace();
         }
         report.writeToFile("=================================", "");

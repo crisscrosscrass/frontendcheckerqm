@@ -23,7 +23,10 @@ import java.util.List;
 import java.util.Properties;
 
 public class FavoritePageTest {
+    Report failedTestCases = new Report();
+
     public void checkingPersonalListTest(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox PersonalList, Text statusInfo, TextField inputSearch, Properties Homepage, TextField inputAccountEmail, PasswordField inputAccountPassword){
+        failedTestCases.writeToNamedFile("CHECKING FAVORITE PAGE", "FailAndReview");
         final String infoMessage = PersonalList.getText();
         ChangeCheckBox.adjustStyle(false,"progress",PersonalList);
         Platform.runLater(() -> {
@@ -85,6 +88,7 @@ public class FavoritePageTest {
                         report.writeToFile("Create List: ", "Created successfully a list called \""+testPatternList1+"\"");
                     }else {
                         report.writeToFile("Create List: ", "Couldn't create a list called \""+testPatternList1+"\"");
+                        failedTestCases.writeToNamedFile("Please check: ", "Couldn't create a list called \""+testPatternList1+"\" on Favorite Page", "FailAndReview");
                     }
 
 
@@ -98,6 +102,7 @@ public class FavoritePageTest {
                         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.myaccount.editListIcon"))));
                         if (!isSuccessful){
                             report.writeToFile(infoMessage, "Couldn't delete List \""+testPatternList1+"\" created from Previous Test ");
+                            failedTestCases.writeToNamedFile(infoMessage, "Please check: Couldn't delete List \""+testPatternList1+"\" created from Previous Test ", "FailAndReview");
                         }else {
                             wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.myaccount.editListIcon"))));
                             MyPersonalList = webDriver.findElementsByXPath(Homepage.getProperty("page.myaccount.editListIcon"));
@@ -128,6 +133,7 @@ public class FavoritePageTest {
                             report.writeToFile("Delete List : ", "Could delete \""+testPatternList1+"\" successfully from List");
                         }else {
                             report.writeToFile("Delete List :", "Couldn't delete \""+testPatternList1+"\" from List, because Pattern still in List");
+                            failedTestCases.writeToNamedFile("Please check :", "Couldn't delete \""+testPatternList1+"\" from List on Favorite Page, because Pattern still in List", "FailAndReview");
                         }
 
 
@@ -140,6 +146,7 @@ public class FavoritePageTest {
                         try{
                             if (!isSuccessful){
                                 report.writeToFile(infoMessage, "Couldn't rename List \""+testPatternList1+"\" created from Previous Tests ");
+                                failedTestCases.writeToNamedFile(infoMessage, "Please check: Couldn't rename List \""+testPatternList1+"\" created from Previous Tests ", "FailAndReview");
                             }else {
 
                                 wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.myaccount.createNewList"))));
@@ -187,6 +194,7 @@ public class FavoritePageTest {
                                     report.writeToFile(infoMessage, "Could rename \""+testPatternList1+"\" successfully from List to  \""+testPatternList2+"\" ");
                                 }else {
                                     report.writeToFile(infoMessage, "Couldn't rename \""+testPatternList1+"\" from List, because new Name not exist in List");
+                                    failedTestCases.writeToNamedFile(infoMessage, "Please check: Couldn't rename \""+testPatternList1+"\" created from Previous Tests ", "FailAndReview");
                                 }
 
 
@@ -199,6 +207,7 @@ public class FavoritePageTest {
                                 try{
                                     if (!isSuccessful){
                                         report.writeToFile(infoMessage, "Couldn't GoTo List \""+testPatternList1+"\" created from Previous Tests ");
+                                        failedTestCases.writeToNamedFile(infoMessage, "Please check: Couldn't navigate to List \""+testPatternList1+"\" created from Previous Tests ", "FailAndReview");
                                     }else {
                                         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.myaccount.createNewList"))));
                                         webDriver.findElementByXPath(Homepage.getProperty("page.myaccount.createNewList")).click();
@@ -227,7 +236,8 @@ public class FavoritePageTest {
                                             report.writeToFile(infoMessage, "Could create and select \""+testPatternList1+"\" successfully from List ");
                                             ChangeCheckBox.adjustStyle(true,"complete",PersonalList);
                                         }else {
-                                            report.writeToFile(infoMessage, "Couldn't rename \""+testPatternList1+"\" from List, because new Name not exist in List");
+                                            report.writeToFile(infoMessage, "Please check: Couldn't create and select \""+testPatternList1+"\" successfully from List.");
+                                            failedTestCases.writeToNamedFile(infoMessage, "Please check: Couldn't create and select \""+testPatternList1+"\" successfully from List.",  "FailAndReview");
                                             ChangeCheckBox.adjustStyle(true,"nope",PersonalList);
                                         }
                                     }
@@ -235,6 +245,7 @@ public class FavoritePageTest {
                                     ChangeCheckBox.adjustStyle(true,"nope",PersonalList);
                                     webDriver.navigate().to(inputSearch.getText().trim());
                                     report.writeToFile(infoMessage, "Couldn't detect List for GoTo selected List");
+                                    failedTestCases.writeToNamedFile(infoMessage, "Please check: Couldn't detect List for testing",  "FailAndReview");
                                     noGoToList.printStackTrace();
                                 }
 
@@ -243,6 +254,7 @@ public class FavoritePageTest {
                             ChangeCheckBox.adjustStyle(true,"nope",PersonalList);
                             webDriver.navigate().to(inputSearch.getText().trim());
                             report.writeToFile(infoMessage, "Couldn't detect edit Icon for Personal List");
+                            failedTestCases.writeToNamedFile(infoMessage, "Please check: Couldn't successfully test list renaming functions",  "FailAndReview");
                             noRename.printStackTrace();
                         }
 
@@ -251,6 +263,7 @@ public class FavoritePageTest {
                         ChangeCheckBox.adjustStyle(true,"nope",PersonalList);
                         webDriver.navigate().to(inputSearch.getText().trim());
                         report.writeToFile(infoMessage, "Couldn't detect edit Icon for Personal List");
+                        failedTestCases.writeToNamedFile(infoMessage, "Please check. Couldn't detect edit Icon for Personal List",  "FailAndReview");
                         noEditList.printStackTrace();
                     }
 
@@ -258,21 +271,25 @@ public class FavoritePageTest {
                     ChangeCheckBox.adjustStyle(true,"nope",PersonalList);
                     webDriver.navigate().to(inputSearch.getText().trim());
                     report.writeToFile(infoMessage, "Couldn't detect menu items for Personal List");
+                    failedTestCases.writeToNamedFile(infoMessage, "Please check. Couldn't detect menu items for Personal List",  "FailAndReview");
                     accountPageIssue.printStackTrace();
                 }
             }catch (Exception noRequestedSiteFound){
                 ChangeCheckBox.adjustStyle(true,"nope",PersonalList);
                 webDriver.navigate().to(inputSearch.getText().trim());
                 report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
+                failedTestCases.writeToNamedFile(infoMessage, "Please check: Couldn't navigate to Favorite Page!",  "FailAndReview");
                 noRequestedSiteFound.printStackTrace();
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",PersonalList);
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
+            failedTestCases.writeToNamedFile(infoMessage, "Please check Favorite Page: Browser not responding!",  "FailAndReview");
             noBrowserWorking.printStackTrace();
         }
 
         report.writeToFile("=================================", "");
+        failedTestCases.writeToNamedFile("=================================","FailAndReview");
 
     }
 
@@ -396,6 +413,7 @@ public class FavoritePageTest {
                         report.writeToFile("Checking  Personal List Page Price Lowest to Highest: ", "Successful! First Item Price("+checkPriceLowToHighFirstItem+") is lower than last Item Price("+checkPriceLowToHighLastItem+") !");
                     }else {
                         report.writeToFile("Checking  Personal List Price Lowest to Highest: ", "Not Successful! First Item Price("+checkPriceLowToHighFirstItem+") is NOT lower than last Item Price("+checkPriceLowToHighLastItem+") !");
+                        failedTestCases.writeToNamedFile("Please check Personal List- Price Sorting from Lowest to Highest: ", "Not Successful! First Item Price("+checkPriceLowToHighFirstItem+") is NOT lower than last Item Price("+checkPriceLowToHighLastItem+") !", "FailAndReview");
                     }
                     report.writeToFile("");
 
@@ -417,6 +435,7 @@ public class FavoritePageTest {
                         report.writeToFile("Checking  Personal List Page Price Highest to Lowest: ", "Successful! First Item Price("+checkPriceHighToLowFirstItem+") is higher than last Item Price("+checkPriceHighToLowLastItem+") !");
                     }else {
                         report.writeToFile("Checking  Personal List Page Price Highest to Lowest: ", "Not Successful! First Item Price("+checkPriceHighToLowFirstItem+") is NOT higher than last Item Price("+checkPriceHighToLowLastItem+") !");
+                        failedTestCases.writeToNamedFile("Please check Personal List Page- Price Sorting from Highest to Lowest: ", "Not Successful! First Item Price("+checkPriceHighToLowFirstItem+") is NOT higher than last Item Price("+checkPriceHighToLowLastItem+") !", "FailAndReview");
                     }
                     report.writeToFile("");
 
@@ -430,21 +449,25 @@ public class FavoritePageTest {
                     ChangeCheckBox.adjustStyle(true,"nope",applySortingOnList);
                     webDriver.navigate().to(inputGridPageURL.getText().trim());
                     report.writeToFile(infoMessage, "Couldn't detect Favorite Lists");
+                    failedTestCases.writeToNamedFile(infoMessage, "Please check: could not detect Favorite List", "FailAndReview");
                     gridPageIssue.printStackTrace();
                 }
             }catch (Exception noRequestedSiteFound){
                 ChangeCheckBox.adjustStyle(true,"nope",applySortingOnList);
                 webDriver.navigate().to(inputGridPageURL.getText().trim());
                 report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
+                failedTestCases.writeToNamedFile(infoMessage, "Please check: could not navigate to Favorite List", "FailAndReview");
                 noRequestedSiteFound.printStackTrace();
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",applySortingOnList);
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
+            failedTestCases.writeToNamedFile(infoMessage, "Please check Favorite List: browser not responding", "FailAndReview");
             noBrowserWorking.printStackTrace();
         }
 
         report.writeToFile("=================================", "");
+        failedTestCases.writeToNamedFile("=================================","FailAndReview");
 
     }
 
@@ -520,6 +543,7 @@ public class FavoritePageTest {
                             }
                         }else {
                             report.writeToFile(infoMessage+" GreenCheck Marks: ","Not Successfully! Green check marks appears before selecting on "+webDriver.findElements(By.xpath(Homepage.getProperty("page.myaccount.greenCheckMarkBoxes"))).size()+" items!");
+                            failedTestCases.writeToNamedFile(infoMessage+ " Please check Item selection in favorite list: ","Not Successfully! Green check marks appears before selecting on "+webDriver.findElements(By.xpath(Homepage.getProperty("page.myaccount.greenCheckMarkBoxes"))).size()+" items!", "FailAndReview");
                         }
 
                         try{
@@ -553,8 +577,10 @@ public class FavoritePageTest {
                                 report.writeToFile(infoMessage+" Selection Move: ","Successfully check Selection Move! Test List is Empty and Standard List is filled ");
                             }else if (!isStandardListFull){
                                 report.writeToFile(infoMessage+" Selection Move: ","Not successful check, Standard List is not filled ");
+                                failedTestCases.writeToNamedFile(infoMessage+ "Please check Selection Move on favorite list: ", "Could not move itesm from created list to standard list", "FailAndReview");
                             }else {
                                 report.writeToFile(infoMessage+" Selection Move: ","Not successful check, Test List is not empty ");
+                                failedTestCases.writeToNamedFile(infoMessage+ "Please check Selection Move on favorite list: ", "List whose items wer moved is not empty", "FailAndReview");
                             }
 
                             ChangeCheckBox.adjustStyle(true,"complete",selectionOnList);
@@ -615,6 +641,7 @@ public class FavoritePageTest {
                             }catch (Exception noCleanUp){
                                 webDriver.navigate().to(inputSearch.getText().trim());
                                 report.writeToFile(infoMessage, "Couldn't delete all created Lists");
+                                failedTestCases.writeToNamedFile(infoMessage, "Please check: could not delete all created list on Favorite Page", "failAndReview");
                                 noCleanUp.printStackTrace();
                             }
 
@@ -622,12 +649,14 @@ public class FavoritePageTest {
                             ChangeCheckBox.adjustStyle(true,"nope",selectionOnList);
                             webDriver.navigate().to(inputSearch.getText().trim());
                             report.writeToFile(infoMessage, "Couldn't move items from Favorite Lists to another List");
+                            failedTestCases.writeToNamedFile(infoMessage, "Please check: Couldn't move items from Favorite Lists to another List on Favorite Page", "failAndReview");
                             noSelectionMove.printStackTrace();
                         }
                     }catch (Exception noGreenCheckMark){
                         ChangeCheckBox.adjustStyle(true,"nope",selectionOnList);
                         webDriver.navigate().to(inputSearch.getText().trim());
                         report.writeToFile(infoMessage, "Couldn't detect Favorite Lists");
+                        failedTestCases.writeToNamedFile(infoMessage, "Please check: item selection functionality seems to not be working", "failAndReview");
                         noGreenCheckMark.printStackTrace();
                     }
 
@@ -635,19 +664,23 @@ public class FavoritePageTest {
                     ChangeCheckBox.adjustStyle(true,"nope",selectionOnList);
                     webDriver.navigate().to(inputSearch.getText().trim());
                     report.writeToFile(infoMessage, "Couldn't detect Favorite Lists");
+                    failedTestCases.writeToNamedFile(infoMessage, "Please check: Couldn't detect Favorite Lists", "failAndReview");
                     gridPageIssue.printStackTrace();
                 }
             }catch (Exception noRequestedSiteFound){
                 ChangeCheckBox.adjustStyle(true,"nope",selectionOnList);
                 webDriver.navigate().to(inputSearch.getText().trim());
                 report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
+                failedTestCases.writeToNamedFile(infoMessage, "Please check: Couldn't navigate to Favorite Lists", "failAndReview");
                 noRequestedSiteFound.printStackTrace();
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",selectionOnList);
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
+            failedTestCases.writeToNamedFile(infoMessage, "Please check Favorite Lists: browser not responding", "failAndReview");
             noBrowserWorking.printStackTrace();
         }
         report.writeToFile("=================================", "");
+        failedTestCases.writeToNamedFile("=================================","FailAndReview");
     }
 }

@@ -82,10 +82,10 @@ public class PageLuceneWithItemsTest {
                                     isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver, "LucenePageWithItemLowToHigh.png");
                                     if (isSuccessful){
                                         report.writeToFile("Checking Lucene Page with Items Price Lowest to Highest Screenshot: ", "Screenshot successful!");
-                                        failedTestCases.writeToNamedFile("Lucene with items: for more information about the sorting error, see LucenePageWithItemLowToHigh","Screenshot successful!", "FailAnReview");
+                                        failedTestCases.writeToNamedFile("Lucene with items: for more information about the sorting error, see LucenePageWithItemLowToHigh","Screenshot successful!", "FailAndReview");
                                     }else {
                                         report.writeToFile("Checking Lucene Page with Items Price Lowest to Highest Screenshot: ", "Screenshot not successful!");
-                                        failedTestCases.writeToNamedFile("Lucene with items: for more information about the sorting error, see LucenePageWithItemLowToHigh","Screenshot not successful!", "FailAnReview");
+                                        failedTestCases.writeToNamedFile("Lucene with items: for more information about the sorting error, see LucenePageWithItemLowToHigh","Screenshot not successful!", "FailAndReview");
                                     }
                                 }
                                 report.writeToFile("");
@@ -119,10 +119,10 @@ public class PageLuceneWithItemsTest {
                                     isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver, "LucenePageWithItemHighToLow.png");
                                     if (isSuccessful){
                                         report.writeToFile("Checking Lucene Page with Items Price Highest to Lowest Screenshot: ", "Screenshot successful!");
-                                        failedTestCases.writeToNamedFile("Lucene with items: for more information about the sorting error, see LucenePageWithItemHighToLow","Screenshot successful!", "FailAnReview");
+                                        failedTestCases.writeToNamedFile("Lucene with items: for more information about the sorting error, see LucenePageWithItemHighToLow","Screenshot successful!", "FailAndReview");
                                     }else {
                                         report.writeToFile("Checking Lucene Page with Items Price Highest to Lowest Screenshot: ", "Screenshot not successful!");
-                                        failedTestCases.writeToNamedFile("Lucene with items: for more information about the sorting error, see LucenePageWithItemHighToLow","Screenshot not successful!", "FailAnReview");
+                                        failedTestCases.writeToNamedFile("Lucene with items: for more information about the sorting error, see LucenePageWithItemHighToLow","Screenshot not successful!", "FailAndReview");
                                     }
                                 }
                                 report.writeToFile("");
@@ -157,10 +157,10 @@ public class PageLuceneWithItemsTest {
                                     isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver, "LucenePageWithItemSalesPrice.png");
                                     if (isSuccessful){
                                         report.writeToFile("Checking Lucene Page with Items Price Sales Price Screenshot: ", "Screenshot successful!");
-                                        failedTestCases.writeToNamedFile("Lucene with items: for more information about the sorting error, see LucenePageWithItemSalesPrice","Screenshot successful!", "FailAnReview");
+                                        failedTestCases.writeToNamedFile("Lucene with items: for more information about the sorting error, see LucenePageWithItemSalesPrice","Screenshot successful!", "FailAndReview");
                                     }else {
                                         report.writeToFile("Checking Lucene Page with Items Price Sales Price Screenshot: ", "Screenshot not successful!");
-                                        failedTestCases.writeToNamedFile("Lucene with items: for more information about the sorting error, see LucenePageWithItemSalesPrice","Screenshot not successful!", "FailAnReview");
+                                        failedTestCases.writeToNamedFile("Lucene with items: for more information about the sorting error, see LucenePageWithItemSalesPrice","Screenshot not successful!", "FailAndReview");
                                     }
                                 }
                                 report.writeToFile("");
@@ -191,10 +191,10 @@ public class PageLuceneWithItemsTest {
                     boolean isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver, "GridPageErrorPagingWindows.png");
                     if (isSuccessful){
                         report.writeToFile("Checking Lucene Page with Items Error Screenshot: ", "Screenshot successful!");
-                        failedTestCases.writeToNamedFile("Lucene with items: for more information about the Paging error, see GridPageErrorPagingWindows","Screenshot successful!", "FailAnReview");
+                        failedTestCases.writeToNamedFile("Lucene with items: for more information about the Paging error, see GridPageErrorPagingWindows","Screenshot successful!", "FailAndReview");
                     }else {
                         report.writeToFile("Checking Lucene Page with Items Error Screenshot: ", "Screenshot not successful!");
-                        failedTestCases.writeToNamedFile("Lucene with items: for more information about the Paging error, see GridPageErrorPagingWindows","Screenshot not successful!", "FailAnReview");
+                        failedTestCases.writeToNamedFile("Lucene with items: for more information about the Paging error, see GridPageErrorPagingWindows","Screenshot not successful!", "FailAndReview");
                     }
                     webDriver.navigate().to(inputSearch.getText().trim());
                     report.writeToFile(infoMessage, "Could find any Searchbar");
@@ -251,10 +251,10 @@ public class PageLuceneWithItemsTest {
                                 isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver, "LucenePageCollapseFilters.png");
                                 if (isSuccessful){
                                     report.writeToFile("Checking Lucene Page Collapse Filters Screenshot: ", "Screenshot successful!");
-                                    failedTestCases.writeToNamedFile("Please, see LucenePageCollapseFilters for checking Filter box functionaliy: filter box should be collpased.","Screenshot successful!", "FailAnReview");
+                                    failedTestCases.writeToNamedFile("Please, see LucenePageCollapseFilters for checking Filter box functionality: filter box should be collapsed.","Screenshot successful!", "FailAndReview");
                                 }else {
                                     report.writeToFile("Checking Lucene Page Collapse Filters Screenshot: ", "Screenshot not successful!");
-                                    failedTestCases.writeToNamedFile("Please, see LucenePageCollapseFilters for checking Filter box functionaliy: filter box should be collpased.","Screenshot not successful!", "FailAnReview");
+                                    failedTestCases.writeToNamedFile("Please, see LucenePageCollapseFilters for checking Filter box functionality: filter box should be collapsed.","Screenshot not successful!", "FailAndReview");
                                 }
                                 ChangeCheckBox.adjustStyle(true,"complete",PageLuceneWithItemsCollapse);
                                 report.writeToFile(infoMessage, "Complete!");
@@ -263,10 +263,10 @@ public class PageLuceneWithItemsTest {
                                 isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver, "LucenePageCollapseFilters.png");
                                 if (isSuccessful){
                                     report.writeToFile("Checking Lucene Page Collapse Filters Error: ", "Screenshot successful!");
-                                    failedTestCases.writeToNamedFile("Please, see LucenePageCollapseFilters for checking Filter box functionaliy: filter box should be collpased.","Screenshot successful!", "FailAnReview");
+                                    failedTestCases.writeToNamedFile("Please, see LucenePageCollapseFilters for checking Filter box functionality: filter box should be collapsed.","Screenshot successful!", "FailAndReview");
                                 }else {
                                     report.writeToFile("Checking Lucene Page Collapse Filters Error: ", "Screenshot not successful!");
-                                    failedTestCases.writeToNamedFile("Please, see LucenePageCollapseFilters for checking Filter box functionaliy: filter box should be collpased.","Screenshot not successful!", "FailAnReview");
+                                    failedTestCases.writeToNamedFile("Please, see LucenePageCollapseFilters for checking Filter box functionality: filter box should be collapsed.","Screenshot not successful!", "FailAndReview");
                                 }
                                 report.writeToFile(infoMessage, "Unable to complete! Couldn't detect Filter Boxes");
                                 failedTestCases.writeToNamedFile(infoMessage, "Please check filter box functionality on Lucene page: unable to find filter box", "FailAndReview");
@@ -276,10 +276,10 @@ public class PageLuceneWithItemsTest {
                             isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver, "LucenePageCollapseFilters.png");
                             if (isSuccessful){
                                 report.writeToFile("Checking Lucene Page Collapse Filters Error: ", "Screenshot successful!");
-                                failedTestCases.writeToNamedFile("Please, see LucenePageCollapseFilters for checking Filter box functionaliy: filter box should be collpased.","Screenshot successful!", "FailAnReview");
+                                failedTestCases.writeToNamedFile("Please, see LucenePageCollapseFilters for checking Filter box functionality: filter box should be collapsed.","Screenshot successful!", "FailAndReview");
                             }else {
                                 report.writeToFile("Checking Lucene Page Collapse Filters Error: ", "Screenshot not successful!");
-                                failedTestCases.writeToNamedFile("Please, see LucenePageCollapseFilters for checking Filter box functionaliy: filter box should be collpased.","Screenshot not successful!", "FailAnReview");
+                                failedTestCases.writeToNamedFile("Please, see LucenePageCollapseFilters for checking Filter box functionality: filter box should be collapsed.","Screenshot not successful!", "FailAndReview");
                             }
                             report.writeToFile(infoMessage, "Unable to collapse any Filters on Lucene Page!");
                             failedTestCases.writeToNamedFile(infoMessage, "Please check filter box functionality on Lucene page: unable to collapse filters", "FailAndReview");
@@ -295,10 +295,10 @@ public class PageLuceneWithItemsTest {
                     isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver, "GridPageErrorPagingWindows.png");
                     if (isSuccessful){
                         report.writeToFile("Checking Lucene Page Collapse Filters Error Screenshot: ", "Screenshot successful!");
-                        failedTestCases.writeToNamedFile("Please, see GridPageErrorPagingWindows for checking Filter box functionaliy: filter box should be collpased.","Screenshot successful!", "FailAnReview");
+                        failedTestCases.writeToNamedFile("Please, see GridPageErrorPagingWindows for checking Filter box functionality: filter box should be collapsed.","Screenshot successful!", "FailAndReview");
                     }else {
                         report.writeToFile("Checking Lucene Page Collapse Filters Error Screenshot: ", "Screenshot not successful!");
-                        failedTestCases.writeToNamedFile("Please, see GridPageErrorPagingWindows for checking Filter box functionaliy: filter box should be collpased.","Screenshot not successful!", "FailAnReview");
+                        failedTestCases.writeToNamedFile("Please, see GridPageErrorPagingWindows for checking Filter box functionality: filter box should be collapsed.","Screenshot not successful!", "FailAndReview");
                     }
                     webDriver.navigate().to(inputSearch.getText().trim());
                     report.writeToFile(infoMessage, "Could find any Searchbar to enter Keyword for Lucene Page");
@@ -374,10 +374,10 @@ public class PageLuceneWithItemsTest {
                                 isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver, "LucenePageCollapseFilters.png");
                                 if (isSuccessful){
                                     report.writeToFile("Checking Lucene Page Multiselect Filters Error: ", "Screenshot successful!");
-                                    failedTestCases.writeToNamedFile("Please, see LucenePageCollapseFilters for more information on Multiselect error","Screenshot successful!", "FailAnReview");
+                                    failedTestCases.writeToNamedFile("Please, see LucenePageCollapseFilters for more information on Multiselect error","Screenshot successful!", "FailAndReview");
                                 }else {
                                     report.writeToFile("Checking Lucene Page Multiselect Filters Error: ", "Screenshot not successful!");
-                                    failedTestCases.writeToNamedFile("Please, see LucenePageCollapseFilters for more information on Multiselect error","Screenshot not successful!", "FailAnReview");
+                                    failedTestCases.writeToNamedFile("Please, see LucenePageCollapseFilters for more information on Multiselect error","Screenshot not successful!", "FailAndReview");
                                 }
                                 report.writeToFile(infoMessage, "Unable to detect colors on Lucene Page");
                                 failedTestCases.writeToNamedFile(infoMessage, "Please check multiselect functionality on Lucene Page: Unable to detect colors on Lucene Page", "FailAndReview");
@@ -387,10 +387,10 @@ public class PageLuceneWithItemsTest {
                             isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver, "LucenePageCollapseFilters.png");
                             if (isSuccessful){
                                 report.writeToFile("Checking Lucene Page Multiselect Filters Error: ", "Screenshot successful!");
-                                failedTestCases.writeToNamedFile("Please, see LucenePageCollapseFilters for more information on Multiselect error","Screenshot successful!", "FailAnReview");
+                                failedTestCases.writeToNamedFile("Please, see LucenePageCollapseFilters for more information on Multiselect error","Screenshot successful!", "FailAndReview");
                             }else {
                                 report.writeToFile("Checking Lucene Page Multiselect Filters Error: ", "Screenshot not successful!");
-                                failedTestCases.writeToNamedFile("Please, see LucenePageCollapseFilters for more information on Multiselect error","Screenshot not successful!", "FailAnReview");
+                                failedTestCases.writeToNamedFile("Please, see LucenePageCollapseFilters for more information on Multiselect error","Screenshot not successful!", "FailAndReview");
                             }
                             report.writeToFile(infoMessage, "Unable to complete! Couldn't detect Filter Boxes!");
                             failedTestCases.writeToNamedFile(infoMessage, "Please check multiselect functionality on Lucene Page: Couldn't detect Filter Boxes", "FailAndReview");
@@ -406,10 +406,10 @@ public class PageLuceneWithItemsTest {
                     isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver, "GridPageErrorPagingWindows.png");
                     if (isSuccessful){
                         report.writeToFile("Checking Lucene Page Multiselect Filters Error Screenshot: ", "Screenshot successful!");
-                        failedTestCases.writeToNamedFile("Please, see GridPageErrorPagingWindows for more information on Multiselect error","Screenshot successful!", "FailAnReview");
+                        failedTestCases.writeToNamedFile("Please, see GridPageErrorPagingWindows for more information on Multiselect error","Screenshot successful!", "FailAndReview");
                     }else {
                         report.writeToFile("Checking Lucene Page Multiselect Filters Error Screenshot: ", "Screenshot not successful!");
-                        failedTestCases.writeToNamedFile("Please, see GridPageErrorPagingWindows for more information on Multiselect error","Screenshot noy successful!", "FailAnReview");
+                        failedTestCases.writeToNamedFile("Please, see GridPageErrorPagingWindows for more information on Multiselect error","Screenshot noy successful!", "FailAndReview");
                     }
                     webDriver.navigate().to(inputSearch.getText().trim());
                     report.writeToFile(infoMessage, "Could find any Searchbar to enter Keyword for Lucene Page");

@@ -85,7 +85,7 @@ public class BrandPageTest {
                     boolean isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver, "ErrorCheckingBrandPageOverview.png");
                     if (isSuccessful){
                         report.writeToFile("BrandPage Error Screenshot: ", "Screenshot successful!");
-                        failedTestCases.writeToNamedFile("BrandPage Error Screenshot", "Please check functionalities of Brand Page. For reference, see ErrorCheckingBrandPageOverview", "FailAndReview");
+                        failedTestCases.writeToNamedFile("BrandPage Error Screenshot", "Please check functionality of Brand Page. For reference, see ErrorCheckingBrandPageOverview", "FailAndReview");
                     }else {
                         report.writeToFile("BrandPage Error Screenshot: ", "Screenshot not successful!");
                         failedTestCases.writeToNamedFile("BrandPage Error Screenshot", "Screenshot not successful!", "FailAndReview");
