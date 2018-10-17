@@ -38,6 +38,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Properties;
 
+import static com.jfoenix.controls.JFXButton.ButtonType.FLAT;
+
 public class MainController implements Serializable{
     final static Logger logger = Logger.getLogger(MainController.class);
 
@@ -318,12 +320,12 @@ public class MainController implements Serializable{
             updateCheckerTabs();
         }else{
             settingImageGrouping.setDisable(false);
-            /*
-            int selectedColor = 529612127;
-            if (costumtestButton.getBackground().getFills().hashCode() != selectedColor){
-                settingImageGrouping.setSelected(true);
+            if (costumtestButton.getBackground() != null){
+                int selectedColor = 529612127;
+                if (costumtestButton.getBackground().getFills().hashCode() != selectedColor){
+                    settingImageGrouping.setSelected(true);
+                }
             }
-             */
             updateCheckerTabs();
         }
         // Bind startWebDriver Color to Validation

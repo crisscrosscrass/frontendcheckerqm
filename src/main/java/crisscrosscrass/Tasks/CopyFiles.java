@@ -49,6 +49,7 @@ public class CopyFiles {
         properties.setProperty("inputAffiliateProgramURL","https://www.ladenzeile.de/affiliate-programm/");
         properties.setProperty("inputMerchandiseOverviewPageURL","https://www.ladenzeile.de/merchandise.html");
         properties.setProperty("inputMerchandiseSearch","Fifa | Alf");
+        properties.setProperty("countrySelection","");
         FileWriter writer = null;
         try {
             writer = new FileWriter(location+"UserSettings.properties");
