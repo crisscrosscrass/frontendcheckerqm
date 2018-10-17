@@ -495,9 +495,6 @@ public class GridPageTest {
                             }
                             ChangeCheckBox.adjustStyle(true,"nope",productView300);
                         }
-
-
-
                     }catch (Exception noLargeImageButton){
                         report.writeToFile(infoMessage, "Not Successful! Couldn't find 300 Items View Button");
                         failedTestCases.writeToNamedFile(infoMessage, "Please check: Couldn't find 300 Items View Button on Grid Page", "FailAndreview");

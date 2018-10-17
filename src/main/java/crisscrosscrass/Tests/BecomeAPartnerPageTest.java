@@ -403,7 +403,12 @@ public class BecomeAPartnerPageTest {
                                 webDriver.findElementByXPath(Homepage.getProperty("page.main.totopbutton")).click();
                                 //check if H3 is in viewport
                                 WebElement h3Element = webDriver.findElementByXPath(Homepage.getProperty("partnerpage.help.h3"));
-                                h3Element.click();
+                                //create a wait event for 1 Second
+                                for (int i = 0; i < 1; i++) {
+                                    Thread.sleep(1000);
+                                    js.executeScript("window.scrollBy(0,-1)");
+                                }
+                                //check viewport via js
                                 boolean isInViewPort = (boolean)((JavascriptExecutor)webDriver).executeScript(
                                         "var elem = arguments[0],                 " +
                                                 "  box = elem.getBoundingClientRect(),    " +
