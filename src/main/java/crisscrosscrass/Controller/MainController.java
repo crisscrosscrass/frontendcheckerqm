@@ -6,6 +6,8 @@ import crisscrosscrass.Tasks.*;
 import crisscrosscrass.Tests.*;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -212,13 +214,16 @@ public class MainController implements Serializable{
     @FXML
     public void initialize() {
         logger.info( "Main Program started!" );
-        //addAllCountries to Selection
+        ObservableList<String> COUNTRYFIELDS = FXCollections.observableArrayList();
         for (countries country : countries.values()){
-            countrySelection.getItems().add(country);
+            COUNTRYFIELDS.add(country.name());
         }
+        countrySelection.setItems(COUNTRYFIELDS);
+        //countrySelection.setPromptText("select a country");
+        //addAllCountries to Selection
+        loadUserInputDataToElements();
         addListenerToSettingCheckBoxes();
         bindVisibilityProbertyToElements();
-        loadUserInputDataToElements();
         bindCountrySelectionToSpecificTasks();
         bindInfoButtonsToModalMessages();
         checkReportFilesAndCompletedDate();
@@ -228,6 +233,10 @@ public class MainController implements Serializable{
         //update all Boxes before Starting
         updateResultsBoxes();
         updateCheckerTabs();
+        if (!countrySelection.getSelectionModel().getSelectedItem().toString().equals("")){
+            specificUpdateTask();
+        }
+
     }
 
     private void checkReportFilesAndCompletedDate() {
@@ -290,30 +299,35 @@ public class MainController implements Serializable{
     private void bindCountrySelectionToSpecificTasks() {
         //Binding Values to Selection
         countrySelection.setOnAction( selectedEvent -> {
-            inputSearch.setText(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getLocationMainPage());
-            inputImprintURL.setText(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getlocationImprintPage());
-            inputPrivacyPolicy.setText(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getPrivacyPage());
-            inputBrandPageOverview.setText(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getLocationBrandOverviewPage());
-            inputPartnerShopPageURL.setText(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getLocationPartnershopsPageURL());
-            inputBecomeAPartnerPageURL.setText(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getLocationBecomePartnerPageURL());
-            inputAffiliateProgramURL.setText(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getLocationAffiliateProgramPageURL());
-            inputMerchandiseOverviewPageURL.setText(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getLocationMerchandiseOverviewPageURL());
-            startwebdriver.setDisable(false);
-            if (countrySelection.getSelectionModel().getSelectedItem().toString().equals("DE")){
-                settingImageGrouping.setSelected(false);
-                settingImageGrouping.setDisable(true);
-                updateCheckerTabs();
-            }else{
-                settingImageGrouping.setDisable(false);
-                int selectedColor = 529612127;
-                if (costumtestButton.getBackground().getFills().hashCode() != selectedColor){
-                    settingImageGrouping.setSelected(true);
-                }
-                updateCheckerTabs();
-            }
-            // Bind startWebDriver Color to Validation
-            changeColorForStartButton();
+            specificUpdateTask();
         });
+    }
+    private void specificUpdateTask(){
+        inputSearch.setText(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getLocationMainPage());
+        inputImprintURL.setText(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getlocationImprintPage());
+        inputPrivacyPolicy.setText(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getPrivacyPage());
+        inputBrandPageOverview.setText(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getLocationBrandOverviewPage());
+        inputPartnerShopPageURL.setText(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getLocationPartnershopsPageURL());
+        inputBecomeAPartnerPageURL.setText(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getLocationBecomePartnerPageURL());
+        inputAffiliateProgramURL.setText(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getLocationAffiliateProgramPageURL());
+        inputMerchandiseOverviewPageURL.setText(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getLocationMerchandiseOverviewPageURL());
+        startwebdriver.setDisable(false);
+        if (countrySelection.getSelectionModel().getSelectedItem().toString().equals("DE")){
+            settingImageGrouping.setSelected(false);
+            settingImageGrouping.setDisable(true);
+            updateCheckerTabs();
+        }else{
+            settingImageGrouping.setDisable(false);
+            /*
+            int selectedColor = 529612127;
+            if (costumtestButton.getBackground().getFills().hashCode() != selectedColor){
+                settingImageGrouping.setSelected(true);
+            }
+             */
+            updateCheckerTabs();
+        }
+        // Bind startWebDriver Color to Validation
+        changeColorForStartButton();
     }
     private void loadUserInputDataToElements() {
         //check if Properties File is available if yes, load data into Input Fields
@@ -324,23 +338,24 @@ public class MainController implements Serializable{
         //load userInputData into Properties
         ConfigSettings configSettingsReader = new ConfigSettings();
         Properties userData = configSettingsReader.readConfigSettings();
-        inputSearch.setText(userData.getProperty("inputSearch"));
-        inputEmailAdress.setText(userData.getProperty("inputEmailAdress"));
-        inputTextSearchAndSuggestions.setText(userData.getProperty("inputTextSearchAndSuggestions"));
-        inputGridPageURL.setText(userData.getProperty("inputGridPageURL"));
-        inputGridPageKeyword.setText(userData.getProperty("inputGridPageKeyword"));
-        inputGridPageURLWithWindows.setText(userData.getProperty("inputGridPageURLWithWindows"));
-        inputGridPageURLWithFillIns.setText(userData.getProperty("inputGridPageURLWithFillIns"));
-        inputBrandPageOverview.setText(userData.getProperty("inputBrandPageOverview"));
-        inputLucenePage.setText(userData.getProperty("inputLucenePage"));
-        inputAccountEmail.setText(userData.getProperty("inputAccountEmail"));
-        inputAccountPassword.setText(userData.getProperty("inputAccountPassword"));
-        inputPartnerShopPageURL.setText(userData.getProperty("inputPartnerShopPageURL"));
-        inputPartnerShopSearch.setText(userData.getProperty("inputPartnerShopSearch"));
-        inputBecomeAPartnerPageURL.setText(userData.getProperty("inputBecomeAPartnerPageURL"));
-        inputAffiliateProgramURL.setText(userData.getProperty("inputAffiliateProgramURL"));
-        inputMerchandiseOverviewPageURL.setText(userData.getProperty("inputMerchandiseOverviewPageURL"));
-        inputMerchandiseSearch.setText(userData.getProperty("inputMerchandiseSearch"));
+            inputSearch.setText(userData.getProperty("inputSearch"));
+            inputEmailAdress.setText(userData.getProperty("inputEmailAdress"));
+            inputTextSearchAndSuggestions.setText(userData.getProperty("inputTextSearchAndSuggestions"));
+            inputGridPageURL.setText(userData.getProperty("inputGridPageURL"));
+            inputGridPageKeyword.setText(userData.getProperty("inputGridPageKeyword"));
+            inputGridPageURLWithWindows.setText(userData.getProperty("inputGridPageURLWithWindows"));
+            inputGridPageURLWithFillIns.setText(userData.getProperty("inputGridPageURLWithFillIns"));
+            inputBrandPageOverview.setText(userData.getProperty("inputBrandPageOverview"));
+            inputLucenePage.setText(userData.getProperty("inputLucenePage"));
+            inputAccountEmail.setText(userData.getProperty("inputAccountEmail"));
+            inputAccountPassword.setText(userData.getProperty("inputAccountPassword"));
+            inputPartnerShopPageURL.setText(userData.getProperty("inputPartnerShopPageURL"));
+            inputPartnerShopSearch.setText(userData.getProperty("inputPartnerShopSearch"));
+            inputBecomeAPartnerPageURL.setText(userData.getProperty("inputBecomeAPartnerPageURL"));
+            inputAffiliateProgramURL.setText(userData.getProperty("inputAffiliateProgramURL"));
+            inputMerchandiseOverviewPageURL.setText(userData.getProperty("inputMerchandiseOverviewPageURL"));
+            inputMerchandiseSearch.setText(userData.getProperty("inputMerchandiseSearch"));
+            countrySelection.setValue(userData.getProperty("countrySelection"));
     }
     private void bindVisibilityProbertyToElements() {
         ElementLuceneBox.visibleProperty().bind(settingLucenePage.selectedProperty());

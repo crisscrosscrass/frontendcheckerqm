@@ -226,7 +226,7 @@
                                     </Text>
                                     <HBox alignment="CENTER" spacing="10.0">
                                        <children>
-                                          <JFXComboBox fx:id="countrySelection" focusColor="#e5306400" promptText="select a country" unFocusColor="#ffffff00" visibleRowCount="15">
+                                          <JFXComboBox fx:id="countrySelection" focusColor="#e5306400" prefWidth="185.0" promptText="select a country" unFocusColor="#ffffff00" visibleRowCount="15">
                                              <padding>
                                                 <Insets left="20.0" />
                                              </padding>

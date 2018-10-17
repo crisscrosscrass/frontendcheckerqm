@@ -3,6 +3,7 @@ package crisscrosscrass.Controller;
 import crisscrosscrass.Tasks.AnimationObject;
 import crisscrosscrass.Main;
 import crisscrosscrass.Tasks.ConfigSettings;
+import crisscrosscrass.Tests.AffiliateProgramTest;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,6 +16,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import org.apache.log4j.Logger;
 
 import java.io.*;
 import java.net.URL;
@@ -22,6 +24,7 @@ import java.util.Properties;
 import java.util.ResourceBundle;
 
 public class SplashFXMLController implements Initializable {
+    final static Logger logger = Logger.getLogger(SplashFXMLController.class);
 
     @FXML
     StackPane rootPane;
@@ -80,7 +83,7 @@ public class SplashFXMLController implements Initializable {
                         primaryStage.getScene().setFill(Color.TRANSPARENT);
 
                         primaryStage.setOnCloseRequest(e -> {
-                            System.out.println("Closing");
+                            logger.info("Closing Application");
                             File configSettings = new File("temp//UserSettings.properties");
                             if (configSettings.exists()) {
                                 Properties properties = new Properties();
@@ -101,6 +104,11 @@ public class SplashFXMLController implements Initializable {
                                 properties.setProperty("inputAffiliateProgramURL",controller.inputAffiliateProgramURL.getText());
                                 properties.setProperty("inputMerchandiseOverviewPageURL",controller.inputMerchandiseOverviewPageURL.getText());
                                 properties.setProperty("inputMerchandiseSearch",controller.inputMerchandiseSearch.getText());
+                                if (controller.countrySelection.getSelectionModel().getSelectedItem() != null){
+                                    properties.setProperty("countrySelection", controller.countrySelection.getSelectionModel().getSelectedItem().toString());
+                                }else{
+                                    properties.setProperty("countrySelection","");
+                                }
                                 ConfigSettings configSettingsOnClose = new ConfigSettings();
                                 configSettingsOnClose.saveConfigSettings(properties);
                             }
@@ -114,7 +122,7 @@ public class SplashFXMLController implements Initializable {
 
                     }
                     public void closeProgram(){
-                        System.out.println("DataSaved!");
+                        logger.info("DataSaved!");
                     }
                 });
 
