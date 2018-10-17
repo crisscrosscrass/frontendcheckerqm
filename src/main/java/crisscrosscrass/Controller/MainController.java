@@ -38,7 +38,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Properties;
 
-import static com.jfoenix.controls.JFXButton.ButtonType.FLAT;
 
 public class MainController implements Serializable{
     final static Logger logger = Logger.getLogger(MainController.class);
@@ -459,6 +458,7 @@ public class MainController implements Serializable{
                     JavascriptExecutor js = webDriver;
                     Report report = new Report();
                     report.clearWrittenReport();
+                    report.clearWrittenNamendReport("FailAndReview");
                     ScreenshotViaWebDriver.clearWrittenScreenshots();
                     ResultsManager resultsManager = new ResultsManager();
                     SettingManager settingManager = new SettingManager();
@@ -1012,6 +1012,10 @@ public class MainController implements Serializable{
             inputAffiliateProgramURL.setDisable(true);
             inputMerchandiseOverviewPageURL.setDisable(true);
             inputMerchandiseSearch.setDisable(true);
+            downloadFailCasesReport.setDisable(true);
+            downloadFullReport.setDisable(true);
+            fulltestButton.setDisable(true);
+            costumtestButton.setDisable(true);
             //settingTitledPane.setExpanded(false);  no need to expand any Setting for now
         });
     }
@@ -1040,6 +1044,10 @@ public class MainController implements Serializable{
             inputAffiliateProgramURL.setDisable(false);
             inputMerchandiseOverviewPageURL.setDisable(false);
             inputMerchandiseSearch.setDisable(false);
+            downloadFailCasesReport.setDisable(false);
+            downloadFullReport.setDisable(false);
+            fulltestButton.setDisable(false);
+            costumtestButton.setDisable(false);
         });
     }
 
