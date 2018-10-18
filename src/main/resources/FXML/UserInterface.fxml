@@ -109,7 +109,7 @@
             </ProgressBar>
             <TabPane fx:id="tabPane" prefHeight="704.0" prefWidth="172.0">
                <tabs>
-                  <Tab fx:id="tabHomepage" closable="false" text="Homepage">
+                  <Tab fx:id="tabHomepage" closable="false" text="TestCases.Homepage">
                      <content>
                         <fx:include fx:id="frontendHomepage" source="FrontendHomepage.fxml" />
                      </content>
@@ -262,7 +262,7 @@
                                           <RowConstraints maxHeight="59.0" minHeight="10.0" prefHeight="32.0" vgrow="SOMETIMES" />
                                       </rowConstraints>
                                        <children>
-                                          <JFXCheckBox id="settingCheckBox" fx:id="settingHomepage" checkedColor="#45818e" contentDisplay="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="40.0" prefWidth="290.0" selected="true" style="-fx-background-color: #165f6f;" text="Homepage" textFill="WHITE" GridPane.columnIndex="1">
+                                          <JFXCheckBox id="settingCheckBox" fx:id="settingHomepage" checkedColor="#45818e" contentDisplay="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="40.0" prefWidth="290.0" selected="true" style="-fx-background-color: #165f6f;" text="TestCases.Homepage" textFill="WHITE" GridPane.columnIndex="1">
                                               <font>
                                                   <Font size="20.0" />
                                               </font>
@@ -641,7 +641,7 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <Label fx:id="resultBoxHomepage" alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="193.0" style="-fx-background-color: #666666ff;" text="Homepage" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="1">
+                              <Label fx:id="resultBoxHomepage" alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="193.0" style="-fx-background-color: #666666ff;" text="TestCases.Homepage" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="1">
                                  <font>
                                     <Font size="18.0" />
                                  </font>

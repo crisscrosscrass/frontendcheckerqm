@@ -1,5 +1,5 @@
 ///// JAVA TEMPLATE /////
-public void checkingShopLinkLogo(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox ShopLinkName, Text statusInfo, TextField inputPartnerShopPageURL, Properties Homepage){
+public void checkingShopLinkLogo(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox ShopLinkName, Text statusInfo, TextField inputPartnerShopPageURL, Properties TestCases.Homepage){
         final String infoMessage = "Checking Shop Link";
         ChangeCheckBox.adjustStyle(false,"progress",ShopLinkName);
         Platform.runLater(() -> {

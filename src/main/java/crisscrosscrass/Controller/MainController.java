@@ -513,7 +513,7 @@ public class MainController implements Serializable{
                             settingManager.updateResultBoxes(settingMainMenuOnHomePage,"progress",resultBoxMainMenuOnHomePage,BoxMainMenuOnHomePageResult);
                             MainMenuOnHomePageTest mainMenuOnHomePageTest = new MainMenuOnHomePageTest();
                             mainMenuOnHomePageTest.checkingMainMenuTabs(webDriver,report,js,mainMenuOnHomePageController.MainMenuLinkTabs,statusInfo,inputSearch, Homepage);
-                            //mainMenuOnHomePageTest.checkingMainMenuIndex(webDriver,report,js,mainMenuOnHomePageController.MainMenuLinkIndex,statusInfo,inputSearch, Homepage);
+                            //mainMenuOnHomePageTest.checkingMainMenuIndex(webDriver,report,js,mainMenuOnHomePageController.MainMenuLinkIndex,statusInfo,inputSearch, TestCases.Homepage);
                             mainMenuOnHomePageTest.checkingShoppingWorld(webDriver,report,js,mainMenuOnHomePageController.ShoppingWorlds,statusInfo,inputSearch, Homepage);
                             mainMenuOnHomePageTest.checkingShoppingWorldOnIndex(webDriver,report,js,mainMenuOnHomePageController.ShoppingWorldsOnIndex,statusInfo,inputSearch, Homepage);
                         }catch (Exception noMainMenuWorking){
