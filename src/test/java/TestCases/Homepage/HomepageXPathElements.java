@@ -223,7 +223,7 @@ public class HomepageXPathElements {
     public void checkPrivacypageLink(){
         locator = "privacypage.link";
         logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
-        driver.get(String.valueOf(countries.valueOf(countrieSelection).getPrivacyPage()));
+        driver.get(String.valueOf(countries.valueOf("DE").getPrivacyPage()));
         try{
             element = driver.findElement (By.xpath(Homepage.getProperty(locator)));
         }catch (Exception xpathNotFound){
