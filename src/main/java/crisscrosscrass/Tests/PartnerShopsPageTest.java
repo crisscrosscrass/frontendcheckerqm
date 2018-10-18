@@ -315,7 +315,7 @@ public class PartnerShopsPageTest {
                         report.writeToFile(infoMessage, "Successful! Logo URL in HP and logo URL on upper left side of redirected page are the same");
                     }else {
                         ChangeCheckBox.adjustStyle(true,"nope",ShopLinkLogo);
-                        report.writeToFile(infoMessage, "Not successful! Logo URL in HP and logo URL on upper left side of redirected page are NOT the same");
+                        report.writeToFile(infoMessage, "Not successful! Logo URL in HP ( "+webDriver.findElementByXPath(Homepage.getProperty("page.grid.shop.image")).getAttribute("src").toLowerCase().trim()+" ) and logo URL ( "+LogoURLFromSelectedItem.toLowerCase().trim()+" ) on upper left side of redirected page are NOT the same");
                         failedTestCases.writeToNamedFile(infoMessage, "Please check Shops on Partnershop Page: Couldn't verify if shop logo in Partnershops Page is the same of the redirected page.", "FailAndReview");
                         boolean isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver, "checkingShopLinkLogo.png");
                         if (isSuccessful){
