@@ -245,11 +245,5 @@ public class CheckingValidXPathElements {
         }catch (Exception driverQuit){
             driverQuit.printStackTrace();
         }
-        try {
-            Runtime.getRuntime().exec("TASKKILL /F /IM chromedriver.exe");
-            Runtime.getRuntime().exec("taskkill /im chromedriver.exe /f");
-        } catch (IOException io) {
-            io.printStackTrace();
-        }
     }
 }
