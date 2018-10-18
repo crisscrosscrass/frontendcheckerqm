@@ -53,31 +53,34 @@ public class PartnerShopsPageTest {
                     }catch (Exception noH3InViewPort){
                         ChangeCheckBox.adjustStyle(true,"nope",GoToTopButton);
                         report.writeToFile(infoMessage, "Not successful, Initial banner (H3) is NOT on user's view");
-                        failedTestCases.writeToNamedFile(infoMessage, "PLease check: Go to Top button seems not to be working on Partnershops page", "FailAndReview");
+                        failedTestCases.writeToNamedFile(infoMessage, "Please check: Couldn't check functionality of  \"Go to Top\" button on Partnershops page", "FailAndReview");
+                        failedTestCases.writeToNamedFile("=================================TC 37","FailAndReview");
                         noH3InViewPort.printStackTrace();
                     }
                 }catch (Exception gridPageIssue){
                     ChangeCheckBox.adjustStyle(true,"nope",GoToTopButton);
                     webDriver.navigate().to(inputPartnerShopPageURL.getText().trim());
                     report.writeToFile(infoMessage, "Couldn't detect \"Go To Top\" Button");
-                    failedTestCases.writeToNamedFile(infoMessage, "PLease check: Couldn't detect \"Go To Top\" Button on Partnershops page", "FailAndReview");
+                    failedTestCases.writeToNamedFile(infoMessage, "Please check: Couldn't detect \"Go To Top\" Button on Partnershops page", "FailAndReview");
+                    failedTestCases.writeToNamedFile("=================================TC 37","FailAndReview");
                     gridPageIssue.printStackTrace();
                 }
             }catch (Exception noRequestedSiteFound){
                 ChangeCheckBox.adjustStyle(true,"nope",GoToTopButton);
                 webDriver.navigate().to(inputPartnerShopPageURL.getText().trim());
                 report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
-                failedTestCases.writeToNamedFile(infoMessage, "PLease check: Couldn't navigate to \"Go To Top\" Button on Partnershops page", "FailAndReview");
+                failedTestCases.writeToNamedFile(infoMessage, "Please check: Couldn't navigate to \"Go To Top\" Button on Partnershops page", "FailAndReview");
+                failedTestCases.writeToNamedFile("=================================TC 37","FailAndReview");
                 noRequestedSiteFound.printStackTrace();
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",GoToTopButton);
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
-            failedTestCases.writeToNamedFile(infoMessage, "PLease check \"Go To Top\" Button on Partnershops page: browser not responding", "FailAndReview");
+            failedTestCases.writeToNamedFile(infoMessage, "Please check \"Go To Top\" Button on Partnershops page: browser not responding", "FailAndReview");
+            failedTestCases.writeToNamedFile("=================================TC 37","FailAndReview");
             noBrowserWorking.printStackTrace();
         }
         report.writeToFile("=================================", "");
-        failedTestCases.writeToNamedFile("=================================","FailAndReview");
     }
     public void checkingBecomePartnerPopUp(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox BecomePartnerPopUp, Text statusInfo, TextField inputPartnerShopPageURL, Properties Homepage){
         final String infoMessage = BecomePartnerPopUp.getText();
@@ -106,12 +109,14 @@ public class PartnerShopsPageTest {
                         webDriver.navigate().to(inputPartnerShopPageURL.getText().trim());
                         report.writeToFile(infoMessage, "Successful, functioning Pop Up appears!");
                         failedTestCases.writeToNamedFile(infoMessage, "Please check: Pop up is not working when clicking on Become Partner button on Partnershops Page", "FailAndReview");
+                        failedTestCases.writeToNamedFile("=================================TC 38","FailAndReview");
                     }
                 }catch (Exception gridPageIssue){
                     ChangeCheckBox.adjustStyle(true,"nope",BecomePartnerPopUp);
                     webDriver.navigate().to(inputPartnerShopPageURL.getText().trim());
                     report.writeToFile(infoMessage, "Couldn't detect \"Become Partner\" Button");
                     failedTestCases.writeToNamedFile(infoMessage, "Please check: Couldn't detect \"Become Partner\" Button on Partnershops Page", "FailAndReview");
+                    failedTestCases.writeToNamedFile("=================================TC 38","FailAndReview");
                     gridPageIssue.printStackTrace();
                 }
             }catch (Exception noRequestedSiteFound){
@@ -119,16 +124,17 @@ public class PartnerShopsPageTest {
                 webDriver.navigate().to(inputPartnerShopPageURL.getText().trim());
                 report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
                 failedTestCases.writeToNamedFile(infoMessage, "Please check: Couldn't navigate to \"Become Partner\" Button on Partnershops Page", "FailAndReview");
+                failedTestCases.writeToNamedFile("=================================TC 38","FailAndReview");
                 noRequestedSiteFound.printStackTrace();
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",BecomePartnerPopUp);
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
             failedTestCases.writeToNamedFile(infoMessage, "Please check \"Become Partner\" Button on Partnershops Page: Browser not responding", "FailAndReview");
+            failedTestCases.writeToNamedFile("=================================TC 38","FailAndReview");
             noBrowserWorking.printStackTrace();
         }
         report.writeToFile("=================================", "");
-        failedTestCases.writeToNamedFile("=================================","FailAndReview");
     }
     public void checkingSortingReviews(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox SortingReviews, Text statusInfo, TextField inputPartnerShopPageURL, Properties Homepage){
         final String infoMessage = SortingReviews.getText();
@@ -160,6 +166,7 @@ public class PartnerShopsPageTest {
                     }else {
                         report.writeToFile("Sorting- Best Review", "Not successful ! Couldn't detect  Stars for first Shop");
                         failedTestCases.writeToNamedFile("Please check Partnershops page: Sorting- Best Review", "Not successful ! Couldn't detect  Stars for first Shop", "FailAndReview");
+                        failedTestCases.writeToNamedFile("=================================TC 39","FailAndReview");
                     }
                     wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("partnerpage.shops.sort.button"))));
                     hoverItem = webDriver.findElement(By.xpath(Homepage.getProperty("partnerpage.shops.sort.button"))).getLocation();
@@ -182,6 +189,7 @@ public class PartnerShopsPageTest {
                     }else {
                         report.writeToFile("Sorting- Number of Reviews", "Not Successful ! First shop in the list does not have more reviews ("+FirstShopAmountOfReviews+") than last shop ("+LastShopAmountOfReviews+")");
                         failedTestCases.writeToNamedFile("Please check Partnershops page: Sorting- Number of Reviews", "Not Successful ! First shop in the list does not have more reviews ("+FirstShopAmountOfReviews+") than last shop ("+LastShopAmountOfReviews+")", "FailAndReview");
+                        failedTestCases.writeToNamedFile("=================================TC 39","FailAndReview");
                         ChangeCheckBox.adjustStyle(true,"nope",SortingReviews);
                     }
                 }catch (Exception gridPageIssue){
@@ -189,6 +197,7 @@ public class PartnerShopsPageTest {
                     webDriver.navigate().to(inputPartnerShopPageURL.getText().trim());
                     report.writeToFile(infoMessage, "Couldn't detect \"Sorting\" Button");
                     failedTestCases.writeToNamedFile(infoMessage, "Please check: Couldn't detect \"Sorting\" Button on Partnershops Page", "FailAndReview");
+                    failedTestCases.writeToNamedFile("=================================TC 39","FailAndReview");
                     gridPageIssue.printStackTrace();
                 }
             }catch (Exception noRequestedSiteFound){
@@ -196,16 +205,17 @@ public class PartnerShopsPageTest {
                 webDriver.navigate().to(inputPartnerShopPageURL.getText().trim());
                 report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
                 failedTestCases.writeToNamedFile(infoMessage, "Please check: Couldn't navigate to \"Sorting\" Button on Partnershops Page", "FailAndReview");
+                failedTestCases.writeToNamedFile("=================================TC 39","FailAndReview");
                 noRequestedSiteFound.printStackTrace();
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",SortingReviews);
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
             failedTestCases.writeToNamedFile(infoMessage, "Please check \"Sorting\" Button on Partnershops Page: Browser not responding", "FailAndReview");
+            failedTestCases.writeToNamedFile("=================================TC 39","FailAndReview");
             noBrowserWorking.printStackTrace();
         }
         report.writeToFile("=================================", "");
-        failedTestCases.writeToNamedFile("=================================","FailAndReview");
     }
     public void checkingShopLinkName(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox ShopLinkName, Text statusInfo, TextField inputPartnerShopPageURL, Properties Homepage){
         final String infoMessage = ShopLinkName.getText();
@@ -239,10 +249,12 @@ public class PartnerShopsPageTest {
                         boolean isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver, "checkingShopLinkName.png");
                         if (isSuccessful){
                             report.writeToFile(infoMessage, "Screenshot successful!");
-                            failedTestCases.writeToNamedFile( "See checkingShopLinkName for more information about the Shop error","Screenshot Successful!",  "FailAndReview");
+                            failedTestCases.writeToNamedFile( "See checkingShopLinkName for more information about the Shop Name Link error error","Screenshot Successful!",  "FailAndReview");
+                            failedTestCases.writeToNamedFile("================================= TC 40.1","FailAndReview");
                         }else {
                             report.writeToFile(infoMessage, "Screenshot not successful!");
-                            failedTestCases.writeToNamedFile( "See checkingShopLinkName for more information about the Shop error","Screenshot not Successful!",  "FailAndReview");
+                            failedTestCases.writeToNamedFile( "See checkingShopLinkName for more information about the Shop Name Link error","Screenshot not Successful!",  "FailAndReview");
+                            failedTestCases.writeToNamedFile("================================= TC 40.1","FailAndReview");
                         }
                     }
                 }catch (Exception gridPageIssue){
@@ -250,6 +262,7 @@ public class PartnerShopsPageTest {
                     webDriver.navigate().to(inputPartnerShopPageURL.getText().trim());
                     report.writeToFile(infoMessage, "Couldn't detect \"Sorting\" Button");
                     failedTestCases.writeToNamedFile(infoMessage, "Please check: Couldn't detect \"Shop Link\" Button on Partnershops Page", "FailAndReview");
+                    failedTestCases.writeToNamedFile("================================= TC 40.1","FailAndReview");
                     gridPageIssue.printStackTrace();
                 }
             }catch (Exception noRequestedSiteFound){
@@ -257,16 +270,17 @@ public class PartnerShopsPageTest {
                 webDriver.navigate().to(inputPartnerShopPageURL.getText().trim());
                 report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
                 failedTestCases.writeToNamedFile(infoMessage, "Please check: Couldn't navigate to \"Shop Link\" Button on Partnershops Page", "FailAndReview");
+                failedTestCases.writeToNamedFile("================================= TC 40.1","FailAndReview");
                 noRequestedSiteFound.printStackTrace();
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",ShopLinkName);
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
             failedTestCases.writeToNamedFile(infoMessage, "Please check \"Shop Link\" Button on Partnershops Page: browser not responding", "FailAndReview");
+            failedTestCases.writeToNamedFile("================================= TC 40.1","FailAndReview");
             noBrowserWorking.printStackTrace();
         }
         report.writeToFile("=================================", "");
-        failedTestCases.writeToNamedFile("=================================","FailAndReview");
     }
     public void checkingShopLinkLogo(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox ShopLinkLogo, Text statusInfo, TextField inputPartnerShopPageURL, Properties Homepage){
         final String infoMessage = ShopLinkLogo.getText();
@@ -302,21 +316,24 @@ public class PartnerShopsPageTest {
                     }else {
                         ChangeCheckBox.adjustStyle(true,"nope",ShopLinkLogo);
                         report.writeToFile(infoMessage, "Not successful! Logo URL in HP and logo URL on upper left side of redirected page are NOT the same");
-                        failedTestCases.writeToNamedFile(infoMessage, "Please check Shops on Partnershop Page: could not verify if shop logo in Partnershops Page is the same of the redirected page.");
+                        failedTestCases.writeToNamedFile(infoMessage, "Please check Shops on Partnershop Page: Couldn't verify if shop logo in Partnershops Page is the same of the redirected page.", "FailAndReview");
                         boolean isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver, "checkingShopLinkLogo.png");
                         if (isSuccessful){
                             report.writeToFile(infoMessage, "Screenshot successful!");
-                            failedTestCases.writeToNamedFile( "For more information about this Shop logo error, see checkingShopLinkLogo", "Screeshot Successfull!", "FailAndReview");
+                            failedTestCases.writeToNamedFile( "For more information about Shop link Logo error, see checkingShopLinkLogo", "Screeshot Successfull!", "FailAndReview");
+                            failedTestCases.writeToNamedFile("=================================TC 40.2","FailAndReview");
                         }else {
                             report.writeToFile(infoMessage, "Screenshot not successful!");
-                            failedTestCases.writeToNamedFile( "For more information about this Shop logo error, see checkingShopLinkLogo", "Screeshot not Successfull!", "FailAndReview");
+                            failedTestCases.writeToNamedFile( "For more information about this Shop link Logo error, see checkingShopLinkLogo", "Screeshot not Successfull!", "FailAndReview");
+                            failedTestCases.writeToNamedFile("=================================TC 40.2","FailAndReview");
                         }
                     }
                 }catch (Exception gridPageIssue){
                     ChangeCheckBox.adjustStyle(true,"nope",ShopLinkLogo);
                     webDriver.navigate().to(inputPartnerShopPageURL.getText().trim());
-                    report.writeToFile(infoMessage, "Couldn't detect \"Sorting\" Button");
+                    report.writeToFile(infoMessage, "Couldn't detect \"Shop Logo\" Button");
                     failedTestCases.writeToNamedFile(infoMessage, "Please check: Couldn't detect \"Shop Logo\"  on Partnershops Page", "FailAndReview");
+                    failedTestCases.writeToNamedFile("=================================TC 40.2","FailAndReview");
                     gridPageIssue.printStackTrace();
                 }
             }catch (Exception noRequestedSiteFound){
@@ -324,16 +341,17 @@ public class PartnerShopsPageTest {
                 webDriver.navigate().to(inputPartnerShopPageURL.getText().trim());
                 report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
                 failedTestCases.writeToNamedFile(infoMessage, "Please check: Couldn't navigate to \"Shop Logo\"  on Partnershops Page", "FailAndReview");
+                failedTestCases.writeToNamedFile("=================================TC 40.2","FailAndReview");
                 noRequestedSiteFound.printStackTrace();
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",ShopLinkLogo);
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
-            failedTestCases.writeToNamedFile(infoMessage, "Please check \"Shop Logo\"  on Partnershops Page: borwser not responding", "FailAndReview");
+            failedTestCases.writeToNamedFile(infoMessage, "Please check \"Shop Logo\"  on Partnershops Page: browser not responding", "FailAndReview");
+            failedTestCases.writeToNamedFile("=================================TC 40.2","FailAndReview");
             noBrowserWorking.printStackTrace();
         }
         report.writeToFile("=================================", "");
-        failedTestCases.writeToNamedFile("=================================","FailAndReview");
     }
     public void checkingShopReview(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox ShopLinkLogo, Text statusInfo, TextField inputPartnerShopPageURL, Properties Homepage){
         final String infoMessage = ShopLinkLogo.getText();
@@ -362,29 +380,32 @@ public class PartnerShopsPageTest {
                         ChangeCheckBox.adjustStyle(true,"nope",ShopLinkLogo);
                         report.writeToFile(infoMessage, "Not successful! User is NOT redirected to a functioning page with the word \"review\" in the URl");
                         failedTestCases.writeToNamedFile(infoMessage, "Please check: User is not redirect to a functioning and/or correct URl when clicking on \"Write Review\" on Partnershops Page", "FailAndReview");
+                        failedTestCases.writeToNamedFile("=================================TC 41","FailAndReview");
                     }
                 }catch (Exception gridPageIssue){
                     ChangeCheckBox.adjustStyle(true,"nope",ShopLinkLogo);
                     webDriver.navigate().to(inputPartnerShopPageURL.getText().trim());
                     report.writeToFile(infoMessage, "Couldn't detect \"Sorting\" Button");
-                    failedTestCases.writeToNamedFile(infoMessage, "Please check: Couldn't detect \"Shop Link\" Button on Partnershops Page", "FailAndReview");
+                    failedTestCases.writeToNamedFile(infoMessage, "Please check: Couldn't detect \"Write Review\" Button on Partnershops Page", "FailAndReview");
+                    failedTestCases.writeToNamedFile("=================================TC 41","FailAndReview");
                     gridPageIssue.printStackTrace();
                 }
             }catch (Exception noRequestedSiteFound){
                 ChangeCheckBox.adjustStyle(true,"nope",ShopLinkLogo);
                 webDriver.navigate().to(inputPartnerShopPageURL.getText().trim());
                 report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
-                failedTestCases.writeToNamedFile(infoMessage, "Please check: Couldn't navigate to \"Shop Link\" Button on Partnershops Page", "FailAndReview");
+                failedTestCases.writeToNamedFile(infoMessage, "Please check: Couldn't navigate to \"Write Review\" Button on Partnershops Page", "FailAndReview");
+                failedTestCases.writeToNamedFile("=================================TC 41","FailAndReview");
                 noRequestedSiteFound.printStackTrace();
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",ShopLinkLogo);
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
-            failedTestCases.writeToNamedFile(infoMessage, "Please check \"Shop Link\" Button on Partnershops Page: browser not responding", "FailAndReview");
+            failedTestCases.writeToNamedFile(infoMessage, "Please check \"Write Review\" Button on Partnershops Page: browser not responding", "FailAndReview");
+            failedTestCases.writeToNamedFile("=================================TC 41","FailAndReview");
             noBrowserWorking.printStackTrace();
         }
         report.writeToFile("=================================", "");
-        failedTestCases.writeToNamedFile("=================================","FailAndReview");
     }
     public void checkingShopSearchBox(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox ShopSearchBox, Text statusInfo, TextField inputPartnerShopPageURL,TextField inputPartnerShopSearch, Properties Homepage){
         final String infoMessage = ShopSearchBox.getText();
@@ -429,10 +450,12 @@ public class PartnerShopsPageTest {
                             }else {
                                 report.writeToFile("Provided Shop list for Searchkeyword \""+ShopSearchAliases[i].trim()+"\" couldn't loaded completely");
                                 failedTestCases.writeToNamedFile("Please check: Provided Shop list for Searchkeyword \""+ShopSearchAliases[i].trim()+"\" couldn't loaded completely", "FailAndReview");
+                                failedTestCases.writeToNamedFile("=================================TC 42","FailAndReview");
                             }
                         }else {
                             report.writeToFile("Provided Shop list contains no Results for \""+ShopSearchAliases[i].trim()+"\" !");
                             failedTestCases.writeToNamedFile("Please check: Provided Shop list contains no Results for \""+ShopSearchAliases[i].trim()+"\" ", "FailAndReview");
+                            failedTestCases.writeToNamedFile("=================================TC 42","FailAndReview");
                         }
                         report.writeToFile("");
                     }
@@ -443,6 +466,7 @@ public class PartnerShopsPageTest {
                     webDriver.navigate().to(inputPartnerShopPageURL.getText().trim());
                     report.writeToFile(infoMessage, "Couldn't detect \"Search Bar\" or \"Search Results\"");
                     failedTestCases.writeToNamedFile(infoMessage, "Please check: Couldn't detect \"Search Bar\" or \"Search Results\" on Partnershops Page", "FailAndReview");
+                    failedTestCases.writeToNamedFile("=================================TC 42","FailAndReview");
                     gridPageIssue.printStackTrace();
                 }
             }catch (Exception noRequestedSiteFound){
@@ -450,15 +474,16 @@ public class PartnerShopsPageTest {
                 webDriver.navigate().to(inputPartnerShopPageURL.getText().trim());
                 report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
                 failedTestCases.writeToNamedFile(infoMessage, "Please check: Couldn't navigate to \"Search Bar\" or \"Search Results\" on Partnershops Page", "FailAndReview");
+                failedTestCases.writeToNamedFile("=================================TC 42","FailAndReview");
                 noRequestedSiteFound.printStackTrace();
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",ShopSearchBox);
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
             failedTestCases.writeToNamedFile(infoMessage, "Please check \"Search Bar\" or \"Search Results\" on Partnershops Page: browser not responding", "FailAndReview");
+            failedTestCases.writeToNamedFile("=================================TC 42","FailAndReview");
             noBrowserWorking.printStackTrace();
         }
         report.writeToFile("=================================", "");
-        failedTestCases.writeToNamedFile("=================================","FailAndReview");
     }
 }
