@@ -128,6 +128,7 @@ public class HomepageXPathElements {
         locator = "page.main.newsletter.close";
         logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
         driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationMainPage()));
+        //scoll down d
         Point hoverItem = driver.findElementByXPath(Homepage.getProperty("page.main.newsletter.icon")).getLocation();
         ((JavascriptExecutor)driver).executeScript("return window.title;");
         ((JavascriptExecutor)driver).executeScript("window.scrollBy(0,"+(hoverItem.getY())+");");
