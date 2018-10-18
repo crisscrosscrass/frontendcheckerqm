@@ -13,13 +13,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
-public class CheckingValidXPathElements {
-    final static Logger logger = Logger.getLogger(CheckingValidXPathElements.class);
+public class HomepageXPathElements {
+    final static Logger logger = Logger.getLogger(HomepageXPathElements.class);
     private static ChromeDriver driver;
     private static Properties Homepage;
     private static String countrieSelection = "FR";

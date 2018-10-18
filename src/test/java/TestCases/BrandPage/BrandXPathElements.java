@@ -7,19 +7,16 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Point;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
-public class CheckingValidXPathElements {
-    final static Logger logger = Logger.getLogger(CheckingValidXPathElements.class);
+public class BrandXPathElements {
+    final static Logger logger = Logger.getLogger(BrandXPathElements.class);
     private static ChromeDriver driver;
     private static Properties Homepage;
     private static String countrieSelection = "FR";
