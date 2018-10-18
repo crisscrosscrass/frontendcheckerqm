@@ -22,14 +22,14 @@ import java.util.Properties;
 public class HomepageTest {
     Report failedTestCases = new Report();
 
-    public void checkingCategories(ChromeDriver webDriver, Report report, JFXCheckBox checkCategoryLinksLeftSideMenu, Text statusInfo, TextField inputSearch, Properties Homepage){
-failedTestCases.writeToNamedFile("CHECKING HOMEPAGE", "FailAndReview");
+    public void checkingCategories(ChromeDriver webDriver, Report report, JFXCheckBox checkCategoryLinksLeftSideMenu, Text statusInfo, TextField inputSearch, Properties Homepage) {
+        failedTestCases.writeToNamedFile("CHECKING HOMEPAGE", "FailAndReview");
         final String infoMessage = checkCategoryLinksLeftSideMenu.getText();
 
         // Check on Category Links - Left Side Menu
-        ChangeCheckBox.adjustStyle(false,"progress",checkCategoryLinksLeftSideMenu);
+        ChangeCheckBox.adjustStyle(false, "progress", checkCategoryLinksLeftSideMenu);
         Platform.runLater(() -> {
-            statusInfo.setText(""+infoMessage+"...");
+            statusInfo.setText("" + infoMessage + "...");
         });
         String xpathPattern1 = Homepage.getProperty("page.main.category.links.left");
         try {
@@ -39,36 +39,36 @@ failedTestCases.writeToNamedFile("CHECKING HOMEPAGE", "FailAndReview");
 
                 boolean isAvailable = webDriver.findElementByXPath(xpathPattern1) != null;
                 report.writeToFile("Start to check all Category Links: ", "");
-                if(isAvailable){
+                if (isAvailable) {
                     List<WebElement> CategoryLinksLeftSideMenu = webDriver.findElementsByXPath(xpathPattern1);
                     WebdriverTab newtab = new WebdriverTab();
                     //use CategoryLinksLeftSideMenu.size() instead of 1 for Loop!
-                    for (int i = 0 ; i < CategoryLinksLeftSideMenu.size() ; i++){
+                    for (int i = 0; i < CategoryLinksLeftSideMenu.size(); i++) {
                         webDriver.switchTo().window(tabs.get(0));
                         boolean isSuccessful = newtab.open(webDriver, CategoryLinksLeftSideMenu.get(i).getAttribute("href"), CategoryLinksLeftSideMenu.get(i).getAttribute("textContent").trim());
-                        if (isSuccessful){
-                            report.writeToFile("TEST CategoryLinksLeftSideMenu "+i+": Successful | ", "found \"" + CategoryLinksLeftSideMenu.get(i).getAttribute("textContent").trim() + "\" Keyword at URL : "+ CategoryLinksLeftSideMenu.get(i).getAttribute("href"));
-                        }else {
-                            report.writeToFile("unable to check! ", "couldn't found \"" + CategoryLinksLeftSideMenu.get(i).getAttribute("textContent").trim() + "\" Keyword in URL : "+ CategoryLinksLeftSideMenu.get(i).getAttribute("href"));
-                            failedTestCases.writeToNamedFile("Category links in left Menu! ", "Please review the following URL. Couldn't find \"" + CategoryLinksLeftSideMenu.get(i).getAttribute("textContent").trim() + "\" Keyword in URL : "+ CategoryLinksLeftSideMenu.get(i).getAttribute("href"),"FailAndReview");
+                        if (isSuccessful) {
+                            report.writeToFile("TEST CategoryLinksLeftSideMenu " + i + ": Successful | ", "found \"" + CategoryLinksLeftSideMenu.get(i).getAttribute("textContent").trim() + "\" Keyword at URL : " + CategoryLinksLeftSideMenu.get(i).getAttribute("href"));
+                        } else {
+                            report.writeToFile("unable to check! ", "couldn't found \"" + CategoryLinksLeftSideMenu.get(i).getAttribute("textContent").trim() + "\" Keyword in URL : " + CategoryLinksLeftSideMenu.get(i).getAttribute("href"));
+                            failedTestCases.writeToNamedFile("Category links in left Menu! ", "Please review the following URL. Couldn't find \"" + CategoryLinksLeftSideMenu.get(i).getAttribute("textContent").trim() + "\" Keyword in URL : " + CategoryLinksLeftSideMenu.get(i).getAttribute("href"), "FailAndReview");
                         }
                     }
                 }
-                ChangeCheckBox.adjustStyle(true,"complete",checkCategoryLinksLeftSideMenu);
+                ChangeCheckBox.adjustStyle(true, "complete", checkCategoryLinksLeftSideMenu);
                 report.writeToFile(infoMessage, "Complete!");
-                failedTestCases.writeToNamedFile("=================================TC 1","FailAndReview");
-            }catch (Exception noLeftSideMenu){
-                ChangeCheckBox.adjustStyle(true,"nope",checkCategoryLinksLeftSideMenu);
+                failedTestCases.writeToNamedFile("=================================TC 1", "FailAndReview");
+            } catch (Exception noLeftSideMenu) {
+                ChangeCheckBox.adjustStyle(true, "nope", checkCategoryLinksLeftSideMenu);
                 report.writeToFile(infoMessage, "unable to check! No Links found!");
                 failedTestCases.writeToNamedFile(infoMessage, "Please check: couldn't detect links in left Menu on Homepage!", "FailAndReview");
-                failedTestCases.writeToNamedFile("=================================TC 1","FailAndReview");
+                failedTestCases.writeToNamedFile("=================================TC 1", "FailAndReview");
                 noLeftSideMenu.printStackTrace();
             }
-        }catch (Exception noCategoryLinksLeftSideMenu){
-            ChangeCheckBox.adjustStyle(true,"nope",checkCategoryLinksLeftSideMenu);
+        } catch (Exception noCategoryLinksLeftSideMenu) {
+            ChangeCheckBox.adjustStyle(true, "nope", checkCategoryLinksLeftSideMenu);
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
             failedTestCases.writeToNamedFile(infoMessage, "Please check left Menu: Browser not responding!", "FailAndReview");
-            failedTestCases.writeToNamedFile("=================================TC 1","FailAndReview");
+            failedTestCases.writeToNamedFile("=================================TC 1", "FailAndReview");
             noCategoryLinksLeftSideMenu.printStackTrace();
         }
         report.writeToFile("=================================", "");

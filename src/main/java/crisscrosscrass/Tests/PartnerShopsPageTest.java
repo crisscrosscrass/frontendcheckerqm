@@ -353,11 +353,11 @@ public class PartnerShopsPageTest {
         }
         report.writeToFile("=================================", "");
     }
-    public void checkingShopReview(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox ShopLinkLogo, Text statusInfo, TextField inputPartnerShopPageURL, Properties Homepage){
+    public void checkingShopReview(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox ShopLinkLogo, Text statusInfo, TextField inputPartnerShopPageURL, Properties Homepage) {
         final String infoMessage = ShopLinkLogo.getText();
-        ChangeCheckBox.adjustStyle(false,"progress",ShopLinkLogo);
+        ChangeCheckBox.adjustStyle(false, "progress", ShopLinkLogo);
         Platform.runLater(() -> {
-            statusInfo.setText(""+infoMessage+"...");
+            statusInfo.setText("" + infoMessage + "...");
         });
         try {
             ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
@@ -365,44 +365,44 @@ public class PartnerShopsPageTest {
             try {
                 webDriver.navigate().to(inputPartnerShopPageURL.getText().trim());
                 WebDriverWait wait = new WebDriverWait(webDriver, 10);
-                try{
+                try {
                     wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("partnerpage.shops.shopreviews"))));
                     List<WebElement> AllShopReviews = webDriver.findElementsByXPath(Homepage.getProperty("partnerpage.shops.shopreviews"));
-                    final int randomSelectedNumber = ThreadLocalRandom.current().nextInt(0, AllShopReviews.size() );
+                    final int randomSelectedNumber = ThreadLocalRandom.current().nextInt(0, AllShopReviews.size());
                     Point hoverItem = AllShopReviews.get(randomSelectedNumber).getLocation();
-                    ((JavascriptExecutor)webDriver).executeScript("return window.title;");
-                    ((JavascriptExecutor)webDriver).executeScript("window.scrollBy(0,"+(hoverItem.getY())+");");
+                    ((JavascriptExecutor) webDriver).executeScript("return window.title;");
+                    ((JavascriptExecutor) webDriver).executeScript("window.scrollBy(0," + (hoverItem.getY()) + ");");
                     AllShopReviews.get(randomSelectedNumber).click();
-                    if (webDriver.getCurrentUrl().contains("review")){
-                        ChangeCheckBox.adjustStyle(true,"complete",ShopLinkLogo);
+                    if (webDriver.getCurrentUrl().contains("review")) {
+                        ChangeCheckBox.adjustStyle(true, "complete", ShopLinkLogo);
                         report.writeToFile(infoMessage, "Successful! User is redirected to a functioning page with the word \"review\" in the URl");
-                    }else {
-                        ChangeCheckBox.adjustStyle(true,"nope",ShopLinkLogo);
+                    } else {
+                        ChangeCheckBox.adjustStyle(true, "nope", ShopLinkLogo);
                         report.writeToFile(infoMessage, "Not successful! User is NOT redirected to a functioning page with the word \"review\" in the URl");
                         failedTestCases.writeToNamedFile(infoMessage, "Please check: User is not redirect to a functioning and/or correct URl when clicking on \"Write Review\" on Partnershops Page", "FailAndReview");
-                        failedTestCases.writeToNamedFile("=================================TC 41","FailAndReview");
+                        failedTestCases.writeToNamedFile("=================================TC 41", "FailAndReview");
                     }
-                }catch (Exception gridPageIssue){
-                    ChangeCheckBox.adjustStyle(true,"nope",ShopLinkLogo);
+                } catch (Exception gridPageIssue) {
+                    ChangeCheckBox.adjustStyle(true, "nope", ShopLinkLogo);
                     webDriver.navigate().to(inputPartnerShopPageURL.getText().trim());
                     report.writeToFile(infoMessage, "Couldn't detect \"Sorting\" Button");
                     failedTestCases.writeToNamedFile(infoMessage, "Please check: Couldn't detect \"Write Review\" Button on Partnershops Page", "FailAndReview");
-                    failedTestCases.writeToNamedFile("=================================TC 41","FailAndReview");
+                    failedTestCases.writeToNamedFile("=================================TC 41", "FailAndReview");
                     gridPageIssue.printStackTrace();
                 }
-            }catch (Exception noRequestedSiteFound){
-                ChangeCheckBox.adjustStyle(true,"nope",ShopLinkLogo);
+            } catch (Exception noRequestedSiteFound) {
+                ChangeCheckBox.adjustStyle(true, "nope", ShopLinkLogo);
                 webDriver.navigate().to(inputPartnerShopPageURL.getText().trim());
                 report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
                 failedTestCases.writeToNamedFile(infoMessage, "Please check: Couldn't navigate to \"Write Review\" Button on Partnershops Page", "FailAndReview");
-                failedTestCases.writeToNamedFile("=================================TC 41","FailAndReview");
+                failedTestCases.writeToNamedFile("=================================TC 41", "FailAndReview");
                 noRequestedSiteFound.printStackTrace();
             }
-        }catch (Exception noBrowserWorking){
-            ChangeCheckBox.adjustStyle(true,"nope",ShopLinkLogo);
+        } catch (Exception noBrowserWorking) {
+            ChangeCheckBox.adjustStyle(true, "nope", ShopLinkLogo);
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
             failedTestCases.writeToNamedFile(infoMessage, "Please check \"Write Review\" Button on Partnershops Page: browser not responding", "FailAndReview");
-            failedTestCases.writeToNamedFile("=================================TC 41","FailAndReview");
+            failedTestCases.writeToNamedFile("=================================TC 41", "FailAndReview");
             noBrowserWorking.printStackTrace();
         }
         report.writeToFile("=================================", "");
