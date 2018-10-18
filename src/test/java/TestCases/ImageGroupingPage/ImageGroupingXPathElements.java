@@ -25,7 +25,7 @@ import java.util.concurrent.TimeUnit;
 public class ImageGroupingXPathElements {final static Logger logger = Logger.getLogger(HomepageXPathElements.class);
     private static ChromeDriver driver;
     private static Properties Homepage;
-    private static String countrieSelection = "HU";
+    private static String countrieSelection = "SK";
     private static String locator;
     WebElement element;
 
@@ -61,7 +61,7 @@ public class ImageGroupingXPathElements {final static Logger logger = Logger.get
             logger.error("There was an error on Window Page");
         }
         try{
-            //scroll down to element in order to click them
+            //scroll down to element in order to get them
             Point hoverItem = driver.findElementByXPath(Homepage.getProperty("page.items.grouping")).getLocation();
             ((JavascriptExecutor)driver).executeScript("return window.title;");
             ((JavascriptExecutor)driver).executeScript("window.scrollBy(0,"+(hoverItem.getY())+");");
