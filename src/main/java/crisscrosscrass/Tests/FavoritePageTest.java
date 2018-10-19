@@ -426,6 +426,7 @@ public class FavoritePageTest {
                     }else {
                         report.writeToFile("Checking  Personal List Price Lowest to Highest: ", "Not Successful! First Item Price("+checkPriceLowToHighFirstItem+") is NOT lower than last Item Price("+checkPriceLowToHighLastItem+") !");
                         failedTestCases.writeToNamedFile("Please check Personal List- Price Sorting from Lowest to Highest: ", "Not Successful! First Item Price("+checkPriceLowToHighFirstItem+") is NOT lower than last Item Price("+checkPriceLowToHighLastItem+") !", "FailAndReview");
+                        failedTestCases.writeToNamedFile("=================================TC 33.1","FailAndReview");
                     }
                     report.writeToFile("");
 
@@ -448,6 +449,7 @@ public class FavoritePageTest {
                     }else {
                         report.writeToFile("Checking  Personal List Page Price Highest to Lowest: ", "Not Successful! First Item Price("+checkPriceHighToLowFirstItem+") is NOT higher than last Item Price("+checkPriceHighToLowLastItem+") !");
                         failedTestCases.writeToNamedFile("Please check Personal List Page- Price Sorting from Highest to Lowest: ", "Not Successful! First Item Price("+checkPriceHighToLowFirstItem+") is NOT higher than last Item Price("+checkPriceHighToLowLastItem+") !", "FailAndReview");
+                        failedTestCases.writeToNamedFile("=================================TC 33.2","FailAndReview");
                     }
                     report.writeToFile("");
 
@@ -461,25 +463,27 @@ public class FavoritePageTest {
                     ChangeCheckBox.adjustStyle(true,"nope",applySortingOnList);
                     webDriver.navigate().to(inputGridPageURL.getText().trim());
                     report.writeToFile(infoMessage, "Couldn't detect Favorite Lists");
-                    failedTestCases.writeToNamedFile(infoMessage, "Please check: could not detect Favorite List", "FailAndReview");
+                    failedTestCases.writeToNamedFile(infoMessage, "Please check: couldn't detect Favorite List", "FailAndReview");
+                    failedTestCases.writeToNamedFile("=================================TC 33","FailAndReview");
                     gridPageIssue.printStackTrace();
                 }
             }catch (Exception noRequestedSiteFound){
                 ChangeCheckBox.adjustStyle(true,"nope",applySortingOnList);
                 webDriver.navigate().to(inputGridPageURL.getText().trim());
                 report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
-                failedTestCases.writeToNamedFile(infoMessage, "Please check: could not navigate to Favorite List", "FailAndReview");
+                failedTestCases.writeToNamedFile(infoMessage, "Please check: couldn't navigate to Favorite List", "FailAndReview");
+                failedTestCases.writeToNamedFile("=================================TC 33","FailAndReview");
                 noRequestedSiteFound.printStackTrace();
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",applySortingOnList);
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
             failedTestCases.writeToNamedFile(infoMessage, "Please check Favorite List: browser not responding", "FailAndReview");
+            failedTestCases.writeToNamedFile("=================================TC 33","FailAndReview");
             noBrowserWorking.printStackTrace();
         }
 
         report.writeToFile("=================================", "");
-        failedTestCases.writeToNamedFile("=================================","FailAndReview");
 
     }
 
@@ -556,6 +560,7 @@ public class FavoritePageTest {
                         }else {
                             report.writeToFile(infoMessage+" GreenCheck Marks: ","Not Successfully! Green check marks appears before selecting on "+webDriver.findElements(By.xpath(Homepage.getProperty("page.myaccount.greenCheckMarkBoxes"))).size()+" items!");
                             failedTestCases.writeToNamedFile(infoMessage+ " Please check Item selection in favorite list: ","Not Successfully! Green check marks appears before selecting on "+webDriver.findElements(By.xpath(Homepage.getProperty("page.myaccount.greenCheckMarkBoxes"))).size()+" items!", "FailAndReview");
+                            failedTestCases.writeToNamedFile("=================================TC 34","FailAndReview");
                         }
 
                         try{
@@ -589,10 +594,12 @@ public class FavoritePageTest {
                                 report.writeToFile(infoMessage+" Selection Move: ","Successfully check Selection Move! Test List is Empty and Standard List is filled ");
                             }else if (!isStandardListFull){
                                 report.writeToFile(infoMessage+" Selection Move: ","Not successful check, Standard List is not filled ");
-                                failedTestCases.writeToNamedFile(infoMessage+ "Please check Selection Move on favorite list: ", "Could not move itesm from created list to standard list", "FailAndReview");
+                                failedTestCases.writeToNamedFile(infoMessage+ "Please check Selection Move on favorite list: ", "Couldn't move items from created list to standard list", "FailAndReview");
+                                failedTestCases.writeToNamedFile("=================================TC 34","FailAndReview");
                             }else {
                                 report.writeToFile(infoMessage+" Selection Move: ","Not successful check, Test List is not empty ");
-                                failedTestCases.writeToNamedFile(infoMessage+ "Please check Selection Move on favorite list: ", "List whose items wer moved is not empty", "FailAndReview");
+                                failedTestCases.writeToNamedFile(infoMessage+ "Please check Selection Move on favorite list: ", "List, whose items were moved, is not empty", "FailAndReview");
+                                failedTestCases.writeToNamedFile("=================================TC 34","FailAndReview");
                             }
 
                             ChangeCheckBox.adjustStyle(true,"complete",selectionOnList);
@@ -653,7 +660,8 @@ public class FavoritePageTest {
                             }catch (Exception noCleanUp){
                                 webDriver.navigate().to(inputSearch.getText().trim());
                                 report.writeToFile(infoMessage, "Couldn't delete all created Lists");
-                                failedTestCases.writeToNamedFile(infoMessage, "Please check: could not delete all created list on Favorite Page", "failAndReview");
+                                failedTestCases.writeToNamedFile(infoMessage, "Please check: couldn't delete all created list on Favorite Page", "failAndReview");
+                                failedTestCases.writeToNamedFile("=================================TC 34","FailAndReview");
                                 noCleanUp.printStackTrace();
                             }
 
@@ -662,13 +670,15 @@ public class FavoritePageTest {
                             webDriver.navigate().to(inputSearch.getText().trim());
                             report.writeToFile(infoMessage, "Couldn't move items from Favorite Lists to another List");
                             failedTestCases.writeToNamedFile(infoMessage, "Please check: Couldn't move items from Favorite Lists to another List on Favorite Page", "failAndReview");
+                            failedTestCases.writeToNamedFile("=================================TC 34","FailAndReview");
                             noSelectionMove.printStackTrace();
                         }
                     }catch (Exception noGreenCheckMark){
                         ChangeCheckBox.adjustStyle(true,"nope",selectionOnList);
                         webDriver.navigate().to(inputSearch.getText().trim());
                         report.writeToFile(infoMessage, "Couldn't detect Favorite Lists");
-                        failedTestCases.writeToNamedFile(infoMessage, "Please check: item selection functionality seems to not be working", "failAndReview");
+                        failedTestCases.writeToNamedFile(infoMessage, "Please check: item selection functionality seems to not be working on Favorite Page", "failAndReview");
+                        failedTestCases.writeToNamedFile("=================================TC 34","FailAndReview");
                         noGreenCheckMark.printStackTrace();
                     }
 
@@ -677,6 +687,7 @@ public class FavoritePageTest {
                     webDriver.navigate().to(inputSearch.getText().trim());
                     report.writeToFile(infoMessage, "Couldn't detect Favorite Lists");
                     failedTestCases.writeToNamedFile(infoMessage, "Please check: Couldn't detect Favorite Lists", "failAndReview");
+                    failedTestCases.writeToNamedFile("=================================TC 34","FailAndReview");
                     gridPageIssue.printStackTrace();
                 }
             }catch (Exception noRequestedSiteFound){
@@ -684,15 +695,16 @@ public class FavoritePageTest {
                 webDriver.navigate().to(inputSearch.getText().trim());
                 report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
                 failedTestCases.writeToNamedFile(infoMessage, "Please check: Couldn't navigate to Favorite Lists", "failAndReview");
+                failedTestCases.writeToNamedFile("=================================TC 34","FailAndReview");
                 noRequestedSiteFound.printStackTrace();
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",selectionOnList);
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
             failedTestCases.writeToNamedFile(infoMessage, "Please check Favorite Lists: browser not responding", "failAndReview");
+            failedTestCases.writeToNamedFile("=================================TC 34","FailAndReview");
             noBrowserWorking.printStackTrace();
         }
         report.writeToFile("=================================", "");
-        failedTestCases.writeToNamedFile("=================================","FailAndReview");
     }
 }
