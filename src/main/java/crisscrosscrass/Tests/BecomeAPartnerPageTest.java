@@ -82,6 +82,11 @@ public class BecomeAPartnerPageTest {
                 WebDriverWait wait = new WebDriverWait(webDriver, 10);
                 try{
                     wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("partnerpage.shops.register.banner.button"))));
+                    //scroll to button
+                    Point hoverItem = webDriver.findElementByXPath(Homepage.getProperty("partnerpage.shops.register.banner.button")).getLocation();
+                    ((JavascriptExecutor)webDriver).executeScript("return window.title;");
+                    ((JavascriptExecutor)webDriver).executeScript("window.scrollBy(0,"+(hoverItem.getY())+");");
+                    //click on button
                     webDriver.findElementByXPath(Homepage.getProperty("partnerpage.shops.register.banner.button")).click();
                     wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("partnerpage.shops.becomePartner.close"))));
                     ChangeCheckBox.adjustStyle(true,"complete",RegisterButton);
@@ -383,6 +388,10 @@ public class BecomeAPartnerPageTest {
                         try {
                             //check if become Partner button
                             wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("partnerpage.tab.help.becomePartner.button"))));
+                            //scroll to button
+                            Point hoverItem = webDriver.findElementByXPath(Homepage.getProperty("partnerpage.tab.help.becomePartner.button")).getLocation();
+                            ((JavascriptExecutor)webDriver).executeScript("return window.title;");
+                            ((JavascriptExecutor)webDriver).executeScript("window.scrollBy(0,"+(hoverItem.getY())+");");
                             //click on become partner button
                             webDriver.findElementByXPath(Homepage.getProperty("partnerpage.tab.help.becomePartner.button")).click();
                             if (webDriver.findElementByXPath(Homepage.getProperty("partnerpage.shops.becomePartner.close")).isDisplayed()){
@@ -395,9 +404,9 @@ public class BecomeAPartnerPageTest {
                             try {
                                 //scroll down to bottom
                                 wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.main.footer.box"))));
-                                Point hoverItem = webDriver.findElement(By.xpath(Homepage.getProperty("page.main.footer.box"))).getLocation();
+                                Point hoverItemButton = webDriver.findElement(By.xpath(Homepage.getProperty("page.main.footer.box"))).getLocation();
                                 ((JavascriptExecutor)webDriver).executeScript("return window.title;");
-                                ((JavascriptExecutor)webDriver).executeScript("window.scrollBy(0,"+(hoverItem.getY())+");");
+                                ((JavascriptExecutor)webDriver).executeScript("window.scrollBy(0,"+(hoverItemButton.getY())+");");
                                 //click on GoToTop
                                 wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.main.totopbutton"))));
                                 webDriver.findElementByXPath(Homepage.getProperty("page.main.totopbutton")).click();
