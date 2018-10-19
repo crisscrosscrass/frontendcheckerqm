@@ -17,7 +17,7 @@ import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 public class PartnershopsXPathElements {
-    final static Logger logger = Logger.getLogger(BrandXPathElements.class);
+    final static Logger logger = Logger.getLogger(PartnershopsXPathElements.class);
     private static ChromeDriver driver;
     private static Properties Homepage;
     private static String countrieSelection = "DE";

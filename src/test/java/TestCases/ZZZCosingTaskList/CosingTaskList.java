@@ -19,7 +19,7 @@ import java.util.concurrent.TimeUnit;
 
 public class CosingTaskList {
 
-    final static Logger logger = Logger.getLogger(HomepageXPathElements.class);
+    final static Logger logger = Logger.getLogger(CosingTaskList.class);
     private static ChromeDriver driver;
     private static Properties Homepage;
     private static String countrieSelection = "FR";

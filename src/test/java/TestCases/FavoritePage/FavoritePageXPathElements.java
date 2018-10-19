@@ -1,12 +1,11 @@
-package TestCases.BecomePartnerPage;
+package TestCases.FavoritePage;
 
 import TestCases.BrandPage.BrandXPathElements;
 import crisscrosscrass.countries;
+import org.apache.http.util.Asserts;
 import org.apache.log4j.Logger;
-import org.junit.AfterClass;
-import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.*;
+import org.junit.runners.MethodSorters;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -16,11 +15,12 @@ import java.io.InputStream;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
-public class BecomePartnerXPathElements {
-    final static Logger logger = Logger.getLogger(BecomePartnerXPathElements.class);
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
+public class FavoritePageXPathElements {
+    final static Logger logger = Logger.getLogger(FavoritePageXPathElements.class);
     private static ChromeDriver driver;
     private static Properties Homepage;
-    private static String countrieSelection = "FR";
+    private static String countrieSelection = "AT";
     private static String locator;
     WebElement element;
 
@@ -44,10 +44,10 @@ public class BecomePartnerXPathElements {
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     }
     @Test
-    public void checkBecomePartnerPageTabStartH3(){
-        locator = "partnerpage.info.h3";
+    public void check1ToMainAccountButton(){
+        locator = "page.main.myaccount";
         logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
-        driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationBecomePartnerPageURL()));
+        driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationMainPage()));
         try{
             element = driver.findElement (By.xpath(Homepage.getProperty(locator)));
         }catch (Exception xpathNotFound){
@@ -57,12 +57,11 @@ public class BecomePartnerXPathElements {
         Assert.assertNotNull(element);
     }
     @Test
-    public void checkBecomePartnerPageTabHelpH3(){
-        locator = "partnerpage.help.h3";
+    public void check2ToLogin(){
+        locator = "page.myaccount.button.toLogin";
         logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
-        driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationBecomePartnerPageURL()));
-        //click on Tab Help
-        driver.findElementByXPath(Homepage.getProperty("partnerpage.tab.help")).click();
+        driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationMainPage()));
+        driver.findElementByXPath(Homepage.getProperty("page.main.myaccount")).click();
         try{
             element = driver.findElement (By.xpath(Homepage.getProperty(locator)));
         }catch (Exception xpathNotFound){
@@ -72,12 +71,12 @@ public class BecomePartnerXPathElements {
         Assert.assertNotNull(element);
     }
     @Test
-    public void checkBecomePartnerPageTabPartnerH3(){
-        locator = "partnerpage.partner.h3";
+    public void check3ToRegister(){
+        locator = "page.myaccount.button.toRegister";
         logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
-        driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationBecomePartnerPageURL()));
-        //click on Tab Partner
-        driver.findElementByXPath(Homepage.getProperty("partnerpage.tab.partner")).click();
+        driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationMainPage()));
+        driver.findElementByXPath(Homepage.getProperty("page.main.myaccount")).click();
+        driver.findElementByXPath(Homepage.getProperty("page.myaccount.button.toLogin")).click();
         try{
             element = driver.findElement (By.xpath(Homepage.getProperty(locator)));
         }catch (Exception xpathNotFound){
@@ -87,43 +86,20 @@ public class BecomePartnerXPathElements {
         Assert.assertNotNull(element);
     }
     @Test
-    public void checkBecomePartnerPageBecomePartnerButton(){
-        locator = "partnerpage.shops.register.banner.button";
+    public void check4EnterCredentials(){
+        locator = "page.myaccount.emailInput";
         logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
-        driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationBecomePartnerPageURL()));
+        driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationMainPage()));
+        driver.findElementByXPath(Homepage.getProperty("page.main.myaccount")).click();
+        driver.findElementByXPath(Homepage.getProperty("page.myaccount.button.toLogin")).click();
         try{
             element = driver.findElement (By.xpath(Homepage.getProperty(locator)));
+            element.sendKeys("tester@visual-meta.com");
         }catch (Exception xpathNotFound){
             logger.error("Couldn't find "+locator+" \n" +
                     Homepage.get(locator)+" | might be outdated");
         }
-        Assert.assertNotNull(element);
-    }
-    @Test
-    public void checkBecomePartnerTabHelpBecomePartnerButton(){
-        locator = "partnerpage.tab.help.becomePartner.button";
-        logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
-        driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationBecomePartnerPageURL()));
-        try{
-            element = driver.findElement (By.xpath(Homepage.getProperty(locator)));
-        }catch (Exception xpathNotFound){
-            logger.error("Couldn't find "+locator+" \n" +
-                    Homepage.get(locator)+" | might be outdated");
-        }
-        Assert.assertNotNull(element);
-    }
-    @Test
-    public void checkBecomePartnerTabPartnerBecomePartnerButton(){
-        locator = "partnerpage.tab.partner.becomePartner.button";
-        logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
-        driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationBecomePartnerPageURL()));
-        try{
-            element = driver.findElement (By.xpath(Homepage.getProperty(locator)));
-        }catch (Exception xpathNotFound){
-            logger.error("Couldn't find "+locator+" \n" +
-                    Homepage.get(locator)+" | might be outdated");
-        }
-        Assert.assertNotNull(element);
+        Assert.assertTrue(element.getAttribute("value").equals("tester@visual-meta.com"));
     }
     @AfterClass
     public static void closeBrowser(){
