@@ -18,7 +18,7 @@ public class FavoritePageXPathElements {
     final static Logger logger = Logger.getLogger(FavoritePageXPathElements.class);
     private static ChromeDriver driver;
     private static Properties Homepage;
-    private static String countrieSelection = "AT";
+    private static String countrieSelection = "FR";
     private static String locator;
     WebElement element;
 
