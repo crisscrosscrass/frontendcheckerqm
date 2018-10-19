@@ -87,7 +87,7 @@ public class BecomePartnerXPathElements {
         Assert.assertNotNull(element);
     }
     @Test
-    public void checkBecomePartnerPageBecomePartnerButton(){
+    public void checkBecomePartnerPageTabStartBecomePartnerButton(){
         locator = "partnerpage.shops.register.banner.button";
         logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
         driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationBecomePartnerPageURL()));
@@ -100,7 +100,7 @@ public class BecomePartnerXPathElements {
         Assert.assertNotNull(element);
     }
     @Test
-    public void checkBecomePartnerTabHelpBecomePartnerButton(){
+    public void checkBecomePartnerPageTabHelpBecomePartnerButton(){
         locator = "partnerpage.tab.help.becomePartner.button";
         logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
         driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationBecomePartnerPageURL()));

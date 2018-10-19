@@ -1,8 +1,6 @@
 package TestCases.FavoritePage;
 
-import TestCases.BrandPage.BrandXPathElements;
 import crisscrosscrass.countries;
-import org.apache.http.util.Asserts;
 import org.apache.log4j.Logger;
 import org.junit.*;
 import org.junit.runners.MethodSorters;
