@@ -99,7 +99,7 @@ public class FavoritePageXPathElements {
             logger.error("Couldn't find "+locator+" \n" +
                     Homepage.get(locator)+" | might be outdated");
         }
-        Assert.assertTrue(element.getAttribute("value").equals("tester@visual-meta.com"));
+        Assert.assertEquals("tester@visual-meta.com", element.getAttribute("value"));
     }
     @AfterClass
     public static void closeBrowser(){
