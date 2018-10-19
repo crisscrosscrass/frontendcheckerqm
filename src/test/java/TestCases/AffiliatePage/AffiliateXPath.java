@@ -20,7 +20,7 @@ import java.util.concurrent.TimeUnit;
 
 
 public class AffiliateXPath {
-        final static Logger logger = Logger.getLogger(BrandXPathElements.class);
+        final static Logger logger = Logger.getLogger(AffiliateXPath.class);
         private static ChromeDriver driver;
         private static Properties Homepage;
         private static String countrieSelection = "DE";

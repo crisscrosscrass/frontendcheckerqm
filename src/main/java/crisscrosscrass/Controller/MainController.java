@@ -621,13 +621,13 @@ public class MainController implements Serializable{
                             tabPane.getSelectionModel().select(tabPartnerShopPage);
                             settingManager.updateResultBoxes(settingPartnerShopPage,"progress",resultBoxPartnershopPage,BoxPartnershopPageResult);
                             PartnerShopsPageTest partnerShopsPageTest = new PartnerShopsPageTest();
-                            partnerShopsPageTest.checkingGoToTopButton(webDriver,report,js,partnershopsPageController.GoToTopButton,statusInfo,inputPartnerShopPageURL, Homepage);
-                            partnerShopsPageTest.checkingBecomePartnerPopUp(webDriver,report,js,partnershopsPageController.BecomePartnerPopUp,statusInfo,inputPartnerShopPageURL, Homepage);
-                            partnerShopsPageTest.checkingSortingReviews(webDriver,report,js,partnershopsPageController.SortingReviews,statusInfo,inputPartnerShopPageURL, Homepage);
-                            partnerShopsPageTest.checkingShopLinkName(webDriver,report,js,partnershopsPageController.ShopLinkName,statusInfo,inputPartnerShopPageURL, Homepage);
+                            //partnerShopsPageTest.checkingGoToTopButton(webDriver,report,js,partnershopsPageController.GoToTopButton,statusInfo,inputPartnerShopPageURL, Homepage);
+                            //partnerShopsPageTest.checkingBecomePartnerPopUp(webDriver,report,js,partnershopsPageController.BecomePartnerPopUp,statusInfo,inputPartnerShopPageURL, Homepage);
+                            //partnerShopsPageTest.checkingSortingReviews(webDriver,report,js,partnershopsPageController.SortingReviews,statusInfo,inputPartnerShopPageURL, Homepage);
+                            //partnerShopsPageTest.checkingShopLinkName(webDriver,report,js,partnershopsPageController.ShopLinkName,statusInfo,inputPartnerShopPageURL, Homepage);
                             partnerShopsPageTest.checkingShopLinkLogo(webDriver,report,js,partnershopsPageController.ShopLinkLogo,statusInfo,inputPartnerShopPageURL, Homepage);
-                            partnerShopsPageTest.checkingShopReview(webDriver,report,js,partnershopsPageController.ShopLinkReview,statusInfo,inputPartnerShopPageURL, Homepage);
-                            partnerShopsPageTest.checkingShopSearchBox(webDriver,report,js,partnershopsPageController.ShopSearchBox,statusInfo,inputPartnerShopPageURL,inputPartnerShopSearch,Homepage);
+                            //partnerShopsPageTest.checkingShopReview(webDriver,report,js,partnershopsPageController.ShopLinkReview,statusInfo,inputPartnerShopPageURL, Homepage);
+                            //partnerShopsPageTest.checkingShopSearchBox(webDriver,report,js,partnershopsPageController.ShopSearchBox,statusInfo,inputPartnerShopPageURL,inputPartnerShopSearch,Homepage);
                         }catch (Exception noPartnerShopPageWorking){
                             noPartnerShopPageWorking.printStackTrace();
                         }

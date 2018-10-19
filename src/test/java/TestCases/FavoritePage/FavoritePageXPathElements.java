@@ -114,11 +114,12 @@ public class FavoritePageXPathElements {
         Assert.assertNotNull(element);
     }
     @Test
-    public void checkLogInButton(){
+    public void check5LogInButton(){
         locator = "page.myaccount.login.button";
         logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
         driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationMainPage()));
         driver.findElementByXPath(Homepage.getProperty("page.main.myaccount")).click();
+        driver.findElementByXPath(Homepage.getProperty("page.myaccount.button.toLogin")).click();
         try{
             element = driver.findElement (By.xpath(Homepage.getProperty(locator)));
         }catch (Exception xpathNotFound){
