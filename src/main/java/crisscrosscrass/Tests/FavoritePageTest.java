@@ -89,6 +89,7 @@ public class FavoritePageTest {
                     }else {
                         report.writeToFile("Create List: ", "Couldn't create a list called \""+testPatternList1+"\"");
                         failedTestCases.writeToNamedFile("Please check: ", "Couldn't create a list called \""+testPatternList1+"\" on Favorite Page", "FailAndReview");
+                        failedTestCases.writeToNamedFile("=================================TC 32.1","FailAndReview");
                     }
 
 
@@ -103,6 +104,7 @@ public class FavoritePageTest {
                         if (!isSuccessful){
                             report.writeToFile(infoMessage, "Couldn't delete List \""+testPatternList1+"\" created from Previous Test ");
                             failedTestCases.writeToNamedFile(infoMessage, "Please check: Couldn't delete List \""+testPatternList1+"\" created from Previous Test ", "FailAndReview");
+                            failedTestCases.writeToNamedFile("=================================TC 32.2","FailAndReview");
                         }else {
                             wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.myaccount.editListIcon"))));
                             MyPersonalList = webDriver.findElementsByXPath(Homepage.getProperty("page.myaccount.editListIcon"));
@@ -134,6 +136,7 @@ public class FavoritePageTest {
                         }else {
                             report.writeToFile("Delete List :", "Couldn't delete \""+testPatternList1+"\" from List, because Pattern still in List");
                             failedTestCases.writeToNamedFile("Please check :", "Couldn't delete \""+testPatternList1+"\" from List on Favorite Page, because Pattern still in List", "FailAndReview");
+                            failedTestCases.writeToNamedFile("=================================TC 32.2","FailAndReview");
                         }
 
 
@@ -147,6 +150,7 @@ public class FavoritePageTest {
                             if (!isSuccessful){
                                 report.writeToFile(infoMessage, "Couldn't rename List \""+testPatternList1+"\" created from Previous Tests ");
                                 failedTestCases.writeToNamedFile(infoMessage, "Please check: Couldn't rename List \""+testPatternList1+"\" created from Previous Tests ", "FailAndReview");
+                                failedTestCases.writeToNamedFile("=================================TC 32.3","FailAndReview");
                             }else {
 
                                 wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.myaccount.createNewList"))));
@@ -195,6 +199,7 @@ public class FavoritePageTest {
                                 }else {
                                     report.writeToFile(infoMessage, "Couldn't rename \""+testPatternList1+"\" from List, because new Name not exist in List");
                                     failedTestCases.writeToNamedFile(infoMessage, "Please check: Couldn't rename \""+testPatternList1+"\" created from Previous Tests ", "FailAndReview");
+                                    failedTestCases.writeToNamedFile("=================================TC 32.3","FailAndReview");
                                 }
 
 
@@ -208,6 +213,7 @@ public class FavoritePageTest {
                                     if (!isSuccessful){
                                         report.writeToFile(infoMessage, "Couldn't GoTo List \""+testPatternList1+"\" created from Previous Tests ");
                                         failedTestCases.writeToNamedFile(infoMessage, "Please check: Couldn't navigate to List \""+testPatternList1+"\" created from Previous Tests ", "FailAndReview");
+                                        failedTestCases.writeToNamedFile("=================================TC 32.4","FailAndReview");
                                     }else {
                                         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.myaccount.createNewList"))));
                                         webDriver.findElementByXPath(Homepage.getProperty("page.myaccount.createNewList")).click();
@@ -238,6 +244,7 @@ public class FavoritePageTest {
                                         }else {
                                             report.writeToFile(infoMessage, "Please check: Couldn't create and select \""+testPatternList1+"\" successfully from List.");
                                             failedTestCases.writeToNamedFile(infoMessage, "Please check: Couldn't create and select \""+testPatternList1+"\" successfully from List.",  "FailAndReview");
+                                            failedTestCases.writeToNamedFile("=================================TC 32","FailAndReview");
                                             ChangeCheckBox.adjustStyle(true,"nope",PersonalList);
                                         }
                                     }
@@ -246,6 +253,7 @@ public class FavoritePageTest {
                                     webDriver.navigate().to(inputSearch.getText().trim());
                                     report.writeToFile(infoMessage, "Couldn't detect List for GoTo selected List");
                                     failedTestCases.writeToNamedFile(infoMessage, "Please check: Couldn't detect List for testing",  "FailAndReview");
+                                    failedTestCases.writeToNamedFile("=================================TC 32","FailAndReview");
                                     noGoToList.printStackTrace();
                                 }
 
@@ -255,6 +263,7 @@ public class FavoritePageTest {
                             webDriver.navigate().to(inputSearch.getText().trim());
                             report.writeToFile(infoMessage, "Couldn't detect edit Icon for Personal List");
                             failedTestCases.writeToNamedFile(infoMessage, "Please check: Couldn't successfully test list renaming functions",  "FailAndReview");
+                            failedTestCases.writeToNamedFile("=================================TC 32","FailAndReview");
                             noRename.printStackTrace();
                         }
 
@@ -264,6 +273,7 @@ public class FavoritePageTest {
                         webDriver.navigate().to(inputSearch.getText().trim());
                         report.writeToFile(infoMessage, "Couldn't detect edit Icon for Personal List");
                         failedTestCases.writeToNamedFile(infoMessage, "Please check. Couldn't detect edit Icon for Personal List",  "FailAndReview");
+                        failedTestCases.writeToNamedFile("=================================TC 32","FailAndReview");
                         noEditList.printStackTrace();
                     }
 
@@ -272,6 +282,7 @@ public class FavoritePageTest {
                     webDriver.navigate().to(inputSearch.getText().trim());
                     report.writeToFile(infoMessage, "Couldn't detect menu items for Personal List");
                     failedTestCases.writeToNamedFile(infoMessage, "Please check. Couldn't detect menu items for Personal List",  "FailAndReview");
+                    failedTestCases.writeToNamedFile("=================================TC 32","FailAndReview");
                     accountPageIssue.printStackTrace();
                 }
             }catch (Exception noRequestedSiteFound){
@@ -279,17 +290,18 @@ public class FavoritePageTest {
                 webDriver.navigate().to(inputSearch.getText().trim());
                 report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
                 failedTestCases.writeToNamedFile(infoMessage, "Please check: Couldn't navigate to Favorite Page!",  "FailAndReview");
+                failedTestCases.writeToNamedFile("=================================TC 32","FailAndReview");
                 noRequestedSiteFound.printStackTrace();
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",PersonalList);
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
             failedTestCases.writeToNamedFile(infoMessage, "Please check Favorite Page: Browser not responding!",  "FailAndReview");
+            failedTestCases.writeToNamedFile("=================================TC 32","FailAndReview");
             noBrowserWorking.printStackTrace();
         }
 
         report.writeToFile("=================================", "");
-        failedTestCases.writeToNamedFile("=================================","FailAndReview");
 
     }
 

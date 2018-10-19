@@ -310,7 +310,7 @@ public class PartnerShopsPageTest {
                     String LogoURLFromSelectedItem = AllShopLogoLinksWithoutPlaceholder.get(randomSelectedNumber).getAttribute("src");
                     AllShopLogoLinksWithoutPlaceholder.get(randomSelectedNumber).click();
                     wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.grid.shop.image"))));
-                    if (webDriver.findElementByXPath(Homepage.getProperty("page.grid.shop.image")).getAttribute("src").toLowerCase().trim().equals(LogoURLFromSelectedItem.toLowerCase().trim())){
+                    if (webDriver.findElementByXPath(Homepage.getProperty("page.grid.shop.image")).getAttribute("src").toLowerCase().trim().contains(LogoURLFromSelectedItem.toLowerCase().trim().replaceAll("(.*)(\\/)(?=.[a-z]{3})",""))){
                         ChangeCheckBox.adjustStyle(true,"complete",ShopLinkLogo);
                         report.writeToFile(infoMessage, "Successful! Logo URL in HP and logo URL on upper left side of redirected page are the same");
                     }else {
