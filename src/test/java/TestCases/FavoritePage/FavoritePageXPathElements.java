@@ -100,34 +100,6 @@ public class FavoritePageXPathElements {
         Assert.assertNotNull(element);
     }
     @Test
-    public void checkPasswordInput(){
-        locator = "page.myaccount.passwordInput";
-        logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
-        driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationMainPage()));
-        driver.findElementByXPath(Homepage.getProperty("page.main.myaccount")).click();
-        try{
-            element = driver.findElement (By.xpath(Homepage.getProperty(locator)));
-        }catch (Exception xpathNotFound){
-            logger.error("Couldn't find "+locator+" \n" +
-                    Homepage.get(locator)+" | might be outdated");
-        }
-        Assert.assertNotNull(element);
-    }
-    @Test
-    public void checkLogInButton(){
-        locator = "page.myaccount.login.button";
-        logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
-        driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationMainPage()));
-        driver.findElementByXPath(Homepage.getProperty("page.main.myaccount")).click();
-        try{
-            element = driver.findElement (By.xpath(Homepage.getProperty(locator)));
-        }catch (Exception xpathNotFound){
-            logger.error("Couldn't find "+locator+" \n" +
-                    Homepage.get(locator)+" | might be outdated");
-        }
-        Assert.assertNotNull(element);
-    }
-    @Test
     public void check4EnterCredentials(){
         locator = "page.myaccount.emailInput";
         logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());

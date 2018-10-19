@@ -104,6 +104,7 @@ public class BecomePartnerXPathElements {
         locator = "partnerpage.tab.help.becomePartner.button";
         logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
         driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationBecomePartnerPageURL()));
+        driver.findElementByXPath(Homepage.getProperty("partnerpage.tab.help")).click();
         try{
             element = driver.findElement (By.xpath(Homepage.getProperty(locator)));
         }catch (Exception xpathNotFound){
@@ -117,6 +118,7 @@ public class BecomePartnerXPathElements {
         locator = "partnerpage.tab.partner.becomePartner.button";
         logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
         driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationBecomePartnerPageURL()));
+        driver.findElementByXPath(Homepage.getProperty("partnerpage.tab.partner")).click();
         try{
             element = driver.findElement (By.xpath(Homepage.getProperty(locator)));
         }catch (Exception xpathNotFound){
