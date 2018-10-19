@@ -20,7 +20,7 @@ public class BecomePartnerXPathElements {
     final static Logger logger = Logger.getLogger(BecomePartnerXPathElements.class);
     private static ChromeDriver driver;
     private static Properties Homepage;
-    private static String countrieSelection = "FR";
+    private static String countrieSelection = "AT";
     private static String locator;
     WebElement element;
 
@@ -87,7 +87,7 @@ public class BecomePartnerXPathElements {
         Assert.assertNotNull(element);
     }
     @Test
-    public void checkBecomePartnerPageBecomePartnerButton(){
+    public void checkBecomePartnerPageTabStartBecomePartnerButton(){
         locator = "partnerpage.shops.register.banner.button";
         logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
         driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationBecomePartnerPageURL()));
@@ -100,10 +100,11 @@ public class BecomePartnerXPathElements {
         Assert.assertNotNull(element);
     }
     @Test
-    public void checkBecomePartnerTabHelpBecomePartnerButton(){
+    public void checkBecomePartnerPageTabHelpBecomePartnerButton(){
         locator = "partnerpage.tab.help.becomePartner.button";
         logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
         driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationBecomePartnerPageURL()));
+        driver.findElementByXPath(Homepage.getProperty("partnerpage.tab.help")).click();
         try{
             element = driver.findElement (By.xpath(Homepage.getProperty(locator)));
         }catch (Exception xpathNotFound){
@@ -117,6 +118,7 @@ public class BecomePartnerXPathElements {
         locator = "partnerpage.tab.partner.becomePartner.button";
         logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
         driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationBecomePartnerPageURL()));
+        driver.findElementByXPath(Homepage.getProperty("partnerpage.tab.partner")).click();
         try{
             element = driver.findElement (By.xpath(Homepage.getProperty(locator)));
         }catch (Exception xpathNotFound){

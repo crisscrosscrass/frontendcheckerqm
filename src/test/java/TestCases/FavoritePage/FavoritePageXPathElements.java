@@ -1,8 +1,6 @@
 package TestCases.FavoritePage;
 
-import TestCases.BrandPage.BrandXPathElements;
 import crisscrosscrass.countries;
-import org.apache.http.util.Asserts;
 import org.apache.log4j.Logger;
 import org.junit.*;
 import org.junit.runners.MethodSorters;
@@ -100,6 +98,7 @@ public class FavoritePageXPathElements {
         Assert.assertNotNull(element);
     }
     @Test
+<<<<<<< HEAD
     public void checkPasswordInput(){
         locator = "page.myaccount.passwordInput";
         logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
@@ -129,6 +128,8 @@ public class FavoritePageXPathElements {
         Assert.assertNotNull(element);
     }
     @Test
+=======
+>>>>>>> 637174b7adb2364a1c13d3234cd85ef4a82759c9
     public void check4EnterCredentials(){
         locator = "page.myaccount.emailInput";
         logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
@@ -142,7 +143,7 @@ public class FavoritePageXPathElements {
             logger.error("Couldn't find "+locator+" \n" +
                     Homepage.get(locator)+" | might be outdated");
         }
-        Assert.assertTrue(element.getAttribute("value").equals("tester@visual-meta.com"));
+        Assert.assertEquals("tester@visual-meta.com", element.getAttribute("value"));
     }
     @AfterClass
     public static void closeBrowser(){
