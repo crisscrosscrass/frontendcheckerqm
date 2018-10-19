@@ -98,7 +98,6 @@ public class FavoritePageXPathElements {
         Assert.assertNotNull(element);
     }
     @Test
-<<<<<<< HEAD
     public void checkPasswordInput(){
         locator = "page.myaccount.passwordInput";
         logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
@@ -128,8 +127,6 @@ public class FavoritePageXPathElements {
         Assert.assertNotNull(element);
     }
     @Test
-=======
->>>>>>> 637174b7adb2364a1c13d3234cd85ef4a82759c9
     public void check4EnterCredentials(){
         locator = "page.myaccount.emailInput";
         logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
