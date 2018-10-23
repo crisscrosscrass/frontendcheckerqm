@@ -87,29 +87,32 @@ public class MerchandiseOverviewPageTest {
                             report.writeToFile("GridPage Error Screenshot: ", "Screenshot not successful!");
                             failedTestCases.writeToNamedFile("See MerchandisePageLetterToMerchandise for more information about the error: ", "Screenshot not successful!", "FailAndReview");
                         }
+                        failedTestCases.writeToNamedFile("=================================TC 51","FailAndReview");
                     }
                 }catch (Exception gridPageIssue){
                     ChangeCheckBox.adjustStyle(true,"nope",LettertoMerchandise);
                     webDriver.navigate().to(inputMerchandiseOverviewPageURL.getText().trim());
                     report.writeToFile(infoMessage, "Couldn't detect \"Letters\" to Merchandise");
                     failedTestCases.writeToNamedFile("Please check Merchandise page: Couldn't detect \"Letters\" to Merchandise", "FailAndReview");
+                    failedTestCases.writeToNamedFile("=================================TC 51","FailAndReview");
                     gridPageIssue.printStackTrace();
                 }
             }catch (Exception noRequestedSiteFound){
                 ChangeCheckBox.adjustStyle(true,"nope",LettertoMerchandise);
                 webDriver.navigate().to(inputMerchandiseOverviewPageURL.getText().trim());
                 report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
-                failedTestCases.writeToNamedFile("Please check Merchandise page: Couldn't navigate to requested Site!", "FailAndReview");
+                failedTestCases.writeToNamedFile("Please check Merchandise page: Couldn't navigate to a requested Site!", "FailAndReview");
+                failedTestCases.writeToNamedFile("=================================TC 51","FailAndReview");
                 noRequestedSiteFound.printStackTrace();
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",LettertoMerchandise);
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
-            failedTestCases.writeToNamedFile("Please check Merchandise page: Browser not responding\"", "FailAndReview");
+            failedTestCases.writeToNamedFile("Please check Merchandise page: Browser not responding", "FailAndReview");
+            failedTestCases.writeToNamedFile("=================================TC 51","FailAndReview");
             noBrowserWorking.printStackTrace();
         }
         report.writeToFile("=================================", "");
-        failedTestCases.writeToNamedFile("=================================","FailAndReview");
     }
     public void checkingMerchandiseName(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox MerchandiseName, Text statusInfo, TextField inputMerchandiseOverviewPageURL, Properties Homepage){
         final String infoMessage = MerchandiseName.getText();
@@ -139,28 +142,31 @@ public class MerchandiseOverviewPageTest {
                         ChangeCheckBox.adjustStyle(true,"nope",MerchandiseName);
                         report.writeToFile(infoMessage, "Not successful! Couldn't detect \""+selectedMerchandise+"\" in redirected Page "+webDriver.getCurrentUrl().toLowerCase());
                         failedTestCases.writeToNamedFile(infoMessage, "Please check the following Merchandise: Couldn't detect \""+selectedMerchandise+"\" in redirected Page "+webDriver.getCurrentUrl().toLowerCase(), "FailAndReview");
+                        failedTestCases.writeToNamedFile("=================================TC 52","FailAndReview");
                     }
                 }catch (Exception gridPageIssue){
                     ChangeCheckBox.adjustStyle(true,"nope",MerchandiseName);
                     webDriver.navigate().to(inputMerchandiseOverviewPageURL.getText().trim());
                     report.writeToFile(infoMessage, "Couldn't detect \"Link-Name\" to Merchandise");
                     failedTestCases.writeToNamedFile("Please check Merchandise page: Couldn't detect \"Link-Name\" to Merchandise", "FailAndReview");
+                    failedTestCases.writeToNamedFile("=================================TC 52","FailAndReview");
                     gridPageIssue.printStackTrace();
                 }
             }catch (Exception noRequestedSiteFound){
                 ChangeCheckBox.adjustStyle(true,"nope",MerchandiseName);
                 webDriver.navigate().to(inputMerchandiseOverviewPageURL.getText().trim());
                 failedTestCases.writeToNamedFile("Please check the URL of the merchandise entered: Couldn't navigate to requested Site!", "FailAndReview");
+                failedTestCases.writeToNamedFile("=================================TC 52","FailAndReview");
                 noRequestedSiteFound.printStackTrace();
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",MerchandiseName);
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
             failedTestCases.writeToNamedFile("Please check Merchandise page: Browser not responding\"", "FailAndReview");
+            failedTestCases.writeToNamedFile("=================================TC 52","FailAndReview");
             noBrowserWorking.printStackTrace();
         }
         report.writeToFile("=================================", "");
-        failedTestCases.writeToNamedFile("=================================","FailAndReview");
     }
     public void checkingMerchandiseSearch(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox MerchandiseSearch, Text statusInfo, TextField inputMerchandiseOverviewPageURL,TextField inputMerchandiseSearch, Properties Homepage){
         final String infoMessage = MerchandiseSearch.getText();
@@ -195,26 +201,32 @@ public class MerchandiseOverviewPageTest {
                             AllMerchandiseSuggestions.get(0).click();
                             if (webDriver.getCurrentUrl().toLowerCase().trim().contains(selectedSuggestionMerchandise.toLowerCase().trim()) | webDriver.getTitle().toLowerCase().trim().contains(selectedSuggestionMerchandise.toLowerCase().trim()) ){
                                 report.writeToFile("Click on Suggestion \""+selectedSuggestionMerchandise.trim()+"\": ", "Successful! User is redirected to a page that contains \""+selectedSuggestionMerchandise.trim()+"\" ");
+                                ChangeCheckBox.adjustStyle(true,"complete",MerchandiseSearch);
                             }else{
                                 report.writeToFile("Click on Suggestion \""+selectedSuggestionMerchandise.trim()+"\": ", "Not successful! User is redirected to a page that NOT contains \""+selectedSuggestionMerchandise.trim()+"\" ");
-                                failedTestCases.writeToNamedFile("Please check \""+selectedSuggestionMerchandise.trim()+"\": ", " User is redirected to a page that NOT contains \""+selectedSuggestionMerchandise.trim()+"\" ", "FailAndReview");
+                                ChangeCheckBox.adjustStyle(true,"nope",MerchandiseSearch);
+                                failedTestCases.writeToNamedFile("Please check \""+selectedSuggestionMerchandise.trim()+"\": ", " User is redirected to a page that does NOT contain \""+selectedSuggestionMerchandise.trim()+"\" ", "FailAndReview");
+                                failedTestCases.writeToNamedFile("=================================TC 53","FailAndReview");
                             }
                             report.writeToFile("");
                             webDriver.navigate().to(inputMerchandiseOverviewPageURL.getText().trim());
                         }catch (Exception noSuggestionsFound){
                             report.writeToFile(infoMessage, "Couldn't detect \"Suggestions\" for Merchandise Search \""+AllSearchQueries[i].trim()+"\" ");
+                            ChangeCheckBox.adjustStyle(true,"nope",MerchandiseSearch);
                             failedTestCases.writeToNamedFile(infoMessage, "Please check Merchandise Page: Couldn't detect \"Suggestions\" for Merchandise Search \""+AllSearchQueries[i].trim()+"\" ", "FailAndReview");
+                            failedTestCases.writeToNamedFile("=================================TC 53","FailAndReview");
                             webDriver.navigate().to(inputMerchandiseOverviewPageURL.getText().trim());
                             noSuggestionsFound.printStackTrace();
                         }
                     }
-                    ChangeCheckBox.adjustStyle(true,"complete",MerchandiseSearch);
+                    ChangeCheckBox.adjustStyle(true,"nope",MerchandiseSearch);
                     report.writeToFile(infoMessage, "Complete!");
                 }catch (Exception gridPageIssue){
                     ChangeCheckBox.adjustStyle(true,"nope",MerchandiseSearch);
                     webDriver.navigate().to(inputMerchandiseOverviewPageURL.getText().trim());
                     report.writeToFile(infoMessage, "Couldn't detect \"Search\" Merchandise");
                     failedTestCases.writeToNamedFile("Please check Merchandise page: Couldn't detect \"Search\" Merchandise", "FailAndReview");
+                    failedTestCases.writeToNamedFile("=================================TC 53","FailAndReview");
                     gridPageIssue.printStackTrace();
                 }
             }catch (Exception noRequestedSiteFound){
@@ -222,16 +234,17 @@ public class MerchandiseOverviewPageTest {
                 webDriver.navigate().to(inputMerchandiseOverviewPageURL.getText().trim());
                 report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
                 failedTestCases.writeToNamedFile("Please check Merchandise search box: Couldn't navigate to requested Site!", "FailAndReview");
+                failedTestCases.writeToNamedFile("=================================TC 53","FailAndReview");
                 noRequestedSiteFound.printStackTrace();
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",MerchandiseSearch);
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
-            failedTestCases.writeToNamedFile("Please check Merchandise search box: Browser not responding\"", "FailAndReview");
+            failedTestCases.writeToNamedFile("Please check Merchandise search box: Browser not responding", "FailAndReview");
+            failedTestCases.writeToNamedFile("=================================TC 53","FailAndReview");
             noBrowserWorking.printStackTrace();
         }
         report.writeToFile("=================================", "");
-        failedTestCases.writeToNamedFile("=================================","FailAndReview");
     }
     public void checkingMerchandiseGoToTop(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox GoToTopButton, Text statusInfo, TextField inputMerchandiseOverviewPageURL, Properties Homepage){
         final String infoMessage = GoToTopButton.getText();
@@ -285,12 +298,14 @@ public class MerchandiseOverviewPageTest {
                         ChangeCheckBox.adjustStyle(true,"nope",GoToTopButton);
                         report.writeToFile(infoMessage, "Initial banner (H3) is NOT on user's view");
                         failedTestCases.writeToNamedFile(infoMessage, "Please check: Go to To button seems not to be working in Merchandise Page", "FailAndReview");
+                        failedTestCases.writeToNamedFile("=================================TC 54","FailAndReview");
                     }
                 }catch (Exception gridPageIssue){
                     ChangeCheckBox.adjustStyle(true,"nope",GoToTopButton);
                     webDriver.navigate().to(inputMerchandiseOverviewPageURL.getText().trim());
                     report.writeToFile(infoMessage, "Couldn't detect \"Go To Top-Button\" ");
                     failedTestCases.writeToNamedFile(infoMessage, "Please check: Couldn't detect \"Go To Top-Button\" in Merchandise Page", "FailAndReview");
+                    failedTestCases.writeToNamedFile("=================================TC 54","FailAndReview");
                     gridPageIssue.printStackTrace();
                 }
             }catch (Exception noRequestedSiteFound){
@@ -298,15 +313,16 @@ public class MerchandiseOverviewPageTest {
                 webDriver.navigate().to(inputMerchandiseOverviewPageURL.getText().trim());
                 report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
                 failedTestCases.writeToNamedFile(infoMessage, "Please check: Couldn't navigate to \"Go To Top-Button\" in Merchandise Page", "FailAndReview");
+                failedTestCases.writeToNamedFile("=================================TC 54","FailAndReview");
                 noRequestedSiteFound.printStackTrace();
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",GoToTopButton);
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
-            failedTestCases.writeToNamedFile(infoMessage, "Please check \"Go To Top-Button\" in Merchandise Page: borwser not responding", "FailAndReview");
+            failedTestCases.writeToNamedFile(infoMessage, "Please check \"Go To Top-Button\" in Merchandise Page: browser not responding", "FailAndReview");
+            failedTestCases.writeToNamedFile("=================================TC 54","FailAndReview");
             noBrowserWorking.printStackTrace();
         }
         report.writeToFile("=================================", "");
-        failedTestCases.writeToNamedFile("=================================","FailAndReview");
     }
 }

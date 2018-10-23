@@ -406,7 +406,7 @@ public class GridPageTest {
                             isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"GridPageErrorPagingBackward.png");
                             if (isSuccessful){
                                 report.writeToFile("GridPage Error Screenshot: ", "Screenshot successful!");
-                                failedTestCases.writeToNamedFile("For more information about the Paging Backward error, see GridPageErrorPagingBackward ", "Screenshot successful!", "FailAndReview");                        failedTestCases.writeToNamedFile("=================================TC 11.1","FailAndReview");
+                                failedTestCases.writeToNamedFile("For more information about the Paging Backward error, see GridPageErrorPagingBackward ", "Screenshot successful!", "FailAndReview");
                                 failedTestCases.writeToNamedFile("=================================TC 11.2","FailAndReview");
                             }else {
                                 report.writeToFile("GridPage Error Screenshot: ", "Screenshot not successful!");

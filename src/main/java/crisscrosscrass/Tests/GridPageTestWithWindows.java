@@ -51,20 +51,22 @@ public class GridPageTestWithWindows {
                             report.writeToFile("GridPage Error Screenshot: ", "Screenshot not successful!");
                             failedTestCases.writeToNamedFile("See GridPageErrorPagingWindows for more information about the error","Screenshot not successful!", "FailAndReview");
                         }
+                        failedTestCases.writeToNamedFile("=================================TC 18","FailAndReview");
                     }
                 }catch (Exception gridPageIssue){
                     ChangeCheckBox.adjustStyle(true,"nope",searchBoxInBrandFilter);
-                    isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"GridPageErrorPagingWindows.png");
+                    isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"GridPageErrorPagingWindows2.png");
                     if (isSuccessful){
                         report.writeToFile("GridPage Error Screenshot: ", "Screenshot successful!");
-                        failedTestCases.writeToNamedFile("See GridPageErrorPagingWindows for more information about the error","Screenshot successful!", "FailAndReview");
+                        failedTestCases.writeToNamedFile("See GridPageErrorPagingWindows2 for more information about the error","Screenshot successful!", "FailAndReview");
                     }else {
                         report.writeToFile("GridPage Error Screenshot: ", "Screenshot not successful!");
-                        failedTestCases.writeToNamedFile("See GridPageErrorPagingWindows for more information about the error","Screenshot not successful!", "FailAndReview");
+                        failedTestCases.writeToNamedFile("See GridPageErrorPagingWindows2 for more information about the error","Screenshot not successful!", "FailAndReview");
                     }
                     webDriver.navigate().to(inputSearch.getText().trim());
                     report.writeToFile(infoMessage, "Couldn't find any Windows");
                     failedTestCases.writeToNamedFile(infoMessage, "Please check: could not find any windows on Grid Page with Windows", "FailAndReview");
+                    failedTestCases.writeToNamedFile("=================================TC 18","FailAndReview");
                     gridPageIssue.printStackTrace();
                 }
             }catch (Exception noRequestedSiteFound){
@@ -72,15 +74,16 @@ public class GridPageTestWithWindows {
                 webDriver.navigate().to(inputSearch.getText().trim());
                 report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
                 failedTestCases.writeToNamedFile(infoMessage, "Please check: could not navigate to Grid Page with Windows", "FailAndReview");
+                failedTestCases.writeToNamedFile("=================================TC 18","FailAndReview");
                 noRequestedSiteFound.printStackTrace();
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",searchBoxInBrandFilter);
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
             failedTestCases.writeToNamedFile(infoMessage, "Please check Grid Page with Windows: Browser not responding", "FailAndReview");
+            failedTestCases.writeToNamedFile("=================================TC 18","FailAndReview");
             noBrowserWorking.printStackTrace();
         }
         report.writeToFile("=================================", "");
-        failedTestCases.writeToNamedFile("=================================","FailAndReview");
     }
 }

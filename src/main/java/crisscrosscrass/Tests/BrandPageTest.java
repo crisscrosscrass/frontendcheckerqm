@@ -49,6 +49,7 @@ public class BrandPageTest {
                         webDriver.get(allCollectedLinks.get(i).toString());
                         report.writeToFile("Missing Logos on page " + webDriver.getCurrentUrl() + " :");
                         failedTestCases.writeToNamedFile("Missing Logos on page " + webDriver.getCurrentUrl() + " :", "FailAndReview");
+                        failedTestCases.writeToNamedFile("=================================TC 20","FailAndReview");
 
 
                         if(webDriver.findElements(By.xpath(Homepage.getProperty("brandpage.boxwrapper.top"))).size() > 0){
@@ -57,6 +58,7 @@ public class BrandPageTest {
                             for (WebElement quickMenuItem : boxWrapperTop){
                                 report.writeToFile(quickMenuItem.getText());
                                 failedTestCases.writeToNamedFile(quickMenuItem.getText(), "FailAndReview");
+                                failedTestCases.writeToNamedFile("=================================TC 20","FailAndReview");
                             }
                         }
                         if(webDriver.findElements(By.xpath(Homepage.getProperty("brandpage.boxwrapper.bottom"))).size() > 0){
@@ -65,6 +67,7 @@ public class BrandPageTest {
                             for (WebElement quickMenuItem : boxWrapperBottom){
                                 report.writeToFile(quickMenuItem.getText());
                                 failedTestCases.writeToNamedFile(quickMenuItem.getText(), "FailAndReview");
+                                failedTestCases.writeToNamedFile("=================================TC 20","FailAndReview");
                             }
                         }
                         if(webDriver.findElements(By.xpath(Homepage.getProperty("brandpage.brandbox"))).size() > 0){
@@ -73,6 +76,7 @@ public class BrandPageTest {
                             for (WebElement quickMenuItem : brandboxes){
                                 report.writeToFile(quickMenuItem.getText());
                                 failedTestCases.writeToNamedFile(quickMenuItem.getText(), "FailAndReview");
+                                failedTestCases.writeToNamedFile("=================================TC 20","FailAndReview");
                             }
                         }
                         webDriver.switchTo().window(tabs.get(1)).close();
@@ -93,6 +97,7 @@ public class BrandPageTest {
                     webDriver.navigate().to(inputSearch.getText().trim());
                     report.writeToFile(infoMessage, "Couldn't find any QuickMenu Elements");
                     failedTestCases.writeToNamedFile(infoMessage, "Please check Brand Page: could not find menu element", "FailAndReview");
+                    failedTestCases.writeToNamedFile("=================================TC 20","FailAndReview");
                     gridPageIssue.printStackTrace();
                 }
             }catch (Exception noRequestedSiteFound){
@@ -100,16 +105,17 @@ public class BrandPageTest {
                 webDriver.navigate().to(inputSearch.getText().trim());
                 report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
                 failedTestCases.writeToNamedFile(infoMessage, "Please check Brand Page: could not navigate to requested site", "FailAndReview");
+                failedTestCases.writeToNamedFile("=================================TC 20","FailAndReview");
                 noRequestedSiteFound.printStackTrace();
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",brandsWithoutLogo);
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
             failedTestCases.writeToNamedFile(infoMessage, "Please check Brand Page: browser not responding", "FailAndReview");
+            failedTestCases.writeToNamedFile("=================================TC 20","FailAndReview");
             noBrowserWorking.printStackTrace();
         }
         report.writeToFile("=================================", "");
-        failedTestCases.writeToNamedFile("=================================","FailAndReview");
 
     }
 

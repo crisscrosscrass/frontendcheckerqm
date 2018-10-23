@@ -70,41 +70,46 @@ public class DetailPageTest {
                         ChangeCheckBox.adjustStyle(true,"nope",SwitchTabsInDetailPage);
                         webDriver.navigate().to(inputGridPageURL.getText().trim());
                         report.writeToFile(infoMessage, "Couldn't detect Tabs for Detail Page");
-                        failedTestCases.writeToNamedFile(infoMessage, "Please check: Could not detect tabs for Detail page. For reference, see DetailPage", "FailAndReview");
+                        failedTestCases.writeToNamedFile(infoMessage, "Please check: Couldn't detect tabs for Detail page.", "FailAndReview");
+                        failedTestCases.writeToNamedFile("=================================TC 26","FailAndReview");
                         noTabDetailPage.printStackTrace();
                     }
 
 
                 }catch (Exception gridPageIssue){
                     ChangeCheckBox.adjustStyle(true,"nope",SwitchTabsInDetailPage);
-                    isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver, "DetailPage.png");
+                    isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver, "DetailPageSwitchTabs.png");
                     if (isSuccessful){
                         report.writeToFile("Checking Detail Page Tab Switch: ", "Screenshot successful!");
-                        failedTestCases.writeToNamedFile("Checking Detail Page Tab Switch: ", "Screenshot successful!", "FailAndReview");
+                        failedTestCases.writeToNamedFile("For more information about the Tab Switch error on Deatil page, see DetailPageSwitchTabs: ", "Screenshot successful!", "FailAndReview");
+                        failedTestCases.writeToNamedFile("=================================TC 26","FailAndReview");
                     }else {
                         report.writeToFile("Checking Detail Page Tab Switch: ", "Screenshot not successful!");
-                        failedTestCases.writeToNamedFile("Checking Detail Page Tab Switch: ", "Screenshot not successful!", "FailAndReview");
+                        failedTestCases.writeToNamedFile("For more information about the Tab Switch error on Deatil page, see DetailPageSwitchTabs: ", "Screenshot not successful!", "FailAndReview");
+                        failedTestCases.writeToNamedFile("=================================TC 26","FailAndReview");
                     }
                     webDriver.navigate().to(inputGridPageURL.getText().trim());
                     report.writeToFile(infoMessage, "Couldn't detect item for Detail Page");
-                    failedTestCases.writeToNamedFile(infoMessage, "Please check: Could not detect item for Detail page. ", "FailAndReview");
+                    failedTestCases.writeToNamedFile(infoMessage, "Please check: Couldn't detect Switch Tabs on Detail page. ", "FailAndReview");
+                    failedTestCases.writeToNamedFile("=================================TC 26","FailAndReview");
                     gridPageIssue.printStackTrace();
                 }
             }catch (Exception noRequestedSiteFound){
                 ChangeCheckBox.adjustStyle(true,"nope",SwitchTabsInDetailPage);
                 webDriver.navigate().to(inputGridPageURL.getText().trim());
                 report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
-                failedTestCases.writeToNamedFile(infoMessage, "Please check tabs on Detail page: could not navigate to requested site", "FailAndReview" );
+                failedTestCases.writeToNamedFile(infoMessage, "Please check: Couldnt' navigate to Switch Tabs on Detail Page", "FailAndReview" );
+                failedTestCases.writeToNamedFile("=================================TC 26","FailAndReview");
                 noRequestedSiteFound.printStackTrace();
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",SwitchTabsInDetailPage);
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
             failedTestCases.writeToNamedFile(infoMessage, "Please check detail page: browser not responding", "FailAndReview" );
+            failedTestCases.writeToNamedFile("=================================TC 26","FailAndReview");
             noBrowserWorking.printStackTrace();
         }
         report.writeToFile("=================================", "");
-        failedTestCases.writeToNamedFile("=================================","FailAndReview");
     }
 
     public void checkingSimilarProductClickOut(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox SimilarProductsClickOut, Text statusInfo, TextField inputGridPageURL, Properties Homepage){
@@ -165,7 +170,8 @@ public class DetailPageTest {
                         }else{
                             ChangeCheckBox.adjustStyle(true,"nope",SimilarProductsClickOut);
                             report.writeToFile(infoMessage, "Unable to complete! Shopname from GridPage is not Clickout Item");
-                            failedTestCases.writeToNamedFile(infoMessage, "Please check: unable to perform a clickout from Similar Products box on Detail page", "FailAndReview");
+                            failedTestCases.writeToNamedFile(infoMessage, "Please check: unable to perform a Clickout from Similar Products box on Detail page.", "FailAndReview");
+                            failedTestCases.writeToNamedFile("================================= TC 27","FailAndReview");
                         }
 
                         webDriver.switchTo().window(tabs.get(1)).close();
@@ -177,41 +183,46 @@ public class DetailPageTest {
                         ChangeCheckBox.adjustStyle(true,"nope",SimilarProductsClickOut);
                         webDriver.navigate().to(inputGridPageURL.getText().trim());
                         report.writeToFile(infoMessage, "Couldn't detect Similar Product for Detail Page");
-                        failedTestCases.writeToNamedFile(infoMessage, "Please check: could not detect Similar Products box on Detail page. For reference, see Detailpage", "FailAndReview");
+                        failedTestCases.writeToNamedFile(infoMessage, "Please check: couldn't detect Similar Products box on Detail page.", "FailAndReview");
+                        failedTestCases.writeToNamedFile("================================= TC 27","FailAndReview");
                         noSimilarProduct.printStackTrace();
                     }
 
 
                 }catch (Exception gridPageIssue){
                     ChangeCheckBox.adjustStyle(true,"nope",SimilarProductsClickOut);
-                    isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver, "DetailPage.png");
+                    isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver, "DetailPageSimilarProducts.png");
                     if (isSuccessful){
                         report.writeToFile("Checking Detail Page Similar Product: ", "Screenshot successful!");
-                        failedTestCases.writeToNamedFile("Checking Detail Page Similar Product: ", "Screenshot successful!", "FailAndReview");
+                        failedTestCases.writeToNamedFile("For more information about the Similar Product error on detail page, see DetailPageSimilarProducts: ", "Screenshot successful!", "FailAndReview");
+                        failedTestCases.writeToNamedFile("================================= TC 27","FailAndReview");
                     }else {
                         report.writeToFile("Checking Detail Page Similar Product: ", "Screenshot not successful!");
-                        failedTestCases.writeToNamedFile("Checking Detail Page Similar Product: ", "Screenshot not successful!", "FailAndReview");
+                        failedTestCases.writeToNamedFile("For more information about the Similar Product error on detail page, see DetailPageSimilarProducts ", "Screenshot not successful!", "FailAndReview");
+                        failedTestCases.writeToNamedFile("================================= TC 27","FailAndReview");
                     }
                     webDriver.navigate().to(inputGridPageURL.getText().trim());
                     report.writeToFile(infoMessage, "Couldn't detect item for Detail Page");
-                    failedTestCases.writeToNamedFile(infoMessage, "Please check: could not detect item for Detail page.", "FailAndReview");
+                    failedTestCases.writeToNamedFile(infoMessage, "Please check: couldn't detect item for Detail page.", "FailAndReview");
+                    failedTestCases.writeToNamedFile("================================= TC 27","FailAndReview");
                     gridPageIssue.printStackTrace();
                 }
             }catch (Exception noRequestedSiteFound){
                 ChangeCheckBox.adjustStyle(true,"nope",SimilarProductsClickOut);
                 webDriver.navigate().to(inputGridPageURL.getText().trim());
                 report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
-                failedTestCases.writeToNamedFile(infoMessage, "Please check: could not navigate to clickout link on Detail page.", "FailAndReview");
+                failedTestCases.writeToNamedFile(infoMessage, "Please check: Couldn't navigate to Clickout link on Detail page.", "FailAndReview");
+                failedTestCases.writeToNamedFile("================================= TC 27","FailAndReview");
                 noRequestedSiteFound.printStackTrace();
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",SimilarProductsClickOut);
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
             failedTestCases.writeToNamedFile(infoMessage, "Please check Detail page: browser not responding.", "FailAndReview");
+            failedTestCases.writeToNamedFile("================================= TC 27","FailAndReview");
             noBrowserWorking.printStackTrace();
         }
         report.writeToFile("=================================", "");
-        failedTestCases.writeToNamedFile("=================================","FailAndReview");
     }
     public void checkingPagingForwardBackward(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox PagingForwardBackward, Text statusInfo, TextField inputGridPageURL, Properties Homepage){
         final String infoMessage = PagingForwardBackward.getText();
@@ -257,14 +268,16 @@ public class DetailPageTest {
                             report.writeToFile(infoMessage, "Successful! Found pattern in URL and Previous Page Button appeared!");
                         }else {
                             report.writeToFile(infoMessage, "Not Successful! User is not redirected");
-                            failedTestCases.writeToNamedFile(infoMessage, "Please check: Forward Paging functionality seems to not be working on Detail page. For reference, see DetailPageErrorPagingForward ", "FailAndReview");
+                            failedTestCases.writeToNamedFile(infoMessage, "Please check: Forward Paging functionality seems to not be working on Detail page.", "FailAndReview");
                             isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"DetailPageErrorPagingForward.png");
                             if (isSuccessful){
                                 report.writeToFile("GridPage Error Screenshot: ", "Screenshot successful!");
-                                failedTestCases.writeToNamedFile("GridPage Error Screenshot: ", "Screenshot successful!", "FailAndReview");
+                                failedTestCases.writeToNamedFile("For more information about the Paging- Forward error on Detail page, see  DetailPageErrorPagingForward", "Screenshot successful!", "FailAndReview");
+                                failedTestCases.writeToNamedFile("================================= TC 28.1","FailAndReview");
                             }else {
                                 report.writeToFile("GridPage Error Screenshot: ", "Screenshot not successful!");
-                                failedTestCases.writeToNamedFile("GridPage Error Screenshot: ", "Screenshot not successful!", "FailAndReview");
+                                failedTestCases.writeToNamedFile("For more information about the Paging- Forward error on Detail page, see  DetailPageErrorPagingForward", "Screenshot not successful!", "FailAndReview");
+                                failedTestCases.writeToNamedFile("================================= TC 28.1","FailAndReview");
                             }
                         }
 
@@ -278,14 +291,16 @@ public class DetailPageTest {
                             ChangeCheckBox.adjustStyle(true,"complete",PagingForwardBackward);
                         }else {
                             report.writeToFile(infoMessage, "Not Successful! User is not redirected");
-                            failedTestCases.writeToNamedFile(infoMessage, "Please check: Backward Paging functionality seems to not be working on Detail page. For reference, see DetailPageErrorPagingBackward ", "FailAndReview");
+                            failedTestCases.writeToNamedFile(infoMessage, "Please check: Backward Paging functionality seems to not be working on Detail page.", "FailAndReview");
                             isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"DetailPageErrorPagingBackward.png");
                             if (isSuccessful){
-                                report.writeToFile("GridPage Error Screenshot: ", "Screenshot successful!");
-                                failedTestCases.writeToNamedFile("GridPage Error Screenshot: ", "Screenshot successful!", "FailAndReview");
+                                report.writeToFile("For more information about the Paging- Backward error on Detail page, see  DetailPageErrorPagingBackward", "Screenshot successful!");
+                                failedTestCases.writeToNamedFile("For more information about the Paging- Backward error on Detail page, see  DetailPageErrorPagingBackward ", "Screenshot successful!", "FailAndReview");
+                                failedTestCases.writeToNamedFile("================================= TC 28.2","FailAndReview");
                             }else {
                                 report.writeToFile("GridPage Error Screenshot: ", "Screenshot not successful!");
-                                failedTestCases.writeToNamedFile("GridPage Error Screenshot: ", "Screenshot not successful!", "FailAndReview");
+                                failedTestCases.writeToNamedFile("For more information about the Paging- Backward error on Detail page, see  DetailPageErrorPagingBackward ", "Screenshot not successful!", "FailAndReview");
+                                failedTestCases.writeToNamedFile("================================= TC 28.2","FailAndReview");
                             }
                             ChangeCheckBox.adjustStyle(true,"nope",PagingForwardBackward);
                         }
@@ -299,41 +314,46 @@ public class DetailPageTest {
                         ChangeCheckBox.adjustStyle(true,"nope",PagingForwardBackward);
                         webDriver.navigate().to(inputGridPageURL.getText().trim());
                         report.writeToFile(infoMessage, "Couldn't detect Paging Forward/Backward for Detail Page");
-                        failedTestCases.writeToNamedFile(infoMessage, "Please check: could not detect Paging Forward/Backward for Detail Page. For reference see DetailPage ", "FailAndReview");
+                        failedTestCases.writeToNamedFile(infoMessage, "Please check: could not detect Paging Forward/Backward for Detail Page. ", "FailAndReview");
+                        failedTestCases.writeToNamedFile("================================= TC 28","FailAndReview");
                         noTabDetailPage.printStackTrace();
                     }
 
 
                 }catch (Exception gridPageIssue){
                     ChangeCheckBox.adjustStyle(true,"nope",PagingForwardBackward);
-                    isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver, "DetailPage.png");
+                    isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver, "DetailPagePagingBackwardForward.png");
                     if (isSuccessful){
                         report.writeToFile("Checking Detail Page Paging-Forward/Backward: ", "Screenshot successful!");
-                        failedTestCases.writeToNamedFile("Checking Detail Page Paging-Forward/Backward: ", "Screenshot successful!", "FailAndReview");
+                        failedTestCases.writeToNamedFile("For more information about the Paging- Backward/Forward error on Detail page, see  DetailPagePagingBackwardForward ", "Screenshot successful!", "FailAndReview");
+                        failedTestCases.writeToNamedFile("================================= TC 28.2","FailAndReview");
                     }else {
                         report.writeToFile("Checking Detail Page Paging-Forward/Backward: ", "Screenshot not successful!");
-                        failedTestCases.writeToNamedFile("Checking Detail Page Paging-Forward/Backward: ", "Screenshot not successful!", "FailAndReview");
+                        failedTestCases.writeToNamedFile("For more information about the Paging- Backward/Forward error on Detail page, see  DetailPagePagingBackwardForward", "Screenshot not successful!", "FailAndReview");
+                        failedTestCases.writeToNamedFile("================================= TC 28.2","FailAndReview");
                     }
                     webDriver.navigate().to(inputGridPageURL.getText().trim());
                     report.writeToFile(infoMessage, "Couldn't detect item for Detail Page");
-                    failedTestCases.writeToNamedFile(infoMessage, "Please check: could not detect item for Detail Page.", "FailAndReview");
+                    failedTestCases.writeToNamedFile(infoMessage, "Please check: couldn't detect item for Detail Page.", "FailAndReview");
+                    failedTestCases.writeToNamedFile("================================= TC 28","FailAndReview");
                     gridPageIssue.printStackTrace();
                 }
             }catch (Exception noRequestedSiteFound){
                 ChangeCheckBox.adjustStyle(true,"nope",PagingForwardBackward);
                 webDriver.navigate().to(inputGridPageURL.getText().trim());
                 report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
-                failedTestCases.writeToNamedFile(infoMessage, "Please check: could not navigate to Paging Forward/Backward for Detail Page.", "FailAndReview");
+                failedTestCases.writeToNamedFile(infoMessage, "Please check: couldn't navigate to Paging Forward/Backward for Detail Page.", "FailAndReview");
+                failedTestCases.writeToNamedFile("================================= TC 28","FailAndReview");
                 noRequestedSiteFound.printStackTrace();
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",PagingForwardBackward);
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
             failedTestCases.writeToNamedFile(infoMessage, "Please check Paging functionality on Detail Page: browser not responding", "FailAndReview");
+            failedTestCases.writeToNamedFile("================================= TC 28","FailAndReview");
             noBrowserWorking.printStackTrace();
         }
         report.writeToFile("=================================", "");
-        failedTestCases.writeToNamedFile("=================================","FailAndReview");
     }
     public void checkingJumpToNonExistingPage(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox JumpToNonExistingPage, Text statusInfo, TextField inputGridPageURL, Properties Homepage){
         final String infoMessage = JumpToNonExistingPage.getText();
@@ -383,47 +403,53 @@ public class DetailPageTest {
                         }else {
                             ChangeCheckBox.adjustStyle(true,"nope",JumpToNonExistingPage);
                             report.writeToFile(infoMessage, "Unable to complete! Couldn't detect Keyword from MainMenu in URL");
-                            failedTestCases.writeToNamedFile(infoMessage, "Please check: unable to click on a different category from Detail page. For reference, JumpToNonExistingPage", "FailAndReview");
+                            failedTestCases.writeToNamedFile(infoMessage, "Please check: unable to click on a different category from Detail page.", "FailAndReview");
+                            failedTestCases.writeToNamedFile("================================= TC 29","FailAndReview");
                         }
 
                     }catch (Exception noTabDetailPage){
                         ChangeCheckBox.adjustStyle(true,"nope",JumpToNonExistingPage);
                         webDriver.navigate().to(inputGridPageURL.getText().trim());
                         report.writeToFile(infoMessage, "Couldn't detect Paging Forward/Backward for Detail Page");
-                        failedTestCases.writeToNamedFile(infoMessage, "Please check: unable to click on a different category from Detail page.For reference, JumpToNonExistingPage", "FailAndReview");
+                        failedTestCases.writeToNamedFile(infoMessage, "Please check: unable to click on a different category from Detail page.", "FailAndReview");
+                        failedTestCases.writeToNamedFile("================================= TC 29","FailAndReview");
                         noTabDetailPage.printStackTrace();
                     }
 
 
                 }catch (Exception gridPageIssue){
                     ChangeCheckBox.adjustStyle(true,"nope",JumpToNonExistingPage);
-                    isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver, "DetailPage.png");
+                    isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver, "DetailPageJumpToCategory.png");
                     if (isSuccessful){
                         report.writeToFile(infoMessage, "Screenshot successful!");
-                        failedTestCases.writeToNamedFile(infoMessage, "Screenshot successful!", "FailAndReview");
+                        failedTestCases.writeToNamedFile( "For more information about the Clickout error, see  DetailPageJumpToCategory", "Screenshot not Successful!","FailAndReview");
+                        failedTestCases.writeToNamedFile("================================= TC 29","FailAndReview");
                     }else {
                         report.writeToFile(infoMessage, "Screenshot not successful!");
-                        failedTestCases.writeToNamedFile(infoMessage, "Screenshot not successful!", "FailAndReview");
+                        failedTestCases.writeToNamedFile("For more information about the Clickout error, see  DetailPageJumpToCategory", "Screenshot not Successful!", "FailAndReview");
+                        failedTestCases.writeToNamedFile("================================= TC 29","FailAndReview");
                     }
                     webDriver.navigate().to(inputGridPageURL.getText().trim());
                     report.writeToFile(infoMessage, "Couldn't detect item for Detail Page");
-                    failedTestCases.writeToNamedFile(infoMessage, "Please check: unable to click on a different category from Detail page.For reference, JumpToNonExistingPage", "FailAndReview");
+                    failedTestCases.writeToNamedFile(infoMessage, "Please check: Couldn't detect a different category from Detail page to test Clickout", "FailAndReview");
+                    failedTestCases.writeToNamedFile("================================= TC 29","FailAndReview");
                     gridPageIssue.printStackTrace();
                 }
             }catch (Exception noRequestedSiteFound){
                 ChangeCheckBox.adjustStyle(true,"nope",JumpToNonExistingPage);
                 webDriver.navigate().to(inputGridPageURL.getText().trim());
                 report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
-                failedTestCases.writeToNamedFile(infoMessage, "Please check: unable to click on a different category from Detail page.For reference, JumpToNonExistingPage", "FailAndReview");
+                failedTestCases.writeToNamedFile(infoMessage, "Please check: Couldn't navigate a different category from Detail page.", "FailAndReview");
+                failedTestCases.writeToNamedFile("================================= TC 29","FailAndReview");
                 noRequestedSiteFound.printStackTrace();
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",JumpToNonExistingPage);
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
-            failedTestCases.writeToNamedFile(infoMessage, "Please check: unable to click on a different category from Detail page.For reference, JumpToNonExistingPage", "FailAndReview");
+            failedTestCases.writeToNamedFile(infoMessage, "Please check: unable to click on a different category from Detail page. Browser not responding", "FailAndReview");
+            failedTestCases.writeToNamedFile("================================= TC 29","FailAndReview");
             noBrowserWorking.printStackTrace();
         }
         report.writeToFile("=================================", "");
-        failedTestCases.writeToNamedFile("=================================","FailAndReview");
     }
 }
