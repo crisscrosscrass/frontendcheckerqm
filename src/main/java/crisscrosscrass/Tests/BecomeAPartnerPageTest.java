@@ -510,7 +510,6 @@ public class BecomeAPartnerPageTest {
             noBrowserWorking.printStackTrace();
         }
         report.writeToFile("=================================", "");
-        failedTestCases.writeToNamedFile("=================================TC 46","FailAndReview");
     }
 
     public void checkingDownloadOnHelp(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox DownloadPDFHelp, Text statusInfo, TextField inputBecomeAPartnerPageURL, Properties Homepage){

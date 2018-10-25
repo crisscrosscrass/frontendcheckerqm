@@ -678,11 +678,11 @@ public class GridPageTest {
                         isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"GridPageStyleBoxOpenClose1.png");
                         if (isSuccessful){
                             report.writeToFile("GridPage See More: ", "Screenshot successful!");
-                            failedTestCases.writeToNamedFile("For more information about the Style box functionality error (Cannot open), see GridPageStyleBoxOpenClose1", "See GridPageStyleBoxOpenClose1, Style box should be expanded", "FailAndReview");
+                            failedTestCases.writeToNamedFile("For checking \"See More\" functionality  in style box, see GridPageStyleBoxOpenClose1", "See GridPageStyleBoxOpenClose1, Style box should be expanded", "FailAndReview");
                             failedTestCases.writeToNamedFile("=================================TC 14","FailAndReview");
                         }else {
                             report.writeToFile("GridPage See More: ", "Screenshot not successful!");
-                            failedTestCases.writeToNamedFile("For more information about the Style box functionality error (Cannot open), see GridPageStyleBoxOpenClose1", "Screenshot not successful!", "FailAndReview");
+                            failedTestCases.writeToNamedFile("For checking \"See More\" functionality  in style box, see GridPageStyleBoxOpenClose1", "Screenshot not successful!", "FailAndReview");
                             failedTestCases.writeToNamedFile("=================================TC 14","FailAndReview");
                         }
                         webDriver.findElementByXPath(Homepage.getProperty("page.sidebar.showLessTags.button")).click();
@@ -697,11 +697,11 @@ public class GridPageTest {
                         isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"GridPageStyleBoxOpenClose2.png");
                         if (isSuccessful){
                             report.writeToFile("GridPage See Less: ", "Screenshot successful!");
-                            failedTestCases.writeToNamedFile("For more information about the Style box functionality error (Cannot Close), see GridPageStyleBoxOpenClose2", "See GridPageStyleBoxOpenClose2, Style box should not be expanded", "FailAndReview");
+                            failedTestCases.writeToNamedFile("For checking \"See Less\" functionality  in style box, see GridPageStyleBoxOpenClose2", "See GridPageStyleBoxOpenClose2, Style box should not be expanded", "FailAndReview");
                             failedTestCases.writeToNamedFile("=================================TC 14","FailAndReview");
                         }else {
                             report.writeToFile("GridPage See Less: ", "Screenshot not successful!");
-                            failedTestCases.writeToNamedFile("For more information about the Style box functionality error (Cannot Close), see GridPageStyleBoxOpenClose2", "Screenshot not successful!", "FailAndReview");
+                            failedTestCases.writeToNamedFile("For checking \"See Less\" functionality  in style box, see GridPageStyleBoxOpenClose2", "Screenshot not successful!", "FailAndReview");
                             failedTestCases.writeToNamedFile("=================================TC 14","FailAndReview");
                         }
                         ChangeCheckBox.adjustStyle(true,"complete",styleBoxOpenClose);
