@@ -113,6 +113,24 @@ public class BecomePartnerXPathElements {
         }
         Assert.assertNotNull(element);
     }
+
+    @Test
+    public void checkBecomePartnerPageTabHelpBecomePartnerClose(){
+        locator = "partnerpage.shops.becomePartner.close";
+        logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
+        driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationBecomePartnerPageURL()));
+        driver.findElementByXPath(Homepage.getProperty("partnerpage.tab.help")).click();
+        driver.findElementByXPath(Homepage.getProperty("partnerpage.tab.help.becomePartner.button")).click();
+        try{
+            element = driver.findElement (By.xpath(Homepage.getProperty(locator)));
+        }catch (Exception xpathNotFound){
+            logger.error("Couldn't find "+locator+" \n" +
+                    Homepage.get(locator)+" | might be outdated");
+        }
+        Assert.assertNotNull(element);
+    }
+
+
     @Test
     public void checkBecomePartnerTabPartnerBecomePartnerButton(){
         locator = "partnerpage.tab.partner.becomePartner.button";
