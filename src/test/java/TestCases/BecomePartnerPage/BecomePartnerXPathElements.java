@@ -249,7 +249,7 @@ public class BecomePartnerXPathElements {
         }
         Assert.assertNotNull(element);
     }
-
+//for commit
     @AfterClass
     public static void closeBrowser(){
         try {
