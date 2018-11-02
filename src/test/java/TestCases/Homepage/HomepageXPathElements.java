@@ -169,6 +169,7 @@ public class HomepageXPathElements {
         }
         Assert.assertNotNull(element);
     }
+
     @Test
     public void checkNewsletterIcon(){
         locator = "page.main.newsletter.icon";
@@ -381,6 +382,25 @@ public class HomepageXPathElements {
         }
         Assert.assertNotNull(element);
     }
+
+    @Test
+    public void checkMainFooterBox(){
+        locator = "page.main.footer.box";
+        logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
+        driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationMainPage()));
+        //scoll down
+        Point hoverItem = driver.findElementByXPath(Homepage.getProperty("page.main.footer.box")).getLocation();
+        ((JavascriptExecutor)driver).executeScript("return window.title;");
+        ((JavascriptExecutor)driver).executeScript("window.scrollBy(0,"+(hoverItem.getY())+");");
+        try{
+            element = driver.findElement (By.xpath(Homepage.getProperty(locator)));
+        }catch (Exception xpathNotFound){
+            logger.error("Couldn't find "+locator+" \n" +
+                    Homepage.get(locator)+" | might be outdated");
+        }
+        Assert.assertNotNull(element);
+    }
+
     @Test
     public void checkImprintCostumerButton(){
         locator = "imprintpage.costumer.button";

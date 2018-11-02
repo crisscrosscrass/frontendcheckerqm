@@ -1,7 +1,5 @@
 package TestCases.ImageGroupingPage;
 
-import TestCases.Homepage.HomepageXPathElements;
-import crisscrosscrass.Tests.HomepageTest;
 import crisscrosscrass.countries;
 import org.apache.log4j.Logger;
 import org.junit.AfterClass;
@@ -18,7 +16,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.InputStream;
-import java.util.List;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
@@ -72,6 +69,107 @@ public class ImageGroupingXPathElements {final static Logger logger = Logger.get
         }
         Assert.assertNotNull(element);
     }
+
+    @Test
+    public void checkImageGroupingMainShop(){
+        locator = "imagegrouping.page.toshop.main";
+        logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
+        driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationMainPage()));
+        driver.findElementByXPath(Homepage.getProperty("page.main.links")).click();
+        //test if Window is there
+        try{
+            if(driver.findElements(By.xpath(Homepage.getProperty("page.grid.windows"))).size() > 0){
+                driver.findElementByXPath(Homepage.getProperty("page.grid.windows.continue")).click();
+                WebDriverWait wait = new WebDriverWait(driver, 5);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Homepage.getProperty("page.grid.windows.continue"))));
+            }
+        }catch (Exception error){
+            logger.error("There was an error on Window Page");
+        }
+        try{
+            //scroll down to element in order to get them
+
+            driver.findElementByXPath(Homepage.getProperty("page.items.grouping")).click();
+            try{
+                element = driver.findElement (By.xpath(Homepage.getProperty(locator)));
+            }catch (Exception xpathNotFound){
+                logger.error("Couldn't find "+locator+" \n" +
+                        Homepage.get(locator)+" | might be outdated");
+            }
+        }catch (Exception xpathNotFound){
+            logger.error("Couldn't find "+locator+" \n" +
+                    Homepage.get(locator)+" | might be outdated or not available");
+        }
+        Assert.assertNotNull(element);
+    }
+
+    @Test
+    public void checkImageGroupingShopVariant(){
+        locator = "imagegrouping.page.toshop.variant";
+        logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
+        driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationMainPage()));
+        driver.findElementByXPath(Homepage.getProperty("page.main.links")).click();
+        //test if Window is there
+        try{
+            if(driver.findElements(By.xpath(Homepage.getProperty("page.grid.windows"))).size() > 0){
+                driver.findElementByXPath(Homepage.getProperty("page.grid.windows.continue")).click();
+                WebDriverWait wait = new WebDriverWait(driver, 5);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Homepage.getProperty("page.grid.windows.continue"))));
+            }
+        }catch (Exception error){
+            logger.error("There was an error on Window Page");
+        }
+        try{
+            //scroll down to element in order to get them
+
+            driver.findElementByXPath(Homepage.getProperty("page.items.grouping")).click();
+            try{
+                element = driver.findElement (By.xpath(Homepage.getProperty(locator)));
+            }catch (Exception xpathNotFound){
+                logger.error("Couldn't find "+locator+" \n" +
+                        Homepage.get(locator)+" | might be outdated");
+            }
+        }catch (Exception xpathNotFound){
+            logger.error("Couldn't find "+locator+" \n" +
+                    Homepage.get(locator)+" | might be outdated or not available");
+        }
+        Assert.assertNotNull(element);
+    }
+
+    @Test
+    public void checkImageGroupingIconVariant(){
+        locator = "imagegrouping.page.infoicon.variant";
+        logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
+        driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationMainPage()));
+        driver.findElementByXPath(Homepage.getProperty("page.main.links")).click();
+        //test if Window is there
+        try{
+            if(driver.findElements(By.xpath(Homepage.getProperty("page.grid.windows"))).size() > 0){
+                driver.findElementByXPath(Homepage.getProperty("page.grid.windows.continue")).click();
+                WebDriverWait wait = new WebDriverWait(driver, 5);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Homepage.getProperty("page.grid.windows.continue"))));
+            }
+        }catch (Exception error){
+            logger.error("There was an error on Window Page");
+        }
+        try{
+            //scroll down to element in order to get them
+
+            driver.findElementByXPath(Homepage.getProperty("page.items.grouping")).click();
+            try{
+                element = driver.findElement (By.xpath(Homepage.getProperty(locator)));
+            }catch (Exception xpathNotFound){
+                logger.error("Couldn't find "+locator+" \n" +
+                        Homepage.get(locator)+" | might be outdated");
+            }
+        }catch (Exception xpathNotFound){
+            logger.error("Couldn't find "+locator+" \n" +
+                    Homepage.get(locator)+" | might be outdated or not available");
+        }
+        Assert.assertNotNull(element);
+    }
+
+
     @AfterClass
     public static void closeBrowser(){
         try {

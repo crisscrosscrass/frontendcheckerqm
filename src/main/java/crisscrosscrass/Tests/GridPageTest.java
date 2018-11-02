@@ -1336,28 +1336,28 @@ public class GridPageTest {
                         isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"GridPageErrorSearchInShopFilter.png");
                         if (isSuccessful){
                             report.writeToFile("GridPage Error Screenshot: ", "Screenshot successful!");
-                            failedTestCases.writeToNamedFile("For more information about the Shop Search error, see GridPageErrorSearchInShopFilter", "No shop filter box found. Please see GridPageErrorSearchInShopFilter. Screenshot successful. ");
+                            failedTestCases.writeToNamedFile("For more information about the Shop Search error, see GridPageErrorSearchInShopFilter", "No shop filter box found. Please see GridPageErrorSearchInShopFilter. Screenshot successful. ", "FailAndReview");
                             failedTestCases.writeToNamedFile("=================================TC 17","FailAndReview");
                         }else {
                             report.writeToFile("GridPage Error Screenshot: ", "Screenshot not successful!");
-                            failedTestCases.writeToNamedFile("For more information about the Shop Search error, see GridPageErrorSearchInShopFilter", "No shop filter box found. Please see GridPageErrorSearchInShopFilter. Screenshot not successful. ");
+                            failedTestCases.writeToNamedFile("For more information about the Shop Search error, see GridPageErrorSearchInShopFilter", "No shop filter box found. Please see GridPageErrorSearchInShopFilter. Screenshot not successful. ", "FailAndReview");
                             failedTestCases.writeToNamedFile("=================================TC 17","FailAndReview");
                         }
                         report.writeToFile("Checking GridPage Search Box in Shop Filter: ", "Couldn't find any Suggestion Box to enter Keyword");
-                        failedTestCases.writeToNamedFile("For more information about the Shop Search error, see GridPageErrorSearchInShopFilter", "No shop filter box found. Screenshot not successful. ");
+                        failedTestCases.writeToNamedFile("For more information about the Shop Search error, see GridPageErrorSearchInShopFilter", "Couldn't find any Suggestion Box to enter Keyword ", "FailAndReview");
                         failedTestCases.writeToNamedFile("=================================TC 17","FailAndReview");
                         noStyleBoxOpenCloseFound.printStackTrace();
                     }
                 }catch (Exception gridPageIssue){
                     ChangeCheckBox.adjustStyle(true,"nope",searchBoxInShopFilter);
-                    isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"GridPageErrorSearchInShopFilter.png");
+                    isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"GridPageErrorSearchInShopFilter2.png");
                     if (isSuccessful){
                         report.writeToFile("GridPage Error Screenshot: ", "Screenshot successful!");
-                        failedTestCases.writeToNamedFile("For more information about the Shop Search error, see GridPageErrorSearchInShopFilter", "Something is not right. Check screenshot for reference GridPageErrorSearchInShopFilter. Screenshot successful. ");
+                        failedTestCases.writeToNamedFile("For more information about the Shop Search error, see GridPageErrorSearchInShopFilter2", "Something is not right. Check screenshot for reference GridPageErrorSearchInShopFilter. Screenshot successful. ", "FailAndReview");
                         failedTestCases.writeToNamedFile("=================================TC 17","FailAndReview");
                     }else {
                         report.writeToFile("GridPage Error Screenshot: ", "Screenshot not successful!");
-                        failedTestCases.writeToNamedFile("For more information about the Shop Search error, see GridPageErrorSearchInShopFilter", "Something is not right. Check screenshot for reference. Screenshot not successful. ");
+                        failedTestCases.writeToNamedFile("For more information about the Shop Search error, see GridPageErrorSearchInShopFilter2", "Something is not right. Check screenshot for reference. Screenshot not successful. ", "FailAndReview");
                         failedTestCases.writeToNamedFile("=================================TC 17","FailAndReview");
                     }
                     webDriver.navigate().to(inputSearch.getText().trim());
