@@ -1,6 +1,5 @@
 package TestCases.BecomePartnerPage;
 
-import TestCases.BrandPage.BrandXPathElements;
 import crisscrosscrass.countries;
 import org.apache.log4j.Logger;
 import org.junit.AfterClass;
@@ -8,6 +7,8 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -249,6 +250,67 @@ public class BecomePartnerXPathElements {
         }
         Assert.assertNotNull(element);
     }
+
+    @Test
+    public void checkBecomePartnerPageCountryFlags(){
+        locator = "partnerpage.info.countryFlags";
+        logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
+        driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationBecomePartnerPageURL()));
+        try{
+            element = driver.findElement (By.xpath(Homepage.getProperty(locator)));
+        }catch (Exception xpathNotFound){
+            logger.error("Couldn't find "+locator+" \n" +
+                    Homepage.get(locator)+" | might be outdated");
+        }
+        Assert.assertNotNull(element);
+    }
+
+    @Test
+    public void checkBecomePartnerPageCountryNames(){
+        locator = "partnerpage.info.countryNames";
+        logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
+        driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationBecomePartnerPageURL()));
+        try{
+            element = driver.findElement (By.xpath(Homepage.getProperty(locator)));
+        }catch (Exception xpathNotFound){
+            logger.error("Couldn't find "+locator+" \n" +
+                    Homepage.get(locator)+" | might be outdated");
+        }
+        Assert.assertNotNull(element);
+    }
+
+    @Test
+    public void checkBecomePartnerPageInfoLoginButton(){
+        locator = "partnerpage.info.login.button";
+        logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
+        driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationBecomePartnerPageURL()));
+        try{
+            element = driver.findElement (By.xpath(Homepage.getProperty(locator)));
+        }catch (Exception xpathNotFound){
+            logger.error("Couldn't find "+locator+" \n" +
+                    Homepage.get(locator)+" | might be outdated");
+        }
+        Assert.assertNotNull(element);
+    }
+
+    @Test
+    public void checkBecomePartnerPageDashboardForgot(){
+        locator = "partnerpage.dashboard.forgot.button";
+        logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
+        driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationBecomePartnerPageURL()));
+        Point hoverItem = driver.findElementByXPath(Homepage.getProperty("partnerpage.info.login.button")).getLocation();
+        ((JavascriptExecutor)driver).executeScript("return window.title;");
+        ((JavascriptExecutor)driver).executeScript("window.scrollBy(0,"+(hoverItem.getY())+");");
+        driver.findElementByXPath(Homepage.getProperty("partnerpage.info.login.button")).click();
+        try{
+            element = driver.findElement (By.xpath(Homepage.getProperty(locator)));
+        }catch (Exception xpathNotFound){
+            logger.error("Couldn't find "+locator+" \n" +
+                    Homepage.get(locator)+" | might be outdated");
+        }
+        Assert.assertNotNull(element);
+    }
+
 //for commit
     @AfterClass
     public static void closeBrowser(){

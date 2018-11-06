@@ -730,9 +730,10 @@ public class MainController implements Serializable{
                             tabPane.getSelectionModel().select(tabFavoritePage);
                             settingManager.updateResultBoxes(settingFavoritePage,"progress",resultBoxFavoritePage,BoxFavoritePageResult);
                             FavoritePageTest favoritePageTest = new FavoritePageTest();
-                            favoritePageTest.checkingPersonalListTest(webDriver,report,js,favoritePageController.PersonalList, statusInfo,inputSearch, Homepage, inputAccountEmail, inputAccountPassword);
-                            favoritePageTest.checkingApplySortingOnList(webDriver,report,js,favoritePageController.SortingOnList,statusInfo,inputGridPageURL, Homepage, inputAccountEmail, inputAccountPassword);
-                            favoritePageTest.checkingSelectionOnList(webDriver,report,js,favoritePageController.SelectionOnList,statusInfo,inputSearch, Homepage, inputAccountEmail, inputAccountPassword);
+                          //  favoritePageTest.checkingPersonalListTest(webDriver,report,js,favoritePageController.PersonalList, statusInfo,inputSearch, Homepage, inputAccountEmail, inputAccountPassword);
+                           // favoritePageTest.checkingApplySortingOnList(webDriver,report,js,favoritePageController.SortingOnList,statusInfo,inputGridPageURL, Homepage, inputAccountEmail, inputAccountPassword);
+                           // favoritePageTest.checkingSelectionOnList(webDriver,report,js,favoritePageController.SelectionOnList,statusInfo,inputSearch, Homepage, inputAccountEmail, inputAccountPassword);
+                        //favoritePageTest.checkingApplySortingOnListNew(webDriver,report,js,favoritePageController.SortingOnList,statusInfo,inputGridPageURL, Homepage, inputAccountEmail, inputAccountPassword);
                         }catch (Exception noFavoritePageWorking){
                             noFavoritePageWorking.printStackTrace();
                         }
