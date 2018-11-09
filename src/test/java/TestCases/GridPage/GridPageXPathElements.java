@@ -1,4 +1,4 @@
-package TestCases.BrandPage;
+package TestCases.GridPage;
 
 import crisscrosscrass.countries;
 import org.apache.log4j.Logger;
@@ -15,11 +15,11 @@ import java.io.InputStream;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
-public class BrandXPathElements {
-    final static Logger logger = Logger.getLogger(BrandXPathElements.class);
+public class GridPageXPathElements {
+    final static Logger logger = Logger.getLogger(GridPageXPathElements.class);
     private static ChromeDriver driver;
     private static Properties Homepage;
-    private static String countrieSelection = "FR";
+    private static String countrieSelection = "DE";
     private static String locator;
     WebElement element;
 
@@ -42,11 +42,13 @@ public class BrandXPathElements {
         driver = new ChromeDriver(option);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     }
+
     @Test
-    public void checkMainLogo(){
-        locator = "page.main.logo";
+    public void checkGridWindows(){
+        locator = "page.grid.windows";
         logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
         driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationMainPage()));
+        driver.findElementByXPath(Homepage.getProperty("page.main.links")).click();
         try{
             element = driver.findElement (By.xpath(Homepage.getProperty(locator)));
         }catch (Exception xpathNotFound){
@@ -55,11 +57,13 @@ public class BrandXPathElements {
         }
         Assert.assertNotNull(element);
     }
+
     @Test
-    public void checkShopPromoCategory(){
-        locator = "page.main.shop.promo.category";
+    public void checkGridWindowsContinue(){
+        locator = "page.grid.windows.continue";
         logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
         driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationMainPage()));
+        driver.findElementByXPath(Homepage.getProperty("page.main.links")).click();
         try{
             element = driver.findElement (By.xpath(Homepage.getProperty(locator)));
         }catch (Exception xpathNotFound){
@@ -70,10 +74,12 @@ public class BrandXPathElements {
     }
 
     @Test
-    public void checkBrandPageQuicklinks(){
-        locator = "brandpage.quicklinks";
+    public void checkGridLoader(){
+        locator = "page.grid.loader";
         logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
-        driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationBrandOverviewPage()));
+        driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationMainPage()));
+        driver.findElementByXPath(Homepage.getProperty("page.main.links")).click();
+        driver.findElementByXPath(Homepage.getProperty("page.grid.windows.continue")).click();
         try{
             element = driver.findElement (By.xpath(Homepage.getProperty(locator)));
         }catch (Exception xpathNotFound){
@@ -84,10 +90,11 @@ public class BrandXPathElements {
     }
 
     @Test
-    public void checkBrandPageBox(){
-        locator = "brandpage.brandbox";
+    public void checkGridSortDropdown(){
+        locator = "page.grid.sort.dropdown.button";
         logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
-        driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationBrandOverviewPage()));
+        driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationMainPage()));
+        driver.findElementByXPath(Homepage.getProperty("page.main.links")).click();
         try{
             element = driver.findElement (By.xpath(Homepage.getProperty(locator)));
         }catch (Exception xpathNotFound){
@@ -98,10 +105,12 @@ public class BrandXPathElements {
     }
 
     @Test
-    public void checkBrandPageBoxWrapperBottom(){
-        locator = "brandpage.boxwrapper.bottom";
+    public void checkGridSortDropdownOption(){
+        locator = "page.grid.sort.dropdown.options";
         logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
-        driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationBrandOverviewPage()));
+        driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationMainPage()));
+        driver.findElementByXPath(Homepage.getProperty("page.main.links")).click();
+        driver.findElementByXPath(Homepage.getProperty("page.grid.loader "));
         try{
             element = driver.findElement (By.xpath(Homepage.getProperty(locator)));
         }catch (Exception xpathNotFound){
@@ -112,10 +121,11 @@ public class BrandXPathElements {
     }
 
     @Test
-    public void checkBrandPageBoxWrapperTop(){
-        locator = "brandpage.boxwrapper.top";
+    public void checkGridSize(){
+        locator = "page.grid.size.button";
         logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
-        driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationBrandOverviewPage()));
+        driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationMainPage()));
+        driver.findElementByXPath(Homepage.getProperty("page.main.links")).click();
         try{
             element = driver.findElement (By.xpath(Homepage.getProperty(locator)));
         }catch (Exception xpathNotFound){
@@ -124,6 +134,29 @@ public class BrandXPathElements {
         }
         Assert.assertNotNull(element);
     }
+
+  /** @Test
+    public void checkGridItemsNumber(){
+        locator = "page.grid.items.number";
+        logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
+        driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationMainPage()));
+        driver.findElementByXPath(Homepage.getProperty("page.main.links")).click();
+        driver.findElementByXPath(Homepage.getProperty("page.windows.continue")).click();
+        try {
+            TimeUnit.SECONDS.sleep(2);
+            driver.findElementByXPath(Homepage.getProperty("page.grid.loader"));
+            try {
+                element = driver.findElement(By.xpath(Homepage.getProperty(locator)));
+            } catch (Exception xpathNotFound) {
+                logger.error("Couldn't find " + locator + " \n" +
+                        Homepage.get(locator) + " | might be outdated");
+            }
+        }
+        catch (InterruptedException ie) {
+            logger.error("Could not get to Grid Page");        }
+        Assert.assertNotNull(element);
+    } */
+
 
     @AfterClass
     public static void closeBrowser(){
@@ -138,5 +171,4 @@ public class BrandXPathElements {
             driverQuit.printStackTrace();
         }
     }
-
 }

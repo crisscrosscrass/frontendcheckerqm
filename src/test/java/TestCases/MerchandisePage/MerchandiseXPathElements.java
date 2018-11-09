@@ -1,4 +1,4 @@
-package TestCases.BrandPage;
+package TestCases.MerchandisePage;
 
 import crisscrosscrass.countries;
 import org.apache.log4j.Logger;
@@ -15,11 +15,11 @@ import java.io.InputStream;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
-public class BrandXPathElements {
-    final static Logger logger = Logger.getLogger(BrandXPathElements.class);
+public class MerchandiseXPathElements {
+    final static Logger logger = Logger.getLogger(MerchandiseXPathElements.class);
     private static ChromeDriver driver;
     private static Properties Homepage;
-    private static String countrieSelection = "FR";
+    private static String countrieSelection = "DE";
     private static String locator;
     WebElement element;
 
@@ -43,23 +43,10 @@ public class BrandXPathElements {
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     }
     @Test
-    public void checkMainLogo(){
-        locator = "page.main.logo";
+    public void checkMerchandisePageLetterButtons(){
+        locator = "merchandisepage.alphabet.buttons";
         logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
-        driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationMainPage()));
-        try{
-            element = driver.findElement (By.xpath(Homepage.getProperty(locator)));
-        }catch (Exception xpathNotFound){
-            logger.error("Couldn't find "+locator+" \n" +
-                    Homepage.get(locator)+" | might be outdated");
-        }
-        Assert.assertNotNull(element);
-    }
-    @Test
-    public void checkShopPromoCategory(){
-        locator = "page.main.shop.promo.category";
-        logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
-        driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationMainPage()));
+        driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationMerchandiseOverviewPageURL()));
         try{
             element = driver.findElement (By.xpath(Homepage.getProperty(locator)));
         }catch (Exception xpathNotFound){
@@ -70,10 +57,10 @@ public class BrandXPathElements {
     }
 
     @Test
-    public void checkBrandPageQuicklinks(){
-        locator = "brandpage.quicklinks";
+    public void checkMerchandisePageLetters(){
+        locator = "merchandisepage.alphabet.letters";
         logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
-        driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationBrandOverviewPage()));
+        driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationMerchandiseOverviewPageURL()));
         try{
             element = driver.findElement (By.xpath(Homepage.getProperty(locator)));
         }catch (Exception xpathNotFound){
@@ -84,10 +71,10 @@ public class BrandXPathElements {
     }
 
     @Test
-    public void checkBrandPageBox(){
-        locator = "brandpage.brandbox";
+    public void checkMerchandisePageLinks(){
+        locator = "merchandisepage.merchandise.links";
         logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
-        driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationBrandOverviewPage()));
+        driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationMerchandiseOverviewPageURL()));
         try{
             element = driver.findElement (By.xpath(Homepage.getProperty(locator)));
         }catch (Exception xpathNotFound){
@@ -98,10 +85,10 @@ public class BrandXPathElements {
     }
 
     @Test
-    public void checkBrandPageBoxWrapperBottom(){
-        locator = "brandpage.boxwrapper.bottom";
+    public void checkMerchandiseSearchBar(){
+        locator = "merchandisepage.search.bar";
         logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
-        driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationBrandOverviewPage()));
+        driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationMerchandiseOverviewPageURL()));
         try{
             element = driver.findElement (By.xpath(Homepage.getProperty(locator)));
         }catch (Exception xpathNotFound){
@@ -112,10 +99,26 @@ public class BrandXPathElements {
     }
 
     @Test
-    public void checkBrandPageBoxWrapperTop(){
-        locator = "brandpage.boxwrapper.top";
+    public void checkMerchandiseSearchSuggestions(){
+        locator = "merchandisepage.search.suggestions";
         logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
-        driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationBrandOverviewPage()));
+        driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationMerchandiseOverviewPageURL()));
+        WebElement element = driver.findElement(By.xpath(Homepage.getProperty("merchandisepage.search.bar")));
+        element.sendKeys("lady gaga".trim());
+        try{
+            element = driver.findElement (By.xpath(Homepage.getProperty(locator)));
+        }catch (Exception xpathNotFound){
+            logger.error("Couldn't find "+locator+" \n" +
+                    Homepage.get(locator)+" | might be outdated");
+        }
+        Assert.assertNotNull(element);
+    }
+
+    @Test
+    public void checkMerchandiseIfoH3(){
+        locator = "merchandisepage.info.h3";
+        logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
+        driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationMerchandiseOverviewPageURL()));
         try{
             element = driver.findElement (By.xpath(Homepage.getProperty(locator)));
         }catch (Exception xpathNotFound){
@@ -140,3 +143,5 @@ public class BrandXPathElements {
     }
 
 }
+
+

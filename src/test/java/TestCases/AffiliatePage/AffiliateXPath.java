@@ -1,6 +1,5 @@
 package TestCases.AffiliatePage;
 
-import TestCases.BrandPage.BrandXPathElements;
 import crisscrosscrass.countries;
 import org.apache.log4j.Logger;
 import org.junit.AfterClass;
@@ -67,7 +66,7 @@ public class AffiliateXPath {
             locator = "affiliatepage.become.tradetracker";
             logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
             driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationAffiliateProgramPageURL()));
-            Point hoverItem = driver.findElementByXPath(Homepage.getProperty("page.main.newsletter.icon")).getLocation();
+            Point hoverItem = driver.findElementByXPath(Homepage.getProperty("affiliatepage.become.tradetracker")).getLocation();
             ((JavascriptExecutor)driver).executeScript("return window.title;");
             ((JavascriptExecutor)driver).executeScript("window.scrollBy(0,"+(hoverItem.getY())+");");
             try{
