@@ -398,7 +398,7 @@ public class GridPageTest {
                         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(@class, 'Click-Navigated-Previous_Page_Button')]")));
                         webDriver.findElementByXPath("//*[contains(@class, 'Click-Navigated-Previous_Page_Button')] ").click();
                         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[contains(@class, 'Click-Navigated-Previous_Page_Button')] ")));
-                        if (webDriver.getCurrentUrl().contains("1")){
+                        if (!webDriver.getCurrentUrl().contains("1")){
                             report.writeToFile("Checking  GridPage Paging Backward: ", "Successful! Found pattern in URL and Previous Page Button disappeared!");
                         }else {
                             report.writeToFile("Checking  GridPage Paging Backward: ", "Not Successful! User is not redirected");

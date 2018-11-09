@@ -112,6 +112,22 @@ public class HomepageXPathElements {
         }
         Assert.assertNotNull(element);
     }
+
+    @Test
+    public void checkShopGridImage(){
+        locator = "page.grid.shop.image ";
+        logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
+        driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationMainPage()));
+        driver.findElementByXPath(Homepage.getProperty("page.main.shop.promo.link")).click();
+        try{
+            element = driver.findElement (By.xpath(Homepage.getProperty(locator)));
+        }catch (Exception xpathNotFound){
+            logger.error("Couldn't find "+locator+" \n" +
+                    Homepage.get(locator)+" | might be outdated");
+        }
+        Assert.assertNotNull(element);
+    }
+
     @Test
     public void checkShopPromoImage(){
         locator = "page.main.shop.promo.image";
