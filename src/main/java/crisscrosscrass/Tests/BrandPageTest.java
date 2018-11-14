@@ -109,7 +109,7 @@ public class BrandPageTest {
             noBrowserWorking.printStackTrace();
         }
         report.writeToFile("=================================", "");
-        failedTestCases.writeToNamedFile("=================================","FailAndReview");
+        failedTestCases.writeToNamedFile("=================================TC 20","FailAndReview");
 
     }
 

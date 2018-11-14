@@ -49,7 +49,7 @@ public class HomepageTest {
                         if (isSuccessful) {
                             report.writeToFile("TEST CategoryLinksLeftSideMenu " + i + ": Successful | ", "found \"" + CategoryLinksLeftSideMenu.get(i).getAttribute("textContent").trim() + "\" Keyword at URL : " + CategoryLinksLeftSideMenu.get(i).getAttribute("href"));
                         } else {
-                            report.writeToFile("unable to check! ", "couldn't found \"" + CategoryLinksLeftSideMenu.get(i).getAttribute("textContent").trim() + "\" Keyword in URL : " + CategoryLinksLeftSideMenu.get(i).getAttribute("href"));
+                            report.writeToFile("unable to check! ", "couldn't find \"" + CategoryLinksLeftSideMenu.get(i).getAttribute("textContent").trim() + "\" Keyword in URL : " + CategoryLinksLeftSideMenu.get(i).getAttribute("href"));
                             failedTestCases.writeToNamedFile("Category links in left Menu! ", "Please review the following URL. Couldn't find \"" + CategoryLinksLeftSideMenu.get(i).getAttribute("textContent").trim() + "\" Keyword in URL : " + CategoryLinksLeftSideMenu.get(i).getAttribute("href"), "FailAndReview");
                         }
                     }
@@ -184,7 +184,7 @@ public class HomepageTest {
                         report.writeToFile("TEST ShopCategoryLinks "+i+": Successful | ", "found \"" + shopCategoryNames.get(i).getAttribute("textContent").trim() + "\" Keyword at URL : "+ shopCategoryLinks.get(i).getAttribute("href") + " and same Image is available");
                     }else {
                         report.writeToFile("TEST ShopCategoryLinks "+i+": unable to check! |", "couldn't found \"" + shopCategoryNames.get(i).getAttribute("textContent").trim() + "\" Keyword in URL : "+ shopCategoryLinks.get(i).getAttribute("href") + " or Image is not available");
-                    failedTestCases.writeToNamedFile("Shop of The Week Categories "+i+": Please double check links! |", "couldn't found \"" + shopCategoryNames.get(i).getAttribute("textContent").trim() + "\" Keyword in URL : "+ shopCategoryLinks.get(i).getAttribute("href") + " or Image is not available", "FailAndReview");
+                    failedTestCases.writeToNamedFile("Shop of The Week Categories "+i+": Please double check links! |", "couldn't find \"" + shopCategoryNames.get(i).getAttribute("textContent").trim() + "\" Keyword in URL : "+ shopCategoryLinks.get(i).getAttribute("href") + " or Image is not available", "FailAndReview");
                     }
                 }
                 webDriver.navigate().to(inputSearch.getText().trim());
@@ -468,7 +468,7 @@ public class HomepageTest {
                             report.writeToFile("TEST FooterLinks "+i+": Successful | ", "found \"" + footerFooterLinks.get(i).getText().trim() + "\" Keyword at URL : "+ footerFooterLinks.get(i).getAttribute("href") );
                         }else {
                             report.writeToFile("unable to check! ", "couldn't found \"" + footerFooterLinks.get(i).getText().trim() + "\" Keyword in URL : "+ footerFooterLinks.get(i).getAttribute("href") );
-                            failedTestCases.writeToNamedFile("Checking Footer Links! ", "Please check the following URL: couldn't found \"" + footerFooterLinks.get(i).getText().trim() + "\" Keyword in URL : "+ footerFooterLinks.get(i).getAttribute("href"), "FailAndReview" );
+                            failedTestCases.writeToNamedFile("Checking Footer Links! ", "Please check the following URL: couldn't find \"" + footerFooterLinks.get(i).getText().trim() + "\" Keyword in URL : "+ footerFooterLinks.get(i).getAttribute("href"), "FailAndReview" );
                         }
                     }
                 }
@@ -482,7 +482,7 @@ public class HomepageTest {
                         report.writeToFile("TEST FooterCategoryLinks "+i+": Successful | ", "found \"" + footerCategoryLinks.get(i).getText().trim() + "\" Keyword at URL : "+ footerCategoryLinks.get(i).getAttribute("href") );
                     }else {
                         report.writeToFile("unable to check! |", "couldn't found \"" + footerCategoryLinks.get(i).getText().trim() + "\" Keyword in URL : "+ footerCategoryLinks.get(i).getAttribute("href") );
-                        failedTestCases.writeToNamedFile("Checking Footer Links! |", "Please check the following URL: couldn't found \"" + footerCategoryLinks.get(i).getText().trim() + "\" Keyword in URL : "+ footerCategoryLinks.get(i).getAttribute("href"),"FailAndReview" );
+                        failedTestCases.writeToNamedFile("Checking Footer Links! |", "Please check the following URL: couldn't find \"" + footerCategoryLinks.get(i).getText().trim() + "\" Keyword in URL : "+ footerCategoryLinks.get(i).getAttribute("href"),"FailAndReview" );
                     }
                 }
                 ChangeCheckBox.adjustStyle(true,"complete",checkFooterLinks);

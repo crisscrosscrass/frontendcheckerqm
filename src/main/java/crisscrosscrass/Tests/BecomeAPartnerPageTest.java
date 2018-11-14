@@ -47,25 +47,27 @@ public class BecomeAPartnerPageTest {
                     ChangeCheckBox.adjustStyle(true,"nope",RegisterButton);
                     webDriver.navigate().to(inputBecomeAPartnerPageURL.getText().trim());
                     report.writeToFile(infoMessage, "Couldn't detect \"Register\" Button");
-                    failedTestCases.writeToNamedFile(infoMessage, "Please check: Could not detect \"Register\" Button on Become a Partner Page", "FailAndReview");
+                    failedTestCases.writeToNamedFile(infoMessage, "Please check: Couldn't detect \"Register\" Button on Become a Partner Page", "FailAndReview");
+                    failedTestCases.writeToNamedFile("=================================TC 43.1","FailAndReview");
                     gridPageIssue.printStackTrace();
                 }
             }catch (Exception noRequestedSiteFound){
                 ChangeCheckBox.adjustStyle(true,"nope",RegisterButton);
                 webDriver.navigate().to(inputBecomeAPartnerPageURL.getText().trim());
                 report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
-                failedTestCases.writeToNamedFile(infoMessage, "Please check: Could not navigate to Register button on Become a Partner Page", "FailAndReview");
+                failedTestCases.writeToNamedFile(infoMessage, "Please check: Couldn't navigate to Register button on Become a Partner Page", "FailAndReview");
+                failedTestCases.writeToNamedFile("=================================TC 43.1","FailAndReview");
                 noRequestedSiteFound.printStackTrace();
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",RegisterButton);
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
             failedTestCases.writeToNamedFile(infoMessage, "Please check Register button on Become a Partner Page: browser not responding", "FailAndReview");
+            failedTestCases.writeToNamedFile("=================================TC 43.1","FailAndReview");
             noBrowserWorking.printStackTrace();
         }
 
         report.writeToFile("=================================", "");
-        failedTestCases.writeToNamedFile("=================================","FailAndReview");
 
     }
     public void checkingBecomePartnerButton(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox RegisterButton, Text statusInfo, TextField inputBecomeAPartnerPageURL, Properties Homepage){
@@ -94,26 +96,28 @@ public class BecomeAPartnerPageTest {
                 }catch (Exception gridPageIssue){
                     ChangeCheckBox.adjustStyle(true,"nope",RegisterButton);
                     webDriver.navigate().to(inputBecomeAPartnerPageURL.getText().trim());
-                    report.writeToFile(infoMessage, "Couldn't detect \"Register\" Button");
-                    failedTestCases.writeToNamedFile(infoMessage, "Please check: Could not detect \"Register\" Pop up on Become a Partner Page", "FailAndReview");
+                    report.writeToFile(infoMessage, "Couldn't detect \"Become a Partner\" Button");
+                    failedTestCases.writeToNamedFile(infoMessage, "Please check: Could not detect \"Become a Partner\" button on Become a Partner Page", "FailAndReview");
+                    failedTestCases.writeToNamedFile("=================================TC 43.2","FailAndReview");
                     gridPageIssue.printStackTrace();
                 }
             }catch (Exception noRequestedSiteFound){
                 ChangeCheckBox.adjustStyle(true,"nope",RegisterButton);
                 webDriver.navigate().to(inputBecomeAPartnerPageURL.getText().trim());
                 report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
-                failedTestCases.writeToNamedFile(infoMessage, "Please check: Could not navigate to Register button on Become a Partner Page", "FailAndReview");
+                failedTestCases.writeToNamedFile(infoMessage, "Please check: Could not navigate to \"Become a Partner\" button on Become a Partner Page", "FailAndReview");
+                failedTestCases.writeToNamedFile("=================================TC 43.2","FailAndReview");
                 noRequestedSiteFound.printStackTrace();
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",RegisterButton);
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
             failedTestCases.writeToNamedFile(infoMessage, "Please check Become a Partner Page: browser not responding", "FailAndReview");
+            failedTestCases.writeToNamedFile("=================================TC 43.2","FailAndReview");
             noBrowserWorking.printStackTrace();
         }
 
         report.writeToFile("=================================", "");
-        failedTestCases.writeToNamedFile("=================================","FailAndReview");
 
     }
     public void checkingGoToTopButton(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox GoToTopButton, Text statusInfo, TextField inputBecomeAPartnerPageURL, Properties Homepage){
@@ -165,6 +169,7 @@ public class BecomeAPartnerPageTest {
                             ChangeCheckBox.adjustStyle(true,"nope",GoToTopButton);
                             report.writeToFile("Go to Top- Help: ", "Initial banner (H3) is NOT on user's view");
                             failedTestCases.writeToNamedFile("Please check: Go to Top button seems not to work on Become a Partner Page", "FailAndReview");
+                            failedTestCases.writeToNamedFile("=================================TC 43.3","FailAndReview");
                         }
                         webDriver.findElementByXPath(Homepage.getProperty("partnerpage.info.h3")).click();
                         ChangeCheckBox.adjustStyle(true,"complete",GoToTopButton);
@@ -173,6 +178,7 @@ public class BecomeAPartnerPageTest {
                         ChangeCheckBox.adjustStyle(true,"nope",GoToTopButton);
                         report.writeToFile(infoMessage, "Not successful, Initial banner (H3) is NOT on user's view");
                         failedTestCases.writeToNamedFile("Please check: Go to Top button seems not to work on Become a Partner Page", "FailAndReview");
+                        failedTestCases.writeToNamedFile("=================================TC 43.3","FailAndReview");
                         noH3InViewPort.printStackTrace();
                     }
                 }catch (Exception gridPageIssue){
@@ -180,6 +186,7 @@ public class BecomeAPartnerPageTest {
                     webDriver.navigate().to(inputBecomeAPartnerPageURL.getText().trim());
                     report.writeToFile(infoMessage, "Couldn't detect \"Register\" Button");
                     failedTestCases.writeToNamedFile(infoMessage, "Please check: Could not detect Go to Top Button on Become a Partner Page", "FailAndReview");
+                    failedTestCases.writeToNamedFile("=================================TC 43.3","FailAndReview");
                     gridPageIssue.printStackTrace();
                 }
             }catch (Exception noRequestedSiteFound){
@@ -187,17 +194,18 @@ public class BecomeAPartnerPageTest {
                 webDriver.navigate().to(inputBecomeAPartnerPageURL.getText().trim());
                 report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
                 failedTestCases.writeToNamedFile(infoMessage, "Please check: Could not navigate to Go to Top button on Become a Partner Page", "FailAndReview");
+                failedTestCases.writeToNamedFile("=================================TC 43.3","FailAndReview");
                 noRequestedSiteFound.printStackTrace();
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",GoToTopButton);
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
             failedTestCases.writeToNamedFile(infoMessage, "Please check Go to top button on Become a Partner: browser not responding", "FailAndReview");
+            failedTestCases.writeToNamedFile("=================================TC 43.3","FailAndReview");
             noBrowserWorking.printStackTrace();
         }
 
         report.writeToFile("=================================", "");
-        failedTestCases.writeToNamedFile("=================================","FailAndReview");
 
     }
     public void checkingCountryFlags(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox CountryFlags, Text statusInfo, TextField inputBecomeAPartnerPageURL, Properties Homepage){
@@ -237,6 +245,7 @@ public class BecomeAPartnerPageTest {
                         }else {
                             report.writeToFile("Country Flag Link from "+allCollectedNames.get(i).toString()+" is redirected to a NOT functioning page  ",webDriver.getCurrentUrl().toLowerCase().trim());
                            failedTestCases.writeToNamedFile(" Please check: Country Flag Link from "+allCollectedNames.get(i).toString()+" is redirected to a NOT functioning page  ",webDriver.getCurrentUrl().toLowerCase().trim(), "FailAndReview");
+                            failedTestCases.writeToNamedFile("=================================TC 44","FailAndReview");
                         }
 
                         webDriver.switchTo().window(tabs.get(1)).close();
@@ -251,14 +260,16 @@ public class BecomeAPartnerPageTest {
                     ChangeCheckBox.adjustStyle(true,"nope",CountryFlags);
                     webDriver.navigate().to(inputBecomeAPartnerPageURL.getText().trim());
                     report.writeToFile(infoMessage, "Couldn't detect \"Country Flags\"");
-                    failedTestCases.writeToNamedFile(" Please check: Could not detect Country Flag Link. For reference, see CountryFlags" , "FailAndReview");
+                    failedTestCases.writeToNamedFile(" Please check: Could not detect Country Flag Link." , "FailAndReview");
                     boolean isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver, "CountryFlags.png");
                     if (isSuccessful){
                         report.writeToFile(infoMessage+" Screenshot: ", "Screenshot successful!");
-                        failedTestCases.writeToNamedFile("Country flags screenshot error", "Screenshot Successful!", "FailAndReview");
+                        failedTestCases.writeToNamedFile("For more information about the Country flags error, see CountryFlags", "Screenshot Successful!", "FailAndReview");
+                        failedTestCases.writeToNamedFile("=================================TC 44","FailAndReview");
                     }else {
                         report.writeToFile(infoMessage+" Screenshot: ", "Screenshot not successful!");
-                        failedTestCases.writeToNamedFile("Country flags screenshot error", "Screenshot not Successful!", "FailAndReview");
+                        failedTestCases.writeToNamedFile("For more information about the Country flags error, see CountryFlags", "Screenshot not Successful!", "FailAndReview");
+                        failedTestCases.writeToNamedFile("=================================TC 44","FailAndReview");
                     }
                     gridPageIssue.printStackTrace();
                 }
@@ -266,18 +277,19 @@ public class BecomeAPartnerPageTest {
                 ChangeCheckBox.adjustStyle(true,"nope",CountryFlags);
                 webDriver.navigate().to(inputBecomeAPartnerPageURL.getText().trim());
                 report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
-                failedTestCases.writeToNamedFile(infoMessage, "Please check: Could not navigate to country flag link on Become a Partner page", "FailAndReview");
+                failedTestCases.writeToNamedFile(infoMessage, "Please check: Couldn't navigate to country flag link on Become a Partner page", "FailAndReview");
+                failedTestCases.writeToNamedFile("=================================TC 44","FailAndReview");
                 noRequestedSiteFound.printStackTrace();
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",CountryFlags);
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
             failedTestCases.writeToNamedFile(infoMessage, "Please check country flags: browser not responding", "FailAndReview");
+            failedTestCases.writeToNamedFile("=================================TC 44","FailAndReview");
             noBrowserWorking.printStackTrace();
         }
 
         report.writeToFile("=================================", "");
-        failedTestCases.writeToNamedFile("=================================","FailAndReview");
 
     }
     public void checkingLoginPartnerdashboard(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox LoginPartnerdashboard, Text statusInfo, TextField inputBecomeAPartnerPageURL, Properties Homepage){
@@ -304,6 +316,7 @@ public class BecomeAPartnerPageTest {
                     }else {
                         report.writeToFile(infoMessage, "User is redirected to a functioning page but not with Login ");
                         failedTestCases.writeToNamedFile(infoMessage, "Please check Partner Dashboard login Page: login seems to not be working");
+                        failedTestCases.writeToNamedFile("=================================TC 45","FailAndReview");
                     }
 
                     try {
@@ -315,6 +328,7 @@ public class BecomeAPartnerPageTest {
                         }else {
                             report.writeToFile(infoMessage, "User is redirected to a functioning page but not with Reset Password ");
                             failedTestCases.writeToNamedFile(infoMessage, "Please check: when re-setting password on Partner Dashboard log in, user is redirected to page which is not working", "FailAndReview");
+                            failedTestCases.writeToNamedFile("=================================TC 45","FailAndReview");
                             ChangeCheckBox.adjustStyle(true,"nope",LoginPartnerdashboard);
                         }
                         report.writeToFile(infoMessage, "Complete");
@@ -322,30 +336,33 @@ public class BecomeAPartnerPageTest {
                         ChangeCheckBox.adjustStyle(true,"nope",LoginPartnerdashboard);
                         webDriver.navigate().to(inputBecomeAPartnerPageURL.getText().trim());
                         report.writeToFile(infoMessage, "Couldn't detect \"Forget Password\" Button");
-                        failedTestCases.writeToNamedFile(infoMessage, "Please check: could not detect Forget Password button on Partner Dashboard", "FailAndReview");
+                        failedTestCases.writeToNamedFile(infoMessage, "Please check: couldn't detect \"Forget Password\" button on Partner Dashboard", "FailAndReview");
+                        failedTestCases.writeToNamedFile("=================================TC 45","FailAndReview");
                     }
                 }catch (Exception gridPageIssue){
                     ChangeCheckBox.adjustStyle(true,"nope",LoginPartnerdashboard);
                     webDriver.navigate().to(inputBecomeAPartnerPageURL.getText().trim());
                     report.writeToFile(infoMessage, "Couldn't detect \"Login Button\"");
-                    failedTestCases.writeToNamedFile(infoMessage, "Please check: could not detect Login button on Partner Dashboard", "FailAndReview");
+                    failedTestCases.writeToNamedFile(infoMessage, "Please check: could not detect \"Login\" button on Partner Dashboard", "FailAndReview");
+                    failedTestCases.writeToNamedFile("=================================TC 45","FailAndReview");
                     gridPageIssue.printStackTrace();
                 }
             }catch (Exception noRequestedSiteFound){
                 ChangeCheckBox.adjustStyle(true,"nope",LoginPartnerdashboard);
                 webDriver.navigate().to(inputBecomeAPartnerPageURL.getText().trim());
                 report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
-                failedTestCases.writeToNamedFile(infoMessage, "Please check Partner Daschboard: could not navigate to Login", "FailAndReview");
+                failedTestCases.writeToNamedFile(infoMessage, "Please check Partner Dashboard: could not navigate to Login", "FailAndReview");
+                failedTestCases.writeToNamedFile("=================================TC 45","FailAndReview");
                 noRequestedSiteFound.printStackTrace();
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",LoginPartnerdashboard);
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
             failedTestCases.writeToNamedFile(infoMessage, "Please check Partner Dashboard login: browser not responding", "FailAndReview");
+            failedTestCases.writeToNamedFile("=================================TC 45","FailAndReview");
             noBrowserWorking.printStackTrace();
         }
         report.writeToFile("=================================", "");
-        failedTestCases.writeToNamedFile("=================================","FailAndReview");
     }
 
     public void checkingTabHelpSection(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox HelpRegisterTab, Text statusInfo, TextField inputBecomeAPartnerPageURL, Properties Homepage){
@@ -371,6 +388,7 @@ public class BecomeAPartnerPageTest {
                     }else{
                         report.writeToFile("Help Tab: ", "Help Introduction is NOT displayed");
                         failedTestCases.writeToNamedFile("Partner Page. Help tab", "Please check: Help Introduction is not displayed", "FailAndReview");
+                        failedTestCases.writeToNamedFile("=================================TC 46.1","FailAndReview");
                     }
                     try {
                         //check if register button
@@ -384,6 +402,7 @@ public class BecomeAPartnerPageTest {
                         }else{
                             report.writeToFile("Register- Help: ", "Functioning Pop Up does NOT appear !");
                             failedTestCases.writeToNamedFile("Register button- Help tab on Become Partner page", "Please check: register pop up seems to not be working", "FailAndReview");
+                            failedTestCases.writeToNamedFile("=================================TC 46.2","FailAndReview");
                         }
                         try {
                             //check if become Partner button
@@ -399,7 +418,8 @@ public class BecomeAPartnerPageTest {
                                 report.writeToFile("Become Partner Button- Help: ", "Functioning Pop Up appears");
                             }else{
                                 report.writeToFile("Become Partner Button- Help: ", "Functioning Pop Up does NOT appear !");
-                                failedTestCases.writeToNamedFile("Become a Partner button- Help tab on Become Partner page", "Please check: Become a Partner seems to not be working", "FailAndReview");
+                                failedTestCases.writeToNamedFile("Become a Partner button- Help tab on Become Partner page", "Please check: Become a Partner Button seems to not be working", "FailAndReview");
+                                failedTestCases.writeToNamedFile("=================================TC 46.3","FailAndReview");
                             }
                             try {
                                 //scroll down to bottom
@@ -437,6 +457,7 @@ public class BecomeAPartnerPageTest {
                                     ChangeCheckBox.adjustStyle(true,"nope",HelpRegisterTab);
                                     report.writeToFile("Go to Top- Help: ", "Initial banner (H3) is NOT on user's view");
                                     failedTestCases.writeToNamedFile("Go to Top- Help tab: ", "Please check: Go to Top button seems not to work on Become a Partner Page- Help tab", "FailAndReview");
+                                    failedTestCases.writeToNamedFile("=================================TC 46.4","FailAndReview");
                                 }
                                 report.writeToFile("");
                                 report.writeToFile(infoMessage, "Complete!");
@@ -445,6 +466,7 @@ public class BecomeAPartnerPageTest {
                                 webDriver.navigate().to(inputBecomeAPartnerPageURL.getText().trim());
                                 report.writeToFile("Go to Top- Help", "Couldn't detect \"Go To Top\" Button");
                                 failedTestCases.writeToNamedFile("Go to Top- Help tab: ", "Please check: Couldn't detect \"Go To Top\" Button", "FailAndReview");
+                                failedTestCases.writeToNamedFile("=================================TC 46.4","FailAndReview");
                                 noGoToTopButton.printStackTrace();
                             }
                         }catch (Exception noBecomePartnerButton){
@@ -452,6 +474,7 @@ public class BecomeAPartnerPageTest {
                             webDriver.navigate().to(inputBecomeAPartnerPageURL.getText().trim());
                             report.writeToFile("Become Partner Button- Help", "Couldn't detect \"Become Partner\" Button");
                             failedTestCases.writeToNamedFile("Become Partner Button- Help tab ", "Please check: Couldn't detect \"Become Partner\" Button", "FailAndReview");
+                            failedTestCases.writeToNamedFile("=================================TC 46.3","FailAndReview");
                             noBecomePartnerButton.printStackTrace();
                         }
                     }catch (Exception noRegisterButton){
@@ -459,6 +482,7 @@ public class BecomeAPartnerPageTest {
                         webDriver.navigate().to(inputBecomeAPartnerPageURL.getText().trim());
                         report.writeToFile("Register- Help", "Couldn't detect \"Register\" Button");
                         failedTestCases.writeToNamedFile("Go to Top- Help tab on Become a Partner: ", "Please check: Couldn't detect \"Register\" Button", "FailAndReview");
+                        failedTestCases.writeToNamedFile("=================================TC 46.1","FailAndReview");
                         noRegisterButton.printStackTrace();
                     }
                 }catch (Exception gridPageIssue){
@@ -466,23 +490,26 @@ public class BecomeAPartnerPageTest {
                     webDriver.navigate().to(inputBecomeAPartnerPageURL.getText().trim());
                     report.writeToFile("Help Tab", "Couldn't detect Tab \"Help\"");
                     failedTestCases.writeToNamedFile("Go to Top- Help tab on Become a Partner: ", "Please check: Couldn't detect \"Help\" tab", "FailAndReview");
+                    failedTestCases.writeToNamedFile("=================================TC 46.2","FailAndReview");
+
                     gridPageIssue.printStackTrace();
                 }
             }catch (Exception noRequestedSiteFound){
                 ChangeCheckBox.adjustStyle(true,"nope",HelpRegisterTab);
                 webDriver.navigate().to(inputBecomeAPartnerPageURL.getText().trim());
                 report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
-                failedTestCases.writeToNamedFile(infoMessage, "Please check Become a Partner Help tab: could not navigate to the requested site", "FailAndReview");
+                failedTestCases.writeToNamedFile(infoMessage, "Please check Become a Partner Help tab: couldn't navigate to the requested site", "FailAndReview");
+                failedTestCases.writeToNamedFile("=================================TC 46","FailAndReview");
                 noRequestedSiteFound.printStackTrace();
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",HelpRegisterTab);
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
             failedTestCases.writeToNamedFile(infoMessage, "Please check Become a Partner Help tab: browser not responding", "FailAndReview");
+            failedTestCases.writeToNamedFile("=================================TC 46","FailAndReview");
             noBrowserWorking.printStackTrace();
         }
         report.writeToFile("=================================", "");
-        failedTestCases.writeToNamedFile("=================================","FailAndReview");
     }
 
     public void checkingDownloadOnHelp(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox DownloadPDFHelp, Text statusInfo, TextField inputBecomeAPartnerPageURL, Properties Homepage){
@@ -521,6 +548,7 @@ public class BecomeAPartnerPageTest {
                     }else {
                         report.writeToFile(infoMessage, "No functioning PDF appears");
                         failedTestCases.writeToNamedFile(infoMessage, "Please check Partner tab on Become Partner page: no functioning PDF appears", "FailAndReview");
+                        failedTestCases.writeToNamedFile("=================================TC 47","FailAndReview");
                         ChangeCheckBox.adjustStyle(true,"nope",DownloadPDFHelp);
                     }
                     webDriver.switchTo().window(tabs.get(1)).close();
@@ -530,23 +558,25 @@ public class BecomeAPartnerPageTest {
                     webDriver.navigate().to(inputBecomeAPartnerPageURL.getText().trim());
                     report.writeToFile(infoMessage, "Couldn't detect \"Download Help\" Button");
                     failedTestCases.writeToNamedFile(infoMessage, "Please check Partner tab on Become Partner page: Couldn't detect \"Download Help\" Button", "FailAndReview");
+                    failedTestCases.writeToNamedFile("=================================TC 47","FailAndReview");
                     gridPageIssue.printStackTrace();
                 }
             }catch (Exception noRequestedSiteFound){
                 ChangeCheckBox.adjustStyle(true,"nope",DownloadPDFHelp);
                 webDriver.navigate().to(inputBecomeAPartnerPageURL.getText().trim());
                 report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
-                failedTestCases.writeToNamedFile(infoMessage, "Please check Partner tab on Become Partner page: Couldn't navigate to a requested Site!", "FailAndReview");
+                failedTestCases.writeToNamedFile(infoMessage, "Please check Download button on Partner tab on Become Partner page: Couldn't navigate to a requested Site!", "FailAndReview");
+                failedTestCases.writeToNamedFile("=================================TC 47","FailAndReview");
                 noRequestedSiteFound.printStackTrace();
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",DownloadPDFHelp);
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
-            failedTestCases.writeToNamedFile(infoMessage, "Please check Partner tab on Become Partner page: browser not responding!", "FailAndReview");
+            failedTestCases.writeToNamedFile(infoMessage, "Please check Download button on Partner tab on Become Partner page: browser not responding!", "FailAndReview");
+            failedTestCases.writeToNamedFile("=================================TC 47","FailAndReview");
             noBrowserWorking.printStackTrace();
         }
         report.writeToFile("=================================", "");
-        failedTestCases.writeToNamedFile("=================================","FailAndReview");
     }
     public void checkingTabPartnerSection(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox PartnerTabSection, Text statusInfo, TextField inputBecomeAPartnerPageURL, Properties Homepage){
         final String infoMessage = "Checking Tab Partner Section";
@@ -570,6 +600,7 @@ public class BecomeAPartnerPageTest {
                     }else{
                         report.writeToFile("Partner Tab: ", "Partner Introduction is NOT displayed");
                         failedTestCases.writeToNamedFile("Partner Tab on Become Partner Page: ", "Please check: Partner Introduction is NOT displayed", "FailAndReview");
+                        failedTestCases.writeToNamedFile("================================= TC 48.1","FailAndReview");
                     }
                     try {
                         //check if register button
@@ -583,6 +614,7 @@ public class BecomeAPartnerPageTest {
                         }else{
                             report.writeToFile("Register- Help: ", "Functioning Pop Up does NOT appear !");
                             failedTestCases.writeToNamedFile("Register- Partner tab on Become a Partner: ", "Please check: Functioning Pop Up does NOT appear when clicking on Register!", "FailAndReview");
+                            failedTestCases.writeToNamedFile("================================= TC 48.2","FailAndReview");
                         }
                         try {
                             //check if become Partner button
@@ -595,6 +627,7 @@ public class BecomeAPartnerPageTest {
                             }else{
                                 report.writeToFile("Become Partner Button- Help: ", "Functioning Pop Up does NOT appear !");
                                 failedTestCases.writeToNamedFile("Become Partner Button- Partner tab on Become a Partner: ", "Please check: Functioning Pop Up does NOT appear when clicking on Become Partner!", "FailAndReview");
+                                failedTestCases.writeToNamedFile("================================= TC 48.3","FailAndReview");
                             }
                             try {
                                 //scroll down to bottom
@@ -634,6 +667,7 @@ public class BecomeAPartnerPageTest {
                                     ChangeCheckBox.adjustStyle(true,"nope",PartnerTabSection);
                                     report.writeToFile("Go to Top- Help: ", "Initial banner (H3) is NOT on user's view");
                                     failedTestCases.writeToNamedFile("Go to Top- Partner tab on Become a Partner: ", "Please check: Go to Top button seems not to work on Become a Partner Page- Partner tab", "FailAndReview");
+                                    failedTestCases.writeToNamedFile("================================= TC 48.4","FailAndReview");
                                 }
                                 report.writeToFile("");
                                 report.writeToFile(infoMessage, "Complete!");
@@ -642,6 +676,7 @@ public class BecomeAPartnerPageTest {
                                 webDriver.navigate().to(inputBecomeAPartnerPageURL.getText().trim());
                                 report.writeToFile("Go to Top- Help", "Couldn't detect \"Go To Top\" Button");
                                 failedTestCases.writeToNamedFile("Go to Top- Partner tab on Become a Partner: ", "Please check: Couldn't detect \"Go To Top\" Button on Become a Partner Page- Partner tab", "FailAndReview");
+                                failedTestCases.writeToNamedFile("================================= TC 48.4","FailAndReview");
                                 noGoToTopButton.printStackTrace();
                             }
                         }catch (Exception noBecomePartnerButton){
@@ -649,6 +684,7 @@ public class BecomeAPartnerPageTest {
                             webDriver.navigate().to(inputBecomeAPartnerPageURL.getText().trim());
                             report.writeToFile("Become Partner Button- Help", "Couldn't detect \"Become Partner\" Button");
                             failedTestCases.writeToNamedFile("Become Partner Button- Partner tab on Become a Partner: ", "Please check: Couldn't detect \"Become Partner\" Button on Become a Partner Page- Partner tab", "FailAndReview");
+                            failedTestCases.writeToNamedFile("================================= TC 48.3","FailAndReview");
                             noBecomePartnerButton.printStackTrace();
                         }
                     }catch (Exception noRegisterButton){
@@ -656,6 +692,7 @@ public class BecomeAPartnerPageTest {
                         webDriver.navigate().to(inputBecomeAPartnerPageURL.getText().trim());
                         report.writeToFile("Register- Help", "Couldn't detect \"Register\" Button");
                         failedTestCases.writeToNamedFile("Register Button- Partner tab on Become a Partner: ", "Please check: Couldn't detect \"Register\" Button on Become a Partner Page- Partner tab", "FailAndReview");
+                        failedTestCases.writeToNamedFile("================================= TC 48.2","FailAndReview");
                         noRegisterButton.printStackTrace();
                     }
                 }catch (Exception gridPageIssue){
@@ -663,6 +700,7 @@ public class BecomeAPartnerPageTest {
                     webDriver.navigate().to(inputBecomeAPartnerPageURL.getText().trim());
                     report.writeToFile(infoMessage, "Couldn't detect Tab \"Partner\"");
                     failedTestCases.writeToNamedFile(infoMessage, "Please check: Couldn't detect Tab \"Partner\" on Partner tab", "FailAndReview");
+                    failedTestCases.writeToNamedFile("================================= TC 48.1","FailAndReview");
                     gridPageIssue.printStackTrace();
                 }
             }catch (Exception noRequestedSiteFound){
@@ -670,16 +708,17 @@ public class BecomeAPartnerPageTest {
                 webDriver.navigate().to(inputBecomeAPartnerPageURL.getText().trim());
                 report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
                 failedTestCases.writeToNamedFile(infoMessage, "Please check: Couldn't navigate to Partner tab", "FailAndReview");
+                failedTestCases.writeToNamedFile("================================= TC 48","FailAndReview");
                 noRequestedSiteFound.printStackTrace();
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",PartnerTabSection);
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
             failedTestCases.writeToNamedFile(infoMessage, "Please check Partner tab: Browser not responding", "FailAndReview");
+            failedTestCases.writeToNamedFile("================================= TC 48","FailAndReview");
             noBrowserWorking.printStackTrace();
         }
         report.writeToFile("=================================", "");
-        failedTestCases.writeToNamedFile("=================================","FailAndReview");
     }
     public void checkingFeedProviders(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox FeedProviders, Text statusInfo, TextField inputBecomeAPartnerPageURL, Properties Homepage){
         final String infoMessage = "Checking Feed Providers";
@@ -717,6 +756,7 @@ public class BecomeAPartnerPageTest {
                         }else {
                             report.writeToFile("Link for "+allCollectedProviderURLs.get(i).toString()+" is redirected to a different page  ",webDriver.getCurrentUrl().toLowerCase().trim());
                             failedTestCases.writeToNamedFile("Please check: Link for "+allCollectedProviderURLs.get(i).toString()+" is redirected to a different page  ",webDriver.getCurrentUrl().toLowerCase().trim(), "FailAndReview");
+                            failedTestCases.writeToNamedFile("=================================TC 49","FailAndReview");
                         }
                         webDriver.switchTo().window(tabs.get(1)).close();
                         webDriver.switchTo().window(tabs.get(0));
@@ -729,6 +769,7 @@ public class BecomeAPartnerPageTest {
                     webDriver.navigate().to(inputBecomeAPartnerPageURL.getText().trim());
                     report.writeToFile(infoMessage, "Couldn't detect \"Feed Providers\"");
                     failedTestCases.writeToNamedFile(infoMessage, "Please check: Couldn't detect \"Feed Providers\"", "FailAndReview");
+                    failedTestCases.writeToNamedFile("=================================TC 49","FailAndReview");
                     gridPageIssue.printStackTrace();
                 }
             }catch (Exception noRequestedSiteFound){
@@ -736,15 +777,16 @@ public class BecomeAPartnerPageTest {
                 webDriver.navigate().to(inputBecomeAPartnerPageURL.getText().trim());
                 report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
                 failedTestCases.writeToNamedFile(infoMessage, "Please check: Couldn't navigate to feed providers", "FailAndReview");
+                failedTestCases.writeToNamedFile("=================================TC 49","FailAndReview");
                 noRequestedSiteFound.printStackTrace();
             }
         }catch (Exception noBrowserWorking){
             ChangeCheckBox.adjustStyle(true,"nope",FeedProviders);
             report.writeToFile(infoMessage, "unable to check! Browser not responding");
             failedTestCases.writeToNamedFile(infoMessage, "Please check feed providers: Browser not responding", "FailAndReview");
+            failedTestCases.writeToNamedFile("=================================TC 49","FailAndReview");
             noBrowserWorking.printStackTrace();
         }
         report.writeToFile("=================================", "");
-        failedTestCases.writeToNamedFile("=================================","FailAndReview");
     }
 }

@@ -1,6 +1,5 @@
 package TestCases.PartnershopsPage;
 
-import TestCases.BrandPage.BrandXPathElements;
 import crisscrosscrass.countries;
 import org.apache.log4j.Logger;
 import org.junit.AfterClass;
@@ -87,6 +86,121 @@ public class PartnershopsXPathElements {
     @Test
     public void checkPartnershopsShopLogo(){
         locator = "partnerpage.shops.shoplogos.noplaceholder";
+        logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
+        driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationPartnershopsPageURL()));
+        try{
+            element = driver.findElement (By.xpath(Homepage.getProperty(locator)));
+        }catch (Exception xpathNotFound){
+            logger.error("Couldn't find "+locator+" \n" +
+                    Homepage.get(locator)+" | might be outdated");
+        }
+        Assert.assertNotNull(element);
+    }
+
+    @Test
+    public void checkPartnershopsSearchBar(){
+        locator = "partnerpage.shops.searchbar";
+        logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
+        driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationPartnershopsPageURL()));
+        try{
+            element = driver.findElement (By.xpath(Homepage.getProperty(locator)));
+        }catch (Exception xpathNotFound){
+            logger.error("Couldn't find "+locator+" \n" +
+                    Homepage.get(locator)+" | might be outdated");
+        }
+        Assert.assertNotNull(element);
+    }
+
+    @Test
+    public void checkPartnershopsSortButton(){
+        locator = "partnerpage.shops.sort.button";
+        logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
+        driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationPartnershopsPageURL()));
+        try{
+            element = driver.findElement (By.xpath(Homepage.getProperty(locator)));
+        }catch (Exception xpathNotFound){
+            logger.error("Couldn't find "+locator+" \n" +
+                    Homepage.get(locator)+" | might be outdated");
+        }
+        Assert.assertNotNull(element);
+    }
+
+    @Test
+    public void checkPartnershopsSortOptions(){
+        locator = "partnerpage.shops.sort.options";
+        logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
+        driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationPartnershopsPageURL()));
+        driver.findElementByXPath(Homepage.getProperty("partnerpage.shops.sort.button")).click();
+        try{
+            element = driver.findElement (By.xpath(Homepage.getProperty(locator)));
+        }catch (Exception xpathNotFound){
+            logger.error("Couldn't find "+locator+" \n" +
+                    Homepage.get(locator)+" | might be outdated");
+        }
+        Assert.assertNotNull(element);
+    }
+
+    @Test
+    public void checkPartnershopsSortFirstShop(){
+        locator = "partnerpage.shops.firstshop.stars";
+        logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
+        driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationPartnershopsPageURL()));
+        driver.findElementByXPath(Homepage.getProperty("partnerpage.shops.sort.button")).click();
+        try{
+            element = driver.findElement (By.xpath(Homepage.getProperty(locator)));
+        }catch (Exception xpathNotFound){
+            logger.error("Couldn't find "+locator+" \n" +
+                    Homepage.get(locator)+" | might be outdated");
+        }
+        Assert.assertNotNull(element);
+    }
+
+    @Test
+    public void checkPartnershopsSortRatingCount(){
+        locator = "partnerpage.shops.ratingcounts";
+        logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
+        driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationPartnershopsPageURL()));
+        driver.findElementByXPath(Homepage.getProperty("partnerpage.shops.sort.button")).click();
+        try{
+            element = driver.findElement (By.xpath(Homepage.getProperty(locator)));
+        }catch (Exception xpathNotFound){
+            logger.error("Couldn't find "+locator+" \n" +
+                    Homepage.get(locator)+" | might be outdated");
+        }
+        Assert.assertNotNull(element);
+    }
+
+    @Test
+    public void checkPartnershopsShopLinkName(){
+        locator = "partnerpage.shops.shoplinknames";
+        logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
+        driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationPartnershopsPageURL()));
+        try{
+            element = driver.findElement (By.xpath(Homepage.getProperty(locator)));
+        }catch (Exception xpathNotFound){
+            logger.error("Couldn't find "+locator+" \n" +
+                    Homepage.get(locator)+" | might be outdated");
+        }
+        Assert.assertNotNull(element);
+    }
+
+    @Test
+    public void checkPartnershopsShopLogoNoPH(){
+        locator = "partnerpage.shops.shoplogos.noplaceholder";
+        logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
+        driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationPartnershopsPageURL()));
+        try{
+            element = driver.findElement (By.xpath(Homepage.getProperty(locator)));
+        }catch (Exception xpathNotFound){
+            logger.error("Couldn't find "+locator+" \n" +
+                    Homepage.get(locator)+" | might be outdated");
+        }
+        Assert.assertNotNull(element);
+    }
+
+    @Test
+    public void checkPartnershopsShopReview(){
+        locator = "partnerpage.shops.shopreviews";
         logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
         driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationPartnershopsPageURL()));
         try{
