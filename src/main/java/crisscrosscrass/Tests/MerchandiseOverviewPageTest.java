@@ -219,7 +219,7 @@ public class MerchandiseOverviewPageTest {
                             noSuggestionsFound.printStackTrace();
                         }
                     }
-                    ChangeCheckBox.adjustStyle(true,"nope",MerchandiseSearch);
+                    //TODO you need to make a different complete check here, you can't adjust the checkbox in the loop, you need some verication after that!
                     report.writeToFile(infoMessage, "Complete!");
                 }catch (Exception gridPageIssue){
                     ChangeCheckBox.adjustStyle(true,"nope",MerchandiseSearch);
