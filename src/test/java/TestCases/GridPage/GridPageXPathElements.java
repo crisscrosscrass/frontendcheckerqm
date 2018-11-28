@@ -7,6 +7,8 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -22,6 +24,7 @@ public class GridPageXPathElements {
     private static String countrieSelection = "DE";
     private static String locator;
     private static String gridUrl = "https://www.shopalike.cz/obleceni/sleva/obchod-boardstar/";
+    private static String gridFIUrl = "https://www.shopalike.es/hogar/bano/sale/beige/a-rayas/";
     WebElement element;
 
     @BeforeClass
@@ -111,7 +114,7 @@ public class GridPageXPathElements {
         logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
         driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationMainPage()));
         driver.findElementByXPath(Homepage.getProperty("page.main.links")).click();
-        driver.findElementByXPath(Homepage.getProperty("page.grid.loader "));
+        driver.findElementByXPath(Homepage.getProperty("page.grid.sort.dropdown.button")).click();
         try{
             element = driver.findElement (By.xpath(Homepage.getProperty(locator)));
         }catch (Exception xpathNotFound){
@@ -268,6 +271,331 @@ public class GridPageXPathElements {
 
         Assert.assertNotNull(element);
     }
+
+    @Test
+    public void checkFilterSales(){
+        locator = "page.filter.salesprice";
+        logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
+        driver.navigate().to(gridUrl);
+        //driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationMainPage()));
+        try {
+            element = driver.findElement(By.xpath(Homepage.getProperty(locator)));
+        } catch (Exception xpathNotFound) {
+            logger.error("Couldn't find " + locator + " \n" +
+                    Homepage.get(locator) + " | might be outdated");
+        }
+
+        Assert.assertNotNull(element);
+    }
+
+    @Test
+    public void checkSideBarSales(){
+        locator = "page.sidebar.salesprice";
+        logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
+        driver.navigate().to(gridUrl);
+        //driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationMainPage()));
+        Point hoverItem = driver.findElementByXPath(Homepage.getProperty("page.sidebar.salesprice")).getLocation();
+        ((JavascriptExecutor)driver).executeScript("return window.title;");
+        ((JavascriptExecutor)driver).executeScript("window.scrollBy(0,"+(hoverItem.getY())+");");
+        try {
+            element = driver.findElement(By.xpath(Homepage.getProperty(locator)));
+        } catch (Exception xpathNotFound) {
+            logger.error("Couldn't find " + locator + " \n" +
+                    Homepage.get(locator) + " | might be outdated");
+        }
+
+        Assert.assertNotNull(element);
+    }
+
+    @Test
+    public void checkSideBarGender(){
+        locator = "page.sidebar.gender";
+        logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
+        driver.navigate().to(gridUrl);
+        //driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationMainPage()));
+        Point hoverItem = driver.findElementByXPath(Homepage.getProperty("page.sidebar.gender")).getLocation();
+        ((JavascriptExecutor)driver).executeScript("return window.title;");
+        ((JavascriptExecutor)driver).executeScript("window.scrollBy(0,"+(hoverItem.getY())+");");
+        try {
+            element = driver.findElement(By.xpath(Homepage.getProperty(locator)));
+        } catch (Exception xpathNotFound) {
+            logger.error("Couldn't find " + locator + " \n" +
+                    Homepage.get(locator) + " | might be outdated");
+        }
+
+        Assert.assertNotNull(element);
+    }
+
+    @Test
+    public void checkSideBarColor(){
+        locator = "page.sidebar.color";
+        logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
+        driver.manage().window().maximize();
+        driver.navigate().to(gridUrl);
+        //driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationMainPage()));
+        Point hoverItem = driver.findElementByXPath(Homepage.getProperty("page.sidebar.color")).getLocation();
+        ((JavascriptExecutor)driver).executeScript("return window.title;");
+        ((JavascriptExecutor)driver).executeScript("window.scrollBy(0,"+(hoverItem.getY())+");");
+        try {
+            element = driver.findElement(By.xpath(Homepage.getProperty(locator)));
+        } catch (Exception xpathNotFound) {
+            logger.error("Couldn't find " + locator + " \n" +
+                    Homepage.get(locator) + " | might be outdated");
+        }
+
+        Assert.assertNotNull(element);
+    }
+
+    @Test
+    public void checkSideBarBrand(){
+        locator = "page.sidebar.brand";
+        logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
+        driver.manage().window().maximize();
+        driver.navigate().to(gridUrl);
+        //driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationMainPage()));
+        Point hoverItem = driver.findElementByXPath(Homepage.getProperty("page.sidebar.brand")).getLocation();
+        ((JavascriptExecutor)driver).executeScript("return window.title;");
+        ((JavascriptExecutor)driver).executeScript("window.scrollBy(0,"+(hoverItem.getY())+");");
+        try {
+            element = driver.findElement(By.xpath(Homepage.getProperty(locator)));
+        } catch (Exception xpathNotFound) {
+            logger.error("Couldn't find " + locator + " \n" +
+                    Homepage.get(locator) + " | might be outdated");
+        }
+
+        Assert.assertNotNull(element);
+    }
+
+    @Test
+    public void checkSideBarBrandInput(){
+        locator = "page.sidebar.brand.input";
+        logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
+        driver.manage().window().maximize();
+        driver.navigate().to(gridUrl);
+        //driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationMainPage()));
+        Point hoverItem = driver.findElementByXPath(Homepage.getProperty("page.sidebar.brand")).getLocation();
+        ((JavascriptExecutor)driver).executeScript("return window.title;");
+        ((JavascriptExecutor)driver).executeScript("window.scrollBy(0,"+(hoverItem.getY())+");");
+        try {
+            element = driver.findElement(By.xpath(Homepage.getProperty(locator)));
+        } catch (Exception xpathNotFound) {
+            logger.error("Couldn't find " + locator + " \n" +
+                    Homepage.get(locator) + " | might be outdated");
+        }
+
+        Assert.assertNotNull(element);
+    }
+
+
+    @Test
+    public void checkSideBarBrandSuggestions(){
+        locator = "page.sidebar.brand.suggestions";
+        logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
+        driver.manage().window().maximize();
+        driver.navigate().to(gridUrl);
+        //driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationMainPage()));
+        Point hoverItem = driver.findElementByXPath(Homepage.getProperty("page.sidebar.brand.input")).getLocation();
+        ((JavascriptExecutor)driver).executeScript("return window.title;");
+        ((JavascriptExecutor)driver).executeScript("window.scrollBy(0,"+(hoverItem.getY())+");");
+        WebElement element = driver.findElement(By.id(Homepage.getProperty("page.sidebar.brand.input")));
+        //driver.findElementByXPath(Homepage.getProperty("page.sidebar.brand.input")).click();
+        element.sendKeys("nike");
+        try {
+            element = driver.findElement(By.xpath(Homepage.getProperty(locator)));
+        } catch (Exception xpathNotFound) {
+            logger.error("Couldn't find " + locator + " \n" +
+                    Homepage.get(locator) + " | might be outdated");
+        }
+
+        Assert.assertNotNull(element);
+    }
+
+    @Test
+    public void checkSideBarMerchandise(){
+        locator = "page.sidebar.merchandise";
+        logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
+        driver.manage().window().maximize();
+        driver.navigate().to(gridUrl);
+        //driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationMainPage()));
+        Point hoverItem = driver.findElementByXPath(Homepage.getProperty("page.sidebar.merchandise")).getLocation();
+        ((JavascriptExecutor)driver).executeScript("return window.title;");
+        ((JavascriptExecutor)driver).executeScript("window.scrollBy(0,"+(hoverItem.getY())+");");
+        try {
+            element = driver.findElement(By.xpath(Homepage.getProperty(locator)));
+        } catch (Exception xpathNotFound) {
+            logger.error("Couldn't find " + locator + " \n" +
+                    Homepage.get(locator) + " | might be outdated");
+        }
+
+        Assert.assertNotNull(element);
+    }
+
+    @Test
+    public void checkSideBarShop(){
+        locator = "page.sidebar.shop.input";
+        logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
+        driver.manage().window().maximize();
+        driver.navigate().to(gridUrl);
+        //driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationMainPage()));
+        Point hoverItem = driver.findElementByXPath(Homepage.getProperty("page.sidebar.shop.input")).getLocation();
+        ((JavascriptExecutor)driver).executeScript("return window.title;");
+        ((JavascriptExecutor)driver).executeScript("window.scrollBy(0,"+(hoverItem.getY())+");");
+        try {
+            element = driver.findElement(By.xpath(Homepage.getProperty(locator)));
+        } catch (Exception xpathNotFound) {
+            logger.error("Couldn't find " + locator + " \n" +
+                    Homepage.get(locator) + " | might be outdated");
+        }
+
+        Assert.assertNotNull(element);
+    }
+
+    @Test
+    public void checkSideBarShopSuggestions(){
+        locator = "page.sidebar.shop.suggestions";
+        logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
+        driver.manage().window().maximize();
+        driver.navigate().to(gridUrl);
+        //driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationMainPage()));
+        Point hoverItem = driver.findElementByXPath(Homepage.getProperty("page.sidebar.shop.input")).getLocation();
+        ((JavascriptExecutor)driver).executeScript("return window.title;");
+        ((JavascriptExecutor)driver).executeScript("window.scrollBy(0,"+(hoverItem.getY())+");");
+        WebElement element = driver.findElement(By.id(Homepage.getProperty("page.sidebar.shop.input")));
+        element.sendKeys("bibloo");
+        try {
+            element = driver.findElement(By.xpath(Homepage.getProperty(locator)));
+        } catch (Exception xpathNotFound) {
+            logger.error("Couldn't find " + locator + " \n" +
+                    Homepage.get(locator) + " | might be outdated");
+        }
+
+        Assert.assertNotNull(element);
+    }
+
+    @Test
+    public void checkSideBarMyFilters(){
+        locator = "page.sidebar.myfilters";
+        logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
+        driver.manage().window().maximize();
+        driver.navigate().to(gridUrl);
+        //driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationMainPage()));
+        try {
+            element = driver.findElement(By.xpath(Homepage.getProperty(locator)));
+        } catch (Exception xpathNotFound) {
+            logger.error("Couldn't find " + locator + " \n" +
+                    Homepage.get(locator) + " | might be outdated");
+        }
+
+        Assert.assertNotNull(element);
+    }
+
+    @Test
+    public void checkSideBarAllFilters(){
+        locator = "page.sidebar.allfilters";
+        logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
+        driver.manage().window().maximize();
+        driver.navigate().to(gridUrl);
+        //driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationMainPage()));
+        try {
+            element = driver.findElement(By.xpath(Homepage.getProperty(locator)));
+        } catch (Exception xpathNotFound) {
+            logger.error("Couldn't find " + locator + " \n" +
+                    Homepage.get(locator) + " | might be outdated");
+        }
+
+        Assert.assertNotNull(element);
+    }
+
+    @Test
+    public void checkSideBarAllFiltersReset(){
+        locator = "page.sidebar.allfilters.reset";
+        logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
+        driver.manage().window().maximize();
+        driver.navigate().to(gridUrl);
+        //driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationMainPage()));
+        try {
+            element = driver.findElement(By.xpath(Homepage.getProperty(locator)));
+        } catch (Exception xpathNotFound) {
+            logger.error("Couldn't find " + locator + " \n" +
+                    Homepage.get(locator) + " | might be outdated");
+        }
+
+        Assert.assertNotNull(element);
+    }
+
+    @Test
+    public void checkSideBarShowMore(){
+        locator = "page.sidebar.showMoreTags.button";
+        logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
+        driver.manage().window().maximize();
+        driver.navigate().to(gridUrl);
+        //driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationMainPage()));
+        try {
+            element = driver.findElement(By.xpath(Homepage.getProperty(locator)));
+        } catch (Exception xpathNotFound) {
+            logger.error("Couldn't find " + locator + " \n" +
+                    Homepage.get(locator) + " | might be outdated");
+        }
+
+        Assert.assertNotNull(element);
+    }
+
+    @Test
+    public void checkSideBarShowLess(){
+        locator = "page.sidebar.showLessTags.button";
+        logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
+        driver.manage().window().maximize();
+        driver.navigate().to(gridUrl);
+        //driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationMainPage()));
+        driver.findElementByXPath(Homepage.getProperty("page.sidebar.showMoreTags.button")).click();
+        try {
+            element = driver.findElement(By.xpath(Homepage.getProperty(locator)));
+        } catch (Exception xpathNotFound) {
+            logger.error("Couldn't find " + locator + " \n" +
+                    Homepage.get(locator) + " | might be outdated");
+        }
+
+        Assert.assertNotNull(element);
+    }
+
+
+    /**Grid Fill In Tests*/
+/*
+    @Test
+    public void checkFillInMore(){
+        locator = "page.grid.fillInMore";
+        logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
+        driver.manage().window().maximize();
+        driver.navigate().to(gridFIUrl);
+        //driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationMainPage()));
+        try {
+            element = driver.findElement(By.xpath(Homepage.getProperty(locator)));
+        } catch (Exception xpathNotFound) {
+            logger.error("Couldn't find " + locator + " \n" +
+                    Homepage.get(locator) + " | might be outdated");
+        }
+
+        Assert.assertNotNull(element);
+    }
+
+    @Test
+    public void checkFillInAll(){
+        locator = "page.grid.fillInAll";
+        logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
+        driver.manage().window().maximize();
+        driver.navigate().to(gridFIUrl);
+        //driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationMainPage()));
+        try {
+            element = driver.findElement(By.xpath(Homepage.getProperty(locator)));
+        } catch (Exception xpathNotFound) {
+            logger.error("Couldn't find " + locator + " \n" +
+                    Homepage.get(locator) + " | might be outdated");
+        }
+
+        Assert.assertNotNull(element);
+    }
+*/
+
 
     @AfterClass
     public static void closeBrowser(){
