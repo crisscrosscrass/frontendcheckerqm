@@ -12,6 +12,8 @@ import org.openqa.selenium.Point;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.InputStream;
 import java.util.Properties;
@@ -85,6 +87,8 @@ public class GridPageXPathElements {
         driver.findElementByXPath(Homepage.getProperty("page.main.links")).click();
         driver.findElementByXPath(Homepage.getProperty("page.grid.windows.continue")).click();
         try{
+            WebDriverWait wait = new WebDriverWait(driver, 10);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Homepage.getProperty(locator))));
             element = driver.findElement (By.xpath(Homepage.getProperty(locator)));
         }catch (Exception xpathNotFound){
             logger.error("Couldn't find "+locator+" \n" +
@@ -397,7 +401,7 @@ public class GridPageXPathElements {
         Point hoverItem = driver.findElementByXPath(Homepage.getProperty("page.sidebar.brand.input")).getLocation();
         ((JavascriptExecutor)driver).executeScript("return window.title;");
         ((JavascriptExecutor)driver).executeScript("window.scrollBy(0,"+(hoverItem.getY())+");");
-        WebElement element = driver.findElement(By.id(Homepage.getProperty("page.sidebar.brand.input")));
+        WebElement element = driver.findElement(By.xpath(Homepage.getProperty("page.sidebar.brand.input")));
         //driver.findElementByXPath(Homepage.getProperty("page.sidebar.brand.input")).click();
         element.sendKeys("nike");
         try {
@@ -460,7 +464,7 @@ public class GridPageXPathElements {
         Point hoverItem = driver.findElementByXPath(Homepage.getProperty("page.sidebar.shop.input")).getLocation();
         ((JavascriptExecutor)driver).executeScript("return window.title;");
         ((JavascriptExecutor)driver).executeScript("window.scrollBy(0,"+(hoverItem.getY())+");");
-        WebElement element = driver.findElement(By.id(Homepage.getProperty("page.sidebar.shop.input")));
+        WebElement element = driver.findElement(By.xpath(Homepage.getProperty("page.sidebar.shop.input")));
         element.sendKeys("bibloo");
         try {
             element = driver.findElement(By.xpath(Homepage.getProperty(locator)));
@@ -560,7 +564,7 @@ public class GridPageXPathElements {
 
 
     /**Grid Fill In Tests*/
-/*
+
     @Test
     public void checkFillInMore(){
         locator = "page.grid.fillInMore";
@@ -578,7 +582,7 @@ public class GridPageXPathElements {
         Assert.assertNotNull(element);
     }
 
-    @Test
+  /*  @Test
     public void checkFillInAll(){
         locator = "page.grid.fillInAll";
         logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
@@ -593,8 +597,8 @@ public class GridPageXPathElements {
         }
 
         Assert.assertNotNull(element);
-    }
-*/
+    } */
+
 
 
     @AfterClass
