@@ -397,8 +397,8 @@ public class GridPageTest {
                         }
                         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(@class, 'Click-Navigated-Previous_Page_Button')]")));
                         webDriver.findElementByXPath("//*[contains(@class, 'Click-Navigated-Previous_Page_Button')] ").click();
-                        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[contains(@class, 'Click-Navigated-Previous_Page_Button')] ")));
-                        if (!webDriver.getCurrentUrl().contains("1")){
+                        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[contains(@class, 'Click-Navigated-Previous_Page_Button')]")));
+                        if (!webDriver.getCurrentUrl().contains("-2")){
                             report.writeToFile("Checking  GridPage Paging Backward: ", "Successful! Found pattern in URL and Previous Page Button disappeared!");
                         }else {
                             report.writeToFile("Checking  GridPage Paging Backward: ", "Not Successful! User is not redirected");
@@ -460,7 +460,8 @@ public class GridPageTest {
         }
         report.writeToFile("=================================", "");
     }
-
+/** PRODUCT VIEW WAS REMOVED FROM PAGE */
+/*
     public void checkingProductView300(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox productView300, TextField inputGridPageURL, Text statusInfo, TextField inputSearch, Properties Homepage){
         final String infoMessage = productView300.getText();
         ChangeCheckBox.adjustStyle(false,"progress",productView300);
@@ -558,7 +559,7 @@ public class GridPageTest {
         }
         report.writeToFile("=================================", "");
     }
-
+*/
     public void checkingDeeperStyle(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox deeperStyle, TextField inputGridPageURL, Text statusInfo, TextField inputSearch, Properties Homepage){
         final String infoMessage = deeperStyle.getText();
         ChangeCheckBox.adjustStyle(false,"progress",deeperStyle);
@@ -1254,7 +1255,7 @@ public class GridPageTest {
                             failedTestCases.writeToNamedFile("For more information about the Brand Search error, see GridPageErrorSearchInBrandFilter: ", "Screenshot not successful!", "FailAndReview");
                         }
                         report.writeToFile(infoMessage, "Couldn't find any Suggestion Box to enter Keyword");
-                        failedTestCases.writeToNamedFile(infoMessage, "Please check: Couldn't find any Suggestion Box to enter Keyword", "FailAndReview");
+                        failedTestCases.writeToNamedFile(infoMessage, "Please check: Couldn't find any brand on brand box ", "FailAndReview");
                         failedTestCases.writeToNamedFile("=================================TC 16","FailAndReview");
                         noStyleBoxOpenCloseFound.printStackTrace();
                     }
@@ -1344,7 +1345,7 @@ public class GridPageTest {
                             failedTestCases.writeToNamedFile("=================================TC 17","FailAndReview");
                         }
                         report.writeToFile("Checking GridPage Search Box in Shop Filter: ", "Couldn't find any Suggestion Box to enter Keyword");
-                        failedTestCases.writeToNamedFile("For more information about the Shop Search error, see GridPageErrorSearchInShopFilter", "Couldn't find any Suggestion Box to enter Keyword ", "FailAndReview");
+                        failedTestCases.writeToNamedFile("For more information about the Shop Search error, see GridPageErrorSearchInShopFilter", "Couldn't find shop in shop box ", "FailAndReview");
                         failedTestCases.writeToNamedFile("=================================TC 17","FailAndReview");
                         noStyleBoxOpenCloseFound.printStackTrace();
                     }

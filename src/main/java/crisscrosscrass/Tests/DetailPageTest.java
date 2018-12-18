@@ -1,7 +1,6 @@
 package crisscrosscrass.Tests;
 
 import com.jfoenix.controls.JFXCheckBox;
-import crisscrosscrass.Main;
 import crisscrosscrass.Tasks.ChangeCheckBox;
 import crisscrosscrass.Tasks.Report;
 import crisscrosscrass.Tasks.ScreenshotViaWebDriver;
@@ -285,7 +284,7 @@ public class DetailPageTest {
                         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Homepage.getProperty("page.grid.loader"))));
                         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.items.price"))));
                         wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.items.price"))));
-                        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Homepage.getProperty("page.previousPage.button"))));
+                        //wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Homepage.getProperty("page.previousPage.button"))));
                         if (!webDriver.getCurrentUrl().contains("-2")){
                             report.writeToFile(infoMessage, "Successful! Found pattern in URL and Previous Page Button disappeared!");
                             ChangeCheckBox.adjustStyle(true,"complete",PagingForwardBackward);
