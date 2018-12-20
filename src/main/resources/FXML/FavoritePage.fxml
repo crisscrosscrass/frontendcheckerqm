@@ -9,8 +9,8 @@
 <?import com.jfoenix.controls.JFXCheckBox?>
 <VBox fx:id="favoritePageCheckBoxCollection" style="-fx-background-color: white;" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="crisscrosscrass.Controller.FavoritePageController">
     <children>
-        <JFXCheckBox fx:id="PersonalList" text="Personal List Tests" />
-        <JFXCheckBox fx:id="SortingOnList" text="Items Sorting on Personal List" />
-        <JFXCheckBox fx:id="SelectionOnList" text="Items Selection on Personal List" />
+        <JFXCheckBox fx:id="AddingToList" text="Adding items to Favorite List" />
+        <JFXCheckBox fx:id="SortingOnList" text="Items Sorting by price on Favorite List" />
+        <JFXCheckBox fx:id="DeletingFromList" text="Deleting items to Favorite List" />
     </children>
 </VBox>

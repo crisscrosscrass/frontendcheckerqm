@@ -6,7 +6,8 @@ import javafx.scene.layout.VBox;
 
 public class FavoritePageController {
     @FXML VBox favoritePageCheckBoxCollection;
-    @FXML JFXCheckBox PersonalList;
+    @FXML JFXCheckBox AddingToList;
     @FXML JFXCheckBox SortingOnList;
-    @FXML JFXCheckBox SelectionOnList;
+    @FXML JFXCheckBox DeletingFromList;
+
 }

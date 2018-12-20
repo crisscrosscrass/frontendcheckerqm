@@ -12,6 +12,8 @@ import org.openqa.selenium.Point;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.InputStream;
 import java.util.Properties;
@@ -21,7 +23,7 @@ public class HomepageXPathElements {
     final static Logger logger = Logger.getLogger(HomepageXPathElements.class);
     private static ChromeDriver driver;
     private static Properties Homepage;
-    private static String countrieSelection = "FR";
+    private static String countrieSelection = "DE";
     private static String locator;
     WebElement element;
 
@@ -115,7 +117,7 @@ public class HomepageXPathElements {
 
     @Test
     public void checkShopGridImage(){
-        locator = "page.grid.shop.image ";
+        locator = "page.grid.shop.image";
         logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
         driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationMainPage()));
         driver.findElementByXPath(Homepage.getProperty("page.main.shop.promo.link")).click();
@@ -322,7 +324,8 @@ public class HomepageXPathElements {
         Assert.assertNotNull(element);
     }
 
-   /** @Test
+
+   @Test
     public void checkSearchSuggestionTitles(){
         locator = "page.search.suggestion.titles";
         logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
@@ -330,8 +333,8 @@ public class HomepageXPathElements {
         WebElement element = driver.findElement(By.id(Homepage.getProperty("page.search.bar")));
         element.sendKeys("pumps");
         try{
-            element = driver.findElementById(Homepage.getProperty(locator));
-            element.sendKeys("body");
+            element = driver.findElementByXPath(Homepage.getProperty(locator));
+            //element.sendKeys("body");
         }catch (Exception xpathNotFound){
             logger.error("Couldn't find "+locator+" \n" +
                     Homepage.get(locator)+" | might be outdated");
@@ -347,14 +350,16 @@ public class HomepageXPathElements {
         WebElement element = driver.findElement(By.id(Homepage.getProperty("page.search.bar")));
         element.sendKeys("pumps");
         try{
-            element = driver.findElementById(Homepage.getProperty(locator));
-            element.sendKeys("body");
+            WebDriverWait wait = new WebDriverWait(driver, 10);
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty(locator))));
+            element = driver.findElementByXPath(Homepage.getProperty(locator));
         }catch (Exception xpathNotFound){
+            xpathNotFound.printStackTrace();
             logger.error("Couldn't find "+locator+" \n" +
                     Homepage.get(locator)+" | might be outdated");
         }
         Assert.assertNotNull(element);
-    }*/
+    }
 
     @Test
     public void checkFeedbackIcon(){
@@ -372,7 +377,7 @@ public class HomepageXPathElements {
 
     @Test
     public void checkFeedbackClose(){
-        locator = "page.main.feedback.close ";
+        locator = "page.main.feedback.close";
         logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
         driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationMainPage()));
         driver.findElementByXPath(Homepage.getProperty("page.main.feedback.icon")).click();
